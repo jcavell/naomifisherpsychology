@@ -1,0 +1,101 @@
+---
+import CardLayout from "../../layouts/CardLayout.astro";
+
+import getWebinars from "../../scripts/webinars";
+import getCourses from "../../scripts/courses";
+
+import { makeUrl } from "../../scripts/url";
+
+import WebinarSummary from "../../components/WebinarSummary.astro";
+import CourseSummary from "../../components/CourseSummary.astro";
+
+export async function getStaticPaths() {
+  const webinars = await getWebinars();
+  const courses = await getCourses();
+
+  const webinarTags = webinars.map((webinar) => webinar.tags).flat();
+  const courseTags = courses.map((course) => course.data.tags).flat();
+  const uniqueTags = [...new Set([...webinarTags, ...courseTags])];
+
+  // console.log("Unique tags: " + uniqueTags);
+  // courses.map((course) => console.log("*****" + course.data.title));
+
+  return uniqueTags.map((tag: string) => {
+    const filteredWebinars = webinars.filter((webinar) =>
+      webinar.tags.includes(tag)
+    );
+
+    const filteredCourses = courses.filter((course) =>
+      course.data.tags.includes(tag)
+    );
+
+    // Sort courses depending on where tag appears
+    filteredCourses.sort(function (a, b) {
+      const tagUpper = tag.toUpperCase();
+      if (
+        a.data.title.toUpperCase().indexOf(tagUpper) !== -1 &&
+        b.data.title.toUpperCase().indexOf(tagUpper) === -1
+      ) {
+        // In B's title but not A's - sort B first
+        return -1;
+      }
+      if (
+        a.data.description.toUpperCase().indexOf(tagUpper) !== -1 &&
+        b.data.description.toUpperCase().indexOf(tagUpper) === -1
+      ) {
+        // In B's description but not A's - sort B first
+        return -1;
+      }
+      // sort A first
+      return 1;
+    });
+
+    // console.log("**" + tag + "** " + filteredCourses.map((course) => course.data.title));
+
+    return {
+      params: { tag: makeUrl(tag) },
+      props: {
+        tagName: tag,
+        webinars: filteredWebinars,
+        courses: filteredCourses,
+      },
+    };
+  });
+}
+
+const { tag } = Astro.params;
+const { tagName, webinars, courses } = Astro.props;
+---
+
+<CardLayout pageTitle={tagName}>
+  {
+    webinars.map((webinar, index) => (
+      <WebinarSummary
+        imageURL={webinar.logo.original.url}
+        tags={webinar.tags}
+        people={webinar.people}
+        checkoutURL={webinar.url}
+        title={webinar.name.text}
+        subtitle={webinar.description.text}
+        start={webinar.start.utc}
+        end={webinar.end.utc}
+        tickets={webinar.ticket_classes}
+      />
+    ))
+  }
+
+  {
+    courses.map((course) => (
+      <CourseSummary
+        price={course.data.price}
+        imageURL={course.data.imageURL}
+        checkoutURL={course.data.checkoutUrl}
+        title={course.data.title}
+        summary={course.data.description}
+        descriptions={course.data.descriptions}
+        people={course.data.people}
+        tags={course.data.tags}
+      />
+    ))
+  }
+</CardLayout>

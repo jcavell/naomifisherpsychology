@@ -1,0 +1,16 @@
+---
+import { makeUrl } from "../scripts/url";
+
+const { tags } = Astro.props;
+---
+
+<span class="tags">
+  {
+    tags.map((tag: string, index: number) => (
+      <a href={`/tags/${makeUrl(tag)}`}>
+        {tag}
+        {index + 1 === tags.length ? "" : ","}&nbsp;
+      </a>
+    ))
+  }
+</span>

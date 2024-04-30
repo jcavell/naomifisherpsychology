@@ -1,0 +1,31 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CardLayout from "../layouts/CardLayout.astro";
+import Greeting from "../components/Greeting";
+const pageTitle = "Home";
+---
+
+<CardLayout pageTitle={pageTitle}>
+  <h2>Dr. Naomi Fisher</h2>
+  <Greeting client:load messages={["Hej", "Hallo", "Hola", "Habari"]} />
+
+  <button id="example-widget-trigger" type="button">Buy Tickets</button>
+
+  <script is:inline src="../scripts/eb.js"></script>
+
+  <div id="example-widget-trigger"></div>
+
+  <script type="text/javascript">
+    var exampleCallback = function () {
+      console.log("Order complete!");
+    };
+
+    window.EBWidgets.createWidget({
+      widgetType: "checkout",
+      eventId: "885562259557",
+      iframeContainerId: "example-widget-trigger",
+      iframeContainerHeight: 425,
+      onOrderComplete: exampleCallback,
+    });
+  </script>
+</CardLayout>

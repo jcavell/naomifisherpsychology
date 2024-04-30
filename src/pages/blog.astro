@@ -1,0 +1,18 @@
+---
+import { getCollection } from "astro:content";
+
+import CardLayout from "../layouts/CardLayout.astro";
+import BlogSummary from "../components/BlogSummary.astro";
+
+const posts = await getCollection("blog");
+
+const pageTitle = "Substack Blog";
+---
+
+<CardLayout pageTitle={pageTitle}>
+  {
+    posts.map((post) => (
+      <BlogSummary url={`${post.data.url}`} title={post.data.title} subtitle={post.data.subtitle} paragraphs = {post.data.paragraphs} />
+    ))
+  }
+</CardLayout>

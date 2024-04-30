@@ -1,0 +1,35 @@
+---
+import { makeUrl, getCourseImagePath } from "../scripts/url";
+import Contributers from "./Contributers.astro";
+import Tags from "./Tags.astro";
+import { Image } from 'astro:assets';
+
+const { title, summary, price, checkoutURL, imageURL, people, tags } = Astro.props;
+---
+
+<div class="card card-courses">
+  <h2>
+    <a href=`/courses/${makeUrl(title)}`>{title}</a>
+  </h2>
+
+  <img src={getCourseImagePath(imageURL)} alt="" />
+
+  <div class="card-details">
+    <a href="#" class="card-type-course"> RECORDED COURSE </a>
+    <span> 2 HOURS, {price} </span>
+  </div>
+
+  <p>
+    {summary}
+  </p>
+
+  <div class="card-meta">
+    <Contributers people={people} />
+    <Tags tags={tags} />
+  </div>
+
+  <div class="card-buttons">
+    <a href=`/courses/${makeUrl(title)}`> Learn More </a>
+    <a href={checkoutURL}> Purchase </a>
+  </div>
+</div>

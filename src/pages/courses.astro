@@ -1,0 +1,25 @@
+---
+import CardLayout from "../layouts/CardLayout.astro";
+import CourseSummary from "../components/CourseSummary.astro";
+import getCourses from "../scripts/courses";
+
+const courses = await getCourses();
+
+const pageTitle = "Courses";
+---
+
+<CardLayout pageTitle={pageTitle}>
+  {
+    courses.map((course) => (
+      <CourseSummary
+        price={course.data.price}
+        imageURL={course.data.imageURL}
+        checkoutURL={course.data.checkoutUrl}
+        title={course.data.title}
+        summary={course.data.description}
+        people={course.data.people}
+        tags={course.data.tags}
+      />
+    ))
+  }
+</CardLayout>

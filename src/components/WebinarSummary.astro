@@ -1,0 +1,71 @@
+---
+import Tags from "./Tags.astro";
+import Contributers from "./Contributers.astro";
+
+const { title, subtitle, people, tags, start, end, tickets, checkoutURL, imageURL } =
+  Astro.props;
+
+const tix = tickets.map((ticket) => ({
+  price: ticket.cost.display,
+  fee: ticket.fee.display,
+  status: ticket.on_sale_status,
+  name: ticket.display_name,
+}));
+
+
+
+const startDateTime = new Date(Date.parse(start));
+const endDateTime = new Date(Date.parse(end));
+
+const displayDay = { day: "numeric" };
+const displayMonth = { month: "short" };
+const displayTime = { hour: "numeric", minute: "numeric" };
+
+const day = startDateTime.toLocaleString(undefined, displayDay);
+const month = startDateTime.toLocaleString(undefined, displayMonth);
+const startTime = startDateTime.toLocaleString(undefined, displayTime);
+const endTime = endDateTime.toLocaleString(undefined, displayTime);
+---
+
+<div class="card card-webinar">
+  <!-- Tix: {JSON.stringify(tix)}<br /> -->
+  <div class="live-date">
+    <span class="live-day"> {day} </span>
+    <span class="live-month"> {month} </span>
+  </div>
+
+  <h2>
+    <a href="#">{title}</a>
+  </h2>
+
+  <img src={imageURL} alt="" />
+
+  <div class="card-details">
+    <a href="#" class="card-type-course"> LIVE WEBINAR </a>
+    <span>
+      From {tix[0].price} + booking fee
+      <!-- {startTime} - {endTime},
+      {tix.map((ticket, index) => ` ${ticket.price} (${ticket.name})`)} -->
+    </span>
+  </div>
+
+  <p>
+    {subtitle}
+  </p>
+
+  <div class="card-meta">
+    <span class="tags">
+      {`${day} ${month} ${startTime} - ${endTime}`}
+    </span>
+ 
+    <Contributers people = {people}/>
+    
+    <Tags tags = {tags}/>
+
+  </div>
+
+  <div class="card-buttons">
+    <a href="#"> Learn More </a>
+    <a href={`${checkoutURL}?aff=web`}> Tickets </a>
+  </div>
+</div>
