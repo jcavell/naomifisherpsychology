@@ -48,8 +48,10 @@ export default async function getWebinars() {
   );
 
   webinars.map((webinar, index) => {
-    webinar.people = getPeople(detailsJsons[index].modules[0].data.body.text);
-    webinar.tags = getTags(webinar.name.text, webinar.description.text);
+    const detailsText = detailsJsons[index].modules[0].data.body.text;
+    webinar.detailsText = detailsText;
+    webinar.people = getPeople(detailsText);
+    webinar.tags = getTags(webinar.name.text, webinar.description.text, detailsText);
   });
 
   return webinars;

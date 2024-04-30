@@ -1,0 +1,41 @@
+---
+import CardLayout from "../../layouts/CardLayout.astro";
+import getWebinars from "../../scripts/webinars";
+import { makeUrl } from "../../scripts/url";
+import WebinarDetails from "../../components/WebinarDetails.astro";
+
+export async function getStaticPaths() {
+  const webinars = await getWebinars();
+
+  return webinars.map((webinar) => {
+    return {
+      params: { eventId: makeUrl(webinar.id) },
+      props: {
+        webinar: webinar,
+      },
+    };
+  });
+}
+
+const { eventId } = Astro.params;
+const { webinar } = Astro.props;
+
+console.log("webinar details is: " + JSON.stringify(webinar.detailsText));
+---
+
+<CardLayout pageTitle=" ">
+      <WebinarDetails
+      eventId={eventId}  
+      imageURL={webinar.logo.original.url}
+        detailsText={webinar.detailsText}
+        tags={webinar.tags}
+        people={webinar.people}
+        checkoutURL={webinar.url}
+        title={webinar.name.text}
+        subtitle={webinar.description.text}
+        start={webinar.start.utc}
+        end={webinar.end.utc}
+        tickets={webinar.ticket_classes}
+      />
+    ))
+</CardLayout>

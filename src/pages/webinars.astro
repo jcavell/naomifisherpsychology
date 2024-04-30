@@ -14,6 +14,7 @@ const webinars = await getWebinars();
   {
     webinars.map((webinar, index) => (
       <WebinarSummary
+        eventId={webinar.id}
         imageURL={webinar.logo.original.url}
         tags={webinar.tags}
         people={webinar.people}
@@ -26,8 +27,4 @@ const webinars = await getWebinars();
       />
     ))
   }
-
-  
 </CardLayout>
-
-

@@ -2,8 +2,19 @@
 import Tags from "./Tags.astro";
 import Contributers from "./Contributers.astro";
 
-const { eventId, title, subtitle, people, tags, start, end, tickets, checkoutURL, imageURL } =
-  Astro.props;
+const {
+  eventId,
+  detailsText,
+  title,
+  subtitle,
+  people,
+  tags,
+  start,
+  end,
+  tickets,
+  checkoutURL,
+  imageURL,
+} = Astro.props;
 
 const tix = tickets.map((ticket) => ({
   price: ticket.cost.display,
@@ -11,8 +22,6 @@ const tix = tickets.map((ticket) => ({
   status: ticket.on_sale_status,
   name: ticket.display_name,
 }));
-
-
 
 const startDateTime = new Date(Date.parse(start));
 const endDateTime = new Date(Date.parse(end));
@@ -35,17 +44,15 @@ const endTime = endDateTime.toLocaleString(undefined, displayTime);
   </div>
 
   <h2>
-    <a href={`/webinars/${eventId}`}>{title}</a>
+    <a href="#">{title}</a>
   </h2>
 
   <img src={imageURL} alt="" />
 
   <div class="card-details">
-    <a href={`/webinars/${eventId}`} class="card-type-course"> LIVE WEBINAR </a>
+    <a href="#" class="card-type-course"> LIVE WEBINAR </a>
     <span>
       From {tix[0].price} + booking fee
-      <!-- {startTime} - {endTime},
-      {tix.map((ticket, index) => ` ${ticket.price} (${ticket.name})`)} -->
     </span>
   </div>
 
@@ -53,19 +60,43 @@ const endTime = endDateTime.toLocaleString(undefined, displayTime);
     {subtitle}
   </p>
 
+  <p set:html={detailsText}>
+  </p>
+
   <div class="card-meta">
     <span class="tags">
       {`${day} ${month} ${startTime} - ${endTime}`}
     </span>
- 
-    <Contributers people = {people}/>
-    
-    <Tags tags = {tags}/>
 
+    <Contributers people={people} />
+
+    <Tags tags={tags} />
   </div>
 
-  <div class="card-buttons">
-    <a href={`/webinars/${eventId}`}> Learn More </a>
+  <!-- <div class="card-buttons">
+    <a href="#"> Learn More </a>
     <a href={`${checkoutURL}?aff=web`}> Tickets </a>
-  </div>
+  </div> -->
+</div>
+
+<div>
+  <button id="example-widget-trigger" type="button">Buy Tickets</button>
+
+  <script is:inline src="/scripts/eb.js"></script>
+
+  <div id="example-widget-trigger"></div>
+
+  <script type="text/javascript" define:vars={{ eventId }}>
+    var exampleCallback = function () {
+      console.log("Order complete!");
+    };
+
+    window.EBWidgets.createWidget({
+      widgetType: "checkout",
+      eventId: eventId,
+      iframeContainerId: "example-widget-trigger",
+      iframeContainerHeight: 425,
+      onOrderComplete: exampleCallback,
+    });
+  </script>
 </div>
