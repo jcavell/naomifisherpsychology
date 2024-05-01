@@ -1,0 +1,48 @@
+---
+import { getTags } from "../scripts/tags";
+import Tags from "./Tags.astro";
+import { makeUrl } from "../scripts/url";
+import { getImagePath } from "../scripts/url";
+
+const { title, subtitle, paragraphs, images, url } = Astro.props;
+
+const body = paragraphs.reduce((acc: string, curr: string) => acc + " " + curr);
+const tags = getTags(title, subtitle, body);
+
+const imgSrc = images.length ? getImagePath("blog", title + '_0', images[0]) : 'https://outofnowhere.co.uk/fisher/22-03-24/imgs/stock-image-001.jpg';
+---
+
+<div class="card card-courses">
+    <h2>
+      <a href=`/blog/${makeUrl(title)}`>{title}</a>
+    </h2>
+
+    <p>Substack:<a href={url}>{title}</a>
+    </p>
+
+
+    <img src={imgSrc} alt=`Image for ${title}` />
+
+    <div class="card-details">
+      <a href="#" class="card-type-course"> BLOG </a>
+      <span> {subtitle} </span>
+    </div>
+
+    <p>
+      {body}
+    </p>
+
+    <div class="card-meta">
+      <span class="contributors">
+        Dr Naomi Fisher
+      </span>
+
+      <Tags tags = {tags}/>
+
+    </div>
+
+    <div class="card-buttons">
+      <a href="#"> Learn More </a>
+      <a href="#"> Purchase </a>
+    </div>
+  </div>

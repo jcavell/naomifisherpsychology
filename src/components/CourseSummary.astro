@@ -1,8 +1,7 @@
 ---
-import { makeUrl, getCourseImagePath } from "../scripts/url";
+import { makeUrl, getImagePath } from "../scripts/url";
 import Contributers from "./Contributers.astro";
 import Tags from "./Tags.astro";
-import { Image } from 'astro:assets';
 
 const { title, summary, price, checkoutURL, imageURL, people, tags } = Astro.props;
 ---
@@ -12,7 +11,7 @@ const { title, summary, price, checkoutURL, imageURL, people, tags } = Astro.pro
     <a href=`/courses/${makeUrl(title)}`>{title}</a>
   </h2>
 
-  <img src={getCourseImagePath(imageURL)} alt="" />
+  <img src={getImagePath("courses", title, imageURL)} alt=`Image for ${title}` />
 
   <div class="card-details">
     <a href="#" class="card-type-course"> RECORDED COURSE </a>

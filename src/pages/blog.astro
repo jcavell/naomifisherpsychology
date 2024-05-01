@@ -12,7 +12,7 @@ const pageTitle = "Substack Blog";
 <CardLayout pageTitle={pageTitle}>
   {
     posts.map((post) => (
-      <BlogSummary url={`${post.data.url}`} title={post.data.title} subtitle={post.data.subtitle} paragraphs = {post.data.paragraphs} />
+      <BlogSummary url={`${post.data.url}`} images = {post.data.images} title={post.data.title} subtitle={post.data.subtitle} paragraphs = {post.data.paragraphs} />
     ))
   }
 </CardLayout>

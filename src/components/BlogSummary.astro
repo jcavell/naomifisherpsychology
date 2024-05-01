@@ -1,19 +1,23 @@
 ---
 import { getTags } from "../scripts/tags";
 import Tags from "./Tags.astro";
+import { makeUrl } from "../scripts/url";
+import { getImagePath } from "../scripts/url";
 
-const { title, subtitle, paragraphs, url } = Astro.props;
+const { title, subtitle, paragraphs, images, url } = Astro.props;
 
 const body = paragraphs.reduce((acc: string, curr: string) => acc + " " + curr);
 const tags = getTags(title, subtitle, body);
+
+const imgSrc = images.length ? getImagePath("blog", title + '_0', images[0]) : '';
 ---
 
 <div class="card card-courses">
     <h2>
-      <a href={url}>{title}</a>
+      <a href=`/blog/${makeUrl(title)}`>{title}</a>
     </h2>
 
-    <img src="https://outofnowhere.co.uk/fisher/22-03-24/imgs/stock-image-001.jpg" alt="" />
+    <img src={imgSrc} alt=`Image for ${title}` />
 
     <div class="card-details">
       <a href="#" class="card-type-course"> BLOG </a>
