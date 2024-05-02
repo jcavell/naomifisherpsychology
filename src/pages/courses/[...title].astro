@@ -7,13 +7,20 @@ import CourseDetails from "../../components/CourseDetails.astro";
 export async function getStaticPaths() {
   const courses = await getCourses();
 
-  return courses.map((course) => ({
+  return courses.map((course) => (
+  {
     params: { title: makeUrl(course.data.title)},
-    props: { course },
-  }));
+    props: {
+      course: course,
+      related: courses.filter((other) => 
+        course.data.checkoutUrl != other.data.checkoutUrl &&
+        other.data.tags?.includes(course.data.tags[0])
+      ) },
+  }
+));
 }  
 
-const { course } = Astro.props;
+const { course, related } = Astro.props;
 ---
 
 <CardLayout pageTitle={course.data.title}>
@@ -27,5 +34,6 @@ const { course } = Astro.props;
     testimonials={course.data.checkout?.testimonials}
     people={course.data.people}
     tags={course.data.tags}
+    related={related}
   />
 </CardLayout>

@@ -1,9 +1,10 @@
 ---
 import { makeUrl, getImagePath } from "../scripts/url";
 import Contributers from "./Contributers.astro";
+import CourseSummary from "./CourseSummary.astro";
 import Tags from "./Tags.astro";
 
-const { title, summary, descriptions, testimonials = [], price, checkoutURL, imageFileName, people, tags } =
+const { title, summary, descriptions, testimonials = [], price, checkoutURL, imageFileName, people, tags, related } =
   Astro.props;
 
 const descriptionText = descriptions.reduce(
@@ -18,7 +19,7 @@ const testinominalText = testimonials.reduce((acc: string, curr: string) => acc 
     <a href=`/courses/${makeUrl(title)}`>{title}</a>
   </h2>
 
-  <img src={`/images/courses/${imageFileName}`} alt=`Image for ${title}` />
+  <img loading="lazy" src={`/images/courses/${imageFileName}`} alt=`Image for ${title}` />
 
   <div class="card-details">
     <a href="#" class="card-type-course"> RECORDED COURSE </a>
@@ -39,3 +40,19 @@ const testinominalText = testimonials.reduce((acc: string, curr: string) => acc 
     <a href={checkoutURL}> Purchase </a>
   </div>
 </div>
+
+<div>Related</div>
+
+{
+  related.map((course) => (
+    <CourseSummary
+      price={course.data.price}
+      imageFileName={course.data.imageFileName}
+      checkoutURL={course.data.checkoutUrl}
+      title={course.data.title}
+      summary={course.data.description}
+      people={course.data.people}
+      tags={course.data.tags}
+    />
+  ))
+}

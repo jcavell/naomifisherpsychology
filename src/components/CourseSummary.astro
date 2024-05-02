@@ -11,7 +11,7 @@ const { title, summary, price, checkoutURL, imageFileName, people, tags } = Astr
     <a href=`/courses/${makeUrl(title)}`>{title}</a>
   </h2>
 
-  <img src={`/images/courses/${imageFileName}`} alt=`Image for ${title}` />
+  <img loading="lazy" src={`/images/courses/${imageFileName}`} alt=`Image for ${title}` />
 
   <div class="card-details">
     <a href="#" class="card-type-course"> RECORDED COURSE </a>

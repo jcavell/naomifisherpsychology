@@ -15,7 +15,7 @@ const tags = getTags(title, subtitle, body);
       <a href=`/blog/${makeUrl(title)}`>{title}</a>
     </h2>
 
-    <img src={`/images/blog/${imageFileName}`} alt=`Image for ${title}` />
+    <img loading="lazy" src={`/images/blog/${imageFileName}`} alt=`Image for ${title}` />
 
     <div class="card-details">
       <a href="#" class="card-type-course"> BLOG </a>
