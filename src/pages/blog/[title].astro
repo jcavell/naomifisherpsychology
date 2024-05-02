@@ -16,7 +16,5 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 ---
 <CardLayout pageTitle={post.data.title}>
-
-      <BlogDetails url={`${post.data.url}`} images = {post.data.images} title={post.data.title} subtitle={post.data.subtitle} paragraphs = {post.data.paragraphs} />
-  
+      <BlogDetails url={`${post.data.url}`} imageFileName = {post.data.imageFileName} title={post.data.title} subtitle={post.data.subtitle} paragraphs = {post.data.paragraphs} />
 </CardLayout>

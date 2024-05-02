@@ -29,6 +29,7 @@ const courseCardsCollection = defineCollection({
     categoryPosition: z.number(),
     title: z.string(),
     imageURL: z.string(),
+    imageFileName: z.string(),
     description: z.string(),
     price: z.string(),
     checkoutUrl: z.string(),

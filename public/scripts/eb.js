@@ -14,7 +14,7 @@
       googleAnalyticsClientId: { type: "string" },
       extraParams: { type: "object" },
     },
-    r = {
+    r = {   
       [e]: {
         eventId: { type: ["string", "number"], required: !0 },
         affiliateCode: { type: "string" },

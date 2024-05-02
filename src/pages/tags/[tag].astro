@@ -26,7 +26,7 @@ export async function getStaticPaths() {
     );
 
     const filteredCourses = courses.filter((course) =>
-      course.data.tags.includes(tag)
+      course.data.tags?.includes(tag)
     );
 
     // Sort courses depending on where tag appears
