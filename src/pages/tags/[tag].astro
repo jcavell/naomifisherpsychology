@@ -88,6 +88,7 @@ const { tagName, webinars, courses } = Astro.props;
     courses.map((course) => (
       <CourseSummary
         price={course.data.price}
+        imageFileName={course.data.imageFileName}
         imageURL={course.data.imageURL}
         checkoutURL={course.data.checkoutUrl}
         title={course.data.title}

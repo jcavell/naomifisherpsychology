@@ -1,8 +1,9 @@
 ---
-import getCourses from "../../scripts/courses";
 import { makeUrl } from "../../scripts/url";
 import CardLayout from "../../layouts/CardLayout.astro";
 import CourseDetails from "../../components/CourseDetails.astro";
+import getCourses from "../../scripts/courses";
+import {getRelated} from  "../../scripts/courses";
 
 export async function getStaticPaths() {
   const courses = await getCourses();
@@ -12,10 +13,7 @@ export async function getStaticPaths() {
     params: { title: makeUrl(course.data.title)},
     props: {
       course: course,
-      related: courses.filter((other) => 
-        course.data.checkoutUrl != other.data.checkoutUrl &&
-        other.data.tags?.includes(course.data.tags[0])
-      ) },
+      related: getRelated(courses, course) },
   }
 ));
 }  

@@ -7,11 +7,6 @@ import Tags from "./Tags.astro";
 const { title, summary, descriptions, testimonials = [], price, checkoutURL, imageFileName, people, tags, related } =
   Astro.props;
 
-const descriptionText = descriptions.reduce(
-  (acc: string, curr: string) => acc + " " + curr
-);
-
-const testinominalText = testimonials.reduce((acc: string, curr: string) => acc + " " + curr, [] as string[]);
 ---
 
 <div class="card card-courses">
@@ -26,10 +21,14 @@ const testinominalText = testimonials.reduce((acc: string, curr: string) => acc 
     <span> 2 HOURS, {price} </span>
   </div>
 
-  <p>
-    {descriptionText}
-    {testinominalText}
-  </p>
+
+  {descriptions.map((description) => (
+    <p>{description}</p>
+  ))}
+
+{testimonials.map((testimonial) => (
+  <p>{testimonial}</p>
+))}
 
   <div class="card-meta">
     <Contributers people={people} />

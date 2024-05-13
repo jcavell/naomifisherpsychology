@@ -29,5 +29,22 @@ export default async function getCourses() {
     card.data.tags = getTags(title, titleSummaryDescription);
   });
 
-  return courseCards;
+  const sortedCards = courseCards.sort((a, b) => 
+    a.data.categoryUrl === b.data.categoryUrl ? a.data.categoryPosition - b.data.categoryPosition :
+    a.data.categoryUrl === 'https://courses.naomifisher.co.uk' ? -1 : 1);
+
+  return sortedCards;
+}
+
+export function getRelated(allCourses, currentCourse) {
+  const related = allCourses.filter((other) => 
+    currentCourse.data.checkoutUrl != other.data.checkoutUrl &&
+    (other.data.tags[0] === currentCourse.data.tags[0] || (other.data.tags?.length > 1 && other.data.tags[1] === currentCourse.data.tags[0]))
+  )
+
+  const sortedRelated = related.sort((a, b) => 
+    a.data.title.includes(currentCourse.data.tags[0]) ? -1 : 
+      a.data.tags[0] === currentCourse.data.tags[0] ? -1 : 1);
+
+  return sortedRelated;
 }
