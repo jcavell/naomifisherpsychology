@@ -6,13 +6,50 @@ import BlogSummary from "../components/BlogSummary.astro";
 
 const posts = await getCollection("blog");
 
+interface PubDate {
+  day: number;
+  month: string;
+  year: number;
+}
+
+const months = {
+  Jan: "01",
+  Feb: "02",
+  Mar: "03",
+  Apr: "04",
+  May: "05",
+  Jun: "06",
+  Jul: "07",
+  Aug: "08",
+  Sep: "09",
+  Oct: "10",
+  Nov: "11",
+  Dec: "12",
+};
+const comparePubDate = (a: PubDate, b: PubDate) => {
+  const aTotal = a.year * 1000 + months[a.month] * 100 + a.day;
+  const bTotal = b.year * 1000 + months[b.month] * 100 + b.day;
+
+  return  bTotal - aTotal;
+};
+
 const pageTitle = "Naomi's Blog";
 ---
 
 <CardLayout pageTitle={pageTitle}>
   {
-    posts.map((post) => (
-      <BlogSummary url={`${post.data.url}`} imageFileName = {post.data.imageFileName} title={post.data.title} subtitle={post.data.subtitle} paragraphs = {post.data.paragraphs} />
-    ))
+    posts
+      .sort((a, b) => comparePubDate(a.data.pubDate, b.data.pubDate))
+      .slice(0, 10)
+      .map((post) => (
+        <BlogSummary
+          url={`${post.data.url}`}
+          imageFileName={post.data.imageFileName}
+          title={post.data.title}
+          subtitle={post.data.subtitle}
+          pubDate={post.data.pubDate}
+          paragraphs={post.data.paragraphs}
+        />
+      ))
   }
 </CardLayout>

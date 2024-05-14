@@ -1,24 +1,29 @@
 {
-	"url": "https://naomicfisher.substack.com/p/tracking-my-attendance",
-	"pubDate": {
-		"day": "Sep",
-		"month": "18",
-		"year": "2023"
-	},
-	"title": "Tracking My Attendance ",
-	"subtitle": "Looking for Loopholes ",
-	"images": [],
-	"paragraphs": [
-		"I’m at a conference. I wanted to come here, in fact I have paid a lot of money to come here. It’s about something which is of great interest to me. I came in person, because the time between sessions is often when I learn the most as I make connections with other therapists.",
-		"When I got the pre-conference information, they tell me that at the conference I will be given a badge with a bar code, and I will be scanned in and out of every lecture session. This data will be collected and at the end I will only get my certificate (which I need for my continued professional development) if I have attended every session which I selected in advance. I can’t go into another session if I change my mind. I can’t decide that a conversation is so important that I should skip a session. I can’t go and have a rest if I am so tired that I stop taking in information.",
-		"I have to be there, and they are tracking me.",
-		"When I am told this, I immediately feel differently about the conference. I start to wonder what loopholes I can find. Can I scan in, but not out, for example? Can I take in my computer so that I can occupy myself with something else if I’m bored, so I’m apparently present but actually elsewhere? Could someone else take my badge in? I start to feel resentful at the implication that I cannot be trusted to attend sessions at a conference which I have chosen to attend and paid for.",
-		"It has become something I am compelled to do. And for me, that taints it immediately. I’m focused less on the content of the sessions, and more on how to game the attendance monitoring system.",
-		"Of course, this makes me think of what happens to our children in schools. It’s so common to add compulsion and extra control, and to phrase this entirely positively. Motivation, they say. Accountability. Or, they ask, how do we know otherwise that you are actually attending and learning?",
-		"Here’s the thing. You can’t insist on someone else learning. You can’t make them want to learn. You can force them to attend by saying they won’t get a certificate, but you cannot control the contents of their head and what they learn. They can track my attendance, but they can’t track what I think about whilst I’m there.",
-		"Even if you try very hard. Even if you tell them they must track you with their eyes and refuse to let them talk. Even if you test them afterwards. Even if you give them prizes rather than punishments. You can’t control someone else’s mind, not forever. Even if you catch them young. And by trying to do so, you may damage their intrinsic motivation.",
-		"So what can we do otherwise?",
-		"We can trust that humans want to learn. We trust them to make some choices for themselves. We work on getting the circumstances right to nurture intrinsic motivation - relationships, autonomy and competence - and we stop micro-controlling the choices people make.",
-		"There are unwanted effects when we make people do things - and we don’t think enough about those."
-	]
+    "url": "https://naomicfisher.substack.com/p/is-he-behind",
+    "pubDate": {
+        "day": "14",
+        "month": "Aug",
+        "year": "2023"
+    },
+    "title": "Is He Behind? ",
+    "subtitle": "What damage do we do when we impose age-based standards on our children? ",
+    "images": [
+        "https://images.unsplash.com/photo-1653289205399-60519c606d12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+    ],
+    "paragraphs": [
+        "Image: Renaud Confavreux via Unsplash",
+        "I talk to lots of parents who are worried about their children.   They’ve been told that they are behind, and that they will need remedial help to ‘catch them up’.  They say to me, but I’ve been told that my child is behind in X, and they must follow a special programme. Surely that means I have to make them do it?  Isn’t that really important?",
+        "The whole idea of ‘behind’ is an interesting one, because it’s one which has been created by the idea of standardised development. The idea that there is a particular place where a child should be at age 3, 4, 9 or 13, and if they aren’t, they are behind. ",
+        "As a clinical psychologist, one of the things I was trained to do is administer standardised tests to children.  There are a lot of different tests, and they have been ‘norm-referenced’.  What that means is that they have used the test on many children, collated all their scores, and worked out the average score for a child of each age group on the test.",
+        "That average becomes the standard. If your score is significantly above that, you’ll be seen as ahead, or gifted. If you score is significantly below that, you’ll be seen as behind, or delayed.",
+        "This can happen with literally anything that we can devise a test for.  Working memory, verbal comprehension, numeracy, problem solving, emotion recognition, reading.  Impulse control, perspective-taking, planning. Gross motor skills, fine motor skills.  Test lots of kids, find the average, and define that as where a child of that age should be. ",
+        "We can test an almost infinite number of things, and there will always be those who are below and above the average. That’s how averages work.  Imagine that I decided that speed of running up the stairs is an important skill, and I tested thousands of 6-year-olds on it.  I could create norms for that age group, and now I can identify 6-year-olds who are behind in stair-running.  I can offer them extra stair-running lessons.   I can tell their parents that they need to do special exercises to catch them up.  I can create a lot of worry about their deficiencies.",
+        "The more things that you assess, the more likely it is that you’ll find areas where an individual child is significantly different from the average. ",
+        "This idea has soaked into how we see childhood.  We see the average as something to aim for, as a sign that their development is ‘on track’.  Scoring below the average is cause for concern, particularly for parents.  Being ‘behind’ is not something that anyone wants, and it gets into how children see themselves and how parents see them.",
+        "But there’s no evidence that childhood development is age standardised.  Children develop skills at different ages. They learn to walk and talk at different times.  Their brains develop at different rates.  Their physical and emotional development varies.  When we start to see this variation through the lens of  ‘ahead’ or ‘behind’, we add judgement. Ahead is good, behind is bad. ",
+        "That might not matter, except for the evidence that this affects how children see themselves and how adults see them.   Those who are young in their year (and therefore more likely to be ‘behind)  see themselves as lacking, whilst those who are older see themselves as more capable.   Parents become more controlling when they are worried about ‘catching up’.  They’re less likely to spend time letting children play, and more likely to insist they do special exercises. ",
+        "We’ve created the idea of ‘behind’ with age standardisation, and who knows what harm we do by telling children that this is them.",
+        "It doesn’t need to be that way.  "
+    ],
+    "imageFileName": "is-he-behind-.jpeg"
 }

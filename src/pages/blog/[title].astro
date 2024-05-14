@@ -5,16 +5,28 @@ import CardLayout from "../../layouts/CardLayout.astro";
 import BlogDetails from "../../components/BlogDetails.astro";
 
 export async function getStaticPaths() {
+ 
   const posts = await getCollection("blog");
 
-  return posts.map((post) => ({
-    params: { title: makeUrl(post.data.title)},
-    props: { post },
-  }));
-}  
+  return (
+    posts
+      .map((post) => ({
+        params: { title: makeUrl(post.data.title) },
+        props: { post },
+      }))
+  );
+}
 
 const { post } = Astro.props;
 ---
+
 <CardLayout pageTitle={post.data.title}>
-      <BlogDetails url={`${post.data.url}`} imageFileName = {post.data.imageFileName} title={post.data.title} subtitle={post.data.subtitle} paragraphs = {post.data.paragraphs} />
+  <BlogDetails
+    url={`${post.data.url}`}
+    imageFileName={post.data.imageFileName}
+    title={post.data.title}
+    subtitle={post.data.subtitle}
+    pubDate={post.data.pubDate}
+    paragraphs={post.data.paragraphs}
+  />
 </CardLayout>
