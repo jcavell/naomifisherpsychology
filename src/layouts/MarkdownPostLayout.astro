@@ -1,9 +1,9 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
-const { frontmatter } = Astro.props;
+const { frontmatter, active } = Astro.props;
 ---
 
-<BaseLayout pageTitle={frontmatter.title}>
+<BaseLayout active = {active} pageTitle={frontmatter.title}>
   <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} />
   <slot />
 </BaseLayout>

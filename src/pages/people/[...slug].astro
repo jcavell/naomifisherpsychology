@@ -15,6 +15,6 @@ const { person } = Astro.props;
 const { Content } = await person.render();
 ---
 
-<MarkdownPostLayout frontmatter={person.data}>
+<MarkdownPostLayout active = "our-people" frontmatter={person.data}>
   <Content />
 </MarkdownPostLayout>
