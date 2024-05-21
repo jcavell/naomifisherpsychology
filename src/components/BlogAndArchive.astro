@@ -1,48 +1,22 @@
 ---
 import { getCollection } from "astro:content";
 
-import CardLayout from "../layouts/CardLayout.astro";
 import BlogSummary from "./BlogSummary.astro";
-
-const posts = await getCollection("blog");
+import BlogLayout from "../layouts/BlogLayout.astro";
+import { getOrderedPosts } from "../scripts/blog";
 
 const { isArchive } = Astro.props;
-const sliceStart = isArchive ? 20 : 0;
-const sliceEnd = isArchive ? posts.length : 20;
 
-const pageTitle = "Blog" + (isArchive ? " Archive" : "");
+const pageTitle = isArchive ? " archive" : "";
+const posts = await getOrderedPosts();
 
-interface PubDate {
-  day: number;
-  month: string;
-  year: number;
-}
-
-const months = {
-  Jan: "01",
-  Feb: "02",
-  Mar: "03",
-  Apr: "04",
-  May: "05",
-  Jun: "06",
-  Jul: "07",
-  Aug: "08",
-  Sep: "09",
-  Oct: "10",
-  Nov: "11",
-  Dec: "12",
-};
-const comparePubDate = (a: PubDate, b: PubDate) => {
-  const aString = "" + a.year + months[a.month] + a.day;
-  const bString = "" + b.year + months[b.month] + b.day;
-  return bString.localeCompare(aString);
-};
+const sliceStart = isArchive ? 6 : 0;
+const sliceEnd = isArchive ? posts.length : 6;
 ---
 
-<CardLayout pageTitle={pageTitle}>
+<BlogLayout pageTitle="Blog">
   {
     posts
-      .sort((a, b) => comparePubDate(a.data.pubDate, b.data.pubDate))
       .slice(sliceStart, sliceEnd)
       .map((post) => (
         <BlogSummary
@@ -52,7 +26,8 @@ const comparePubDate = (a: PubDate, b: PubDate) => {
           subtitle={post.data.subtitle}
           pubDate={post.data.pubDate}
           paragraphs={post.data.paragraphs}
+          tags={post.data.tags}
         />
       ))
   }
-</CardLayout>
+</BlogLayout>

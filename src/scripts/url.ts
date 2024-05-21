@@ -1,5 +1,8 @@
 export const makeUrl = function(text: string){
+  if (text === undefined) {console.log("UNDEFINED")}
+  else{
     return text.toLowerCase().replace(/ /g, "-").replace(/[^a-z-0-9]/g, "")
+  }
 }
   
 export const getImagePath = function (subdir:string, title:string, imageURL: string) {

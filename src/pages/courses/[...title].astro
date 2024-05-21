@@ -1,27 +1,26 @@
 ---
 import { makeUrl } from "../../scripts/url";
-import CardLayout from "../../layouts/CardLayout.astro";
+import CourseLayout from "../../layouts/CourseLayout.astro";
 import CourseDetails from "../../components/CourseDetails.astro";
 import getCourses from "../../scripts/courses";
-import {getRelated} from  "../../scripts/courses";
+import { getRelated } from "../../scripts/courses";
 
 export async function getStaticPaths() {
   const courses = await getCourses();
 
-  return courses.map((course) => (
-  {
-    params: { title: makeUrl(course.data.title)},
+  return courses.map((course) => ({
+    params: { title: makeUrl(course.data.title) },
     props: {
       course: course,
-      related: getRelated(courses, course) },
-  }
-));
-}  
+      related: getRelated(courses, course),
+    },
+  }));
+}
 
 const { course, related } = Astro.props;
 ---
 
-<CardLayout pageTitle={course.data.title}>
+<CourseLayout pageTitle={course.data.title}>
   <CourseDetails
     price={course.data.price}
     imageFileName={course.data.imageFileName}
@@ -34,4 +33,4 @@ const { course, related } = Astro.props;
     tags={course.data.tags}
     related={related}
   />
-</CardLayout>
+</CourseLayout>

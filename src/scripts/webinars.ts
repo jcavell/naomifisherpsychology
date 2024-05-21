@@ -14,7 +14,7 @@ function getDetails(webinarId: string) {
       "/structured_content/",
     {
       headers: {
-        Authorization: "Bearer " + EB_BEARER
+        Authorization: "Bearer " + EB_BEARER,
       },
     }
   );
@@ -47,11 +47,29 @@ export default async function getWebinars() {
     detailsResponses.map((wd) => wd.json())
   );
 
+  function addOrderedTickets(webinar) {
+    webinar.orderedTickets = webinar.ticket_classes
+      .map((ticket) => ({
+        cost: ticket.cost?.display,
+        costValue: ticket.cost?.value,
+        fee: ticket.fee?.display,
+        status: ticket.on_sale_status,
+        name: ticket.display_name,
+      }))
+      .filter((w) => w.cost)
+      .sort((a, b) => a.costValue - b.costValue);
+  }
+
   webinars.map((webinar, index) => {
     const detailsText = detailsJsons[index].modules[0].data.body.text;
     webinar.detailsText = detailsText;
     webinar.people = getPeople(detailsText);
-    webinar.tags = getTags(webinar.name.text, webinar.description.text, detailsText);
+    webinar.tags = getTags(
+      webinar.name.text,
+      webinar.description.text,
+      detailsText
+    );
+    addOrderedTickets(webinar);
   });
 
   return webinars;

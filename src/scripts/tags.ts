@@ -1,3 +1,45 @@
+export const type101 = "101";
+export const type102 = "102";
+export const ageTeen = "Teenager";
+export const age6To13 = "6-13";
+export const ageOver8s = "Over 8s";
+export const forParents = "Parenting";
+export const forTeens = "For teenagers to watch";
+export const forProfessionals = "For professionals";
+export const aldp = "Low Demand Parenting";
+export const autism = "Autism";
+export const neurodiversity = "Neurodiversity";
+export const anxiety = "Anxiety";
+export const demandAvoidance = "Demand Avoidance";
+export const trauma = "Trauma";
+export const screens = "Screens";
+export const aggression = "Aggression";
+export const burnout = "Burnout";
+export const school = "School";
+export const ehcp = "EHCP";
+
+const tag2regex: Readonly<Record<string, RegExp>> = {
+  [anxiety]: new RegExp(["anxiety", "anxious"].join("|"), "i"),
+  [autism]: new RegExp(["auti", "neurodiv"].join("|"), "i"),
+  [trauma]: new RegExp(["trauma"].join("|"), "i"),
+  [screens]: new RegExp(["screen", "phone"].join("|"), "i"),
+  [aggression]: new RegExp(["aggress", "violent"].join("|"), "i"),
+  [burnout]: new RegExp(["burnout", "burnt out"].join("|"), "i"),
+  [ehcp]: new RegExp(["ehcp"].join("|"), "i"),
+  [school]: new RegExp(["school", "academic", "exam"].join("|"), "i"),
+  [forTeens]: new RegExp(["for teen", "for adolesc"].join("|"), "i"),
+  [ageTeen]: new RegExp(["teen", "adolesc"].join("|"), "i"),
+  [aldp]: new RegExp(["art of low demand parenting"].join("|"), "i"),
+  [demandAvoidance]: new RegExp(
+    ["pda", "demand avoid", "pressure"].join("|"),
+    "i"
+  ),
+};
+
+export const getAllTags = function(){
+  return Object.keys(tag2regex);
+}
+
 export const getTags = function (
   title: string = "",
   subtitle: string = "",
@@ -15,70 +57,12 @@ export const getTags = function (
     if (uniqueTags.indexOf(el) < 0) uniqueTags.push(el);
   });
 
+  // console.log("Unique tags: " + uniqueTags);
   return uniqueTags;
 };
 
 const doIt = function (contentToCheck: string) {
-  const tags: string[] = [];
-
-  const parentingRegex = new RegExp(
-    ["helping your", "parenting"].join("|"),
-    "i"
-  );
-
-  const pdaRegex = new RegExp(
-    ["pda", "demand avoid", "pressure"].join("|"),
-    "i"
-  );
-  const autismRegex = new RegExp(
-    ["autism", "autistic", "neurodivergent"].join("|"),
-    "i"
-  );
-
-  const anxietyRegex = new RegExp(["anxiety", "anxious"].join("|"), "i");
-  const traumaRegex = new RegExp(["trauma"].join("|"), "i");
-  const screensRegex = new RegExp(["screen", "phone"].join("|"), "i");
-  const aggressionRegex = new RegExp(["aggress", "violent"].join("|"), "i");
-  const burnoutRegex = new RegExp(["burnout", "burnt out"].join("|"), "i");
-  const forTeenRegex = new RegExp(["for teen", "for adolesc"].join("|"), "i");
-  const teenRegex = new RegExp(["teen", "adolesc"].join("|"), "i");
-  const ehcpRegex = new RegExp(["ehcp"].join("|"), "i");
-
-  const wellbeingRegex = new RegExp(
-    ["Looking after yourself", "Look after yourself", "wellbeing"].join("|"),
-    "i"
-  );
-
-  const writingRegex = new RegExp(["writing"].join("|"), "i");
-  const schoolRegex = new RegExp(["school", "academic", "exam"].join("|"), "i");
-
-
-  if (forTeenRegex.test(contentToCheck)) tags.push("For Teenagers");
-
-  if (contentToCheck.includes("Low Demand Parenting")) {
-    tags.push("Low Demand Parenting");
-  } 
-  if (ehcpRegex.test(contentToCheck)) tags.push("EHCP");
-  if (screensRegex.test(contentToCheck)) tags.push("Screens");
-  if (aggressionRegex.test(contentToCheck)) tags.push("Aggressive behaviour");
-
- 
-  if (!forTeenRegex.test(contentToCheck) && teenRegex.test(contentToCheck)) tags.push("Teenager");
-
-  if (pdaRegex.test(contentToCheck)) tags.push("Demand Avoidance");
-  if (autismRegex.test(contentToCheck)) tags.push("Autism");
-  if (schoolRegex.test(contentToCheck)) tags.push("School");
-  if (traumaRegex.test(contentToCheck)) tags.push("Trauma");
-  if (burnoutRegex.test(contentToCheck)) tags.push("Burnout");
-  if (anxietyRegex.test(contentToCheck)) tags.push("Anxiety");
-
-
-  if (wellbeingRegex.test(contentToCheck)) tags.push("Wellbeing");
-//   if (writingRegex.test(contentToCheck)) tags.push("Writing");
-
-  if (!contentToCheck.includes("Low Demand Parenting")
-    && parentingRegex.test(contentToCheck))
-      tags.push("Parenting");
-
-  return tags;
+  return Object.entries(tag2regex)
+    .filter((tagAndRegex) => tagAndRegex[1].test(contentToCheck))
+    .map((tagAndRegex) => tagAndRegex[0]);
 };

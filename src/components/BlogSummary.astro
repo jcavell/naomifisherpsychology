@@ -1,13 +1,11 @@
 ---
-import { getTags } from "../scripts/tags";
 import Tags from "./Tags.astro";
 import { makeUrl } from "../scripts/url";
 import { getImagePath } from "../scripts/url";
 
-const { title, subtitle, paragraphs, imageFileName, pubDate, url } = Astro.props;
+const { title, subtitle, paragraphs, imageFileName, pubDate, url, tags } = Astro.props;
 
 const body = paragraphs.reduce((acc: string, curr: string) => acc + " " + curr);
-const tags = getTags(title, subtitle, body);
 ---
 
 <div class="card card-courses">
@@ -39,7 +37,7 @@ const tags = getTags(title, subtitle, body);
   <div class="card-meta">
     <span class="contributors"> Dr Naomi Fisher </span>
 
-    <Tags tags={tags} />
+    <Tags tags={tags} uri = 'blog/tags' />
   </div>
 
   <div class="card-buttons">

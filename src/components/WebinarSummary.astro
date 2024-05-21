@@ -5,15 +5,6 @@ import Contributers from "./Contributers.astro";
 const { eventId, title, subtitle, people, tags, start, end, tickets, checkoutURL, imageURL } =
   Astro.props;
 
-const tix = tickets.map((ticket) => ({
-  price: ticket.cost.display,
-  fee: ticket.fee.display,
-  status: ticket.on_sale_status,
-  name: ticket.display_name,
-}));
-
-
-
 const startDateTime = new Date(Date.parse(start));
 const endDateTime = new Date(Date.parse(end));
 
@@ -43,7 +34,7 @@ const endTime = endDateTime.toLocaleString(undefined, displayTime);
   <div class="card-details">
     <a href={`/webinars/${eventId}`} class="card-type-course"> LIVE WEBINAR </a>
     <span>
-      From {tix[0].price} + booking fee
+      From {tickets[0].cost} + booking fee
       <!-- {startTime} - {endTime},
       {tix.map((ticket, index) => ` ${ticket.price} (${ticket.name})`)} -->
     </span>

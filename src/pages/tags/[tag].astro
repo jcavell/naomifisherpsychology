@@ -1,5 +1,5 @@
 ---
-import CardLayout from "../../layouts/CardLayout.astro";
+import CardLayout from "../../layouts/CourseLayout.astro";
 
 import getWebinars from "../../scripts/webinars";
 import getCourses from "../../scripts/courses";
@@ -63,11 +63,10 @@ export async function getStaticPaths() {
   });
 }
 
-const { tag } = Astro.params;
 const { tagName, webinars, courses } = Astro.props;
 ---
 
-<CardLayout pageTitle={tagName}>
+<CardLayout pageTitle={`Webinars and courses tagged with ${tagName}`}>
   {
     webinars.map((webinar, index) => (
       <WebinarSummary
@@ -79,7 +78,7 @@ const { tagName, webinars, courses } = Astro.props;
         subtitle={webinar.description.text}
         start={webinar.start.utc}
         end={webinar.end.utc}
-        tickets={webinar.ticket_classes}
+        tickets={webinar.orderedTickets}
       />
     ))
   }

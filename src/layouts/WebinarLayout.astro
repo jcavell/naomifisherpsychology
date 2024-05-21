@@ -1,0 +1,14 @@
+---
+import "../styles/v1/naomi.css";
+import BaseLayout from "./BaseLayout.astro";
+
+const { pageTitle } = Astro.props;
+---
+
+<BaseLayout pageTitle = {pageTitle} active = 'webinars'>
+  <div class="webinar-nav-links"></div>
+
+  <div class="wrapper">
+    <slot />
+  </div>
+</BaseLayout>

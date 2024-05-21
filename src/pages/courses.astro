@@ -1,14 +1,12 @@
 ---
-import CardLayout from "../layouts/CardLayout.astro";
+import CourseLayout from "../layouts/CourseLayout.astro";
 import CourseSummary from "../components/CourseSummary.astro";
 import getCourses from "../scripts/courses";
 
 const courses = await getCourses();
-
-const pageTitle = "Courses";
 ---
 
-<CardLayout pageTitle={pageTitle}>
+<CourseLayout pageTitle='All courses'>
   {
     courses.map((course) => (
       <CourseSummary
@@ -22,4 +20,4 @@ const pageTitle = "Courses";
       />
     ))
   }
-</CardLayout>
+</CourseLayout>

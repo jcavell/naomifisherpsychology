@@ -1,6 +1,6 @@
 ---
-import CardLayout from "../layouts/CardLayout.astro";
 import WebinarSummary from "../components/WebinarSummary.astro";
+import WebinarLayout from "../layouts/WebinarLayout.astro";
 import getWebinars from "../scripts/webinars.js";
 import testWebinars1 from "../test-data/eventbrite/1event.json";
 import testWebinars3 from "../test-data/eventbrite/3events.json";
@@ -10,7 +10,7 @@ const pageTitle = "Webinars";
 const webinars = await getWebinars();
 ---
 
-<CardLayout pageTitle={pageTitle}>
+<WebinarLayout pageTitle={pageTitle}>
   {
     webinars.map((webinar, index) => (
       <WebinarSummary
@@ -23,8 +23,8 @@ const webinars = await getWebinars();
         subtitle={webinar.description.text}
         start={webinar.start.utc}
         end={webinar.end.utc}
-        tickets={webinar.ticket_classes}
+        tickets={webinar.orderedTickets}
       />
     ))
   }
-</CardLayout>
+</WebinarLayout>

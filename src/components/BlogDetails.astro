@@ -1,13 +1,11 @@
 ---
-import { getTags } from "../scripts/tags";
 import Tags from "./Tags.astro";
 import { makeUrl } from "../scripts/url";
 
-const { title, subtitle, paragraphs, imageFileName, pubDate, url } =
+const { title, subtitle, paragraphs, imageFileName, pubDate, url, tags } =
   Astro.props;
 
 const body = paragraphs.reduce((acc: string, curr: string) => acc + " " + curr);
-const tags = getTags(title, subtitle, body);
 ---
 
 <div class="card card-courses">

@@ -1,12 +1,47 @@
 ---
-
+const { active } = Astro.props;
 ---
 
-<div class="nav-links">
-  <a href="/">Home</a> |
-  <a href="/webinars">Webinars</a> |
-  <a href="/courses">Courses</a> |
-  <a href="/books">Books</a> |
-  <a href="/blog">Blog</a> |
-  <a href="/blog-archive">Blog archive</a>
-</div>
+<nav>
+  <ul>
+    <a href="/" class={active === "home" ? "active" : "inactive"}>
+      <li>Home</li>
+    </a>
+    <a href="/webinars" class={active === "webinars" ? "active" : "inactive"}>
+      <li>Webinars</li>
+    </a>
+    <a href="/courses" class={active === "courses" ? "active" : "inactive"}>
+      <li>Courses</li>
+    </a>
+    <a href="/books" class={active === "books" ? "active" : "inactive"}>
+      <li>Books</li>
+    </a>
+    <a href="/blog" class={active === "blog" ? "active" : "inactive"}>
+      <li>Blog</li>
+    </a>
+    <a
+      href="/for-professionals"
+      class={active === "for-professionals" ? "active" : "inactive"}
+    >
+      <li>For professionals</li>
+    </a>
+
+    <a href="/emdr-training" class={active === "emdr-training" ? "active" : "inactive"}>
+      <li>EMDR training</li>
+    </a>
+
+    <a
+      href="/our-people"
+      class={active === "our-people" ? "active" : "inactive"}
+    >
+      <li>Our people</li>
+    </a>
+
+    <a
+      href="/contact-us"
+      class={active === "contact-us" ? "active" : "inactive"}
+    >
+      <li>Contact Us</li>
+    </a>
+  </ul>
+</nav>

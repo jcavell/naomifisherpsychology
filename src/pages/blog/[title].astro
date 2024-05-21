@@ -1,8 +1,8 @@
 ---
 import { getCollection } from "astro:content";
 import { makeUrl } from "../../scripts/url";
-import CardLayout from "../../layouts/CardLayout.astro";
 import BlogDetails from "../../components/BlogDetails.astro";
+import BlogLayout from "../../layouts/BlogLayout.astro";
 
 export async function getStaticPaths() {
  
@@ -20,7 +20,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 ---
 
-<CardLayout pageTitle={post.data.title}>
+<BlogLayout pageTitle={post.data.title}>
   <BlogDetails
     url={`${post.data.url}`}
     imageFileName={post.data.imageFileName}
@@ -28,5 +28,6 @@ const { post } = Astro.props;
     subtitle={post.data.subtitle}
     pubDate={post.data.pubDate}
     paragraphs={post.data.paragraphs}
+    tags={post.data.tags}
   />
-</CardLayout>
+</BlogLayout>

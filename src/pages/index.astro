@@ -1,11 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import CardLayout from "../layouts/CardLayout.astro";
-import Greeting from "../components/Greeting";
-const pageTitle = "Home";
 ---
 
-<CardLayout pageTitle={pageTitle}>
-  <h2>Dr. Naomi Fisher</h2>
-  <Greeting client:load messages={["Hej", "Hallo", "Hola", "Habari"]} />
-</CardLayout>
+<BaseLayout active="home" pageTitle="Home">
+  <div class="wrapper">
+    <h1>Home page blurb</h1>
+  </div>
+</BaseLayout>

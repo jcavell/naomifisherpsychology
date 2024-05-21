@@ -1,0 +1,37 @@
+---
+import { makeUrl } from "../../../scripts/url";
+import BlogLayout from "../../../layouts/BlogLayout.astro";
+import BlogDetails from "../../../components/BlogDetails.astro";
+import { getOrderedPosts } from "../../../scripts/blog";
+import { getAllTags } from "../../../scripts/tags";
+import BlogSummary from "../../../components/BlogSummary.astro";
+
+export async function getStaticPaths() {
+  const posts = await getOrderedPosts();
+
+  // console.log(JSON.stringify(posts.map((p) => p.data.tags)));
+
+  return getAllTags().map((t) => ({
+    params: { tag: makeUrl(t) },
+    props: { tagName: t, posts: posts.filter((p) => p.data.tags.includes(t)) },
+  }));
+}
+
+const { posts, tagName } = Astro.props;
+---
+
+<BlogLayout pageTitle={`Blog posts tagged with ${tagName}`}>
+  {
+    posts.map((post) => (
+      <BlogSummary
+        url={`${post.data.url}`}
+        imageFileName={post.data.imageFileName}
+        title={post.data.title}
+        subtitle={post.data.subtitle}
+        pubDate={post.data.pubDate}
+        paragraphs={post.data.paragraphs}
+        tags={post.data.tags}
+      />
+    ))
+  }
+</BlogLayout>

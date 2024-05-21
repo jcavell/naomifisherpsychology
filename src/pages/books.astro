@@ -1,8 +1,20 @@
 ---
-import CardLayout from "../layouts/CardLayout.astro";
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import BookSummary from "../components/BookSummary.astro";
+
 const pageTitle = "Books";
+
+const books = await getCollection("books");
+ 
 ---
-<CardLayout pageTitle={pageTitle}>
-  <h2>My Books</h2>
-  
-</CardLayout>
+
+<BaseLayout active="books" pageTitle={pageTitle}>
+  <div class="wrapper">
+   
+  {books.map((book) => (
+    <BookSummary book = {book.data}></BookSummary>
+  ))}
+
+  </div>
+</BaseLayout>

@@ -1,0 +1,65 @@
+---
+const { book } = Astro.props;
+import { makeUrl } from "../scripts/url";
+
+console.log(book);
+---
+
+<div class="card card-books">
+  <h2>
+    <a href={book.uri}>{book.title}</a>
+  </h2>
+
+  <div class="card-image">
+    <img
+      srcset=`${book.image.w500} 500w, ${book.image.w1000} 1000w, ${book.image.w1500} 1500w`
+      sizes="(max-width: 800px) 500px, 1000px"
+      alt=`${book.image.alt}`
+      loading="lazy"
+    />
+  </div>
+
+  <div class="card-details">
+    <a href="#"> BOOK </a>
+    <span> Paperback rrp {book.rrp} </span>
+    <span> Pages {book.pages} </span>
+    <span><a href={book.amazonUrl}>Amazon {book.amazonPrice}</a></span>
+    <span><a href={book.kindleUrl}>Kindle {book.kindlePrice}</a></span>
+    <span><a href={book.googleUrl}>Google E-book {book.googlePrice}</a></span>
+    <span><a href={book.audibleUrl}>Audible</a></span>
+  </div>
+
+  <p>{book.summary}</p>
+
+  <p><a href={book.googleSampleUrl}>Read sample on Google</a></p>
+  <p><a href={book.amazonSampleUrl}>Read sample on Amazon</a></p>
+
+  <div class="card-meta">
+    <span class="contributors">
+      {
+        book.people.map((person) => (
+          <t>
+            <a href={`/people/${makeUrl(person)}`}>{person}</a>&nbsp;
+          </t>
+        ))
+      }
+    </span>
+
+    <span class="tags">
+      {
+        book.tags.map((tag) => (
+          <t>
+            <a href={`/tags/${makeUrl(tag)}`}>{tag}</a>&nbsp;
+          </t>
+        ))
+      }
+    </span>
+  </div>
+
+  <div class="card-buttons">
+    <a href="#"> Learn More </a>
+    <a href={book.amazonUrl}>Paperback</a>
+    <a href={book.kindleUrl}>Kindle</a>
+    <a href={book.audibleUrl}>Audible</a>
+  </div>
+</div>
