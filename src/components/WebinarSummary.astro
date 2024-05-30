@@ -24,8 +24,8 @@ const displayTime = { hour: "numeric", minute: "numeric" };
 
 const day = startDateTime.toLocaleString(undefined, displayDay);
 const month = startDateTime.toLocaleString(undefined, displayMonth);
-const startTime = startDateTime.toLocaleString(undefined, displayTime);
-const endTime = endDateTime.toLocaleString(undefined, displayTime);
+const startTime = startDateTime.toLocaleString("en-GB", displayTime);
+const endTime = endDateTime.toLocaleString("en-GB", displayTime);
 ---
 
 <div class="card card-webinar">

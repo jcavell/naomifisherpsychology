@@ -1,18 +1,22 @@
 ---
-import { getAllTags } from "../scripts/tags"
-import { makeUrl } from "../scripts/url"
+import { coreTags, ageTags, forTags } from "../scripts/tags";
+import { makeUrl } from "../scripts/url";
 ---
+
 <footer id="tag-menu">
   <div class="tag-footer-wrapper">
     <span></span>
     <div class="tag-footer">
-      {
-      getAllTags().map((t) => 
-      (
-        <a href={`/tags/${makeUrl(t)}`}>{t}</a>
-      ))
-      }
-      </div>
+      Topics {coreTags.map((t) => <a href={`/tags/${makeUrl(t)}`}>{t}</a>)}
+    </div>
+
+    <div class="tag-footer">
+      Ages covered {ageTags.map((t) => <a href={`/tags/${makeUrl(t)}`}>{t}</a>)}
+    </div>
+
+    <div class="tag-footer">
+      For {forTags.map((t) => <a href={`/tags/${makeUrl(t)}`}>{t}</a>)}
+    </div>
   </div>
   <div class="footer-primary">
     <img src="/images/circle-logo.png" alt="Naomi Fisher Logo" />
