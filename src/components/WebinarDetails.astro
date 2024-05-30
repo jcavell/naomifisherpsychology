@@ -2,20 +2,19 @@
 import Tags from "./Tags.astro";
 import Contributers from "./Contributers.astro";
 
-const {
-  eventId,
-  detailsText,
-  title,
-  subtitle,
-  people,
-  tags,
-  start,
-  end,
-  tickets,
-  checkoutURL,
-  imageURL,
-} = Astro.props;
+const { webinar } = Astro.props;
 
+const eventId = webinar.id;
+const imageURL = webinar.logo.original.url;
+const tags = webinar.tags;
+const people = webinar.people;
+const checkoutURL = webinar.url;
+const title = webinar.name.text;
+const subtitle = webinar.description.text;
+const start = webinar.start.utc;
+const end = webinar.end.utc;
+const tickets = webinar.orderedTickets;
+const detailsText = webinar.detailsText;
 
 const startDateTime = new Date(Date.parse(start));
 const endDateTime = new Date(Date.parse(end));
@@ -54,8 +53,7 @@ const endTime = endDateTime.toLocaleString(undefined, displayTime);
     {subtitle}
   </p>
 
-  <p set:html={detailsText}>
-  </p>
+  <p set:html={detailsText} />
 
   <div class="card-meta">
     <span class="tags">

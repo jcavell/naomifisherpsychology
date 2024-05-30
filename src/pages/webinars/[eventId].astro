@@ -24,18 +24,6 @@ console.log("webinar details is: " + JSON.stringify(webinar.detailsText));
 ---
 
 <WebinarLayout pageTitle={webinar.name.text}>
-  <WebinarDetails
-    eventId={eventId}
-    imageURL={webinar.logo.original.url}
-    detailsText={webinar.detailsText}
-    tags={webinar.tags}
-    people={webinar.people}
-    checkoutURL={webinar.url}
-    title={webinar.name.text}
-    subtitle={webinar.description.text}
-    start={webinar.start.utc}
-    end={webinar.end.utc}
-    tickets={webinar.orderedTickets}
-  />
+  <WebinarDetails webinar={webinar} />
   ))
 </WebinarLayout>

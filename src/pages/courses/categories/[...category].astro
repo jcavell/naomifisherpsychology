@@ -2,7 +2,10 @@
 import CourseLayout from "../../../layouts/CourseLayout.astro";
 import getCourses, { getRelated } from "../../../scripts/courses";
 import { makeUrl } from "../../../scripts/url";
-import { getCategories, getCategoriesFromTags } from "../../../scripts/courseCategories";
+import {
+  getCategories,
+  getCategoriesFromTags,
+} from "../../../scripts/courseCategories";
 import CourseSummary from "../../../components/CourseSummary.astro";
 
 export async function getStaticPaths() {
@@ -13,29 +16,17 @@ export async function getStaticPaths() {
     params: { category: makeUrl(category.name) },
     props: {
       categoryName: category.name,
-      courses: courses.filter((c) => getCategoriesFromTags(c.data.tags!).includes(category)),
+      courses: courses.filter((c) =>
+        getCategoriesFromTags(c.data.tags!).includes(category)
+      ),
     },
   }));
 }
 
 const { courses, categoryName } = Astro.props;
-const {category} = Astro.params;
+const { category } = Astro.params;
 ---
 
 <CourseLayout pageTitle={`Courses in ${categoryName}`}>
-  {
-    courses.map((course) => (
-      <CourseSummary
-        price={course.data.price}
-        imageFileName={course.data.imageFileName}
-        imageURL={course.data.imageURL}
-        checkoutURL={course.data.checkoutUrl}
-        title={course.data.title}
-        summary={course.data.description}
-        descriptions={course.data.descriptions}
-        people={course.data.people}
-        tags={course.data.tags}
-      />
-    ))
-  }
+  {courses.map((course) => <CourseSummary course={course.data} />)}
 </CourseLayout>

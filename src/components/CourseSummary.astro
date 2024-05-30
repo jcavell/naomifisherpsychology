@@ -3,7 +3,15 @@ import { makeUrl, getImagePath } from "../scripts/url";
 import Contributers from "./Contributers.astro";
 import Tags from "./Tags.astro";
 
-const { title, summary, price, checkoutURL, imageFileName, people, tags } = Astro.props;
+const { course } = Astro.props;
+
+const price = course.price;
+const imageFileName = course.imageFileName;
+const checkoutURL = course.checkoutUrl;
+const title = course.title;
+const summary = course.description;
+const people = course.people;
+const tags = course.tags;
 ---
 
 <div class="card card-courses">
@@ -11,7 +19,11 @@ const { title, summary, price, checkoutURL, imageFileName, people, tags } = Astr
     <a href=`/courses/${makeUrl(title)}`>{title}</a>
   </h2>
 
-  <img loading="lazy" src={`/images/courses/${imageFileName}`} alt=`Image for ${title}` />
+  <img
+    loading="lazy"
+    src={`/images/courses/${imageFileName}`}
+    alt=`Image for ${title}`
+  />
 
   <div class="card-details">
     <a href="#" class="card-type-course"> RECORDED COURSE </a>

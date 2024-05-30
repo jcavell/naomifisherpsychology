@@ -11,20 +11,5 @@ const webinars = await getWebinars();
 ---
 
 <WebinarLayout pageTitle={pageTitle}>
-  {
-    webinars.map((webinar, index) => (
-      <WebinarSummary
-        eventId={webinar.id}
-        imageURL={webinar.logo.original.url}
-        tags={webinar.tags}
-        people={webinar.people}
-        checkoutURL={webinar.url}
-        title={webinar.name.text}
-        subtitle={webinar.description.text}
-        start={webinar.start.utc}
-        end={webinar.end.utc}
-        tickets={webinar.orderedTickets}
-      />
-    ))
-  }
+  {webinars.map((webinar, index) => <WebinarSummary webinar={webinar} />)}
 </WebinarLayout>

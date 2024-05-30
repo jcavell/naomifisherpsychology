@@ -66,3 +66,5 @@ const doIt = function (contentToCheck: string) {
     .filter((tagAndRegex) => tagAndRegex[1].test(contentToCheck))
     .map((tagAndRegex) => tagAndRegex[0]);
 };
+
+

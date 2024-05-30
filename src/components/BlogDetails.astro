@@ -2,8 +2,15 @@
 import Tags from "./Tags.astro";
 import { makeUrl } from "../scripts/url";
 
-const { title, subtitle, paragraphs, imageFileName, pubDate, url, tags } =
-  Astro.props;
+const { post } = Astro.props;
+
+const imageFileName = post.imageFileName;
+const url = post.url;
+const title = post.title;
+const subtitle = post.subtitle;
+const pubDate = post.pubDate;
+const paragraphs = post.paragraphs;
+const tags = post.tags;
 
 const body = paragraphs.reduce((acc: string, curr: string) => acc + " " + curr);
 ---

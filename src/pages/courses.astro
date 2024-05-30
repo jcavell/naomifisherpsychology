@@ -6,18 +6,6 @@ import getCourses from "../scripts/courses";
 const courses = await getCourses();
 ---
 
-<CourseLayout pageTitle='All courses'>
-  {
-    courses.map((course) => (
-      <CourseSummary
-        price={course.data.price}
-        imageFileName={course.data.imageFileName}
-        checkoutURL={course.data.checkoutUrl}
-        title={course.data.title}
-        summary={course.data.description}
-        people={course.data.people}
-        tags={course.data.tags}
-      />
-    ))
-  }
+<CourseLayout pageTitle="Courses">
+  {courses.map((course) => <CourseSummary course={course.data} />)}
 </CourseLayout>

@@ -21,13 +21,5 @@ const { post } = Astro.props;
 ---
 
 <BlogLayout pageTitle={post.data.title}>
-  <BlogDetails
-    url={`${post.data.url}`}
-    imageFileName={post.data.imageFileName}
-    title={post.data.title}
-    subtitle={post.data.subtitle}
-    pubDate={post.data.pubDate}
-    paragraphs={post.data.paragraphs}
-    tags={post.data.tags}
-  />
+  <BlogDetails post = {post.data}/>
 </BlogLayout>

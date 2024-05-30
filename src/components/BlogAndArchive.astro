@@ -18,16 +18,8 @@ const sliceEnd = isArchive ? posts.length : 6;
   {
     posts
       .slice(sliceStart, sliceEnd)
-      .map((post) => (
-        <BlogSummary
-          url={`${post.data.url}`}
-          imageFileName={post.data.imageFileName}
-          title={post.data.title}
-          subtitle={post.data.subtitle}
-          pubDate={post.data.pubDate}
-          paragraphs={post.data.paragraphs}
-          tags={post.data.tags}
-        />
-      ))
+      .map((post) => 
+      <BlogSummary post={post.data} />
+    )
   }
 </BlogLayout>

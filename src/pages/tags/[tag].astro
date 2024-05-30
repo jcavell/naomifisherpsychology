@@ -1,6 +1,4 @@
 ---
-import CardLayout from "../../layouts/CourseLayout.astro";
-
 import getWebinars from "../../scripts/webinars";
 import getCourses from "../../scripts/courses";
 
@@ -8,19 +6,38 @@ import { makeUrl } from "../../scripts/url";
 
 import WebinarSummary from "../../components/WebinarSummary.astro";
 import CourseSummary from "../../components/CourseSummary.astro";
+import BlogSummary from "../../components/BlogSummary.astro";
+import BookSummary from "../../components/BookSummary.astro";
+
+import { getOrderedPosts } from "../../scripts/blog";
+
+import { getCollection } from "astro:content";
+import TagLayout from "../../layouts/TagLayout.astro";
 
 export async function getStaticPaths() {
+  // Get ALL content
   const webinars = await getWebinars();
   const courses = await getCourses();
+  const posts = await getOrderedPosts();
+  const books = await getCollection("books");
 
+  // Get ALL tags for each content type
   const webinarTags = webinars.map((webinar) => webinar.tags).flat();
   const courseTags = courses.map((course) => course.data.tags).flat();
-  const uniqueTags = [...new Set([...webinarTags, ...courseTags])];
+  const bookTags = books.map((book) => book.data.tags).flat();
+  const blogTags = posts.map((blog) => blog.data.tags).flat();
+
+  // Get all the unique tags
+  const uniqueTags = [
+    ...new Set([...webinarTags, ...courseTags, ...bookTags, ...blogTags]),
+  ];
 
   // console.log("Unique tags: " + uniqueTags);
   // courses.map((course) => console.log("*****" + course.data.title));
 
   return uniqueTags.map((tag: string) => {
+    // Page for each tag
+
     const filteredWebinars = webinars.filter((webinar) =>
       webinar.tags.includes(tag)
     );
@@ -28,6 +45,10 @@ export async function getStaticPaths() {
     const filteredCourses = courses.filter((course) =>
       course.data.tags?.includes(tag)
     );
+
+    const filteredBooks = books.filter((book) => book.data.tags.includes(tag));
+
+    const filteredPosts = posts.filter((post) => post.data.tags?.includes(tag));
 
     // Sort courses depending on where tag appears
     filteredCourses.sort(function (a, b) {
@@ -58,44 +79,28 @@ export async function getStaticPaths() {
         tagName: tag,
         webinars: filteredWebinars,
         courses: filteredCourses,
+        books: filteredBooks,
+        posts: filteredPosts,
       },
     };
   });
 }
 
-const { tagName, webinars, courses } = Astro.props;
+const { tagName, webinars, courses, books, posts } = Astro.props;
 ---
 
-<CardLayout pageTitle={`Webinars and courses tagged with ${tagName}`}>
-  {
-    webinars.map((webinar, index) => (
-      <WebinarSummary
-        imageURL={webinar.logo.original.url}
-        tags={webinar.tags}
-        people={webinar.people}
-        checkoutURL={webinar.url}
-        title={webinar.name.text}
-        subtitle={webinar.description.text}
-        start={webinar.start.utc}
-        end={webinar.end.utc}
-        tickets={webinar.orderedTickets}
-      />
-    ))
-  }
+<TagLayout pageTitle={`Tagged with ${tagName}`}>
 
-  {
-    courses.map((course) => (
-      <CourseSummary
-        price={course.data.price}
-        imageFileName={course.data.imageFileName}
-        imageURL={course.data.imageURL}
-        checkoutURL={course.data.checkoutUrl}
-        title={course.data.title}
-        summary={course.data.description}
-        descriptions={course.data.descriptions}
-        people={course.data.people}
-        tags={course.data.tags}
-      />
-    ))
-  }
-</CardLayout>
+  <a name="webinars"><h2>Webinars</h2></a>
+  {webinars.map((webinar, index) => <WebinarSummary webinar={webinar} />)}
+
+  <a name="courses"> <h2>Courses</h2></a>
+  {courses.map((course) => <CourseSummary course={course.data} />)}
+
+  <a name="books"><h2>Books</h2></a>
+  {books.map((book) => <BookSummary book={book.data} />)}
+
+  <a name="blog"><h2>Blog articles</h2></a>
+  {posts.map((post) => <BlogSummary post={post.data} />)}
+  
+</TagLayout>

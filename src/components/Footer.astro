@@ -1,23 +1,19 @@
+---
+import { getAllTags } from "../scripts/tags"
+import { makeUrl } from "../scripts/url"
+---
 <footer id="tag-menu">
-  <!-- <div class="tag-footer-wrapper">
+  <div class="tag-footer-wrapper">
     <span></span>
     <div class="tag-footer">
-      <a href="">Low Demand Parenting</a>
-      <a href="">Anxiety</a>
-      <a href="">Autism</a>
-      <a href="">School</a>
-      <a href="">Screens</a>
-      <a href="">Teenagers</a>
-      <a href="demand-avoidance.html">Demand Avoidance</a>
-      <a href="">Parenting</a>
-      <a href="">Trauma</a>
-      <a href="">Burnout</a>
-      <a href="">EHCP</a>
-      <a href="">Professionals</a>
-      <a href="">Abigail Fisher</a>
-      <a href="">Eliza Fricker</a>
-    </div>
-  </div> -->
+      {
+      getAllTags().map((t) => 
+      (
+        <a href={`/tags/${makeUrl(t)}`}>{t}</a>
+      ))
+      }
+      </div>
+  </div>
   <div class="footer-primary">
     <img src="/images/circle-logo.png" alt="Naomi Fisher Logo" />
     <img src="/images/dr-naomi-fisher-logo-white.svg" alt="Dr Naomi Fisher" />
@@ -37,7 +33,6 @@
     </ul>
 
     <ul class="footer-menu footer-menu-B">
-      
       <li>
         <a href="/emdr-training" target="_blank">EMDR training</a>
       </li>

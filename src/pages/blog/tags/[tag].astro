@@ -1,7 +1,6 @@
 ---
 import { makeUrl } from "../../../scripts/url";
 import BlogLayout from "../../../layouts/BlogLayout.astro";
-import BlogDetails from "../../../components/BlogDetails.astro";
 import { getOrderedPosts } from "../../../scripts/blog";
 import { getAllTags } from "../../../scripts/tags";
 import BlogSummary from "../../../components/BlogSummary.astro";
@@ -21,17 +20,5 @@ const { posts, tagName } = Astro.props;
 ---
 
 <BlogLayout pageTitle={`Blog posts tagged with ${tagName}`}>
-  {
-    posts.map((post) => (
-      <BlogSummary
-        url={`${post.data.url}`}
-        imageFileName={post.data.imageFileName}
-        title={post.data.title}
-        subtitle={post.data.subtitle}
-        pubDate={post.data.pubDate}
-        paragraphs={post.data.paragraphs}
-        tags={post.data.tags}
-      />
-    ))
-  }
+  {posts.map((post) => <BlogSummary post={post.data} />)}
 </BlogLayout>

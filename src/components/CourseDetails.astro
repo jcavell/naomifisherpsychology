@@ -4,9 +4,17 @@ import Contributers from "./Contributers.astro";
 import CourseSummary from "./CourseSummary.astro";
 import Tags from "./Tags.astro";
 
-const { title, summary, descriptions, testimonials = [], price, checkoutURL, imageFileName, people, tags, related } =
-  Astro.props;
+const { course, related } = Astro.props;
 
+const price = course.price;
+const imageFileName = course.imageFileName;
+const checkoutURL = course.checkoutUrl;
+const title = course.title;
+const summary = course.description;
+const descriptions = course.checkout?.descriptions;
+const testimonials = course.checkout?.testimonials;
+const people = course.people;
+const tags = course.tags;
 ---
 
 <div class="card card-courses">
@@ -14,21 +22,20 @@ const { title, summary, descriptions, testimonials = [], price, checkoutURL, ima
     <a href=`/courses/${makeUrl(title)}`>{title}</a>
   </h2>
 
-  <img loading="lazy" src={`/images/courses/${imageFileName}`} alt=`Image for ${title}` />
+  <img
+    loading="lazy"
+    src={`/images/courses/${imageFileName}`}
+    alt=`Image for ${title}`
+  />
 
   <div class="card-details">
     <a href="#" class="card-type-course"> RECORDED COURSE </a>
     <span> 2 HOURS, {price} </span>
   </div>
 
+  {descriptions.map((description) => <p>{description}</p>)}
 
-  {descriptions.map((description) => (
-    <p>{description}</p>
-  ))}
-
-{testimonials.map((testimonial) => (
-  <p>{testimonial}</p>
-))}
+  {testimonials.map((testimonial) => <p>{testimonial}</p>)}
 
   <div class="card-meta">
     <Contributers people={people} />
@@ -42,16 +49,4 @@ const { title, summary, descriptions, testimonials = [], price, checkoutURL, ima
 
 <div>Related</div>
 
-{
-  related.map((course) => (
-    <CourseSummary
-      price={course.data.price}
-      imageFileName={course.data.imageFileName}
-      checkoutURL={course.data.checkoutUrl}
-      title={course.data.title}
-      summary={course.data.description}
-      people={course.data.people}
-      tags={course.data.tags}
-    />
-  ))
-}
+{related.map((course) => <CourseSummary course={course.data} />)}

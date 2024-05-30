@@ -1,9 +1,15 @@
 ---
 import Tags from "./Tags.astro";
 import { makeUrl } from "../scripts/url";
-import { getImagePath } from "../scripts/url";
 
-const { title, subtitle, paragraphs, imageFileName, pubDate, url, tags } = Astro.props;
+const { post } = Astro.props;
+
+const imageFileName = post.imageFileName;
+const title = post.title;
+const subtitle = post.subtitle;
+const pubDate = post.pubDate;
+const paragraphs = post.paragraphs;
+const tags = post.tags;
 
 const body = paragraphs.reduce((acc: string, curr: string) => acc + " " + curr);
 ---
@@ -37,7 +43,7 @@ const body = paragraphs.reduce((acc: string, curr: string) => acc + " " + curr);
   <div class="card-meta">
     <span class="contributors"> Dr Naomi Fisher </span>
 
-    <Tags tags={tags} uri = 'blog/tags' />
+    <Tags tags={tags} uri="blog/tags" />
   </div>
 
   <div class="card-buttons">

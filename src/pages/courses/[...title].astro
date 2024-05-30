@@ -21,16 +21,5 @@ const { course, related } = Astro.props;
 ---
 
 <CourseLayout pageTitle={course.data.title}>
-  <CourseDetails
-    price={course.data.price}
-    imageFileName={course.data.imageFileName}
-    checkoutURL={course.data.checkoutUrl}
-    title={course.data.title}
-    summary={course.data.description}
-    descriptions={course.data.checkout?.descriptions}
-    testimonials={course.data.checkout?.testimonials}
-    people={course.data.people}
-    tags={course.data.tags}
-    related={related}
-  />
+  <CourseDetails course={course.data} related={related} />
 </CourseLayout>

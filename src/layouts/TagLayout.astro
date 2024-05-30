@@ -1,0 +1,19 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+const { pageTitle } = Astro.props;
+---
+
+<BaseLayout active="home">
+  <div class="wrapper">
+    <h1>{pageTitle}</h1>
+    <div class="tag-nav-links">
+      <a href="#webinars">Webinars</a> |
+      <a href="#courses">Courses</a> |
+      <a href="#books">Books</a> |
+      <a href="#blog">Blog posts</a>
+    </div>
+    
+    <slot />
+  </div>
+</BaseLayout>
