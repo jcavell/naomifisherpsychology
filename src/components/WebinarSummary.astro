@@ -20,12 +20,23 @@ const endDateTime = new Date(Date.parse(end));
 
 const displayDay = { day: "numeric" };
 const displayMonth = { month: "short" };
-const displayTime = { hour: "numeric", minute: "numeric" };
+const displayTimeStart = {
+  hour: "numeric",
+  minute: "numeric",
+  timeZone: "Europe/London",
+};
+
+const displayTimeEnd = {
+  hour: "numeric",
+  minute: "numeric",
+  timeZone: "Europe/London",
+  timeZoneName: "short"
+};
 
 const day = startDateTime.toLocaleString(undefined, displayDay);
 const month = startDateTime.toLocaleString(undefined, displayMonth);
-const startTime = startDateTime.toLocaleString("en-GB", displayTime);
-const endTime = endDateTime.toLocaleString("en-GB", displayTime);
+const startTime = startDateTime.toLocaleString("en-GB", displayTimeStart);
+const endTime = endDateTime.toLocaleString("en-GB", displayTimeEnd);
 ---
 
 <div class="card card-webinar">
