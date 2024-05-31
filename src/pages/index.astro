@@ -1,9 +1,14 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+import { Image } from "astro:assets";
+
+import testImage from "../images/courses/test.jpeg";
 ---
 
 <BaseLayout active="home" pageTitle="Home">
   <div class="wrapper">
+    <Image width="200" src={testImage} alt="A description of my image." />
     <ul>
       <li>Naomi brief bio</li>
       <li>Image</li>
@@ -12,5 +17,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <li>Books summary incl. new or preleased books</li>
       <li>EMDR training</li>
     </ul>
+    <Image src={testImage} alt="A description of my image." />
   </div>
 </BaseLayout>
