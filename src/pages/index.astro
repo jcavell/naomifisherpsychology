@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-import { Image } from "astro:assets";
+import { Image, Picture } from "astro:assets";
 
 import testImage from "../images/courses/test.jpeg";
 ---
@@ -17,6 +17,12 @@ import testImage from "../images/courses/test.jpeg";
       <li>Books summary incl. new or preleased books</li>
       <li>EMDR training</li>
     </ul>
-    <Image src={testImage} alt="A description of my image." />
+    <Picture
+      src={testImage}
+      widths={[240, 540, 720, testImage.width]}
+      sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${testImage.width}px`}
+      alt="Test image for responsive testing."
+      pictureAttributes={{ style: "background-color: red;" }}
+    />
   </div>
 </BaseLayout>
