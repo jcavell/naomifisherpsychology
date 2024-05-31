@@ -2,16 +2,21 @@
 import { makeUrl, getImagePath } from "../scripts/url";
 import Contributers from "./Contributers.astro";
 import Tags from "./Tags.astro";
+import {
+  getProductForCourse,
+  getImagePathForCourse,
+} from "../scripts/products"
 
 const { course } = Astro.props;
 
 const price = course.price;
-const imageFileName = course.imageFileName;
 const checkoutURL = course.checkoutUrl;
 const title = course.title;
 const summary = course.description;
 const people = course.people;
 const tags = course.tags;
+
+const product = getProductForCourse(course);
 ---
 
 <div class="card card-courses">
@@ -21,13 +26,13 @@ const tags = course.tags;
 
   <img
     loading="lazy"
-    src={`/images/courses/${imageFileName}`}
+    src={getImagePathForCourse(course)}
     alt=`Image for ${title}`
   />
 
   <div class="card-details">
     <a href="#" class="card-type-course"> RECORDED COURSE </a>
-    <span> 2 HOURS, {price} </span>
+    <span> {product?.runningTime}, {price} </span>
   </div>
 
   <p>
@@ -36,7 +41,7 @@ const tags = course.tags;
 
   <div class="card-meta">
     <Contributers people={people} />
-    <Tags tags={tags} />
+    <Tags tags={product?.tags? product.tags : tags} />
   </div>
 
   <div class="card-buttons">

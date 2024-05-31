@@ -2,10 +2,14 @@
 	"type": "CHECKOUT",
 	"url": "https://courses.naomifisher.co.uk/offers/7boherxL",
 	"descriptions": [
-		"This recording is available to watch for 6 months after purchase.",
-		"Dr Abigail Fisher is a qualified teacher and an Educational Psychologist.",
-		"She's worked in lots of different local authorities writing reports as part of the education, health and care plan process and supporting children with special educational needs in schools.",
-		""
+		"li:\nWhy do you need an EHCP?\n",
+		"li:\nWhat's the process\n",
+		"li:\nEssential tips on getting a useful plan\n",
+		"li:\nLook at some reports and tips on drafting a plan\n",
+		"p:This recording is available to watch for 6 months after purchase.",
+		"p:Dr Abigail Fisher is a qualified teacher and an Educational Psychologist.",
+		"p:She's worked in lots of different local authorities writing reports as part of the education, health and care plan process and supporting children with special educational needs in schools.",
+		"p:"
 	],
 	"testimonials": []
 }
