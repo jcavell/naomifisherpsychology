@@ -5,37 +5,31 @@ import { coreTags, forTags, ageTags } from "../scripts/tags";
 const { tags = [], uri = "tags" } = Astro.props;
 
 const includedCoreTags = coreTags.filter((t) => tags.includes(t));
+const includedAgeTags = ageTags.filter((t) => tags.includes(t));
 
-// tags.forEach((t) => {
-//   console.log("Tag: " + t + " makeUrl: " + makeUrl(t));
-// });
 ---
 
 <span class="tags">
   {
     includedCoreTags.map((tag: string, index: number) => (
       <>
-        <a href={`/${uri}/${makeUrl(tag)}`}>{tag}</a>
-        <span>{includedCoreTags.length > index && <span> </span>}</span>
+        <a href={`/${uri}/${makeUrl(tag)}`}>{tag}</a>{includedCoreTags.length > index + 1 && <>, </>}
       </>
     ))
   }
 </span>
 
-<span class="tags">
+<span class="tags"> Covers ages
   {
-    ageTags
-      .filter((t) => tags.includes(t))
-      .map((tag: string, index: number) => (
-        <>
-          <a href={`/${uri}/${makeUrl(tag)}`}>{tag}</a>
-          <span>{includedCoreTags.length > index && <span> </span>}</span>
-        </> 
-      ))
+    includedAgeTags.map((tag: string, index: number) => (
+      <>
+        <a href={`/${uri}/${makeUrl(tag)}`}>{tag}</a>{includedAgeTags.length > index + 1 && <>, </>}
+      </>
+    ))
   }
 </span>
 
-<span class="tags">
+<span class="tags">For 
   {
     forTags
       .filter((t) => tags.includes(t))
