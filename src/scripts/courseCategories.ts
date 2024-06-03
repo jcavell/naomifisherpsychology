@@ -1,14 +1,14 @@
 import {
-  aldp,
-  anxiety,
-  autism,
-  burnout,
-  demandAvoidance,
-  ehcp,
+  tagALDP,
+  tagAnxiety,
+  tagAutism,
+  tagBurnout,
+  tagDemandAvoidance,
+  tagEHCP,
   forTeens,
-  neurodiversity,
-  school,
-  trauma,
+  tagNeurodiversity,
+  tagSchool,
+  tagTrauma,
 } from "./tags";
 import { makeUrl } from "./url";
 
@@ -24,32 +24,36 @@ class Category {
   }
 }
 
-export const autismCategory = new Category(
+export const catAutism = new Category(
   "Autism",
-  [autism, demandAvoidance, neurodiversity],
+  [tagAutism, tagDemandAvoidance, tagNeurodiversity],
   ["Demand Avoidance", "Neurodiversity"]
 );
 
-export const anxietyCategory = new Category(
+export const catAnxiety = new Category(
   "Anxiety",
-  [anxiety, trauma, burnout],
+  [tagAnxiety, tagTrauma, tagBurnout],
   ["Trauma", "Burnout"]
 );
 
-export const schoolCategory = new Category("School", [school, ehcp], ["EHCPs"]);
+export const catSchool = new Category(
+  "School",
+  [tagSchool, tagEHCP],
+  ["EHCPs"]
+);
 
-export const aldpCategory = new Category("The Art of Low Demand Parenting", [aldp]);
-
-export const forTeensCategory = new Category("For teenagers to watch", [
-  forTeens,
+export const catALDP = new Category("The Art of Low Demand Parenting", [
+  tagALDP,
 ]);
 
+export const catForTeens = new Category("For teenagers to watch", [forTeens]);
+
 const categories: ReadonlyArray<Category> = [
-  forTeensCategory,
-  autismCategory,
-  schoolCategory,
-  anxietyCategory,
-  aldpCategory,
+  catAutism,
+  catSchool,
+  catAnxiety,
+  catALDP,
+  catForTeens,
 ];
 
 export const getCategories = () => categories;

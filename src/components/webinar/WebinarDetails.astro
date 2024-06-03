@@ -1,14 +1,19 @@
 ---
-import Tags from "./Tags.astro";
-import Contributers from "./Contributers.astro";
+import Tags from "../Tags.astro";
+import Contributers from "../Contributers.astro";
+import WebinarVideo from "./WebinarVideo.astro";
+
+import { getWebinarMeta } from "../../scripts/webinarMeta";
+
+import WebinarImage from "./WebinarImage.astro";
 
 const { webinar } = Astro.props;
 
 const eventId = webinar.id;
+const meta = getWebinarMeta(eventId);
+
 const imageURL = webinar.logo.original.url;
 const tags = webinar.tags;
-const people = webinar.people;
-const checkoutURL = webinar.url;
 const title = webinar.name.text;
 const subtitle = webinar.description.text;
 const start = webinar.start.utc;
@@ -40,7 +45,9 @@ const endTime = endDateTime.toLocaleString(undefined, displayTime);
     <a href="#">{title}</a>
   </h2>
 
-  <img loading="lazy" src={imageURL} alt="" />
+  <WebinarImage webinar={webinar} />
+
+  <WebinarVideo webinar={webinar} />
 
   <div class="card-details">
     <a href="#" class="card-type-course"> LIVE WEBINAR </a>
@@ -60,7 +67,7 @@ const endTime = endDateTime.toLocaleString(undefined, displayTime);
       {`${day} ${month} ${startTime} - ${endTime}`}
     </span>
 
-    <Contributers people={people} />
+    <Contributers people={meta?.contributers} />
 
     <Tags tags={tags} />
   </div>

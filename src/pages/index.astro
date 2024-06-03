@@ -4,6 +4,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image, Picture } from "astro:assets";
 
 import testImage from "../images/courses/test.jpeg";
+import testImage2 from "../images/courses/test2.jpeg";
+
+import { demandAvoidantAdolescent } from "../scripts/courseMeta";
 ---
 
 <BaseLayout active="home" pageTitle="Home">
@@ -17,12 +20,90 @@ import testImage from "../images/courses/test.jpeg";
       <li>Books summary incl. new or preleased books</li>
       <li>EMDR training</li>
     </ul>
-    <Picture
-      src={testImage}
-      widths={[240, 540, 720, testImage.width]}
-      sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${testImage.width}px`}
-      alt="Test image for responsive testing."
-      pictureAttributes={{ style: "background-color: red;" }}
-    />
+
+    <div class="wrapper">
+      <div class="card card-courses">
+        <h2>
+          <a href="#">The Art of Low Demand Parenting: Behaviour.</a>
+        </h2>
+
+        <div class="card-image">
+          <Picture
+            src={demandAvoidantAdolescent.image!}
+            widths={[240, 540, 720, testImage.width]}
+            sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${testImage.width}px`}
+            alt="Test image for responsive testing."
+            pictureAttributes={{ style: "background-color: red;" }}
+          />
+        </div>
+
+        <div class="card-details">
+          <a href="#"> RECORDED COURSE </a>
+          <span> 2 HOURS, £30 </span>
+        </div>
+
+        <p>
+          Some children just don't respond to conventional approaches to
+          behaviour. What do you do when the naughty step makes things worse?
+        </p>
+
+        <div class="card-meta">
+          <span class="contributors">
+            Dr Naomi Fisher with <a href="#">Eliza Fricker</a>
+          </span>
+          <span class="tags">
+            <a href="/low-demand-parenting/">Low Demand Parenting</a>, <a
+              href="demand-avoidance.html">Demand Avoidance</a
+            >
+          </span>
+        </div>
+
+        <div class="card-buttons">
+          <a href="#"> Learn More </a>
+          <a href="#"> Purchase </a>
+        </div>
+      </div>
+
+      <div class="card card-courses">
+        <h2>
+          <a href="#">Shorter title on single line</a>
+        </h2>
+
+        <div class="card-image">
+          <Picture
+            src={testImage2}
+            widths={[240, 540, 720, testImage.width]}
+            sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${testImage.width}px`}
+            alt="Test image for responsive testing."
+            pictureAttributes={{ style: "background-color: red;" }}
+          />
+        </div>
+        <div class="card-details">
+          <a href="#"> RECORDED COURSE </a>
+          <span> 2 HOURS, £30 </span>
+        </div>
+
+        <p>
+          Some children just don't respond to conventional approaches to
+          behaviour. What do you do when the naughty step makes things worse?
+        </p>
+
+        <div class="card-meta">
+          <span class="contributors">
+            Dr Naomi Fisher with <a href="#">Eliza Fricker</a>
+          </span>
+          <span class="tags">
+            <a href="/low-demand-parenting/">Low Demand Parenting</a>, <a
+              href="demand-avoidance.html">Demand Avoidance</a
+            >
+          </span>
+        </div>
+
+        <div class="card-buttons">
+          <a href="#"> Learn More </a>
+          <a href="#"> Purchase </a>
+        </div>
+      </div>
+    </div>
   </div>
 </BaseLayout>

@@ -6,7 +6,7 @@ import {
   getCategories,
   getCategoriesFromTags,
 } from "../../../scripts/courseCategories";
-import CourseSummary from "../../../components/CourseSummary.astro";
+import CourseSummary from "../../../components/course/CourseSummary.astro";
 
 export async function getStaticPaths() {
   const courses = await getCourses();

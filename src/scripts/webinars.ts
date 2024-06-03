@@ -7,7 +7,7 @@ import testWebinars3 from "../test-data/eventbrite/3events.json";
 const EB_BEARER = import.meta.env.EB_BEARER;
 
 function getDetails(webinarId: string) {
-  console.log("Fetching details for webinar id " + webinarId);
+ // console.log("Fetching details for webinar id " + webinarId);
   return fetch(
     "https://www.eventbriteapi.com/v3/events/" +
       webinarId +
@@ -31,6 +31,7 @@ export default async function getWebinars() {
   );
 
   const eventsJson = await eventsResponse.json();
+  // console.log("Upcoming webinar summaries: " + JSON.stringify(eventsJson));
 
   const getDetailsResponses = (webinars) => {
     const responses = webinars.map((webinar) => {
@@ -47,6 +48,16 @@ export default async function getWebinars() {
     detailsResponses.map((wd) => wd.json())
   );
 
+  // console.log("Webinar details" + JSON.stringify(detailsJsons));
+
+  function addVideoData(webinar) {
+    const videoWidgets = webinar.widgets.filter((widget) => widget.type === 'featured_video');
+    // console.log("VW" + JSON.stringify(videoWidgets));
+    if(videoWidgets.length > 0){
+      webinar.videoData = videoWidgets[0].data.video;
+    }
+  }
+
   function addOrderedTickets(webinar) {
     webinar.orderedTickets = webinar.ticket_classes
       .map((ticket) => ({
@@ -62,6 +73,7 @@ export default async function getWebinars() {
 
   webinars.map((webinar, index) => {
     const detailsText = detailsJsons[index].modules[0].data.body.text;
+    webinar.widgets = detailsJsons[index].widgets;
     webinar.detailsText = detailsText;
     webinar.people = getPeople(detailsText);
     webinar.tags = getTags(
@@ -70,8 +82,10 @@ export default async function getWebinars() {
       detailsText
     );
     addOrderedTickets(webinar);
+    addVideoData(webinar);
   });
 
+  
   return webinars;
 }
 

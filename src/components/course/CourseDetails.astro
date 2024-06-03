@@ -1,18 +1,15 @@
 ---
-import { makeUrl, getImagePath } from "../scripts/url";
-import Contributers from "./Contributers.astro";
+import { makeUrl } from "../../scripts/url";
+import Contributers from "../Contributers.astro";
 import CourseSummary from "./CourseSummary.astro";
-import Tags from "./Tags.astro";
-import { parseDescriptions } from "../scripts/courses";
-import {
-  getProductForCourse,
-  getImagePathForCourse,
-} from "../scripts/products"
+import Tags from "../Tags.astro";
+import { parseDescriptions } from "../../scripts/courses";
+import { getCourseMetaForCourse } from "../../scripts/courseMeta";
+import CourseImage from "./CourseImage.astro";
 
 const { course, related } = Astro.props;
 
 const price = course.price;
-const imageFileName = course.imageFileName;
 const checkoutURL = course.checkoutUrl;
 const title = course.title;
 const descriptions = course.checkout?.descriptions;
@@ -20,7 +17,7 @@ const testimonials = course.checkout?.testimonials;
 const people = course.people;
 const tags = course.tags;
 
-const product = getProductForCourse(course);
+const meta = getCourseMetaForCourse(course);
 ---
 
 <div class="card card-courses">
@@ -28,15 +25,11 @@ const product = getProductForCourse(course);
     <a href=`/courses/${makeUrl(title)}`>{title}</a>
   </h2>
 
-  <img
-    loading="lazy"
-    src={getImagePathForCourse(course)}
-    alt=`Image for ${title}`
-  />
+  <CourseImage course={course} />
 
   <div class="card-details">
     <a href="#" class="card-type-course"> RECORDED COURSE </a>
-    <span> {product?.runningTime}, {price} </span>
+    <span> {meta?.runningTime}, {price} </span>
   </div>
 
   <div set:html={parseDescriptions(descriptions)} />
@@ -45,8 +38,8 @@ const product = getProductForCourse(course);
   {testimonials.map((testimonial) => <p>{testimonial}</p>)}
 
   <div class="card-meta">
-    <Contributers people={people} />
-    <Tags tags={product?.tags ? product.tags : tags} />
+    <Contributers people={meta?.contributers} />
+    <Tags tags={meta?.tags} />
   </div>
 
   <div class="card-buttons">

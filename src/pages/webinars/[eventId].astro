@@ -1,7 +1,7 @@
 ---
 import getWebinars from "../../scripts/webinars";
 import { makeUrl } from "../../scripts/url";
-import WebinarDetails from "../../components/WebinarDetails.astro";
+import WebinarDetails from "../../components/webinar/WebinarDetails.astro";
 import WebinarLayout from "../../layouts/WebinarLayout.astro";
 
 export async function getStaticPaths() {
@@ -20,7 +20,7 @@ export async function getStaticPaths() {
 const { eventId } = Astro.params;
 const { webinar } = Astro.props;
 
-console.log("webinar details is: " + JSON.stringify(webinar.detailsText));
+// console.log("webinar details is: " + JSON.stringify(webinar.detailsText));
 ---
 
 <WebinarLayout pageTitle={webinar.name.text}>

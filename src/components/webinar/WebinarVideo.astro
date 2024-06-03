@@ -1,0 +1,16 @@
+---
+const { webinar } = Astro.props;
+---
+
+{
+  webinar.videoData && (
+    <iframe
+      src={webinar.videoData.embed_url}
+      width="540"
+      height="300"
+      frameborder="2"
+      allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+      title="Trailer"
+    />
+  )
+}

@@ -1,10 +1,10 @@
 import { assert, expect, test } from "vitest";
-import { anxiety, demandAvoidance, forTeens } from "../scripts/tags";
+import { tagAnxiety, tagDemandAvoidance, forTeens } from "../scripts/tags";
 import {
-  aldpCategory,
-  anxietyCategory,
-  autismCategory,
-  forTeensCategory,
+  catALDP,
+  catAnxiety,
+  catAutism,
+  catForTeens,
   getCategoriesFromTags,
   getCategoryForName,
 } from "../scripts/courseCategories";
@@ -30,22 +30,22 @@ test("JSON", () => {
 });
 
 test("Autism and Anxiety categories returned from demand avoidance and anxiety tags", () => {
-  const tags = [demandAvoidance, anxiety];
+  const tags = [tagDemandAvoidance, tagAnxiety];
 
   const categories = getCategoriesFromTags(tags);
 
-  expect(categories).toEqual([autismCategory, anxietyCategory]);
+  expect(categories).toEqual([catAutism, catAnxiety]);
 });
 
 test("Autism and for teenager catgories", () => {
-  const tags = [demandAvoidance, forTeens];
+  const tags = [tagDemandAvoidance, forTeens];
 
   const categories = getCategoriesFromTags(tags);
 
-  expect(categories).toEqual([forTeensCategory, autismCategory]);
+  expect(categories).toEqual([catForTeens, catAutism]);
 });
 
-test('Create aldp category from name', () => {
-  const category = getCategoryForName('The Art of Low Demand Parenting');
-  expect(category).toEqual(aldpCategory);
+test("Create aldp category from name", () => {
+  const category = getCategoryForName("The Art of Low Demand Parenting");
+  expect(category).toEqual(catALDP);
 });

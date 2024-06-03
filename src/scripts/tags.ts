@@ -1,51 +1,69 @@
 export const type101 = "101";
 export const type102 = "102";
+
 export const ageTeen = "Teen";
 export const age5To12 = "5-12";
+
 export const forParents = "Parents";
 export const forTeens = "Teens";
 export const forProfessionals = "Professionals";
-export const aldp = "Low Demand Parenting";
-export const autism = "Autism";
-export const neurodiversity = "Neurodiversity";
-export const anxiety = "Anxiety";
-export const demandAvoidance = "Demand Avoidance";
-export const trauma = "Trauma";
-export const screens = "Screens";
-export const aggression = "Aggression";
-export const burnout = "Burnout";
-export const school = "School";
-export const ehcp = "EHCP";
+
+export const tagALDP = "Low Demand Parenting";
+export const tagAutism = "Autism";
+export const tagNeurodiversity = "Neurodiversity";
+export const tagAnxiety = "Anxiety";
+export const tagDemandAvoidance = "Demand Avoidance";
+export const tagTrauma = "Trauma";
+export const tagScreens = "Screens";
+export const tagAggression = "Aggression";
+export const tagBurnout = "Burnout";
+
+export const tagSchool = "School";
+export const tagEHCP = "EHCP";
+export const tagSEN = "SEN";
 
 const tag2regex: Readonly<Record<string, RegExp>> = {
-  [autism]: new RegExp(["auti", "neurodiv"].join("|"), "i"),
-  [demandAvoidance]: new RegExp(
+  [tagAutism]: new RegExp(["auti", "neurodiv"].join("|"), "i"),
+  [tagDemandAvoidance]: new RegExp(
     ["pda", "demand avoid", "pressure"].join("|"),
     "i"
   ),
-  [anxiety]: new RegExp(["anxiety", "anxious"].join("|"), "i"),
-  [burnout]: new RegExp(["burnout", "burnt out"].join("|"), "i"),
-  [trauma]: new RegExp(["trauma"].join("|"), "i"),
+  [tagAnxiety]: new RegExp(["anxiety", "anxious"].join("|"), "i"),
+  [tagBurnout]: new RegExp(["burnout", "burnt out"].join("|"), "i"),
+  [tagTrauma]: new RegExp(["trauma"].join("|"), "i"),
 
-  [school]: new RegExp(["school", "academic", "exam"].join("|"), "i"),
-  [ehcp]: new RegExp(["ehcp"].join("|"), "i"),
+  [tagSchool]: new RegExp(["school", "academic", "exam"].join("|"), "i"),
+  [tagEHCP]: new RegExp(["ehcp"].join("|"), "i"),
 
   [forTeens]: new RegExp(["for teen", "for adolesc"].join("|"), "i"),
   [ageTeen]: new RegExp(["teen", "adolesc"].join("|"), "i"),
 
-  [screens]: new RegExp(["screen", "phone"].join("|"), "i"),
-  [aggression]: new RegExp(["aggress", "violent"].join("|"), "i"),
+  [tagScreens]: new RegExp(["screen", "phone"].join("|"), "i"),
+  [tagAggression]: new RegExp(["aggress", "violent"].join("|"), "i"),
 
-  [aldp]: new RegExp(["art of low demand parenting"].join("|"), "i"),
+  [tagALDP]: new RegExp(["art of low demand parenting"].join("|"), "i"),
 };
 
-export const coreTags = [autism, demandAvoidance, anxiety, burnout, trauma, school, ehcp, screens, aldp];
-export const ageTags = [age5To12, ageTeen]
-export const forTags = [forParents, forTeens, forProfessionals]
+export const coreTags = [
+  tagAutism,
+  tagDemandAvoidance,
+  tagAnxiety,
+  tagBurnout,
+  tagTrauma,
+  tagSchool,
+  tagEHCP,
+  tagSEN,
+  tagScreens,
+  tagALDP,
+];
 
-export const getAllTags = function(){
+export const ageTags = [age5To12, ageTeen];
+
+export const forTags = [forParents, forTeens, forProfessionals];
+
+export const getAllTags = function () {
   return Object.keys(tag2regex);
-}
+};
 
 export const getTags = function (
   title: string = "",
@@ -73,5 +91,3 @@ const doIt = function (contentToCheck: string) {
     .filter((tagAndRegex) => tagAndRegex[1].test(contentToCheck))
     .map((tagAndRegex) => tagAndRegex[0]);
 };
-
-
