@@ -2,7 +2,7 @@
 import { makeUrl } from "../../../scripts/url";
 import BlogLayout from "../../../layouts/BlogLayout.astro";
 import { getOrderedPosts } from "../../../scripts/blog";
-import { getAllTags } from "../../../scripts/tags";
+import { allTags } from "../../../scripts/tags";
 import BlogSummary from "../../../components/BlogSummary.astro";
 
 export async function getStaticPaths() {
@@ -10,7 +10,7 @@ export async function getStaticPaths() {
 
   // console.log(JSON.stringify(posts.map((p) => p.data.tags)));
 
-  return getAllTags().map((t) => ({
+  return allTags.map((t) => ({
     params: { tag: makeUrl(t) },
     props: { tagName: t, posts: posts.filter((p) => p.data.tags.includes(t)) },
   }));

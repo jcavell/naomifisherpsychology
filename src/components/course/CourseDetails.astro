@@ -4,7 +4,7 @@ import Contributers from "../Contributers.astro";
 import CourseSummary from "./CourseSummary.astro";
 import Tags from "../Tags.astro";
 import { parseDescriptions } from "../../scripts/courses";
-import { getCourseMetaForCourse } from "../../scripts/courseMeta";
+import { getCourseMeta } from "../../scripts/courseMeta";
 import CourseImage from "./CourseImage.astro";
 
 const { course, related } = Astro.props;
@@ -17,7 +17,7 @@ const testimonials = course.checkout?.testimonials;
 const people = course.people;
 const tags = course.tags;
 
-const meta = getCourseMetaForCourse(course);
+const meta = getCourseMeta(course);
 ---
 
 <div class="card card-courses">

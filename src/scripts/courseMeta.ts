@@ -30,7 +30,7 @@ const demandAvoidance101: CourseMeta = {
   image: testImage,
 };
 
-export function getCourseMetaForCourse(course): CourseMeta | undefined {
+export function getCourseMeta(course): CourseMeta | undefined {
   return [demandAvoidantAdolescent, demandAvoidance101].find(
     (prod) => prod.title === course.title
   );

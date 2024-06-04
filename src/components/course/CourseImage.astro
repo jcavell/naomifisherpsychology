@@ -1,10 +1,10 @@
 ---
 import { Picture } from "astro:assets";
-import { getCourseMetaForCourse } from "../../scripts/courseMeta";
+import { getCourseMeta } from "../../scripts/courseMeta";
 
 const { course } = Astro.props;
 
-const product = getCourseMetaForCourse(course);
+const product = getCourseMeta(course);
 const image = product?.image;
 ---
 

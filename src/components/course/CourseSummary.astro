@@ -2,7 +2,7 @@
 import { makeUrl } from "../../scripts/url";
 import Contributers from "../Contributers.astro";
 import Tags from "../Tags.astro";
-import { getCourseMetaForCourse } from "../../scripts/courseMeta";
+import { getCourseMeta } from "../../scripts/courseMeta";
 import CourseImage from "./CourseImage.astro";
 
 const { course } = Astro.props;
@@ -13,7 +13,7 @@ const title = course.title;
 const summary = course.description;
 const people = course.people;
 
-const meta = getCourseMetaForCourse(course);
+const meta = getCourseMeta(course);
 ---
 
 <div class="card card-courses">

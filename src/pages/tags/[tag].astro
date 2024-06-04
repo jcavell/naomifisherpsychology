@@ -1,8 +1,11 @@
 ---
 import getWebinars from "../../scripts/webinars";
 import getCourses from "../../scripts/courses";
+import { getWebinarMeta } from "../../scripts/webinarMeta";
+import { getCourseMeta } from "../../scripts/courseMeta";
 
 import { makeUrl } from "../../scripts/url";
+import { allTags } from "../../scripts/tags";
 
 import WebinarSummary from "../../components/webinar/WebinarSummary.astro";
 import CourseSummary from "../../components/course/CourseSummary.astro";
@@ -21,29 +24,20 @@ export async function getStaticPaths() {
   const posts = await getOrderedPosts();
   const books = await getCollection("books");
 
-  // Get ALL tags for each content type
-  const webinarTags = webinars.map((webinar) => webinar.tags).flat();
-  const courseTags = courses.map((course) => course.data.tags).flat();
-  const bookTags = books.map((book) => book.data.tags).flat();
-  const blogTags = posts.map((blog) => blog.data.tags).flat();
-
-  // Get all the unique tags
-  const uniqueTags = [
-    ...new Set([...webinarTags, ...courseTags, ...bookTags, ...blogTags]),
-  ];
-
-  // console.log("Unique tags: " + uniqueTags);
-  // courses.map((course) => console.log("*****" + course.data.title));
-
-  return uniqueTags.map((tag: string) => {
+  return allTags.map((tag: string) => {
     // Page for each tag
 
-    const filteredWebinars = webinars.filter((webinar) =>
-      webinar.tags.includes(tag)
-    );
+    const filteredWebinars = webinars.filter((webinar) => {
+      const eventId = webinar.id;
+      const meta = getWebinarMeta(eventId);
+      return meta?.tags?.includes(tag);
+    });
 
-    const filteredCourses = courses.filter((course) =>
-      course.data.tags?.includes(tag)
+    const filteredCourses = courses.filter((course) => {
+      const meta = getCourseMeta(course.data);
+      // console.log("Course tags for " + course.data.title + ": " + meta?.tags);
+      return meta?.tags?.includes(tag)
+    }
     );
 
     const filteredBooks = books.filter((book) => book.data.tags.includes(tag));
@@ -89,8 +83,7 @@ export async function getStaticPaths() {
 const { tagName, webinars, courses, books, posts } = Astro.props;
 ---
 
-<TagLayout pageTitle={`Tagged with ${tagName}`}>
-
+<TagLayout pageTitle={`Tagged with "${tagName}"`}>
   <a name="webinars"><h2>Webinars</h2></a>
   {webinars.map((webinar, index) => <WebinarSummary webinar={webinar} />)}
 
@@ -102,5 +95,4 @@ const { tagName, webinars, courses, books, posts } = Astro.props;
 
   <a name="blog"><h2>Blog articles</h2></a>
   {posts.map((post) => <BlogSummary post={post.data} />)}
-  
 </TagLayout>

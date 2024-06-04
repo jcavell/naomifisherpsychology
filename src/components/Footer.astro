@@ -11,11 +11,11 @@ import { makeUrl } from "../scripts/url";
     </div>
 
     <div class="tag-footer">
-      Ages covered {ageTags.map((t) => <a href={`/tags/${makeUrl(t)}`}>{t}</a>)}
+      Covers {ageTags.map((t) => <a href={`/tags/${makeUrl(t)}`}>{t}</a>)}
     </div>
 
     <div class="tag-footer">
-      For {forTags.map((t) => <a href={`/tags/${makeUrl(t)}`}>{t}</a>)}
+      {forTags.map((t) => <a href={`/tags/${makeUrl(t)}`}>{t}</a>)}
     </div>
   </div>
   <div class="footer-primary">
@@ -32,25 +32,25 @@ import { makeUrl } from "../scripts/url";
         <a href="/books">Books</a>
       </li>
       <li>
-        <a href="/blog">Blog</a>
+        <a href="/consultation">Consultation</a>
       </li>
     </ul>
 
     <ul class="footer-menu footer-menu-B">
       <li>
-        <a href="/emdr-training" target="_blank">EMDR training</a>
+        <a href="/training" target="_blank">Training</a>
       </li>
 
       <li>
-        <a href="/for-professionals" target="_blank">For professionals</a>
+        <a href="/blog" target="_blank">Blog</a>
       </li>
 
       <li>
-        <a href="/our-people" target="_blank">Our people</a>
+        <a href="/about-us" target="_blank">About Us</a>
       </li>
 
       <li>
-        <a href="/contact-us" target="_blank">Contact Us</a>
+        <a href="/contact" target="_blank">Contact</a>
       </li>
     </ul>
     <div class="smallprint">
