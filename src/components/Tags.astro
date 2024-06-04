@@ -6,30 +6,33 @@ const { tags = [], uri = "tags" } = Astro.props;
 
 const includedCoreTags = coreTags.filter((t) => tags.includes(t));
 const includedAgeTags = ageTags.filter((t) => tags.includes(t));
-
 ---
 
 <span class="tags">
   {
     includedCoreTags.map((tag: string, index: number) => (
       <>
-        <a href={`/${uri}/${makeUrl(tag)}`}>{tag}</a>{includedCoreTags.length > index + 1 && <>, </>}
-      </>
-    ))
-  }
-</span>
-
-<span class="tags"> Covers
-  {
-    includedAgeTags.map((tag: string, index: number) => (
-      <>
-        <a href={`/${uri}/${makeUrl(tag)}`}>{tag}</a>{includedAgeTags.length > index + 1 && <>, </>}
+        <a href={`/${uri}/${makeUrl(tag)}`}>{tag}</a>
+        {includedCoreTags.length > index + 1 && <>, </>}
       </>
     ))
   }
 </span>
 
 <span class="tags">
+  Ages: 
+  {
+    includedAgeTags.map((tag: string, index: number) => (
+      <>
+        <a href={`/${uri}/${makeUrl(tag)}`}>{tag}</a>
+        {includedAgeTags.length > index + 1 && <>, </>}
+      </>
+    ))
+  }
+</span>
+
+<span class="tags">
+  Audience: 
   {
     forTags
       .filter((t) => tags.includes(t))

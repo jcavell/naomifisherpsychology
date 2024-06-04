@@ -1,7 +1,7 @@
 ---
 import Tags from "../Tags.astro";
 import Contributers from "../Contributers.astro";
-import WebinarVideo from "./WebinarVideo.astro";
+import Vimeo from "../Vimeo.astro";
 import { getWebinarMeta } from "../../scripts/webinarMeta";
 import WebinarImage from "./WebinarImage.astro";
 
@@ -55,7 +55,7 @@ const endTime = endDateTime.toLocaleString("en-GB", displayTimeEnd);
 
   <WebinarImage webinar={webinar} />
 
-  <WebinarVideo webinar={webinar} />
+  <Vimeo embedUrl={webinar.videoData?.embed_url} />
 
   <div class="card-details">
     <a href={`/webinars/${eventId}`} class="card-type-course"> LIVE WEBINAR </a>

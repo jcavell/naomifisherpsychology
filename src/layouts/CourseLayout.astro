@@ -1,6 +1,4 @@
 ---
-import { getCategories } from "../scripts/courseCategories";
-import { makeUrl } from "../scripts/url";
 import "../styles/v1/naomi.css";
 // import "../styles/global.css";
 import BaseLayout from "./BaseLayout.astro";
@@ -9,25 +7,9 @@ const { pageTitle } = Astro.props;
 ---
 
 <BaseLayout active="courses">
-  <div class="course-nav-links">
-    {
-      getCategories().map((category) => (
-        <>
-          <a href={`/courses/categories/${makeUrl(category.name)}`}>
-            {category.name}
-            {category.subnames.map((subname) => (
-              <small>&nbsp;{subname}</small>
-            ))}
-          </a>
-          <span>|</span>
-        </>
-      ))
-    }
-  </div>
-
-  <h1>{pageTitle}</h1>
-
   <div class="wrapper">
+    <h1>{pageTitle}</h1>
+
     <slot />
   </div>
 </BaseLayout>

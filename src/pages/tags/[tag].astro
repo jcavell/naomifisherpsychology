@@ -83,7 +83,7 @@ export async function getStaticPaths() {
 const { tagName, webinars, courses, books, posts } = Astro.props;
 ---
 
-<TagLayout pageTitle={`Tagged with "${tagName}"`}>
+<TagLayout tag={tagName}>
   <a name="webinars"><h2>Webinars</h2></a>
   {webinars.map((webinar, index) => <WebinarSummary webinar={webinar} />)}
 

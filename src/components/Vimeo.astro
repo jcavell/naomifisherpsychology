@@ -1,11 +1,11 @@
 ---
-const { webinar } = Astro.props;
+const { embedUrl } = Astro.props;
 ---
 
 {
-  webinar.videoData && (
+  embedUrl && (
     <iframe
-      src={webinar.videoData.embed_url}
+      src={embedUrl}
       width="540"
       height="300"
       frameborder="2"

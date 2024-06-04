@@ -6,6 +6,7 @@ import Tags from "../Tags.astro";
 import { parseDescriptions } from "../../scripts/courses";
 import { getCourseMeta } from "../../scripts/courseMeta";
 import CourseImage from "./CourseImage.astro";
+import Vimeo from "../Vimeo.astro";
 
 const { course, related } = Astro.props;
 
@@ -14,8 +15,6 @@ const checkoutURL = course.checkoutUrl;
 const title = course.title;
 const descriptions = course.checkout?.descriptions;
 const testimonials = course.checkout?.testimonials;
-const people = course.people;
-const tags = course.tags;
 
 const meta = getCourseMeta(course);
 ---
@@ -26,6 +25,8 @@ const meta = getCourseMeta(course);
   </h2>
 
   <CourseImage course={course} />
+
+  <Vimeo embedUrl={meta?.videoUrl} />
 
   <div class="card-details">
     <a href="#" class="card-type-course"> RECORDED COURSE </a>

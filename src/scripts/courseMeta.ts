@@ -11,7 +11,7 @@ type CourseMeta = {
   contributers: string[];
   runningTime: string;
   image?: ImageMetadata;
-  videoLink?: URL;
+  videoUrl?: URL;
 };
 
 export const demandAvoidantAdolescent: CourseMeta = {
@@ -28,6 +28,7 @@ const demandAvoidance101: CourseMeta = {
   tags: [tagDemandAvoidance, forParents, ageTeen, age5To12],
   runningTime: "1 hour 15 mins",
   image: testImage,
+  videoUrl: new URL("https://player.vimeo.com/video/953498420"),
 };
 
 export function getCourseMeta(course): CourseMeta | undefined {

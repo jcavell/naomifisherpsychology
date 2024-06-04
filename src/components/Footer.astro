@@ -11,17 +11,20 @@ import { makeUrl } from "../scripts/url";
     </div>
 
     <div class="tag-footer">
-      Covers {ageTags.map((t) => <a href={`/tags/${makeUrl(t)}`}>{t}</a>)}
+      Ages {ageTags.map((t) => <a href={`/tags/${makeUrl(t)}`}>{t}</a>)}
     </div>
 
     <div class="tag-footer">
-      {forTags.map((t) => <a href={`/tags/${makeUrl(t)}`}>{t}</a>)}
+      Audience {forTags.map((t) => <a href={`/tags/${makeUrl(t)}`}>{t}</a>)}
     </div>
   </div>
   <div class="footer-primary">
     <img src="/images/circle-logo.png" alt="Naomi Fisher Logo" />
     <img src="/images/dr-naomi-fisher-logo-white.svg" alt="Dr Naomi Fisher" />
     <ul class="footer-menu footer-menu-A">
+      <li>
+        <a href="/" target="_blank">Home</a>
+      </li>
       <li>
         <a href="/webinars/">Webinars</a>
       </li>
@@ -31,9 +34,9 @@ import { makeUrl } from "../scripts/url";
       <li>
         <a href="/books">Books</a>
       </li>
-      <li>
+      <!-- <li>
         <a href="/consultation">Consultation</a>
-      </li>
+      </li> -->
     </ul>
 
     <ul class="footer-menu footer-menu-B">
@@ -54,10 +57,13 @@ import { makeUrl } from "../scripts/url";
       </li>
     </ul>
     <div class="smallprint">
-      <p>&copy; 2024 Naomi Fisher, all rights reserved.</p>
       <p>
-        Naomi Fisher Psychology Limited is a company registered in England and
-        Wales with company number 13351132.
+        &copy; {new Date().getFullYear()} Naomi Fisher Psychology Ltd, all rights
+        reserved.
+      </p>
+      <p>
+        Naomi Fisher Psychology Ltd is a company registered in England and Wales
+        with company number 13351132.
       </p>
       <p>
         (Further small print - terms links etc)
