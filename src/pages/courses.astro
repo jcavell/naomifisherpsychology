@@ -2,10 +2,25 @@
 import CourseLayout from "../layouts/CourseLayout.astro";
 import CourseSummary from "../components/course/CourseSummary.astro";
 import getCourses from "../scripts/courses";
+import GenerateQuote from "../components/Quoter";
+import courseQuotes from "../quotes/courseQuotes.json";
 
 const courses = await getCourses();
+
 ---
 
 <CourseLayout pageTitle="Courses">
-  {courses.map((course) => <CourseSummary course={course.data} />)}
+  {
+    courses.map((course, index) =>
+      index != 0 && (index + 1) % 4 == 0 ? (
+        <>
+          <CourseSummary course={course.data} />
+          <GenerateQuote client:load quotes={courseQuotes}
+          />
+        </>
+      ) : (
+        <CourseSummary course={course.data} />
+      )
+    )
+  }
 </CourseLayout>

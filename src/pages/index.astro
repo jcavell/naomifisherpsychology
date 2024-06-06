@@ -6,11 +6,26 @@ import { Image, Picture } from "astro:assets";
 import testImage from "../images/courses/test.jpeg";
 import testImage2 from "../images/courses/test2.jpeg";
 
-import { demandAvoidantAdolescent } from "../scripts/courseMeta";
+import Quote from "../components/Quoter";
+import GenerateQuote from "../components/Quoter";
 ---
 
 <BaseLayout active="home" pageTitle="Home">
   <div class="wrapper">
+    <GenerateQuote
+      client:load
+      quotes={[
+        {
+          text: "This is a great webinar",
+          author: "Webinar attendee 100",
+        },
+        {
+          text: "This is a nice webinar",
+          author: "Webinar attendee 101",
+        },
+      ]}
+    />
+
     <Image width="200" src={testImage} alt="A description of my image." />
     <ul>
       <li>Naomi brief bio</li>
@@ -31,7 +46,7 @@ import { demandAvoidantAdolescent } from "../scripts/courseMeta";
 
         <div class="card-image">
           <Picture
-            src={demandAvoidantAdolescent.image!}
+            src={testImage}
             widths={[240, 540, 720, testImage.width]}
             sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${testImage.width}px`}
             alt="Test image for responsive testing."

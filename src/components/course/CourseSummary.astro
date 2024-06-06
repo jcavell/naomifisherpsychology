@@ -2,7 +2,7 @@
 import { makeUrl } from "../../scripts/url";
 import Contributers from "../Contributers.astro";
 import Tags from "../Tags.astro";
-import { getCourseMeta } from "../../scripts/courseMeta";
+import { getCourseMetaFromTitle } from "../../scripts/courseMeta";
 import CourseImage from "./CourseImage.astro";
 
 const { course } = Astro.props;
@@ -11,9 +11,10 @@ const price = course.price;
 const checkoutURL = course.checkoutUrl;
 const title = course.title;
 const summary = course.description;
-const people = course.people;
 
-const meta = getCourseMeta(course);
+const meta = getCourseMetaFromTitle(title);
+
+console.log("META");
 ---
 
 <div class="card card-courses">
@@ -24,7 +25,7 @@ const meta = getCourseMeta(course);
   <CourseImage course={course} />
 
   <div class="card-details">
-    <a href="#" class="card-type-course"> RECORDED COURSE </a>
+    <a href="/courses" class="card-type-course"> RECORDED COURSE </a>
     <span> {meta?.runningTime}, {price} </span>
   </div>
 

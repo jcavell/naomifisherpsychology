@@ -1,6 +1,7 @@
 import { getCollection } from "astro:content";
 import { getPeople } from "./people";
 import { getTags } from "./tags";
+import { lowerCaseAndRemoveWhitespace } from "./courseMeta";
 
 export default async function getCourses() {
   const courseCards = await getCollection("courseCards");
@@ -40,25 +41,6 @@ export default async function getCourses() {
   return sortedCards;
 }
 
-export function getRelated(allCourses, currentCourse) {
-  const related = allCourses.filter(
-    (other) =>
-      currentCourse.data.checkoutUrl != other.data.checkoutUrl &&
-      (other.data.tags[0] === currentCourse.data.tags[0] ||
-        (other.data.tags?.length > 1 &&
-          other.data.tags[1] === currentCourse.data.tags[0]))
-  );
-
-  const sortedRelated = related.sort((a, b) =>
-    a.data.title.includes(currentCourse.data.tags[0])
-      ? -1
-      : a.data.tags[0] === currentCourse.data.tags[0]
-      ? -1
-      : 1
-  );
-
-  return sortedRelated;
-}
 
 export function parseDescriptions(descriptions: string[]): string {
   const tagged = descriptions.map((line) => {
@@ -79,7 +61,7 @@ export function parseDescriptions(descriptions: string[]): string {
     .join("");
 }
 
-export function  getTotalRunningTimeFromDescriptions(
+export function getTotalRunningTimeFromDescriptions(
   descriptions: string[]
 ): string {
 
@@ -90,4 +72,18 @@ export function  getTotalRunningTimeFromDescriptions(
     }
   });
   return runningTime;
+}
+
+export async function getCourseFromTitle(title: string){
+  const courses = await getCourses();
+  const course = courses.find(
+    (course) =>
+      lowerCaseAndRemoveWhitespace(course.data.title) ===
+      lowerCaseAndRemoveWhitespace(title)
+  );
+   //  console.log("Trying to find course with name " + title + ". Outcome: " + JSON.stringify(course));
+
+
+  return course;
+
 }

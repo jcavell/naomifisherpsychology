@@ -2,7 +2,7 @@
 import getWebinars from "../../scripts/webinars";
 import getCourses from "../../scripts/courses";
 import { getWebinarMeta } from "../../scripts/webinarMeta";
-import { getCourseMeta } from "../../scripts/courseMeta";
+import { getCourseMetaFromTitle } from "../../scripts/courseMeta";
 
 import { makeUrl } from "../../scripts/url";
 import { allTags } from "../../scripts/tags";
@@ -34,11 +34,10 @@ export async function getStaticPaths() {
     });
 
     const filteredCourses = courses.filter((course) => {
-      const meta = getCourseMeta(course.data);
+      const meta = getCourseMetaFromTitle(course.data.title);
       // console.log("Course tags for " + course.data.title + ": " + meta?.tags);
-      return meta?.tags?.includes(tag)
-    }
-    );
+      return meta?.tags?.includes(tag);
+    });
 
     const filteredBooks = books.filter((book) => book.data.tags.includes(tag));
 
@@ -81,18 +80,51 @@ export async function getStaticPaths() {
 }
 
 const { tagName, webinars, courses, books, posts } = Astro.props;
+
+// console.log("WEBINARS: " + webinars.length);
 ---
 
-<TagLayout tag={tagName}>
-  <a name="webinars"><h2>Webinars</h2></a>
+<TagLayout
+  tag={tagName}
+  webinars={webinars}
+  courses={courses}
+  books={books}
+  posts={posts}
+>
+  {
+    webinars.length > 0 && (
+      <a name="webinars">
+        <h2>Webinars</h2>
+      </a>
+    )
+  }
   {webinars.map((webinar, index) => <WebinarSummary webinar={webinar} />)}
 
-  <a name="courses"> <h2>Courses</h2></a>
+  {
+    courses.length > 0 && (
+      <a name="courses">
+        {" "}
+        <h2>Courses</h2>
+      </a>
+    )
+  }
   {courses.map((course) => <CourseSummary course={course.data} />)}
 
-  <a name="books"><h2>Books</h2></a>
+  {
+    courses.length > 0 && (
+      <a name="books">
+        <h2>Books</h2>
+      </a>
+    )
+  }
   {books.map((book) => <BookSummary book={book.data} />)}
 
-  <a name="blog"><h2>Blog articles</h2></a>
+  {
+    posts.length > 0 && (
+      <a name="blog">
+        <h2>Blog articles</h2>
+      </a>
+    )
+  }
   {posts.map((post) => <BlogSummary post={post.data} />)}
 </TagLayout>

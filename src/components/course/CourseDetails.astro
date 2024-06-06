@@ -3,12 +3,12 @@ import { makeUrl } from "../../scripts/url";
 import Contributers from "../Contributers.astro";
 import CourseSummary from "./CourseSummary.astro";
 import Tags from "../Tags.astro";
-import { parseDescriptions } from "../../scripts/courses";
-import { getCourseMeta } from "../../scripts/courseMeta";
+import { getCourseFromTitle, parseDescriptions } from "../../scripts/courses";
+import { getCourseMetaFromTitle } from "../../scripts/courseMeta";
 import CourseImage from "./CourseImage.astro";
 import Vimeo from "../Vimeo.astro";
 
-const { course, related } = Astro.props;
+const { course } = Astro.props;
 
 const price = course.price;
 const checkoutURL = course.checkoutUrl;
@@ -16,7 +16,12 @@ const title = course.title;
 const descriptions = course.checkout?.descriptions;
 const testimonials = course.checkout?.testimonials;
 
-const meta = getCourseMeta(course);
+const meta = getCourseMetaFromTitle(title);
+
+const relatedTitles = meta?.relatedTitles || [];
+const relatedCourses = await Promise.all(
+  relatedTitles.map((title) => getCourseFromTitle(title))
+);
 ---
 
 <div class="card card-courses">
@@ -50,4 +55,7 @@ const meta = getCourseMeta(course);
 
 <div>Related</div>
 
-{related.map((course) => <CourseSummary course={course.data} />)}
+{
+  relatedCourses &&
+    relatedCourses.map((course) => <CourseSummary course={course.data} />)
+}

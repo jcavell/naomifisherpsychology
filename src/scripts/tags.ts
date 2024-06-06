@@ -1,8 +1,9 @@
 export const type101 = "101";
 export const type102 = "102";
 
-export const ageTeen = "13-18";
+export const age11To18 = "11-18";
 export const age5To12 = "5-12";
+export const allAges = "All ages"
 
 export const forParents = "Parents";
 export const forTeens = "Teens";
@@ -28,7 +29,10 @@ const tag2regex: Readonly<Record<string, RegExp>> = {
     ["pda", "demand avoid", "pressure"].join("|"),
     "i"
   ),
-  [tagAnxiety]: new RegExp(["anxiety", "anxious", "mental health"].join("|"), "i"),
+  [tagAnxiety]: new RegExp(
+    ["anxiety", "anxious", "mental health"].join("|"),
+    "i"
+  ),
   [tagBurnout]: new RegExp(["burnout", "burnt out"].join("|"), "i"),
   [tagTrauma]: new RegExp(["trauma"].join("|"), "i"),
 
@@ -55,7 +59,7 @@ export const coreTags = [
   tagALDP,
 ];
 
-export const ageTags = [age5To12, ageTeen];
+export const ageTags = [allAges, age5To12, age11To18];
 
 export const forTags = [forParents, forTeens, forProfessionals];
 

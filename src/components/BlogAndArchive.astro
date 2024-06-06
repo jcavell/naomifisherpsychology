@@ -10,16 +10,28 @@ const { isArchive } = Astro.props;
 const pageTitle = isArchive ? " archive" : "";
 const posts = await getOrderedPosts();
 
-const sliceStart = isArchive ? 6 : 0;
-const sliceEnd = isArchive ? posts.length : 6;
+const sliceStart = isArchive ? 8 : 0;
+const sliceEnd = isArchive ? posts.length : 8;
 ---
 
 <BlogLayout pageTitle="Blog">
   {
-    posts
-      .slice(sliceStart, sliceEnd)
-      .map((post) => 
-      <BlogSummary post={post.data} />
+    posts.slice(sliceStart, sliceEnd).map((post, index) =>
+      index != 0 && (index + 1) % 4 == 0 ? (
+        <>
+          <BlogSummary post={post.data} />
+          <iframe
+            src="https://naomicfisher.substack.com/embed"
+            width="100%"
+            height="320"
+            style="border:1px solid #EEE; background:white;"
+            frameborder="0"
+            scrolling="no"
+          />
+        </>
+      ) : (
+        <BlogSummary post={post.data} />
+      )
     )
   }
 </BlogLayout>

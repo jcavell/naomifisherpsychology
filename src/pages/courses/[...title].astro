@@ -3,7 +3,6 @@ import { makeUrl } from "../../scripts/url";
 import CourseLayout from "../../layouts/CourseLayout.astro";
 import CourseDetails from "../../components/course/CourseDetails.astro";
 import getCourses from "../../scripts/courses";
-import { getRelated } from "../../scripts/courses";
 
 export async function getStaticPaths() {
   const courses = await getCourses();
@@ -11,15 +10,14 @@ export async function getStaticPaths() {
   return courses.map((course) => ({
     params: { title: makeUrl(course.data.title) },
     props: {
-      course: course,
-      related: getRelated(courses, course),
+      course: course
     },
   }));
 }
-
-const { course, related } = Astro.props;
+      
+const { course } = Astro.props;
 ---
 
 <CourseLayout pageTitle={course.data.title}>
-  <CourseDetails course={course.data} related={related} />
+  <CourseDetails course={course.data}/>
 </CourseLayout>

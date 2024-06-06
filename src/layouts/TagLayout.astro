@@ -1,10 +1,10 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 
-const { tag } = Astro.props;
+const { tag, webinars, courses, books, posts } = Astro.props;
 ---
 
-<BaseLayout active="home">
+<BaseLayout>
   {
     tag && (
       <div class="page-title">
@@ -16,12 +16,36 @@ const { tag } = Astro.props;
   }
   <div class="wrapper">
     <div class="tag-nav-links">
-      <a href="#webinars">Webinars</a> |
-      <a href="#courses">Courses</a> |
-      <a href="#books">Books</a> |
-      <a href="#blog">Blog posts</a>
+      {
+        webinars.length > 0 && (
+          <>
+            <a href="#webinars">Webinars</a> |
+          </>
+        )
+      }
+      {
+        courses.length > 0 && (
+          <>
+            <a href="#courses">Courses</a> |
+          </>
+        )
+      }
+      {
+        books.length > 0 && (
+          <>
+            <a href="#books">Books</a> |
+          </>
+        )
+      }
+      {
+        posts.length > 0 && (
+          <>
+            <a href="#blog">Blog posts</a>
+          </>
+        )
+      }
+   
     </div>
-
     <slot />
   </div>
 </BaseLayout>
