@@ -1,11 +1,15 @@
 ---
-import "../styles/v1/naomi.css";
+//import "../styles/v1/naomi.css";
 // import "../styles/global.css";
+import "../styles/naomiStyle.astro";
 
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import NaomiStyle from "../styles/naomiStyle.astro";
 
 const { active } = Astro.props;
+
+const css = NaomiStyle;
 ---
 
 <!doctype html>
@@ -16,6 +20,7 @@ const { active } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
     <title>Naomi Fisher</title>
+    <NaomiStyle/>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

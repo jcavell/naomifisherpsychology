@@ -1,0 +1,63 @@
+---
+const { book } = Astro.props;
+
+import { makeUrl } from "../../scripts/url";
+import BookImage from "./BookImage.astro";
+
+const format = function (input: string):string {
+  var pattern = /(\d{4})\-(\d{2})\-(\d{2})/;
+  if (!input || !input.match(pattern)) {
+    return '';
+  }
+  return input.replace(pattern, "$3/$2/$1");
+};
+---
+
+<div class="card card-books">
+  <h2>
+    <a href={book.uri}>{book.title}</a>
+  </h2>
+  <h3>{book.subtitle}</h3>
+
+  <BookImage book={book} />
+
+  <div class="card-details">
+    <a href="#"> BOOK </a>
+    <span>
+      Publication date {format(book.pubDate)}
+    </span>
+    <span> Pages {book.pages} </span>
+  </div>
+
+  <p><strong>{book.description}</strong></p>
+  <p>{book.summary}</p>
+
+  <div class="card-meta">
+    <span class="contributors">
+      {
+        book.people.map((person) => (
+          <t>
+            <a href={`/about-us/${makeUrl(person)}`}>{person}</a>&nbsp;
+          </t>
+        ))
+      }
+    </span>
+
+    <span class="tags">
+      {
+        book.tags.map((tag) => (
+          <t>
+            <a href={`/tags/${makeUrl(tag)}`}>{tag}</a>&nbsp;
+          </t>
+        ))
+      }
+    </span>
+  </div>
+
+  <div class="card-buttons">
+    <a href="#"> Learn More </a>
+    <a href={book.amazonUrl}>Paperback</a>
+    <a href={book.kindleUrl}>Kindle</a>
+    <a href={book.audibleUrl}>Audible</a>
+  </div>
+</div>

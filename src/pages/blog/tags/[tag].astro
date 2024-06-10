@@ -3,7 +3,7 @@ import { makeUrl } from "../../../scripts/url";
 import BlogLayout from "../../../layouts/BlogLayout.astro";
 import { getOrderedPosts } from "../../../scripts/blog";
 import { allTags } from "../../../scripts/tags";
-import BlogSummary from "../../../components/BlogSummary.astro";
+import BlogSummary from "../../../components/blog/BlogSummary.astro";
 
 export async function getStaticPaths() {
   const posts = await getOrderedPosts();

@@ -1,0 +1,229 @@
+---
+const { frontmatter: book } = Astro.props;
+import { makeUrl } from "../../scripts/url";
+import BookImage from "./BookImage.astro";
+import { getEntry } from "astro:content";
+import Vimeo from "../Vimeo.astro";
+
+const entryName = book.uri.replace("/books/", "");
+
+const bookAgain = await getEntry("books", entryName);
+const excerpt = await getEntry("book-excerpts", entryName);
+const review = await getEntry("book-reviews", entryName);
+
+const { Content: BookContent, headings: bookHeadings } =
+  await bookAgain.render();
+
+const { Content: ExcerptContent, headings: excerptHeadings } =
+  await excerpt.render();
+
+const { Content: ReviewsContent, headings: headingsContent } =
+  await review.render();
+---
+
+<div class="wrapper">
+  <div class="card card-books">
+    <h2>
+      {book.title}
+    </h2>
+
+    <h3>{book.subtitle}</h3>
+
+    <BookImage book={book} />
+
+    <Vimeo embedUrl={book.vimeoEmbedUrl} />
+
+    <div class="card-details">
+      <a href="#"> BOOK </a>
+
+      <span>PAPERBACK</span>
+      <span>{book.pages} pages</span>
+
+      {
+        book.publisherUrl && (
+          <span>
+            <a href={book.publisherUrl}>
+              {book.publisher} {book.rrp}
+            </a>
+          </span>
+        )
+      }
+
+      {
+        book.psychologicalTherapiesUrl && (
+          <span>
+            <a href={book.psychologicalTherapiesUrl}>
+              Psychological Therapies {book.psychologicalTherapiesPrice}
+            </a>
+          </span>
+        )
+      }
+
+      {
+        book.amazonUrl && (
+          <span>
+            <a href={book.amazonUrl}>Amazon {book.amazonPrice}</a>
+          </span>
+        )
+      }
+
+      {
+        book.blackwellUrl && (
+          <span>
+            <a href={book.blackwellUrl}>Blackwell's {book.blackwellPrice}</a>
+          </span>
+        )
+      }
+
+      {
+        book.waterstonesUrl && (
+          <span>
+            <a href={book.waterstonesUrl}>
+              Waterstones {book.waterstonesPrice}
+            </a>
+          </span>
+        )
+      }
+
+      {
+        (book.kindleUrl ||
+          book.googleUrl ||
+          book.koboUrl ||
+          book.appleBooksUrl) && <span>E-BOOK</span>
+      }
+
+      {
+        book.kindleUrl && (
+          <span>
+            <a href={book.kindleUrl}>Kindle {book.kindlePrice}</a>
+          </span>
+        )
+      }
+
+      {
+        book.googleUrl && (
+          <span>
+            <a href={book.googleUrl}>Google Books {book.googlePrice}</a>
+          </span>
+        )
+      }
+
+      {
+        book.koboUrl && (
+          <span>
+            <a href={book.koboUrl}>Kobo {book.koboPrice}</a>
+          </span>
+        )
+      }
+
+      {
+        book.appleBooksUrl && (
+          <span>
+            <a href={book.appleBooksUrl}>Apple Books {book.appleBooksPrice}</a>
+          </span>
+        )
+      }
+
+      {
+        book.audiobookLength && (
+          <span>
+            <span>AUDIOBOOK</span>
+            <span>Running time: {book.audiobookLength}</span>
+            <span>Sample</span>
+            <audio id="audio" src={`/audio/books/${entryName}.mp3`} controls />
+          </span>
+        )
+      }
+
+      {
+        book.audibleUrl && (
+          <span>
+            <a href={book.audibleUrl}>Audible {book.audiblePrice}</a>
+          </span>
+        )
+      }
+
+      {
+        book.koboAudiobookUrl && (
+          <span>
+            <a href={book.koboAudiobookUrl}>Kobo {book.koboAudiobookPrice}</a>
+          </span>
+        )
+      }
+
+      {
+        book.xigxagAudiobookUrl && (
+          <span>
+            <a href={book.xigxagAudiobookUrl}>
+              Xigxag {book.xigxagAudiobookPrice}
+            </a>
+          </span>
+        )
+      }
+    </div>
+
+    <p><strong>{book.description}</strong></p>
+    <p>{book.summary}</p>
+
+    {
+      book.googleSampleUrl && (
+        <p>
+          <a href={book.googleSampleUrl}>Read sample on Google</a>
+        </p>
+      )
+    }
+
+    {
+      book.amazonSampleUrl && (
+        <p>
+          <a href={book.amazonSampleUrl}>Read sample on Amazon</a>
+        </p>
+      )
+    }
+
+    <div class="card-meta">
+      <span class="contributors">
+        {
+          book.people.map((person) => (
+            <t>
+              <a href={`/about-us/${makeUrl(person)}`}>{person}</a>&nbsp;
+            </t>
+          ))
+        }
+      </span>
+
+      <span class="tags">
+        {
+          book.tags.map((tag) => (
+            <t>
+              <a href={`/tags/${makeUrl(tag)}`}>{tag}</a>&nbsp;
+            </t>
+          ))
+        }
+      </span>
+    </div>
+
+    <div class="card-buttons">
+      <a href={book.amazonUrl}>Paperback</a>
+      <a href={book.kindleUrl}>Kindle</a>
+      <a href={book.audibleUrl}>Audible</a>
+    </div>
+  </div>
+
+  *BOOK CONTENT* <BookContent />
+
+  *REVIEWS CONTENT* <ReviewsContent />
+
+  *EXCERPT CONTENT* <ExcerptContent />
+
+  {
+    book.excerptUrl && (
+      <iframe
+        id="theFrame"
+        src={book.excerptUrl}
+        style="height: 50%; width:100%;"
+        frameborder="0"
+      ></iframe>
+    )
+  }
+</div>

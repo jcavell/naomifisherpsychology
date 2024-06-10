@@ -1,13 +1,10 @@
 ---
-import { getCollection } from "astro:content";
-
-import BlogSummary from "./BlogSummary.astro";
-import BlogLayout from "../layouts/BlogLayout.astro";
-import { getOrderedPosts } from "../scripts/blog";
+import BlogSummary from "../blog/BlogSummary.astro";
+import BlogLayout from "../../layouts/BlogLayout.astro";
+import { getOrderedPosts } from "../../scripts/blog";
 
 const { isArchive } = Astro.props;
 
-const pageTitle = isArchive ? " archive" : "";
 const posts = await getOrderedPosts();
 
 const sliceStart = isArchive ? 8 : 0;

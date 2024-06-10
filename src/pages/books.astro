@@ -1,20 +1,17 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import BookSummary from "../components/BookSummary.astro";
+import BookSummary from "../components/book/BookSummary.astro";
 
 const pageTitle = "Books";
 
-const books = await getCollection("books");
- 
+const books = (await getCollection("books")).sort(
+  (a, b) => a.data.id - b.data.id
+);
 ---
 
 <BaseLayout active="books" pageTitle={pageTitle}>
   <div class="wrapper">
-   
-  {books.map((book) => (
-    <BookSummary book = {book.data}></BookSummary>
-  ))}
-
+    {books.map((book) => <BookSummary book={book.data} />)}
   </div>
 </BaseLayout>

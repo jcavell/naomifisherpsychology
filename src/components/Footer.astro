@@ -1,6 +1,10 @@
 ---
 import { coreTags, ageTags, forTags } from "../scripts/tags";
 import { makeUrl } from "../scripts/url";
+
+import Picture from "astro/components/Picture.astro";
+import circleLogo from "../images/footer/circle-logo.png";
+import whiteLogo from "../images/footer/dr-naomi-fisher-logo-white.svg";
 ---
 
 <footer id="tag-menu">
@@ -19,8 +23,23 @@ import { makeUrl } from "../scripts/url";
     </div>
   </div>
   <div class="footer-primary">
-    <img src="/images/circle-logo.png" alt="Naomi Fisher Logo" />
-    <img src="/images/dr-naomi-fisher-logo-white.svg" alt="Dr Naomi Fisher" />
+
+    <Picture
+      src={circleLogo}
+      widths={[240, 540, 720, circleLogo.width]}
+      sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${circleLogo.width}px`}
+      alt="Children looking through grass into the sun"
+      pictureAttributes={{}}
+    />
+
+    <Picture
+      src={whiteLogo}
+      widths={[240, 540, 720, whiteLogo.width]}
+      sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${whiteLogo.width}px`}
+      alt="Dr Naomi Fisher"
+      pictureAttributes={{}}
+    />
+
     <ul class="footer-menu footer-menu-A">
       <li>
         <a href="/" target="_blank">Home</a>

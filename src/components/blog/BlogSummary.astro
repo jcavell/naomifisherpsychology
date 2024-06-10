@@ -1,11 +1,9 @@
 ---
-import Tags from "./Tags.astro";
-import { makeUrl } from "../scripts/url";
+import Tags from "../Tags.astro";
+import { makeUrl } from "../../scripts/url";
 
 const { post } = Astro.props;
 
-const imageFileName = post.imageFileName;
-const url = post.url;
 const title = post.title;
 const subtitle = post.subtitle;
 const pubDate = post.pubDate;
@@ -24,13 +22,7 @@ const body = paragraphs.reduce((acc: string, curr: string) => acc + " " + curr);
     <a href=`/blog/${makeUrl(title)}`>{title}</a>
   </h2>
 
-  <p>Substack:<a href={url}>{title}</a></p>
-
-  <img
-    loading="lazy"
-    src={`/images/blog/${imageFileName}`}
-    alt=`Image for ${title}`
-  />
+  {post.images[0] && <img loading="lazy" src={post.images[0]} alt={title} />}
 
   <div class="card-details">
     <a href="#" class="card-type-course"> BLOG </a>
@@ -38,13 +30,13 @@ const body = paragraphs.reduce((acc: string, curr: string) => acc + " " + curr);
   </div>
 
   <p>
-    {body}
+    {paragraphs[0]}
   </p>
 
   <div class="card-meta">
     <span class="contributors"> Dr Naomi Fisher </span>
 
-    <Tags tags={tags} />
+    <Tags tags={tags} uri="blog/tags" />
   </div>
 
   <div class="card-buttons">

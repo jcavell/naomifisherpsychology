@@ -10,3 +10,12 @@ export const getImagePath = function (subdir:string, title:string, imageURL: str
     return '/images/' + subdir + '/' + makeUrl(title) + suffix;
   
 }
+
+export function getCDNImagePath(publicImagePath: string): string {
+  const isDev = import.meta.env.DEV;
+  return publicImagePath
+    ? isDev
+      ? publicImagePath
+      : `/.netlify/images?url=${publicImagePath}`
+    : "/images/defaults/defaultBlogImage.jpeg";
+}
