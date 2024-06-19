@@ -4,6 +4,10 @@ import WebinarLayout from "../layouts/WebinarLayout.astro";
 import getWebinars from "../scripts/webinars.js";
 import testWebinars1 from "../test-data/eventbrite/1event.json";
 import testWebinars3 from "../test-data/eventbrite/3events.json";
+import GenerateQuote from "../components/Quoter";
+import { getEntry } from "astro:content";
+const quotes = (await getEntry("webinar-quotes", "general-webinar-quotes"))
+  .data;
 
 const pageTitle = "Webinars";
 
@@ -12,4 +16,5 @@ const webinars = await getWebinars();
 
 <WebinarLayout pageTitle={pageTitle}>
   {webinars.map((webinar, index) => <WebinarSummary webinar={webinar} />)}
+  <GenerateQuote client:load quotes={quotes} />
 </WebinarLayout>

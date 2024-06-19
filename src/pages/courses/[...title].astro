@@ -16,6 +16,8 @@ export async function getStaticPaths() {
 }
       
 const { course } = Astro.props;
+
+console.log("COURSE: " + JSON.stringify(course));
 ---
 
 <CourseLayout pageTitle={course.data.title}>

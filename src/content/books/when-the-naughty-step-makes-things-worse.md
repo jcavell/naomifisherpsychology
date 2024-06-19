@@ -1,5 +1,5 @@
 ---
-id: 3
+id: 4
 uri: "/books/when-the-naughty-step-makes-things-worse"
 title: "When the Naughty Step Makes Things Worse"
 subtitle: "Parenting for Children (and Adults) Who Need Something Different"
@@ -12,8 +12,8 @@ paperbackIsbn: "9781472148681"
 ebookIsbn: "9781472148674"
 audiobookIsbn: "9781405559461"
 pages: 448
-people: ["Dr. Naomi Fisher", "Eliza Fricker"]
-tags: ["Low Demand Parenting"]
+people: ["Dr Naomi Fisher", "Eliza Fricker"]
+tags: ["Low Demand Parenting", "Parents"]
 toc: []
 audiobookLength: "10 hours"
 dimensions: "15.3 x 2.2 x 23.4 cm"
@@ -48,7 +48,6 @@ vimeoEmbedUrl: ""
 excerptUrl: ""
 ---
 
-# Description
 With the right rewards and consequences in place, parents are meant to ensure that their children stay under control. That's Time Out and the Naughty Step (for the little ones) or grounding and withdrawing screen privileges (for the older ones). If that doesn't work, parents are told to be more consistent. But what happens if your child is even more consistent than you?
 
 For every so often, along comes a child who hasn't signed the contract. They don't buy in. When they are put on the Naughty Step, they refuse point blank to stay there. Promises of stickers and rewards get you nowhere at all. Take their iPad away and they say, 'Fine, but I'm still not doing that'.
@@ -67,15 +66,3 @@ But every so often, along comes a child who hasn't signed the contract. They don
 This down-to-earth, illustrated guide is for parents who need something different. It's for those who are fighting battles where they didn't know battles could be fought. It's for those who suspect that what they are doing isn't helping - but they don't know what else to do. It's for families who need a better way to live and who want their children (and themselves) to thrive.
 
 Dr Naomi Fisher is a clinical psychologist who specialises in trauma, autism and alternative education. She is the mother of two and the author of several books on psychology, education and mental health including the word of mouth sensation Changing Our Minds. Eliza Fricker is The Sunday Times bestselling author and illustrator of Can't Not Won't as well as The Family Experience of PDA. She runs a successful illustrated blog about her experiences with her daughter's school attendance struggles (missingthemark.co.uk).
-
-
-# Reviews
-I experienced a tremendous sense of relief and vindication after years of battling between my instincts and mainstream beliefs of reward/punishment. It is liberating to be given the green light and to realise that my gut has been right all along -- Kate, mother of two (one tween and one autistic/ADHD teenager)
-
-Naomi and Eliza offer hope and a gentle way forward. I feel heard, like somebody understands, and they have really saved my son's life... he has a future and I see the sparkle returning -- Kirsty, mother of one
-
-I spent years thinking I was a terrible parent, and feeling judged by all around when my son wouldn't respond to traditional 'punishment and reward' methods. But I didn't know another way. Now I do - since being introduced to Low Demand Parenting my parenting is much more effective, my relationship with my son is repaired, my whole family is much happier and, most of all, I don't feel like I'm failing him anymore -- Katie, mother of two
-
-So many useful and practical tips... I loved the structured and clear approach and it gave me reassurance that I'm not alone (or losing my mind) as well as future hope -- Clare, parent of two
-
-We have a houseful of hormonal teenagers and we don't fight - how weird is that? -- Louise, Essex

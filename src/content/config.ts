@@ -14,6 +14,17 @@ const peopleCollection = defineCollection({
   }),
 });
 
+const courseQuotesCollection = defineCollection({
+  type: "content",
+  schema: z.array(
+    z.object({
+      text: z.string(),
+      author: z.string().optional(),
+      title: z.string().optional(),
+    })
+  ),
+});
+
 const booksCollection = defineCollection({
   type: "content",
   schema: z.object({
@@ -62,7 +73,7 @@ const booksCollection = defineCollection({
     xigxagAudiobookUrl: z.string(),
     xigxagAudiobookPrice: z.string(),
     vimeoEmbedUrl: z.string(),
-    excerptUrl: z.string()
+    excerptUrl: z.string(),
   }),
 });
 
@@ -102,4 +113,5 @@ export const collections = {
   courseCards: courseCardsCollection,
   courseCheckouts: courseCheckoutsCollection,
   books: booksCollection,
+  // coursequotes: courseQuotesCollection,
 };

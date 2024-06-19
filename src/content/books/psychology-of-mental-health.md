@@ -1,5 +1,5 @@
 ---
-id: 4
+id: 3
 uri: "/books/psychology-of-mental-health"
 title: "Psychology of Mental Health"
 subtitle: ""
@@ -12,8 +12,8 @@ paperbackIsbn: ""
 ebookIsbn: ""
 audiobookIsbn: ""
 pages: 160
-people: ["Dr. Naomi Fisher"]
-tags: []
+people: ["Dr Naomi Fisher"]
+tags: ["Professionals"]
 dimensions: "19 x 24.5 x 1.2 cm"
 toc: [
     "What is Mental Health?",
@@ -58,8 +58,6 @@ vimeoEmbedUrl: ""
 excerptUrl: "https://oxforduniversitypress.app.box.com/v/he-9780198862987"
 ---
 
-# Description
-
 Each generation finds their own way of understanding mental distress. The ‘shell-shocked’ soldiers of World War I were understood at the time to be of weak character, although now we might diagnose them with post-traumatic stress disorder (PTSD). Victorian women were subject to ‘hysteria’ and fainting fits, something we might now understand as non-epileptic seizures. The way that we understand distress is deeply rooted in our culture and time, but it doesn’t feel like that to us. We tend to think that the way we understand things now is the right way, superior to previous generations and other cultures.
 
 Which makes our current time a particularly interesting one to be working in mental health. The dominant way to understand mental distress in the West in the last 70 years has been the medical model. This sees distress and unusual behaviour as symptoms of an underlying mental disorder. Diagnosing clinicians compare a person’s experiences to lists of criteria and give them (or not give them) a diagnosis. That diagnosis should lead to treatment, which should then (hopefully) lead to an improvement in symptoms. 
@@ -84,4 +82,4 @@ Waiting lists soar as a result, and when a person finally does see a clinician, 
 
 We’re in the middle of a cultural clash in the way that we understand mental health. As science is pushing us towards reconsidering diagnostic categories, those same categories are becoming ever more important in popular culture. This inevitably leads to tension. ‘Mental disorder’ or ‘something magical’—can a diagnosis be both at the same time? Or are there other ways to understand mental distress entirely?
 
-This edition is available for students and institutions to purchase in a variety of formats. The e-book offers a mobile experience and convenient access along with functionality tools, navigation features, and links that offer extra learning support: www.oxfordtextbooks.co.uk/ebooks.
+This edition is available for students and institutions to purchase in a variety of formats.

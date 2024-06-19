@@ -12,9 +12,23 @@ paperbackIsbn: ""
 ebookIsbn: ""
 audiobookIsbn: ""
 pages: 304
-people: ["Dr. Naomi Fisher"]
-tags: ["Autism", "Anxiety"]
-toc: []
+people: ["Dr Naomi Fisher"]
+tags: ["School", "Anxiety", "Parents", "Professionals"]
+toc: [
+    "Getting an Education",
+"Learning - Scientists, Processors and Rats",
+"Motivation - Stars, Stickers and Smiley Faces",
+"Self-Directed Learning - What Happens When We Don't Make Children Learn?",
+"From Toddlers to Teens - How Does Learning Change as Children Grow?",
+"Outcomes - How Can We Measure Education?",
+"Parenting - Magical Counting, Attachment and Control",
+"Differences - Being Yourself",
+"Deschooling - Leaving School Behind You",
+"Supporting Self-Directed Learners",
+"Wellbeing - Seeing What the Rest of Us Don't Want to See",
+"HELP! The Self-Directed Education Problem Corner",
+"Self-Directed Learing in Action - Personal Stories"
+]
 audiobookLength: "10 hours 22 mins"
 dimensions: ""
 publisherUrl: "https://www.hachette.co.uk/titles/naomi-fisher/changing-our-minds/9781472145505/"
@@ -49,10 +63,8 @@ excerptUrl: ""
 
 ---
 
-# Description
+Children are born full of curiosity, eager to participate in the world. They learn as they live, with enthusiasm and joy. Then we send them to school. We stop them from playing and actively exploring their interests, telling them it"s more important to sit still and listen. The result is that for many children, their motivation to learn drops dramatically. The joy of the early years is replaced with apathy and anxiety.
 
-Children are born full of curiosity, eager to participate in the world. They learn as they live, with enthusiasm and joy. Then we send them to school. We stop them from playing and actively exploring their interests, telling them it's more important to sit still and listen. The result is that for many children, their motivation to learn drops dramatically. The joy of the early years is replaced with apathy and anxiety.
-
-This is not inevitable. We are socialised to believe that schooling is synonymous with education, but it's only one approach. Self-directed education puts the child back in control of their learning. This enables children, including those diagnosed with special educational needs, to flourish in their own time and on their own terms. It enables us to put wellbeing at the centre of education.
+This is not inevitable. We are socialised to believe that schooling is synonymous with education, but it"s only one approach. Self-directed education puts the child back in control of their learning. This enables children, including those diagnosed with special educational needs, to flourish in their own time and on their own terms. It enables us to put wellbeing at the centre of education.
 
 Changing Our Minds brings together research, theory and practice on learning. It includes interviews with influential thinkers in the field of self-directed education and examples from families alongside practical advice. This essential guide will give you an understanding of why self-directed education makes sense, how it works, and what to do to put it into action yourself.

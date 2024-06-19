@@ -3,11 +3,13 @@ export const type102 = "102";
 
 export const age11To18 = "11-18";
 export const age5To12 = "5-12";
-export const allAges = "All ages"
+export const allAges = "5-18"
 
 export const forParents = "Parents";
 export const forTeens = "Teens";
 export const forProfessionals = "Professionals";
+
+export const tagEMDR = "EMDR";
 
 export const tagALDP = "Low Demand Parenting";
 export const tagAutism = "Autism";
@@ -57,6 +59,7 @@ export const coreTags = [
   tagSEN,
   tagScreens,
   tagALDP,
+  tagEMDR
 ];
 
 export const ageTags = [allAges, age5To12, age11To18];

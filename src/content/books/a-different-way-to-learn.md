@@ -12,9 +12,21 @@ paperbackIsbn: ""
 ebookIsbn: ""
 audiobookIsbn: ""
 pages: 240
-people: ["Dr. Naomi Fisher", "Eliza Fricker"]
-tags: ["Demand Avoidance", "Anxiety"]
-toc: []
+people: ["Dr Naomi Fisher", "Eliza Fricker"]
+tags: ["Autism", "Demand Avoidance", "School", "Parents", "Professionals"]
+toc: [
+    'Neurodiversity and Self-Directed Education',
+'Neurodiversity at School',
+'Learning at School',
+'Learning Without School',
+'The Safe to Learn Pyramid: Foundations of Self-Directed Education',
+'Recovery',
+'Trauma and Anxiety',
+'When Pressure is Toxic',
+'Making Changes: Stop and Smell the Coffee',
+'Academics',
+'Non-Academic Skills',
+'The Wider World: Communities and Groups']
 audiobookLength: ""
 dimensions: ""
 publisherUrl: "https://uk.jkp.com/products/a-different-way-to-learn"
@@ -48,8 +60,6 @@ vimeoEmbedUrl: ""
 excerptUrl: ""
 ---
 
-# Description
-
 'If you are a parent worrying whether self-directed education will work for your child, because you have been told that they have special needs which can only be met in the school system - think again'
 
 Neurodivergent children experience and interact with the world differently to many of their peers. Standard educational systems often fail to adapt to their unique strengths and ways of learning. School, and even the act of learning, can become a source of great anxiety and trauma. Self-directed education offers an alternative to traditional schools that can help neurodivergent children develop at their own pace and thrive.
@@ -57,5 +67,3 @@ Neurodivergent children experience and interact with the world differently to ma
 Blending theory, practical advice and lived experience, clinical psychologist Naomi Fisher introduces the world of self-directed learning and tailoring the learning environment to your child.
 
 This comprehensive overview of self-directed learning is packed with ideas on how to implement it at home and includes interviews from parents of neurodivergent children on how you can make learning differently work for you and your child
-
-# Reviews

@@ -1,24 +1,26 @@
 ---
 const { frontmatter: book } = Astro.props;
-import { makeUrl } from "../../scripts/url";
 import BookImage from "./BookImage.astro";
 import { getEntry } from "astro:content";
 import Vimeo from "../Vimeo.astro";
+import Contributers from "../Contributers.astro";
+import Tags from "../Tags.astro";
+import GenerateQuote from "../Quoter";
 
 const entryName = book.uri.replace("/books/", "");
 
 const bookAgain = await getEntry("books", entryName);
 const excerpt = await getEntry("book-excerpts", entryName);
-const review = await getEntry("book-reviews", entryName);
+
+const quotes = await getEntry("book-quotes", entryName);
+
+// console.log("QUOTES: " + JSON.stringify(quotes));
 
 const { Content: BookContent, headings: bookHeadings } =
   await bookAgain.render();
 
 const { Content: ExcerptContent, headings: excerptHeadings } =
   await excerpt.render();
-
-const { Content: ReviewsContent, headings: headingsContent } =
-  await review.render();
 ---
 
 <div class="wrapper">
@@ -182,25 +184,8 @@ const { Content: ReviewsContent, headings: headingsContent } =
     }
 
     <div class="card-meta">
-      <span class="contributors">
-        {
-          book.people.map((person) => (
-            <t>
-              <a href={`/about-us/${makeUrl(person)}`}>{person}</a>&nbsp;
-            </t>
-          ))
-        }
-      </span>
-
-      <span class="tags">
-        {
-          book.tags.map((tag) => (
-            <t>
-              <a href={`/tags/${makeUrl(tag)}`}>{tag}</a>&nbsp;
-            </t>
-          ))
-        }
-      </span>
+      <Contributers people={book.people} />
+      <Tags tags={book.tags} />
     </div>
 
     <div class="card-buttons">
@@ -210,11 +195,23 @@ const { Content: ReviewsContent, headings: headingsContent } =
     </div>
   </div>
 
-  *BOOK CONTENT* <BookContent />
+  <div>
+    <h3>Details</h3>
+    <BookContent />
+  </div>
 
-  *REVIEWS CONTENT* <ReviewsContent />
+  <GenerateQuote client:load quotes={quotes.data} />
+<div>
+<h3>Table of contents</h3>
+<ol>
+  {book.toc.map((item) => <li>{item}</li>)}
+</ol>
+<div>
 
-  *EXCERPT CONTENT* <ExcerptContent />
+  <div>
+    <h3>Excerpt</h3>
+    <ExcerptContent />
+  </div>
 
   {
     book.excerptUrl && (
@@ -223,7 +220,7 @@ const { Content: ReviewsContent, headings: headingsContent } =
         src={book.excerptUrl}
         style="height: 50%; width:100%;"
         frameborder="0"
-      ></iframe>
+      />
     )
   }
 </div>

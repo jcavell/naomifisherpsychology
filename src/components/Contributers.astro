@@ -1,15 +1,14 @@
 ---
-import { makeUrl } from "../scripts/url";
 const { people = [] } = Astro.props;
 ---
 
 <span class="contributors">
   {
     people.map((person: string, index: number) => (
-      <a href={`/about-us/${makeUrl(person)}`}>
+      <>
         {person}
         {index + 1 === people.length ? "" : ","}&nbsp;
-      </a>
+      </>
     ))
   }
 </span>

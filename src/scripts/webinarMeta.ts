@@ -1,4 +1,4 @@
-import { age5To12, tagTrauma, tagSEN, forParents, tagAnxiety } from "./tags";
+import { age5To12, tagTrauma, tagSEN, forParents, tagAnxiety, tagAutism, tagScreens } from "./tags";
 
 import { naomi, abi } from "./people";
 
@@ -28,17 +28,25 @@ const webinar_nagivating_the_sen_tribuanl_process: WebinarMeta = {
   image: testImage2,
 };
 
-const webinar_helping_your_child_with_learning_disabilities_with_anxiety: WebinarMeta =
+const webinar_Helping_Your_Child_with_Learning_Disabilities_with_Anxiety: WebinarMeta =
   {
     id: "912635556517",
     tags: [tagAnxiety, tagSEN, forParents],
     contributers: [naomi],
   };
 
+  const webinar_Helping_Your_Autistic_Child_Develop_a_Healthy_Relationship_with_Screens: WebinarMeta =
+    {
+      id: "922751934877",
+      tags: [tagAutism, tagScreens, forParents],
+      contributers: [naomi],
+    };
+
 export function getWebinarMeta(eventId: string): WebinarMeta | undefined {
   return [
     webinar_helping_your_child_recover_from_trauma_and_loss,
     webinar_nagivating_the_sen_tribuanl_process,
-    webinar_helping_your_child_with_learning_disabilities_with_anxiety,
+    webinar_Helping_Your_Child_with_Learning_Disabilities_with_Anxiety,
+    webinar_Helping_Your_Autistic_Child_Develop_a_Healthy_Relationship_with_Screens,
   ].find((webMeta) => eventId === webMeta.id);
 }

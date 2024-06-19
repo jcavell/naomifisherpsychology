@@ -6,36 +6,46 @@ const { tags = [], uri = "tags" } = Astro.props;
 
 const includedCoreTags = coreTags.filter((t) => tags.includes(t));
 const includedAgeTags = ageTags.filter((t) => tags.includes(t));
+const includedForTags = forTags.filter((t) => tags.includes(t));
 ---
 
-<span class="tags">
-  {
-    includedCoreTags.map((tag: string, index: number) => (
-      <>
-        <a href={`/${uri}/${makeUrl(tag)}`}>{tag}</a>
-        {includedCoreTags.length > index + 1 && <>, </>}
-      </>
-    ))
-  }
-</span>
+{
+  includedCoreTags.length > 0 && (
+    <span class="tags">
+      {includedCoreTags.map((tag: string, index: number) => (
+        <>
+          <a href={`/${uri}/${makeUrl(tag)}`}>{tag}</a>
+          {includedCoreTags.length > index + 1 && <>, </>}
+        </>
+      ))}
+    </span>
+  )
+}
 
-<span class="tags">
-  Ages: 
-  {
-    includedAgeTags.map((tag: string, index: number) => (
-      <>
-        <a href={`/${uri}/${makeUrl(tag)}`}>{tag}</a>
-        {includedAgeTags.length > index + 1 && <>, </>}
-      </>
-    ))
-  }
-</span>
+{
+  includedAgeTags.length > 0 && (
+    <span class="tags">
+      Ages:
+      {includedAgeTags.map((tag: string, index: number) => (
+        <>
+          <a href={`/${uri}/${makeUrl(tag)}`}>{tag}</a>
+          {includedAgeTags.length > index + 1 && <>, </>}
+        </>
+      ))}
+    </span>
+  )
+}
 
-<span class="tags">
-  Audience: 
-  {
-    forTags
-      .filter((t) => tags.includes(t))
-      .map((tag: string) => <a href={`/${uri}/${makeUrl(tag)}`}>{tag}</a>)
-  }
-</span>
+{
+  includedForTags.length > 0 && (
+    <span class="tags">
+      Audience:
+      {includedForTags.map((tag: string, index: number) => (
+        <>
+          <a href={`/${uri}/${makeUrl(tag)}`}>{tag}</a>
+          {includedForTags.length > index + 1 && <>, </>}
+        </>
+      ))}
+    </span>
+  )
+}

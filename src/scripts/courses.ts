@@ -78,8 +78,7 @@ export async function getCourseFromTitle(title: string){
   const courses = await getCourses();
   const course = courses.find(
     (course) =>
-      lowerCaseAndRemoveWhitespace(course.data.title) ===
-      lowerCaseAndRemoveWhitespace(title)
+      lowerCaseAndRemoveWhitespace(course.data.title).startsWith(lowerCaseAndRemoveWhitespace(title))
   );
    //  console.log("Trying to find course with name " + title + ". Outcome: " + JSON.stringify(course));
 

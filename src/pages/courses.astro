@@ -3,10 +3,10 @@ import CourseLayout from "../layouts/CourseLayout.astro";
 import CourseSummary from "../components/course/CourseSummary.astro";
 import getCourses from "../scripts/courses";
 import GenerateQuote from "../components/Quoter";
-import courseQuotes from "../quotes/courseQuotes.json";
+import { getEntry } from "astro:content";
 
 const courses = await getCourses();
-
+const quotes = (await getEntry("course-quotes", "general-course-quotes")).data;
 ---
 
 <CourseLayout pageTitle="Courses">
@@ -15,8 +15,7 @@ const courses = await getCourses();
       index != 0 && (index + 1) % 4 == 0 ? (
         <>
           <CourseSummary course={course.data} />
-          <GenerateQuote client:load quotes={courseQuotes}
-          />
+          <GenerateQuote client:load quotes={quotes} />
         </>
       ) : (
         <CourseSummary course={course.data} />
