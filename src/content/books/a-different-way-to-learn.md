@@ -13,7 +13,7 @@ ebookIsbn: ""
 audiobookIsbn: ""
 pages: 240
 people: ["Dr Naomi Fisher", "Eliza Fricker"]
-tags: ["Autism", "Demand Avoidance", "School", "Parents", "Professionals"]
+tags: ["Neurodiversity", "Demand Avoidance", "School", "Parents and carers", "Professionals"]
 toc: [
     'Neurodiversity and Self-Directed Education',
 'Neurodiversity at School',

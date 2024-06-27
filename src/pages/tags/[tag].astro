@@ -17,6 +17,8 @@ import { getOrderedPosts } from "../../scripts/blog";
 import { getCollection } from "astro:content";
 import TagLayout from "../../layouts/TagLayout.astro";
 
+import { umbrellaTags } from "../../scripts/tags";
+
 export async function getStaticPaths() {
   // Get ALL content
   const webinars = await getWebinars();
@@ -24,24 +26,41 @@ export async function getStaticPaths() {
   const posts = await getOrderedPosts();
   const books = await getCollection("books");
 
-  return allTags.map((tag: string) => {
-    // Page for each tag
-
+  function getAllResources(tags: string[]) {
     const filteredWebinars = webinars.filter((webinar) => {
       const eventId = webinar.id;
       const meta = getWebinarMeta(eventId);
-      return meta?.tags?.includes(tag);
+      return meta?.tags?.some((e) => tags.includes(e));
     });
 
     const filteredCourses = courses.filter((course) => {
       const meta = getCourseMetaFromTitle(course.data.title);
       // console.log("Course tags for " + course.data.title + ": " + meta?.tags);
-      return meta?.tags?.includes(tag);
+      return meta?.tags?.some((e) => tags.includes(e));
     });
 
-    const filteredBooks = books.filter((book) => book.data.tags.includes(tag));
+    const filteredBooks = books.filter((book) =>  
+      book.data.tags.some((e) => tags.includes(e))
+    );
 
-    const filteredPosts = posts.filter((post) => post.data.tags?.includes(tag));
+    const filteredPosts = posts.filter((post) =>
+      post.data.tags?.some((e) => tags.includes(e))
+    );
+
+    return {
+      filteredWebinars: filteredWebinars,
+      filteredBooks: filteredBooks,
+      filteredCourses: filteredCourses,
+      filteredPosts: filteredPosts,
+    };
+  }
+
+  return allTags.map((tag: string) => {
+    const { filteredWebinars, filteredCourses, filteredBooks, filteredPosts } =
+      umbrellaTags.has(tag)
+        ? getAllResources([tag].concat(Array.from(umbrellaTags.get(tag))))
+        : getAllResources([tag]);
+
 
     // Sort courses depending on where tag appears
     filteredCourses.sort(function (a, b) {

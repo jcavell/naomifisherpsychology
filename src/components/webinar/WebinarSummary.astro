@@ -10,43 +10,17 @@ const { webinar } = Astro.props;
 const eventId = webinar.id;
 const meta = getWebinarMeta(eventId);
 
-const people = webinar.people;
 const checkoutURL = webinar.url;
 const title = webinar.name.text;
 const subtitle = webinar.description.text;
-const start = webinar.start.utc;
-const end = webinar.end.utc;
 const tickets = webinar.orderedTickets;
-
-const startDateTime = new Date(Date.parse(start));
-const endDateTime = new Date(Date.parse(end));
-
-const displayDay = { day: "numeric" };
-const displayMonth = { month: "short" };
-const displayTimeStart = {
-  hour: "numeric",
-  minute: "numeric",
-  timeZone: "Europe/London",
-};
-
-const displayTimeEnd = {
-  hour: "numeric",
-  minute: "numeric",
-  timeZone: "Europe/London",
-  timeZoneName: "short",
-};
-
-const day = startDateTime.toLocaleString(undefined, displayDay);
-const month = startDateTime.toLocaleString(undefined, displayMonth);
-const startTime = startDateTime.toLocaleString("en-GB", displayTimeStart);
-const endTime = endDateTime.toLocaleString("en-GB", displayTimeEnd);
 ---
 
 <div class="card card-webinar">
   <!-- Tix: {JSON.stringify(tix)}<br /> -->
   <div class="live-date">
-    <span class="live-day"> {day} </span>
-    <span class="live-month"> {month} </span>
+    <span class="live-day"> {webinar.day} </span>
+    <span class="live-month"> {webinar.month} </span>
   </div>
 
   <h2>
@@ -61,8 +35,6 @@ const endTime = endDateTime.toLocaleString("en-GB", displayTimeEnd);
     <a href={`/webinars/${eventId}`} class="card-type-course"> LIVE WEBINAR </a>
     <span>
       From {tickets[0].cost} + booking fee
-      <!-- {startTime} - {endTime},
-      {tix.map((ticket, index) => ` ${ticket.price} (${ticket.name})`)} -->
     </span>
   </div>
 
@@ -72,7 +44,9 @@ const endTime = endDateTime.toLocaleString("en-GB", displayTimeEnd);
 
   <div class="card-meta">
     <span class="tags">
-      {`${day} ${month} ${startTime} - ${endTime}`}
+      {
+        `${webinar.day} ${webinar.month} ${webinar.startTime} - ${webinar.endTime}`
+      }
     </span>
 
     <Contributers people={meta?.contributers} />

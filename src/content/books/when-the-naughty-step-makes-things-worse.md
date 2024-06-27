@@ -13,7 +13,7 @@ ebookIsbn: "9781472148674"
 audiobookIsbn: "9781405559461"
 pages: 448
 people: ["Dr Naomi Fisher", "Eliza Fricker"]
-tags: ["Low Demand Parenting", "Parents"]
+tags: ["Low Demand Parenting", "Parents and carers"]
 toc: []
 audiobookLength: "10 hours"
 dimensions: "15.3 x 2.2 x 23.4 cm"

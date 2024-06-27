@@ -20,7 +20,7 @@ const css = NaomiStyle;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
     <title>Naomi Fisher</title>
-    <NaomiStyle/>
+    <NaomiStyle />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -29,7 +29,7 @@ const css = NaomiStyle;
     />
   </head>
 
-  <body class="category-primary-tagged category-courses">
+  <body class={"category-primary-tagged category-" + active}>
     <Header active={active} />
     <slot />
     <Footer />

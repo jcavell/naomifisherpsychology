@@ -7,7 +7,7 @@ import testWebinars3 from "../test-data/eventbrite/3events.json";
 const EB_BEARER = import.meta.env.EB_BEARER;
 
 function getDetails(webinarId: string) {
- // console.log("Fetching details for webinar id " + webinarId);
+  // console.log("Fetching details for webinar id " + webinarId);
   return fetch(
     "https://www.eventbriteapi.com/v3/events/" +
       webinarId +
@@ -51,9 +51,11 @@ export default async function getWebinars() {
   // console.log("Webinar details" + JSON.stringify(detailsJsons));
 
   function addVideoData(webinar) {
-    const videoWidgets = webinar.widgets.filter((widget) => widget.type === 'featured_video');
+    const videoWidgets = webinar.widgets.filter(
+      (widget) => widget.type === "featured_video"
+    );
     // console.log("VW" + JSON.stringify(videoWidgets));
-    if(videoWidgets.length > 0){
+    if (videoWidgets.length > 0) {
       webinar.videoData = videoWidgets[0].data.video;
     }
   }
@@ -71,6 +73,41 @@ export default async function getWebinars() {
       .sort((a, b) => a.costValue - b.costValue);
   }
 
+  function addDates(webinar) {
+    const start = webinar.start.utc;
+    const end = webinar.end.utc;
+
+    const startDateTime = new Date(Date.parse(start));
+    const endDateTime = new Date(Date.parse(end));
+
+    const displayDay = { day: "numeric" };
+    const displayMonth = { month: "short" };
+
+    const displayTimeStart = {
+      hour: "numeric",
+      minute: "numeric",
+      timeZone: "Europe/London",
+    };
+
+    const displayTimeEnd = {
+      hour: "numeric",
+      minute: "numeric",
+      timeZone: "Europe/London",
+      //timeZoneName: "short",
+    };
+
+    // Add date values to webinar
+    webinar.startDateTime = startDateTime;
+    webinar.endDateTime = endDateTime;
+    webinar.day = startDateTime.toLocaleString(undefined, displayDay);
+    webinar.month = startDateTime.toLocaleString(undefined, displayMonth);
+    webinar.startTime = startDateTime.toLocaleString(
+      undefined,
+      displayTimeStart
+    );
+    webinar.endTime = endDateTime.toLocaleString(undefined, displayTimeEnd);
+  }
+
   webinars.map((webinar, index) => {
     const detailsText = detailsJsons[index].modules[0].data.body.text;
     webinar.widgets = detailsJsons[index].widgets;
@@ -81,12 +118,21 @@ export default async function getWebinars() {
       webinar.description.text,
       detailsText
     );
+
     addOrderedTickets(webinar);
     addVideoData(webinar);
+    addDates(webinar);
   });
 
+  // Only return webinars that haven't ended
+  return webinars.filter(w => {
+      const end = w.end.utc;
+      const endDateTime = new Date(Date.parse(end));
+      // const now = new Date("2024-07-09T14:29:00");
+      const now = new Date();
+      
+      // console.log(`** End: ${endDateTime} Now: ${now}`);
   
-  return webinars;
+      return endDateTime > now;
+  })
 }
-
-

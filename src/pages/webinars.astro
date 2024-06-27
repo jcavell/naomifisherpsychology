@@ -12,6 +12,8 @@ const quotes = (await getEntry("webinar-quotes", "general-webinar-quotes"))
 const pageTitle = "Webinars";
 
 const webinars = await getWebinars();
+
+// console.log(JSON.stringify(webinars));
 ---
 
 <WebinarLayout pageTitle={pageTitle}>

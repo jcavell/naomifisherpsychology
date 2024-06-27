@@ -1,9 +1,9 @@
 import {
-  age11To18,
-  age5To12,
+  ageSecondary,
+  agePrimary,
+  ageTween,
   tagDemandAvoidance,
   forParents,
-  allAges,
   tagAutism,
   tagScreens,
   tagAnxiety,
@@ -14,7 +14,8 @@ import {
   forTeens,
   forProfessionals,
   tagALDP,
-  tagEMDR
+  tagEMDR,
+  tagNeurodiversity,
 } from "./tags";
 import { naomi, abi, eliza } from "./people";
 
@@ -39,6 +40,8 @@ import teenagerBurnout101Image from "../images/courses/teenager-burnout-101.png"
 import weDontHaveAnEhcpWhatToExpectFromSchoolImage from "../images/courses/we-dont-have-an-ehcp-what-to-expect-from-school.png";
 import whatIsDemandAvoidanceGuideForTeenagersImage from "../images/courses/what-is-demand-avoidance-a-guide-for-teenagers.png";
 import workingWithDemandAvoidantChildrenTherapyImage from "../images/courses/working-with-demand-avoidant-children-low-demand-therapy.png";
+import traumaAndLossImage from "../images/courses/helping-your-child-recover-from-trauma-and-loss.png";
+
 import ALDP1Image from "../images/courses/ALDP-1.png";
 import ALDP2Image from "../images/courses/ALDP-2.png";
 import ALDP3Image from "../images/courses/ALDP-3.png";
@@ -52,6 +55,7 @@ import ALDP10Image from "../images/courses/ALDP-10.png";
 import ALDP1To10Image from "../images/courses/ALDP-1-10.png";
 import ALDP1To5Image from "../images/courses/ALDP-1-5.png";
 import ALDP6To10Image from "../images/courses/ALDP-6-10.png";
+
 import EMDR1Image from "../images/courses/EMDR-1.png";
 import EMDR2Image from "../images/courses/EMDR-2.png";
 import EMDR3Image from "../images/courses/EMDR-3.png";
@@ -59,7 +63,6 @@ import EMDR4Image from "../images/courses/EMDR-4.png";
 import EMDR5Image from "../images/courses/EMDR-5.png";
 import EMDR6Image from "../images/courses/EMDR-6.png";
 import EMDR1To6Image from "../images/courses/EMDR-1-6.png";
-
 
 const makeVideoURL = (id: string) =>
   new URL("https://player.vimeo.com/video/" + id);
@@ -76,7 +79,7 @@ type CourseMeta = {
 
 export const demandAvoidantAdolescent: CourseMeta = {
   title: "Understanding and Helping your Demand Avoidant Adolescent",
-  tags: [tagDemandAvoidance, age11To18, forParents],
+  tags: [tagDemandAvoidance, ageSecondary, forParents],
   contributers: [naomi],
   runningTime: "1 hour 20 mins",
   image: demandAvoidantAdolescentImage,
@@ -86,7 +89,7 @@ export const demandAvoidantAdolescent: CourseMeta = {
 const demandAvoidance101: CourseMeta = {
   title: "Demand Avoidance 101",
   contributers: [naomi],
-  tags: [tagDemandAvoidance, forParents, allAges],
+  tags: [tagDemandAvoidance, forParents, agePrimary, ageSecondary],
   runningTime: "1 hour 15 mins",
   image: demandAvoidance101Image,
   videoUrl: makeVideoURL("953498420"),
@@ -94,7 +97,7 @@ const demandAvoidance101: CourseMeta = {
 
 export const neurodiversity101: CourseMeta = {
   title: "Neurodiversity 101",
-  tags: [tagAutism, allAges, forParents],
+  tags: [tagNeurodiversity, agePrimary, ageSecondary, forParents],
   contributers: [naomi],
   image: neurodiversity101Image,
   runningTime: "1 hour 19 mins",
@@ -104,7 +107,7 @@ export const neurodiversity101: CourseMeta = {
 export const autisticChildScreens: CourseMeta = {
   title:
     "Helping Your Autistic Child Develop a Healthy Relationship with Screens",
-  tags: [tagAutism, tagScreens, allAges, forParents],
+  tags: [tagAutism, tagScreens, agePrimary, ageSecondary, forParents],
   contributers: [naomi],
   image: autisticChildScreensImage,
   runningTime: "1 hour 16 mins",
@@ -113,7 +116,7 @@ export const autisticChildScreens: CourseMeta = {
 
 export const autisticTeenWithAnxiety: CourseMeta = {
   title: "Helping Your Autistic Teen with Anxiety",
-  tags: [tagAutism, tagAnxiety, age11To18, forParents],
+  tags: [tagAutism, tagAnxiety, ageSecondary, forParents],
   contributers: [naomi],
   image: autisticTeenWithAnxietyImage,
   runningTime: "1 hour 22 mins",
@@ -121,7 +124,7 @@ export const autisticTeenWithAnxiety: CourseMeta = {
 
 export const autisticChildWithAnxiety: CourseMeta = {
   title: "Helping Your Autistic Child With Anxiety",
-  tags: [tagAutism, tagAnxiety, age5To12, forParents],
+  tags: [tagAutism, tagAnxiety, agePrimary, ageTween, forParents],
   contributers: [naomi],
   image: autisticChildWithAnxietyImage,
   runningTime: "1 hour 7 mins",
@@ -129,7 +132,7 @@ export const autisticChildWithAnxiety: CourseMeta = {
 
 export const childWithAnxietyUnder8s: CourseMeta = {
   title: "Helping Your Child With Anxiety (Under 8s)",
-  tags: [tagAnxiety, age5To12, forParents],
+  tags: [tagAnxiety, agePrimary, forParents],
   contributers: [naomi],
   image: childWithAnxietyUnder8sImage,
   runningTime: "TBC",
@@ -137,7 +140,7 @@ export const childWithAnxietyUnder8s: CourseMeta = {
 
 export const autisticChildWithTrauma: CourseMeta = {
   title: "Helping Your Autistic Child With Trauma",
-  tags: [tagAutism, tagTrauma, age5To12, forParents],
+  tags: [tagAutism, tagTrauma, agePrimary, ageTween, forParents],
   contributers: [naomi],
   image: autisticChildWithTraumaImage,
   runningTime: "TBC",
@@ -145,7 +148,7 @@ export const autisticChildWithTrauma: CourseMeta = {
 
 export const childWithAnxiety6To13: CourseMeta = {
   title: "Helping Your Child With Anxiety (Ages 6 - 13)",
-  tags: [tagAnxiety, age5To12, forParents],
+  tags: [tagAnxiety, agePrimary, ageTween, forParents],
   contributers: [naomi],
   image: childWithAnxiety6To13Image,
   runningTime: "TBC",
@@ -153,7 +156,7 @@ export const childWithAnxiety6To13: CourseMeta = {
 
 export const childWithSevereAnxiety: CourseMeta = {
   title: "Helping Your Child With Severe Anxiety",
-  tags: [tagAnxiety, age5To12, forParents],
+  tags: [tagAnxiety, agePrimary, ageTween, forParents],
   contributers: [naomi],
   image: childWithSevereAnxietyImage,
   runningTime: "TBC",
@@ -161,7 +164,7 @@ export const childWithSevereAnxiety: CourseMeta = {
 
 export const burntOutBySchool: CourseMeta = {
   title: "Burnt Out by School",
-  tags: [tagBurnout, tagSchool, age5To12, age11To18, forParents],
+  tags: [tagBurnout, tagSchool, agePrimary, ageSecondary, forParents],
   contributers: [naomi],
   image: burntOutBySchoolImage,
   runningTime: "TBC",
@@ -169,7 +172,7 @@ export const burntOutBySchool: CourseMeta = {
 
 export const afterSchoolMovingOnFromSchoolTrauma: CourseMeta = {
   title: "After School: Helping your Autistic Child Move on from School Trauma",
-  tags: [tagTrauma, tagSchool, age5To12, age11To18, forParents],
+  tags: [tagTrauma, tagSchool, agePrimary, ageSecondary, forParents],
   contributers: [naomi],
   image: afterSchoolMovingOnFromSchoolTraumaImage,
   runningTime: "TBC",
@@ -177,7 +180,7 @@ export const afterSchoolMovingOnFromSchoolTrauma: CourseMeta = {
 
 export const autisticChildrenWithSchool: CourseMeta = {
   title: "Helping Autistic Children with School",
-  tags: [tagAutism, tagSchool, age5To12, age11To18, forParents],
+  tags: [tagAutism, tagSchool, agePrimary, ageSecondary, forParents],
   contributers: [naomi],
   image: autisticChildrenWithSchoolImage,
   runningTime: "TBC",
@@ -185,7 +188,7 @@ export const autisticChildrenWithSchool: CourseMeta = {
 
 export const myChildIsNotFineAtSchool: CourseMeta = {
   title: "My Child is not Fine at School",
-  tags: [tagSchool, tagBurnout, age5To12, age11To18, forParents],
+  tags: [tagSchool, tagBurnout, agePrimary, ageSecondary, forParents],
   contributers: [naomi],
   image: myChildIsNotFineAtSchoolImage,
   runningTime: "TBC",
@@ -193,7 +196,7 @@ export const myChildIsNotFineAtSchool: CourseMeta = {
 
 export const doWeNeedAnEhcp: CourseMeta = {
   title: "Do we need an EHCP? If we do, what do we do now?",
-  tags: [tagEHCP, tagSchool, age5To12, age11To18, forParents],
+  tags: [tagEHCP, tagSchool, agePrimary, ageSecondary, forParents],
   contributers: [abi],
   image: doWeNeedAnEhcpImage,
   runningTime: "TBC",
@@ -201,7 +204,7 @@ export const doWeNeedAnEhcp: CourseMeta = {
 
 export const takingControlOfYourEhcpAnnualReview: CourseMeta = {
   title: "Taking control of your EHCP Annual Review",
-  tags: [tagEHCP, tagSchool, age5To12, age11To18, forParents],
+  tags: [tagEHCP, tagSchool, agePrimary, ageSecondary, forParents],
   contributers: [abi],
   image: takingControlOfYourEhcpAnnualReviewImage,
   runningTime: "TBC",
@@ -209,7 +212,7 @@ export const takingControlOfYourEhcpAnnualReview: CourseMeta = {
 
 export const weDontHaveAnEhcpWhatToExpectFromSchool: CourseMeta = {
   title: "We don't have an EHCP - what can we Expect from School?",
-  tags: [tagEHCP, tagSchool, age5To12, age11To18, forParents],
+  tags: [tagEHCP, tagSchool, agePrimary, ageSecondary, forParents],
   contributers: [abi],
   image: weDontHaveAnEhcpWhatToExpectFromSchoolImage,
   runningTime: "TBC",
@@ -217,7 +220,7 @@ export const weDontHaveAnEhcpWhatToExpectFromSchool: CourseMeta = {
 
 export const teenagerBurnout101: CourseMeta = {
   title: "Teenager Burnout 101",
-  tags: [tagBurnout, age11To18, forTeens],
+  tags: [tagBurnout, ageSecondary, forTeens],
   contributers: [naomi],
   image: teenagerBurnout101Image,
   runningTime: "TBC",
@@ -225,24 +228,24 @@ export const teenagerBurnout101: CourseMeta = {
 
 export const whatIsDemandAvoidanceGuideForTeenagers: CourseMeta = {
   title: "What is Demand Avoidance? A Guide for Teenagers",
-  tags: [tagDemandAvoidance, age11To18, forTeens],
+  tags: [tagDemandAvoidance, ageSecondary, forTeens],
   contributers: [naomi],
   image: whatIsDemandAvoidanceGuideForTeenagersImage,
   runningTime: "TBC",
 };
 
 export const workingWithDemandAvoidantChildrenTherapy: CourseMeta = {
-  title: "Working with Demand Avoidant Children: The Art and Science of Low Demand Therapy",
-  tags: [tagDemandAvoidance, age5To12, age11To18, forProfessionals],
+  title:
+    "Working with Demand Avoidant Children: The Art and Science of Low Demand Therapy",
+  tags: [tagDemandAvoidance, agePrimary, ageSecondary, forProfessionals],
   contributers: [naomi],
   image: workingWithDemandAvoidantChildrenTherapyImage,
   runningTime: "TBC",
 };
 
 export const ALDP1: CourseMeta = {
-  title:
-    "The Art of Low Demand Parenting: Activate Your Parenting",
-  tags: [tagALDP, age5To12, age11To18, forParents],
+  title: "The Art of Low Demand Parenting: Activate Your Parenting",
+  tags: [tagALDP, agePrimary, ageSecondary, forParents],
   contributers: [naomi, eliza],
   image: ALDP1Image,
   runningTime: "TBC",
@@ -250,7 +253,7 @@ export const ALDP1: CourseMeta = {
 
 export const ALDP2: CourseMeta = {
   title: "The Art of Low Demand Parenting: Communication",
-  tags: [tagALDP, age5To12, age11To18, forParents],
+  tags: [tagALDP, agePrimary, ageSecondary, forParents],
   contributers: [naomi, eliza],
   image: ALDP2Image,
   runningTime: "TBC",
@@ -258,7 +261,7 @@ export const ALDP2: CourseMeta = {
 
 export const ALDP3: CourseMeta = {
   title: "The Art of Low Demand Parenting: Behaviour",
-  tags: [tagALDP, age5To12, age11To18, forParents],
+  tags: [tagALDP, agePrimary, ageSecondary, forParents],
   contributers: [naomi, eliza],
   image: ALDP3Image,
   runningTime: "TBC",
@@ -266,7 +269,7 @@ export const ALDP3: CourseMeta = {
 
 export const ALDP4: CourseMeta = {
   title: "The Art of Low Demand Parenting: Emotions",
-  tags: [tagALDP, age5To12, age11To18, forParents],
+  tags: [tagALDP, agePrimary, ageSecondary, forParents],
   contributers: [naomi, eliza],
   image: ALDP4Image,
   runningTime: "TBC",
@@ -274,7 +277,7 @@ export const ALDP4: CourseMeta = {
 
 export const ALDP5: CourseMeta = {
   title: "The Art of Low Demand Parenting: The Real World",
-  tags: [tagALDP, age5To12, age11To18, forParents],
+  tags: [tagALDP, agePrimary, ageSecondary, forParents],
   contributers: [naomi, eliza],
   image: ALDP5Image,
   runningTime: "TBC",
@@ -282,7 +285,7 @@ export const ALDP5: CourseMeta = {
 
 export const ALDP6: CourseMeta = {
   title: "The Art of Low Demand Parenting: Other People",
-  tags: [tagALDP, age5To12, age11To18, forParents],
+  tags: [tagALDP, agePrimary, ageSecondary, forParents],
   contributers: [naomi, eliza],
   image: ALDP6Image,
   runningTime: "TBC",
@@ -290,7 +293,7 @@ export const ALDP6: CourseMeta = {
 
 export const ALDP7: CourseMeta = {
   title: "The Art of Low Demand Parenting: Screens",
-  tags: [tagALDP, tagScreens, age5To12, age11To18, forParents],
+  tags: [tagALDP, tagScreens, agePrimary, ageSecondary, forParents],
   contributers: [naomi, eliza],
   image: ALDP7Image,
   runningTime: "TBC",
@@ -298,7 +301,7 @@ export const ALDP7: CourseMeta = {
 
 export const ALDP8: CourseMeta = {
   title: "The Art of Low Demand Parenting: School",
-  tags: [tagALDP, tagSchool, age5To12, age11To18, forParents],
+  tags: [tagALDP, tagSchool, agePrimary, ageSecondary, forParents],
   contributers: [naomi, eliza],
   image: ALDP8Image,
   runningTime: "TBC",
@@ -306,7 +309,7 @@ export const ALDP8: CourseMeta = {
 
 export const ALDP9: CourseMeta = {
   title: "The Art of Low Demand Parenting: What About The Future?",
-  tags: [tagALDP, age5To12, age11To18, forParents],
+  tags: [tagALDP, agePrimary, ageSecondary, forParents],
   contributers: [naomi, eliza],
   image: ALDP9Image,
   runningTime: "TBC",
@@ -314,7 +317,7 @@ export const ALDP9: CourseMeta = {
 
 export const ALDP10: CourseMeta = {
   title: "The Art of Low Demand Parenting: What About Me?",
-  tags: [tagALDP, age5To12, age11To18, forParents],
+  tags: [tagALDP, agePrimary, ageSecondary, forParents],
   contributers: [naomi, eliza],
   image: ALDP10Image,
   runningTime: "TBC",
@@ -322,7 +325,7 @@ export const ALDP10: CourseMeta = {
 
 export const ALDP1To10: CourseMeta = {
   title: "All 10 in the Art of Low Demand Parenting series",
-  tags: [tagALDP, tagSchool, tagScreens, age5To12, age11To18, forParents],
+  tags: [tagALDP, tagSchool, tagScreens, agePrimary, ageSecondary, forParents],
   contributers: [naomi, eliza],
   image: ALDP1To10Image,
   runningTime: "TBC",
@@ -330,7 +333,7 @@ export const ALDP1To10: CourseMeta = {
 
 export const ALDP1To5: CourseMeta = {
   title: "First 5 in The Art of Low Demand Parenting series",
-  tags: [tagALDP, age5To12, age11To18, forParents],
+  tags: [tagALDP, agePrimary, ageSecondary, forParents],
   contributers: [naomi, eliza],
   image: ALDP1To5Image,
   runningTime: "TBC",
@@ -338,7 +341,7 @@ export const ALDP1To5: CourseMeta = {
 
 export const ALDP6To10: CourseMeta = {
   title: "6-10 in The Art of Low Demand Parenting series",
-  tags: [tagALDP, tagSchool, tagScreens, age5To12, age11To18, forParents],
+  tags: [tagALDP, tagSchool, tagScreens, agePrimary, ageSecondary, forParents],
   contributers: [naomi, eliza],
   image: ALDP6To10Image,
   runningTime: "TBC",
@@ -400,6 +403,14 @@ export const EMDR1To6: CourseMeta = {
   runningTime: "TBC",
 };
 
+export const traumaAndLoss: CourseMeta = {
+  title: "Helping your Child Recover from Trauma and Loss",
+  tags: [tagTrauma, agePrimary, ageSecondary, forParents],
+  contributers: [naomi],
+  image: traumaAndLossImage,
+  runningTime: "TBC",
+};
+
 // !! ADD NEW COURSES HERE !!
 const allCourses = [
   demandAvoidance101,
@@ -421,6 +432,7 @@ const allCourses = [
   weDontHaveAnEhcpWhatToExpectFromSchool,
   teenagerBurnout101,
   whatIsDemandAvoidanceGuideForTeenagers,
+  traumaAndLoss,
   workingWithDemandAvoidantChildrenTherapy,
   ALDP1,
   ALDP2,
@@ -454,7 +466,6 @@ demandAvoidantAdolescent.relatedTitles = [demandAvoidance101.title];
 autisticTeenWithAnxiety.relatedTitles = [autisticChildWithAnxiety.title];
 autisticChildWithAnxiety.relatedTitles = [autisticTeenWithAnxiety.title];
 autisticTeenWithAnxiety.relatedTitles = [autisticChildWithAnxiety.title];
-
 
 export function lowerCaseAndRemoveWhitespace(input: string) {
   // console.log("TESTING: " + JSON.stringify(input));

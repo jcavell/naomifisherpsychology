@@ -13,7 +13,7 @@ ebookIsbn: ""
 audiobookIsbn: ""
 pages: 304
 people: ["Dr Naomi Fisher"]
-tags: ["School", "Anxiety", "Parents", "Professionals"]
+tags: ["School", "Anxiety", "Parents and carers", "Professionals"]
 toc: [
     "Getting an Education",
 "Learning - Scientists, Processors and Rats",

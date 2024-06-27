@@ -12,33 +12,18 @@ const { webinar } = Astro.props;
 const eventId = webinar.id;
 const meta = getWebinarMeta(eventId);
 
-const imageURL = webinar.logo.original.url;
 const tags = webinar.tags;
 const title = webinar.name.text;
 const subtitle = webinar.description.text;
-const start = webinar.start.utc;
-const end = webinar.end.utc;
 const tickets = webinar.orderedTickets;
 const detailsText = webinar.detailsText;
-
-const startDateTime = new Date(Date.parse(start));
-const endDateTime = new Date(Date.parse(end));
-
-const displayDay = { day: "numeric" };
-const displayMonth = { month: "short" };
-const displayTime = { hour: "numeric", minute: "numeric" };
-
-const day = startDateTime.toLocaleString(undefined, displayDay);
-const month = startDateTime.toLocaleString(undefined, displayMonth);
-const startTime = startDateTime.toLocaleString(undefined, displayTime);
-const endTime = endDateTime.toLocaleString(undefined, displayTime);
 ---
 
 <div class="card card-webinar">
   <!-- Tix: {JSON.stringify(tix)}<br /> -->
   <div class="live-date">
-    <span class="live-day"> {day} </span>
-    <span class="live-month"> {month} </span>
+    <span class="live-day"> {webinar.day} </span>
+    <span class="live-month"> {webinar.month} </span>
   </div>
 
   <h2>
@@ -64,21 +49,18 @@ const endTime = endDateTime.toLocaleString(undefined, displayTime);
 
   <div class="card-meta">
     <span class="tags">
-      {`${day} ${month} ${startTime} - ${endTime}`}
+      {
+        `${webinar.day} ${webinar.month} ${webinar.startTime} - ${webinar.endTime}`
+      }
     </span>
 
     <Contributers people={meta?.contributers} />
     <Tags tags={tags} />
   </div>
 
-  <!-- <div class="card-buttons">
-    <a href="#"> Learn More </a>
-    <a href={`${checkoutURL}?aff=web`}> Tickets </a>
-  </div> -->
 </div>
 
 <div>
-  <button id="example-widget-trigger" type="button">Buy Tickets</button>
 
   <script is:inline src="/scripts/eb.js"></script>
 

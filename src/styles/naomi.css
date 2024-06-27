@@ -867,43 +867,43 @@ footer {
   border-left: 4px solid #bb7188;
 }
 
-.card-webinar h2 {
+.card-webinars h2 {
   border-top: 34px solid #4281a4;
 }
 
-.card-webinar .card-details a {
+.card-webinars .card-details a {
   color: #4281a4;
 }
 
-.category-webinar nav {
+.category-webinars nav {
   border-bottom: 4px solid #4281a4;
 }
 
-.category-webinar nav ul::before {
+.category-webinars nav ul::before {
   border-top: 4px solid #4281a4;
   border-left: 4px solid #4281a4;
 }
 
-.category-webinar nav ul::after {
+.category-webinars nav ul::after {
   border-top: 4px solid #4281a4;
   border-right: 4px solid #4281a4;
 }
 
-.category-webinar nav .active,
-.category-webinar .page-title a {
+.category-webinars nav .active,
+.category-webinars .page-title a {
   border-top: 4px solid #4281a4;
   border-left: 4px solid #4281a4;
   border-right: 4px solid #4281a4;
 }
 
-.category-webinar nav .active::before,
-.category-webinar .page-title a::before {
+.category-webinars nav .active::before,
+.category-webinars .page-title a::before {
   border-bottom: 4px solid #4281a4;
   border-right: 4px solid #4281a4;
 }
 
-.category-webinar nav .active::after,
-.category-webinar .page-title a::after {
+.category-webinars nav .active::after,
+.category-webinars .page-title a::after {
   border-bottom: 4px solid #4281a4;
   border-left: 4px solid #4281a4;
 }

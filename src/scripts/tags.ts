@@ -1,11 +1,11 @@
 export const type101 = "101";
 export const type102 = "102";
 
-export const age11To18 = "11-18";
-export const age5To12 = "5-12";
-export const allAges = "5-18"
+export const agePrimary = "Pre-teen";
+export const ageTween = "Tween";
+export const ageSecondary = "Teen";
 
-export const forParents = "Parents";
+export const forParents = "Parents and carers";
 export const forTeens = "Teens";
 export const forProfessionals = "Professionals";
 
@@ -24,6 +24,13 @@ export const tagBurnout = "Burnout";
 export const tagSchool = "School";
 export const tagEHCP = "EHCP";
 export const tagSEN = "SEN";
+export const tagADHD = "ADHD";
+
+export const umbrellaTags = new Map<string, string[]>([
+  [tagNeurodiversity, [tagAutism, tagSEN, tagADHD]],
+  [tagAutism, [tagNeurodiversity]],
+  [tagSEN, [tagEHCP]]
+]);
 
 const tag2regex: Readonly<Record<string, RegExp>> = {
   [tagAutism]: new RegExp(["auti", "neurodiv"].join("|"), "i"),
@@ -59,14 +66,14 @@ export const coreTags = [
   tagSEN,
   tagScreens,
   tagALDP,
-  tagEMDR
+  tagEMDR,
 ];
 
-export const ageTags = [allAges, age5To12, age11To18];
+export const ageTags = [agePrimary, ageTween, ageSecondary];
 
 export const forTags = [forParents, forTeens, forProfessionals];
 
-export const allTags = [coreTags, ageTags, forTags].flat();
+export const allTags = [Array.from(umbrellaTags.keys()), coreTags, ageTags, forTags].flat();
 
 export const getTags = function (
   title: string = "",
