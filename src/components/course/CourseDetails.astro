@@ -19,9 +19,14 @@ const testimonials = course.checkout?.testimonials;
 const meta = getCourseMetaFromTitle(title);
 
 const relatedTitles = meta?.relatedTitles || [];
-const relatedCourses = await Promise.all(
-  relatedTitles.map((title) => getCourseFromTitle(title))
-);
+
+// Get related courses
+// Filter out possible undefined courses after promises are resolved.
+// This happens if the course title in courseMeta is not found in the course cards content
+// Cause: the course hasn't been published on Kajabi or hasn't been crawled
+const relatedCourses = (
+  await Promise.all(relatedTitles.map((title) => getCourseFromTitle(title)))
+).filter((c) => c);
 
 // console.log("RELATED COURSES: " + JSON.stringify(relatedCourses));
 ---

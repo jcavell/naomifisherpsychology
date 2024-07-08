@@ -10,6 +10,19 @@ const quotes = (await getEntry("course-quotes", "general-course-quotes")).data;
 ---
 
 <CourseLayout pageTitle="Courses">
+  We have a growing library of on-demand mini-courses. Most of these are for
+  parents, but others are for professionals or teenagers. These courses are all
+  pre-recorded and are divided up into small, manageable modules. You can watch
+  them in your own time, on whatever device you prefer. You can watch the
+  modules as many times as you like. The courses all combine psychological
+  theory with practical ideas from clinical practice. They are quite
+  information-dense and you might find you need to watch some of the modules
+  several times. They will help you to understand what is going on for your
+  child (or you yourself) and get some ideas as to how to help. Some of the
+  courses are aimed at specific children or ages, whilst others are for
+  everyone. If you have ideas for new things you would like us to cover in a
+  mini-course, please get in touch.
+
   {
     courses.map((course, index) =>
       index != 0 && (index + 1) % 4 == 0 ? (

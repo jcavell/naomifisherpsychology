@@ -41,6 +41,9 @@ import weDontHaveAnEhcpWhatToExpectFromSchoolImage from "../images/courses/we-do
 import whatIsDemandAvoidanceGuideForTeenagersImage from "../images/courses/what-is-demand-avoidance-a-guide-for-teenagers.png";
 import workingWithDemandAvoidantChildrenTherapyImage from "../images/courses/working-with-demand-avoidant-children-low-demand-therapy.png";
 import traumaAndLossImage from "../images/courses/helping-your-child-recover-from-trauma-and-loss.png";
+import ehcpJungleImage from "../images/courses/finding-your-way-through-the-ehcp-jungle.png";
+import thrivingAfterSchoolBreakdownImage from "../images/courses/thriving-after-school-breakdown.png";
+import helpingYourAutisticChildWithStartingSchoolImage from "../images/courses/helping-your-autistic-child-with-starting-school.png";
 
 import ALDP1Image from "../images/courses/ALDP-1.png";
 import ALDP2Image from "../images/courses/ALDP-2.png";
@@ -130,12 +133,20 @@ export const autisticChildWithAnxiety: CourseMeta = {
   runningTime: "1 hour 7 mins",
 };
 
+export const helpingYourAutisticChildWithStartingSchool: CourseMeta = {
+  title: "Helping Your Autistic Child with Starting School",
+  tags: [tagAutism, tagSchool, agePrimary, forParents],
+  contributers: [abi],
+  image: helpingYourAutisticChildWithStartingSchoolImage,
+  runningTime: "",
+};
+
 export const childWithAnxietyUnder8s: CourseMeta = {
   title: "Helping Your Child With Anxiety (Under 8s)",
   tags: [tagAnxiety, agePrimary, forParents],
   contributers: [naomi],
   image: childWithAnxietyUnder8sImage,
-  runningTime: "TBC",
+  runningTime: "1 hour 30 mins",
 };
 
 export const autisticChildWithTrauma: CourseMeta = {
@@ -143,7 +154,7 @@ export const autisticChildWithTrauma: CourseMeta = {
   tags: [tagAutism, tagTrauma, agePrimary, ageTween, forParents],
   contributers: [naomi],
   image: autisticChildWithTraumaImage,
-  runningTime: "TBC",
+  runningTime: "1 hour 33 mins",
 };
 
 export const childWithAnxiety6To13: CourseMeta = {
@@ -151,7 +162,7 @@ export const childWithAnxiety6To13: CourseMeta = {
   tags: [tagAnxiety, agePrimary, ageTween, forParents],
   contributers: [naomi],
   image: childWithAnxiety6To13Image,
-  runningTime: "TBC",
+  runningTime: "1 hour 17 mins",
 };
 
 export const childWithSevereAnxiety: CourseMeta = {
@@ -159,7 +170,7 @@ export const childWithSevereAnxiety: CourseMeta = {
   tags: [tagAnxiety, agePrimary, ageTween, forParents],
   contributers: [naomi],
   image: childWithSevereAnxietyImage,
-  runningTime: "TBC",
+  runningTime: "1 hour 5 mins",
 };
 
 export const burntOutBySchool: CourseMeta = {
@@ -167,7 +178,7 @@ export const burntOutBySchool: CourseMeta = {
   tags: [tagBurnout, tagSchool, agePrimary, ageSecondary, forParents],
   contributers: [naomi],
   image: burntOutBySchoolImage,
-  runningTime: "TBC",
+  runningTime: "1 hour 40 mins",
 };
 
 export const afterSchoolMovingOnFromSchoolTrauma: CourseMeta = {
@@ -175,7 +186,7 @@ export const afterSchoolMovingOnFromSchoolTrauma: CourseMeta = {
   tags: [tagTrauma, tagSchool, agePrimary, ageSecondary, forParents],
   contributers: [naomi],
   image: afterSchoolMovingOnFromSchoolTraumaImage,
-  runningTime: "TBC",
+  runningTime: "2 hours 8 mins",
 };
 
 export const autisticChildrenWithSchool: CourseMeta = {
@@ -183,7 +194,7 @@ export const autisticChildrenWithSchool: CourseMeta = {
   tags: [tagAutism, tagSchool, agePrimary, ageSecondary, forParents],
   contributers: [naomi],
   image: autisticChildrenWithSchoolImage,
-  runningTime: "TBC",
+  runningTime: "1 hour 29 mins",
 };
 
 export const myChildIsNotFineAtSchool: CourseMeta = {
@@ -191,7 +202,7 @@ export const myChildIsNotFineAtSchool: CourseMeta = {
   tags: [tagSchool, tagBurnout, agePrimary, ageSecondary, forParents],
   contributers: [naomi],
   image: myChildIsNotFineAtSchoolImage,
-  runningTime: "TBC",
+  runningTime: "1 hour 46 mins",
 };
 
 export const doWeNeedAnEhcp: CourseMeta = {
@@ -199,7 +210,7 @@ export const doWeNeedAnEhcp: CourseMeta = {
   tags: [tagEHCP, tagSchool, agePrimary, ageSecondary, forParents],
   contributers: [abi],
   image: doWeNeedAnEhcpImage,
-  runningTime: "TBC",
+  runningTime: "57 mins",
 };
 
 export const takingControlOfYourEhcpAnnualReview: CourseMeta = {
@@ -207,7 +218,7 @@ export const takingControlOfYourEhcpAnnualReview: CourseMeta = {
   tags: [tagEHCP, tagSchool, agePrimary, ageSecondary, forParents],
   contributers: [abi],
   image: takingControlOfYourEhcpAnnualReviewImage,
-  runningTime: "TBC",
+  runningTime: "60 mins",
 };
 
 export const weDontHaveAnEhcpWhatToExpectFromSchool: CourseMeta = {
@@ -215,7 +226,23 @@ export const weDontHaveAnEhcpWhatToExpectFromSchool: CourseMeta = {
   tags: [tagEHCP, tagSchool, agePrimary, ageSecondary, forParents],
   contributers: [abi],
   image: weDontHaveAnEhcpWhatToExpectFromSchoolImage,
-  runningTime: "TBC",
+  runningTime: "1 hour 7 mins",
+};
+
+export const findingYourWayThroughTheEHCPJungle: CourseMeta = {
+  title: "Finding Your Way Through the EHCP Jungle",
+  tags: [tagEHCP, tagSchool, agePrimary, ageSecondary, forParents],
+  contributers: [abi, eliza],
+  image: ehcpJungleImage,
+  runningTime: "1 hour 26 mins",
+};
+
+export const thrivingAfterSchoolBreakdown: CourseMeta = {
+  title: "Thriving After School Breakdown: An Illustrated Talk",
+  tags: [tagSchool, agePrimary, ageSecondary, forParents],
+  contributers: [naomi, eliza],
+  image: thrivingAfterSchoolBreakdownImage,
+  runningTime: "1 hour 36 mins",
 };
 
 export const teenagerBurnout101: CourseMeta = {
@@ -223,7 +250,7 @@ export const teenagerBurnout101: CourseMeta = {
   tags: [tagBurnout, ageSecondary, forTeens],
   contributers: [naomi],
   image: teenagerBurnout101Image,
-  runningTime: "TBC",
+  runningTime: "1 hour 10 mins",
 };
 
 export const whatIsDemandAvoidanceGuideForTeenagers: CourseMeta = {
@@ -231,7 +258,7 @@ export const whatIsDemandAvoidanceGuideForTeenagers: CourseMeta = {
   tags: [tagDemandAvoidance, ageSecondary, forTeens],
   contributers: [naomi],
   image: whatIsDemandAvoidanceGuideForTeenagersImage,
-  runningTime: "TBC",
+  runningTime: "1 hour 12 mins",
 };
 
 export const workingWithDemandAvoidantChildrenTherapy: CourseMeta = {
@@ -240,7 +267,7 @@ export const workingWithDemandAvoidantChildrenTherapy: CourseMeta = {
   tags: [tagDemandAvoidance, agePrimary, ageSecondary, forProfessionals],
   contributers: [naomi],
   image: workingWithDemandAvoidantChildrenTherapyImage,
-  runningTime: "TBC",
+  runningTime: "1 hour 5 minutes",
 };
 
 export const ALDP1: CourseMeta = {
@@ -248,7 +275,7 @@ export const ALDP1: CourseMeta = {
   tags: [tagALDP, agePrimary, ageSecondary, forParents],
   contributers: [naomi, eliza],
   image: ALDP1Image,
-  runningTime: "TBC",
+  runningTime: "1 hour 30 mins",
 };
 
 export const ALDP2: CourseMeta = {
@@ -256,7 +283,7 @@ export const ALDP2: CourseMeta = {
   tags: [tagALDP, agePrimary, ageSecondary, forParents],
   contributers: [naomi, eliza],
   image: ALDP2Image,
-  runningTime: "TBC",
+  runningTime: "1 hour 30 mins",
 };
 
 export const ALDP3: CourseMeta = {
@@ -264,7 +291,7 @@ export const ALDP3: CourseMeta = {
   tags: [tagALDP, agePrimary, ageSecondary, forParents],
   contributers: [naomi, eliza],
   image: ALDP3Image,
-  runningTime: "TBC",
+  runningTime: "1 hour 30 mins",
 };
 
 export const ALDP4: CourseMeta = {
@@ -272,7 +299,7 @@ export const ALDP4: CourseMeta = {
   tags: [tagALDP, agePrimary, ageSecondary, forParents],
   contributers: [naomi, eliza],
   image: ALDP4Image,
-  runningTime: "TBC",
+  runningTime: "1 hour 30 mins",
 };
 
 export const ALDP5: CourseMeta = {
@@ -280,7 +307,7 @@ export const ALDP5: CourseMeta = {
   tags: [tagALDP, agePrimary, ageSecondary, forParents],
   contributers: [naomi, eliza],
   image: ALDP5Image,
-  runningTime: "TBC",
+  runningTime: "1 hour 30 mins",
 };
 
 export const ALDP6: CourseMeta = {
@@ -288,7 +315,7 @@ export const ALDP6: CourseMeta = {
   tags: [tagALDP, agePrimary, ageSecondary, forParents],
   contributers: [naomi, eliza],
   image: ALDP6Image,
-  runningTime: "TBC",
+  runningTime: "1 hour 30 mins",
 };
 
 export const ALDP7: CourseMeta = {
@@ -296,7 +323,7 @@ export const ALDP7: CourseMeta = {
   tags: [tagALDP, tagScreens, agePrimary, ageSecondary, forParents],
   contributers: [naomi, eliza],
   image: ALDP7Image,
-  runningTime: "TBC",
+  runningTime: "1 hour 30 mins",
 };
 
 export const ALDP8: CourseMeta = {
@@ -304,7 +331,7 @@ export const ALDP8: CourseMeta = {
   tags: [tagALDP, tagSchool, agePrimary, ageSecondary, forParents],
   contributers: [naomi, eliza],
   image: ALDP8Image,
-  runningTime: "TBC",
+  runningTime: "1 hour 30 mins",
 };
 
 export const ALDP9: CourseMeta = {
@@ -312,7 +339,7 @@ export const ALDP9: CourseMeta = {
   tags: [tagALDP, agePrimary, ageSecondary, forParents],
   contributers: [naomi, eliza],
   image: ALDP9Image,
-  runningTime: "TBC",
+  runningTime: "1 hour 30 mins",
 };
 
 export const ALDP10: CourseMeta = {
@@ -320,7 +347,7 @@ export const ALDP10: CourseMeta = {
   tags: [tagALDP, agePrimary, ageSecondary, forParents],
   contributers: [naomi, eliza],
   image: ALDP10Image,
-  runningTime: "TBC",
+  runningTime: "1 hour 30 mins",
 };
 
 export const ALDP1To10: CourseMeta = {
@@ -328,7 +355,7 @@ export const ALDP1To10: CourseMeta = {
   tags: [tagALDP, tagSchool, tagScreens, agePrimary, ageSecondary, forParents],
   contributers: [naomi, eliza],
   image: ALDP1To10Image,
-  runningTime: "TBC",
+  runningTime: "22 hours 30 mins (approx)",
 };
 
 export const ALDP1To5: CourseMeta = {
@@ -336,7 +363,7 @@ export const ALDP1To5: CourseMeta = {
   tags: [tagALDP, agePrimary, ageSecondary, forParents],
   contributers: [naomi, eliza],
   image: ALDP1To5Image,
-  runningTime: "TBC",
+  runningTime: "7 hours 30 mins",
 };
 
 export const ALDP6To10: CourseMeta = {
@@ -344,7 +371,7 @@ export const ALDP6To10: CourseMeta = {
   tags: [tagALDP, tagSchool, tagScreens, agePrimary, ageSecondary, forParents],
   contributers: [naomi, eliza],
   image: ALDP6To10Image,
-  runningTime: "TBC",
+  runningTime: "7 hours 30 mins",
 };
 
 export const EMDR1: CourseMeta = {
@@ -352,7 +379,7 @@ export const EMDR1: CourseMeta = {
   tags: [tagEMDR, forProfessionals],
   contributers: [naomi],
   image: EMDR1Image,
-  runningTime: "TBC",
+  runningTime: "41 mins",
 };
 
 export const EMDR2: CourseMeta = {
@@ -360,7 +387,7 @@ export const EMDR2: CourseMeta = {
   tags: [tagEMDR, forProfessionals],
   contributers: [naomi],
   image: EMDR2Image,
-  runningTime: "TBC",
+  runningTime: "48 mins",
 };
 
 export const EMDR3: CourseMeta = {
@@ -368,7 +395,7 @@ export const EMDR3: CourseMeta = {
   tags: [tagEMDR, forProfessionals],
   contributers: [naomi],
   image: EMDR3Image,
-  runningTime: "TBC",
+  runningTime: "52 mins",
 };
 
 export const EMDR4: CourseMeta = {
@@ -376,7 +403,7 @@ export const EMDR4: CourseMeta = {
   tags: [tagEMDR, forProfessionals],
   contributers: [naomi],
   image: EMDR4Image,
-  runningTime: "TBC",
+  runningTime: "47 mins",
 };
 
 export const EMDR5: CourseMeta = {
@@ -384,7 +411,7 @@ export const EMDR5: CourseMeta = {
   tags: [tagEMDR, forProfessionals],
   contributers: [naomi],
   image: EMDR5Image,
-  runningTime: "TBC",
+  runningTime: "44 mins",
 };
 
 export const EMDR6: CourseMeta = {
@@ -392,7 +419,7 @@ export const EMDR6: CourseMeta = {
   tags: [tagEMDR, forProfessionals],
   contributers: [naomi],
   image: EMDR6Image,
-  runningTime: "TBC",
+  runningTime: "24 mins",
 };
 
 export const EMDR1To6: CourseMeta = {
@@ -400,7 +427,7 @@ export const EMDR1To6: CourseMeta = {
   tags: [tagEMDR, forProfessionals],
   contributers: [naomi],
   image: EMDR1To6Image,
-  runningTime: "TBC",
+  runningTime: "4 hours 16 mins",
 };
 
 export const traumaAndLoss: CourseMeta = {
@@ -408,7 +435,7 @@ export const traumaAndLoss: CourseMeta = {
   tags: [tagTrauma, agePrimary, ageSecondary, forParents],
   contributers: [naomi],
   image: traumaAndLossImage,
-  runningTime: "TBC",
+  runningTime: "1 hour 49 mins",
 };
 
 // !! ADD NEW COURSES HERE !!
@@ -434,6 +461,8 @@ const allCourses = [
   whatIsDemandAvoidanceGuideForTeenagers,
   traumaAndLoss,
   workingWithDemandAvoidantChildrenTherapy,
+  findingYourWayThroughTheEHCPJungle,
+  thrivingAfterSchoolBreakdown,
   ALDP1,
   ALDP2,
   ALDP3,
@@ -457,15 +486,412 @@ const allCourses = [
 ];
 
 // !! ADD RELATED COURSES HERE !!
+
 demandAvoidance101.relatedTitles = [
   demandAvoidantAdolescent.title,
-  neurodiversity101.title,
+  whatIsDemandAvoidanceGuideForTeenagers.title
 ];
-neurodiversity101.relatedTitles = [demandAvoidance101.title];
-demandAvoidantAdolescent.relatedTitles = [demandAvoidance101.title];
-autisticTeenWithAnxiety.relatedTitles = [autisticChildWithAnxiety.title];
-autisticChildWithAnxiety.relatedTitles = [autisticTeenWithAnxiety.title];
-autisticTeenWithAnxiety.relatedTitles = [autisticChildWithAnxiety.title];
+
+neurodiversity101.relatedTitles = [
+  autisticChildrenWithSchool.title,
+  autisticChildWithAnxiety.title,
+  autisticTeenWithAnxiety.title,
+  autisticChildScreens.title,
+  demandAvoidance101.title,
+  demandAvoidantAdolescent.title,
+  whatIsDemandAvoidanceGuideForTeenagers.title,
+];
+
+demandAvoidantAdolescent.relatedTitles = [
+  whatIsDemandAvoidanceGuideForTeenagers.title,
+  demandAvoidance101.title,
+];
+
+autisticChildScreens.relatedTitles = [
+  autisticChildWithAnxiety.title,
+  autisticTeenWithAnxiety.title,
+  autisticChildWithTrauma.title,
+  childWithSevereAnxiety.title
+];
+
+autisticTeenWithAnxiety.relatedTitles = [
+  autisticChildWithAnxiety.title,
+  childWithSevereAnxiety.title,
+  childWithAnxiety6To13.title, 
+];
+
+autisticChildWithAnxiety.relatedTitles = [
+  autisticTeenWithAnxiety.title,
+  childWithSevereAnxiety.title,
+  childWithAnxietyUnder8s.title,
+  childWithAnxiety6To13.title
+];
+
+helpingYourAutisticChildWithStartingSchool.relatedTitles = [
+  autisticChildrenWithSchool.title,
+  autisticChildWithAnxiety.title
+];
+
+childWithAnxietyUnder8s.relatedTitles = [
+  childWithAnxiety6To13.title,
+  childWithSevereAnxiety.title
+];
+
+autisticChildWithTrauma.relatedTitles = [
+  afterSchoolMovingOnFromSchoolTrauma.title,
+  traumaAndLoss.title,
+  autisticChildWithAnxiety.title,
+  childWithSevereAnxiety.title
+];
+
+childWithAnxiety6To13.relatedTitles = [
+  childWithSevereAnxiety.title,
+  childWithAnxietyUnder8s.title
+];
+
+childWithSevereAnxiety.relatedTitles = [
+  childWithAnxietyUnder8s.title,
+  childWithAnxiety6To13.title
+];
+
+burntOutBySchool.relatedTitles = [
+  teenagerBurnout101.title,
+  myChildIsNotFineAtSchool.title,
+  autisticChildrenWithSchool.title,
+  thrivingAfterSchoolBreakdown.title
+];
+
+afterSchoolMovingOnFromSchoolTrauma.relatedTitles = [
+  burntOutBySchool.title,
+  autisticChildWithTrauma.title,
+  traumaAndLoss.title,
+  teenagerBurnout101.title
+];
+
+autisticChildrenWithSchool.relatedTitles = [
+  helpingYourAutisticChildWithStartingSchool.title,
+  autisticChildWithAnxiety.title,
+  autisticTeenWithAnxiety.title,
+  burntOutBySchool.title,
+  myChildIsNotFineAtSchool.title
+];
+
+myChildIsNotFineAtSchool.relatedTitles = [
+  burntOutBySchool.title,
+  autisticChildrenWithSchool.title,
+  afterSchoolMovingOnFromSchoolTrauma.title,
+  thrivingAfterSchoolBreakdown.title
+];
+
+doWeNeedAnEhcp.relatedTitles = [
+  weDontHaveAnEhcpWhatToExpectFromSchool.title,
+  takingControlOfYourEhcpAnnualReview.title,
+  findingYourWayThroughTheEHCPJungle.title
+];
+
+takingControlOfYourEhcpAnnualReview.relatedTitles = [
+  weDontHaveAnEhcpWhatToExpectFromSchool.title,
+  doWeNeedAnEhcp.title,
+  findingYourWayThroughTheEHCPJungle.title,
+];
+
+weDontHaveAnEhcpWhatToExpectFromSchool.relatedTitles = [
+  takingControlOfYourEhcpAnnualReview.title,
+  doWeNeedAnEhcp.title,
+  findingYourWayThroughTheEHCPJungle.title,
+];
+
+findingYourWayThroughTheEHCPJungle.relatedTitles = [
+  weDontHaveAnEhcpWhatToExpectFromSchool.title,
+  doWeNeedAnEhcp.title,
+  takingControlOfYourEhcpAnnualReview.title,
+];
+
+thrivingAfterSchoolBreakdown.relatedTitles = [
+  afterSchoolMovingOnFromSchoolTrauma.title,
+  burntOutBySchool.title,
+  myChildIsNotFineAtSchool.title,
+  autisticChildrenWithSchool.title
+];
+
+teenagerBurnout101.relatedTitles = [
+  whatIsDemandAvoidanceGuideForTeenagers.title,
+  burntOutBySchool.title
+];
+
+whatIsDemandAvoidanceGuideForTeenagers.relatedTitles = [
+  teenagerBurnout101.title,
+  demandAvoidance101.title,
+  demandAvoidantAdolescent.title
+];
+
+workingWithDemandAvoidantChildrenTherapy.relatedTitles = [
+  demandAvoidantAdolescent.title,
+  demandAvoidance101.title,
+  whatIsDemandAvoidanceGuideForTeenagers.title
+];
+traumaAndLoss.relatedTitles = [
+  autisticChildWithTrauma.title,
+  afterSchoolMovingOnFromSchoolTrauma.title
+];
+
+ALDP1.relatedTitles = [
+  ALDP2.title,
+  ALDP3.title,
+  ALDP4.title,
+  ALDP5.title,
+  ALDP6.title,
+  ALDP7.title,
+  ALDP8.title,
+  ALDP9.title,
+  ALDP10.title,
+  ALDP1To10.title,
+  ALDP1To5.title,
+  ALDP6To10.title,
+];
+
+ALDP2.relatedTitles = [
+  ALDP1.title,
+  ALDP3.title,
+  ALDP4.title,
+  ALDP5.title,
+  ALDP6.title,
+  ALDP7.title,
+  ALDP8.title,
+  ALDP9.title,
+  ALDP10.title,
+  ALDP1To10.title,
+  ALDP1To5.title,
+  ALDP6To10.title,
+];
+
+ALDP3.relatedTitles = [
+  ALDP1.title,
+  ALDP2.title,
+  ALDP4.title,
+  ALDP5.title,
+  ALDP6.title,
+  ALDP7.title,
+  ALDP8.title,
+  ALDP9.title,
+  ALDP10.title,
+  ALDP1To10.title,
+  ALDP1To5.title,
+  ALDP6To10.title,
+];
+
+ALDP4.relatedTitles = [
+  ALDP1.title,
+  ALDP2.title,
+  ALDP3.title,
+  ALDP5.title,
+  ALDP6.title,
+  ALDP7.title,
+  ALDP8.title,
+  ALDP9.title,
+  ALDP10.title,
+  ALDP1To10.title,
+  ALDP1To5.title,
+  ALDP6To10.title,
+];
+
+ALDP5.relatedTitles = [
+  ALDP1.title,
+  ALDP2.title,
+  ALDP3.title,
+  ALDP4.title,
+  ALDP6.title,
+  ALDP7.title,
+  ALDP8.title,
+  ALDP9.title,
+  ALDP10.title,
+  ALDP1To10.title,
+  ALDP1To5.title,
+  ALDP6To10.title,
+];
+
+ALDP6.relatedTitles = [
+  ALDP1.title,
+  ALDP2.title,
+  ALDP3.title,
+  ALDP4.title,
+  ALDP5.title,
+  ALDP7.title,
+  ALDP8.title,
+  ALDP9.title,
+  ALDP10.title,
+  ALDP1To10.title,
+  ALDP1To5.title,
+  ALDP6To10.title,
+];
+
+ALDP7.relatedTitles = [
+  ALDP1.title,
+  ALDP2.title,
+  ALDP3.title,
+  ALDP4.title,
+  ALDP5.title,
+  ALDP6.title,
+  ALDP8.title,
+  ALDP9.title,
+  ALDP10.title,
+  ALDP1To10.title,
+  ALDP1To5.title,
+  ALDP6To10.title,
+];
+
+ALDP8.relatedTitles = [
+  ALDP1.title,
+  ALDP2.title,
+  ALDP3.title,
+  ALDP4.title,
+  ALDP5.title,
+  ALDP6.title,
+  ALDP7.title,
+  ALDP9.title,
+  ALDP10.title,
+  ALDP1To10.title,
+  ALDP1To5.title,
+  ALDP6To10.title,
+];
+
+ALDP9.relatedTitles = [
+  ALDP1.title,
+  ALDP2.title,
+  ALDP3.title,
+  ALDP4.title,
+  ALDP5.title,
+  ALDP6.title,
+  ALDP7.title,
+  ALDP8.title,
+  ALDP10.title,
+  ALDP1To10.title,
+  ALDP1To5.title,
+  ALDP6To10.title,
+];
+
+ALDP10.relatedTitles = [
+  ALDP1.title,
+  ALDP2.title,
+  ALDP3.title,
+  ALDP4.title,
+  ALDP5.title,
+  ALDP6.title,
+  ALDP7.title,
+  ALDP8.title,
+  ALDP9.title,
+  ALDP1To10.title,
+  ALDP1To5.title,
+  ALDP6To10.title,
+];
+
+ALDP1To10.relatedTitles = [
+  ALDP1To5.title,
+  ALDP6To10.title,
+  ALDP1.title,
+  ALDP2.title,
+  ALDP3.title,
+  ALDP4.title,
+  ALDP5.title,
+  ALDP6.title,
+  ALDP7.title,
+  ALDP8.title,
+  ALDP9.title,
+  ALDP10.title,
+];
+
+ALDP1To5.relatedTitles = [
+  ALDP6To10.title,
+  ALDP1To10.title,
+  ALDP1.title,
+  ALDP2.title,
+  ALDP3.title,
+  ALDP4.title,
+  ALDP5.title,
+  ALDP6.title,
+  ALDP7.title,
+  ALDP8.title,
+  ALDP9.title,
+  ALDP10.title,
+];
+
+ALDP6To10.relatedTitles = [
+  ALDP1To5.title,
+  ALDP1To10.title,
+  ALDP1.title,
+  ALDP2.title,
+  ALDP3.title,
+  ALDP4.title,
+  ALDP5.title,
+  ALDP6.title,
+  ALDP7.title,
+  ALDP8.title,
+  ALDP9.title,
+  ALDP10.title,
+];
+
+EMDR1.relatedTitles = [
+  EMDR2.title,
+  EMDR3.title,
+  EMDR4.title,
+  EMDR5.title,
+  EMDR6.title,
+  EMDR1To6.title
+];
+
+EMDR2.relatedTitles = [
+  EMDR1.title,
+  EMDR3.title,
+  EMDR4.title,
+  EMDR5.title,
+  EMDR6.title,
+  EMDR1To6.title,
+];
+
+EMDR3.relatedTitles = [
+  EMDR1.title,
+  EMDR2.title,
+  EMDR4.title,
+  EMDR5.title,
+  EMDR6.title,
+  EMDR1To6.title,
+];
+
+EMDR4.relatedTitles = [
+  EMDR1.title,
+  EMDR2.title,
+  EMDR3.title,
+  EMDR5.title,
+  EMDR6.title,
+  EMDR1To6.title,
+];
+
+EMDR5.relatedTitles = [
+  EMDR1.title,
+  EMDR2.title,
+  EMDR3.title,
+  EMDR4.title,
+  EMDR6.title,
+  EMDR1To6.title,
+];
+
+EMDR6.relatedTitles = [
+  EMDR1.title,
+  EMDR2.title,
+  EMDR3.title,
+  EMDR4.title,
+  EMDR5.title,
+  EMDR1To6.title,
+];
+
+EMDR1To6.relatedTitles = [
+  EMDR1.title,
+  EMDR2.title,
+  EMDR3.title,
+  EMDR4.title,
+  EMDR5.title,
+  EMDR6.title,
+];
 
 export function lowerCaseAndRemoveWhitespace(input: string) {
   // console.log("TESTING: " + JSON.stringify(input));

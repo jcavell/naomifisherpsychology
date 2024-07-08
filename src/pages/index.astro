@@ -11,120 +11,91 @@ import GenerateQuote from "../components/Quoter";
 
 <BaseLayout active="home" pageTitle="Home">
   <div class="wrapper">
-    <GenerateQuote
-      client:load
-      quotes={[
-        {
-          text: "This is a great webinar",
-          author: "Webinar attendee 100",
-        },
-        {
-          text: "This is a nice webinar",
-          author: "Webinar attendee 101",
-        },
-      ]}
-    />
+    <div>
+      <p>
+        Welcome! Here you’ll find the work of Dr Naomi Fisher and Dr Abigail
+        Fisher.
+      </p>
 
-    <Image width="200" src={testImage} alt="A description of my image." />
-    <ul>
-      <li>Naomi brief bio</li>
-      <li>Image</li>
-      <li>Upcoming webinars summary</li>
-      <li>Courses summary (incl. any sale or new)</li>
-      <li>EMDR training</li>
-      <li>Books summary incl. new or preleased books, publications</li>
-      <li>Consultations, supervision</li>
-      <li>Press enquiries</li>
-    </ul>
+      <p>
+        Naomi is a clinical psychologist, author and EMDR-Europe Accredited
+        Trainer. She writes and speaks about trauma, autism and alternative
+        education.
+      </p>
 
-    <div class="wrapper">
-      <div class="card card-courses">
-        <h2>
-          <a href="#">The Art of Low Demand Parenting: Behaviour.</a>
-        </h2>
+      <h2>Webinars</h2>
+      <p>
+        If you’re a parent or carer looking for support, we run regular <a
+          href="/webinars">webinars</a
+        >. These are live events but you can choose to buy the recording as
+        well.
+      </p>
 
-        <div class="card-image">
-          <Picture
-            src={testImage}
-            widths={[240, 540, 720, testImage.width]}
-            sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${testImage.width}px`}
-            alt="Test image for responsive testing."
-            pictureAttributes={{ style: "background-color: red;" }}
-          />
-        </div>
+      <h3>Upcoming webinars</h3>
+      ADD HERE
 
-        <div class="card-details">
-          <a href="#"> RECORDED COURSE </a>
-          <span> 2 HOURS, £30 </span>
-        </div>
+      <h2>Courses</h2>
+      <p>
+        We also have many short <a href="/courses"
+          >courses for parents and teenagers</a
+        >. These are entirely on-demand and can be watched in your own time.
+      </p>
 
-        <p>
-          Some children just don't respond to conventional approaches to
-          behaviour. What do you do when the naughty step makes things worse?
-        </p>
+      <h3>Featured courses</h3>
+      ADD HERE
 
-        <div class="card-meta">
-          <span class="contributors">
-            Dr Naomi Fisher with <a href="#">Eliza Fricker</a>
-          </span>
-          <span class="tags">
-            <a href="/low-demand-parenting/">Low Demand Parenting</a>, <a
-              href="demand-avoidance.html">Demand Avoidance</a
-            >
-          </span>
-        </div>
+      <h2>Books and Blog</h2>
+      <p>
+        Naomi has written several books which you can <a href="/books"
+          >peruse and purchase</a
+        >.
+      </p>
+      <p>
+        She also blogs regularly and you will find her <a href="/blog"
+          >most recent blog posts here</a
+        >.
+      </p>
 
-        <div class="card-buttons">
-          <a href="#"> Learn More </a>
-          <a href="#"> Purchase </a>
-        </div>
-      </div>
+      <h2>Professional Training</h2>
+      <p>
+        Naomi runs EMDR Basic Training courses as well as online EMDR Refresher
+        Days. Refresher Days are for those who are already trained but who need
+        to brush up their skills and knowledge.
+      </p>
+      <p>Naomi can also run  in-house training for your NHS trust or organisation.</p>
+      <p>
+        Naomi also runs occasional training for professionals on trauma and
+        neurodiversity.
+      </p>
 
-      <div class="card card-courses">
-        <h2>
-          <a href="#">Shorter title on single line</a>
-        </h2>
+      <h2>Consultations</h2>
+      <p>Consultation and supervision blurb</p>
 
-        <div class="card-image">
-          <Picture
-            src={testImage2}
-            widths={[240, 540, 720, testImage.width]}
-            sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${testImage.width}px`}
-            alt="Test image for responsive testing."
-            pictureAttributes={{ style: "background-color: red;" }}
-          />
-        </div>
-        <div class="card-details">
-          <a href="#"> RECORDED COURSE </a>
-          <span> 2 HOURS, £30 </span>
-        </div>
+      <h2>Contact Us</h2>
+      <p>Contact here.</p>
+      <p>Press enquiries here</p>
 
-        <p>
-          Some children just don't respond to conventional approaches to
-          behaviour. What do you do when the naughty step makes things worse?
-        </p>
+      <GenerateQuote
+        client:load
+        quotes={[
+          {
+            text: "This is a great webinar",
+            author: "Webinar attendee 100",
+          },
+          {
+            text: "This is a nice webinar",
+            author: "Webinar attendee 101",
+          },
+        ]}
+      />
 
-        <div class="card-meta">
-          <span class="contributors">
-            Dr Naomi Fisher with <a href="#">Eliza Fricker</a>
-          </span>
-          <span class="tags">
-            <a href="/low-demand-parenting/">Low Demand Parenting</a>, <a
-              href="demand-avoidance.html">Demand Avoidance</a
-            >
-          </span>
-        </div>
-
-        <div class="card-buttons">
-          <a href="#"> Learn More </a>
-          <a href="#"> Purchase </a>
-        </div>
+      <div class="wrapper">
+        <script
+          async
+          data-uid="a4bc346f2b"
+          src="https://motivated-designer-4254.ck.page/a4bc346f2b/index.js"
+        ></script>
       </div>
     </div>
-    <script
-      async
-      data-uid="a4bc346f2b"
-      src="https://motivated-designer-4254.ck.page/a4bc346f2b/index.js"
-    ></script>
   </div>
 </BaseLayout>

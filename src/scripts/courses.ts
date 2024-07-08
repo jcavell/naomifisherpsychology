@@ -41,7 +41,6 @@ export default async function getCourses() {
   return sortedCards;
 }
 
-
 export function parseDescriptions(descriptions: string[]): string {
   const tagged = descriptions.map((line) => {
     const tag = line.match(/(.*?):/)[1];
@@ -64,8 +63,7 @@ export function parseDescriptions(descriptions: string[]): string {
 export function getTotalRunningTimeFromDescriptions(
   descriptions: string[]
 ): string {
-
-  let runningTime = '';
+  let runningTime = "";
   descriptions.forEach((line) => {
     if (line.startsWith("p:Total running time: ")) {
       runningTime = line.substring(22);
@@ -74,15 +72,19 @@ export function getTotalRunningTimeFromDescriptions(
   return runningTime;
 }
 
-export async function getCourseFromTitle(title: string){
+export async function getCourseFromTitle(title: string) {
   const courses = await getCourses();
-  const course = courses.find(
-    (course) =>
-      lowerCaseAndRemoveWhitespace(course.data.title).startsWith(lowerCaseAndRemoveWhitespace(title))
+  const course = courses.find((course) =>
+    lowerCaseAndRemoveWhitespace(course.data.title).startsWith(
+      lowerCaseAndRemoveWhitespace(title)
+    )
   );
-   //  console.log("Trying to find course with name " + title + ". Outcome: " + JSON.stringify(course));
-
+  // console.log(
+  //   "Trying to find course with name " +
+  //     title +
+  //     " Outcome: " +
+  //     JSON.stringify(course)
+  // );
 
   return course;
-
 }
