@@ -66,6 +66,7 @@ export default async function getWebinars() {
         cost: ticket.cost?.display,
         costValue: ticket.cost?.value,
         fee: ticket.fee?.display,
+        feeValue: ticket.fee?.value,
         status: ticket.on_sale_status,
         name: ticket.display_name,
       }))
@@ -82,6 +83,9 @@ export default async function getWebinars() {
 
     const displayDay = { day: "numeric" };
     const displayMonth = { month: "short" };
+    const displayMonthLong = { month: "long" };
+    const displayYear = { year: "numeric" };
+
 
     const displayTimeStart = {
       hour: "numeric",
@@ -101,6 +105,9 @@ export default async function getWebinars() {
     webinar.endDateTime = endDateTime;
     webinar.day = startDateTime.toLocaleString(undefined, displayDay);
     webinar.month = startDateTime.toLocaleString(undefined, displayMonth);
+    webinar.monthLong = startDateTime.toLocaleString(undefined, displayMonthLong);
+    webinar.year = startDateTime.toLocaleString(undefined, displayYear);
+
     webinar.startTime = startDateTime.toLocaleString(
       undefined,
       displayTimeStart
@@ -118,6 +125,9 @@ export default async function getWebinars() {
       webinar.description.text,
       detailsText
     );
+
+    // Put correct affiliate link in url
+    webinar.url = webinar.url + "?aff=web";
 
     addOrderedTickets(webinar);
     addVideoData(webinar);

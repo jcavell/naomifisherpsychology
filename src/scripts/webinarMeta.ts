@@ -19,6 +19,7 @@ import testImage2 from "../images/courses/test2.jpeg";
 
 import aldpHolidaysImage from "../images/courses/ALDP-Holidays.png";
 import autisticChildOCDImage from "../images/courses/helping-your-autistic-child-with-ocd.png";
+import aldpScreensImage from "../images/courses/ALDP-7.png";
 
 type WebinarMeta = {
   id: string;
@@ -70,6 +71,13 @@ const webinar_Helping_Your_Autistic_Child_Develop_a_Healthy_Relationship_with_Sc
      image: autisticChildOCDImage,
    };
 
+      const aldp_screens: WebinarMeta = {
+        id: "943055974807",
+        tags: [tagALDP, tagScreens, agePrimary, ageSecondary, forParents],
+        contributers: [naomi, eliza],
+        image: aldpScreensImage,
+      };
+
 
 // !! ADD WEBINAR HERE !!
 export function getWebinarMeta(eventId: string): WebinarMeta | undefined {
@@ -79,6 +87,7 @@ export function getWebinarMeta(eventId: string): WebinarMeta | undefined {
     webinar_Helping_Your_Child_with_Learning_Disabilities_with_Anxiety,
     webinar_Helping_Your_Autistic_Child_Develop_a_Healthy_Relationship_with_Screens,
     webinar_aldp_holidays,
-    helping_your_autistic_child_with_ocd
+    helping_your_autistic_child_with_ocd,
+    aldp_screens
   ].find((webMeta) => eventId === webMeta.id);
 }

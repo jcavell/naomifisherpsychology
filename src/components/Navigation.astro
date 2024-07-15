@@ -2,35 +2,40 @@
 const { active } = Astro.props;
 ---
 
-<nav>
-  <ul>
-    <a href="/" class={active === "home" ? "active" : "inactive"}>
-      <li>Home</li>
-    </a>
-    <a href="/webinars" class={active === "webinars" ? "active" : "inactive"}>
-      <li>Webinars</li>
-    </a>
-    <a href="/courses" class={active === "courses" ? "active" : "inactive"}>
-      <li>Courses</li>
-    </a>
-    <a href="/books" class={active === "books" ? "active" : "inactive"}>
-      <li>Books</li>
-    </a>
+<div id="menu">
+  <nav>
+    <ul>
+      <a href="/" class={active === "home" ? "active" : "inactive"}>
+        <li>Home</li>
+      </a>
+      <a href="/webinars" class={active === "webinars" ? "active" : "inactive"}>
+        <li>Webinars</li>
+      </a>
+      <a href="/courses" class={active === "courses" ? "active" : "inactive"}>
+        <li>Courses</li>
+      </a>
+      <a href="/books" class={active === "books" ? "active" : "inactive"}>
+        <li>Books</li>
+      </a>
 
-    <a href="/blog" class={active === "blog" ? "active" : "inactive"}>
-      <li>Blog</li>
-    </a>
+      <a href="/blog" class={active === "blog" ? "active" : "inactive"}>
+        <li>Blog</li>
+      </a>
 
-    <a href="/emdr-training" class={active === "emdr-training" ? "active" : "inactive"}>
-      <li>EMDR Training</li>
-    </a>
+      <a
+        href="/emdr-training"
+        class={active === "emdr-training" ? "active" : "inactive"}
+      >
+        <li>EMDR Training</li>
+      </a>
 
-    <a href="/about-us" class={active === "about-us" ? "active" : "inactive"}>
-      <li>About</li>
-    </a>
+      <a href="/about-us" class={active === "about-us" ? "active" : "inactive"}>
+        <li>About</li>
+      </a>
 
-    <a href="/contact" class={active === "contact" ? "active" : "inactive"}>
-      <li>Contact</li>
-    </a>
-  </ul>
-</nav>
+      <a href="/contact" class={active === "contact" ? "active" : "inactive"}>
+        <li>Contact</li>
+      </a>
+    </ul>
+  </nav>
+</div>

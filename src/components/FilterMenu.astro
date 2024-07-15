@@ -1,0 +1,52 @@
+---
+import { coreTags, ageTags, forTags } from "../scripts/tags";
+import { makeUrl } from "../scripts/url";
+---
+
+<script src="../scripts/filterMenu.js"></script>
+
+<div class="filter-menu" id="filter-menu">
+  <div class="filter-wrapper">
+    <h3>Topics</h3>
+    <div class="filter-link filter-tag">
+      <a href="/autism/"> Autism </a>
+      <a href="/demand-avoidance/"> Demand Avoidance </a>
+      <a href="/anxiety/"> Anxiety </a>
+      <a href="/burnout/"> Burnout </a>
+      <a href="/trauma/"> Trauma </a>
+      <a href="/school/"> School </a>
+      <a href="/EHCP/"> EHCP </a>
+      <a href="/SEN/"> SEN </a>
+      <a href="/Screens/"> Screens </a>
+      <a href="/Low Demnand Parenting/"> Low Demand Parenting </a>
+      <a href="/EDMR/"> EDMR </a>
+    </div>
+    <h3>Topic Age Range</h3>
+    <div class="filter-link filter-age">
+      <a href="/pre-teen/"> Pre-Teen </a>
+      <a href="/tween/"> Tween </a>
+      <a href="/teen/"> Teen </a>
+    </div>
+    <h3>Audience</h3>
+    <div class="filter-link filter-audience">
+      <a href="/parents-and-carers/"> Parents and Carers </a>
+      <a href="/Teens/"> Teens </a>
+      <a href="/professionals/"> Professionals </a>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="tag-footer-wrapper">
+  <span></span>
+  <div class="tag-footer">
+    Topics {coreTags.map((t) => <a href={`/tags/${makeUrl(t)}`}>{t}</a>)}
+  </div>
+
+  <div class="tag-footer">
+    Ages {ageTags.map((t) => <a href={`/tags/${makeUrl(t)}`}>{t}</a>)}
+  </div>
+
+  <div class="tag-footer">
+    Audience {forTags.map((t) => <a href={`/tags/${makeUrl(t)}`}>{t}</a>)}
+  </div>
+</div> -->

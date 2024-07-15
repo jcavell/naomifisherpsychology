@@ -30,8 +30,7 @@ const includedForTags = tags.filter((t) => forTags.includes(t));
 
 {
   includedAgeTags.length > 0 && (
-    <span class="tags">
-      Ages:
+    <span class="ages">
       {includedAgeTags.map((tag: string, index: number) => (
         <>
           <a href={`/${uri}/${makeUrl(tag)}`}>{tag}</a>
@@ -44,8 +43,7 @@ const includedForTags = tags.filter((t) => forTags.includes(t));
 
 {
   includedForTags.length > 0 && (
-    <span class="tags">
-      Audience:
+    <span class="audience">
       {includedForTags.map((tag: string, index: number) => (
         <>
           <a href={`/${uri}/${makeUrl(tag)}`}>{tag}</a>

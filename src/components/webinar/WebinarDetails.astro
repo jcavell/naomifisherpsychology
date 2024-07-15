@@ -17,66 +17,176 @@ const title = webinar.name.text;
 const subtitle = webinar.description.text;
 const tickets = webinar.orderedTickets;
 const detailsText = webinar.detailsText;
+
+const checkoutURL = webinar.url;
 ---
 
-<div class="card card-webinar">
-  <!-- Tix: {JSON.stringify(tix)}<br /> -->
+<script src="../../scripts/accordion.js"></script>
+
+<div class="details details-webinars">
+  <div class="details-category">LIVE WEBINAR</div>
+
   <div class="live-date">
-    <span class="live-day"> {webinar.day} </span>
-    <span class="live-month"> {webinar.month} </span>
+    <span class="live-day">{webinar.day}</span>
+    <span class="live-month">{webinar.month}</span>
   </div>
 
-  <h2>
-    <a href="#">{title}</a>
-  </h2>
+  <h1>{title}</h1>
+  <div class="details-image">
+    <WebinarImage webinar={webinar} />
 
-  <WebinarImage webinar={webinar} />
-
-  <Vimeo embedUrl={webinar.videoData?.embed_url} />
-
-  <div class="card-details">
-    <a href="#" class="card-type-course"> LIVE WEBINAR </a>
-    <span>
-      From {tickets[0].cost} + booking fee
-    </span>
+    <!-- <img
+      srcset="imgs/example-image-620.jpg 620w, imgs/example-image-1016.jpg 1016w, imgs/example-image-2176.jpg 2176w"
+      sizes="(min-width: 1185px) 1088px, (min-width: 780px) 754px, 100vw"
+      src="imgs/example-image-620.jpg"
+      alt="an image description for the visually impaired, also helps SEO"
+      loading="lazy"
+    /> -->
   </div>
 
-  <p>
-    {subtitle}
-  </p>
+  <div class="details-body">
+    <div class="details-body-A">
+      <p set:html={detailsText} />
+      <p>
+        <h3>Recording</h3>
+        If you purchase the webinar + recording ticket, recordings are available
+        to watch for 30 days from the date of the webinar. A link to the recording
+        will usually be sent a few hours after the webinar.
+      </p>
 
-  <p set:html={detailsText} />
+      <Vimeo embedUrl={webinar.videoData?.embed_url} />
 
-  <div class="card-meta">
-    <span class="tags">
-      {
-        `${webinar.day} ${webinar.month} ${webinar.startTime} - ${webinar.endTime}`
-      }
-    </span>
+      <h3>FAQ</h3>
+      <div class="accordion-wrapper">
+        <button class="accordion"
+          >Why can't I buy tickets on my iPhone or iPad?</button
+        >
+        <div class="panel">
+          <p>
+            You cannot buy tickets with the Eventbrite iOS app. Please use a web
+            browser such as Chrome or Safari, and visit <a href={checkoutURL}
+              >Eventbrite</a
+            > to buy tickets. You may need to uninstall the Eventbrite app.
+          </p>
+        </div>
+        <button class="accordion"
+          >Eventbrite is asing me for further information</button
+        >
+        <div class="panel">
+          <p>
+            You do not need to add any further information to access the webinar
+          </p>
+        </div>
+        <button class="accordion">How do I join the live webinar?</button>
+        <div class="panel">
+          <p>
+            This webinar is hosted on Zoom. Please make sure you have Zoom
+            installed. We will email you a reminder 2 hours before the event and
+            10 minutes before, with the Zoom meeting link
+          </p>
+        </div>
+        <button class="accordion"
+          >Can I miss the webinar and watch it later?</button
+        >
+        <div class="panel">
+          <p>
+            Yes, if you choose the webinar + recording option you can watch it
+            in your own time, up to 30 days after the webinar
+          </p>
+        </div>
+        <button class="accordion"
+          >When will I be sent a link to the recording?</button
+        >
+        <div class="panel">
+          <p>We'll send a link by the morning after the webinar</p>
+        </div>
+        <button class="accordion"
+          >How long can I watch the recording for?</button
+        >
+        <div class="panel">
+          <p>You can watch the recording for 30 days after the webinar</p>
+        </div>
+        <button class="accordion"
+          >Questions about logging in, where are my tickets, refunds, or
+          duplicate card charges</button
+        >
+        <div class="panel">
+          <p>
+            Please visit the general Eventbrite FAQ about this: <a
+              href="https://www.eventbrite.co.uk/help/en-gb/contact-us/"
+              target="_blank">www.eventbrite.co.uk/help/en-gb/contact-us/</a
+            >
+          </p>
+        </div>
+      </div>
 
-    <Contributers people={meta?.contributers} />
-    <Tags tags={tags} />
+      <!-- <div class="preview-quote-wrapper">
+        <div class="preview-quote quote">
+          This was awesome. Like, life-changing and affirmative!
+          <span>Attendee of Low Demand Parenting Webinar</span>
+        </div>
+      </div>
+      <div class="preview-quote-wrapper">
+        <div class="preview-quote quote">
+          Such a relief to be at the excellent low demand parenting seminar by
+          Naomi Fisher and Eliza Fricker last night
+          <span>Attendee of Low Demand Parenting Webinar</span>
+        </div>
+      </div>
+      <div class="preview-quote-wrapper">
+        <div class="preview-quote quote">
+          Such a humble, insightful and highly informative webinar. Dr Naomi
+          Fisher and Eliza Fricker were the perfect duo of lived experience and
+          academic knowledge
+          <span>Attendee of Low Demand Parenting Webinar</span>
+        </div>
+      </div>
+      <p>
+        <em>
+          This webinar is not therapy and should not be used as a replacement
+          for therapy.
+        </em>
+      </p> -->
+    </div>
+
+    <div class="details-body-B">
+      <div class="purchase-wrapper">
+        <div class="purchase-title">
+          <div class="card-details">
+            <span class="date">
+              {webinar.day}
+              {webinar.monthLong}
+              {webinar.year}
+            </span>
+            <span class="time">
+              {`${webinar.startTime} - ${webinar.endTime}`}
+            </span>
+            <span class="globe"> Online via Zoom </span>
+          </div>
+        </div>
+
+        {
+          tickets.map((ticket) => (
+            <a href={checkoutURL} target="blank">
+              <div class="purchase">
+                <div class="price">
+                  £{(ticket.costValue + ticket.feeValue) / 100}
+                </div>
+                <div class="company eventbrite">{ticket.name}</div>
+                <div class="buy-now">
+                  <span> Buy Now </span>
+                </div>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+      <div class="card-meta details-meta">
+        <Contributers people={meta?.contributers} />
+        <Tags tags={meta?.tags} />
+      </div>
+    </div>
   </div>
-
 </div>
 
-<div>
 
-  <script is:inline src="/scripts/eb.js"></script>
-
-  <div id="example-widget-trigger"></div>
-
-  <script type="text/javascript" define:vars={{ eventId }}>
-    var exampleCallback = function () {
-      console.log("Order complete!");
-    };
-
-    window.EBWidgets.createWidget({
-      widgetType: "checkout",
-      eventId: eventId,
-      iframeContainerId: "example-widget-trigger",
-      iframeContainerHeight: 425,
-      onOrderComplete: exampleCallback,
-    });
-  </script>
-</div>

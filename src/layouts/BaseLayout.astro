@@ -8,8 +8,7 @@ import Footer from "../components/Footer.astro";
 import NaomiStyle from "../styles/naomiStyle.astro";
 
 const { active } = Astro.props;
-
-const css = NaomiStyle;
+const { pageTitle } = Astro.props;
 ---
 
 <!doctype html>
@@ -19,7 +18,7 @@ const css = NaomiStyle;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
-    <title>Naomi Fisher</title>
+    <title>Dr. Naomi Fisher</title>
     <NaomiStyle />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -30,8 +29,22 @@ const css = NaomiStyle;
   </head>
 
   <body class={"category-primary-tagged category-" + active}>
+    <button class="hamburger hamburger--squeeze" id="menu-toggle" type="button">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+
     <Header active={active} />
-    <slot />
+    <div class="page-title">
+      <a href="">
+        <h1>{pageTitle}</h1>
+      </a>
+    </div>
+
+    <div class="wrapper">
+      <slot />
+    </div>
     <Footer />
   </body>
 </html>

@@ -16,26 +16,39 @@ const subtitle = webinar.description.text;
 const tickets = webinar.orderedTickets;
 ---
 
-<div class="card card-webinar">
-  <!-- Tix: {JSON.stringify(tix)}<br /> -->
+<div class="card card-webinars">
   <div class="live-date">
-    <span class="live-day"> {webinar.day} </span>
-    <span class="live-month"> {webinar.month} </span>
+    <span class="live-day">{webinar.day}</span>
+    <span class="live-month">{webinar.month}</span>
   </div>
 
   <h2>
     <a href={`/webinars/${eventId}`}>{title}</a>
   </h2>
 
-  <WebinarImage webinar={webinar} />
+  <div class="card-image">
+    <WebinarImage webinar={webinar} />
+  </div>
 
-  <Vimeo embedUrl={webinar.videoData?.embed_url} />
+  <!-- <div class="card-image">
+    <img
+      srcset="imgs/example-image-620.jpg 620w, imgs/example-image-1016.jpg 1016w, imgs/example-image-2176.jpg 2176w"
+      sizes="(min-width: 1185px) 508px, (min-width: 780px) 728px, 100vw"
+      src="imgs/example-image-620.jpg"
+      alt="an image description for the visually impaired, also helps SEO"
+      loading="lazy"
+    />
+  </div> -->
 
   <div class="card-details">
-    <a href={`/webinars/${eventId}`} class="card-type-course"> LIVE WEBINAR </a>
-    <span>
-      From {tickets[0].cost} + booking fee
+    <a href="/webinars/"> LIVE WEBINAR </a>
+    <span class="date">
+      {`${webinar.day} ${webinar.monthLong} ${webinar.year}`}
     </span>
+    <span class="time">
+      {`${webinar.startTime} - ${webinar.endTime}`}
+    </span>
+    <span class="cost"> from {tickets[0].cost} + booking fee </span>
   </div>
 
   <p>
@@ -43,12 +56,6 @@ const tickets = webinar.orderedTickets;
   </p>
 
   <div class="card-meta">
-    <span class="tags">
-      {
-        `${webinar.day} ${webinar.month} ${webinar.startTime} - ${webinar.endTime}`
-      }
-    </span>
-
     <Contributers people={meta?.contributers} />
     <Tags tags={meta?.tags} />
   </div>

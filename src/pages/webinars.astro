@@ -1,6 +1,7 @@
 ---
 import WebinarSummary from "../components/webinar/WebinarSummary.astro";
 import WebinarLayout from "../layouts/WebinarLayout.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 import getWebinars from "../scripts/webinars.js";
 import testWebinars1 from "../test-data/eventbrite/1event.json";
 import testWebinars3 from "../test-data/eventbrite/3events.json";
@@ -16,7 +17,7 @@ const webinars = await getWebinars();
 // console.log(JSON.stringify(webinars));
 ---
 
-<WebinarLayout pageTitle={pageTitle}>
+<BaseLayout pageTitle={pageTitle}>
   Every month I run a couple of webinars for parents. These webinars are on a
   series of topics which rotate. I started these webinars because so many
   parents were getting in touch asking for consultations or therapy and it was
@@ -31,4 +32,4 @@ const webinars = await getWebinars();
 
   {webinars.map((webinar, index) => <WebinarSummary webinar={webinar} />)}
   <GenerateQuote client:load quotes={quotes} />
-</WebinarLayout>
+</BaseLayout>

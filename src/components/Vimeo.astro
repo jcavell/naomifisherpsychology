@@ -4,13 +4,16 @@ const { embedUrl } = Astro.props;
 
 {
   embedUrl && (
-    <iframe
-      src={embedUrl}
-      width="540"
-      height="300"
-      frameborder="2"
-      allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
-      title="Trailer"
-    />
+    <>
+      <h3>Video Introduction</h3>
+      <div class="video">
+        <iframe
+          src={embedUrl}
+          frameborder="0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen
+        />
+      </div>
+    </>
   )
 }
