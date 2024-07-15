@@ -1,8 +1,8 @@
 ---
 import { makeUrl } from "../../scripts/url";
-import CourseLayout from "../../layouts/CourseLayout.astro";
 import CourseDetails from "../../components/course/CourseDetails.astro";
 import getCourses from "../../scripts/courses";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
   const courses = await getCourses();
@@ -20,6 +20,6 @@ const { course } = Astro.props;
 // console.log("COURSE: " + course.data.title + " " + JSON.stringify(course.related));
 ---
 
-<CourseLayout pageTitle={course.data.title}>
+<BaseLayout pageTitle={course.data.title}>
   <CourseDetails course={course.data}/>
-</CourseLayout>
+</BaseLayout>

@@ -84,7 +84,7 @@ export const demandAvoidantAdolescent: CourseMeta = {
   title: "Understanding and Helping your Demand Avoidant Adolescent",
   tags: [tagDemandAvoidance, ageSecondary, forParents],
   contributers: [naomi],
-  runningTime: "1 hour 20 mins",
+  runningTime: "1 hour 17 mins",
   image: demandAvoidantAdolescentImage,
   videoUrl: makeVideoURL("957825416"),
 };

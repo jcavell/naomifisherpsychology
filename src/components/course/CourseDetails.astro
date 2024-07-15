@@ -31,36 +31,72 @@ const relatedCourses = (
 // console.log("RELATED COURSES: " + JSON.stringify(relatedCourses));
 ---
 
-<div class="card card-courses">
-  <h2>
-    <a href=`/courses/${makeUrl(title)}`>{title}</a>
-  </h2>
-
-  <CourseImage course={course} />
-
-  <Vimeo embedUrl={meta?.videoUrl} />
-
-  <div class="card-details">
-    <a href="#" class="card-type-course"> RECORDED COURSE </a>
-    <span> {meta?.runningTime}, {price} </span>
+<div class="details details-courses">
+  <div class="details-category">RECORDED COURSE</div>
+  <h1>{title}</h1>
+  <div class="details-image">
+    <!-- <img
+      srcset="imgs/example-image-620.jpg 620w, imgs/example-image-1016.jpg 1016w, imgs/example-image-2176.jpg 2176w"
+      sizes="(min-width: 1185px) 1088px, (min-width: 780px) 754px, 100vw"
+      src="imgs/example-image-620.jpg"
+      alt="an image description for the visually impaired, also helps SEO"
+      loading="lazy"
+    /> -->
+    <CourseImage course={course} />
   </div>
 
-  <div set:html={parseDescriptions(descriptions)} />
+  <div class="details-body">
+    <div class="details-body-A" set:html={parseDescriptions(descriptions)}>
+      <Vimeo embedUrl={meta?.videoUrl} />
 
-  <h3>Testimonials</h3>
-  {testimonials.map((testimonial) => <p>{testimonial}</p>)}
+      <!-- <div class="preview-quote-wrapper">
+        <div class="preview-quote quote">
+          I really appreciated your messages of hope- this is a journey and we
+          will come out the end
+          <span>Viewer of Naomi Fisher Course</span>
+        </div>
+      </div>
+      <div class="preview-quote-wrapper">
+        <div class="preview-quote quote">
+          It sounds a massive cliche but I felt someone finally understood what
+          our life has been like.
+          <span>Viewer of Naomi Fisher Course</span>
+        </div>
+      </div>
+      <p>
+        <em>
+          This course is not therapy and should not be used as a replacement for
+          therapy.
+        </em>
+      </p>-->
+    </div>
 
-  <div class="card-meta">
-    <Contributers people={meta?.contributers} />
-    <Tags tags={meta?.tags} />
-  </div>
-
-  <div class="card-buttons">
-    <a href={checkoutURL}> Purchase </a>
+    <div class="details-body-B">
+      <div class="purchase-wrapper">
+        <div class="purchase-title">
+          <div class="card-details">
+            <span class="duration"> {meta?.runningTime} </span>
+            <span class="globe"> Watch Online </span>
+          </div>
+        </div>
+        <a href={checkoutURL} target="blank" class="test">
+          <div class="purchase">
+            <div class="price">{price}</div>
+            <div class="company">RECORDED COURSE</div>
+            <div class="buy-now">
+              <span> Buy Now </span>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="card-meta details-meta">
+        <Contributers people={meta?.contributers} />
+        <Tags tags={meta?.tags} />
+      </div>
+    </div>
   </div>
 </div>
 
-<div>Related</div>
 
 {
   relatedCourses &&
