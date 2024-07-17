@@ -23,204 +23,276 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
   await excerpt.render();
 ---
 
-<div class="wrapper">
-  <div class="card card-books">
-    <h2>
-      {book.title}
-    </h2>
+<script src="../../scripts/accordion.js"></script>
 
-    <h3>{book.subtitle}</h3>
-
+<div class="details details-books">
+  <div class="details-category">BOOK</div>
+  <h1>
+    {book.title}
+    <span> {book.subtitle} </span>
+  </h1>
+  <div class="details-image">
+    <!-- <img
+      srcset="imgs/example-book-cover-620.jpg 620w, imgs/example-book-cover-1016.jpg 1016w, imgs/example-book-cover-2176.jpg 2176w"
+      sizes="(min-width: 1185px) 1088px, (min-width: 780px) 754px, 100vw"
+      src="imgs/example-book-cover-620.jpg"
+      alt="an image description for the visually impaired, also helps SEO"
+      loading="lazy"
+    /> -->
     <BookImage book={book} />
+  </div>
 
-    <Vimeo embedUrl={book.vimeoEmbedUrl} />
+  <div class="details-body">
+    <div class="details-body-A">
+      <BookContent />
 
-    <div class="card-details">
-      <a href="#"> BOOK </a>
+      <Vimeo embedUrl={book.vimeoEmbedUrl} />
 
-      <span>PAPERBACK</span>
-      <span>{book.pages} pages</span>
+      <h3>Further Information</h3>
+      <div class="accordion-wrapper">
+        <button class="accordion">Table of Contents</button>
+        <div class="panel">
+          <ol>
+            {book.toc.map((item) => <li>{item}</li>)}
+          </ol>
+        </div>
+        <button class="accordion">Reviews</button>
+        <div class="panel">
+          <p>(Reviews content)</p>
+        </div>
+        <button class="accordion">Gallery</button>
+        <div class="panel">
+          <p>(Extra images here?)</p>
+        </div>
 
-      {
-        book.publisherUrl && (
-          <span>
-            <a href={book.publisherUrl}>
-              {book.publisher} {book.rrp}
+        {
+          book.audiobookLength && (
+            <>
+              <button class="accordion">Audiobook Sample</button>
+              <div class="panel">
+                <audio
+                  id="audio"
+                  src={`/audio/books/${entryName}.mp3`}
+                  controls
+                />
+              </div>
+            </>
+          )
+        }
+
+        <button class="accordion">Read Excerpt</button>
+        <div class="panel">
+          <ExcerptContent />
+          {
+            book.excerptUrl && (
+              <iframe
+                id="theFrame"
+                src={book.excerptUrl}
+                style="height: 500px; width:100%;"
+                frameborder="0"
+              />
+            )
+          }
+        </div>
+
+        {
+          book.amazonSampleUrl && (
+            <>
+              <a
+                class="mock-accordion"
+                href={book.amazonSampleUrl}
+                target="_blank"
+              >
+                Read Sample on Amazon
+              </a>
+            </>
+          )
+        }
+
+        {
+          book.googleSampleUrl && (
+            <>
+              <a
+                class="mock-accordion"
+                href={book.googleSampleUrl}
+                target="_blank"
+              >
+                Read Sample on Google
+              </a>
+            </>
+          )
+        }
+      </div>
+
+      <GenerateQuote client:load quotes={quotes.data} />
+      
+      <p>
+        <em> Please note that retailer prices are subject to fluctuations. </em>
+      </p>
+    </div>
+
+    <div class="details-body-B">
+      <div class="purchase-wrapper">
+        <div class="purchase-title">
+          <div class="purchase-title-primary purchase-title-paperback">
+            PAPERBACK
+          </div>
+          <div class="purchase-title-secondary">
+            Published on 04/02/2021 by {book.publisher}, {book.pages} pages
+          </div>
+        </div>
+
+        {
+          book.psychologicalTherapiesUrl && (
+            <a
+              href={book.psychologicalTherapiesUrl}
+              target="blank"
+              class="test"
+            >
+              <div class="purchase">
+                <div class="price">{book.psychologicalTherapiesPrice}</div>
+                <div class="company">Psychological Therapy Books</div>
+              </div>
             </a>
-          </span>
-        )
-      }
+          )
+        }
 
-      {
-        book.psychologicalTherapiesUrl && (
-          <span>
-            <a href={book.psychologicalTherapiesUrl}>
-              Psychological Therapies {book.psychologicalTherapiesPrice}
+        {
+          book.amazonUrl && (
+            <a href={book.amazonUrl} target="blank" class="test">
+              <div class="purchase">
+                <div class="price">{book.amazonPrice}</div>
+                <div class="company amazon" />
+              </div>
             </a>
-          </span>
-        )
-      }
+          )
+        }
 
-      {
-        book.amazonUrl && (
-          <span>
-            <a href={book.amazonUrl}>Amazon {book.amazonPrice}</a>
-          </span>
-        )
-      }
-
-      {
-        book.blackwellUrl && (
-          <span>
-            <a href={book.blackwellUrl}>Blackwell's {book.blackwellPrice}</a>
-          </span>
-        )
-      }
-
-      {
-        book.waterstonesUrl && (
-          <span>
-            <a href={book.waterstonesUrl}>
-              Waterstones {book.waterstonesPrice}
+        {
+          book.blackwellUrl && (
+            <a href={book.blackwellUrl} target="blank" class="test">
+              <div class="purchase">
+                <div class="price">{book.blackwellPrice}</div>
+                <div class="company blackwells" />{" "}
+              </div>
             </a>
-          </span>
-        )
-      }
+          )
+        }
+
+        {
+          book.waterstonesUrl && (
+            <a href={book.waterstonesUrl} target="blank" class="test">
+              <div class="purchase">
+                <div class="price">{book.waterstonesPrice}</div>
+                <div class="company waterstones" />{" "}
+              </div>
+            </a>
+          )
+        }
+      </div>
 
       {
         (book.kindleUrl ||
           book.googleUrl ||
           book.koboUrl ||
-          book.appleBooksUrl) && <span>E-BOOK</span>
-      }
+          book.appleBooksUrl) && (
+          <>
+            <div class="purchase-wrapper">
+              <div class="purchase-title">
+                <div class="purchase-title-primary purchase-title-eBook">
+                  E-BOOK
+                </div>
+                <div class="purchase-title-secondary">
+                  Published on 04/02/2021, {book.pages} pages
+                </div>
+              </div>
 
-      {
-        book.kindleUrl && (
-          <span>
-            <a href={book.kindleUrl}>Kindle {book.kindlePrice}</a>
-          </span>
-        )
-      }
+              {book.kindleUrl && (
+                <a href={book.kindleUrl} target="blank">
+                  <div class="purchase">
+                    <div class="price">{book.kindlePrice}</div>
+                    <div class="company kindle" />
+                  </div>
+                </a>
+              )}
 
-      {
-        book.googleUrl && (
-          <span>
-            <a href={book.googleUrl}>Google Books {book.googlePrice}</a>
-          </span>
-        )
-      }
+              {book.googleUrl && (
+                <a href={book.googleUrl} target="blank">
+                  <div class="purchase">
+                    <div class="price">{book.googlePrice}</div>
+                    <div class="company google-books" />
+                  </div>
+                </a>
+              )}
 
-      {
-        book.koboUrl && (
-          <span>
-            <a href={book.koboUrl}>Kobo {book.koboPrice}</a>
-          </span>
-        )
-      }
+              {book.koboUrl && (
+                <a href={book.koboUrl} target="blank">
+                  <div class="purchase">
+                    <div class="price">{book.koboPrice}</div>
+                    <div class="company kobo" />
+                  </div>
+                </a>
+              )}
 
-      {
-        book.appleBooksUrl && (
-          <span>
-            <a href={book.appleBooksUrl}>Apple Books {book.appleBooksPrice}</a>
-          </span>
+              {book.appleBooksUrl && (
+                <a href={book.appleBooksUrl} target="blank">
+                  <div class="purchase">
+                    <div class="price">{book.appleBooksPrice}</div>
+                    <div class="company apple-books" />
+                  </div>
+                </a>
+              )}
+            </div>
+          </>
         )
       }
 
       {
         book.audiobookLength && (
-          <span>
-            <span>AUDIOBOOK</span>
-            <span>Running time: {book.audiobookLength}</span>
-            <span>Sample</span>
-            <audio id="audio" src={`/audio/books/${entryName}.mp3`} controls />
-          </span>
+          <div class="purchase-wrapper">
+            <div class="purchase-title">
+              <div class="purchase-title-primary purchase-title-audiobook">
+                AUDIOBOOK
+              </div>
+              <div class="purchase-title-secondary">
+                Running Time: {book.audiobookLength}
+              </div>
+            </div>
+
+            {book.audibleUrl && (
+              <a href={book.audibleUrl} target="blank">
+                <div class="purchase">
+                  <div class="price">{book.audiblePrice}</div>
+                  <div class="company audible" />
+                </div>
+              </a>
+            )}
+
+            {book.koboAudiobookUrl && (
+              <a href={book.koboAudiobookUrl} target="blank">
+                <div class="purchase">
+                  <div class="price">{book.koboAudiobookPrice}</div>
+                  <div class="company kobo" />
+                </div>
+              </a>
+            )}
+
+            {book.xigxagAudiobookUrl && (
+              <a href={book.xigxagAudiobookUrl} target="blank">
+                <div class="purchase">
+                  <div class="price">{book.xigxagAudiobookPrice}</div>
+                  <div class="company xigxag" />
+                </div>
+              </a>
+            )}
+          </div>
         )
       }
 
-      {
-        book.audibleUrl && (
-          <span>
-            <a href={book.audibleUrl}>Audible {book.audiblePrice}</a>
-          </span>
-        )
-      }
-
-      {
-        book.koboAudiobookUrl && (
-          <span>
-            <a href={book.koboAudiobookUrl}>Kobo {book.koboAudiobookPrice}</a>
-          </span>
-        )
-      }
-
-      {
-        book.xigxagAudiobookUrl && (
-          <span>
-            <a href={book.xigxagAudiobookUrl}>
-              Xigxag {book.xigxagAudiobookPrice}
-            </a>
-          </span>
-        )
-      }
-    </div>
-
-    <p><strong>{book.description}</strong></p>
-    <p>{book.summary}</p>
-
-    {
-      book.googleSampleUrl && (
-        <p>
-          <a href={book.googleSampleUrl}>Read sample on Google</a>
-        </p>
-      )
-    }
-
-    {
-      book.amazonSampleUrl && (
-        <p>
-          <a href={book.amazonSampleUrl}>Read sample on Amazon</a>
-        </p>
-      )
-    }
-
-    <div class="card-meta">
-      <Contributers people={book.people} />
-      <Tags tags={book.tags} />
-    </div>
-
-    <div class="card-buttons">
-      <a href={book.amazonUrl}>Paperback</a>
-      <a href={book.kindleUrl}>Kindle</a>
-      <a href={book.audibleUrl}>Audible</a>
+      <div class="card-meta details-meta">
+        <Contributers people={book.people} />
+        <Tags tags={book.tags} />
+      </div>
     </div>
   </div>
-
-  <div>
-    <h3>Details</h3>
-    <BookContent />
-  </div>
-
-  <GenerateQuote client:load quotes={quotes.data} />
-<div>
-<h3>Table of contents</h3>
-<ol>
-  {book.toc.map((item) => <li>{item}</li>)}
-</ol>
-<div>
-
-  <div>
-    <h3>Excerpt</h3>
-    <ExcerptContent />
-  </div>
-
-  {
-    book.excerptUrl && (
-      <iframe
-        id="theFrame"
-        src={book.excerptUrl}
-        style="height: 50%; width:100%;"
-        frameborder="0"
-      />
-    )
-  }
 </div>

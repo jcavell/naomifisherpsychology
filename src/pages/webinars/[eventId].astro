@@ -24,6 +24,6 @@ const { webinar } = Astro.props;
 // console.log("webinar details is: " + JSON.stringify(webinar.detailsText));
 ---
 
-<BaseLayout pageTitle={webinar.name.text}>
+<BaseLayout active = "webinars" pageTitle={webinar.name.text}>
   <WebinarDetails webinar={webinar} />
 </BaseLayout>

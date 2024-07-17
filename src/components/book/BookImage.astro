@@ -17,8 +17,6 @@ const id2Image = {
 
 const image = id2Image[book.id];
 ---
-
-<div class="card-image">
   <Picture
     src={image}
     widths={[240, 540, 720, image.width]}
@@ -26,4 +24,3 @@ const image = id2Image[book.id];
     alt={`${book.title}`}
     pictureAttributes={{}}
   />
-</div>

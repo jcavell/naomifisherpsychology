@@ -15,36 +15,41 @@ const tags = post.tags;
 const body = paragraphs.reduce((acc: string, curr: string) => acc + " " + curr);
 ---
 
-<div class="card card-courses">
+<div class="details details-blog">
   <div class="live-date">
-    <span class="live-day"> {pubDate.day} </span>
-    <span class="live-month"> {pubDate.month} </span>
+    <span class="live-day">{pubDate.day}</span>
+    <span class="live-month">{pubDate.month}</span>
   </div>
-  <h2>
-    <a href=`/blog/${makeUrl(title)}`>{title}</a>
-  </h2>
 
-  <p>Substack:<a href={url}>{title}</a></p>
+  <div class="details-category">BLOG</div>
+  <h1>
+    {title}
+    <span> {subtitle} </span>
+  </h1>
+  <!-- <div class="details-image">
+    <img
+      srcset="imgs/example-image-620.jpg 620w, imgs/example-image-1016.jpg 1016w, imgs/example-image-2176.jpg 2176w"
+      sizes="(min-width: 1185px) 1088px, (min-width: 780px) 754px, 100vw"
+      src="imgs/example-image-620.jpg"
+      alt="an image description for the visually impaired, also helps SEO"
+      loading="lazy"
+    />
+  </div> -->
 
   {post.images[0] && <img loading="lazy" src={post.images[0]} alt={title} />}
 
-  <div class="card-details">
-    <a href="#" class="card-type-course"> BLOG </a>
-    <span> {subtitle} </span>
+  <div class="details-body">
+    <div class="details-body-A">
+      <p>
+        {body}
+      </p>
+    </div>
+
+    <div class="details-body-B"></div>
   </div>
 
-  <p>
-    {body}
-  </p>
-
-  <div class="card-meta">
+  <div class="card-meta details-meta">
     <span class="contributors"> Dr Naomi Fisher </span>
-
     <Tags tags={tags} />
-  </div>
-
-  <div class="card-buttons">
-    <a href="#"> Learn More </a>
-    <a href="#"> Purchase </a>
   </div>
 </div>

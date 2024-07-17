@@ -13,20 +13,32 @@ const tags = post.tags;
 const body = paragraphs.reduce((acc: string, curr: string) => acc + " " + curr);
 ---
 
-<div class="card card-courses">
+<div class="card card-blog">
   <div class="live-date">
-    <span class="live-day"> {pubDate.day} </span>
-    <span class="live-month"> {pubDate.month} </span>
+    <span class="live-day">{pubDate.day}</span>
+    <span class="live-month">{pubDate.month}</span>
   </div>
+
   <h2>
     <a href=`/blog/${makeUrl(title)}`>{title}</a>
+    {subtitle && <span>{subtitle}</span>}
   </h2>
 
-  {post.images[0] && <img loading="lazy" src={post.images[0]} alt={title} />}
+  {
+    post.images[0] && (
+      <div class="card-image">
+        <img loading="lazy" src={post.images[0]} alt={title} />
+      </div>
+    )
+  }
 
   <div class="card-details">
-    <a href="#" class="card-type-course"> BLOG </a>
-    <span> {subtitle} </span>
+    <a href="/blog/"> BLOG POST </a>
+    <span class="date">
+      {pubDate.day}
+      {pubDate.month}
+      {pubDate.year}
+    </span>
   </div>
 
   <p>
@@ -35,12 +47,10 @@ const body = paragraphs.reduce((acc: string, curr: string) => acc + " " + curr);
 
   <div class="card-meta">
     <span class="contributors"> Dr Naomi Fisher </span>
-
     <Tags tags={tags} uri="blog/tags" />
   </div>
 
   <div class="card-buttons">
-    <a href="#"> Learn More </a>
-    <a href="#"> Purchase </a>
+    <a href=`/blog/${makeUrl(title)}`> Read More</a>
   </div>
 </div>

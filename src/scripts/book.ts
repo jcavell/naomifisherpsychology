@@ -5,3 +5,17 @@ export const yyyymmddToddmmyyyy = function (input: string): string {
   }
   return input.replace(pattern, "$3/$2/$1");
 };
+
+
+export function getFormats(book): string[]{
+  let formats = ["Paperback"];
+
+  if (book.kindleUrl) {
+    formats.push("E-Book");
+  }
+
+  if (book.audiobookLength) {
+    formats.push("Audiobook");
+  }
+  return formats;
+}

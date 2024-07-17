@@ -20,6 +20,6 @@ const { course } = Astro.props;
 // console.log("COURSE: " + course.data.title + " " + JSON.stringify(course.related));
 ---
 
-<BaseLayout pageTitle={course.data.title}>
+<BaseLayout active = "courses" pageTitle={course.data.title}>
   <CourseDetails course={course.data}/>
 </BaseLayout>

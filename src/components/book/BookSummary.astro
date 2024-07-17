@@ -1,11 +1,10 @@
 ---
 const { book } = Astro.props;
 
-import { makeUrl } from "../../scripts/url";
 import BookImage from "./BookImage.astro";
 import Contributers from "../Contributers.astro";
 import Tags from "../Tags.astro";
-import Books from "../../pages/books.astro";
+import { getFormats } from "../../scripts/book";
 
 const format = function (input: string): string {
   var pattern = /(\d{4})\-(\d{2})\-(\d{2})/;
@@ -19,31 +18,45 @@ const format = function (input: string): string {
 <div class="card card-books">
   <h2>
     <a href={book.uri}>{book.title}</a>
+    <span>{book.subtitle} </span>
   </h2>
-  <h3>{book.subtitle}</h3>
 
-  <BookImage book={book} />
+  <!-- <div class="card-image">
+    <img
+      srcset="imgs/example-book-cover-620.jpg 620w, imgs/example-book-cover-1016.jpg 1016w, imgs/example-book-cover-2176.jpg 2176w"
+      sizes="(min-width: 1185px) 508px, (min-width: 780px) 728px, 100vw"
+      src="imgs/example-book-cover-620.jpg"
+      alt="an image description for the visually impaired, also helps SEO"
+      loading="lazy"
+    />
+  </div> -->
 
-  <div class="card-details">
-    <a href="#"> BOOK </a>
-    <span>
-      Published on {format(book.pubDate)}
-    </span>
-    <span>{book.pages} pages</span>
-  </div>
+  <div class="card card-books">
+    <BookImage book={book} />
+    </div>
 
-  <p><strong>{book.description}</strong></p>
-  <p>{book.summary}</p>
+    <div class="card-details">
+      <a href={book.uri}> BOOK </a>
+      <span class="bookmark"> {getFormats(book).join(", ")} </span>
+      <span class="date"> Published on {format(book.pubDate)} </span>
+    </div>
 
-  <div class="card-meta">
-    <Contributers people={book.people} />
-    <Tags tags={book.tags} />
-  </div>
+    {book.description && <p>{book.description}</p>}
 
-  <div class="card-buttons">
-    <a href="#"> Learn More </a>
-    <a href={book.amazonUrl}>Paperback</a>
-    <a href={book.kindleUrl}>Kindle</a>
-    <a href={book.audibleUrl}>Audible</a>
+    <p>
+      {book.summary}
+    </p>
+
+    <div class="card-meta">
+      <Contributers people={book.people} />
+      <Tags tags={book.tags} />
+    </div>
+
+    <div class="card-buttons">
+      <a href={book.uri}> Learn More </a>
+      <a href={book.amazonUrl} class="amazon-link" target="_blank">
+        Purchase
+      </a>
+    </div>
   </div>
 </div>

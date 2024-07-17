@@ -12,7 +12,6 @@ const { webinar } = Astro.props;
 const eventId = webinar.id;
 const meta = getWebinarMeta(eventId);
 
-const tags = webinar.tags;
 const title = webinar.name.text;
 const subtitle = webinar.description.text;
 const tickets = webinar.orderedTickets;
