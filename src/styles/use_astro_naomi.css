@@ -829,6 +829,7 @@ footer {
   width: 100%;
   display: block;
   box-sizing: border-box;
+  height: auto;
 }
 
 .details-body {
