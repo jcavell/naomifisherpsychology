@@ -55,6 +55,7 @@ const booksCollection = defineCollection({
     tags: z.array(z.string()),
     toc: z.array(z.string()),
     audiobookLength: z.string(),
+    hasAudiobookSample: z.boolean(),
     dimensions: z.string(),
     blackwellUrl: z.string(),
     blackwellPrice: z.string(),

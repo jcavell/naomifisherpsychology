@@ -1,7 +1,7 @@
 export const type101 = "101";
 export const type102 = "102";
 
-export const agePrimary = "Pre-teen";
+export const agePrimary = "Preteen";
 export const ageTween = "Tween";
 export const ageSecondary = "Teen";
 

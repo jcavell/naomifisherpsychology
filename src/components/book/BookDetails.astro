@@ -13,6 +13,8 @@ const bookAgain = await getEntry("books", entryName);
 const excerpt = await getEntry("book-excerpts", entryName);
 
 const quotes = await getEntry("book-quotes", entryName);
+const reviews = await getEntry("book-reviews", entryName);
+//console.log("REVIEWS: " + JSON.stringify(reviews));
 
 // console.log("QUOTES: " + JSON.stringify(quotes));
 
@@ -58,7 +60,7 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
         </div>
         <button class="accordion">Reviews</button>
         <div class="panel">
-          <p>(Reviews content)</p>
+          {reviews.data.map((review) => <p>{review.text} {review.author}</p>)}
         </div>
         <button class="accordion">Gallery</button>
         <div class="panel">
@@ -66,7 +68,7 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
         </div>
 
         {
-          book.audiobookLength && (
+          book.hasAudiobookSample && (
             <>
               <button class="accordion">Audiobook Sample</button>
               <div class="panel">
@@ -80,20 +82,24 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
           )
         }
 
-        <button class="accordion">Read Excerpt</button>
-        <div class="panel">
-          <ExcerptContent />
-          {
-            book.excerptUrl && (
-              <iframe
-                id="theFrame"
-                src={book.excerptUrl}
-                style="height: 500px; width:100%;"
-                frameborder="0"
-              />
-            )
-          }
-        </div>
+        {
+          (excerpt?.body || book.excerptUrl) && (
+            <>
+              <button class="accordion">Read Excerpt</button>
+              <div class="panel">
+                <ExcerptContent />
+                {book.excerptUrl && (
+                  <iframe
+                    id="theFrame"
+                    src={book.excerptUrl}
+                    style="height: 500px; width:100%;"
+                    frameborder="0"
+                  />
+                )}
+              </div>
+            </>
+          )
+        }
 
         {
           book.amazonSampleUrl && (
@@ -125,7 +131,7 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
       </div>
 
       <GenerateQuote client:load quotes={quotes.data} />
-      
+
       <p>
         <em> Please note that retailer prices are subject to fluctuations. </em>
       </p>

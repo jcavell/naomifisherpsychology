@@ -16,6 +16,7 @@ people: ["Dr Naomi Fisher", "Eliza Fricker"]
 tags: ["Low Demand Parenting", "Parents and carers"]
 toc: []
 audiobookLength: "10 hours"
+hasAudiobookSample: false
 dimensions: "15.3 x 2.2 x 23.4 cm"
 publisherUrl: "https://www.littlebrown.co.uk/titles/naomi-fisher/when-the-naughty-step-makes-things-worse/9781472148674/"
 amazonUrl: "https://www.amazon.co.uk/When-Naughty-Makes-Things-Worse/dp/1472148681"

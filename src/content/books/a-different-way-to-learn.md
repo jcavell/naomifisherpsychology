@@ -28,6 +28,7 @@ toc: [
 'Non-Academic Skills',
 'The Wider World: Communities and Groups']
 audiobookLength: ""
+hasAudiobookSample: false
 dimensions: ""
 publisherUrl: "https://uk.jkp.com/products/a-different-way-to-learn"
 amazonUrl: "https://www.amazon.co.uk/Different-Way-Learn-Neurodiversity-Self-Directed/dp/1839973633/"

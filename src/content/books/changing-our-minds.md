@@ -30,6 +30,7 @@ toc: [
 "Self-Directed Learing in Action - Personal Stories"
 ]
 audiobookLength: "10 hours 22 mins"
+hasAudiobookSample: true
 dimensions: ""
 publisherUrl: "https://www.hachette.co.uk/titles/naomi-fisher/changing-our-minds/9781472145505/"
 amazonUrl: "https://www.amazon.co.uk/Changing-Our-Minds-children-learning/dp/1472145518"

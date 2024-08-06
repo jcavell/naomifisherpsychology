@@ -27,6 +27,7 @@ toc: [
     "Biological Advances and Dimensionality"
     ]
 audiobookLength: ""
+hasAudiobookSample: false
 publisherUrl: "https://global.oup.com/academic/product/psychology-of-mental-health-9780198862987"
 amazonUrl: "https://www.amazon.co.uk/Psychology-Mental-Health-Naomi-Fisher/dp/0198862989/"
 amazonPrice: "£18.75"
