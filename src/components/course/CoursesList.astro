@@ -1,0 +1,26 @@
+---
+import GenerateQuote from "../Quoter";
+import CourseSummary from "./CourseSummary.astro";
+import { getEntry } from "astro:content";
+
+const { categoryId, categoryName, courses } = Astro.props;
+
+const quotes = (await getEntry("course-quotes", "general-course-quotes")).data;
+---
+
+<h2 class="section-title" id={categoryId}>
+  <span class="courses-section-title">{categoryName}</span>
+</h2>
+
+{
+  courses.map((course, index) =>
+    index != 0 && (index + 1) % 4 == 0 ? (
+      <>
+        <CourseSummary course={course.data} />
+        <GenerateQuote client:load quotes={quotes} />
+      </>
+    ) : (
+      <CourseSummary course={course.data} />
+    )
+  )
+}

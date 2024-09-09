@@ -9,6 +9,8 @@ import {
   tagAutism,
   tagScreens,
   tagALDP,
+  tagEHCP,
+  tagSchool,
 } from "./tags";
 
 import { naomi, abi, eliza } from "./people";
@@ -25,6 +27,7 @@ type WebinarMeta = {
   id: string;
   tags: string[];
   contributers: string[];
+  subsubtitle?: string,
   image?: ImageMetadata;
 };
 
@@ -53,31 +56,56 @@ const webinar_Helping_Your_Child_with_Learning_Disabilities_with_Anxiety: Webina
 const webinar_Helping_Your_Autistic_Child_Develop_a_Healthy_Relationship_with_Screens: WebinarMeta =
   {
     id: "922751934877",
-    tags: [tagScreens, tagAutism,   agePrimary, ageTween, forParents],
+    tags: [tagScreens, tagAutism, agePrimary, ageTween, forParents],
     contributers: [naomi],
   };
 
-  const webinar_aldp_holidays: WebinarMeta = {
-    id: "933220877767",
-    tags: [tagALDP, agePrimary, ageSecondary, forParents],
-    contributers: [naomi, eliza],
-    image: aldpHolidaysImage
-  };
+const webinar_aldp_holidays: WebinarMeta = {
+  id: "933220877767",
+  tags: [tagALDP, agePrimary, ageSecondary, forParents],
+  contributers: [naomi, eliza],
+  image: aldpHolidaysImage,
+};
 
-   const helping_your_autistic_child_with_ocd: WebinarMeta = {
-     id: "934324007257",
-     tags: [tagAutism, tagAnxiety, agePrimary, ageTween, forParents],
-     contributers: [naomi],
-     image: autisticChildOCDImage,
-   };
+const helping_your_autistic_child_with_ocd: WebinarMeta = {
+  id: "934324007257",
+  tags: [tagAutism, tagAnxiety, agePrimary, ageTween, forParents],
+  contributers: [naomi],
+  image: autisticChildOCDImage,
+};
 
-      const aldp_screens: WebinarMeta = {
-        id: "943055974807",
-        tags: [tagALDP, tagScreens, agePrimary, ageSecondary, forParents],
-        contributers: [naomi, eliza],
-        image: aldpScreensImage,
-      };
+const aldp_screens: WebinarMeta = {
+  id: "943055974807",
+  tags: [tagALDP, tagScreens, agePrimary, ageSecondary, forParents],
+  contributers: [naomi, eliza],
+  image: aldpScreensImage,
+};
 
+const helping_your_autistic_child_with_anxiety: WebinarMeta = {
+  id: "1005061825977",
+  tags: [tagAutism, tagAnxiety, agePrimary],
+  contributers: [naomi],
+};
+
+const helping_your_autistic_teen_with_anxiety: WebinarMeta = {
+  id: "1005075506897",
+  tags: [tagAutism, tagAnxiety, ageTween, ageSecondary],
+  contributers: [naomi],
+};
+
+const navigating_the_ehcp_jungle: WebinarMeta = {
+  id: "1004481700807",
+  tags: [tagEHCP, tagSchool, agePrimary, ageTween, ageSecondary],
+  contributers: [abi],
+};
+
+const is_it_all_my_fault: WebinarMeta = {
+  id: "1008493379847",
+  tags: [tagALDP, agePrimary, ageTween, ageSecondary],
+  subsubtitle:
+    "In an exclusive special offer, we are offering a free ticket for this webinar to anyone who preorders our book before Oct 2nd. Click Learn More for details.",
+  contributers: [naomi, eliza],
+};
 
 // !! ADD WEBINAR HERE !!
 export function getWebinarMeta(eventId: string): WebinarMeta | undefined {
@@ -88,6 +116,10 @@ export function getWebinarMeta(eventId: string): WebinarMeta | undefined {
     webinar_Helping_Your_Autistic_Child_Develop_a_Healthy_Relationship_with_Screens,
     webinar_aldp_holidays,
     helping_your_autistic_child_with_ocd,
-    aldp_screens
+    aldp_screens,
+    helping_your_autistic_child_with_anxiety,
+    helping_your_autistic_teen_with_anxiety,
+    navigating_the_ehcp_jungle,
+    is_it_all_my_fault,
   ].find((webMeta) => eventId === webMeta.id);
 }

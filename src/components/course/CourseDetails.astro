@@ -4,7 +4,6 @@ import Contributers from "../Contributers.astro";
 import CourseSummary from "./CourseSummary.astro";
 import Tags from "../Tags.astro";
 import { getCourseFromTitle, parseDescriptions } from "../../scripts/courses";
-import { getCourseMetaFromTitle } from "../../scripts/courseMeta";
 import CourseImage from "./CourseImage.astro";
 import Vimeo from "../Vimeo.astro";
 
@@ -16,9 +15,7 @@ const title = course.title;
 const descriptions = course.checkout?.descriptions;
 const testimonials = course.checkout?.testimonials;
 
-const meta = getCourseMetaFromTitle(title);
-
-const relatedTitles = meta?.relatedTitles || [];
+const relatedTitles = course.meta?.relatedTitles || [];
 
 // Get related courses
 // Filter out possible undefined courses after promises are resolved.
@@ -47,7 +44,7 @@ const relatedCourses = (
 
   <div class="details-body">
     <div class="details-body-A" set:html={parseDescriptions(descriptions)}>
-      <Vimeo embedUrl={meta?.videoUrl} />
+      <Vimeo embedUrl={course.meta?.videoUrl} />
 
       <!-- <div class="preview-quote-wrapper">
         <div class="preview-quote quote">
@@ -75,7 +72,7 @@ const relatedCourses = (
       <div class="purchase-wrapper">
         <div class="purchase-title">
           <div class="card-details">
-            <span class="duration"> {meta?.runningTime} </span>
+            <span class="duration"> {course.meta?.runningTime} </span>
             <span class="globe"> Watch Online </span>
           </div>
         </div>
@@ -90,8 +87,8 @@ const relatedCourses = (
         </a>
       </div>
       <div class="card-meta details-meta">
-        <Contributers people={meta?.contributers} />
-        <Tags tags={meta?.tags} />
+        <Contributers people={course.meta?.contributers} />
+        <Tags tags={course.meta?.tags} />
       </div>
     </div>
   </div>

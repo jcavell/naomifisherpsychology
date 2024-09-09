@@ -12,9 +12,9 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@astrojs/preact": "^3.3.0",
-    "@astrojs/rss": "^4.0.6",
-    "astro": "^4.9.2",
+    "@astrojs/preact": "^3.5.3",
+    "@astrojs/rss": "^4.0.7",
+    "astro": "^4.15.4",
     "preact": "^10.22.0",
     "sharp": "^0.33.4"
   },

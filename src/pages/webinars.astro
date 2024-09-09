@@ -16,7 +16,7 @@ const webinars = await getWebinars();
 // console.log(JSON.stringify(webinars));
 ---
 
-<BaseLayout active = "webinars" pageTitle={pageTitle}>
+<BaseLayout active="webinars" pageTitle={pageTitle}>
   Every month I run a couple of webinars for parents. These webinars are on a
   series of topics which rotate. I started these webinars because so many
   parents were getting in touch asking for consultations or therapy and it was
@@ -28,6 +28,47 @@ const webinars = await getWebinars();
   combines theory with practical ideas and examples. I am always writing new
   webinars and if you have something which you would particularly like to see
   covered, then please do get in touch.
+
+  <div class="page-intro-wrapper">
+    <div class="page-intro-image">
+      <img
+        srcset="imgs/page-image-620.jpg 620w, imgs/page-image-1080.jpg 1080w"
+        sizes="(min-width: 1200px) 520px, (min-width: 780px) 780px, 100vw"
+        src="imgs/page-image-620.jpg.jpg"
+        alt="an image description for the visually impaired, also helps SEO"
+      />
+    </div>
+    <div class="page-intro-text">
+      <p>
+        Every month I run a couple of webinars for parents. These webinars are
+        on a series of topics which rotate. I started these webinars because so
+        many parents were getting in touch asking for consultations or therapy
+        and it was impossible for me to see them all. When I did see parents, I
+        often ended up saying similar things and I thought that if I could put
+        this into a webinar, then I could reach many more parents, whilst also
+        being much more affordable and accessible.
+      </p>
+      <p>
+        My aim is to communicate useful psychological concepts and ideas in a
+        way which empowers parents to help their children. Each webinar combines
+        theory with practical ideas and examples. I am always writing new
+        webinars and if you have something which you would particularly like to
+        see covered, then please do get in touch.
+      </p>
+      <p>
+        Webinars are broadcast live on a <a
+          href="https://zoom.us/download"
+          target="_blank"><em>Zoom</em></a
+        >, so can be viewed on computers, tablets and phones with the free <a
+          href="https://zoom.us/download"
+          target="_blank"><em>Zoom</em></a
+        > app installed. When buying a ticket you'll be given the option to additionally
+        purchase access to a recorded copy of the webinar for a limited time.
+      </p>
+    </div>
+  </div>
+
+  <h2 class="section-title">Upcoming Webinars</h2>
 
   {webinars.map((webinar, index) => <WebinarSummary webinar={webinar} />)}
   <GenerateQuote client:load quotes={quotes} />

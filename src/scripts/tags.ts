@@ -1,9 +1,9 @@
 export const type101 = "101";
 export const type102 = "102";
 
-export const agePrimary = "Preteen";
-export const ageTween = "Tween";
-export const ageSecondary = "Teen";
+export const agePrimary = "5-12 yrs";
+export const ageTween = "8-12 yrs";
+export const ageSecondary = "13-18 yrs";
 
 export const forParents = "Parents and carers";
 export const forTeens = "Teens";
@@ -75,6 +75,7 @@ export const forTags = [forParents, forTeens, forProfessionals];
 
 export const allTags = [Array.from(umbrellaTags.keys()), coreTags, ageTags, forTags].flat();
 
+// Not used by courses any more
 export const getTags = function (
   title: string = "",
   subtitle: string = "",

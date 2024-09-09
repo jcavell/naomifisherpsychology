@@ -1,41 +1,34 @@
 import { getCollection } from "astro:content";
-import { getPeople } from "./people";
-import { getTags } from "./tags";
-import { lowerCaseAndRemoveWhitespace } from "./courseMeta";
+import {
+  lowerCaseAndRemoveWhitespace,
+  getCourseMetaFromTitle,
+  allCourses
+} from "./courseMeta";
 
 export default async function getCourses() {
   const courseCards = await getCollection("courseCards");
   const courseCheckouts = await getCollection("courseCheckouts");
 
-  // Add the checkout, people and tags to each card
+  // Return sorted courses with checkout and meta data added
   courseCards.forEach((card) => {
+
+    // Add checkout details
     const checkout = courseCheckouts.find(
       (co) => co.data.url === card.data.checkoutUrl
     );
-
     card.data.checkout = checkout?.data;
 
+    // Add meta data
     const title = card.data.title;
-    const summary = card.data.description;
-    const descriptions = card.data.checkout?.descriptions;
-
-    const descriptionText = descriptions?.reduce(
-      (acc: string, curr: string) => acc + " " + curr
-    );
-
-    const titleSummaryDescription =
-      title + " " + summary + " " + descriptionText;
-
-    card.data.people = getPeople(titleSummaryDescription);
-    card.data.tags = getTags(title, titleSummaryDescription);
+    card.data.meta = getCourseMetaFromTitle(title);
   });
 
-  const sortedCards = courseCards.sort((a, b) =>
-    a.data.categoryUrl === b.data.categoryUrl
-      ? a.data.categoryPosition - b.data.categoryPosition
-      : a.data.categoryUrl === "https://courses.naomifisher.co.uk"
-      ? -1
-      : 1
+  // Sort based on CourseMeta.allCourses position
+
+
+  const sortedCards = courseCards.sort(
+    (a, b) =>
+      allCourses.indexOf(a.data.meta) - allCourses.indexOf(b.data.meta)
   );
 
   return sortedCards;
@@ -87,4 +80,19 @@ export async function getCourseFromTitle(title: string) {
   // );
 
   return course;
+}
+
+export async function getCoursesWithAnyTag(tags: string[]) {
+  const courses = await getCourses();
+
+  const tagged = courses.filter((c) => {
+    return tags.some((t) => c.data.meta?.tags.includes(t));
+  });
+
+  return tagged;
+}
+
+export async function getLatestCourses(numCourses: number = 2) {
+  const courses = await getCourses();
+  return courses.slice(0, numCourses);
 }

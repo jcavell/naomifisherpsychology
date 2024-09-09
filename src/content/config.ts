@@ -100,6 +100,9 @@ const courseCardsCollection = defineCollection({
     checkout: courseCheckoutsSchema.optional(),
     people: z.string().array().optional(),
     tags: z.string().array().optional(),
+    meta: z.object({
+      tags: z.string().array()
+    }).optional()
   }),
 });
 

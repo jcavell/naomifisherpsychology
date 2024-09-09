@@ -67,6 +67,10 @@ export default async function getWebinars() {
         costValue: ticket.cost?.value,
         fee: ticket.fee?.display,
         feeValue: ticket.fee?.value,
+        costPlusFee: (
+          (ticket.cost?.value + ticket.fee?.value) /
+          100
+        ).toLocaleString(undefined, { style: "currency", currency: "GBP" }),
         status: ticket.on_sale_status,
         name: ticket.display_name,
       }))
@@ -86,7 +90,6 @@ export default async function getWebinars() {
     const displayMonthLong = { month: "long" };
     const displayYear = { year: "numeric" };
 
-
     const displayTimeStart = {
       hour: "numeric",
       minute: "numeric",
@@ -105,7 +108,10 @@ export default async function getWebinars() {
     webinar.endDateTime = endDateTime;
     webinar.day = startDateTime.toLocaleString(undefined, displayDay);
     webinar.month = startDateTime.toLocaleString(undefined, displayMonth);
-    webinar.monthLong = startDateTime.toLocaleString(undefined, displayMonthLong);
+    webinar.monthLong = startDateTime.toLocaleString(
+      undefined,
+      displayMonthLong
+    );
     webinar.year = startDateTime.toLocaleString(undefined, displayYear);
 
     webinar.startTime = startDateTime.toLocaleString(
@@ -126,7 +132,7 @@ export default async function getWebinars() {
       detailsText
     );
 
-    // Put correct affiliate link in url
+    // Put web affiliate link in url
     webinar.url = webinar.url + "?aff=web";
 
     addOrderedTickets(webinar);
@@ -134,15 +140,15 @@ export default async function getWebinars() {
     addDates(webinar);
   });
 
-  // Only return webinars that haven't ended
-  return webinars.filter(w => {
-      const end = w.end.utc;
-      const endDateTime = new Date(Date.parse(end));
-      // const now = new Date("2024-07-09T14:29:00");
-      const now = new Date();
-      
-      // console.log(`** End: ${endDateTime} Now: ${now}`);
-  
-      return endDateTime > now;
-  })
+  // Only return webinars that (a) have tickets and (b) haven't ended
+  return webinars.filter((w) => {
+    const end = w.end.utc;
+    const endDateTime = new Date(Date.parse(end));
+    // const now = new Date("2024-07-09T14:29:00");
+    const now = new Date();
+
+    // console.log(`** End: ${endDateTime} Now: ${now}`);
+
+    return w.orderedTickets.length > 0 && endDateTime > now;
+  });
 }

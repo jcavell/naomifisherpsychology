@@ -14,6 +14,10 @@ const checkoutURL = webinar.url;
 const title = webinar.name.text;
 const subtitle = webinar.description.text;
 const tickets = webinar.orderedTickets;
+
+const ticketText = tickets[0].cost
+  ? `from ${tickets[0].cost} + booking fee`
+  : "Free";
 ---
 
 <div class="card card-webinars">
@@ -48,12 +52,16 @@ const tickets = webinar.orderedTickets;
     <span class="time">
       {`${webinar.startTime} - ${webinar.endTime}`}
     </span>
-    <span class="cost"> from {tickets[0].cost} + booking fee </span>
+    <span class="cost">
+      from {tickets[0].costPlusFee}
+    </span>
   </div>
 
   <p>
     {subtitle}
   </p>
+
+  {meta?.subsubtitle && <p>{meta.subsubtitle}</p>}
 
   <div class="card-meta">
     <Contributers people={meta?.contributers} />

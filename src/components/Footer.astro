@@ -1,26 +1,15 @@
 ---
-import Picture from "astro/components/Picture.astro";
-import circleLogo from "../images/footer/circle-logo.png";
-import whiteLogo from "../images/footer/dr-naomi-fisher-logo-white.svg";
 ---
 
 <footer id="tag-menu">
-  
   <div class="footer-primary">
-    <Picture
-      src={circleLogo}
-      widths={[240, 540, 720, circleLogo.width]}
-      sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${circleLogo.width}px`}
-      alt="Children looking through grass into the sun"
-      pictureAttributes={{}}
+    <img
+      src="/images/footer/circle-logo.png"
+      alt="Children looking through the grass"
     />
-
-    <Picture
-      src={whiteLogo}
-      widths={[240, 540, 720, whiteLogo.width]}
-      sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${whiteLogo.width}px`}
-      alt="Dr Naomi Fisher"
-      pictureAttributes={{}}
+    <img
+      src="/images/footer/dr-naomi-fisher-logo-white.svg"
+      alt="Dr. Naomi Fisher white logo"
     />
 
     <ul class="footer-menu footer-menu-A">
@@ -55,14 +44,19 @@ import whiteLogo from "../images/footer/dr-naomi-fisher-logo-white.svg";
         <a href="/contact" target="_blank">Contact</a>
       </li>
     </ul>
+
+    <button
+      class="filter-menu-button"
+      id="footer-filter-menu-toggle"
+      type="button"
+    >
+      Search
+    </button>
+
     <div class="smallprint">
       <p>
         &copy; {new Date().getFullYear()} Naomi Fisher Psychology Ltd, all rights
         reserved.
-      </p>
-      <p>
-        Naomi Fisher Psychology Ltd is a company registered in England and Wales
-        with company number 13351132.
       </p>
       <p>
         (Further small print - terms links etc)
