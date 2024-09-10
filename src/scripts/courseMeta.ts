@@ -475,6 +475,9 @@ export const allCourses = [
   findingYourWayThroughTheEHCPJungle,
   thrivingAfterSchoolBreakdown,
   helpingYourAutisticChildWithStartingSchool,
+  ALDP1To10,
+  ALDP1To5,
+  ALDP6To10,
   ALDP1,
   ALDP2,
   ALDP3,
@@ -485,16 +488,13 @@ export const allCourses = [
   ALDP8,
   ALDP9,
   ALDP10,
-  ALDP1To10,
-  ALDP1To5,
-  ALDP6To10,
+  EMDR1To6,
   EMDR1,
   EMDR2,
   EMDR3,
   EMDR4,
   EMDR5,
-  EMDR6,
-  EMDR1To6,
+  EMDR6
 ];
 
 // !! ADD RELATED COURSES HERE !!
