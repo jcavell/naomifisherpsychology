@@ -6,16 +6,20 @@ import Contributers from "../Contributers.astro";
 import Tags from "../Tags.astro";
 import { getFormats } from "../../scripts/book";
 
-const format = function (input: string): string {
-  var pattern = /(\d{4})\-(\d{2})\-(\d{2})/;
-  if (!input || !input.match(pattern)) {
-    return "";
-  }
-  return input.replace(pattern, "$3/$2/$1");
-};
+const pubDate = new Date(book.pubDate);
+const pubDateString = pubDate.toLocaleDateString();
 ---
 
 <div class="card card-books">
+  {
+    pubDate > new Date() && (
+      <div class="sale-badge preorder-badge">
+        <span class="sale-amount">PRE-</span>
+        <span class="sale-text">order</span>
+      </div>
+    )
+  }
+
   <h2>
     <a href={book.uri}>{book.title}</a>
     <span>{book.subtitle} </span>
@@ -31,32 +35,29 @@ const format = function (input: string): string {
     />
   </div> -->
 
-  <div class="card card-books">
+  <div class="card-image">
     <BookImage book={book} />
-    </div>
+  </div>
 
-    <div class="card-details">
-      <a href={book.uri}> BOOK </a>
-      <span class="bookmark"> {getFormats(book).join(", ")} </span>
-      <span class="date"> Published on {format(book.pubDate)} </span>
-    </div>
+  <div class="card-details">
+    <a href={book.uri}> BOOK </a>
+    <span class="bookmark"> {getFormats(book).join(", ")} </span>
+    <span class="date"> Published on {pubDateString} </span>
+  </div>
 
-    {book.description && <p>{book.description}</p>}
+  {book.description && <p>{book.description}</p>}
 
-    <p>
-      {book.summary}
-    </p>
+  <p>
+    {book.summary}
+  </p>
 
-    <div class="card-meta">
-      <Contributers people={book.people} />
-      <Tags tags={book.tags} />
-    </div>
+  <div class="card-meta">
+    <Contributers people={book.people} />
+    <Tags tags={book.tags} />
+  </div>
 
-    <div class="card-buttons">
-      <a href={book.uri}> Learn More </a>
-      <a href={book.amazonUrl} class="amazon-link" target="_blank">
-        Purchase
-      </a>
-    </div>
+  <div class="card-buttons">
+    <a href={book.uri}> Learn More </a>
+    <a href={book.amazonUrl} class="amazon-link" target="_blank"> Purchase </a>
   </div>
 </div>

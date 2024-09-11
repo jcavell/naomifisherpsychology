@@ -8,16 +8,34 @@ import { makeUrl } from "../scripts/url";
 <div class="filter-menu" id="filter-menu">
   <div class="filter-wrapper">
     <h3>Topics</h3>
-    <div class="filter-link filter-tag">
-      {coreTags.map((t) => <a href={`/tags/${makeUrl(t)}`}>{t}</a>)}
+    <div class="filter-link">
+      {
+        coreTags.map((t) => (
+          <a class="filter-tags" href={`/tags/${makeUrl(t)}`}>
+            {t}
+          </a>
+        ))
+      }
     </div>
     <h3>Topic Age Range</h3>
-    <div class="filter-link filter-age">
-      {ageTags.map((t) => <a href={`/tags/${makeUrl(t)}`}>{t}</a>)}
+    <div class="filter-link">
+      {
+        ageTags.map((t) => (
+          <a class="filter-age" href={`/tags/${makeUrl(t)}`}>
+            {t}
+          </a>
+        ))
+      }
     </div>
     <h3>Audience</h3>
-    <div class="filter-link filter-audience">
-      {forTags.map((t) => <a href={`/tags/${makeUrl(t)}`}>{t}</a>)}
+    <div class="filter-link">
+      {
+        forTags.map((t) => (
+          <a class="filter-audience" href={`/tags/${makeUrl(t)}`}>
+            {t}
+          </a>
+        ))
+      }
     </div>
   </div>
 </div>

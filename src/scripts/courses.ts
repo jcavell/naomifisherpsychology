@@ -2,7 +2,8 @@ import { getCollection } from "astro:content";
 import {
   lowerCaseAndRemoveWhitespace,
   getCourseMetaFromTitle,
-  allCourses
+  allCourses,
+  featuredCourses,
 } from "./courseMeta";
 
 export default async function getCourses() {
@@ -11,7 +12,6 @@ export default async function getCourses() {
 
   // Return sorted courses with checkout and meta data added
   courseCards.forEach((card) => {
-
     // Add checkout details
     const checkout = courseCheckouts.find(
       (co) => co.data.url === card.data.checkoutUrl
@@ -25,10 +25,8 @@ export default async function getCourses() {
 
   // Sort based on CourseMeta.allCourses position
 
-
   const sortedCards = courseCards.sort(
-    (a, b) =>
-      allCourses.indexOf(a.data.meta) - allCourses.indexOf(b.data.meta)
+    (a, b) => allCourses.indexOf(a.data.meta) - allCourses.indexOf(b.data.meta)
   );
 
   return sortedCards;
@@ -82,7 +80,7 @@ export async function getCourseFromTitle(title: string) {
   return course;
 }
 
-export async function getCoursesWithAnyTag(tags: string[]) {
+export async function getCoursesWithTag(tags: string[]) {
   const courses = await getCourses();
 
   const tagged = courses.filter((c) => {
@@ -92,7 +90,30 @@ export async function getCoursesWithAnyTag(tags: string[]) {
   return tagged;
 }
 
+export async function getCoursesWithTagWithoutOtherTags(
+  withTags: string[],
+  withoutTags: string[] = []
+) {
+  const courses = await getCourses();
+
+  const tagged = courses.filter((c) => {
+    return (
+      withTags.some((t) => c.data.meta?.tags.includes(t)) &&
+      !withoutTags.some((t) => c.data.meta?.tags.includes(t))
+    );
+  });
+  return tagged;
+}
+
 export async function getLatestCourses(numCourses: number = 2) {
   const courses = await getCourses();
   return courses.slice(0, numCourses);
+}
+
+export async function getFeaturedCourses(start: number, numCourses: number) {
+  const courses = await getCourses();
+
+  return featuredCourses
+    .slice(start, numCourses)
+    .map((m) => courses.find((c) => c.data.meta === m));
 }

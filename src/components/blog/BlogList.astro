@@ -1,19 +1,13 @@
 ---
-import BlogSummary from "../blog/BlogSummary.astro";
-import BlogLayout from "../../layouts/BlogLayout.astro";
+import BlogSummary from "./BlogSummary.astro";
 import { getOrderedPosts } from "../../scripts/blog";
 
-const { isArchive } = Astro.props;
-
 const posts = await getOrderedPosts();
-
-const sliceStart = isArchive ? 8 : 0;
-const sliceEnd = isArchive ? posts.length : 8;
+const { start = 0, length = 8 } = Astro.props;
 ---
 
-<BlogLayout pageTitle="Blog">
   {
-    posts.slice(sliceStart, sliceEnd).map((post, index) =>
+    posts.slice(start, length).map((post, index) =>
       index != 0 && (index + 1) % 4 == 0 ? (
         <>
           <BlogSummary post={post.data} />
@@ -31,4 +25,3 @@ const sliceEnd = isArchive ? posts.length : 8;
       )
     )
   }
-</BlogLayout>

@@ -1,5 +1,8 @@
 ---
-import { getCoursesWithAnyTag, getLatestCourses } from "../scripts/courses";
+import {
+  getCoursesWithTagWithoutOtherTags,
+  getLatestCourses,
+} from "../scripts/courses";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import CoursesList from "../components/course/CoursesList.astro";
 
@@ -20,26 +23,28 @@ import {
 
 const latestCourses = await getLatestCourses();
 
-const autismCourses = await getCoursesWithAnyTag([
-  tagAutism,
-  tagNeurodiversity,
+const autismCourses = await getCoursesWithTagWithoutOtherTags([tagAutism,tagNeurodiversity]);
+
+const demandAvoidanceCourses = await getCoursesWithTagWithoutOtherTags([tagDemandAvoidance]);
+
+const anxietyCourses = await getCoursesWithTagWithoutOtherTags([
+  tagAnxiety,
+  tagTrauma,
 ]);
 
-const demandAvoidanceCourses = await getCoursesWithAnyTag([tagDemandAvoidance]);
+const burnoutCourses = await getCoursesWithTagWithoutOtherTags([tagBurnout]);
 
-const anxietyCourses = await getCoursesWithAnyTag([tagAnxiety, tagTrauma]);
+const schoolCourses = await getCoursesWithTagWithoutOtherTags([tagSchool],[tagEHCP, tagALDP]);
 
-const burnoutCourses = await getCoursesWithAnyTag([tagBurnout]);
+const ehcpCourses = await getCoursesWithTagWithoutOtherTags([tagEHCP]);
 
-const schoolCourses = await getCoursesWithAnyTag([tagSchool]);
+const lowDemandParentingCourses = await getCoursesWithTagWithoutOtherTags([
+  tagALDP,
+]);
 
-const ehcpCourses = await getCoursesWithAnyTag([tagEHCP]);
+const forTeensCourses = await getCoursesWithTagWithoutOtherTags([forTeens]);
 
-const lowDemandParentingCourses = await getCoursesWithAnyTag([tagALDP]);
-
-const forTeensCourses = await getCoursesWithAnyTag([forTeens]);
-
-const forProfessionalsCourses = await getCoursesWithAnyTag([
+const forProfessionalsCourses = await getCoursesWithTagWithoutOtherTags([
   forProfessionals,
   tagEMDR,
 ]);

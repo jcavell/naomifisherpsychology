@@ -1,4 +1,8 @@
 ---
-import BlogAndArchive from "../components/blog/BlogAndArchive.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import BlogList from "../components/blog/BlogList.astro";
 ---
-<BlogAndArchive/>
+
+<BaseLayout pageTitle="Blog">
+  <BlogList />
+</BaseLayout>

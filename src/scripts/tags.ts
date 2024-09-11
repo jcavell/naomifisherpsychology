@@ -1,11 +1,10 @@
 export const type101 = "101";
 export const type102 = "102";
 
-export const agePrimary = "5-12 yrs";
-export const ageTween = "8-12 yrs";
-export const ageSecondary = "13-18 yrs";
+export const age5To12 = "5-12 yrs";
+export const ageTeen = "13-18 yrs";
 
-export const forParents = "Parents and carers";
+export const forParents = "Parents";
 export const forTeens = "Teens";
 export const forProfessionals = "Professionals";
 
@@ -29,7 +28,7 @@ export const tagADHD = "ADHD";
 export const umbrellaTags = new Map<string, string[]>([
   [tagNeurodiversity, [tagAutism, tagSEN, tagADHD]],
   [tagAutism, [tagNeurodiversity]],
-  [tagSEN, [tagEHCP]]
+  [tagSEN, [tagEHCP]],
 ]);
 
 const tag2regex: Readonly<Record<string, RegExp>> = {
@@ -69,11 +68,16 @@ export const coreTags = [
   tagEMDR,
 ];
 
-export const ageTags = [agePrimary, ageTween, ageSecondary];
+export const ageTags = [age5To12, ageTeen];
 
 export const forTags = [forParents, forTeens, forProfessionals];
 
-export const allTags = [Array.from(umbrellaTags.keys()), coreTags, ageTags, forTags].flat();
+export const allTags = [
+  Array.from(umbrellaTags.keys()),
+  coreTags,
+  ageTags,
+  forTags,
+].flat();
 
 // Not used by courses any more
 export const getTags = function (

@@ -1,13 +1,6 @@
-export const yyyymmddToddmmyyyy = function (input: string): string {
-  var pattern = /(\d{4})\-(\d{2})\-(\d{2})/;
-  if (!input || !input.match(pattern)) {
-    return "";
-  }
-  return input.replace(pattern, "$3/$2/$1");
-};
+import { getCollection } from "astro:content";
 
-
-export function getFormats(book): string[]{
+export function getFormats(book): string[] {
   let formats = ["Paperback"];
 
   if (book.kindleUrl) {
@@ -18,4 +11,10 @@ export function getFormats(book): string[]{
     formats.push("Audiobook");
   }
   return formats;
+}
+
+export async function getFeaturedBooks() {
+  const featuredIds = [4, 2];
+  const books = await getCollection("books");
+  return featuredIds.map((id) => books.find((b) => b.data.id === id));
 }

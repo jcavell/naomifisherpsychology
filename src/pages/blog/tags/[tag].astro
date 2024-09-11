@@ -1,6 +1,6 @@
 ---
 import { makeUrl } from "../../../scripts/url";
-import BlogLayout from "../../../layouts/BlogLayout.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { getOrderedPosts } from "../../../scripts/blog";
 import { allTags } from "../../../scripts/tags";
 import BlogSummary from "../../../components/blog/BlogSummary.astro";
@@ -19,6 +19,6 @@ export async function getStaticPaths() {
 const { posts, tagName } = Astro.props;
 ---
 
-<BlogLayout pageTitle={`Blog posts tagged with ${tagName}`}>
+<BaseLayout pageTitle={`Blog posts tagged with ${tagName}`}>
   {posts.map((post) => <BlogSummary post={post.data} />)}
-</BlogLayout>
+</BaseLayout>
