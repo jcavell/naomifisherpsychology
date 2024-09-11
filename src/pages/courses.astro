@@ -23,9 +23,14 @@ import {
 
 const latestCourses = await getLatestCourses();
 
-const autismCourses = await getCoursesWithTagWithoutOtherTags([tagAutism,tagNeurodiversity]);
+const autismCourses = await getCoursesWithTagWithoutOtherTags([
+  tagAutism,
+  tagNeurodiversity,
+]);
 
-const demandAvoidanceCourses = await getCoursesWithTagWithoutOtherTags([tagDemandAvoidance]);
+const demandAvoidanceCourses = await getCoursesWithTagWithoutOtherTags([
+  tagDemandAvoidance,
+]);
 
 const anxietyCourses = await getCoursesWithTagWithoutOtherTags([
   tagAnxiety,
@@ -34,7 +39,10 @@ const anxietyCourses = await getCoursesWithTagWithoutOtherTags([
 
 const burnoutCourses = await getCoursesWithTagWithoutOtherTags([tagBurnout]);
 
-const schoolCourses = await getCoursesWithTagWithoutOtherTags([tagSchool],[tagEHCP, tagALDP]);
+const schoolCourses = await getCoursesWithTagWithoutOtherTags(
+  [tagSchool],
+  [tagEHCP, tagALDP]
+);
 
 const ehcpCourses = await getCoursesWithTagWithoutOtherTags([tagEHCP]);
 
@@ -62,34 +70,25 @@ const forProfessionalsCourses = await getCoursesWithTagWithoutOtherTags([
     </div>
     <div class="page-intro-text">
       <p>
-        We have a growing library of mini-courses. Most are for parents, but
-        some are for teenagers or professionals to watch.
+        Our pre-recorded courses cover topics such as
+        helping your child with anxiety, demand avoidance, burnout and problems
+        at school.
+      </p>
+      <p>
+         Most are for parents to watch, but some are for teenagers or professionals to watch.
       </p>
 
       <p>
-        They are pre-recorded and divided into small, manageable modules. You
-        can watch them in your own time, on whatever device you prefer. You can
-        watch the modules as many times as you like.
-      </p>
-
-      <p>They are available for for 12 months after purchase.</p>
-
-      <p>
-        Our courses combine psychological theory with practical ideas from
-        clinical practice. They are quite information-dense and you might need
-        to watch some of the modules several times. They will help you to
-        understand what is going on for your child (or you yourself) and get
-        some ideas as to how to help.
+        They combine psychological theory with practical ideas from clinical
+        practice. They are quite information-dense and you might need to watch
+        some of the modules several times. They will help you to understand what
+        is going on for your child (or you yourself) and get some ideas as to
+        how to help.
       </p>
 
       <p>
-        Some courses are aimed at specific children or ages, whilst others are
-        for everyone.
-      </p>
-
-      <p>
-        Please get in touch if you have ideas for new things you would like us
-        to cover.
+        They are divided into small, manageable modules. You
+        can watch them in your own time, on whatever device you prefer, as many times as you like within 12 months of purchase.
       </p>
     </div>
   </div>

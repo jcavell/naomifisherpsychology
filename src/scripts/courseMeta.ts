@@ -66,8 +66,6 @@ import EMDR5Image from "../images/courses/EMDR-5.png";
 import EMDR6Image from "../images/courses/EMDR-6.png";
 import EMDR1To6Image from "../images/courses/EMDR-1-6.png";
 
-import { z } from "zod";
-
 const makeVideoURL = (id: string) =>
   new URL("https://player.vimeo.com/video/" + id);
 
