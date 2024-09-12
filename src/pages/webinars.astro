@@ -6,11 +6,11 @@ import testWebinars1 from "../test-data/eventbrite/1event.json";
 import testWebinars3 from "../test-data/eventbrite/3events.json";
 import GenerateQuote from "../components/Quoter";
 import { getEntry } from "astro:content";
+
 const quotes = (await getEntry("webinar-quotes", "general-webinar-quotes"))
   .data;
 
 const pageTitle = "Webinars";
-
 const webinars = await getWebinars();
 
 // console.log(JSON.stringify(webinars));
@@ -30,14 +30,14 @@ const webinars = await getWebinars();
       <p>
         We regularly run live webinars on Zoom for parents. They are recorded
         and available for 30 days if you choose the recorded ticket.
-      </p>  
+      </p>
       <p>
         We started these webinars because so many parents were getting in touch
-        with Naomi asking for consultations or therapy and it was impossible for her to see
-        them all. When she did see parents, she often ended up saying similar things
-        and she thought that if we could put this into a webinar, then we could
-        reach many more parents, whilst also being much more affordable and
-        accessible.
+        with Naomi asking for consultations or therapy and it was impossible for
+        her to see them all. When she did see parents, she often ended up saying
+        similar things and she thought that if we could put this into a webinar,
+        then we could reach many more parents, whilst also being much more
+        affordable and accessible.
       </p>
       <p>
         Our aim is to communicate useful psychological concepts and ideas in a

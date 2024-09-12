@@ -1,0 +1,253 @@
+{
+  "name": {
+    "text": "Helping Your Autistic Teen With Anxiety",
+    "html": "Helping Your Autistic Teen With Anxiety"
+  },
+  "description": {
+    "text": "Why are so many autistic teenagers anxious - and what can parents do to help? Gain understanding, insight and practical tips.",
+    "html": "Why are so many autistic teenagers anxious - and what can parents do to help? Gain understanding, insight and practical tips."
+  },
+  "url": "https://www.eventbrite.co.uk/e/helping-your-autistic-teen-with-anxiety-tickets-1005075506897",
+  "start": {
+    "timezone": "Europe/London",
+    "local": "2024-09-23T12:00:00",
+    "utc": "2024-09-23T11:00:00Z"
+  },
+  "end": {
+    "timezone": "Europe/London",
+    "local": "2024-09-23T13:30:00",
+    "utc": "2024-09-23T12:30:00Z"
+  },
+  "organization_id": "495447088469",
+  "created": "2024-08-30T10:23:39Z",
+  "changed": "2024-09-11T09:00:51Z",
+  "published": "2024-09-08T11:00:08Z",
+  "capacity": 16777215,
+  "capacity_is_custom": true,
+  "status": "live",
+  "currency": "GBP",
+  "listed": true,
+  "shareable": true,
+  "invite_only": false,
+  "online_event": true,
+  "show_remaining": false,
+  "tx_time_limit": 1200,
+  "hide_start_date": false,
+  "hide_end_date": false,
+  "locale": "en_GB",
+  "is_locked": false,
+  "privacy_setting": "unlocked",
+  "is_series": false,
+  "is_series_parent": false,
+  "inventory_type": "limited",
+  "is_reserved_seating": false,
+  "show_pick_a_seat": false,
+  "show_seatmap_thumbnail": false,
+  "show_colors_in_seatmap_thumbnail": false,
+  "source": "coyote",
+  "is_free": false,
+  "version": null,
+  "summary": "Why are so many autistic teenagers anxious - and what can parents do to help? Gain understanding, insight and practical tips.",
+  "facebook_event_id": null,
+  "logo_id": "843771239",
+  "organizer_id": "32877900485",
+  "venue_id": null,
+  "category_id": "115",
+  "subcategory_id": "15003",
+  "format_id": "2",
+  "id": "1005075506897",
+  "resource_uri": "https://www.eventbriteapi.com/v3/events/1005075506897/",
+  "is_externally_ticketed": false,
+  "category": {
+    "resource_uri": "https://www.eventbriteapi.com/v3/categories/115/",
+    "id": "115",
+    "name": "Family & Education",
+    "name_localized": "Family & Education",
+    "short_name": "Family & Education",
+    "short_name_localized": "Family & Education"
+  },
+  "subcategory": {
+    "resource_uri": "https://www.eventbriteapi.com/v3/subcategories/15003/",
+    "id": "15003",
+    "name": "Parenting",
+    "name_localized": "Parenting"
+  },
+  "logo": {
+    "crop_mask": {
+      "top_left": {
+        "x": 0,
+        "y": 81
+      },
+      "width": 5956,
+      "height": 2978
+    },
+    "original": {
+      "url": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F843771239%2F137448283838%2F1%2Foriginal.20240906-171105?auto=format%2Ccompress&q=75&sharp=10&s=f8cd0f280ec79268f1ffd9390296ebde",
+      "width": 5956,
+      "height": 3971
+    },
+    "id": "843771239",
+    "url": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F843771239%2F137448283838%2F1%2Foriginal.20240906-171105?h=200&w=450&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C81%2C5956%2C2978&s=caecf33b3e411ef4588eda26f2ff45be",
+    "aspect_ratio": "2",
+    "edge_color": "#7f8c98",
+    "edge_color_set": true
+  },
+  "ticket_classes": [
+    {
+      "actual_cost": null,
+      "actual_fee": {
+        "display": "£1.96",
+        "currency": "GBP",
+        "value": 196,
+        "major_value": "1.96"
+      },
+      "cost": {
+        "display": "£15.00",
+        "currency": "GBP",
+        "value": 1500,
+        "major_value": "15.00"
+      },
+      "fee": {
+        "display": "£1.96",
+        "currency": "GBP",
+        "value": 196,
+        "major_value": "1.96"
+      },
+      "tax": {
+        "display": "£0.00",
+        "currency": "GBP",
+        "value": 0,
+        "major_value": "0.00"
+      },
+      "resource_uri": "https://www.eventbriteapi.com/v3/events/1005075506897/ticket_classes/1719674959/",
+      "display_name": "Live webinar + recording (available for 30 days)",
+      "name": "Live webinar + recording (available for 30 days)",
+      "description": null,
+      "sorting": 1,
+      "donation": false,
+      "free": false,
+      "minimum_quantity": 1,
+      "maximum_quantity": 1,
+      "maximum_quantity_per_order": 1,
+      "on_sale_status": "AVAILABLE",
+      "has_pdf_ticket": false,
+      "order_confirmation_message": null,
+      "delivery_methods": [
+        "electronic"
+      ],
+      "category": "admission",
+      "sales_channels": [
+        "online",
+        "atd"
+      ],
+      "secondary_assignment_enabled": false,
+      "event_id": "1005075506897",
+      "image_id": null,
+      "id": "1719674959",
+      "capacity": 1100,
+      "quantity_total": 1100,
+      "quantity_sold": 15,
+      "sales_start": "2023-04-20T17:30:00Z",
+      "sales_end": "2024-09-23T12:30:00Z",
+      "sales_end_relative": null,
+      "hidden": false,
+      "hidden_currently": false,
+      "include_fee": false,
+      "split_fee": false,
+      "hide_description": true,
+      "hide_sale_dates": false,
+      "ticket_parent_id": null,
+      "auto_hide": false,
+      "payment_constraints": []
+    },
+    {
+      "actual_cost": null,
+      "actual_fee": {
+        "display": "£1.55",
+        "currency": "GBP",
+        "value": 155,
+        "major_value": "1.55"
+      },
+      "cost": {
+        "display": "£10.00",
+        "currency": "GBP",
+        "value": 1000,
+        "major_value": "10.00"
+      },
+      "fee": {
+        "display": "£1.55",
+        "currency": "GBP",
+        "value": 155,
+        "major_value": "1.55"
+      },
+      "tax": {
+        "display": "£0.00",
+        "currency": "GBP",
+        "value": 0,
+        "major_value": "0.00"
+      },
+      "resource_uri": "https://www.eventbriteapi.com/v3/events/1005075506897/ticket_classes/1719674949/",
+      "display_name": "Live webinar",
+      "name": "Live webinar",
+      "description": null,
+      "sorting": 2,
+      "donation": false,
+      "free": false,
+      "minimum_quantity": 1,
+      "maximum_quantity": 10,
+      "maximum_quantity_per_order": 10,
+      "on_sale_status": "AVAILABLE",
+      "has_pdf_ticket": false,
+      "order_confirmation_message": null,
+      "delivery_methods": [
+        "electronic"
+      ],
+      "category": "admission",
+      "sales_channels": [
+        "online",
+        "atd"
+      ],
+      "secondary_assignment_enabled": false,
+      "event_id": "1005075506897",
+      "image_id": null,
+      "id": "1719674949",
+      "capacity": 500,
+      "quantity_total": 500,
+      "quantity_sold": 4,
+      "sales_start": "2024-08-29T05:30:00Z",
+      "sales_end": "2024-09-23T11:00:00Z",
+      "sales_end_relative": null,
+      "hidden": false,
+      "hidden_currently": false,
+      "include_fee": false,
+      "split_fee": false,
+      "hide_description": true,
+      "hide_sale_dates": false,
+      "ticket_parent_id": null,
+      "auto_hide": false,
+      "payment_constraints": []
+    }
+  ],
+  "ticket_availability": {
+    "has_available_tickets": true,
+    "minimum_ticket_price": {
+      "currency": "GBP",
+      "major_value": "11.55",
+      "value": 1155,
+      "display": "11.55 GBP"
+    },
+    "maximum_ticket_price": {
+      "currency": "GBP",
+      "major_value": "16.96",
+      "value": 1696,
+      "display": "16.96 GBP"
+    },
+    "is_sold_out": false,
+    "start_sales_date": {
+      "timezone": "Europe/London",
+      "local": "2023-04-20T18:30:00",
+      "utc": "2023-04-20T17:30:00Z"
+    },
+    "waitlist_available": false
+  }
+}

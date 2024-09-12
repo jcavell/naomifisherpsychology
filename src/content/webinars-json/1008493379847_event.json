@@ -1,0 +1,186 @@
+{
+  "name": {
+    "text": "Is it all my fault?",
+    "html": "Is it all my fault?"
+  },
+  "description": {
+    "text": "Spoiler: the answer is no. Some children need a different approach to parenting and it starts right here.",
+    "html": "Spoiler: the answer is no. Some children need a different approach to parenting and it starts right here."
+  },
+  "url": "https://www.eventbrite.co.uk/e/is-it-all-my-fault-tickets-1008493379847",
+  "start": {
+    "timezone": "Europe/London",
+    "local": "2024-10-09T19:30:00",
+    "utc": "2024-10-09T18:30:00Z"
+  },
+  "end": {
+    "timezone": "Europe/London",
+    "local": "2024-10-09T21:00:00",
+    "utc": "2024-10-09T20:00:00Z"
+  },
+  "organization_id": "495447088469",
+  "created": "2024-09-04T15:52:14Z",
+  "changed": "2024-09-11T09:13:25Z",
+  "published": "2024-09-04T16:03:36Z",
+  "capacity": 1100,
+  "capacity_is_custom": false,
+  "status": "live",
+  "currency": "GBP",
+  "listed": true,
+  "shareable": true,
+  "invite_only": false,
+  "online_event": true,
+  "show_remaining": false,
+  "tx_time_limit": 1200,
+  "hide_start_date": false,
+  "hide_end_date": false,
+  "locale": "en_US",
+  "is_locked": false,
+  "privacy_setting": "unlocked",
+  "is_series": false,
+  "is_series_parent": false,
+  "inventory_type": "limited",
+  "is_reserved_seating": false,
+  "show_pick_a_seat": false,
+  "show_seatmap_thumbnail": false,
+  "show_colors_in_seatmap_thumbnail": false,
+  "source": "coyote",
+  "is_free": false,
+  "version": null,
+  "summary": "Spoiler: the answer is no. Some children need a different approach to parenting and it starts right here.",
+  "facebook_event_id": "759876589514827",
+  "logo_id": "841489079",
+  "organizer_id": "32877900485",
+  "venue_id": null,
+  "category_id": "115",
+  "subcategory_id": "15003",
+  "format_id": "2",
+  "id": "1008493379847",
+  "resource_uri": "https://www.eventbriteapi.com/v3/events/1008493379847/",
+  "is_externally_ticketed": false,
+  "category": {
+    "resource_uri": "https://www.eventbriteapi.com/v3/categories/115/",
+    "id": "115",
+    "name": "Family & Education",
+    "name_localized": "Family & Education",
+    "short_name": "Family & Education",
+    "short_name_localized": "Family & Education"
+  },
+  "subcategory": {
+    "resource_uri": "https://www.eventbriteapi.com/v3/subcategories/15003/",
+    "id": "15003",
+    "name": "Parenting",
+    "name_localized": "Parenting"
+  },
+  "logo": {
+    "crop_mask": {
+      "top_left": {
+        "x": 0,
+        "y": 0
+      },
+      "width": 2160,
+      "height": 1080
+    },
+    "original": {
+      "url": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F841489079%2F137448283838%2F1%2Foriginal.20240904-153252?auto=format%2Ccompress&q=75&sharp=10&s=f73f4778c46105eace4e1561451d2982",
+      "width": 2160,
+      "height": 1080
+    },
+    "id": "841489079",
+    "url": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F841489079%2F137448283838%2F1%2Foriginal.20240904-153252?h=200&w=450&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C2160%2C1080&s=186493ea0ea9c6bc36a359ebccb83e7f",
+    "aspect_ratio": "2",
+    "edge_color": "#ffffff",
+    "edge_color_set": true
+  },
+  "ticket_classes": [
+    {
+      "actual_cost": null,
+      "actual_fee": {
+        "display": "£1.96",
+        "currency": "GBP",
+        "value": 196,
+        "major_value": "1.96"
+      },
+      "cost": {
+        "display": "£15.00",
+        "currency": "GBP",
+        "value": 1500,
+        "major_value": "15.00"
+      },
+      "fee": {
+        "display": "£1.96",
+        "currency": "GBP",
+        "value": 196,
+        "major_value": "1.96"
+      },
+      "tax": {
+        "display": "£0.00",
+        "currency": "GBP",
+        "value": 0,
+        "major_value": "0.00"
+      },
+      "resource_uri": "https://www.eventbriteapi.com/v3/events/1008493379847/ticket_classes/1724452759/",
+      "display_name": "Live Webinar + Recording (available for 30 days)",
+      "name": "Live Webinar + Recording (available for 30 days)",
+      "description": null,
+      "sorting": 1,
+      "donation": false,
+      "free": false,
+      "minimum_quantity": 1,
+      "maximum_quantity": 1,
+      "maximum_quantity_per_order": 1,
+      "on_sale_status": "AVAILABLE",
+      "has_pdf_ticket": false,
+      "order_confirmation_message": null,
+      "delivery_methods": [
+        "electronic"
+      ],
+      "category": "admission",
+      "sales_channels": [
+        "online",
+        "atd"
+      ],
+      "secondary_assignment_enabled": false,
+      "event_id": "1008493379847",
+      "image_id": null,
+      "id": "1724452759",
+      "capacity": 1100,
+      "quantity_total": 1100,
+      "quantity_sold": 66,
+      "sales_start": "2024-09-03T23:00:00Z",
+      "sales_end": "2024-10-09T18:30:00Z",
+      "sales_end_relative": null,
+      "hidden": false,
+      "hidden_currently": false,
+      "include_fee": false,
+      "split_fee": false,
+      "hide_description": true,
+      "hide_sale_dates": false,
+      "ticket_parent_id": null,
+      "auto_hide": false,
+      "payment_constraints": []
+    }
+  ],
+  "ticket_availability": {
+    "has_available_tickets": true,
+    "minimum_ticket_price": {
+      "currency": "GBP",
+      "major_value": "16.96",
+      "value": 1696,
+      "display": "16.96 GBP"
+    },
+    "maximum_ticket_price": {
+      "currency": "GBP",
+      "major_value": "16.96",
+      "value": 1696,
+      "display": "16.96 GBP"
+    },
+    "is_sold_out": false,
+    "start_sales_date": {
+      "timezone": "Europe/London",
+      "local": "2024-09-04T00:00:00",
+      "utc": "2024-09-03T23:00:00Z"
+    },
+    "waitlist_available": false
+  }
+}

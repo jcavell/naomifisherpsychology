@@ -46,13 +46,7 @@ const checkoutURL = webinar.url;
   <div class="details-body">
     <div class="details-body-A">
       <p set:html={detailsText} />
-      <p>
-        <h3>Recording</h3>
-        If you purchase the webinar + recording ticket, recordings are available
-        to watch for 30 days from the date of the webinar. A link to the recording
-        will usually be sent a few hours after the webinar.
-      </p>
-
+    
       <Vimeo embedUrl={webinar.videoData?.embed_url} />
 
       <h3>FAQ</h3>
