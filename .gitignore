@@ -1,6 +1,9 @@
 # build output
 dist/
 
+# webinar json
+webinars-json/*.json
+
 # dependencies
 node_modules/
 

@@ -6,6 +6,7 @@ import testWebinars1 from "../test-data/eventbrite/1event.json";
 import testWebinars3 from "../test-data/eventbrite/3events.json";
 
 const EB_BEARER = import.meta.env.EB_BEARER;
+const isDev = import.meta.env.DEV;
 
 const getDetailsResponses = (webinars) => {
   const responses = webinars.map((webinar) => {
@@ -107,24 +108,28 @@ export default async function getWebinars() {
 
   const webinars = eventsJson.events;
 
-  webinars.forEach((webinar) => {
-    fs.writeFileSync(
-      "dist/webinars/" + webinar.id + "_event.json",
-      JSON.stringify(webinar, null, 2)
-    );
-  });
+  if (isDev) {
+    webinars.forEach((webinar) => {
+      fs.writeFileSync(
+        'webinars-json/' + webinar.id + "_event.json",
+        JSON.stringify(webinar, null, 2)
+      );
+    });
+  }
 
   const detailsResponses = await getDetailsResponses(webinars);
   const detailsJsons = await Promise.all(
     detailsResponses.map((wd) => wd.json())
   );
 
-  detailsJsons.forEach((detail, index) => {
-    fs.writeFileSync(
-      "dist/webinars/" + webinars[index].id + "_detail.json",
-      JSON.stringify(detail, null, 2)
-    );
-  });
+  if (isDev) {
+    detailsJsons.forEach((detail, index) => {
+      fs.writeFileSync(
+        "webinars-json/" + webinars[index].id + "_detail.json",
+        JSON.stringify(detail, null, 2)
+      );
+    });
+  }
 
   webinars.map((webinar, index) => {
     const detailsText = detailsJsons[index].modules[0].data.body.text;
