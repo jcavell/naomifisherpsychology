@@ -40,6 +40,15 @@ function addVideoData(webinar) {
   }
 }
 
+function addAgenda(webinar) {
+  const agendaWidgets = webinar.widgets.filter((w) => w.type === "agenda");
+
+  console.log("Agenda Widgets" + JSON.stringify(agendaWidgets));
+  if (agendaWidgets.length > 0) {
+    webinar.agenda = agendaWidgets[0].data.tabs[0].slots.map((slot) => slot.title);
+  }
+}
+
 function addOrderedTickets(webinar) {
   webinar.orderedTickets = webinar.ticket_classes
     .map((ticket) => ({
@@ -52,7 +61,9 @@ function addOrderedTickets(webinar) {
         100
       ).toLocaleString(undefined, { style: "currency", currency: "GBP" }),
       status: ticket.on_sale_status,
-      name: ticket.display_name,
+      name: ticket.display_name.toUpperCase().includes("RECORDING")
+        ? "Live webinar + recording"
+        : ticket.display_name,
     }))
     .filter((w) => w.cost)
     .sort((a, b) => a.costValue - b.costValue);
@@ -111,7 +122,7 @@ export default async function getWebinars() {
   if (isDev) {
     webinars.forEach((webinar) => {
       fs.writeFileSync(
-        'webinars-json/' + webinar.id + "_event.json",
+        "webinars-json/" + webinar.id + "_event.json",
         JSON.stringify(webinar, null, 2)
       );
     });
@@ -133,6 +144,7 @@ export default async function getWebinars() {
 
   webinars.map((webinar, index) => {
     const detailsText = detailsJsons[index].modules[0].data.body.text;
+
     webinar.widgets = detailsJsons[index].widgets;
     webinar.detailsText = detailsText;
     webinar.people = getPeople(detailsText);
@@ -145,10 +157,20 @@ export default async function getWebinars() {
     // Put web affiliate link in url
     webinar.url = webinar.url + "?aff=web";
 
+    addAgenda(webinar);
     addOrderedTickets(webinar);
     addVideoData(webinar);
     addDates(webinar);
   });
+
+  if (isDev) {
+    webinars.forEach((webinar) => {
+      fs.writeFileSync(
+        "webinars-json/" + webinar.id + "_processed.json",
+        JSON.stringify(webinar, null, 2)
+      );
+    });
+  }
 
   // Only return webinars that (a) have tickets and (b) haven't ended
   return webinars.filter((w) => {

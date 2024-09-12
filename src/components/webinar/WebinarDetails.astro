@@ -46,7 +46,18 @@ const checkoutURL = webinar.url;
   <div class="details-body">
     <div class="details-body-A">
       <p set:html={detailsText} />
-    
+
+      {
+        webinar.agenda && (
+          <h3>Agenda</h3>
+            <ul>
+              {webinar.agenda.map((a) => (
+                <li>{a}</li>
+              ))}
+            </ul>
+        )
+      }
+
       <Vimeo embedUrl={webinar.videoData?.embed_url} />
 
       <h3>FAQ</h3>
@@ -181,5 +192,3 @@ const checkoutURL = webinar.url;
     </div>
   </div>
 </div>
-
-

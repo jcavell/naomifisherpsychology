@@ -7,8 +7,9 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import NaomiStyle from "../styles/naomiStyle.astro";
 
-const { active } = Astro.props;
-const { pageTitle } = Astro.props;
+const { pageTitle, active, tagName, tagUrl } = Astro.props;
+
+const bodyClass = tagName ? "tag-page topic-page" : "category-" + active;
 ---
 
 <!doctype html>
@@ -27,7 +28,7 @@ const { pageTitle } = Astro.props;
     />
   </head>
 
-  <body class={"category-primary-tagged category-" + active}>
+  <body class={bodyClass}>
     <button class="hamburger hamburger--squeeze" id="menu-toggle" type="button">
       <span class="hamburger-box">
         <span class="hamburger-inner"></span>
@@ -35,11 +36,16 @@ const { pageTitle } = Astro.props;
     </button>
 
     <Header active={active} />
-    <div class="page-title">
-      <a href="">
-        <h1>{pageTitle}</h1>
-      </a>
-    </div>
+
+    {
+      tagName && tagUrl && (
+        <div class="page-title">
+          <a href={tagUrl}>
+            <h1>{tagName}</h1>
+          </a>
+        </div>
+      )
+    }
 
     <div class="wrapper">
       <slot />
