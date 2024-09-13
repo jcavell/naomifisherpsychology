@@ -17,6 +17,8 @@ import { getOrderedPosts } from "../../scripts/blog";
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { umbrellaTags } from "../../scripts/tags";
+import { getTagMeta } from "../../scripts/tagMeta";
+import Picture from "astro/components/Picture.astro";
 
 export async function getStaticPaths() {
   // Get ALL content
@@ -99,11 +101,23 @@ export async function getStaticPaths() {
 
 const { tagName, tagUrl, webinars, courses, books, posts } = Astro.props;
 
+const tagMeta = getTagMeta(tagName);
+
 // console.log("WEBINARS: " + webinars.length);
 ---
 
 <BaseLayout tagUrl={tagUrl} tagName={tagName}>
-  <div class="page-intro-wrapper">
+  <!-- <div class="page-intro-wrapper">
+    <div class="page-intro-image">
+      <Picture
+        src={tagMeta?.image}
+        widths={[620, 1016, 2176]}
+        sizes={`(min-width: 1185px) 1088px, (min-width: 780px) 754px, 100vw`}
+        alt="Alt"
+        pictureAttributes={{}}
+      />
+    </div> -->
+  <!-- 
     <div class="page-intro-image">
       <img
         srcset="imgs/page-image-620.jpg 620w, imgs/page-image-1080.jpg 1080w"
@@ -111,29 +125,26 @@ const { tagName, tagUrl, webinars, courses, books, posts } = Astro.props;
         src="imgs/page-image-620.jpg.jpg"
         alt="an image description for the visually impaired, also helps SEO"
       />
+    </div> -->
+
+  <!-- <div class="page-intro-text" set:html={tagMeta?.description} /> -->
+
+  <!-- <div class="page-intro-text">
+      <p>jalsdjjalfjj</p>
+      </div>
+  </div>  -->
+
+  <div class="page-intro-wrapper">
+    <div class="page-intro-image">
+      <Picture
+        src={tagMeta?.image}
+        widths={[620, 1016, 2176]}
+        sizes={`(min-width: 1185px) 1088px, (min-width: 780px) 754px, 100vw`}
+        alt="Alt"
+        pictureAttributes={{}}
+      />
     </div>
-    <div class="page-intro-text">
-      <p>
-        <strong>{tagName}</strong> is lorem ipsum dolor sit amet, consectetur adipiscing
-        elit. Quisque eu purus non metus vestibulum imperdiet et et velit. Aliquam
-        laoreet ipsum non risus dapibus malesuada. Mauris semper elit eget mi tristique,
-        id bibendum est rhoncus. Etiam vehicula ex id eleifend posuere. Sed sollicitudin
-        lorem quis enim scelerisque, quis cursus mi placerat. Nulla eget pellentesque
-        felis. Curabitur fermentum mi sem, ac tristique risus feugiat eget. Donec
-        quis bibendum nibh. Nulla facilisi. Mauris lacinia dolor laoreet libero aliquam,
-        quis euismod turpis interdum.
-      </p>
-      <p>
-        Donec elit nulla, dictum eu odio fermentum, rhoncus commodo lectus. Duis
-        sed magna non mi hendrerit convallis eu ut diam. Nullam maximus sem in
-        mi bibendum vehicula. Donec facilisis libero sit amet velit faucibus
-        tempor. Quisque ac mattis dolor. Curabitur aliquam imperdiet sem ac
-        sagittis. Class aptent taciti sociosqu ad litora torquent per conubia
-        nostra, per inceptos himenaeos. Sed at volutpat nunc, sit amet accumsan
-        nisi. Pellentesque enim ipsum, tincidunt sed vehicula vel, vestibulum
-        quis est.
-      </p>
-    </div>
+    <div class="page-intro-text" set:html={tagMeta?.description} />
   </div>
 
   <div class="info-section-wrapper">

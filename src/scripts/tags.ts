@@ -2,7 +2,7 @@ export const type101 = "101";
 export const type102 = "102";
 
 export const age5To12 = "5-12 yrs";
-export const ageTeen = "13-18 yrs";
+export const age13To18 = "13-18 yrs";
 
 export const forParents = "Parents";
 export const forTeens = "Teens";
@@ -68,7 +68,7 @@ export const coreTags = [
   tagEMDR,
 ];
 
-export const ageTags = [age5To12, ageTeen];
+export const ageTags = [age5To12, age13To18];
 
 export const forTags = [forParents, forTeens, forProfessionals];
 

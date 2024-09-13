@@ -1,6 +1,6 @@
 import {
   age5To12,
-  ageTeen,
+  age13To18,
   tagTrauma,
   tagSEN,
   forParents,
@@ -61,7 +61,7 @@ const webinar_Helping_Your_Autistic_Child_Develop_a_Healthy_Relationship_with_Sc
 
 const webinar_aldp_holidays: WebinarMeta = {
   id: "933220877767",
-  tags: [tagALDP, age5To12, ageTeen, forParents],
+  tags: [tagALDP, age5To12, age13To18, forParents],
   contributers: [naomi, eliza],
   image: aldpHolidaysImage,
 };
@@ -75,7 +75,7 @@ const helping_your_autistic_child_with_ocd: WebinarMeta = {
 
 const aldp_screens: WebinarMeta = {
   id: "943055974807",
-  tags: [tagALDP, tagScreens, age5To12, ageTeen, forParents],
+  tags: [tagALDP, tagScreens, age5To12, age13To18, forParents],
   contributers: [naomi, eliza],
   image: aldpScreensImage,
 };
@@ -88,19 +88,19 @@ const helping_your_autistic_child_with_anxiety: WebinarMeta = {
 
 const helping_your_autistic_teen_with_anxiety: WebinarMeta = {
   id: "1005075506897",
-  tags: [tagAutism, tagAnxiety, ageTeen],
+  tags: [tagAutism, tagAnxiety, age13To18],
   contributers: [naomi],
 };
 
 const navigating_the_ehcp_jungle: WebinarMeta = {
   id: "1004481700807",
-  tags: [tagEHCP, tagSchool, age5To12, ageTeen],
+  tags: [tagEHCP, tagSchool, age5To12, age13To18],
   contributers: [abi],
 };
 
 const is_it_all_my_fault: WebinarMeta = {
   id: "1008493379847",
-  tags: [tagALDP, age5To12, ageTeen],
+  tags: [tagALDP, age5To12, age13To18],
   subsubtitle:
     "In an exclusive special offer, we are offering a free ticket for this webinar to anyone who preorders our book before Oct 2nd. Click Learn More for details.",
   contributers: [naomi, eliza],
