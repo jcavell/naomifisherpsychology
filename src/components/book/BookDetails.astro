@@ -2,15 +2,13 @@
 const { frontmatter: book } = Astro.props;
 import BookImage from "./BookImage.astro";
 import { getEntry } from "astro:content";
-import Vimeo from "../Vimeo.astro";
-import Contributers from "../Contributers.astro";
-import Tags from "../Tags.astro";
 import GenerateQuote from "../Quoter";
 import { getPubDate, getPubDateString } from "../../scripts/book";
 
 const entryName = book.uri.replace("/books/", "");
 
 const bookAgain = await getEntry("books", entryName);
+const moreInfo = await getEntry("books-more-info", entryName);
 const excerpt = await getEntry("book-excerpts", entryName);
 
 const quotes = await getEntry("book-quotes", entryName);
@@ -22,8 +20,11 @@ const reviews = await getEntry("book-reviews", entryName);
 const { Content: BookContent, headings: bookHeadings } =
   await bookAgain.render();
 
+const { Content: MoreInfoContent, headings: moreInfoHeadings } =
+  await moreInfo.render();
+
 const { Content: ExcerptContent, headings: excerptHeadings } =
-  await excerpt.render();
+  await excerpt?.render();
 ---
 
 <script src="../../scripts/accordion.js"></script>
@@ -57,7 +58,17 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
     <div class="details-body-A">
       <BookContent />
 
-      <Vimeo embedUrl={book.vimeoEmbedUrl} />
+      {moreInfo?.body.length > 1 && 
+      <button class="accordion">Read more</button>
+      <div class="panel">
+        <MoreInfoContent/>
+      </div>
+      }
+<!-- 
+      <Vimeo embedUrl={book.vimeoEmbedUrl} /> -->
+
+            <GenerateQuote client:load quotes={quotes.data} />
+
 
       <h3>Further Information</h3>
       <div class="accordion-wrapper">
@@ -72,14 +83,12 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
           {
             reviews.data.map((review) => (
               <p>
-                {review.text} {review.author}
+                {review.text} 
+                <p>{review.author}</p>
+                <hr/>
               </p>
             ))
           }
-        </div>
-        <button class="accordion">Gallery</button>
-        <div class="panel">
-          <p>(Extra images here?)</p>
         </div>
 
         {
@@ -97,8 +106,22 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
           )
         }
 
+         {
+          book.excerptUrl && (
+            <>
+              <a
+                class="mock-accordion"
+                href={book.excerptUrl}
+                target="_blank"
+              >
+                Read Sample
+              </a>
+            </>
+          )
+        }
+
         {
-          (excerpt?.body || book.excerptUrl) && (
+          excerpt?.body && (
             <>
               <button class="accordion">Read Excerpt</button>
               <div class="panel">
@@ -115,41 +138,8 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
             </>
           )
         }
-
-        {
-          book.amazonSampleUrl && (
-            <>
-              <a
-                class="mock-accordion"
-                href={book.amazonSampleUrl}
-                target="_blank"
-              >
-                Read Sample on Amazon
-              </a>
-            </>
-          )
-        }
-
-        {
-          book.googleSampleUrl && (
-            <>
-              <a
-                class="mock-accordion"
-                href={book.googleSampleUrl}
-                target="_blank"
-              >
-                Read Sample on Google
-              </a>
-            </>
-          )
-        }
       </div>
 
-      <GenerateQuote client:load quotes={quotes.data} />
-
-      <p>
-        <em> Please note that retailer prices are subject to fluctuations. </em>
-      </p>
     </div>
 
     <div class="details-body-B">
@@ -217,7 +207,6 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
       {
         (book.kindleUrl ||
           book.googleUrl ||
-          book.koboUrl ||
           book.appleBooksUrl) && (
           <>
             <div class="purchase-wrapper">
@@ -226,7 +215,7 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
                   E-BOOK
                 </div>
                 <div class="purchase-title-secondary">
-                  Published on 04/02/2021, {book.pages} pages
+          
                 </div>
               </div>
 
@@ -244,15 +233,6 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
                   <div class="purchase">
                     <div class="price">{book.googlePrice}</div>
                     <div class="company google-books" />
-                  </div>
-                </a>
-              )}
-
-              {book.koboUrl && (
-                <a href={book.koboUrl} target="blank">
-                  <div class="purchase">
-                    <div class="price">{book.koboPrice}</div>
-                    <div class="company kobo" />
                   </div>
                 </a>
               )}
@@ -300,22 +280,22 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
               </a>
             )}
 
-            {book.xigxagAudiobookUrl && (
+            {/* {book.xigxagAudiobookUrl && (
               <a href={book.xigxagAudiobookUrl} target="blank">
                 <div class="purchase">
                   <div class="price">{book.xigxagAudiobookPrice}</div>
                   <div class="company xigxag" />
                 </div>
               </a>
-            )}
+            )} */}
           </div>
         )
       }
 
-      <div class="card-meta details-meta">
-        <Contributers people={book.people} />
-        <Tags tags={book.tags} />
-      </div>
+            <p>
+        <em> Please note that retailer prices are subject to fluctuations. </em>
+      </p>
+
     </div>
   </div>
 </div>

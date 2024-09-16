@@ -82,25 +82,25 @@ const aldp_screens: WebinarMeta = {
 
 const helping_your_autistic_child_with_anxiety: WebinarMeta = {
   id: "1005061825977",
-  tags: [tagAutism, tagAnxiety, age5To12],
+  tags: [tagAutism, tagAnxiety, age5To12, forParents],
   contributers: [naomi],
 };
 
 const helping_your_autistic_teen_with_anxiety: WebinarMeta = {
   id: "1005075506897",
-  tags: [tagAutism, tagAnxiety, age13To18],
+  tags: [tagAutism, tagAnxiety, age13To18, forParents],
   contributers: [naomi],
 };
 
 const navigating_the_ehcp_jungle: WebinarMeta = {
   id: "1004481700807",
-  tags: [tagEHCP, tagSchool, age5To12, age13To18],
+  tags: [tagEHCP, tagSchool, age5To12, age13To18, forParents],
   contributers: [abi],
 };
 
 const is_it_all_my_fault: WebinarMeta = {
   id: "1008493379847",
-  tags: [tagALDP, age5To12, age13To18],
+  tags: [tagALDP, age5To12, age13To18, forParents],
   subsubtitle:
     "In an exclusive special offer, we are offering a free ticket for this webinar to anyone who preorders our book before Oct 2nd. Click Learn More for details.",
   contributers: [naomi, eliza],

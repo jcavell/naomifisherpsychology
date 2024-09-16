@@ -1,5 +1,5 @@
 ---
-import { coreTags, ageTags, forTags } from "../scripts/tags";
+import { topicTags, ageTags, forTags } from "../scripts/tags";
 import { makeUrl } from "../scripts/url";
 ---
 
@@ -10,7 +10,7 @@ import { makeUrl } from "../scripts/url";
     <h3>Topics</h3>
     <div class="filter-link">
       {
-        coreTags.map((t) => (
+        topicTags.map((t) => (
           <a class="filter-tags" href={`/tags/${makeUrl(t)}`}>
             {t}
           </a>

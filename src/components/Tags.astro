@@ -1,12 +1,12 @@
 ---
 import { makeUrl } from "../scripts/url";
-import { umbrellaTags, coreTags, forTags, ageTags } from "../scripts/tags";
+import { umbrellaTags, topicTags, forTags, ageTags } from "../scripts/tags";
 
 const { tags = [], uri = "tags" } = Astro.props;
 
 // Combine umbrella and core tags and make unique
 const coreAndUmbrellaTags = [
-  ...new Set(coreTags.concat(Array.from(umbrellaTags.keys()))),
+  ...new Set(topicTags.concat(Array.from(umbrellaTags.keys()))),
 ];
 //console.log("Core and synonym tags: " + coreAndSynonymTags);
 

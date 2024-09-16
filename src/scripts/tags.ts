@@ -54,7 +54,7 @@ const tag2regex: Readonly<Record<string, RegExp>> = {
   [tagALDP]: new RegExp(["art of low demand parenting"].join("|"), "i"),
 };
 
-export const coreTags = [
+export const topicTags = [
   tagAutism,
   tagDemandAvoidance,
   tagAnxiety,
@@ -74,7 +74,7 @@ export const forTags = [forParents, forTeens, forProfessionals];
 
 export const allTags = [
   Array.from(umbrellaTags.keys()),
-  coreTags,
+  topicTags,
   ageTags,
   forTags,
 ].flat();

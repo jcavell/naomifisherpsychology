@@ -13,38 +13,36 @@ ebookIsbn: ""
 audiobookIsbn: ""
 pages: 304
 people: ["Dr Naomi Fisher"]
-tags: ["School", "Anxiety", "Parents and carers", "Professionals"]
+tags: ["School", "Anxiety", "Parents", "Professionals"]
 toc: [
-    "Getting an Education",
-"Learning - Scientists, Processors and Rats",
-"Motivation - Stars, Stickers and Smiley Faces",
-"Self-Directed Learning - What Happens When We Don't Make Children Learn?",
-"From Toddlers to Teens - How Does Learning Change as Children Grow?",
-"Outcomes - How Can We Measure Education?",
-"Parenting - Magical Counting, Attachment and Control",
-"Differences - Being Yourself",
-"Deschooling - Leaving School Behind You",
-"Supporting Self-Directed Learners",
-"Wellbeing - Seeing What the Rest of Us Don't Want to See",
-"HELP! The Self-Directed Education Problem Corner",
-"Self-Directed Learing in Action - Personal Stories"
+    "1 Getting an Education",
+    "2 Learning - Scientists, Processors and Rats",
+    "3 Motivation - Stars, Stickers and Smiley Faces",
+    "4 Self-Directed Learning - What Happens When We Don't Make Children Learn?",
+    "5 From Toddlers to Teens - How Does Learning Change as Children Grow?",
+    "6 Outcomes - How Can We Measure Education?",
+    "7 Parenting - Magical Counting, Attachment and Control",
+    "8 Differences - Being Yourself",
+    "9 Deschooling - Leaving School Behind You",
+    "10 Supporting Self-Directed Learners",
+    "11 Wellbeing - Seeing What the Rest of Us Don't Want to See",
+    "12 HELP! The Self-Directed Education Problem Corner",
+    "13 Self-Directed Learing in Action - Personal Stories"
 ]
 audiobookLength: "10 hours 22 mins"
 hasAudiobookSample: true
 dimensions: ""
 publisherUrl: "https://www.hachette.co.uk/titles/naomi-fisher/changing-our-minds/9781472145505/"
 amazonUrl: "https://www.amazon.co.uk/Changing-Our-Minds-children-learning/dp/1472145518"
-amazonSampleUrl: "https://www.amazon.co.uk/Changing-Our-Minds-children-learning/dp/1472145518?asin=B0891W5MFM&revisionId=f3ae2fc1&format=1&depth=1"
-amazonPrice: "£11.99"
+amazonPrice: "£11.79"
 psychologicalTherapiesUrl: "https://www.psychologicaltherapybooks.co.uk/product/changing-our-minds-how-children-can-take-control-of-their-own-learning-2/"
 psychologicalTherapiesPrice: "£11.75"
 kindleUrl: "https://www.amazon.co.uk/s?i=digital-text&rh=p_66%3A9781472145505&field-isbn=9781472145505&tag=hachetteuk-21&ref=sr_adv_b"
 kindlePrice: "£6.99"
 googleUrl: "https://play.google.com/store/books/details/Naomi_Fisher_Changing_Our_Minds?id=9obZDwAAQBAJ"
-googleSampleUrl: "https://www.google.co.uk/books/edition/Changing_Our_Minds/9obZDwAAQBAJ?hl=en&gbpv=1"
 googlePrice: "£6.99"
 audibleUrl: "https://www.audible.co.uk/pd/Changing-Our-Minds-Audiobook/B0B1JQSRQG"
-audiblePrice: "£12.99"
+audiblePrice: "£11.37"
 blackwellUrl: "https://blackwells.co.uk/bookshop/product/Changing-Our-Minds-by-Naomi-Fisher/9781472145512"
 blackwellPrice: "£12.99"
 waterstonesUrl: "https://www.waterstones.com/book/changing-our-minds/dr-naomi-fisher/9781472145512"

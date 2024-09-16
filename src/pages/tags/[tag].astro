@@ -5,7 +5,7 @@ import { getWebinarMeta } from "../../scripts/webinarMeta";
 import { getCourseMetaFromTitle } from "../../scripts/courseMeta";
 
 import { makeUrl } from "../../scripts/url";
-import { allTags } from "../../scripts/tags";
+import { allTags, ageTags, forTags, topicTags } from "../../scripts/tags";
 
 import WebinarSummary from "../../components/webinar/WebinarSummary.astro";
 import CourseSummary from "../../components/course/CourseSummary.astro";
@@ -110,6 +110,12 @@ const numberCategories = [hasWebinars, hasCourses, hasBooks, hasPosts].filter(
   (r) => r
 ).length;
 
+const aimedAtText = forTags.includes(tagName)
+  ? "for"
+  : ageTags.includes(tagName)
+    ? "about children aged "
+    : "about";
+
 const tagMeta = getTagMeta(tagName);
 
 // console.log("WEBINARS: " + webinars.length);
@@ -144,8 +150,12 @@ const tagMeta = getTagMeta(tagName);
       <div class="info-section-wrapper">
         <div class="info-text">
           <p>
-            Click one of these buttons to jump to resources about{" "}
-            <strong>{tagName}</strong> in our:
+            Use these buttons to jump to our content
+            <strong>
+              {aimedAtText}
+              {tagName}
+            </strong>{" "}
+            in any of these categories
           </p>
         </div>
         <div class="info-links">
@@ -178,7 +188,8 @@ const tagMeta = getTagMeta(tagName);
     webinars.length > 0 && (
       <a name="webinars" class="anchor">
         <h2 class="section-title">
-          <span class="webinars-section-title">Webinars:</span> {tagName}
+          <span class="webinars-section-title">Webinars</span> {aimedAtText}
+          {tagName}
         </h2>
       </a>
     )
@@ -189,7 +200,8 @@ const tagMeta = getTagMeta(tagName);
     courses.length > 0 && (
       <a name="courses" class="anchor">
         <h2 class="section-title">
-          <span class="courses-section-title">Courses:</span> {tagName}
+          <span class="courses-section-title">Courses</span> {aimedAtText}
+          {tagName}
         </h2>
       </a>
     )
@@ -200,7 +212,8 @@ const tagMeta = getTagMeta(tagName);
     courses.length > 0 && (
       <a name="books" class="anchor">
         <h2 class="section-title">
-          <span class="books-section-title">Books:</span> {tagName}
+          <span class="books-section-title">Books</span> {aimedAtText}
+          {tagName}
         </h2>
       </a>
     )
@@ -211,7 +224,8 @@ const tagMeta = getTagMeta(tagName);
     posts.length > 0 && (
       <a name="blog" class="anchor">
         <h2 class="section-title">
-          <span class="blog-section-title">Blog posts:</span> {tagName}
+          <span class="blog-section-title">Blog posts:</span> {aimedAtText}
+          {tagName}
         </h2>
       </a>
     )
