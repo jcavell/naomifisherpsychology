@@ -25,5 +25,7 @@
         "We’ve created the idea of ‘behind’ with age standardisation, and who knows what harm we do by telling children that this is them.",
         "It doesn’t need to be that way.  "
     ],
-    "imageFileName": "is-he-behind-.jpeg"
+    "imageFileName": "is-he-behind-.jpeg",
+    "imagePrefix": "is-he-behind-",
+    "imageExtension": "jpeg"
 }

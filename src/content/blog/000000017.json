@@ -22,5 +22,7 @@
         "Our role as parents is to create and curate a safe space for them, and then to let them explore and discover.  We’re there alongside them, a partner but not a puppet master.  ",
         "Children learn self-control through practice in controlling themselves, not through being controlled."
     ],
-    "imageFileName": "a-bit-strict.jpeg"
+    "imageFileName": "a-bit-strict.jpeg",
+    "imagePrefix": "a-bit-strict",
+    "imageExtension": "jpeg"
 }

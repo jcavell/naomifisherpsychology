@@ -22,5 +22,7 @@
         "Children are practicing a skill. It’s the skill of trying things out, and deciding that right now, I’ve had enough.  It’s a skill many adults were not encouraged to develop, and where we often lag far behind our children.  ",
         "It’s not too late, we can learn it too. We can listen to ourselves, as well as our children."
     ],
-    "imageFileName": "too-much-for-me.png"
+    "imageFileName": "too-much-for-me.png",
+    "imagePrefix": "too-much-for-me",
+    "imageExtension": "png"
 }

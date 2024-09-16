@@ -27,5 +27,7 @@
         "Would you like it if your name was moved to the clouds for your friends to see to see each time you got annoyed or forgot to empty the cat litter tray? Would it help you behave or would you feel resentful and angry? ",
         "If it wouldn't work for you, why are we doing it to our kids?"
     ],
-    "imageFileName": "if-your-behaviour-doesnt-improve.jpeg"
+    "imageFileName": "if-your-behaviour-doesnt-improve.jpeg",
+    "imagePrefix": "if-your-behaviour-doesnt-improve",
+    "imageExtension": "jpeg"
 }

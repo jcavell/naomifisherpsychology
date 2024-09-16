@@ -25,5 +25,7 @@
         "Most people do not learn better when they are made to do so. The quality of their learning and motivation drops. And perhaps the most basic fundamental is that children are people too",
         "Photo credit: Dan Cristian Paduret, from Unsplash. "
     ],
-    "imageFileName": "wheres-the-balance.jpeg"
+    "imageFileName": "wheres-the-balance.jpeg",
+    "imagePrefix": "wheres-the-balance",
+    "imageExtension": "jpeg"
 }

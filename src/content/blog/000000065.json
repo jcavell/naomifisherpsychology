@@ -22,5 +22,7 @@
         "Unlike most young people at school, you are free to listen, question and learn – or you can completely ignore me.  It’s up to you.",
         "  But me? I’m going to continue asking inconvenient questions about what is done in the name of education, because our young people deserve  better."
     ],
-    "imageFileName": "inside-and-outside-the-system.jpeg"
+    "imageFileName": "inside-and-outside-the-system.jpeg",
+    "imagePrefix": "inside-and-outside-the-system",
+    "imageExtension": "jpeg"
 }

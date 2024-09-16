@@ -23,5 +23,7 @@
         "What if the way that we school our children actually makes learning harder?  What if doing something differently starts with us?",
         "Image Robert Linder @Unsplash. "
     ],
-    "imageFileName": "why-do-we-do-what-we-do.jpeg"
+    "imageFileName": "why-do-we-do-what-we-do.jpeg",
+    "imagePrefix": "why-do-we-do-what-we-do",
+    "imageExtension": "jpeg"
 }

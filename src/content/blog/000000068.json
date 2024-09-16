@@ -20,5 +20,7 @@
         "Our young people are listening, and they believe us.   Let’s tell them something worth hearing. ",
         "School isn’t the only way to get an education. "
     ],
-    "imageFileName": "less-than-90-.jpeg"
+    "imageFileName": "less-than-90-.jpeg",
+    "imagePrefix": "less-than-90-",
+    "imageExtension": "jpeg"
 }

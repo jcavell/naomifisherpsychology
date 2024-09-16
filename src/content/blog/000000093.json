@@ -22,5 +22,7 @@
         "For to leap high, you need people who have faith in you, even when you make mistakes. You need people who will catch you when you fall, and will let you try again. You need to see the confidence of others in you, so you can find your own.  And you need the space to make your own choices, and through doing so, learn how to manage yourself in the world.",
         "Without that in place, ‘high expectations’ aren’t high at all. "
     ],
-    "imageFileName": "tying-them-down-.jpeg"
+    "imageFileName": "tying-them-down-.jpeg",
+    "imagePrefix": "tying-them-down-",
+    "imageExtension": "jpeg"
 }

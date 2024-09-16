@@ -24,5 +24,7 @@
         "But it hasn’t been less than school. School is familiar, but it’s not the only way to grow up.  Doing something different took us turning away from what we knew, and setting our faces towards the unknown.  ",
         "We took a deep breath and leapt, and that has made all the difference."
     ],
-    "imageFileName": "not-back-to-school.jpeg"
+    "imageFileName": "not-back-to-school.jpeg",
+    "imagePrefix": "not-back-to-school",
+    "imageExtension": "jpeg"
 }

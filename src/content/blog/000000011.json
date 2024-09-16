@@ -20,5 +20,7 @@
         "Where’s the problem here? Is it ‘behaviour’ and they should simply be made to keep going to school? Or is there a problem with what is going on in some schools, creating an environment in which some children simply can’t thrive?",
         "If we aren’t allowed to ask the question, we’ll never find out."
     ],
-    "imageFileName": "why-arent-they-in-school.jpeg"
+    "imageFileName": "why-arent-they-in-school.jpeg",
+    "imagePrefix": "why-arent-they-in-school",
+    "imageExtension": "jpeg"
 }

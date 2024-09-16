@@ -18,5 +18,7 @@
         "These parents already feel blamed, and these posters add more shame. They do nothing to address or even mention the reasons why so many children are struggling to attend. The DfE thinks they know why there’s a problem - it’s parents who believe their kids and who don’t push them into school hard enough. To the parents who have been asking for support but who are met with long waiting lists and high thresholds for CAMHS, along with fixed penalty fines for poor attendance, this confirms what they already felt.",
         "There’s no help coming. It’s just ‘try harder’."
     ],
-    "imageFileName": "just-look-at-her-now.jpeg"
+    "imageFileName": "just-look-at-her-now.jpeg",
+    "imagePrefix": "just-look-at-her-now",
+    "imageExtension": "jpeg"
 }

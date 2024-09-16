@@ -30,5 +30,7 @@
         "And a year later Changing Our Minds came out.  It has reached more people than I ever imagined when I was tapping away at the keyboard late at night or wrestling with the ideas in the swimming pool.",
         "A huge thank you to all the people who helped it along its way and a particular thanks to those who took a chance on it.  It would never have got there without you."
     ],
-    "imageFileName": "two-years-ago-today.jpeg"
+    "imageFileName": "two-years-ago-today.jpeg",
+    "imagePrefix": "two-years-ago-today",
+    "imageExtension": "jpeg"
 }

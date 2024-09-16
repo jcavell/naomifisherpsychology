@@ -21,5 +21,7 @@
         "If we really want to start at the beginning, we are far too late when that child says ‘I can’t’.  The early intervention needs to be in the education system. We need to design our education system to allow children to thrive, just as they are.  We need to put developmental needs, rather than curriculum, at the heart of what we do. We need to assume that children do well if they can. ",
         "And when they can’t, it’s not for lack of trying."
     ],
-    "imageFileName": "i-cant.jpeg"
+    "imageFileName": "i-cant.jpeg",
+    "imagePrefix": "i-cant",
+    "imageExtension": "jpeg"
 }

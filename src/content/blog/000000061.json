@@ -23,5 +23,7 @@
         "We can respond to our children, without having to blame them for being childish.  ",
         "Just like we do with our cats"
     ],
-    "imageFileName": "you-did-that-on-purpose.jpeg"
+    "imageFileName": "you-did-that-on-purpose.jpeg",
+    "imagePrefix": "you-did-that-on-purpose",
+    "imageExtension": "jpeg"
 }

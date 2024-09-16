@@ -19,5 +19,7 @@
         "What would it mean if we started with an open mind and said, millions of kids aren’t thriving at school. Maybe the problem isn’t them and their parents. Maybe, just maybe there’s something up with our system? What then?",
         "Illustration by Eliza Fricker www.missingthemark.co.uk "
     ],
-    "imageFileName": "if-only-the-problem-with-school-was-attendance-.jpeg"
+    "imageFileName": "if-only-the-problem-with-school-was-attendance-.jpeg",
+    "imagePrefix": "if-only-the-problem-with-school-was-attendance-",
+    "imageExtension": "jpeg"
 }

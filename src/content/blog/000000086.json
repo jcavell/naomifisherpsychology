@@ -17,5 +17,7 @@
         "Adults can switch shame on, but it’s not so easy to turn it off. Children carry that shame with them after the day is finished. They learn to think of themselves as bad, or as not as good as the other children – and that learning sticks.  By the time they are teenagers, some fo them they think they’re useless.  They think there’s no point in trying, because they’ll never amount to anything.",
         "Behaviour charts look so innocent and fun.  But behind the cheerful primary colours is something more sinister.  They are tools which use shame and anxiety to control.  And there will always be side effects of that."
     ],
-    "imageFileName": "over-the-rainbow.jpeg"
+    "imageFileName": "over-the-rainbow.jpeg",
+    "imagePrefix": "over-the-rainbow",
+    "imageExtension": "jpeg"
 }

@@ -24,5 +24,7 @@
         "What happened to my son? We cancelled the subscription when I said I wasn’t going to do the maths and he said he wouldn’t do it either. We found other ways to learn maths without the need for stars.  I don’t know what he learnt from that experience, but I know what I learnt.",
         "Adding a reward changes the learner’s relationship with the activity and not necessarily in a good way. Do so with care"
     ],
-    "imageFileName": "three-gold-stars-.jpeg"
+    "imageFileName": "three-gold-stars-.jpeg",
+    "imagePrefix": "three-gold-stars-",
+    "imageExtension": "jpeg"
 }

@@ -1,0 +1,11 @@
+---
+const { post, alt } = Astro.props;
+---
+
+<img
+  srcset={`/images/blog/${post.imagePrefix}620.${post.imageExtension} /images/blog/${post.imagePrefix}1016.${post.imageExtension} 1016w, /images/blog/${post.imagePrefix}2176.${post.imageExtension} 2176w`}
+  sizes="(min-width: 1185px) 1088px, (min-width: 780px) 754px, 100vw"
+  src={`/images/blog/${post.imagePrefix}620.${post.imageExtension}`}
+  alt={alt}
+  loading="lazy"
+/>

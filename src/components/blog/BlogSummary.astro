@@ -1,6 +1,7 @@
 ---
 import Tags from "../Tags.astro";
 import { makeUrl } from "../../scripts/url";
+import BlogImage from "./BlogImage.astro";
 
 const { post } = Astro.props;
 
@@ -25,9 +26,9 @@ const body = paragraphs.reduce((acc: string, curr: string) => acc + " " + curr);
   </h2>
 
   {
-    post.images[0] && (
+    post.imagePrefix && (
       <div class="card-image">
-        <img loading="lazy" src={post.images[0]} alt={title} />
+        <BlogImage post={post} alt={`Image for ${title}`} />
       </div>
     )
   }
@@ -47,7 +48,7 @@ const body = paragraphs.reduce((acc: string, curr: string) => acc + " " + curr);
 
   <div class="card-meta">
     <span class="contributors"> Dr Naomi Fisher </span>
-    <Tags tags={tags}/>
+    <Tags tags={tags} />
   </div>
 
   <div class="card-buttons">

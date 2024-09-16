@@ -23,5 +23,7 @@
         "We’ll never know any different, if we continue to tell parents and children than the only answer to the way that school makes them feel is more school. We must stop assuming that school is right, and children are wrong. ",
         "Change will only happen when we allow ourselves to consider whether for some children the school system might be the problem, and that more of the same cannot be the solution. "
     ],
-    "imageFileName": "youre-making-it-worse.jpeg"
+    "imageFileName": "youre-making-it-worse.jpeg",
+    "imagePrefix": "youre-making-it-worse",
+    "imageExtension": "jpeg"
 }

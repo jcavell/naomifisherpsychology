@@ -25,5 +25,7 @@
         "To be trauma-informed means acknowledging that there might be real and important explanations for a child’s behaviour.  We’d have to acknowledge the many ways in which it’s hard to be young in 2022, and that some children have it really tough. These are reasons, not excuses.",
         "Thank you for reading Think Again. This post is public so feel free to share it."
     ],
-    "imageFileName": "no-excuses.jpeg"
+    "imageFileName": "no-excuses.jpeg",
+    "imagePrefix": "no-excuses",
+    "imageExtension": "jpeg"
 }

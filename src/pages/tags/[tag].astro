@@ -114,7 +114,7 @@ const aimedAtText = forTags.includes(tagName)
   ? "for"
   : ageTags.includes(tagName)
     ? "about children aged "
-    : "about";
+    : "on";
 
 const tagMeta = getTagMeta(tagName);
 
@@ -150,12 +150,9 @@ const tagMeta = getTagMeta(tagName);
       <div class="info-section-wrapper">
         <div class="info-text">
           <p>
-            Use these buttons to jump to our content
-            <strong>
-              {aimedAtText}
-              {tagName}
-            </strong>{" "}
-            in any of these categories
+            Click on a button to jump to our webinars, courses, books or blog posts
+            {aimedAtText}
+            <strong>{tagName}</strong>
           </p>
         </div>
         <div class="info-links">
@@ -209,7 +206,7 @@ const tagMeta = getTagMeta(tagName);
   {courses.map((course) => <CourseSummary course={course.data} />)}
 
   {
-    courses.length > 0 && (
+    books.length > 0 && (
       <a name="books" class="anchor">
         <h2 class="section-title">
           <span class="books-section-title">Books</span> {aimedAtText}
@@ -224,7 +221,7 @@ const tagMeta = getTagMeta(tagName);
     posts.length > 0 && (
       <a name="blog" class="anchor">
         <h2 class="section-title">
-          <span class="blog-section-title">Blog posts:</span> {aimedAtText}
+          <span class="blog-section-title">Blog posts</span> {aimedAtText}
           {tagName}
         </h2>
       </a>

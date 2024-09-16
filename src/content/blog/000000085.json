@@ -26,5 +26,7 @@
         "We could tell them that compliance only gets you so far, and that asking questions and remaining curious is likely to be a more useful life skill than sitting in rows and listening quietly. We could tell them that success isn’t just measured in exam results, and that behaving well and doing what you’re told is a strategy that gets less useful as you grow.  We could tell them there is space for all sorts of people in this world and they are valuable just as they are. ",
         "What we say to our children matters. The way they learn to talk to themselves matters. For what we tell them now is what they will be telling themselves for the rest of their lives. It’s our echo in the future. They believe us. "
     ],
-    "imageFileName": "its-not-rocket-science-.jpeg"
+    "imageFileName": "its-not-rocket-science-.jpeg",
+    "imagePrefix": "its-not-rocket-science-",
+    "imageExtension": "jpeg"
 }

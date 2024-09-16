@@ -26,5 +26,7 @@
         "Children have the ability to learn without fear as their birth right.  We take this away from them in the name of achievement and learning. We take it away with stickers and stars and certificates for attainment.  We train them to think that learning is about assessment and results, and then we are surprised when they ask us if this will be on the test.",
         "And most of the time, we do this without ever considering what they are losing."
     ],
-    "imageFileName": "is-this-on-the-test.jpeg"
+    "imageFileName": "is-this-on-the-test.jpeg",
+    "imagePrefix": "is-this-on-the-test",
+    "imageExtension": "jpeg"
 }

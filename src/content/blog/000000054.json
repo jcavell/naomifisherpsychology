@@ -24,5 +24,7 @@
         "I know that schools are hard places. I know that teachers are under a lot of pressure. I know they often have few choices too.  I want people to know that what we are doing to children in school has side effects. Those effects aren’t measured as research outcomes, and they often aren’t seen by the school. What seems like an orderly environment to you might be a source of intense stress to a child. ",
         "And that’s why I’m waving my flag."
     ],
-    "imageFileName": "just-keep-quiet.png"
+    "imageFileName": "just-keep-quiet.png",
+    "imagePrefix": "just-keep-quiet",
+    "imageExtension": "png"
 }

@@ -20,5 +20,7 @@
         "Rewards are never just rewards.  They are never simply positive and here’s why. When a person doesn’t get an anticipated reward, they feel punished.  When a child misses out on a reward because of another child’s behaviour they’ll feel angry, and they may direct that anger at that other child. Ostracising those who struggle most will never help. ",
         "We need to seek to understand the reasons for a child’s behaviour, and to ask why things are hard for them.  Gems and collective rewards won’t help us to do that – and they might cause unforeseen consequences.  Rewards can also punish."
     ],
-    "imageFileName": "the-gem-jar.jpeg"
+    "imageFileName": "the-gem-jar.jpeg",
+    "imagePrefix": "the-gem-jar",
+    "imageExtension": "jpeg"
 }

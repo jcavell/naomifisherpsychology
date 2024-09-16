@@ -25,5 +25,7 @@
         "If you are really interested in looking at the evidence, then you need to start out by defining what exactly you are talking about when you say ‘behaviour’.  Otherwise we end up with a list of provocative soundbites with no substance at all.",
         "Good for getting shares on social media, but ultimately meaningless.  "
     ],
-    "imageFileName": "what-is-behaviour-anyway-.jpeg"
+    "imageFileName": "what-is-behaviour-anyway-.jpeg",
+    "imagePrefix": "what-is-behaviour-anyway-",
+    "imageExtension": "jpeg"
 }

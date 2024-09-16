@@ -20,5 +20,7 @@
         "This is an extract from the upcoming book When The Naughty Step Makes Things Worse by myself and Eliza Fricker, available for preorder now. ",
         "Preorder here."
     ],
-    "imageFileName": "she-only-eats-chocolate-.jpeg"
+    "imageFileName": "she-only-eats-chocolate-.jpeg",
+    "imagePrefix": "she-only-eats-chocolate-",
+    "imageExtension": "jpeg"
 }

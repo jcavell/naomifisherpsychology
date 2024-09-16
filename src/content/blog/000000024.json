@@ -43,5 +43,7 @@
         "It’s okay to buy the bun.",
         "Photo credit: Yeh Zintong, under Unsplash licence. "
     ],
-    "imageFileName": "a-tale-of-everyday-parenting.jpeg"
+    "imageFileName": "a-tale-of-everyday-parenting.jpeg",
+    "imagePrefix": "a-tale-of-everyday-parenting",
+    "imageExtension": "jpeg"
 }

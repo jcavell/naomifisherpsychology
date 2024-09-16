@@ -26,5 +26,7 @@
         "Most of us are so used to the way that things are that we don’t even notice what we are doing to our young people when we stop them from leaving.  But for meaningful change to happen, we have to allow young people the right to say No.  ",
         "Everything starts with that. "
     ],
-    "imageFileName": "the-right-to-leave.jpeg"
+    "imageFileName": "the-right-to-leave.jpeg",
+    "imagePrefix": "the-right-to-leave",
+    "imageExtension": "jpeg"
 }

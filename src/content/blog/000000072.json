@@ -21,5 +21,7 @@
         "That’s why Mental Health Awareness shouldn’t be about diagnoses, or symptoms, or increasing referrals to services which can’t cope. Real mental health awareness should cause us to question just what is going on in our world, and why it is causing such profound human distress. For no matter how good a health service is, it can only pick up the pieces once things have gone wrong.",
         "We need much more than that"
     ],
-    "imageFileName": "mental-health-awareness-.jpeg"
+    "imageFileName": "mental-health-awareness-.jpeg",
+    "imagePrefix": "mental-health-awareness-",
+    "imageExtension": "jpeg"
 }

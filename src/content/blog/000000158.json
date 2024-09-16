@@ -21,5 +21,7 @@
         "When you’re always the loser, you learn to think about yourself as a failure.  And that often stays with you for life.  ",
         "Why would we do that to our kids? "
     ],
-    "imageFileName": "whos-the-best.jpeg"
+    "imageFileName": "whos-the-best.jpeg",
+    "imagePrefix": "whos-the-best",
+    "imageExtension": "jpeg"
 }

@@ -23,5 +23,7 @@
         "Then I wonder whether perhaps in fact ",
         " the feared catastrophe, the one who just won’t shut up and do as she’s told."
     ],
-    "imageFileName": "the-real-world.jpeg"
+    "imageFileName": "the-real-world.jpeg",
+    "imagePrefix": "the-real-world",
+    "imageExtension": "jpeg"
 }

@@ -30,5 +30,7 @@
         "Some kids get into a spiral of being constantly pulled up for minor infractions and pushing back. Because that is what some kids do. They push back. They want to be able to make some choices in their lives, and they resist petty control. They say No.",
         "For them, sweating the small stuff has exactly the opposite effect that is intended. The small stuff gets bigger and bigger. Cracked windows appear in places where there weren’t even windows before. Broken glass is everywhere you look. The kids fall apart - and still the same strategy continues."
     ],
-    "imageFileName": "breaking-windows.jpeg"
+    "imageFileName": "breaking-windows.jpeg",
+    "imagePrefix": "breaking-windows",
+    "imageExtension": "jpeg"
 }

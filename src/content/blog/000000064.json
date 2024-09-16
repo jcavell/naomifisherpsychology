@@ -23,5 +23,7 @@
         "We have to ask questions about why these strategies are put in place, and what the unwanted effects might be.",
         "Even if we don't get any points for it."
     ],
-    "imageFileName": "doing-it-for-the-points.jpeg"
+    "imageFileName": "doing-it-for-the-points.jpeg",
+    "imagePrefix": "doing-it-for-the-points",
+    "imageExtension": "jpeg"
 }

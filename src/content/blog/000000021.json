@@ -25,5 +25,7 @@
         "Is it really any wonder if our adolescents have lost their spark and curiosity? It was taken from them, each time they were told that it was winning and prizes that mattered, and the joy of learning ebbed away a little more.",
         "Image, Jessica Rockowitz, "
     ],
-    "imageFileName": "and-the-winner-is.jpeg"
+    "imageFileName": "and-the-winner-is.jpeg",
+    "imagePrefix": "and-the-winner-is",
+    "imageExtension": "jpeg"
 }

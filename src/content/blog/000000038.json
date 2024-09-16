@@ -22,5 +22,7 @@
         "It’s easy to blame teenagers, or their parents, or even the pandemic. It’s deeply frustrating when you are trying to help people who just don’t care. But what if this is actually the predictable result of our education system?",
         "We ignore the science of motivation and our young people pay the price."
     ],
-    "imageFileName": "they-just-dont-care-.jpeg"
+    "imageFileName": "they-just-dont-care-.jpeg",
+    "imagePrefix": "they-just-dont-care-",
+    "imageExtension": "jpeg"
 }

@@ -26,5 +26,7 @@
         "Many of you were the winners in this competition, and so you never really saw what it’s like to be on the other side.  You learnt to think of those who lose as less worthy, you think they just can’t be bothered or don’t put in the work. You learnt to judge their parents as uncaring or feckless.  If your children are also marked as winners, there might be no reason to question it at all. The winners get to decide the terms for the next generation, whilst the losers are rarely asked.   ",
         "But if we were open from the start that what we call education is a competition, with high stakes consequences which will last a lifetime, might more of us call for change?"
     ],
-    "imageFileName": "winners-take-all.jpeg"
+    "imageFileName": "winners-take-all.jpeg",
+    "imagePrefix": "winners-take-all",
+    "imageExtension": "jpeg"
 }

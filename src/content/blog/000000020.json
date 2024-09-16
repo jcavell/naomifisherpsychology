@@ -21,5 +21,7 @@
         "For not all of our children can thrive at school. Those four walls are not the right place for all of them. But all of them need hope.  They need to know that school isn’t the only way.  ",
         "At the very least we can tell them that."
     ],
-    "imageFileName": "hope.jpeg"
+    "imageFileName": "hope.jpeg",
+    "imagePrefix": "hope",
+    "imageExtension": "jpeg"
 }

@@ -21,5 +21,7 @@
         "That’s the problem when we make sweeping statements about ‘behaviour’ which fail to ask questions about what is going on. What we see as ‘misbehaviour’ is dependent on the context. If by 'behaviour' we really mean 'compliance' then we should call it that. Learning to comply isn't the same as learning to behave.",
         "That's because behaviour is about much more than compliance. Behaviour is the result of an interaction between the person and their environment. If we ignore the role of the environment, we can make things worse"
     ],
-    "imageFileName": "just-behave-.jpeg"
+    "imageFileName": "just-behave-.jpeg",
+    "imagePrefix": "just-behave-",
+    "imageExtension": "jpeg"
 }

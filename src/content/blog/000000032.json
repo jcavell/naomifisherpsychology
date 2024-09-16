@@ -26,5 +26,7 @@
         "How could things be different? What if we moved away from blame and shame and instead asked how we could make education accessible for all, even if they can’t always get to school?  What difference might that make to us all?",
         "Thank you for reading Think Again. This post is public so feel free to share it."
     ],
-    "imageFileName": "the-attenders-party.jpeg"
+    "imageFileName": "the-attenders-party.jpeg",
+    "imagePrefix": "the-attenders-party",
+    "imageExtension": "jpeg"
 }

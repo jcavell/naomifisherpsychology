@@ -26,5 +26,7 @@
         "Our children won’t thrive because they have learnt to fit in.  They’ll flourish because they have learnt not to.",
         "Image: Mauro Mora, @Unsplash. "
     ],
-    "imageFileName": "finding-the-flex.jpeg"
+    "imageFileName": "finding-the-flex.jpeg",
+    "imagePrefix": "finding-the-flex",
+    "imageExtension": "jpeg"
 }

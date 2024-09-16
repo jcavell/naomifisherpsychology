@@ -26,5 +26,7 @@
         "What do we do instead? Self-determination theory has some suggestions there too. It suggests that the necessary conditions for psychological flourishing are autonomy, purpose (or competence) and relationships. If we focused on creating an environment which fosters those three things for our children, then I think our education would look very different, and our children would be much happier.",
         "That is what the evidence suggests. Who's listening?"
     ],
-    "imageFileName": "show-me-the-evidence.jpeg"
+    "imageFileName": "show-me-the-evidence.jpeg",
+    "imagePrefix": "show-me-the-evidence",
+    "imageExtension": "jpeg"
 }

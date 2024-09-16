@@ -21,5 +21,7 @@
         "It was a brief but intense phase, from which our kitchen floor never really recovered.  The flour sunk into the grouting and became glue.",
         "They moved on, and now those days are just memories. They hardly remember it at all. But I look back on it as one of the pivotal moments for me, when I learnt to let go of the recipe and go with the learning. "
     ],
-    "imageFileName": "cakes-without-recipes.jpeg"
+    "imageFileName": "cakes-without-recipes.jpeg",
+    "imagePrefix": "cakes-without-recipes",
+    "imageExtension": "jpeg"
 }

@@ -21,5 +21,7 @@
         "My last question is what these scores are for. Are they meant to be an intervention? For if scores for ATL work to improve attitudes, then by Year 10 and 11, everyone should get the top score. Five years is a very long time to carry out a behavioural intervention. Attitudes and behaviour should improve between Year 7 and Year 11 and the scores should no longer be necessary. Is that what we see?",
         "Behavioural interventions should work, usually within weeks or at the most months. There should be an improvement over time and the intervention should no longer be needed. If they aren’t becoming unnecessary, then they may just be punitive, and it’s time to think again."
     ],
-    "imageFileName": "whats-your-attitude-to-learning-.png"
+    "imageFileName": "whats-your-attitude-to-learning-.png",
+    "imagePrefix": "whats-your-attitude-to-learning-",
+    "imageExtension": "png"
 }

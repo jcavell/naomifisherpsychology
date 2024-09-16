@@ -32,5 +32,7 @@
         "Only when we start with flexibility and flourishing might we have a hope of an education system which works for all. Only then can we help all children learn, and support each of them find their way forwards.",
         "We surely owe them that."
     ],
-    "imageFileName": "under-pressure.jpeg"
+    "imageFileName": "under-pressure.jpeg",
+    "imagePrefix": "under-pressure",
+    "imageExtension": "jpeg"
 }

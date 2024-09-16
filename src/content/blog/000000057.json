@@ -26,5 +26,7 @@
         "Say it loud for those at the back.  Ghosts don’t exist. ",
         "Children don’t need school to make them real."
     ],
-    "imageFileName": "ghost-children.jpeg"
+    "imageFileName": "ghost-children.jpeg",
+    "imagePrefix": "ghost-children",
+    "imageExtension": "jpeg"
 }

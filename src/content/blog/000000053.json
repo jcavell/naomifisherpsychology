@@ -22,5 +22,7 @@
         "We’re using shame and anxiety to control children’s behaviour, thinly disguised in bright colours and ‘Ready to Learn!’. It should be no surprise that many of them are unhappy and anxious. In fact, perhaps we should be more surprised if they weren’t.  It’s in the very air that they breathe and we, the adults, are putting it there.",
         "They’re breathing it in like smoke.  "
     ],
-    "imageFileName": "make-better-choices.jpeg"
+    "imageFileName": "make-better-choices.jpeg",
+    "imagePrefix": "make-better-choices",
+    "imageExtension": "jpeg"
 }

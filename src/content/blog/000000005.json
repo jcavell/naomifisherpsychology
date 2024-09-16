@@ -22,5 +22,7 @@
         "Who are the slow learners? ",
         "Not them. "
     ],
-    "imageFileName": "slow-learners.jpeg"
+    "imageFileName": "slow-learners.jpeg",
+    "imagePrefix": "slow-learners",
+    "imageExtension": "jpeg"
 }

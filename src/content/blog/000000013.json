@@ -24,5 +24,7 @@
         " Anything else feels risky.  It feels risky to take a child out of school.  It feels risky not to enforce homework. It feels risky to have a different length for the school day, or not to insist that everyone does all the subjects.  It feels risky to allow a child to make choices about what they wear – what if they choose something inappropriate???   So we go back to what feels safe, reassuring ourselves that it must be this way for an excellent reason, and thinking for ourselves of what those good reasons must be. ",
         "But if you always do what you’ve always done, you’ll always get what you always got.  Even if you do it ever more strictly than ever before."
     ],
-    "imageFileName": "uniformity-.jpeg"
+    "imageFileName": "uniformity-.jpeg",
+    "imagePrefix": "uniformity-",
+    "imageExtension": "jpeg"
 }

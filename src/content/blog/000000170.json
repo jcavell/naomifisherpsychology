@@ -22,5 +22,7 @@
         "Once we understand that, everything changes.  We can finally climb out of the hamster wheel and find a better way.  We have to be the ones to say Stop.",
         "Illustration by Eliza Fricker (www.missingthemark.co.uk). "
     ],
-    "imageFileName": "can-we-stop-now-.jpeg"
+    "imageFileName": "can-we-stop-now-.jpeg",
+    "imagePrefix": "can-we-stop-now-",
+    "imageExtension": "jpeg"
 }

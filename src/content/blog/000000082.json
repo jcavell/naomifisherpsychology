@@ -23,5 +23,7 @@
         "And we lose the perspective that asks, why is there so much ‘behaviour’ in our school system? Could it be that children are telling us what it’s like for them, in the only way that they can? Could it be that the system is not fit for children, rather than the children being the ones at fault?",
         "We stop listening when we say that ‘it’s just behaviour’. Because what that really means is this. We’re not going to try to understand. We don't want to listen to their perspective. The reasons don't matter.  It's Just Behaviour."
     ],
-    "imageFileName": "its-just-behaviour.jpeg"
+    "imageFileName": "its-just-behaviour.jpeg",
+    "imagePrefix": "its-just-behaviour",
+    "imageExtension": "jpeg"
 }

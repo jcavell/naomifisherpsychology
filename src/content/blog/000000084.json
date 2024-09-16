@@ -26,5 +26,7 @@
         "The way I feel on a roller coaster probably won’t change, because the root cause wasn’t anxiety. I don’t like roller coasters because they make me feel sick. Making me go on a roller coaster every day doesn’t change that - but it does make more more anxious about roller coasters.",
         "And that is why exposure therapy should never be used to make a child do something they don’t want to do. Graded hierarchies are not a way to get children to comply. Exposure therapy should never be forced. It’s a treatment for irrational fear and anxiety - and if the root problem isn’t actually anxiety, then it risks making the problem worse. "
     ],
-    "imageFileName": "stepping-back-to-school.png"
+    "imageFileName": "stepping-back-to-school.png",
+    "imagePrefix": "stepping-back-to-school",
+    "imageExtension": "png"
 }

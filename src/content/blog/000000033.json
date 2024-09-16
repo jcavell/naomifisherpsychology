@@ -30,5 +30,7 @@
         "Tell me, wouldn't you be anxious?  ",
         "Thank you for reading Think Again. This post is public so feel free to share it."
     ],
-    "imageFileName": "mum-is-anxious.jpeg"
+    "imageFileName": "mum-is-anxious.jpeg",
+    "imagePrefix": "mum-is-anxious",
+    "imageExtension": "jpeg"
 }
