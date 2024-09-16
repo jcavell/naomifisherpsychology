@@ -6,6 +6,7 @@ import Vimeo from "../Vimeo.astro";
 import Contributers from "../Contributers.astro";
 import Tags from "../Tags.astro";
 import GenerateQuote from "../Quoter";
+import { getPubDate, getPubDateString } from "../../scripts/book";
 
 const entryName = book.uri.replace("/books/", "");
 
@@ -29,6 +30,14 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
 
 <div class="details details-books">
   <div class="details-category">BOOK</div>
+  {
+    getPubDate(book) > new Date() && (
+      <div class="sale-badge preorder-badge">
+        <span class="sale-amount">PRE-</span>
+        <span class="sale-text">order</span>
+      </div>
+    )
+  }
   <h1>
     {book.title}
     <span> {book.subtitle} </span>
@@ -60,7 +69,13 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
         </div>
         <button class="accordion">Reviews</button>
         <div class="panel">
-          {reviews.data.map((review) => <p>{review.text} {review.author}</p>)}
+          {
+            reviews.data.map((review) => (
+              <p>
+                {review.text} {review.author}
+              </p>
+            ))
+          }
         </div>
         <button class="accordion">Gallery</button>
         <div class="panel">
@@ -144,7 +159,9 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
             PAPERBACK
           </div>
           <div class="purchase-title-secondary">
-            Published on 04/02/2021 by {book.publisher}, {book.pages} pages
+            Published on {getPubDateString(book)} by {book.publisher}, {
+              book.pages
+            } pages
           </div>
         </div>
 

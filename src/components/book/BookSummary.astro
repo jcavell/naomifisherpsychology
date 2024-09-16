@@ -4,15 +4,12 @@ const { book } = Astro.props;
 import BookImage from "./BookImage.astro";
 import Contributers from "../Contributers.astro";
 import Tags from "../Tags.astro";
-import { getFormats } from "../../scripts/book";
-
-const pubDate = new Date(book.pubDate);
-const pubDateString = pubDate.toLocaleDateString();
+import { getFormats, getPubDate, getPubDateString } from "../../scripts/book";
 ---
 
 <div class="card card-books">
   {
-    pubDate > new Date() && (
+    getPubDate(book) > new Date() && (
       <div class="sale-badge preorder-badge">
         <span class="sale-amount">PRE-</span>
         <span class="sale-text">order</span>
@@ -42,7 +39,7 @@ const pubDateString = pubDate.toLocaleDateString();
   <div class="card-details">
     <a href={book.uri}> BOOK </a>
     <span class="bookmark"> {getFormats(book).join(", ")} </span>
-    <span class="date"> Published on {pubDateString} </span>
+    <span class="date"> Published on {getPubDateString(book)} </span>
   </div>
 
   {book.description && <p>{book.description}</p>}

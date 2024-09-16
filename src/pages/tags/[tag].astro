@@ -101,22 +101,21 @@ export async function getStaticPaths() {
 
 const { tagName, tagUrl, webinars, courses, books, posts } = Astro.props;
 
+const hasWebinars = webinars.length > 0;
+const hasCourses = courses.length > 0;
+const hasBooks = books.length > 0;
+const hasPosts = posts.length > 0;
+
+const numberCategories = [hasWebinars, hasCourses, hasBooks, hasPosts].filter(
+  (r) => r
+).length;
+
 const tagMeta = getTagMeta(tagName);
 
 // console.log("WEBINARS: " + webinars.length);
 ---
 
 <BaseLayout tagUrl={tagUrl} tagName={tagName}>
-  <!-- <div class="page-intro-wrapper">
-    <div class="page-intro-image">
-      <Picture
-        src={tagMeta?.image}
-        widths={[620, 1016, 2176]}
-        sizes={`(min-width: 1185px) 1088px, (min-width: 780px) 754px, 100vw`}
-        alt="Alt"
-        pictureAttributes={{}}
-      />
-    </div> -->
   <!-- 
     <div class="page-intro-image">
       <img
@@ -126,13 +125,6 @@ const tagMeta = getTagMeta(tagName);
         alt="an image description for the visually impaired, also helps SEO"
       />
     </div> -->
-
-  <!-- <div class="page-intro-text" set:html={tagMeta?.description} /> -->
-
-  <!-- <div class="page-intro-text">
-      <p>jalsdjjalfjj</p>
-      </div>
-  </div>  -->
 
   <div class="page-intro-wrapper">
     <div class="page-intro-image">
@@ -147,20 +139,40 @@ const tagMeta = getTagMeta(tagName);
     <div class="page-intro-text" set:html={tagMeta?.description} />
   </div>
 
-  <div class="info-section-wrapper">
-    <div class="info-text">
-      <p>
-        You can click one of these buttons to jump to webinars, courses, books
-        or blog posts about <strong>{tagName}</strong>:
-      </p>
-    </div>
-    <div class="info-links">
-      <a href="#webinars" class="filter-webinars"> Webinars: {tagName}</a>
-      <a href="#courses" class="filter-courses"> Courses: {tagName} </a>
-      <a href="#books" class="filter-books"> Books: {tagName} </a>
-      <a href="#blog" class="filter-blog"> Blog: {tagName} </a>
-    </div>
-  </div>
+  {
+    numberCategories > 1 && (
+      <div class="info-section-wrapper">
+        <div class="info-text">
+          <p>
+            Click one of these buttons to jump to resources about{" "}
+            <strong>{tagName}</strong> in our:
+          </p>
+        </div>
+        <div class="info-links">
+          {hasWebinars && (
+            <a href="#webinars" class="filter-webinars">
+              Webinars
+            </a>
+          )}
+          {hasCourses && (
+            <a href="#courses" class="filter-courses">
+              Courses
+            </a>
+          )}
+          {hasBooks && (
+            <a href="#books" class="filter-books">
+              Books
+            </a>
+          )}
+          {hasPosts && (
+            <a href="#blog" class="filter-blog">
+              Blog
+            </a>
+          )}
+        </div>
+      </div>
+    )
+  }
 
   {
     webinars.length > 0 && (

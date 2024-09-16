@@ -18,3 +18,13 @@ export async function getFeaturedBooks() {
   const books = await getCollection("books");
   return featuredIds.map((id) => books.find((b) => b.data.id === id));
 }
+
+export function getPubDate(book): Date {
+  return new Date(book.pubDate);
+}
+
+export function getPubDateString(book): string {
+  return getPubDate(book).toLocaleDateString(undefined, {
+    dateStyle: "long",
+  });
+}
