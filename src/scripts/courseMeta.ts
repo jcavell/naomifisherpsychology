@@ -15,6 +15,7 @@ import {
   tagALDP,
   tagEMDR,
   tagNeurodiversity,
+  tagSEN,
 } from "./tags";
 import { naomi, abi, eliza } from "./people";
 
@@ -43,6 +44,8 @@ import traumaAndLossImage from "../images/courses/helping-your-child-recover-fro
 import ehcpJungleImage from "../images/courses/finding-your-way-through-the-ehcp-jungle.webp";
 import thrivingAfterSchoolBreakdownImage from "../images/courses/thriving-after-school-breakdown.webp";
 import helpingYourAutisticChildWithStartingSchoolImage from "../images/courses/helping-your-autistic-child-with-starting-school.webp";
+import navigatingTheSenTribunalProcessImage from "../images/courses/navigating-the-sen-tribunal-process.webp";
+import helpingYourChildWithLearningDisabilitiesWithAnxietyImage from "../images/courses/helping-your-child-with-learning-disabilities-with-anxiety.webp";
 
 import ALDP1Image from "../images/courses/ALDP-1.webp";
 import ALDP2Image from "../images/courses/ALDP-2.webp";
@@ -241,6 +244,14 @@ export const findingYourWayThroughTheEHCPJungle: CourseMeta = {
   contributers: [abi, eliza],
   image: ehcpJungleImage,
   runningTime: "1 hour 26 mins",
+};
+
+export const navigatingTheSenTribunalProcess: CourseMeta = {
+  title: "Navigating the SEN Tribunal process",
+  tags: [tagSEN, tagSchool, age5To12, age13To18, forParents],
+  contributers: [abi],
+  image: navigatingTheSenTribunalProcessImage,
+  runningTime: "1 hour 23 mins",
 };
 
 export const thrivingAfterSchoolBreakdown: CourseMeta = {
@@ -444,6 +455,14 @@ export const traumaAndLoss: CourseMeta = {
   runningTime: "1 hour 49 mins",
 };
 
+export const helpingYourChildWithLearningDisabilitiesWithAnxiety: CourseMeta = {
+  title: "Helping Your Child with Learning Disabilities with Anxiety",
+  tags: [tagSEN, tagAnxiety, age5To12, age13To18, forParents],
+  contributers: [naomi],
+  image: helpingYourChildWithLearningDisabilitiesWithAnxietyImage,
+  runningTime: "1 hour 29 mins",
+};
+
 // !! ADD NEW COURSES HERE !!
 // Most recent first
 export const allCourses = [
@@ -458,6 +477,8 @@ export const allCourses = [
   childWithAnxietyUnder8s,
   childWithAnxiety6To13,
   childWithSevereAnxiety,
+  helpingYourChildWithLearningDisabilitiesWithAnxiety,
+  navigatingTheSenTribunalProcess,
   burntOutBySchool,
   afterSchoolMovingOnFromSchoolTrauma,
   autisticChildrenWithSchool,
@@ -649,6 +670,14 @@ workingWithDemandAvoidantChildrenTherapy.relatedTitles = [
 traumaAndLoss.relatedTitles = [
   autisticChildWithTrauma.title,
   afterSchoolMovingOnFromSchoolTrauma.title,
+];
+
+navigatingTheSenTribunalProcess.relatedTitles = [
+  helpingYourChildWithLearningDisabilitiesWithAnxiety.title,
+];
+
+helpingYourChildWithLearningDisabilitiesWithAnxiety.relatedTitles = [
+  navigatingTheSenTribunalProcess.title,
 ];
 
 ALDP1.relatedTitles = [

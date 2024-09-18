@@ -1,11 +1,11 @@
 {
     "type": "CARD",
-    "categoryUrl": "https://courses.naomifisher.co.uk/low-demand-parenting",
-    "categoryPosition": 9,
-    "title": "The Art of Low Demand Parenting: Screens",
-    "imageURL": "https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/site/2147601926/images/b84d2fc-b0b6-8c37-20a4-752aff2a46_ALDP-7.png",
-    "description": "How do you manage screen time, when your child doesn't play by the parenting rules?",
-    "price": "£30.00 GBP",
-    "checkoutUrl": "https://courses.naomifisher.co.uk/offers/4pkAj9xC",
-    "imageFileName": "the-art-of-low-demand-parenting-screens.png"
+    "categoryUrl": "https://courses.naomifisher.co.uk",
+    "categoryPosition": 1,
+    "title": "Neurodiversity 101",
+    "imageURL": "https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/site/2147601926/images/8205e53-82-fb7-4c2a-56cefb31ca62_neurodiversity-101.webp",
+    "description": "Are you wondering if your child is neurodivergent - but aren't sure what that actually means and what you should do about it? This course is the place to start.  Understand what neurodiversity means, how it relates to other ways of understanding difference and get some ideas as to how to talk to your children about neurodiversity and help them to thrive.",
+    "price": "£40.00 GBP",
+    "checkoutUrl": "https://courses.naomifisher.co.uk/offers/TeyY9BM2",
+    "imageFileName": "neurodiversity-101.webp"
 }
