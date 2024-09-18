@@ -39,7 +39,7 @@ import teenagerBurnout101Image from "../images/courses/teenager-burnout-101.webp
 import weDontHaveAnEhcpWhatToExpectFromSchoolImage from "../images/courses/we-dont-have-an-ehcp-what-to-expect-from-school.webp";
 import whatIsDemandAvoidanceGuideForTeenagersImage from "../images/courses/what-is-demand-avoidance-a-guide-for-teenagers.webp";
 import workingWithDemandAvoidantChildrenTherapyImage from "../images/courses/working-with-demand-avoidant-children-low-demand-therapy.webp";
-import traumaAndLossImage from "../images/courses/helping-your-child-recover-from-trauma-and-loss.png";
+import traumaAndLossImage from "../images/courses/helping-your-child-recover-from-trauma-and-loss.webp";
 import ehcpJungleImage from "../images/courses/finding-your-way-through-the-ehcp-jungle.webp";
 import thrivingAfterSchoolBreakdownImage from "../images/courses/thriving-after-school-breakdown.webp";
 import helpingYourAutisticChildWithStartingSchoolImage from "../images/courses/helping-your-autistic-child-with-starting-school.webp";
