@@ -9,7 +9,7 @@ import {
   tagTrauma,
   tagBurnout,
   tagSchool,
-  tagEHCP,
+  tagEHCPs,
   forTeens,
   forProfessionals,
   tagALDP,
@@ -19,52 +19,52 @@ import {
 import { naomi, abi, eliza } from "./people";
 
 // Course Images
-import demandAvoidance101Image from "../images/courses/demand-avoidance-101.png";
-import neurodiversity101Image from "../images/courses/neurodiversity-101.png";
-import autisticChildScreensImage from "../images/courses/helping-your-autistic-child-develop-a-healthy-relationship-with-screens.png";
-import autisticTeenWithAnxietyImage from "../images/courses/helping-your-autistic-teen-with-anxiety.png";
-import autisticChildWithAnxietyImage from "../images/courses/helping-your-autistic-child-with-anxiety.png";
-import demandAvoidantAdolescentImage from "../images/courses/understanding-and-helping-your-demand-avoidant-adolescent.png";
-import childWithAnxietyUnder8sImage from "../images/courses/helping-your-child-with-anxiety-under-8s.png";
-import childWithAnxiety6To13Image from "../images/courses/helping-your-child-with-anxiety-6-to-13.png";
-import autisticChildWithTraumaImage from "../images/courses/helping-your-autistic-child-with-trauma.png";
-import afterSchoolMovingOnFromSchoolTraumaImage from "../images/courses/after-school-moving-on-from-school-trauma.png";
-import burntOutBySchoolImage from "../images/courses/burnt-out-by-school.png";
-import doWeNeedAnEhcpImage from "../images/courses/do-we-need-an-ehcp.png";
-import autisticChildrenWithSchoolImage from "../images/courses/helping-autistic-children-with-school.png";
-import childWithSevereAnxietyImage from "../images/courses/helping-your-child-with-severe-anxiety.png";
-import myChildIsNotFineAtSchoolImage from "../images/courses/my-child-is-not-fine-at-school.png";
-import takingControlOfYourEhcpAnnualReviewImage from "../images/courses/taking-control-of-your-ehcp-annual-review.png";
-import teenagerBurnout101Image from "../images/courses/teenager-burnout-101.png";
-import weDontHaveAnEhcpWhatToExpectFromSchoolImage from "../images/courses/we-dont-have-an-ehcp-what-to-expect-from-school.png";
-import whatIsDemandAvoidanceGuideForTeenagersImage from "../images/courses/what-is-demand-avoidance-a-guide-for-teenagers.png";
-import workingWithDemandAvoidantChildrenTherapyImage from "../images/courses/working-with-demand-avoidant-children-low-demand-therapy.png";
-import traumaAndLossImage from "../images/courses/helping-your-child-recover-from-trauma-and-loss.png";
-import ehcpJungleImage from "../images/courses/finding-your-way-through-the-ehcp-jungle.png";
-import thrivingAfterSchoolBreakdownImage from "../images/courses/thriving-after-school-breakdown.png";
-import helpingYourAutisticChildWithStartingSchoolImage from "../images/courses/helping-your-autistic-child-with-starting-school.png";
+import demandAvoidance101Image from "../images/courses/demand-avoidance-101.webp";
+import neurodiversity101Image from "../images/courses/neurodiversity-101.webp";
+import autisticChildScreensImage from "../images/courses/helping-your-autistic-child-develop-a-healthy-relationship-with-screens.webp";
+import autisticTeenWithAnxietyImage from "../images/courses/helping-your-autistic-teen-with-anxiety.webp";
+import autisticChildWithAnxietyImage from "../images/courses/helping-your-autistic-child-with-anxiety.webp";
+import demandAvoidantAdolescentImage from "../images/courses/understanding-and-helping-your-demand-avoidant-adolescent.webp";
+import childWithAnxietyUnder8sImage from "../images/courses/helping-your-child-with-anxiety-under-8s.webp";
+import childWithAnxiety6To13Image from "../images/courses/helping-your-child-with-anxiety-6-to-13.webp";
+import autisticChildWithTraumaImage from "../images/courses/helping-your-autistic-child-with-trauma.webp";
+import afterSchoolMovingOnFromSchoolTraumaImage from "../images/courses/after-school-moving-on-from-school-trauma.webp";
+import burntOutBySchoolImage from "../images/courses/burnt-out-by-school.webp";
+import doWeNeedAnEhcpImage from "../images/courses/do-we-need-an-ehcp.webp";
+import autisticChildrenWithSchoolImage from "../images/courses/helping-autistic-children-with-school.webp";
+import childWithSevereAnxietyImage from "../images/courses/helping-your-child-with-severe-anxiety.webp";
+import myChildIsNotFineAtSchoolImage from "../images/courses/my-child-is-not-fine-at-school.webp";
+import takingControlOfYourEhcpAnnualReviewImage from "../images/courses/taking-control-of-your-ehcp-annual-review.webp";
+import teenagerBurnout101Image from "../images/courses/teenager-burnout-101.webp";
+import weDontHaveAnEhcpWhatToExpectFromSchoolImage from "../images/courses/we-dont-have-an-ehcp-what-to-expect-from-school.webp";
+import whatIsDemandAvoidanceGuideForTeenagersImage from "../images/courses/what-is-demand-avoidance-a-guide-for-teenagers.webp";
+import workingWithDemandAvoidantChildrenTherapyImage from "../images/courses/working-with-demand-avoidant-children-low-demand-therapy.webp";
+import traumaAndLossImage from "../images/courses/helping-your-child-recover-from-trauma-and-loss.webp";
+import ehcpJungleImage from "../images/courses/finding-your-way-through-the-ehcp-jungle.webp";
+import thrivingAfterSchoolBreakdownImage from "../images/courses/thriving-after-school-breakdown.webp";
+import helpingYourAutisticChildWithStartingSchoolImage from "../images/courses/helping-your-autistic-child-with-starting-school.webp";
 
-import ALDP1Image from "../images/courses/ALDP-1.png";
-import ALDP2Image from "../images/courses/ALDP-2.png";
-import ALDP3Image from "../images/courses/ALDP-3.png";
-import ALDP4Image from "../images/courses/ALDP-4.png";
-import ALDP5Image from "../images/courses/ALDP-5.png";
-import ALDP6Image from "../images/courses/ALDP-6.png";
-import ALDP7Image from "../images/courses/ALDP-7.png";
-import ALDP8Image from "../images/courses/ALDP-8.png";
-import ALDP9Image from "../images/courses/ALDP-9.png";
-import ALDP10Image from "../images/courses/ALDP-10.png";
-import ALDP1To10Image from "../images/courses/ALDP-1-10.png";
-import ALDP1To5Image from "../images/courses/ALDP-1-5.png";
-import ALDP6To10Image from "../images/courses/ALDP-6-10.png";
+import ALDP1Image from "../images/courses/ALDP-1.webp";
+import ALDP2Image from "../images/courses/ALDP-2.webp";
+import ALDP3Image from "../images/courses/ALDP-3.webp";
+import ALDP4Image from "../images/courses/ALDP-4.webp";
+import ALDP5Image from "../images/courses/ALDP-5.webp";
+import ALDP6Image from "../images/courses/ALDP-6.webp";
+import ALDP7Image from "../images/courses/ALDP-7.webp";
+import ALDP8Image from "../images/courses/ALDP-8.webp";
+import ALDP9Image from "../images/courses/ALDP-9.webp";
+import ALDP10Image from "../images/courses/ALDP-10.webp";
+import ALDP1To10Image from "../images/courses/ALDP-1-10.webp";
+import ALDP1To5Image from "../images/courses/ALDP-1-5.webp";
+import ALDP6To10Image from "../images/courses/ALDP-6-10.webp";
 
-import EMDR1Image from "../images/courses/EMDR-1.png";
-import EMDR2Image from "../images/courses/EMDR-2.png";
-import EMDR3Image from "../images/courses/EMDR-3.png";
-import EMDR4Image from "../images/courses/EMDR-4.png";
-import EMDR5Image from "../images/courses/EMDR-5.png";
-import EMDR6Image from "../images/courses/EMDR-6.png";
-import EMDR1To6Image from "../images/courses/EMDR-1-6.png";
+import EMDR1Image from "../images/courses/EMDR-1.webp";
+import EMDR2Image from "../images/courses/EMDR-2.webp";
+import EMDR3Image from "../images/courses/EMDR-3.webp";
+import EMDR4Image from "../images/courses/EMDR-4.webp";
+import EMDR5Image from "../images/courses/EMDR-5.webp";
+import EMDR6Image from "../images/courses/EMDR-6.webp";
+import EMDR1To6Image from "../images/courses/EMDR-1-6.webp";
 
 const makeVideoURL = (id: string) =>
   new URL("https://player.vimeo.com/video/" + id);
@@ -213,7 +213,7 @@ export const myChildIsNotFineAtSchool: CourseMeta = {
 
 export const doWeNeedAnEhcp: CourseMeta = {
   title: "Do we need an EHCP? If we do, what do we do now?",
-  tags: [tagEHCP, tagSchool, age5To12, age13To18, forParents],
+  tags: [tagEHCPs, tagSchool, age5To12, age13To18, forParents],
   contributers: [abi],
   image: doWeNeedAnEhcpImage,
   runningTime: "57 mins",
@@ -221,7 +221,7 @@ export const doWeNeedAnEhcp: CourseMeta = {
 
 export const takingControlOfYourEhcpAnnualReview: CourseMeta = {
   title: "Taking control of your EHCP Annual Review",
-  tags: [tagEHCP, tagSchool, age5To12, age13To18, forParents],
+  tags: [tagEHCPs, tagSchool, age5To12, age13To18, forParents],
   contributers: [abi],
   image: takingControlOfYourEhcpAnnualReviewImage,
   runningTime: "60 mins",
@@ -229,7 +229,7 @@ export const takingControlOfYourEhcpAnnualReview: CourseMeta = {
 
 export const weDontHaveAnEhcpWhatToExpectFromSchool: CourseMeta = {
   title: "We don't have an EHCP - what can we Expect from School?",
-  tags: [tagEHCP, tagSchool, age5To12, age13To18, forParents],
+  tags: [tagEHCPs, tagSchool, age5To12, age13To18, forParents],
   contributers: [abi],
   image: weDontHaveAnEhcpWhatToExpectFromSchoolImage,
   runningTime: "1 hour 7 mins",
@@ -237,7 +237,7 @@ export const weDontHaveAnEhcpWhatToExpectFromSchool: CourseMeta = {
 
 export const findingYourWayThroughTheEHCPJungle: CourseMeta = {
   title: "Finding Your Way Through the EHCP Jungle",
-  tags: [tagEHCP, tagSchool, age5To12, age13To18, forParents],
+  tags: [tagEHCPs, tagSchool, age5To12, age13To18, forParents],
   contributers: [abi, eliza],
   image: ehcpJungleImage,
   runningTime: "1 hour 26 mins",

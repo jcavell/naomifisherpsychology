@@ -21,14 +21,14 @@ export const tagAggression = "Aggression";
 export const tagBurnout = "Burnout";
 
 export const tagSchool = "School";
-export const tagEHCP = "EHCP";
+export const tagEHCPs = "EHCPs";
 export const tagSEN = "SEN";
 export const tagADHD = "ADHD";
 
 export const umbrellaTags = new Map<string, string[]>([
   [tagNeurodiversity, [tagAutism, tagSEN, tagADHD]],
   [tagAutism, [tagNeurodiversity]],
-  [tagSEN, [tagEHCP]],
+  [tagSEN, [tagEHCPs]],
 ]);
 
 const tag2regex: Readonly<Record<string, RegExp>> = {
@@ -45,7 +45,7 @@ const tag2regex: Readonly<Record<string, RegExp>> = {
   [tagTrauma]: new RegExp(["trauma"].join("|"), "i"),
 
   [tagSchool]: new RegExp(["school", "academic", "exam"].join("|"), "i"),
-  [tagEHCP]: new RegExp(["ehcp"].join("|"), "i"),
+  [tagEHCPs]: new RegExp(["ehcp"].join("|"), "i"),
   [tagSEN]: new RegExp(["Special Educational Needs"].join("|"), "i"),
 
   [tagScreens]: new RegExp(["screen"].join("|"), "i"),
@@ -61,7 +61,7 @@ export const topicTags = [
   tagBurnout,
   tagTrauma,
   tagSchool,
-  tagEHCP,
+  tagEHCPs,
   tagSEN,
   tagScreens,
   tagALDP,

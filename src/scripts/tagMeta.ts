@@ -8,7 +8,7 @@ import {
   tagAutism,
   tagScreens,
   tagALDP,
-  tagEHCP,
+  tagEHCPs,
   tagSchool,
   tagNeurodiversity,
   tagADHD,
@@ -26,7 +26,7 @@ import { compiledContent as anxietyContent } from "../content/tags/anxiety.md";
 import { compiledContent as autismContent } from "../content/tags/autism.md";
 import { compiledContent as burnoutContent } from "../content/tags/burnout.md";
 import { compiledContent as demandAvoidanceContent } from "../content/tags/demand-avoidance.md";
-import { compiledContent as ehcpContent } from "../content/tags/ehcp.md";
+import { compiledContent as ehcpContent } from "../content/tags/ehcps.md";
 import { compiledContent as emdrContent } from "../content/tags/emdr.md";
 import { compiledContent as forParentsContent } from "../content/tags/for-parents.md";
 import { compiledContent as forTeensContent } from "../content/tags/for-teenagers.md";
@@ -39,7 +39,6 @@ import { compiledContent as adhdContent } from "../content/tags/adhd.md";
 import { compiledContent as aggressionContent } from "../content/tags/aggression.md";
 import { compiledContent as neurodiversityContent } from "../content/tags/neurodiversity.md";
 import { compiledContent as traumaContent } from "../content/tags/trauma.md";
-
 
 // Tag Images
 import testImage from "../images/tags/test-tag-image.jpg";
@@ -87,7 +86,7 @@ const demandAvoidanceMeta: TagMeta = {
 };
 
 const ehcpMeta: TagMeta = {
-  tag: tagEHCP,
+  tag: tagEHCPs,
   image: testImage,
   description: ehcpContent(),
 };
@@ -184,7 +183,7 @@ const tagsMeta = [
   traumaMeta,
   adhdMeta,
   aggressionMeta,
-  neurodiversityMeta
+  neurodiversityMeta,
 ];
 
 export function getTagMeta(tag: string): TagMeta | undefined {

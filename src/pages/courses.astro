@@ -14,7 +14,7 @@ import {
   tagAutism,
   tagBurnout,
   tagDemandAvoidance,
-  tagEHCP,
+  tagEHCPs,
   tagEMDR,
   tagNeurodiversity,
   tagSchool,
@@ -41,10 +41,10 @@ const burnoutCourses = await getCoursesWithTagWithoutOtherTags([tagBurnout]);
 
 const schoolCourses = await getCoursesWithTagWithoutOtherTags(
   [tagSchool],
-  [tagEHCP, tagALDP]
+  [tagEHCPs, tagALDP]
 );
 
-const ehcpCourses = await getCoursesWithTagWithoutOtherTags([tagEHCP]);
+const ehcpCourses = await getCoursesWithTagWithoutOtherTags([tagEHCPs]);
 
 const lowDemandParentingCourses = await getCoursesWithTagWithoutOtherTags([
   tagALDP,
@@ -70,12 +70,12 @@ const forProfessionalsCourses = await getCoursesWithTagWithoutOtherTags([
     </div>
     <div class="page-intro-text">
       <p>
-        Our pre-recorded courses cover topics such as
-        helping your child with anxiety, demand avoidance, burnout and problems
-        at school.
+        Our pre-recorded courses cover topics such as helping your child with
+        anxiety, demand avoidance, burnout and problems at school.
       </p>
       <p>
-         Most are for parents to watch, but some are for teenagers or professionals to watch.
+        Most are for parents to watch, but some are for teenagers or
+        professionals to watch.
       </p>
 
       <p>
@@ -87,8 +87,9 @@ const forProfessionalsCourses = await getCoursesWithTagWithoutOtherTags([
       </p>
 
       <p>
-        They are divided into small, manageable modules. You
-        can watch them in your own time, on whatever device you prefer, as many times as you like within 12 months of purchase.
+        They are divided into small, manageable modules. You can watch them in
+        your own time, on whatever device you prefer, as many times as you like
+        within 12 months of purchase.
       </p>
     </div>
   </div>
@@ -160,7 +161,7 @@ const forProfessionalsCourses = await getCoursesWithTagWithoutOtherTags([
 
   <CoursesList
     courses={ehcpCourses}
-    categoryId="ehcp"
+    categoryId="ehcps"
     categoryName="EHCP Courses"
   />
 
