@@ -46,6 +46,9 @@ const tag2regex: Readonly<Record<string, RegExp>> = {
   [tagAggression]: new RegExp(["aggress", "violent"].join("|"), "i"),
 
   [tagALDP]: new RegExp(["art of low demand parenting"].join("|"), "i"),
+
+  [tagEMDR]: new RegExp(["emdr"].join("|"), "i"),
+  [tagNeurodiversity]: new RegExp(["neurodiver"].join("|"), "i"),
 };
 
 export const topicTags = [

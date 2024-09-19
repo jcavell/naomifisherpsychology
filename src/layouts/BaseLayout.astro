@@ -7,7 +7,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import NaomiStyle from "../styles/naomiStyle.astro";
 
-const { pageTitle, active, tagName, tagUrl } = Astro.props;
+const { active, tagName, tagUrl } = Astro.props;
 
 const bodyClass = tagName ? "tag-page topic-page" : "category-" + active;
 ---

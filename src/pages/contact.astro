@@ -2,8 +2,62 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
+<script src="../scripts/accordion.js"></script>
+
 <BaseLayout active="contact" pageTitle="Contact">
-  <div class="wrapper">
-    <h1>Contact blurb</h1>
+  <div class="page-intro-wrapper">
+    <div class="page-intro-static-image">
+      <img
+        srcset="imgs/static-EDMR-example-image-620.jpg 620w, imgs/static-EDMR-example-image-1080.jpg 1080w"
+        sizes="(min-width: 1200px) 520px, (min-width: 780px) 780px, 100vw"
+        src="imgs/static-EDMR-example-image-620.jpg.jpg"
+        alt="an image description for the visually impaired, also helps SEO"
+      />
+    </div>
+    <div class="page-intro-text">
+      <h3>Press</h3>
+      <p>
+        For press and broadcast enquiries email <a
+          href="mailto:press@naomifisher.co.uk">press@naomifisher.co.uk</a
+        >
+      </p>
+      <h3>Support</h3>
+      <p>
+        To contact Naomi or Abigail, or for technical support on courses or
+        webinars, email <a href="mailto:support@naomifisher.co.uk"
+          >support@naomifisher.co.uk</a
+        >
+      </p>
+      <p>
+        <em
+          >Please note that Naomi is currently unable to take on any new clients
+          or supervisees.</em
+        >
+      </p>
+
+      <h3>Frequently Asked Questions</h3>
+      <div class="accordion-wrapper">
+        <button class="accordion">Example Question</button>
+        <div class="panel">
+          <p>Example answer.</p>
+        </div>
+        <button class="accordion">Example Question</button>
+        <div class="panel">
+          <p>Example answer.</p>
+        </div>
+        <button class="accordion">Example Question</button>
+        <div class="panel">
+          <p>Example answer.</p>
+        </div>
+        <button class="accordion">Example Question</button>
+        <div class="panel">
+          <p>Example answer.</p>
+        </div>
+        <button class="accordion">Example Question</button>
+        <div class="panel">
+          <p>Example answer.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </BaseLayout>

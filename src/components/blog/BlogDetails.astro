@@ -4,8 +4,6 @@ import BlogImage from "./BlogImage.astro";
 
 const { post } = Astro.props;
 
-const imageFileName = post.imageFileName;
-const url = post.url;
 const title = post.title;
 const subtitle = post.subtitle;
 const pubDate = post.pubDate;
@@ -30,9 +28,7 @@ const body = paragraphs.reduce((acc: string, curr: string) => acc + " " + curr);
   {
     post.imagePrefix && (
       <div class="details-image">
-        <div class="card-image">
-          <BlogImage post={post} alt={`Image for ${title}`} />
-        </div>
+        <BlogImage post={post} alt={`Image for ${title}`} />
       </div>
     )
   }
@@ -44,11 +40,30 @@ const body = paragraphs.reduce((acc: string, curr: string) => acc + " " + curr);
       </p>
     </div>
 
-    <div class="details-body-B"></div>
+    <div class="details-body-B">
+      <div class="purchase-wrapper">
+        <div class="purchase-title">
+          <div class="purchase-title-primary purchase-title-courses">
+            RELATED COURSES
+          </div>
+        </div>
+        <a
+          href="https://www.psychologicaltherapybooks.co.uk/product/changing-our-minds-how-children-can-take-control-of-their-own-learning-2/"
+          target="blank"
+          class="test"
+        >
+          <div class="purchase">
+            <div class="company">Helping Your Autistic Child with Trauma</div>
+            <div class="buy-now">
+              <span> View </span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
   </div>
 
-  <div class="card-meta details-meta">
-    <span class="contributors"> Dr Naomi Fisher </span>
+  <div class="card-meta">
     <Tags tags={tags} />
   </div>
 </div>
