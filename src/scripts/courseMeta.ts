@@ -466,19 +466,19 @@ export const helpingYourChildWithLearningDisabilitiesWithAnxiety: CourseMeta = {
 // !! ADD NEW COURSES HERE !!
 // Most recent first
 export const allCourseMetas = [
-  autisticChildWithTrauma,
+  navigatingTheSenTribunalProcess,
+  helpingYourChildWithLearningDisabilitiesWithAnxiety,
   takingControlOfYourEhcpAnnualReview,
   demandAvoidance101,
   demandAvoidantAdolescent,
   neurodiversity101,
-  autisticTeenWithAnxiety,
   autisticChildWithAnxiety,
+  autisticTeenWithAnxiety,
+  autisticChildWithTrauma,
   autisticChildScreens,
   childWithAnxietyUnder8s,
   childWithAnxiety6To13,
   childWithSevereAnxiety,
-  helpingYourChildWithLearningDisabilitiesWithAnxiety,
-  navigatingTheSenTribunalProcess,
   burntOutBySchool,
   afterSchoolMovingOnFromSchoolTrauma,
   autisticChildrenWithSchool,
