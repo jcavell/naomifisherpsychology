@@ -19,159 +19,109 @@ const featuredBooks = await getFeaturedBooks();
 ---
 
 <BaseLayout active="home" pageTitle="Home">
-  <div class="wrapper">
-    <div class="page-intro-wrapper">
-      <div class="page-intro-image"></div>
-      <div class="page-intro-text">
-        <h3>Welcome!</h3>
-        <p>
-          Here you’ll find the work of Dr Naomi Fisher and Dr Abigail Fisher.
-        </p>
-        <p>
-          Naomi is a clinical psychologist, author and EMDR-Europe Accredited
-          Trainer. She writes and speaks about trauma, autism and alternative
-          education.
-        </p>
-        <p>Abigail is an educational psychologist and qualified teacher.</p>
-        <p>
-          We offer a range of support for parents and carers alongside resources
-          for professionals and teens.
-        </p>
+  <div class="page-intro-wrapper">
+    <div class="page-intro-image"></div>
+    <div class="page-intro-text">
+      <h3>Welcome!</h3>
+      <p>Here you’ll find the work of Dr Naomi Fisher and Dr Abigail Fisher.</p>
+      <p>
+        Naomi is a clinical psychologist, author and EMDR-Europe Accredited
+        Trainer. She writes and speaks about trauma, autism and alternative
+        education.
+      </p>
+      <p>Abigail is an educational psychologist and qualified teacher.</p>
+      <p>
+        We offer a range of support for parents and carers alongside resources
+        for professionals and teens.
+      </p>
 
-        <h3>Webinars, courses and books</h3>
-        <p>
-          If you’re a parent or carer looking for support, we run regular
-          <a href="/webinars">webinars</a>. These are live events but you can
-          choose to buy the recording as well.
-        </p>
+      <h3>Webinars, courses and books</h3>
+      <p>
+        If you’re a parent or carer looking for support, we run regular
+        <a href="/webinars">webinars</a>. These are live events but you can
+        choose to buy the recording as well.
+      </p>
 
-        <p>
-          We also have many <a href="/courses">short courses</a> for parents, teenagers
-          and professionals to watch. These are entirely on-demand and can be viewed
-          in your own time.
-        </p>
+      <p>
+        We also have many <a href="/courses">short courses</a> for parents, teenagers
+        and professionals to watch. These are entirely on-demand and can be viewed
+        in your own time.
+      </p>
 
-        <p>
-          Naomi has written several <a href="/books">books</a>. Her latest book, <a
-            href="/books/when-the-naughty-step-makes-things-worse"
-            >When the Naughty Step Makes Things Worse</a
-          >, is now available for pre-order.
-        </p>
-        <p>
-          Naomi also <a href="/blog">blogs regularly</a>.
-        </p>
+      <p>
+        Naomi has written several <a href="/books">books</a>. Her latest book, <a
+          href="/books/when-the-naughty-step-makes-things-worse"
+          >When the Naughty Step Makes Things Worse</a
+        >, is now available for pre-order.
+      </p>
+      <p>
+        Naomi also <a href="/blog">blogs regularly</a>.
+      </p>
 
-        <h3>EMDR</h3>
-        <p>
-          For professionals looking for training, Naomi runs <a
-            href="https://www.emdrtraininguk.co.uk/"
-            >EMDR Basic Training courses online</a
-          >. She can also run in-house training for your NHS trust or
-          organisation.
-        </p>
-        <p>
-          Naomi hosts periodic online <a href="https://www.emdrtraininguk.co.uk/"
-            >EMDR Refresher Days</a
-          > for those who are already trained but who need to brush up their skills
-          and knowledge.
-        </p>
+      <h3>Professional training</h3>
+      <p>
+        Naomi runs a variety of <a href="/training/"
+          >training courses</a
+        >.
+      </p>
 
-        <h3>Professionals</h3>
-        <p>
-          Naomi also runs occasional training for professionals on trauma and
-          neurodiversity.
-        </p>
-      </div>
+      <p>
+        This includes <a href="/training#online-EMDR-basic-training"
+          >online EMDR Basic Training</a for professionals
+        >, <a href="/training#in-house-EMDR-basic-training"
+          >in-house EMDR Basic Training</a
+        > for your NHS trust or organisation and online <a
+          href="/training#EMDR-refresher-day">EMDR Refresher Days</a
+        > for those who are already trained but who need to brush up their skills
+        and knowledge.
+      </p>
     </div>
-
-    <a name="webinars" class="anchor">
-      <h2 class="section-title">
-        <span class="webinars-section-title">Upcoming Webinars</span>
-      </h2>
-    </a>
-
-    {webinars.map((webinar, index) => <WebinarSummary webinar={webinar} />)}
-
-    <CoursesList
-      courses={featuredCourses1}
-      categoryId="featured"
-      categoryName="Featured Courses"
-    />
-
-    <Newsletter />
-
-    <CoursesList courses={featuredCourses2} />
-
-    <a name="books" class="anchor">
-      <h2 class="section-title">
-        <span class="books-section-title">Featured Books</span>
-      </h2>
-    </a>
-    {featuredBooks.map((book) => <BookSummary book={book.data} />)}
-
-    <a name="blog" class="anchor">
-      <h2 class="section-title">
-        <span class="blog-section-title">Latest Blog Posts</span>
-      </h2>
-    </a>
-
-    <BlogList length="2" />
-
-    <div class="info-section-wrapper">
-      <div class="info-text">
-        <p>
-          Finding the right support among a wealth of information can be
-          overwhelming,to help you find what's personally relevant we’ve tagged
-          all available resources across the Dr Naomi Fisher website with a
-          range of <strong>Topics</strong>, <strong>Topic Age Ranges</strong>,
-          and the intended <strong>Audience</strong>.
-        </p>
-        <p>
-          As well as an indication at a glance of a resources content, these
-          Tags can be selected to view a combination of any relevant Webinars,
-          Courses, Books and Blog posts which may be available. Use the <strong
-            >Search</strong
-          > button located at the top and bottom of any page to open the Tags menu.
-        </p>
-      </div>
-
-      <div class="info-links">
-        <a href="/autism/" class="filter-tags"> Autism </a>
-        <a href="/demand-avoidance/" class="filter-tags"> Demand Avoidance </a>
-        <a href="/anxiety/" class="filter-tags"> Anxiety </a>
-        <a href="/burnout/" class="filter-tags"> Burnout </a>
-        <a href="/trauma/" class="filter-tags"> Trauma </a>
-        <a href="/school/" class="filter-tags"> School </a>
-        <a href="/EHCP/" class="filter-tags"> EHCP </a>
-        <a href="/SEN/" class="filter-tags"> SEN </a>
-        <a href="/Screens/" class="filter-tags"> Screens </a>
-        <a href="/Low Demnand Parenting/" class="filter-tags">
-          Low Demand Parenting
-        </a>
-        <a href="/EDMR/" class="filter-tags"> EDMR </a>
-        <a href="/pre-teen/" class="filter-age"> Pre-Teen </a>
-        <a href="/tween/" class="filter-age"> Tween </a>
-        <a href="/teen/" class="filter-age"> Teen </a>
-        <a href="/parents-and-carers/" class="filter-audience">
-          Parents and Carers
-        </a>
-        <a href="/Teens/" class="filter-audience"> Teens </a>
-        <a href="/professionals/" class="filter-audience"> Professionals </a>
-      </div>
-    </div>
-
-    <GenerateQuote
-      client:load
-      quotes={[
-        {
-          text: "This is a great webinar",
-          author: "Webinar attendee 100",
-        },
-        {
-          text: "This is a nice webinar",
-          author: "Webinar attendee 101",
-        },
-      ]}
-    />
   </div>
+
+  <a name="webinars" class="anchor">
+    <h2 class="section-title">
+      <span class="webinars-section-title">Upcoming Webinars</span>
+    </h2>
+  </a>
+
+  {webinars.map((webinar, index) => <WebinarSummary webinar={webinar} />)}
+
+  <CoursesList
+    courses={featuredCourses1}
+    categoryId="featured"
+    categoryName="Featured Courses"
+  />
+
+  <Newsletter />
+
+  <CoursesList courses={featuredCourses2} />
+
+  <a name="books" class="anchor">
+    <h2 class="section-title">
+      <span class="books-section-title">Featured Books</span>
+    </h2>
+  </a>
+  {featuredBooks.map((book) => <BookSummary book={book.data} />)}
+
+  <a name="blog" class="anchor">
+    <h2 class="section-title">
+      <span class="blog-section-title">Latest Blog Posts</span>
+    </h2>
+  </a>
+
+  <BlogList length="2" />
+
+  <GenerateQuote
+    client:load
+    quotes={[
+      {
+        text: "This is a great webinar",
+        author: "Webinar attendee 100",
+      },
+      {
+        text: "This is a nice webinar",
+        author: "Webinar attendee 101",
+      },
+    ]}
+  />
 </BaseLayout>
