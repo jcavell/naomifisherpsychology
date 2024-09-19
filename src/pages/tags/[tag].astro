@@ -28,8 +28,11 @@ export async function getStaticPaths() {
   const webinars = await getWebinars();
   const courses = await getCourses();
   const posts = await getOrderedPosts();
-  const books = await getCollection("books");
 
+  // Sort newest book first
+  const books = (await getCollection("books")).sort(
+    (a, b) => b.data.id - a.data.id
+  );
   function getAllResources(tags: string[]) {
     const filteredWebinars = webinars.filter((webinar) => {
       const eventId = webinar.id;

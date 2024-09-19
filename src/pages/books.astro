@@ -5,6 +5,7 @@ import BookSummary from "../components/book/BookSummary.astro";
 
 const pageTitle = "Books";
 
+// Sort newest first
 const books = (await getCollection("books")).sort(
   (a, b) => b.data.id - a.data.id
 );
