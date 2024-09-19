@@ -43,7 +43,7 @@ function addVideoData(webinar) {
 function addAgenda(webinar) {
   const agendaWidgets = webinar.widgets.filter((w) => w.type === "agenda");
 
-  console.log("Agenda Widgets" + JSON.stringify(agendaWidgets));
+  // console.log("Agenda Widgets" + JSON.stringify(agendaWidgets));
   if (agendaWidgets.length > 0) {
     webinar.agenda = agendaWidgets[0].data.tabs[0].slots.map((slot) => slot.title);
   }

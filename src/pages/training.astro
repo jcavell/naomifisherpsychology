@@ -7,11 +7,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 <BaseLayout active="training" pageTitle="Training">
   <div class="info-section-wrapper">
     <div class="info-text">
+      <p>Dr Naomi Fisher is an EMDR-Europe accredited trainer.</p>
+
       <p>
-        Dr Naomi Fisher is an EMDR-Europe accredited trainer.</p> 
-        
-        <p>She runs <a
-          href="#online-EMDR-basic-training">online EMDR Basic Training</a
+        She runs <a href="#online-EMDR-basic-training"
+          >online EMDR Basic Training</a
         > courses for those who are already qualified mental health professionals
         who want to learn how to do EMDR.
       </p>
@@ -126,9 +126,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <div class="purchase-wrapper">
           <a
             href="https://www.emdrtraininguk.co.uk/apply-for-emdr-basic-training"
+            target="blank"
+            class="test"
           >
             <div class="purchase">
-              <div class="company">Check your eligibility and apply</div>
+              <div class="company">Check eligibility and apply</div>
+              <div class="buy-now">
+                <span> Apply </span>
+              </div>
             </div>
           </a>
         </div>
@@ -154,7 +159,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
     <div class="page-intro-text">
       <p>
-        For groups of 24 or more, we can provide in-house training in person.
+        For groups of 24 or more, we can provide in-house EMDR Basic Training
+        training in person.
       </p>
       <div class="accordion-wrapper">
         <button class="accordion no-title-accordion">Further Details</button>
@@ -275,10 +281,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           </ul>
         </div>
       </div>
+
       <div class="purchase-wrapper">
-        <a href="https://www.emdrtraininguk.co.uk/emdr-refresher-day">
+        <a
+          href="https://www.emdrtraininguk.co.uk/emdr-refresher-day"
+          target="blank"
+          class="test"
+        >
           <div class="purchase">
-            <div class="company">Apply</div>
+            <div class="company">More information and apply</div>
+            <div class="buy-now">
+              <span> Apply </span>
+            </div>
           </div>
         </a>
       </div>
@@ -312,7 +326,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         Attending School and Autism and Trauma: Bringing Neurodiversity into
         Your Formulation
       </p>
-      <p>Please contact us on support@naomifisher.co.uk to discuss your requirements.</p>
+      <p>To enquire about bespoke training, email support@naomifisher.co.uk</p>
     </div>
   </div>
 </BaseLayout>
