@@ -25,12 +25,6 @@ export const tagEHCPs = "EHCPs";
 export const tagSEN = "SEN";
 export const tagADHD = "ADHD";
 
-export const umbrellaTags = new Map<string, string[]>([
-  [tagNeurodiversity, [tagAutism, tagSEN, tagADHD]],
-  [tagAutism, [tagNeurodiversity]],
-  [tagSEN, [tagEHCPs]],
-]);
-
 const tag2regex: Readonly<Record<string, RegExp>> = {
   [tagAutism]: new RegExp(["auti", "neurodiv"].join("|"), "i"),
   [tagDemandAvoidance]: new RegExp(
@@ -57,6 +51,8 @@ const tag2regex: Readonly<Record<string, RegExp>> = {
 export const topicTags = [
   tagAutism,
   tagDemandAvoidance,
+  tagNeurodiversity,
+  // tagADHD,
   tagAnxiety,
   tagBurnout,
   tagTrauma,
@@ -73,7 +69,6 @@ export const ageTags = [age5To12, age13To18];
 export const forTags = [forParents, forTeens, forProfessionals];
 
 export const allTags = [
-  Array.from(umbrellaTags.keys()),
   topicTags,
   ageTags,
   forTags,

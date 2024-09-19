@@ -2,7 +2,10 @@
 import getWebinars from "../../scripts/webinars";
 import getCourses from "../../scripts/courses";
 import { getWebinarMeta } from "../../scripts/webinarMeta";
-import { getCourseMetaFromTitle } from "../../scripts/courseMeta";
+import {
+  allCourseMetas,
+  lowerCaseAndRemoveWhitespace,
+} from "../../scripts/courseMeta";
 
 import { makeUrl } from "../../scripts/url";
 import { allTags, ageTags, forTags, topicTags } from "../../scripts/tags";
@@ -31,14 +34,20 @@ export async function getStaticPaths() {
     const filteredWebinars = webinars.filter((webinar) => {
       const eventId = webinar.id;
       const meta = getWebinarMeta(eventId);
-      return meta?.tags?.some((e) => tags.includes(e));
+      return meta?.tags?.some((t) => tags.includes(t));
     });
 
-    const filteredCourses = courses.filter((course) => {
-      const meta = getCourseMetaFromTitle(course.data.title);
-      // console.log("Course tags for " + course.data.title + ": " + meta?.tags);
-      return meta?.tags?.some((e) => tags.includes(e));
-    });
+    const filteredCourses = allCourseMetas
+      .filter((cm) => cm.tags.some((e) => tags.includes(e)))
+      //  .sort((a, b) => b.tags.indexOf(tags[0]) - a.tags.indexOf(tags[0]))
+      .map((cm) =>
+        courses.find((c) => {
+          const course = lowerCaseAndRemoveWhitespace(c.data.title).startsWith(
+            lowerCaseAndRemoveWhitespace(cm.title)
+          );
+          return course;
+        })
+      );
 
     const filteredBooks = books.filter((book) =>
       book.data.tags.some((e) => tags.includes(e))
@@ -58,32 +67,9 @@ export async function getStaticPaths() {
 
   return allTags.map((tag: string) => {
     const { filteredWebinars, filteredCourses, filteredBooks, filteredPosts } =
-      umbrellaTags.has(tag)
-        ? getAllResources([tag].concat(Array.from(umbrellaTags.get(tag))))
-        : getAllResources([tag]);
+      getAllResources([tag]);
 
-    // Sort courses depending on where tag appears
-    filteredCourses.sort(function (a, b) {
-      const tagUpper = tag.toUpperCase();
-      if (
-        a.data.title.toUpperCase().indexOf(tagUpper) !== -1 &&
-        b.data.title.toUpperCase().indexOf(tagUpper) === -1
-      ) {
-        // In B's title but not A's - sort B first
-        return -1;
-      }
-      if (
-        a.data.description.toUpperCase().indexOf(tagUpper) !== -1 &&
-        b.data.description.toUpperCase().indexOf(tagUpper) === -1
-      ) {
-        // In B's description but not A's - sort B first
-        return -1;
-      }
-      // sort A first
-      return 1;
-    });
-
-    // console.log("**" + tag + "** " + filteredCourses.map((course) => course.data.title));
+    //  console.log("**" + tag + "** " + filteredCourses.map((course) => course.data.title));
 
     return {
       params: { tag: makeUrl(tag) },
@@ -150,7 +136,8 @@ const tagMeta = getTagMeta(tagName);
       <div class="info-section-wrapper">
         <div class="info-text">
           <p>
-            Click on a button to jump to our webinars, courses, books or blog posts
+            Click on a button to jump to our webinars, courses, books or blog
+            posts
             {aimedAtText}
             <strong>{tagName}</strong>
           </p>

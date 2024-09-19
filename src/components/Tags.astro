@@ -1,27 +1,24 @@
 ---
 import { makeUrl } from "../scripts/url";
-import { umbrellaTags, topicTags, forTags, ageTags } from "../scripts/tags";
+import { topicTags, forTags, ageTags } from "../scripts/tags";
 
 const { tags = [], uri = "tags" } = Astro.props;
 
-// Combine umbrella and core tags and make unique
-const coreAndUmbrellaTags = [
-  ...new Set(topicTags.concat(Array.from(umbrellaTags.keys()))),
-];
+
 //console.log("Core and synonym tags: " + coreAndSynonymTags);
 
-const includedCoreTags = tags.filter((t) => coreAndUmbrellaTags.includes(t));
+const includedTopicTags = tags.filter((t) => topicTags.includes(t));
 const includedAgeTags = tags.filter((t) => ageTags.includes(t));
 const includedForTags = tags.filter((t) => forTags.includes(t));
 ---
 
 {
-  includedCoreTags.length > 0 && (
+  includedTopicTags.length > 0 && (
     <span class="tags">
-      {includedCoreTags.map((tag: string, index: number) => (
+      {includedTopicTags.map((tag: string, index: number) => (
         <>
           <a href={`/${uri}/${makeUrl(tag)}`}>{tag}</a>
-          {includedCoreTags.length > index + 1 && <>, </>}
+          {includedTopicTags.length > index + 1 && <>, </>}
         </>
       ))}
     </span>

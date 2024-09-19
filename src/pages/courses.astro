@@ -18,6 +18,7 @@ import {
   tagEMDR,
   tagNeurodiversity,
   tagSchool,
+  tagSEN,
   tagTrauma,
 } from "../scripts/tags";
 
@@ -41,10 +42,12 @@ const burnoutCourses = await getCoursesWithTagWithoutOtherTags([tagBurnout]);
 
 const schoolCourses = await getCoursesWithTagWithoutOtherTags(
   [tagSchool],
-  [tagEHCPs, tagALDP]
+  [tagEHCPs, tagALDP, tagSEN]
 );
 
 const ehcpCourses = await getCoursesWithTagWithoutOtherTags([tagEHCPs]);
+
+const senCourses = await getCoursesWithTagWithoutOtherTags([tagSEN]);
 
 const lowDemandParentingCourses = await getCoursesWithTagWithoutOtherTags([
   tagALDP,
@@ -112,6 +115,7 @@ const forProfessionalsCourses = await getCoursesWithTagWithoutOtherTags([
 
       <a href="#school" class="filter-courses"> School </a>
       <a href="#ehcps" class="filter-courses"> EHCPs </a>
+      <a href="#sen" class="filter-courses"> SEN </a>
 
       <a href="#low-demand-parenting" class="filter-courses">
         Low Demand Parenting
@@ -163,6 +167,12 @@ const forProfessionalsCourses = await getCoursesWithTagWithoutOtherTags([
     courses={ehcpCourses}
     categoryId="ehcps"
     categoryName="EHCP Courses"
+  />
+
+  <CoursesList
+    courses={senCourses}
+    categoryId="sen"
+    categoryName="SEN Courses"
   />
 
   <CoursesList

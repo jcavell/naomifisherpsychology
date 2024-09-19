@@ -2,7 +2,7 @@ import { getCollection } from "astro:content";
 import {
   lowerCaseAndRemoveWhitespace,
   getCourseMetaFromTitle,
-  allCourses,
+  allCourseMetas,
   featuredCourses,
 } from "./courseMeta";
 
@@ -26,7 +26,8 @@ export default async function getCourses() {
   // Sort based on CourseMeta.allCourses position
 
   const sortedCards = courseCards.sort(
-    (a, b) => allCourses.indexOf(a.data.meta) - allCourses.indexOf(b.data.meta)
+    (a, b) =>
+      allCourseMetas.indexOf(a.data.meta) - allCourseMetas.indexOf(b.data.meta)
   );
 
   return sortedCards;

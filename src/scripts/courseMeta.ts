@@ -263,7 +263,7 @@ export const thrivingAfterSchoolBreakdown: CourseMeta = {
 };
 
 export const burnoutAGuideForTeenagers: CourseMeta = {
-  title: "Teenager Burnout 101",
+  title: "Burnout - A Guide for Teenagers",
   tags: [tagBurnout, age13To18, forTeens],
   contributers: [naomi],
   image: teenagerBurnout101Image,
@@ -465,7 +465,7 @@ export const helpingYourChildWithLearningDisabilitiesWithAnxiety: CourseMeta = {
 
 // !! ADD NEW COURSES HERE !!
 // Most recent first
-export const allCourses = [
+export const allCourseMetas = [
   autisticChildWithTrauma,
   takingControlOfYourEhcpAnnualReview,
   demandAvoidance101,
@@ -944,7 +944,7 @@ export function lowerCaseAndRemoveWhitespace(input: string) {
 }
 
 export function getCourseMetaFromTitle(title: string): CourseMeta | undefined {
-  return allCourses.find((meta) =>
+  return allCourseMetas.find((meta) =>
     lowerCaseAndRemoveWhitespace(title).startsWith(
       lowerCaseAndRemoveWhitespace(meta.title)
     )
