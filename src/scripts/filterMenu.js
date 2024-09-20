@@ -31,3 +31,18 @@ FooterFilterMenuToggle.addEventListener("click", function(event) {
     FilterMenu.classList.toggle("filter-is-active");
     site.classList.toggle("filter-menu-open");
 });
+
+const topButton = document.querySelector('.top-trigger');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      topButton.classList.remove('top-button-active');
+    }
+    else {
+        topButton.classList.add('top-button-active');
+    }
+  });
+});
+
+observer.observe(topButton);

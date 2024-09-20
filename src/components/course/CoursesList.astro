@@ -10,9 +10,11 @@ const quotes = (await getEntry("course-quotes", "general-course-quotes")).data;
 
 {
   categoryName && (
-    <h2 class="section-title" id={categoryId}>
-      <span class="courses-section-title">{categoryName}</span>
-    </h2>
+    <a name={categoryId} class="anchor">
+      <h2 class="section-title">
+        <span class="courses-section-title">{categoryName}</span>
+      </h2>
+    </a>
   )
 }
 

@@ -68,19 +68,21 @@ const featuredBooks = await getFeaturedBooks();
 
       <h2>Professional training</h2>
       <p>
-        Naomi runs a variety of <a href="/training/">training courses</a> on many topics including neurodiversity and trauma.
+        Naomi runs a variety of <a href="/training/">training courses</a> on many
+        topics including neurodiversity and trauma.
       </p>
 
-      <h3>EMDR</h3>
+      <h3>EMDR Training</h3>
       <p>
         Naomi delivers <a href="/training#online-EMDR-basic-training"
           >online EMDR Basic Training</a
-        >, <a href="/training#in-house-EMDR-basic-training"
-          >in-house EMDR Basic Training</a
-        > for your NHS trust or organisation and online <a
-          href="/training#EMDR-refresher-day">EMDR Refresher Days</a
+        > for professionals and <a href="/training#EMDR-refresher-day"
+          >EMDR Refresher Days</a
         > for those who are already trained but who need to brush up their skills
-        and knowledge.
+        and knowledge. She can also run <a
+          href="/training#in-house-EMDR-basic-training"
+          >in-house EMDR Basic Training</a
+        > for your NHS trust or organisation
       </p>
     </div>
   </div>
@@ -92,6 +94,9 @@ const featuredBooks = await getFeaturedBooks();
   </a>
 
   {webinars.map((webinar, index) => <WebinarSummary webinar={webinar} />)}
+
+  {console.log(webinars.length)}
+  {webinars.length % 2 !== 0 && <Newsletter />}
 
   <CoursesList
     courses={featuredCourses1}
