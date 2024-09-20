@@ -1,5 +1,10 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import StaticImage from "../components/StaticImage.astro";
+import logsOnARiver from "../images/static/emdr-logs-on-a-river.png";
+import soundsInteresting from "../images/static/emdr-sounds-interesting.png";
+import therapist from "../images/static/emdr-therapist.png";
+import womanStanding from "../images/static/emdr-woman-standing.png";
 ---
 
 <script src="../scripts/accordion.js"></script>
@@ -54,12 +59,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
   <div class="page-intro-wrapper">
     <div class="page-intro-static-image">
-      <img
-        srcset="imgs/static-EMDR-example-image-620.jpg 620w, imgs/static-EMDR-example-image-1080.jpg 1080w"
-        sizes="(min-width: 1200px) 520px, (min-width: 780px) 780px, 100vw"
-        src="imgs/static-EMDR-example-image-620.jpg.jpg"
-        alt="an image description for the visually impaired, also helps SEO"
-      />
+      <StaticImage image={therapist} alt="Therapist performing EMDR" />
     </div>
     <div class="page-intro-text">
       <p>
@@ -148,12 +148,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
   <div class="page-intro-wrapper">
     <div class="page-intro-static-image">
-      <img
-        srcset="imgs/static-EDMR-example-image-620.jpg 620w, imgs/static-EDMR-example-image-1080.jpg 1080w"
-        sizes="(min-width: 1200px) 520px, (min-width: 780px) 780px, 100vw"
-        src="imgs/static-EDMR-example-image-620.jpg.jpg"
-        alt="an image description for the visually impaired, also helps SEO"
-      />
+      <StaticImage image={soundsInteresting} alt="Therapist telling a client it sounds interesting" />
     </div>
     <div class="page-intro-text">
       <p>
@@ -212,12 +207,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
   <div class="page-intro-wrapper">
     <div class="page-intro-static-image">
-      <img
-        srcset="imgs/static-EDMR-example-image-620.jpg 620w, imgs/static-EDMR-example-image-1080.jpg 1080w"
-        sizes="(min-width: 1200px) 520px, (min-width: 780px) 780px, 100vw"
-        src="imgs/static-EDMR-example-image-620.jpg.jpg"
-        alt="an image description for the visually impaired, also helps SEO"
-      />
+      <StaticImage image={logsOnARiver} alt="Logs floating down a river" />
     </div>
     <div class="page-intro-text">
       <p>
@@ -281,9 +271,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </div>
 
       <div class="purchase-wrapper">
-        <a
-          href="https://www.emdrtraininguk.co.uk/emdr-refresher-day"
-        >
+        <a href="https://www.emdrtraininguk.co.uk/emdr-refresher-day">
           <div class="purchase">
             <div class="company">More information and apply</div>
             <div class="buy-now">
@@ -303,12 +291,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
   <div class="page-intro-wrapper">
     <div class="page-intro-static-image">
-      <img
-        srcset="imgs/static-EDMR-example-image-620.jpg 620w, imgs/static-EDMR-example-image-1080.jpg 1080w"
-        sizes="(min-width: 1200px) 520px, (min-width: 780px) 780px, 100vw"
-        src="imgs/static-EDMR-example-image-620.jpg.jpg"
-        alt="an image description for the visually impaired, also helps SEO"
-      />
+      <StaticImage image={womanStanding} alt="Woman standing" />
     </div>
     <div class="page-intro-text">
       <p>
