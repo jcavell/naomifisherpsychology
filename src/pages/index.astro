@@ -9,6 +9,8 @@ import BookSummary from "../components/book/BookSummary.astro";
 import { getFeaturedBooks } from "../scripts/book";
 import Newsletter from "../components/Newsletter.astro";
 import BlogList from "../components/blog/BlogList.astro";
+import StaticImage from "../components/StaticImage.astro";
+import homeImage from "../images/static/Child_CuttingGrass_pinkteal.jpg";
 
 const webinars = await getWebinars();
 
@@ -20,7 +22,13 @@ const featuredBooks = await getFeaturedBooks();
 
 <BaseLayout active="home" pageTitle="Home">
   <div class="page-intro-wrapper">
-    <div class="page-intro-image"></div>
+    <div class="page-intro-image">
+      <StaticImage
+        image={homeImage}
+        alt="Child cuttting grass with a scythe looking at the setting sun"
+      />
+    </div>
+
     <div class="page-intro-text">
       <h3>Welcome!</h3>
       <p>Here you’ll find the work of Dr Naomi Fisher and Dr Abigail Fisher.</p>
@@ -60,14 +68,12 @@ const featuredBooks = await getFeaturedBooks();
 
       <h3>Professional training</h3>
       <p>
-        Naomi runs a variety of <a href="/training/"
-          >training courses</a
-        >.
+        Naomi runs a variety of <a href="/training/">training courses</a>.
       </p>
 
       <p>
         These include <a href="/training#online-EMDR-basic-training"
-          >online EMDR Basic Training</a for professionals
+          >online EMDR Basic Training</a
         >, <a href="/training#in-house-EMDR-basic-training"
           >in-house EMDR Basic Training</a
         > for your NHS trust or organisation and online <a

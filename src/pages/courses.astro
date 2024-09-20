@@ -6,6 +6,9 @@ import {
 import BaseLayout from "../layouts/BaseLayout.astro";
 import CoursesList from "../components/course/CoursesList.astro";
 
+import StaticImage from "../components/StaticImage.astro";
+import image from "../images/static/naomi-and-child-reading-different-way-to-learn.png";
+
 import {
   forProfessionals,
   forTeens,
@@ -64,12 +67,13 @@ const forProfessionalsCourses = await getCoursesWithTagWithoutOtherTags([
 <BaseLayout active="courses" pageTitle="Courses">
   <div class="page-intro-wrapper">
     <div class="page-intro-image">
-      <img
+      <StaticImage image={image} alt = "Naomi and child reading Naomi's book A Different Way to Learn"/>
+      <!-- <img
         srcset="imgs/page-image-620.jpg 620w, imgs/page-image-1080.jpg 1080w"
         sizes="(min-width: 1200px) 520px, (min-width: 780px) 780px, 100vw"
         src="imgs/page-image-620.jpg.jpg"
         alt="an image description for the visually impaired, also helps SEO"
-      />
+      /> -->
     </div>
     <div class="page-intro-text">
       <p>

@@ -1,0 +1,13 @@
+---
+import { Picture } from "astro:assets";
+
+const { image, alt } = Astro.props;
+---
+
+<Picture
+  src={image}
+  widths={[620, 1080]}
+  sizes="(min-width: 1200px) 520px, (min-width: 780px) 780px, 100vw"
+  alt={alt}
+  pictureAttributes={{}}
+/>
