@@ -10,8 +10,12 @@ const subtitle = post.subtitle;
 const pubDate = post.pubDate;
 const paragraphs = post.paragraphs;
 const tags = post.tags;
-
-const body = paragraphs.reduce((acc: string, curr: string) => acc + " " + curr);
+const introText =
+  paragraphs[0].length > 100
+    ? paragraphs[0]
+    : paragraphs[0] + paragraphs[1] > 100
+      ? paragraphs[0] + " " + paragraphs[1]
+      : paragraphs[0] + " " + paragraphs[1] + " " + paragraphs[2];
 ---
 
 <div class="card card-blog">
@@ -43,7 +47,7 @@ const body = paragraphs.reduce((acc: string, curr: string) => acc + " " + curr);
   </div>
 
   <p>
-    {paragraphs[0]}
+    {introText}
   </p>
 
   <div class="card-meta">
