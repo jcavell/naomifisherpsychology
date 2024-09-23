@@ -42,6 +42,23 @@ import { compiledContent as traumaContent } from "../content/tags/trauma.md";
 
 // Tag Images
 import testImage from "../images/tags/test-tag-image.jpg";
+import age5To12Image from '../images/tags/age-5-12.png';
+import age13To18Image from '../images/tags/age-13-18.png';
+import tagEMDRImage from '../images/tags/emdr-logs-on-a-river.png';
+import tagAnxietyImage from '../images/tags/tag-anxiety.png';
+import tagAutismImage from '../images/tags/tag-autism.png';
+import tagBurnoutImage from  '../images/tags/tag-burnout.png';
+import tagEHCPImage from '../images/tags/tag-ehcp.png';
+import forParentsImage from '../images/tags/for-parents.png';
+import forTeensImage from '../images/tags/for-teens.png';  
+import forProfessionalsImage from '../images/tags/emdr-sounds-interesting.png';
+import tagTraumaImage from  '../images/tags/tag-trauma.png';
+import tagNeurodiversityImage from '../images/tags/tag-neurodiversity.png';
+import tagSenImage from '../images/tags/tag-sen.png';
+import tagSchoolImage from '../images/tags/tag-school.png';
+import tagScreensImage from '../images/tags/tag-screens.png';
+import tagALDPImage from '../images/courses/ALDP-1-10.webp';
+import tagDemandAvoidanceImage from '../images/tags/tag-demand-avoidance.png';
 
 type TagMeta = {
   tag: string;
@@ -51,97 +68,97 @@ type TagMeta = {
 
 const age5To12Meta: TagMeta = {
   tag: age5To12,
-  image: testImage,
+  image: age5To12Image,
   description: age5To12Content(),
 };
 
 const age13To18Meta: TagMeta = {
   tag: age13To18,
-  image: testImage,
+  image: age13To18Image,
   description: age13To18Content(),
 };
 
 const anxietyMeta: TagMeta = {
   tag: tagAnxiety,
-  image: testImage,
+  image: tagAnxietyImage,
   description: anxietyContent(),
 };
 
 const autismMeta: TagMeta = {
   tag: tagAutism,
-  image: testImage,
+  image: tagAutismImage,
   description: autismContent(),
 };
 
 const burnoutMeta: TagMeta = {
   tag: tagBurnout,
-  image: testImage,
+  image: tagBurnoutImage,
   description: burnoutContent(),
 };
 
 const demandAvoidanceMeta: TagMeta = {
   tag: tagDemandAvoidance,
-  image: testImage,
+  image: tagDemandAvoidanceImage,
   description: demandAvoidanceContent(),
 };
 
 const ehcpMeta: TagMeta = {
   tag: tagEHCPs,
-  image: testImage,
+  image: tagEHCPImage,
   description: ehcpContent(),
 };
 
 const emdrMeta: TagMeta = {
   tag: tagEMDR,
-  image: testImage,
+  image: tagEMDRImage,
   description: emdrContent(),
 };
 
 const forParentsMeta: TagMeta = {
   tag: forParents,
-  image: testImage,
+  image: forParentsImage,
   description: forParentsContent(),
 };
 
 const forProfessionalsMeta: TagMeta = {
   tag: forProfessionals,
-  image: testImage,
+  image: forProfessionalsImage,
   description: forProfessionalsContent(),
 };
 
 const forTeensMeta: TagMeta = {
   tag: forTeens,
-  image: testImage,
+  image: forTeensImage,
   description: forTeensContent(),
 };
 
 const aldpMeta: TagMeta = {
   tag: tagALDP,
-  image: testImage,
+  image: tagALDPImage,
   description: aldpContent(),
 };
 
 const schoolMeta: TagMeta = {
   tag: tagSchool,
-  image: testImage,
+  image: tagSchoolImage,
   description: schoolContent(),
 };
 
 const screensMeta: TagMeta = {
   tag: tagScreens,
-  image: testImage,
+  image: tagScreensImage,
   description: screensContent(),
 };
 
 const senMeta: TagMeta = {
   tag: tagSEN,
-  image: testImage,
+  image: tagSenImage,
   description: senContent(),
 };
 
 const traumaMeta: TagMeta = {
   tag: tagTrauma,
-  image: testImage,
+  image: tagTraumaImage,
   description: traumaContent(),
 };
 
@@ -153,7 +170,7 @@ const aggressionMeta: TagMeta = {
 
 const neurodiversityMeta: TagMeta = {
   tag: tagNeurodiversity,
-  image: testImage,
+  image: tagNeurodiversityImage,
   description: neurodiversityContent(),
 };
 

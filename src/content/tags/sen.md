@@ -2,6 +2,6 @@ If your child needs something a bit different at school then you may be wonderin
 
 Your child might have a diagnosis, or they might be struggling to read, or struggling with their friendships.
 
-These courses and webinars discuss working with school, explain how to get help and what you can expect. They also discuss specific issues and what you can do to help your child. If you need more than school can offer, there are also courses which discuss the **Education, Health and Care Plan (EHCP)** process and how to apply. 
+These courses and webinars discuss working with school, explain how to get help and what you can expect. They also discuss specific issues and what you can do to help your child. If you need more than school can offer, there are also [courses which discuss the Education, Health and Care Plan (EHCP)](/tags/ehcps) process and how to apply. 
 
 We are building a library of courses to help with this. Please let us know if what you are looking for isn’t here.
