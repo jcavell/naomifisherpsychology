@@ -1,10 +1,16 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+import GenerateQuote from "../components/Quoter";
+import { getEntry } from "astro:content";
+
 import StaticImage from "../components/StaticImage.astro";
 import logsOnARiver from "../images/static/emdr-logs-on-a-river.png";
 import soundsInteresting from "../images/static/emdr-sounds-interesting.png";
 import therapist from "../images/static/emdr-therapist.png";
 import womanStanding from "../images/static/emdr-woman-standing.png";
+
+const quotes = (await getEntry("tag-quotes", "emdr")).data;
 ---
 
 <script src="../scripts/accordion.js"></script>
@@ -50,6 +56,8 @@ import womanStanding from "../images/static/emdr-woman-standing.png";
       </a>
     </div>
   </div>
+
+  <GenerateQuote client:load quotes={quotes} />
 
   <a name="online-EMDR-basic-training" class="anchor">
     <h2 class="section-title">
@@ -148,7 +156,10 @@ import womanStanding from "../images/static/emdr-woman-standing.png";
 
   <div class="page-intro-wrapper">
     <div class="page-intro-static-image">
-      <StaticImage image={soundsInteresting} alt="Therapist telling a client it sounds interesting" />
+      <StaticImage
+        image={soundsInteresting}
+        alt="Therapist telling a client it sounds interesting"
+      />
     </div>
     <div class="page-intro-text">
       <p>
@@ -198,6 +209,8 @@ import womanStanding from "../images/static/emdr-woman-standing.png";
       </div>
     </div>
   </div>
+
+  <GenerateQuote client:load quotes={quotes} />
 
   <a name="EMDR-refresher-day" class="anchor">
     <h2 class="section-title">

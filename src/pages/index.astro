@@ -2,7 +2,10 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import getWebinars from "../scripts/webinars.js";
 import WebinarSummary from "../components/webinar/WebinarSummary.astro";
+
 import GenerateQuote from "../components/Quoter";
+import { getEntry } from "astro:content";
+
 import { getFeaturedCourses } from "../scripts/courses";
 import CoursesList from "../components/course/CoursesList.astro";
 import BookSummary from "../components/book/BookSummary.astro";
@@ -18,6 +21,13 @@ const featuredCourses1 = await getFeaturedCourses(0, 2);
 const featuredCourses2 = await getFeaturedCourses(2, 4);
 
 const featuredBooks = await getFeaturedBooks();
+
+const webinarQuotes = (
+  await getEntry("webinar-quotes", "general-webinar-quotes")
+).data;
+const coursesQuotes = (await getEntry("course-quotes", "general-course-quotes"))
+  .data;
+const generalQuotes = (await getEntry("static-pages-quotes", "homepage")).data;
 ---
 
 <BaseLayout active="home" pageTitle="Home">
@@ -95,14 +105,18 @@ const featuredBooks = await getFeaturedBooks();
 
   {webinars.map((webinar, index) => <WebinarSummary webinar={webinar} />)}
 
-  {console.log(webinars.length)}
-  {webinars.length % 2 !== 0 && <Newsletter />}
+  <!-- {console.log(webinars.length)}
+  {webinars.length % 2 !== 0 && <Newsletter />} -->
+
+  <GenerateQuote client:load quotes={webinarQuotes} />
 
   <CoursesList
     courses={featuredCourses1}
     categoryId="featured"
     categoryName="Featured Courses"
   />
+
+  <GenerateQuote client:load quotes={coursesQuotes} />
 
   <Newsletter />
 
@@ -115,6 +129,8 @@ const featuredBooks = await getFeaturedBooks();
   </a>
   {featuredBooks.map((book) => <BookSummary book={book.data} />)}
 
+  <GenerateQuote client:load quotes={generalQuotes} />
+
   <a name="blog" class="anchor">
     <h2 class="section-title">
       <span class="blog-section-title">Latest Blog Posts</span>
@@ -122,18 +138,4 @@ const featuredBooks = await getFeaturedBooks();
   </a>
 
   <BlogList length="2" />
-
-  <GenerateQuote
-    client:load
-    quotes={[
-      {
-        text: "This is a great webinar",
-        author: "Webinar attendee 100",
-      },
-      {
-        text: "This is a nice webinar",
-        author: "Webinar attendee 101",
-      },
-    ]}
-  />
 </BaseLayout>

@@ -44,13 +44,6 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
     <span> {book.subtitle} </span>
   </h1>
   <div class="details-image">
-    <!-- <img
-      srcset="imgs/example-book-cover-620.jpg 620w, imgs/example-book-cover-1016.jpg 1016w, imgs/example-book-cover-2176.jpg 2176w"
-      sizes="(min-width: 1185px) 1088px, (min-width: 780px) 754px, 100vw"
-      src="imgs/example-book-cover-620.jpg"
-      alt="an image description for the visually impaired, also helps SEO"
-      loading="lazy"
-    /> -->
     <BookImage book={book} />
   </div>
 
@@ -67,8 +60,7 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
 <!-- 
       <Vimeo embedUrl={book.vimeoEmbedUrl} /> -->
 
-            <GenerateQuote client:load quotes={quotes.data} />
-
+      <GenerateQuote client:load quotes={quotes.data} />
 
       <h3>Further Information</h3>
       <div class="accordion-wrapper">
