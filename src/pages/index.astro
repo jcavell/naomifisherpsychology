@@ -40,20 +40,18 @@ const generalQuotes = (await getEntry("static-pages-quotes", "homepage")).data;
     </div>
 
     <div class="page-intro-text">
-      <h1>Welcome</h1>
+      <h3>WELCOME</h3>
       <p>Here you’ll find the work of Dr Naomi Fisher and Dr Abigail Fisher.</p>
       <p>
         Naomi is a clinical psychologist, author and EMDR-Europe Accredited
         Trainer. She writes and speaks about trauma, autism and alternative
-        education.
+        education. Abigail is an educational psychologist and qualified teacher.
       </p>
-      <p>Abigail is an educational psychologist and qualified teacher.</p>
       <p>
         We offer a range of support for parents and carers alongside resources
         for professionals and teens.
       </p>
-
-      <h2>Webinars, courses and books</h2>
+      <h3>WEBINARS, COURSES AND BOOKS</h3>
       <p>
         If you’re a parent or carer looking for support, we run regular
         <a href="/webinars">webinars</a>. These are live events but you can
@@ -62,37 +60,24 @@ const generalQuotes = (await getEntry("static-pages-quotes", "homepage")).data;
 
       <p>
         We also have many <a href="/courses">short courses</a> for parents, teenagers
-        and professionals to watch. These are entirely on-demand and can be viewed
-        in your own time.
+        and professionals to watch. These are on-demand and can be viewed in your
+        own time.
       </p>
 
       <p>
-        Naomi has written several <a href="/books">books</a>. Her latest book, <a
+        Naomi has written several <a href="/books">books</a>. Her latest, <a
           href="/books/when-the-naughty-step-makes-things-worse"
           >When the Naughty Step Makes Things Worse</a
         >, is now available for pre-order.
       </p>
-      <p>
-        Naomi also <a href="/blog">blogs regularly</a>.
-      </p>
 
-      <h2>Professional training</h2>
+      <h3>EMDR AND PROFESSIONAL TRAINING</h3>
       <p>
-        Naomi runs a variety of <a href="/training/">training courses</a> on many
-        topics including neurodiversity and trauma.
-      </p>
-
-      <h3>EMDR Training</h3>
-      <p>
-        Naomi delivers <a href="/training#online-EMDR-basic-training"
-          >online EMDR Basic Training</a
-        > for professionals and <a href="/training#EMDR-refresher-day"
-          >EMDR Refresher Days</a
-        > for those who are already trained but who need to brush up their skills
-        and knowledge. She can also run <a
-          href="/training#in-house-EMDR-basic-training"
-          >in-house EMDR Basic Training</a
-        > for your NHS trust or organisation
+        Naomi runs <a href="/training/">EMDR Basic Training</a> and <a
+          href="/training/">EMDR Refresher</a
+        > courses. She also provides <a href="/training/"
+          >professional training</a
+        > on many topics including neurodiversity and trauma.
       </p>
     </div>
   </div>
@@ -116,11 +101,13 @@ const generalQuotes = (await getEntry("static-pages-quotes", "homepage")).data;
     categoryName="Featured Courses"
   />
 
-  <GenerateQuote client:load quotes={coursesQuotes} />
-
   <Newsletter />
 
   <CoursesList courses={featuredCourses2} />
+
+  <GenerateQuote client:load quotes={coursesQuotes} />
+
+  <a href="/courses" class="load-more"> See All Courses </a>
 
   <a name="books" class="anchor">
     <h2 class="section-title">
@@ -138,4 +125,6 @@ const generalQuotes = (await getEntry("static-pages-quotes", "homepage")).data;
   </a>
 
   <BlogList length="2" />
+
+  <a href="/blog" class="load-more"> See All Blog Posts </a>
 </BaseLayout>

@@ -5,11 +5,14 @@ import GenerateQuote from "../components/Quoter";
 import { getEntry } from "astro:content";
 
 import StaticImage from "../components/StaticImage.astro";
-import logsOnARiver from "../images/static/emdr-logs-on-a-river.png";
-import soundsInteresting from "../images/static/emdr-sounds-interesting.png";
-import therapist from "../images/static/emdr-therapist.png";
-import womanStanding from "../images/static/emdr-woman-standing.png";
 
+import floatBack from "../images/training/EMDR-floatback.jpg";
+import keepingOutTheWay from "../images/training/EMDR-keeping-out-the-way.jpg";
+import logsOnRiver from "../images/training/EMDR-logs-on-a-river.jpg";
+import specialInterests from "../images/training/EMDR-special-interests.jpg";
+import whatHappened from "../images/training/EMDR-tell-me-what-happened.jpg";
+import therapist from "../images/training/EMDR-therapist.jpg";
+    
 const quotes = (await getEntry("tag-quotes", "emdr")).data;
 ---
 
@@ -131,18 +134,11 @@ const quotes = (await getEntry("tag-quotes", "emdr")).data;
           </ul>
         </div>
 
-        <div class="purchase-wrapper">
-          <a
-            href="https://www.emdrtraininguk.co.uk/apply-for-emdr-basic-training"
-          >
-            <div class="purchase">
-              <div class="company">Check eligibility and apply</div>
-              <div class="buy-now">
-                <span> Apply </span>
-              </div>
-            </div>
-          </a>
-        </div>
+        <a
+          class="mock-accordion"
+          href="https://www.emdrtraininguk.co.uk/apply-for-emdr-basic-training"
+          target="_blank">Check Eligibility & Apply</a
+        >
       </div>
     </div>
   </div>
@@ -157,7 +153,7 @@ const quotes = (await getEntry("tag-quotes", "emdr")).data;
   <div class="page-intro-wrapper">
     <div class="page-intro-static-image">
       <StaticImage
-        image={soundsInteresting}
+        image={logsOnRiver}
         alt="Therapist telling a client it sounds interesting"
       />
     </div>
@@ -203,9 +199,7 @@ const quotes = (await getEntry("tag-quotes", "emdr")).data;
           </p>
         </div>
 
-        <p>
-          To enquire about in-house training, email support@naomifisher.co.uk
-        </p>
+        <a class="mock-accordion" href="/contact">Contact us to enquire</a>
       </div>
     </div>
   </div>
@@ -220,7 +214,7 @@ const quotes = (await getEntry("tag-quotes", "emdr")).data;
 
   <div class="page-intro-wrapper">
     <div class="page-intro-static-image">
-      <StaticImage image={logsOnARiver} alt="Logs floating down a river" />
+      <StaticImage image={specialInterests} alt="Logs floating down a river" />
     </div>
     <div class="page-intro-text">
       <p>
@@ -283,16 +277,11 @@ const quotes = (await getEntry("tag-quotes", "emdr")).data;
         </div>
       </div>
 
-      <div class="purchase-wrapper">
-        <a href="https://www.emdrtraininguk.co.uk/emdr-refresher-day">
-          <div class="purchase">
-            <div class="company">More information and apply</div>
-            <div class="buy-now">
-              <span> Apply </span>
-            </div>
-          </div>
-        </a>
-      </div>
+      <a
+        class="mock-accordion"
+        href="https://www.emdrtraininguk.co.uk/emdr-refresher-day"
+        target="_blank">More Information & Apply</a
+      >
     </div>
   </div>
 
@@ -304,7 +293,7 @@ const quotes = (await getEntry("tag-quotes", "emdr")).data;
 
   <div class="page-intro-wrapper">
     <div class="page-intro-static-image">
-      <StaticImage image={womanStanding} alt="Woman standing" />
+      <StaticImage image={floatBack} alt="Woman standing" />
     </div>
     <div class="page-intro-text">
       <p>
@@ -318,7 +307,7 @@ const quotes = (await getEntry("tag-quotes", "emdr")).data;
         Attending School and Autism and Trauma: Bringing Neurodiversity into
         Your Formulation
       </p>
-      <p>To enquire about bespoke training, email support@naomifisher.co.uk</p>
+      <a class="mock-accordion" href="/contact">Contact us to enquire</a>
     </div>
   </div>
 </BaseLayout>

@@ -2,24 +2,23 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import StaticImage from "../components/StaticImage.astro";
 import naomiImage from "../images/static/dr-naomi-fisher.png";
+import Newsletter from "../components/Newsletter.astro";
 ---
 
 <script src="../scripts/accordion.js"></script>
 
 <BaseLayout active="contact" pageTitle="Contact">
   <div class="page-intro-wrapper">
-   
     <div class="page-intro-text">
       <h3>Press</h3>
       <p>
-        For press and broadcast enquiries email <a
+        For press and broadcast enquiries, email <a
           href="mailto:press@naomifisher.co.uk">press@naomifisher.co.uk</a
         >
       </p>
-      <h3>Support</h3>
+      <h3>Other enquiries</h3>
       <p>
-        To contact Naomi or Abigail, or for technical support on courses or
-        webinars, email <a href="mailto:support@naomifisher.co.uk"
+        To contact us or for technical support, email <a href="mailto:support@naomifisher.co.uk"
           >support@naomifisher.co.uk</a
         >
       </p>
@@ -29,7 +28,8 @@ import naomiImage from "../images/static/dr-naomi-fisher.png";
           or supervisees.</em
         >
       </p>
-
+    </div>
+    <div class="page-intro-text">
       <h3>Frequently Asked Questions</h3>
       <div class="accordion-wrapper">
         <button class="accordion"
@@ -65,4 +65,6 @@ import naomiImage from "../images/static/dr-naomi-fisher.png";
       </div>
     </div>
   </div>
+
+  <Newsletter />
 </BaseLayout>

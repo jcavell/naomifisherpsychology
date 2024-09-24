@@ -51,19 +51,18 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
     <div class="details-body-A">
       <BookContent />
 
-      {moreInfo?.body.length > 1 && 
-      <button class="accordion">Read more</button>
-      <div class="panel">
-        <MoreInfoContent/>
-      </div>
-      }
 <!-- 
       <Vimeo embedUrl={book.vimeoEmbedUrl} /> -->
 
-      <GenerateQuote client:load quotes={quotes.data} />
-
-      <h3>Further Information</h3>
       <div class="accordion-wrapper">
+          {moreInfo?.body.length > 1 && 
+      <button class="accordion no-title-accordion">Read More</button>
+					<div class="panel">
+						<p>
+							  <MoreInfoContent/>
+						</p>
+					</div>
+      }
         <button class="accordion">Table of Contents</button>
         <div class="panel">
           <ol>
@@ -71,14 +70,13 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
           </ol>
         </div>
         <button class="accordion">Reviews</button>
-        <div class="panel">
+        <div class="panel reviews-accordion">
           {
             reviews.data.map((review) => (
-              <p>
-                {review.text} 
-                <p>{review.author}</p>
-                <hr/>
-              </p>
+              <div>
+              <p>{review.text}</p>
+                <span>{review.author}</span>
+              </div>
             ))
           }
         </div>
@@ -131,6 +129,9 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
           )
         }
       </div>
+
+            <!-- <GenerateQuote client:load quotes={quotes.data} /> -->
+
 
     </div>
 
