@@ -1,12 +1,18 @@
-**Autism** is lorem ipsum dolor sit amet, consectetur
-adipiscing elit. Quisque eu purus non metus vestibulum imperdiet et et velit.
-Aliquam laoreet ipsum non risus dapibus malesuada. Mauris semper elit eget
-mi tristique, id bibendum est rhoncus. Etiam vehicula ex id eleifend posuere.
-Sed sollicitudin lorem quis enim scelerisque, quis cursus mi placerat. Nulla
-eget pellentesque felis. Curabitur fermentum mi sem, ac tristique risus feugiat
-eget. Donec quis bibendum nibh. Nulla facilisi. Mauris lacinia dolor laoreet
- libero aliquam, quis euismod turpis interdum.
-    
-### Autistic people
-Donec elit nulla, dictum eu odio fermentum, rhoncus commodo lectus. Duis sed magna non mi hendrerit convallis eu ut diam. Nullam maximus sem in mi bibendum vehicula. Donec facilisis libero sit amet velit faucibus tempor. Quisque ac mattis dolor. Curabitur aliquam imperdiet sem ac sagittis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed at volutpat nunc, sit amet accumsan nisi. Pellentesque enim ipsum, tincidunt sed vehicula vel, vestibulum
-quis est.
+**Autism** is a developmental difference characterised by specific differences in social
+interactions, communication and behaviour. Autistic people often also have sensory
+differences, meaning that they are particularly sensitive to noise, light, texture or
+taste. They often have intense interests which might be unusual. They may find it
+difficult to identify and describe their emotions. A significant proportion of autistic
+people will have an intellectual disability, but many will not. The autism diagnostic
+category includes a very varied group of people.
+
+Being on a different developmental trajectory can make life challenging. It can mean
+that too much is expected of autistic children and teenagers without enough support
+being provided. Anxiety is very common among autistic people, as are difficulties
+with school and friendships.
+
+That’s what we talk about in our webinars and courses. They focus on practical and
+useful tips which will help you to understand your autistic child and see a way ahead.
+We do not do autism diagnoses. Autism should be diagnosed by a multi-disciplinary
+team. This is because autism is a lifelong diagnosis and so it should be given with
+great care.
