@@ -12,7 +12,7 @@ import logsOnRiver from "../images/training/EMDR-logs-on-a-river.jpg";
 import specialInterests from "../images/training/EMDR-special-interests.jpg";
 import whatHappened from "../images/training/EMDR-tell-me-what-happened.jpg";
 import therapist from "../images/training/EMDR-therapist.jpg";
-    
+
 const quotes = (await getEntry("tag-quotes", "emdr")).data;
 ---
 
@@ -59,8 +59,6 @@ const quotes = (await getEntry("tag-quotes", "emdr")).data;
       </a>
     </div>
   </div>
-
-  <GenerateQuote client:load quotes={quotes} />
 
   <a name="online-EMDR-basic-training" class="anchor">
     <h2 class="section-title">
@@ -284,6 +282,8 @@ const quotes = (await getEntry("tag-quotes", "emdr")).data;
       >
     </div>
   </div>
+
+  <GenerateQuote client:load quotes={quotes} />
 
   <a name="bespoke-training" class="anchor">
     <h2 class="section-title">
