@@ -71,11 +71,7 @@ export const ageTags = [age5To12, age13To18];
 
 export const forTags = [forParents, forTeens, forProfessionals];
 
-export const allTags = [
-  topicTags,
-  ageTags,
-  forTags,
-].flat();
+export const allTags = [topicTags, ageTags, forTags].flat();
 
 // Not used by courses any more
 export const getTags = function (

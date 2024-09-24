@@ -1,11 +1,13 @@
 ---
 import getWebinars from "../../scripts/webinars";
 import getCourses from "../../scripts/courses";
-import { getWebinarMeta } from "../../scripts/webinarMeta";
+
 import {
-  allCourseMetas,
-  lowerCaseAndRemoveWhitespace,
-} from "../../scripts/courseMeta";
+  getTaggedBooks,
+  getTaggedCourses,
+  getTaggedPosts,
+  getTaggedWebinars,
+} from "../../scripts/getTaggedResources";
 
 import { makeUrl } from "../../scripts/url";
 import { allTags, ageTags, forTags, topicTags } from "../../scripts/tags";
@@ -19,7 +21,6 @@ import { getOrderedPosts } from "../../scripts/blog";
 
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { umbrellaTags } from "../../scripts/tags";
 import { getTagMeta } from "../../scripts/tagMeta";
 import Picture from "astro/components/Picture.astro";
 
@@ -34,55 +35,34 @@ export async function getStaticPaths() {
     (a, b) => b.data.id - a.data.id
   );
   function getAllResources(tags: string[]) {
-    const filteredWebinars = webinars.filter((webinar) => {
-      const eventId = webinar.id;
-      const meta = getWebinarMeta(eventId);
-      return meta?.tags?.some((t) => tags.includes(t));
-    });
-
-    const filteredCourses = allCourseMetas
-      .filter((cm) => cm.tags.some((e) => tags.includes(e)))
-      //  .sort((a, b) => b.tags.indexOf(tags[0]) - a.tags.indexOf(tags[0]))
-      .map((cm) =>
-        courses.find((c) => {
-          const course = lowerCaseAndRemoveWhitespace(c.data.title).startsWith(
-            lowerCaseAndRemoveWhitespace(cm.title)
-          );
-          return course;
-        })
-      );
-
-    const filteredBooks = books.filter((book) =>
-      book.data.tags.some((e) => tags.includes(e))
-    );
-
-    const filteredPosts = posts.filter((post) =>
-      post.data.tags?.some((e) => tags.includes(e))
-    );
+    const taggedWebinars = getTaggedWebinars(webinars, tags);
+    const taggedCourses = getTaggedCourses(courses, tags);
+    const taggedBooks = getTaggedBooks(books, tags);
+    const taggedPosts = getTaggedPosts(posts, tags);
 
     return {
-      filteredWebinars: filteredWebinars,
-      filteredBooks: filteredBooks,
-      filteredCourses: filteredCourses,
-      filteredPosts: filteredPosts,
+      taggedWebinars: taggedWebinars,
+      taggedBooks: taggedBooks,
+      taggedCourses: taggedCourses,
+      taggedPosts: taggedPosts,
     };
   }
 
   return allTags.map((tag: string) => {
-    const { filteredWebinars, filteredCourses, filteredBooks, filteredPosts } =
+    const { taggedWebinars, taggedCourses, taggedBooks, taggedPosts } =
       getAllResources([tag]);
 
-    //  console.log("**" + tag + "** " + filteredCourses.map((course) => course.data.title));
+    //  console.log("**" + tag + "** " + taggedCourses.map((course) => course.data.title));
 
     return {
       params: { tag: makeUrl(tag) },
       props: {
         tagUrl: makeUrl(tag),
         tagName: tag,
-        webinars: filteredWebinars,
-        courses: filteredCourses,
-        books: filteredBooks,
-        posts: filteredPosts,
+        webinars: taggedWebinars,
+        courses: taggedCourses,
+        books: taggedBooks,
+        posts: taggedPosts,
       },
     };
   });
@@ -111,15 +91,6 @@ const tagMeta = getTagMeta(tagName);
 ---
 
 <BaseLayout tagUrl={tagUrl} tagName={tagName}>
-  <!-- 
-    <div class="page-intro-image">
-      <img
-        srcset="imgs/page-image-620.jpg 620w, imgs/page-image-1080.jpg 1080w"
-        sizes="(min-width: 1200px) 520px, (min-width: 780px) 780px, 100vw"
-        src="imgs/page-image-620.jpg.jpg"
-        alt="an image description for the visually impaired, also helps SEO"
-      />
-    </div> -->
 
   <div class="page-intro-wrapper">
     <div class="page-intro-image">

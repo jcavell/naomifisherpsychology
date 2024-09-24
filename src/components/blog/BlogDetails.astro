@@ -1,9 +1,10 @@
 ---
 import Tags from "../Tags.astro";
 import BlogImage from "./BlogImage.astro";
-import {getTaggedCourses} from "../../scripts/tags";
+import { getTaggedCourses } from "../../scripts/getTaggedResources";
 import getCourses from "../../scripts/courses";
 import { makeUrl } from "../../scripts/url";
+import { getTags } from "../../scripts/tags";
 
 const { post } = Astro.props;
 
@@ -11,15 +12,12 @@ const title = post.title;
 const subtitle = post.subtitle;
 const pubDate = post.pubDate;
 const paragraphs = post.paragraphs;
-const tags = post.tags;
 
-console.log("TAGS: " + tags);
+const tags = getTags(title, subtitle, paragraphs.join(' '));
 
 const courses = await getCourses();
-//const relatedCourses = getTaggedCourses(courses, tags);
-const relatedCourses = courses;
+const relatedCourses = getTaggedCourses(courses, [tags[0]]);
 
-console.log("RELATED COURSES" + relatedCourses);
 ---
 
 <div class="details details-blog">
