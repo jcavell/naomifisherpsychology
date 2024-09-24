@@ -1,12 +1,7 @@
-**For professionals** is lorem ipsum dolor sit amet, consectetur
-adipiscing elit. Quisque eu purus non metus vestibulum imperdiet et et velit.
-Aliquam laoreet ipsum non risus dapibus malesuada. Mauris semper elit eget
-mi tristique, id bibendum est rhoncus. Etiam vehicula ex id eleifend posuere.
-Sed sollicitudin lorem quis enim scelerisque, quis cursus mi placerat. Nulla
-eget pellentesque felis. Curabitur fermentum mi sem, ac tristique risus feugiat
-eget. Donec quis bibendum nibh. Nulla facilisi. Mauris lacinia dolor laoreet
- libero aliquam, quis euismod turpis interdum.
-    
-### How does this link to emdr and training?
-Donec elit nulla, dictum eu odio fermentum, rhoncus commodo lectus. Duis sed magna non mi hendrerit convallis eu ut diam. Nullam maximus sem in mi bibendum vehicula. Donec facilisis libero sit amet velit faucibus tempor. Quisque ac mattis dolor. Curabitur aliquam imperdiet sem ac sagittis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed at volutpat nunc, sit amet accumsan nisi. Pellentesque enim ipsum, tincidunt sed vehicula vel, vestibulum
-quis est.
+Naomi is a clinical psychologist and EMDR-Europe Trainer. She has been using EMDR since 2005 and qualified as a trainer in 2023. She has a longstanding interest in using psychological therapy with autistic people and has carried out several research projects looking at how EMDR is adapted for use with autistic people. 
+
+Naomi works clinically with adults, adolescents and children and supervises EMDR therapists.  Almost all of her work is remote. 
+
+Naomi can be [booked for training](/training) for your organisation and this can be customised to your needs. Recent topics include Neurodiversity and EMDR, Deciphering Complexity and the Art of Low Demand Therapy.  
+
+Naomi has some pre-recorded courses for professionals on working with demand avoidance and on refreshing your EMDR skills. Please get in touch if there are other courses you would like her to create.

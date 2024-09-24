@@ -1,12 +1,7 @@
-**Screens** is lorem ipsum dolor sit amet, consectetur
-adipiscing elit. Quisque eu purus non metus vestibulum imperdiet et et velit.
-Aliquam laoreet ipsum non risus dapibus malesuada. Mauris semper elit eget
-mi tristique, id bibendum est rhoncus. Etiam vehicula ex id eleifend posuere.
-Sed sollicitudin lorem quis enim scelerisque, quis cursus mi placerat. Nulla
-eget pellentesque felis. Curabitur fermentum mi sem, ac tristique risus feugiat
-eget. Donec quis bibendum nibh. Nulla facilisi. Mauris lacinia dolor laoreet
- libero aliquam, quis euismod turpis interdum.
-    
-### Maybe some more content here about screens (or just have the blogs)
-Donec elit nulla, dictum eu odio fermentum, rhoncus commodo lectus. Duis sed magna non mi hendrerit convallis eu ut diam. Nullam maximus sem in mi bibendum vehicula. Donec facilisis libero sit amet velit faucibus tempor. Quisque ac mattis dolor. Curabitur aliquam imperdiet sem ac sagittis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed at volutpat nunc, sit amet accumsan nisi. Pellentesque enim ipsum, tincidunt sed vehicula vel, vestibulum
-quis est.
+Most parents worry about **screens**. How much is too much, and when should they get their child a smartphone? Might the blue light be disrupting their sleep, and how do you know if they are addicted? Many autistic children, in particular, are highly attached to their screens, and parents say that they worry about what to do. 
+
+There is a lot of fear around screens and what our children do on them. But what if the very concept of ‘screens’ is stopping us from thinking clearly? 
+
+For a screen is just a sheet of glass. That can’t be harmful in itself.  It’s what’s happening behind the screen which matters.  ‘Screen time’ can include socialising, research, reading, playing, creating and much more.  
+
+Our children do more via a screen than ever before, and when we put all of that together as ‘screen time’ it stops us looking more deeply.  In order to help our children develop a healthy relationship with screens, we need to look beyond the sheet of glass and ask what is really going on.

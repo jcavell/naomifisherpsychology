@@ -1,12 +1,7 @@
-**School** is lorem ipsum dolor sit amet, consectetur
-adipiscing elit. Quisque eu purus non metus vestibulum imperdiet et et velit.
-Aliquam laoreet ipsum non risus dapibus malesuada. Mauris semper elit eget
-mi tristique, id bibendum est rhoncus. Etiam vehicula ex id eleifend posuere.
-Sed sollicitudin lorem quis enim scelerisque, quis cursus mi placerat. Nulla
-eget pellentesque felis. Curabitur fermentum mi sem, ac tristique risus feugiat
-eget. Donec quis bibendum nibh. Nulla facilisi. Mauris lacinia dolor laoreet
- libero aliquam, quis euismod turpis interdum.
-    
-### Issues with school
-Donec elit nulla, dictum eu odio fermentum, rhoncus commodo lectus. Duis sed magna non mi hendrerit convallis eu ut diam. Nullam maximus sem in mi bibendum vehicula. Donec facilisis libero sit amet velit faucibus tempor. Quisque ac mattis dolor. Curabitur aliquam imperdiet sem ac sagittis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed at volutpat nunc, sit amet accumsan nisi. Pellentesque enim ipsum, tincidunt sed vehicula vel, vestibulum
-quis est.
+We (almost) all go to **school**, and there we learn many things. We learn that school is a good thing, and that we have to go to school in order to learn. We learn that without school, we’d get nowhere in life. 
+
+These beliefs run deep. The things we learn about ourselves and education at school often stay with us for our whole lives. 
+
+Then if you have a child who struggles at school, it can be hard to know what to do. Your child is so unhappy, but everyone tells you they seem fine.  You’re told they have to be made to go, but at the same time the distress at home is unmanageable. You think that school is essential, but the cost to your child seems out of proportion.
+
+In these courses and webinars about school, Naomi talks about why school can be hard, and why some children are traumatised or burnt out by their time at school.  She’ll talk about how parents can help their children to learn and thrive, whether or not they are at school.

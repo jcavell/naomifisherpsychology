@@ -1,12 +1,5 @@
-**Low Demand Parenting** is lorem ipsum dolor sit amet, consectetur
-adipiscing elit. Quisque eu purus non metus vestibulum imperdiet et et velit.
-Aliquam laoreet ipsum non risus dapibus malesuada. Mauris semper elit eget
-mi tristique, id bibendum est rhoncus. Etiam vehicula ex id eleifend posuere.
-Sed sollicitudin lorem quis enim scelerisque, quis cursus mi placerat. Nulla
-eget pellentesque felis. Curabitur fermentum mi sem, ac tristique risus feugiat
-eget. Donec quis bibendum nibh. Nulla facilisi. Mauris lacinia dolor laoreet
- libero aliquam, quis euismod turpis interdum.
-    
-### Art of Low Demand Parenting, Eliza, webinars, courses, books
-Donec elit nulla, dictum eu odio fermentum, rhoncus commodo lectus. Duis sed magna non mi hendrerit convallis eu ut diam. Nullam maximus sem in mi bibendum vehicula. Donec facilisis libero sit amet velit faucibus tempor. Quisque ac mattis dolor. Curabitur aliquam imperdiet sem ac sagittis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed at volutpat nunc, sit amet accumsan nisi. Pellentesque enim ipsum, tincidunt sed vehicula vel, vestibulum
-quis est.
+Some children haven’t read the parenting manuals. They are devastatingly consistent, set firm boundaries for their parents and any time you try a parenting technique, you find it used right back at you with. ‘I’m counting to 3…’ they say, when you refuse to buy another ice cream, and you’re left wondering how you ended up here.
+
+It’s not your fault. You have the wrong books. Some children need something different, and in fact, for them, traditional parenting methods (like the naughty step, or time out, or sticker charts) make things worse. 
+
+In this popular series, Naomi teams up with **Eliza Fricker**, illustrator and author, to create **The Art of Low Demand Parenting**. It’s for children (and adults) who need something different.

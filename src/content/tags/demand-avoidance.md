@@ -1,12 +1,7 @@
-**Demand Avoidance** is lorem ipsum dolor sit amet, consectetur
-adipiscing elit. Quisque eu purus non metus vestibulum imperdiet et et velit.
-Aliquam laoreet ipsum non risus dapibus malesuada. Mauris semper elit eget
-mi tristique, id bibendum est rhoncus. Etiam vehicula ex id eleifend posuere.
-Sed sollicitudin lorem quis enim scelerisque, quis cursus mi placerat. Nulla
-eget pellentesque felis. Curabitur fermentum mi sem, ac tristique risus feugiat
-eget. Donec quis bibendum nibh. Nulla facilisi. Mauris lacinia dolor laoreet
- libero aliquam, quis euismod turpis interdum.
-    
-### Demand Avoidant people
-Donec elit nulla, dictum eu odio fermentum, rhoncus commodo lectus. Duis sed magna non mi hendrerit convallis eu ut diam. Nullam maximus sem in mi bibendum vehicula. Donec facilisis libero sit amet velit faucibus tempor. Quisque ac mattis dolor. Curabitur aliquam imperdiet sem ac sagittis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed at volutpat nunc, sit amet accumsan nisi. Pellentesque enim ipsum, tincidunt sed vehicula vel, vestibulum
-quis est.
+For some children and young people, the demands of every day life provoke extreme anxiety. Even things which other people find straightforward, or things that they really want to do. They want to avoid the anxiety, and so they resist and avoid the demands. This is **demand avoidance**. Demand avoidance is a behavioural trait, not a disorder. 
+
+This means that demand avoidant children often say No. They refuse to do things which everyone else is doing. Whatever you suggest, they want something different. Life with them can be really challenging. Whenever you say, you know that they won’t do it.
+
+There are different reasons why young people might be demand avoidant. Some have a pathological demand avoidant (PDA) profile of autism. Some seem to be born like this, whilst others acquire it later in life after a period of chronic stress. For many, it changes as they grow up and are able to take more control of their lives. Many of these young people are extremely driven when it comes to doing things they find valuable. 
+
+Understanding demand avoidance can make all the difference.  Parents can adjust the demands of everyday life to help their children flourish, and in the longer term, help them to learn to manage their anxiety so that they can live the life they want to live. 

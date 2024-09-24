@@ -21,7 +21,7 @@ import {
 } from "./tags";
 
 import { compiledContent as age5To12Content } from "../content/tags/age-5-12.md";
-import { compiledContent as age13To18Content } from "../content/tags/anxiety.md";
+import { compiledContent as age13To18Content } from "../content/tags/age-13-18.md";
 import { compiledContent as anxietyContent } from "../content/tags/anxiety.md";
 import { compiledContent as autismContent } from "../content/tags/autism.md";
 import { compiledContent as burnoutContent } from "../content/tags/burnout.md";

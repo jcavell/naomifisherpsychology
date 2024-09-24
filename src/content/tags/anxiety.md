@@ -1,12 +1,7 @@
-**Anxiety** is lorem ipsum dolor sit amet, consectetur
-adipiscing elit. Quisque eu purus non metus vestibulum imperdiet et et velit.
-Aliquam laoreet ipsum non risus dapibus malesuada. Mauris semper elit eget
-mi tristique, id bibendum est rhoncus. Etiam vehicula ex id eleifend posuere.
-Sed sollicitudin lorem quis enim scelerisque, quis cursus mi placerat. Nulla
-eget pellentesque felis. Curabitur fermentum mi sem, ac tristique risus feugiat
-eget. Donec quis bibendum nibh. Nulla facilisi. Mauris lacinia dolor laoreet
- libero aliquam, quis euismod turpis interdum.
-    
-### Anxious people
-Donec elit nulla, dictum eu odio fermentum, rhoncus commodo lectus. Duis sed magna non mi hendrerit convallis eu ut diam. Nullam maximus sem in mi bibendum vehicula. Donec facilisis libero sit amet velit faucibus tempor. Quisque ac mattis dolor. Curabitur aliquam imperdiet sem ac sagittis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed at volutpat nunc, sit amet accumsan nisi. Pellentesque enim ipsum, tincidunt sed vehicula vel, vestibulum
-quis est.
+We all feel **anxious** sometimes. We worry about whether we will get all our work done, or whether we might get a speeding ticket for going past that camera at 36 mph. We worry about what will happen to our children when they grow up.  Anxiety is a part of human existence. We need it, it urges us to think carefully and not to rush into things.
+
+Sometimes, however, anxiety goes beyond what is helpful. It can become a constant hum in our heads. We can feel unable to sit down or to concentrate, because we are so wound up.  We can become highly distressed, because the feelings are so unpleasant and relentless.  
+
+When this happens to a child or teenager, it can affect the whole family.  They often want to avoid their anxiety because it feels horrible, and then that can become a trap. Avoiding our feelings means they get more intense, and so the world gets smaller and smaller. 
+
+In my webinars and courses, I explain anxiety and how it works. I’ll outline some ways in which families can manage anxiety, so that their children can grow and thrive. 

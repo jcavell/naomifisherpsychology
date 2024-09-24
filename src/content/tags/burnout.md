@@ -1,12 +1,7 @@
-**Burnout** is lorem ipsum dolor sit amet, consectetur
-adipiscing elit. Quisque eu purus non metus vestibulum imperdiet et et velit.
-Aliquam laoreet ipsum non risus dapibus malesuada. Mauris semper elit eget
-mi tristique, id bibendum est rhoncus. Etiam vehicula ex id eleifend posuere.
-Sed sollicitudin lorem quis enim scelerisque, quis cursus mi placerat. Nulla
-eget pellentesque felis. Curabitur fermentum mi sem, ac tristique risus feugiat
-eget. Donec quis bibendum nibh. Nulla facilisi. Mauris lacinia dolor laoreet
- libero aliquam, quis euismod turpis interdum.
-    
-### Burnout at school
-Donec elit nulla, dictum eu odio fermentum, rhoncus commodo lectus. Duis sed magna non mi hendrerit convallis eu ut diam. Nullam maximus sem in mi bibendum vehicula. Donec facilisis libero sit amet velit faucibus tempor. Quisque ac mattis dolor. Curabitur aliquam imperdiet sem ac sagittis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed at volutpat nunc, sit amet accumsan nisi. Pellentesque enim ipsum, tincidunt sed vehicula vel, vestibulum
-quis est.
+Sometimes people have nothing left. They’ve been trying to keep going for years, and then it’s like they run out of juice. They don’t have any energy or spark. Resting doesn’t help, and nor does just carrying on as normal. 
+
+This is sometimes called **burnout**. Burnout results from chronic stress, often in a workplace. When defined by the World Health Organisation, it has three main parts.  Exhaustion, feelings of negativity or cynicism, and reduced efficacy.  Burnout is not a medical problem, it’s an occupational one. It happens when a person is under chronic stress for too long.   
+
+A growing number of teenagers and children seem to be burnout by life. They stop being able to function, they often retreat to their bedrooms, and everything seems too much.  It’s hard for their parents to know what to do.  Burnout was traditionally thought of as the result of work – but these young people seem to be burnt out by school. 
+
+Autistic people may be particularly prone to burnout due to how stressful they find daily life, but burnout itself can be experienced by anyone.  The process of recovery is similar whether you or your child are autistic or not.   There is no evidence that autistic burnout is distinctly different to burnout.

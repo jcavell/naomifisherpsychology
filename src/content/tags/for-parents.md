@@ -1,12 +1,5 @@
-**For parents** is lorem ipsum dolor sit amet, consectetur
-adipiscing elit. Quisque eu purus non metus vestibulum imperdiet et et velit.
-Aliquam laoreet ipsum non risus dapibus malesuada. Mauris semper elit eget
-mi tristique, id bibendum est rhoncus. Etiam vehicula ex id eleifend posuere.
-Sed sollicitudin lorem quis enim scelerisque, quis cursus mi placerat. Nulla
-eget pellentesque felis. Curabitur fermentum mi sem, ac tristique risus feugiat
-eget. Donec quis bibendum nibh. Nulla facilisi. Mauris lacinia dolor laoreet
- libero aliquam, quis euismod turpis interdum.
-    
-### Naomi's webinars, books, courses etc.
-Donec elit nulla, dictum eu odio fermentum, rhoncus commodo lectus. Duis sed magna non mi hendrerit convallis eu ut diam. Nullam maximus sem in mi bibendum vehicula. Donec facilisis libero sit amet velit faucibus tempor. Quisque ac mattis dolor. Curabitur aliquam imperdiet sem ac sagittis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed at volutpat nunc, sit amet accumsan nisi. Pellentesque enim ipsum, tincidunt sed vehicula vel, vestibulum
-quis est.
+Being a **parent** is hard, and it’s even harder when your child doesn’t conform to what everyone else expects. Perhaps their behaviour is very different to others their age, or perhaps they really struggle to learn the things that other children are learning. You are always on high alert, waiting for things to go wrong.  It’s easy to feel that as their parent, you aren’t getting it right.
+
+It’s one of the ironies of parenting that we tend to judge a parent by their child’s behaviour. It means that those parents who have the easiest-to-manage children tend to think of themselves as the most competent parents, whilst those who are doing the hardest job tend to think of themselves as inadequate. It means that a lot of the parenting advice out there can miss the mark, because it’s clear that those giving it just don’t know how tough things can be. 
+
+Our parenting courses and webinars are down-to-earth, realistic but also hopeful. We acknowledge how hard things can be, and what a difficult and unappreciated job you are doing – and hopefully give you some ideas to find a new way forward. 

@@ -1,12 +1,7 @@
-**EMDR** is lorem ipsum dolor sit amet, consectetur
-adipiscing elit. Quisque eu purus non metus vestibulum imperdiet et et velit.
-Aliquam laoreet ipsum non risus dapibus malesuada. Mauris semper elit eget
-mi tristique, id bibendum est rhoncus. Etiam vehicula ex id eleifend posuere.
-Sed sollicitudin lorem quis enim scelerisque, quis cursus mi placerat. Nulla
-eget pellentesque felis. Curabitur fermentum mi sem, ac tristique risus feugiat
-eget. Donec quis bibendum nibh. Nulla facilisi. Mauris lacinia dolor laoreet
- libero aliquam, quis euismod turpis interdum.
-    
-### EMDR stuff - how does it link to training?
-Donec elit nulla, dictum eu odio fermentum, rhoncus commodo lectus. Duis sed magna non mi hendrerit convallis eu ut diam. Nullam maximus sem in mi bibendum vehicula. Donec facilisis libero sit amet velit faucibus tempor. Quisque ac mattis dolor. Curabitur aliquam imperdiet sem ac sagittis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed at volutpat nunc, sit amet accumsan nisi. Pellentesque enim ipsum, tincidunt sed vehicula vel, vestibulum
-quis est.
+**EMDR (Eye Movement Desensitisation and Reprocessing)** is an evidence-based psychological therapy founded by Francine Shapiro in the late 1980’s.  It involves identifying emotionally charged trauma memories and pairing these with bilateral stimulation, often eye movements but also tapping or tones. The distress related to the memories reduces over time, alleviating symptoms. 
+
+EMDR  is an effective treatment for post-traumatic stress disorder in adults, adolescents and children.  It can also be used to treat other mental health problems such as anxiety, phobias and depression.  It can be used with young children and those who are only minimally verbal. It can be adapted for use with those with intellectual disabilities or who are neurodivergent. 
+
+In order to become an EMDR therapist, you must already be an accredited mental health professional and must fit the [eligibility criteria laid down by the EMDR Association](https://emdrassociation.org.uk/for-professionals/training/). You must then take the 7-day basic EMDR training course accredited by EMDR-Europe. 
+
+Naomi runs [EMDR Basic Training](/training#online-EMDR-basic-training) and also regular online [EMDR Refresher Days](/training#EMDR-refresher-day) for those who are already qualified but who need to refresh their skills.
