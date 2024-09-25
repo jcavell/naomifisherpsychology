@@ -1,6 +1,6 @@
 import {
-  age5To12,
-  age13To18,
+  age5To11,
+  age11To19,
   tagTrauma,
   tagSEN,
   forParents,
@@ -42,23 +42,23 @@ import { compiledContent as traumaContent } from "../content/tags/trauma.md";
 
 // Tag Images
 import testImage from "../images/tags/test-tag-image.jpg";
-import age5To12Image from '../images/tags/age-5-12.png';
-import age13To18Image from '../images/tags/age-13-18.png';
-import tagEMDRImage from '../images/tags/emdr-logs-on-a-river.png';
-import tagAnxietyImage from '../images/tags/tag-anxiety.png';
-import tagAutismImage from '../images/tags/tag-autism.png';
-import tagBurnoutImage from  '../images/tags/tag-burnout.png';
-import tagEHCPImage from '../images/tags/tag-ehcp.png';
-import forParentsImage from '../images/tags/for-parents.png';
-import forTeensImage from '../images/tags/for-teens.png';  
-import forProfessionalsImage from '../images/tags/emdr-sounds-interesting.png';
-import tagTraumaImage from  '../images/tags/tag-trauma.png';
-import tagNeurodiversityImage from '../images/tags/tag-neurodiversity.png';
-import tagSenImage from '../images/tags/tag-sen.png';
-import tagSchoolImage from '../images/tags/tag-school.png';
-import tagScreensImage from '../images/tags/tag-screens.png';
-import tagALDPImage from '../images/courses/ALDP-1-10.webp';
-import tagDemandAvoidanceImage from '../images/tags/tag-demand-avoidance.png';
+import age5To12Image from "../images/tags/age-5-12.png";
+import age13To18Image from "../images/tags/age-13-18.png";
+import tagEMDRImage from "../images/tags/emdr-logs-on-a-river.png";
+import tagAnxietyImage from "../images/tags/tag-anxiety.png";
+import tagAutismImage from "../images/tags/tag-autism.png";
+import tagBurnoutImage from "../images/tags/tag-burnout.png";
+import tagEHCPImage from "../images/tags/tag-ehcp.png";
+import forParentsImage from "../images/tags/for-parents.png";
+import forTeensImage from "../images/tags/for-teens.png";
+import forProfessionalsImage from "../images/tags/emdr-sounds-interesting.png";
+import tagTraumaImage from "../images/tags/tag-trauma.png";
+import tagNeurodiversityImage from "../images/tags/tag-neurodiversity.png";
+import tagSenImage from "../images/tags/tag-sen.png";
+import tagSchoolImage from "../images/tags/tag-school.png";
+import tagScreensImage from "../images/tags/tag-screens.png";
+import tagALDPImage from "../images/courses/ALDP-1-10.webp";
+import tagDemandAvoidanceImage from "../images/tags/tag-demand-avoidance.png";
 
 type TagMeta = {
   tag: string;
@@ -67,13 +67,13 @@ type TagMeta = {
 };
 
 const age5To12Meta: TagMeta = {
-  tag: age5To12,
+  tag: age5To11,
   image: age5To12Image,
   description: age5To12Content(),
 };
 
 const age13To18Meta: TagMeta = {
-  tag: age13To18,
+  tag: age11To19,
   image: age13To18Image,
   description: age13To18Content(),
 };
