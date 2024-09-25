@@ -56,6 +56,7 @@ function addOrderedTickets(webinar) {
       costValue: ticket.cost?.value,
       fee: ticket.fee?.display,
       feeValue: ticket.fee?.value,
+      hidden: ticket.hidden,
       costPlusFee: (
         (ticket.cost?.value + ticket.fee?.value) /
         100

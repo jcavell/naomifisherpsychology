@@ -170,7 +170,7 @@ const checkoutURL = webinar.url;
         </div>
 
         {
-          tickets.map((ticket) => (
+          tickets.filter((t) => !t.hidden).map((ticket) => (
             <a href={checkoutURL} target="blank">
               <div class="purchase">
                 <div class="price">
