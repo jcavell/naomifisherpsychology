@@ -2,6 +2,8 @@ import { defineConfig } from "astro/config";
 
 import preact from "@astrojs/preact";
 
+import sitemap from "@astrojs/sitemap";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.naomifisher.co.uk",
@@ -14,5 +16,5 @@ export default defineConfig({
   //     "Access-Control-Allow-Credentials" : "*"
   //     }
   // },
-  integrations: [preact()]
+  integrations: [preact(), sitemap()]
 });
