@@ -38,7 +38,7 @@ export async function getStaticPaths() {
     const taggedWebinars = getTaggedWebinars(webinars, tags);
     const taggedCourses = getTaggedCourses(courses, tags);
     const taggedBooks = getTaggedBooks(books, tags);
-    const taggedPosts = getTaggedPosts(posts, tags);
+    const taggedPosts = getTaggedPosts(posts, tags).slice(0, 2);
 
     return {
       taggedWebinars: taggedWebinars,
@@ -91,7 +91,6 @@ const tagMeta = getTagMeta(tagName);
 ---
 
 <BaseLayout tagUrl={tagUrl} tagName={tagName}>
-
   <div class="page-intro-wrapper">
     <div class="page-intro-image">
       <Picture
@@ -182,7 +181,7 @@ const tagMeta = getTagMeta(tagName);
     posts.length > 0 && (
       <a name="blog" class="anchor">
         <h2 class="section-title">
-          <span class="blog-section-title">Blog posts</span> {aimedAtText}
+          <span class="blog-section-title">Latest blog posts</span> {aimedAtText}
           {tagName}
         </h2>
       </a>
