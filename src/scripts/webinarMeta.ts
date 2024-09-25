@@ -10,10 +10,10 @@ import {
   tagSEN,
 } from "./tags";
 
-import { naomi, abi, eliza } from "./people";
+import { naomi, abi, eliza, kate } from "./people";
 
 // Webinar Images
-import aldpHolidaysImage from "../images/courses/ALDP-Holidays.webp";
+import eotasImage from "../images/webinars/eotas-what-to-expect.jpg";
 
 type WebinarMeta = {
   id: string;
@@ -21,18 +21,6 @@ type WebinarMeta = {
   contributers: string[];
   subsubtitle?: string;
   image?: ImageMetadata;
-};
-
-const helping_your_autistic_teen_with_anxiety: WebinarMeta = {
-  id: "1005075506897",
-  tags: [tagAutism, tagAnxiety, age11To19, forParents],
-  contributers: [naomi],
-};
-
-const navigating_the_ehcp_jungle: WebinarMeta = {
-  id: "1004481700807",
-  tags: [tagEHCPs, tagSchool, tagSEN, age5To11, age11To19, forParents],
-  contributers: [abi],
 };
 
 const is_it_all_my_fault: WebinarMeta = {
@@ -43,11 +31,24 @@ const is_it_all_my_fault: WebinarMeta = {
   contributers: [naomi, eliza],
 };
 
+const eotas_what_to_expect: WebinarMeta = {
+  id: "1024840845557",
+  image: eotasImage,
+  tags: [tagSEN, forParents],
+  contributers: [abi]
+};
+
+const writing_for_wellbeing: WebinarMeta = {
+  id: "1016739654677",
+  tags: [forParents],
+  contributers: [abi, kate],
+};
+
 // !! ADD WEBINAR HERE !!
 export function getWebinarMeta(eventId: string): WebinarMeta | undefined {
   return [
-    helping_your_autistic_teen_with_anxiety,
-    navigating_the_ehcp_jungle,
     is_it_all_my_fault,
+    eotas_what_to_expect,
+    writing_for_wellbeing
   ].find((webMeta) => eventId === webMeta.id);
 }
