@@ -30,17 +30,23 @@ const coursesQuotes = (await getEntry("course-quotes", "general-course-quotes"))
 const generalQuotes = (await getEntry("static-pages-quotes", "homepage")).data;
 ---
 
-<BaseLayout active="home" pageTitle="Home">
+<BaseLayout active="home" pageTitle="Home" bodyClassName="home">
   <div class="page-intro-wrapper">
     <div class="page-intro-image">
-      <StaticImage
-        image={homeImage}
-        alt="Child cuttting grass with a scythe looking at the setting sun"
-      />
+      <StaticImage image={homeImage} alt="Drawing of parent comforting child" />
     </div>
 
     <div class="page-intro-text">
-      <h3>WELCOME</h3>
+      <h2 class="feature-headline">FREE WEBINAR TICKET</h2>
+      <p>
+        We are offering a free ticket to anyone who preorders our book, <em
+          >When the Naughty Step Makes Things Worse</em
+        >, before Oct 9th. <a href="/free-is-it-all-my-fault-ticket"
+          >More details.</a
+        >
+      </p>
+
+      <h1>WELCOME</h1>
       <p>Here you’ll find the work of Dr Naomi Fisher and Dr Abigail Fisher.</p>
       <p>
         Naomi is a clinical psychologist, author and EMDR-Europe Accredited
@@ -51,7 +57,7 @@ const generalQuotes = (await getEntry("static-pages-quotes", "homepage")).data;
         We offer a range of support for parents and carers alongside resources
         for professionals and teens.
       </p>
-      <h3>WEBINARS, COURSES AND BOOKS</h3>
+      <h2>WEBINARS, COURSES AND BOOKS</h2>
       <p>
         If you’re a parent or carer looking for support, we run regular
         <a href="/webinars">webinars</a>. These are live events but you can
@@ -65,19 +71,19 @@ const generalQuotes = (await getEntry("static-pages-quotes", "homepage")).data;
       </p>
 
       <p>
-        Naomi has written several <a href="/books">books</a>. Her latest, <em>When
-        the Naughty Step Makes Things Worse</em>, is now available for <a
+        Naomi has written several <a href="/books">books</a>. Her latest, <em
+          >When the Naughty Step Makes Things Worse</em
+        >, is now available for <a
           href="/books/when-the-naughty-step-makes-things-worse">pre-order.</a
         >
       </p>
 
-      <h3>EMDR AND PROFESSIONAL TRAINING</h3>
+      <h2>EMDR AND PROFESSIONAL TRAINING</h2>
       <p>
         Naomi runs EMDR <a href="/training/">Basic Training</a> and EMDR <a
           href="/training/">Refresher Days</a
-        >. She also provides <a href="/training/"
-          >professional training</a
-        > on many topics including neurodiversity and trauma.
+        >. She also provides <a href="/training/">professional training</a> on many
+        topics including neurodiversity and trauma.
       </p>
     </div>
   </div>

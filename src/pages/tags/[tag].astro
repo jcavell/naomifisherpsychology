@@ -91,19 +91,6 @@ const tagMeta = getTagMeta(tagName);
 ---
 
 <BaseLayout tagUrl={tagUrl} tagName={tagName}>
-  <div class="page-intro-wrapper">
-    <div class="page-intro-image">
-      <Picture
-        src={tagMeta?.image}
-        widths={[620, 1016, 2176]}
-        sizes={`(min-width: 1185px) 1088px, (min-width: 780px) 754px, 100vw`}
-        alt="Alt"
-        pictureAttributes={{}}
-      />
-    </div>
-    <div class="page-intro-text" set:html={tagMeta?.description} />
-  </div>
-
   {
     numberCategories > 1 && (
       <div class="info-section-wrapper">
@@ -140,6 +127,19 @@ const tagMeta = getTagMeta(tagName);
       </div>
     )
   }
+
+  <div class="page-intro-wrapper">
+    <div class="page-intro-image">
+      <Picture
+        src={tagMeta?.image}
+        widths={[620, 1016, 2176]}
+        sizes={`(min-width: 1185px) 1088px, (min-width: 780px) 754px, 100vw`}
+        alt="Alt"
+        pictureAttributes={{}}
+      />
+    </div>
+    <div class="page-intro-text" set:html={tagMeta?.description} />
+  </div>
 
   {
     webinars.length > 0 && (
@@ -181,7 +181,8 @@ const tagMeta = getTagMeta(tagName);
     posts.length > 0 && (
       <a name="blog" class="anchor">
         <h2 class="section-title">
-          <span class="blog-section-title">Latest blog posts</span> {aimedAtText}
+          <span class="blog-section-title">Latest blog posts</span>{" "}
+          {aimedAtText}
           {tagName}
         </h2>
       </a>
