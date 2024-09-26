@@ -3,6 +3,7 @@ import getWebinars from "../../scripts/webinars";
 import { makeUrl } from "../../scripts/url";
 import WebinarDetails from "../../components/webinar/WebinarDetails.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getWebinarMeta } from "../../scripts/webinarMeta";
 
 export async function getStaticPaths() {
   const webinars = await getWebinars();
@@ -16,12 +17,26 @@ export async function getStaticPaths() {
     };
   });
 }
-
 const { webinar } = Astro.props;
+
+const eventId = webinar.id;
+const meta = getWebinarMeta(eventId);
+
+const metaDescription =
+  "Dr Naomi Fisher's webinar: " +
+  webinar.name.text +
+  ". " +
+  webinar.description.text +
+  " " +
+  meta?.tags.map((t) => "#" + makeUrl(t)).join(" ");
 
 // console.log("webinar details is: " + JSON.stringify(webinar.detailsText));
 ---
 
-<BaseLayout active = "webinars" pageTitle={webinar.name.text}>
+<BaseLayout
+  active="webinars"
+  pageTitle={webinar.name.text}
+  metaDescription={metaDescription}
+>
   <WebinarDetails webinar={webinar} />
 </BaseLayout>

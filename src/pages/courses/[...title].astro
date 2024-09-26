@@ -10,16 +10,32 @@ export async function getStaticPaths() {
   return courses.map((course) => ({
     params: { title: makeUrl(course.data.title) },
     props: {
-      course: course
+      course: course,
     },
   }));
 }
-      
+
 const { course } = Astro.props;
 
+const courseData = course.data;
+
+const metaDescription =
+  "Dr Naomi Fisher's recorded course " +
+  courseData.title +
+  ". Course contents: " +
+  courseData.description +
+  " " +
+  courseData.meta?.tags.map((t) => "#" + makeUrl(t)).join(" ");
+
 // console.log("COURSE: " + course.data.title + " " + JSON.stringify(course.related));
+const eventId = webinar.id;
+const meta = getWebinarMeta(eventId);
 ---
 
-<BaseLayout active = "courses" pageTitle={course.data.title}>
-  <CourseDetails course={course.data}/>
+<BaseLayout
+  active="courses"
+  pageTitle={courseData.title}
+  metaDescription={metaDescription}
+>
+  <CourseDetails course={course.data} />
 </BaseLayout>
