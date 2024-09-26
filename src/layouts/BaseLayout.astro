@@ -9,12 +9,31 @@ import NaomiStyle from "../styles/naomiStyle.astro";
 
 const { active, tagName, tagUrl, bodyClassName } = Astro.props;
 
-const bodyClass = bodyClassName ? bodyClassName : tagName ? "tag-page topic-page" : "category-" + active;
+const bodyClass = bodyClassName
+  ? bodyClassName
+  : tagName
+    ? "tag-page topic-page"
+    : "category-" + active;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      type="text/partytown"
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-12YTPF8CY7"></script>
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-12YTPF8CY7");
+    </script>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
