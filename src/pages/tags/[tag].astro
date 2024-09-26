@@ -88,9 +88,15 @@ const aimedAtText = forTags.includes(tagName)
 const tagMeta = getTagMeta(tagName);
 
 // console.log("WEBINARS: " + webinars.length);
+
+const metaDescription =
+  "Dr. Naomi Fisher's webinars, courses and books " +
+  aimedAtText +
+  " " +
+  tagName;
 ---
 
-<BaseLayout tagUrl={tagUrl} tagName={tagName}>
+<BaseLayout tagUrl={tagUrl} tagName={tagName} metaDescription={metaDescription}>
   {
     numberCategories > 1 && (
       <div class="info-section-wrapper">
