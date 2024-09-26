@@ -16,15 +16,15 @@ people: ["Dr Naomi Fisher"]
 tags: ["Professionals"]
 dimensions: "19 x 24.5 x 1.2 cm"
 toc: [
-    "1 What is Mental Health?",
-    "2 Conceptualising Mental Health",
-    "3 What Causes Mental Health Problems?",
-    "4 Offering Explanations: Diagnosis, Formulation, and the Power Threat Meaning Framework",
-    "5 Mental Health Across the Lifespan",
-    "6 Interventions",
-    "7 The Experience of Mental Health",
-    "8 Technology and Global Mental Health",
-    "9 Biological Advances and Dimensionality"
+    "What is Mental Health?",
+    "Conceptualising Mental Health",
+    "What Causes Mental Health Problems?",
+    "Offering Explanations: Diagnosis, Formulation, and the Power Threat Meaning Framework",
+    "Mental Health Across the Lifespan",
+    "Interventions",
+    "The Experience of Mental Health",
+    "Technology and Global Mental Health",
+    "Biological Advances and Dimensionality"
     ]
 audiobookLength: ""
 hasAudiobookSample: false

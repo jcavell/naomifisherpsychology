@@ -15,18 +15,18 @@ pages: 240
 people: ["Dr Naomi Fisher", "Eliza Fricker"]
 tags: ["Neurodiversity", "Demand Avoidance", "School", "Parents", "Professionals"]
 toc: [
-    '1 Neurodiversity and Self-Directed Education',
-    '2 Neurodiversity at School',
-    '3 Learning at School',
-    '4 Learning Without School',
-    '5 The Safe to Learn Pyramid: Foundations of Self-Directed Education',
-    '6 Recovery',
-    '7 Trauma and Anxiety',
-    '8 When Pressure is Toxic',
-    '9 Making Changes: Stop and Smell the Coffee',
-    '10 Academics',
-    '11 Non-Academic Skills',
-    '12 The Wider World: Communities and Groups']
+    'Neurodiversity and Self-Directed Education',
+    'Neurodiversity at School',
+    'Learning at School',
+    'Learning Without School',
+    'The Safe to Learn Pyramid: Foundations of Self-Directed Education',
+    'Recovery',
+    'Trauma and Anxiety',
+    'When Pressure is Toxic',
+    'Making Changes: Stop and Smell the Coffee',
+    'Academics',
+    'Non-Academic Skills',
+    'The Wider World: Communities and Groups']
 audiobookLength: ""
 hasAudiobookSample: false
 dimensions: ""

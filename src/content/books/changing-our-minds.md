@@ -13,21 +13,21 @@ ebookIsbn: ""
 audiobookIsbn: ""
 pages: 304
 people: ["Dr Naomi Fisher"]
-tags: ["School", "Anxiety", "Parents", "Professionals"]
+tags: ["School", "Anxiety", "Parents"]
 toc: [
-    "1 Getting an Education",
-    "2 Learning - Scientists, Processors and Rats",
-    "3 Motivation - Stars, Stickers and Smiley Faces",
-    "4 Self-Directed Learning - What Happens When We Don't Make Children Learn?",
-    "5 From Toddlers to Teens - How Does Learning Change as Children Grow?",
-    "6 Outcomes - How Can We Measure Education?",
-    "7 Parenting - Magical Counting, Attachment and Control",
-    "8 Differences - Being Yourself",
-    "9 Deschooling - Leaving School Behind You",
-    "10 Supporting Self-Directed Learners",
-    "11 Wellbeing - Seeing What the Rest of Us Don't Want to See",
-    "12 HELP! The Self-Directed Education Problem Corner",
-    "13 Self-Directed Learing in Action - Personal Stories"
+    "Getting an Education",
+    "Learning - Scientists, Processors and Rats",
+    "Motivation - Stars, Stickers and Smiley Faces",
+    "Self-Directed Learning - What Happens When We Don't Make Children Learn?",
+    "From Toddlers to Teens - How Does Learning Change as Children Grow?",
+    "Outcomes - How Can We Measure Education?",
+    "Parenting - Magical Counting, Attachment and Control",
+    "Differences - Being Yourself",
+    "Deschooling - Leaving School Behind You",
+    "Supporting Self-Directed Learners",
+    "Wellbeing - Seeing What the Rest of Us Don't Want to See",
+    "HELP! The Self-Directed Education Problem Corner",
+    "Self-Directed Learing in Action - Personal Stories"
 ]
 audiobookLength: "10 hours 22 mins"
 hasAudiobookSample: true

@@ -12,8 +12,17 @@ export async function getStaticPaths() {
 }
 
 const { book } = Astro.props;
+
+const bookData = book.data;
+
+const metaDescription =
+  "Dr. Naomi Fisher's book: " +
+  bookData.title +
+  "." +
+  bookData.subtitle +
+  bookData.toc.map((item) => ' ' + item);
 ---
 
-<BaseLayout active="books">
-  <BookDetails frontmatter={book.data} />
+<BaseLayout active="books" metaDescription={metaDescription}>
+  <BookDetails frontmatter={bookData} />
 </BaseLayout>

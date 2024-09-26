@@ -113,11 +113,7 @@ const metaDescription =
     categoryName="Featured Courses"
   />
 
-  <Newsletter />
-
-  <CoursesList courses={featuredCourses2} />
-
-  <GenerateQuote client:load quotes={coursesQuotes} />
+  <!-- <CoursesList courses={featuredCourses2} /> -->
 
   <a href="/courses" class="load-more"> See All Courses </a>
 
@@ -128,15 +124,17 @@ const metaDescription =
   </a>
   {featuredBooks.map((book) => <BookSummary book={book.data} />)}
 
-  <GenerateQuote client:load quotes={generalQuotes} />
-
-  <a name="blog" class="anchor">
+  <!-- <a name="blog" class="anchor">
     <h2 class="section-title">
       <span class="blog-section-title">Latest Blog Posts</span>
     </h2>
-  </a>
+  </a> -->
 
-  <BlogList length="2" />
+  <GenerateQuote client:load quotes={generalQuotes} />
 
-  <a href="/blog" class="load-more"> See All Blog Posts </a>
+  <Newsletter />
+
+  <!-- <BlogList length="2" />
+
+  <a href="/blog" class="load-more"> See All Blog Posts </a> -->
 </BaseLayout>

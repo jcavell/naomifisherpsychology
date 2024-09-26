@@ -13,19 +13,19 @@ ebookIsbn: "9781472148674"
 audiobookIsbn: "9781405559461"
 pages: 448
 people: ["Dr Naomi Fisher", "Eliza Fricker"]
-tags: ["Low Demand Parenting", "Parents"]
-toc: ["1 My Child Hasn’t Read the Parenting Books",
-    "2 Parenting",
-    "3 The Principles of Low Demand Parenting",
-    "4 Communication",
-    "5 Behaviour",
-    "6 Emotions",
-    "7 In the Real World",
-    "8 Screens",
-    "9 What About Other People?",
-    "10 Will It Be Like This Forever?",
-    "11 What About Me?",
-    "12 Low Demand Parenting in Action"]
+tags: ["Low Demand Parenting", "Screens", "Parents"]
+toc: ["My Child Hasn’t Read the Parenting Books",
+    "Parenting",
+    "The Principles of Low Demand Parenting",
+    "Communication",
+    "Behaviour",
+    "Emotions",
+    "In the Real World",
+    "Screens",
+    "What About Other People?",
+    " Will It Be Like This Forever?",
+    "What About Me?",
+    "Low Demand Parenting in Action"]
 audiobookLength: "10 hours"
 hasAudiobookSample: false
 dimensions: "15.3 x 2.2 x 23.4 cm"
