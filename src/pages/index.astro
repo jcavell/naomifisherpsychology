@@ -105,7 +105,9 @@ const metaDescription =
   <!-- {console.log(webinars.length)}
   {webinars.length % 2 !== 0 && <Newsletter />} -->
 
-  <GenerateQuote client:load quotes={webinarQuotes} />
+  <!-- <GenerateQuote client:load quotes={webinarQuotes} /> -->
+
+  <Newsletter />
 
   <CoursesList
     courses={featuredCourses1}
@@ -132,7 +134,7 @@ const metaDescription =
 
   <GenerateQuote client:load quotes={generalQuotes} />
 
-  <Newsletter />
+  <!-- <Newsletter /> -->
 
   <!-- <BlogList length="2" />
 
