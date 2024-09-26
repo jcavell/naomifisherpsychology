@@ -1,8 +1,10 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import BlogList from "../components/blog/BlogList.astro";
+
+const metaDescription = "Dr Naomi Fisher's Substack blog";
 ---
 
-<BaseLayout active = "blog" pageTitle="Blog">
+<BaseLayout active="blog" pageTitle="Blog" metaDescription={metaDescription}>
   <BlogList />
 </BaseLayout>

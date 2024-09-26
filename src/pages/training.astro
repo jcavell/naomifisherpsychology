@@ -14,11 +14,18 @@ import whatHappened from "../images/training/EMDR-tell-me-what-happened.jpg";
 import therapist from "../images/training/EMDR-therapist.jpg";
 
 const quotes = (await getEntry("tag-quotes", "emdr")).data;
+
+const metaDescription =
+  "Dr Naomi Fisher's EMDR Basic Training, EMDR Refresher Days and professional training on neurodiversity and trauma";
 ---
 
 <script src="../scripts/accordion.js"></script>
 
-<BaseLayout active="training" pageTitle="Training">
+<BaseLayout
+  active="training"
+  pageTitle="Training"
+  metaDescription={metaDescription}
+>
   <div class="info-section-wrapper">
     <div class="info-text">
       <p>Dr Naomi Fisher is an EMDR-Europe accredited trainer.</p>

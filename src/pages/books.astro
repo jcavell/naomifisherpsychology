@@ -9,8 +9,15 @@ const pageTitle = "Books";
 const books = (await getCollection("books")).sort(
   (a, b) => b.data.id - a.data.id
 );
+
+const metaDescription =
+  "Dr Naomi Fisher's books, including Changing Our Minds about How children can take control of their own learning, A Different Way to Learn about Neurodiversity and Self-Directed Education , Psychology of Mental Health, When the Naughty Step Makes Things Worse about Parenting for Children (and Adults) Who Need Something Different";
 ---
 
-<BaseLayout active="books" pageTitle={pageTitle}>
-    {books.map((book) => <BookSummary book={book.data} />)}
+<BaseLayout
+  active="books"
+  pageTitle={pageTitle}
+  metaDescription={metaDescription}
+>
+  {books.map((book) => <BookSummary book={book.data} />)}
 </BaseLayout>

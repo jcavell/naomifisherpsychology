@@ -22,16 +22,6 @@ import { getFormats, getPubDate, getPubDateString } from "../../scripts/book";
     <span>{book.subtitle} </span>
   </h2>
 
-  <!-- <div class="card-image">
-    <img
-      srcset="imgs/example-book-cover-620.jpg 620w, imgs/example-book-cover-1016.jpg 1016w, imgs/example-book-cover-2176.jpg 2176w"
-      sizes="(min-width: 1185px) 508px, (min-width: 780px) 728px, 100vw"
-      src="imgs/example-book-cover-620.jpg"
-      alt="an image description for the visually impaired, also helps SEO"
-      loading="lazy"
-    />
-  </div> -->
-
   <div class="card-image">
     <BookImage book={book} />
   </div>

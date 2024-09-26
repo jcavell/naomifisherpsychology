@@ -3,11 +3,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import StaticImage from "../components/StaticImage.astro";
 import naomiImage from "../images/static/dr-naomi-fisher.png";
 import Newsletter from "../components/Newsletter.astro";
+
+const metaDescription =
+  "How to contact Dr Naomi Fisher and Dr Abigail Fisher for media or press enquiries, technical support for courses and webinars or general enquiries.";
 ---
 
 <script src="../scripts/accordion.js"></script>
 
-<BaseLayout active="contact" pageTitle="Contact">
+<BaseLayout
+  active="contact"
+  pageTitle="Contact"
+  metaDescription={metaDescription}
+>
   <div class="page-intro-wrapper">
     <div class="page-intro-text">
       <h3>Press</h3>
@@ -18,8 +25,8 @@ import Newsletter from "../components/Newsletter.astro";
       </p>
       <h3>Other enquiries</h3>
       <p>
-        To contact us or for technical support, email <a href="mailto:support@naomifisher.co.uk"
-          >support@naomifisher.co.uk</a
+        To contact us or for technical support, email <a
+          href="mailto:support@naomifisher.co.uk">support@naomifisher.co.uk</a
         >
       </p>
       <p>

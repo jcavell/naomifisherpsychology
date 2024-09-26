@@ -62,9 +62,16 @@ const forProfessionalsCourses = await getCoursesWithTagWithoutOtherTags([
   forProfessionals,
   tagEMDR,
 ]);
+
+const metaDescription =
+  "Dr Naomi Fisher and Dr Abigail Fisher's courses on helping autistic children with anxiety, screen time, PDA and Demand Avoidance, burnout, What Neurodiversity is, problems at school and EHCP and professional courses on EMDR";
 ---
 
-<BaseLayout active="courses" pageTitle="Courses">
+<BaseLayout
+  active="courses"
+  pageTitle="Courses"
+  metaDescription={metaDescription}
+>
   <div class="info-section-wrapper">
     <div class="info-text">
       <p>

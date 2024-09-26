@@ -28,9 +28,17 @@ const webinarQuotes = (
 const coursesQuotes = (await getEntry("course-quotes", "general-course-quotes"))
   .data;
 const generalQuotes = (await getEntry("static-pages-quotes", "homepage")).data;
+
+const metaDescription =
+  "Dr Naomi Fisher is a clinical psychologist, author and speaker specialising in parenting, mental health issues in children, autism and trauma. She runs EMDR Basic Training and Refresher Day courses. Dr Abigail Fisher is an education psychologist specialising in Special Educational Needs (SEN), EHCPs, EOTAS. We create courses and webinars for parents and professionals.";
 ---
 
-<BaseLayout active="home" pageTitle="Home" bodyClassName="home">
+<BaseLayout
+  active="home"
+  pageTitle="Home"
+  bodyClassName="home"
+  metaDescription={metaDescription}
+>
   <div class="page-intro-wrapper">
     <div class="page-intro-image">
       <StaticImage image={homeImage} alt="Drawing of parent comforting child" />

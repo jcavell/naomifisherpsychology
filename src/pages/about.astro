@@ -3,11 +3,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import StaticImage from "../components/StaticImage.astro";
 import naomiImage from "../images/static/dr-naomi-fisher.jpg";
 import abiImage from "../images/static/dr-abigail-fisher.png";
+
+const metaDescription = "About Dr Naomi Fisher and Dr Abigail Fisher, where they studied and their professional careers.";
 ---
 
 <script src="../scripts/accordion.js"></script>
 
-<BaseLayout active="about" pageTitle="About">
+<BaseLayout active="about" pageTitle="About" metaDescription = {metaDescription}>
   <a name="dr-naomi-fisher" class="anchor">
     <h2 class="section-title">
       <span class="person-section-title">Dr Naomi Fisher</span>

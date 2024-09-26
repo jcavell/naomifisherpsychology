@@ -7,7 +7,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import NaomiStyle from "../styles/naomiStyle.astro";
 
-const { active, tagName, tagUrl, bodyClassName } = Astro.props;
+const { active, tagName, tagUrl, bodyClassName, metaDescription } = Astro.props;
 
 const bodyClass = bodyClassName
   ? bodyClassName
@@ -35,6 +35,9 @@ const bodyClass = bodyClassName
     </script>
 
     <meta charset="utf-8" />
+
+    {metaDescription && <meta name="description" content={metaDescription} />}
+    
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
     <title>Dr. Naomi Fisher</title>
