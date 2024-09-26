@@ -518,10 +518,10 @@ export const allCourseMetas = [
 
 // For the featured list on the homepage
 export const featuredCourses = [
-  traumaAndLoss,
-  workingWithDemandAvoidantChildrenTherapy,
+  burnoutAGuideForTeenagers,
+  demandAvoidance101,
   neurodiversity101,
-  autisticTeenWithAnxiety,
+  ALDP1To10,
 ];
 
 // !! ADD RELATED COURSES HERE !!
