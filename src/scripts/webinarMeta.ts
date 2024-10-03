@@ -32,7 +32,7 @@ const is_it_all_my_fault: WebinarMeta = {
   tags: [tagALDP, age5To11, age11To19, forParents],
   image: myFaultImage,
   subsubtitle:
-    "In an exclusive special offer, we are offering a free ticket for this webinar to anyone who preorders our book before Oct 9th. Click Learn More for details.",
+    "In an exclusive special offer, we are offering a free ticket to anyone who orders our new book before Oct 9th. Click Learn More for details.",
   contributers: [naomi, eliza],
 };
 
