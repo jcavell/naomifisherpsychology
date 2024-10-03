@@ -13,7 +13,7 @@ ebookIsbn: ""
 audiobookIsbn: ""
 pages: 160
 people: ["Dr Naomi Fisher"]
-tags: ["Professionals"]
+tags: ["Professionals", "Mental Health"]
 dimensions: "19 x 24.5 x 1.2 cm"
 toc: [
     "What is Mental Health?",

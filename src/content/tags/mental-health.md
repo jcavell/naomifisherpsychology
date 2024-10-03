@@ -1,0 +1,9 @@
+We all respond to the world around us in different ways. This can be seen in our emotions and behaviour.  Often, those responses are helpful – it’s useful to fear stepping out into the road when the cars are going by, for example. Emotions can alert us to a problem in our environment. 
+
+Sometimes emotional responses go beyond what is helpful and become a problem in themselves. People start to feel anxious all the time, even when there isn’t anything to be afraid of. Sometimes the things that we do in order to feel better – like drinking, or isolating ourselves – can make problems worse. We get stuck, because the things we are doing to try to feel better end up making the situation more complicated.   
+
+Mental health professionals define something as a mental health problem when it causes a problem for a person and stops them being able to live their life in the way that they want. Emotions and behaviour are seen as symptoms of the mental health problem. This can include unusual experiences such as hearing voices or paranoid thinking.  
+
+The issues which are defined as mental health problems include anxiety, depression, phobias, post-traumatic stress disorder (PTSD), obsessive compulsive disorder (OCD) and substance misuse. In our webinars about mental health problems, you’ll hear about evidence-based techniques  to help you and your child get unstuck and to make the changes you or they want to make in their lives. 
+
+These webinars are not therapy and should not be used as a replacement for therapy. They are educational self-help webinars, using psychological theory to help you help yourself and your child. 

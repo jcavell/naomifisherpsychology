@@ -10,6 +10,9 @@ export const forProfessionals = "Professionals";
 
 export const tagEMDR = "EMDR";
 
+export const tagMentalHealth = "Mental Health";
+export const tagWellbeing = "Wellbeing";
+
 export const tagALDP = "Low Demand Parenting";
 export const tagAutism = "Autism";
 export const tagNeurodiversity = "Neurodiversity";
@@ -49,13 +52,14 @@ const tag2regex: Readonly<Record<string, RegExp>> = {
 
   [tagEMDR]: new RegExp(["emdr"].join("|"), "i"),
   [tagNeurodiversity]: new RegExp(["neurodiver"].join("|"), "i"),
+  [tagMentalHealth]: new RegExp(["mental health", "depress", "ocd", "anxiety"].join("|"), "i"),
 };
 
 export const topicTags = [
   tagAutism,
   tagDemandAvoidance,
   tagNeurodiversity,
-  // tagADHD,
+  tagMentalHealth,
   tagAnxiety,
   tagBurnout,
   tagTrauma,

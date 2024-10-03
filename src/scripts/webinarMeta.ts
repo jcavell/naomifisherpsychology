@@ -8,6 +8,7 @@ import {
   tagEHCPs,
   tagSchool,
   tagSEN,
+  tagMentalHealth,
 } from "./tags";
 
 import { naomi, abi, eliza, kate } from "./people";
@@ -16,6 +17,7 @@ import { naomi, abi, eliza, kate } from "./people";
 import eotasImage from "../images/webinars/eotas-what-to-expect.jpg";
 import myFaultImage from "../images/webinars/is-it-all-my-fault.jpg";
 import transitionsImage from "../images/webinars/helping-your-autistic-child-with-transitions.jpg";
+import writingForWellbeingImage from "../images/webinars/writing-for-wellbeing.jpg";
 
 type WebinarMeta = {
   id: string;
@@ -50,7 +52,8 @@ const eotas_what_to_expect: WebinarMeta = {
 
 const writing_for_wellbeing: WebinarMeta = {
   id: "1016739654677",
-  tags: [forParents],
+  tags: [forParents, tagMentalHealth],
+  image: writingForWellbeingImage,
   contributers: [abi, kate],
 };
 

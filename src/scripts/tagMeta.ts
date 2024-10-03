@@ -18,6 +18,7 @@ import {
   tagEMDR,
   forProfessionals,
   forTeens,
+  tagMentalHealth,
 } from "./tags";
 
 import { compiledContent as age5To12Content } from "../content/tags/age-5-12.md";
@@ -39,6 +40,7 @@ import { compiledContent as adhdContent } from "../content/tags/adhd.md";
 import { compiledContent as aggressionContent } from "../content/tags/aggression.md";
 import { compiledContent as neurodiversityContent } from "../content/tags/neurodiversity.md";
 import { compiledContent as traumaContent } from "../content/tags/trauma.md";
+import { compiledContent as mentalHealthContent } from "../content/tags/mental-health.md";
 
 // Tag Images
 import testImage from "../images/tags/test-tag-image.jpg";
@@ -59,6 +61,7 @@ import tagSchoolImage from "../images/tags/tag-school.png";
 import tagScreensImage from "../images/tags/tag-screens.png";
 import tagALDPImage from "../images/courses/ALDP-1-10.webp";
 import tagDemandAvoidanceImage from "../images/tags/tag-demand-avoidance.png";
+import tagMentalHealthImage from "../images/tags/mental-health.jpg";
 
 type TagMeta = {
   tag: string;
@@ -180,6 +183,12 @@ const adhdMeta: TagMeta = {
   description: adhdContent(),
 };
 
+const mentalHealthMeta: TagMeta = {
+  tag: tagMentalHealth,
+  image: tagMentalHealthImage,
+  description: mentalHealthContent(),
+};
+
 // !! ADD TAGS HERE !!
 const tagsMeta = [
   age5To12Meta,
@@ -201,6 +210,7 @@ const tagsMeta = [
   adhdMeta,
   aggressionMeta,
   neurodiversityMeta,
+  mentalHealthMeta,
 ];
 
 export function getTagMeta(tag: string): TagMeta | undefined {
