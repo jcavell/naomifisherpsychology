@@ -179,7 +179,7 @@ export const childWithAnxiety6To13: CourseMeta = {
 
 export const childWithSevereAnxiety: CourseMeta = {
   title: "Helping Your Child With Severe Anxiety",
-  tags: [tagAnxiety, tagMentalHealth, age5To11, forParents],
+  tags: [tagAnxiety, tagMentalHealth, age5To11, age11To19, forParents],
   contributers: [naomi],
   image: childWithSevereAnxietyImage,
   runningTime: "1 hour 5 mins",
@@ -191,7 +191,6 @@ export const burntOutBySchool: CourseMeta = {
     tagBurnout,
     tagSchool,
     tagMentalHealth,
-    age5To11,
     age11To19,
     forParents,
   ],

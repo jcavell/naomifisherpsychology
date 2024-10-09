@@ -3,7 +3,7 @@ id: 4
 uri: "/books/when-the-naughty-step-makes-things-worse"
 title: "When the Naughty Step Makes Things Worse"
 subtitle: "Parenting for Children (and Adults) Who Need Something Different"
-description: "A down-to-earth illustrated guide for parents of children just haven't read the parenting books."
+description: "A down-to-earth illustrated guide for parents of children who just haven't read the parenting books."
 summary: "Some children just haven't read the parenting books. The harder you try, the worse it gets. There's a hidden contract at the heart of parenting. It's the idea that if parents just get it right, their children can be made to do what they want. Manuals explain how to make it very clear to your children what you want them to do - and how to respond when they don't cooperate."
 publisher: "Little, Brown Book Group"
 pubDate: "2024-10-03"
