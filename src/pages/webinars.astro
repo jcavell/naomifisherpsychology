@@ -55,8 +55,18 @@ const metaDescription =
     </div>
   </div>
 
-  <h2 class="section-title">Upcoming Webinars</h2>
+  {webinars.length === 0 && <h2 class="section-title">No upcoming Webinars</h2>}
 
-  {webinars.map((webinar, index) => <WebinarSummary webinar={webinar} />)}
-  <GenerateQuote client:load quotes={quotes} />
+  {
+    webinars.length > 0 && (
+      <>
+        <h2 class="section-title">Upcoming Webinars</h2>
+
+        {webinars.map((webinar, index) => (
+          <WebinarSummary webinar={webinar} />
+        ))}
+        <GenerateQuote client:load quotes={quotes} />
+      </>
+    )
+  }
 </BaseLayout>

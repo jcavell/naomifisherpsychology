@@ -45,9 +45,7 @@ const metaDescription =
     </div>
 
     <div class="page-intro-text">
-      <h1 class="feature-headline">
-        HALF PRICE SALE
-      </h1>
+      <h1 class="feature-headline">HALF PRICE SALE</h1>
       <p>
         Naomi and Eliza's Art of Low Demand Parenting recordings are <a
           href="https://courses.naomifisher.co.uk/"
@@ -97,11 +95,15 @@ const metaDescription =
     </div>
   </div>
 
-  <a name="webinars" class="anchor">
-    <h2 class="section-title">
-      <span class="webinars-section-title">Upcoming Webinars</span>
-    </h2>
-  </a>
+  {
+    webinars.length > 0 && (
+      <a name="webinars" class="anchor">
+        <h2 class="section-title">
+          <span class="webinars-section-title">Upcoming Webinars</span>
+        </h2>
+      </a>
+    )
+  }
 
   {webinars.map((webinar, index) => <WebinarSummary webinar={webinar} />)}
 
