@@ -108,6 +108,7 @@ function addDates(webinar) {
 }
 
 export default async function getWebinars() {
+  return [];
   const eventsResponse = await fetch(
     "https://www.eventbriteapi.com/v3/organizations/495447088469/events/?expand=category,subcategory,ticket_availability,ticket_classes&status=live",
     {
