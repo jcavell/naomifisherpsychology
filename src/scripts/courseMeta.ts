@@ -49,6 +49,9 @@ import thrivingAfterSchoolBreakdownImage from "../images/courses/thriving-after-
 import helpingYourAutisticChildWithStartingSchoolImage from "../images/courses/helping-your-autistic-child-with-starting-school.webp";
 import navigatingTheSenTribunalProcessImage from "../images/courses/navigating-the-sen-tribunal-process.webp";
 import helpingYourChildWithLearningDisabilitiesWithAnxietyImage from "../images/courses/helping-your-child-with-learning-disabilities-with-anxiety.webp";
+import helpingYourAutisticChildWithOCDImage from "../images/courses/helping-your-autistic-child-with-ocd.webp";
+import helpingYourAutisticChildWithTransitionsImage from "../images/courses/helping-your-autistic-child-with-transitions.webp";
+import eotasWhatToExpectImage from "../images/courses/eotas-what-to-expect.webp";
 
 import ALDP1Image from "../images/courses/ALDP-1.webp";
 import ALDP2Image from "../images/courses/ALDP-2.webp";
@@ -101,7 +104,7 @@ export const demandAvoidantAdolescent: CourseMeta = {
   videoUrl: makeVideoURL("957825416"),
 };
 
-const demandAvoidance101: CourseMeta = {
+export const demandAvoidance101: CourseMeta = {
   title: "Demand Avoidance 101",
   contributers: [naomi],
   tags: [tagDemandAvoidance, age5To11, age11To19, forParents],
@@ -486,9 +489,36 @@ export const helpingYourChildWithLearningDisabilitiesWithAnxiety: CourseMeta = {
   runningTime: "1 hour 29 mins",
 };
 
+export const helpingYourAutisticChildWithOCD: CourseMeta = {
+  title: "Helping Your Autistic Child with OCD",
+  tags: [tagAutism, tagAnxiety, tagMentalHealth, age5To11, age11To19, forParents],
+  contributers: [naomi],
+  image: helpingYourAutisticChildWithOCDImage,
+  runningTime: "1 hour 16 mins",
+};
+
+export const helpingYourAutisticChildWithTransitions: CourseMeta = {
+  title: "Helping Your Autistic Child with Transitions",
+  tags: [tagAutism, tagAnxiety, tagMentalHealth, age5To11, age11To19, forParents],
+  contributers: [naomi],
+  image: helpingYourAutisticChildWithTransitionsImage,
+  runningTime: "1 hour 23 mins",
+};
+
+export const eotasWhatToExpect: CourseMeta = {
+  title: "EOTAS: What to Expect",
+  tags: [tagSEN, tagAnxiety, tagMentalHealth, age5To11, age11To19, forParents],
+  contributers: [abi],
+  image: eotasWhatToExpectImage,
+  runningTime: "58 mins",
+};
+
 // !! ADD NEW COURSES HERE !!
 // Most recent first
 export const allCourseMetas = [
+  eotasWhatToExpect,
+  helpingYourAutisticChildWithOCD,
+  helpingYourAutisticChildWithTransitions,
   navigatingTheSenTribunalProcess,
   helpingYourChildWithLearningDisabilitiesWithAnxiety,
   takingControlOfYourEhcpAnnualReview,
@@ -539,13 +569,25 @@ export const allCourseMetas = [
 
 // For the featured list on the homepage
 export const featuredCourses = [
-  burnoutAGuideForTeenagers,
-  demandAvoidance101,
+  helpingYourAutisticChildWithOCD,
+  helpingYourAutisticChildWithTransitions,
   neurodiversity101,
   ALDP1To10,
 ];
 
 // !! ADD RELATED COURSES HERE !!
+
+helpingYourAutisticChildWithOCD.relatedTitles = [
+    autisticChildWithAnxiety.title,
+    autisticTeenWithAnxiety.title,
+    helpingYourAutisticChildWithTransitions.title
+];
+
+helpingYourAutisticChildWithTransitions.relatedTitles = [
+    autisticChildWithAnxiety.title,
+    autisticTeenWithAnxiety.title,
+    helpingYourAutisticChildWithOCD.title
+];
 
 demandAvoidance101.relatedTitles = [
   demandAvoidantAdolescent.title,
