@@ -27,7 +27,7 @@ type WebinarMeta = {
   image?: ImageMetadata;
 };
 
-const is_it_all_my_fault: WebinarMeta = {
+const example_webinar: WebinarMeta = {
   id: "1008493379847",
   tags: [tagALDP, age5To11, age11To19, forParents],
   image: myFaultImage,
@@ -36,33 +36,15 @@ const is_it_all_my_fault: WebinarMeta = {
   contributers: [naomi, eliza],
 };
 
-const helping_your_autistic_child_with_transitions: WebinarMeta = {
-  id: "888386577167",
-  tags: [tagAutism, tagAnxiety, age5To11, age11To19, forParents],
-  image: transitionsImage,
+const helping_your_teen_with_anxiety: WebinarMeta = {
+  id: "1082385577399",
+  tags: [tagAnxiety, age11To19, forParents],
   contributers: [naomi],
-};
-
-const eotas_what_to_expect: WebinarMeta = {
-  id: "1024840845557",
-  image: eotasImage,
-  tags: [tagSEN, forParents],
-  contributers: [abi]
-};
-
-const writing_for_wellbeing: WebinarMeta = {
-  id: "1016739654677",
-  tags: [forParents, tagMentalHealth],
-  image: writingForWellbeingImage,
-  contributers: [abi, kate],
 };
 
 // !! ADD WEBINAR HERE !!
 export function getWebinarMeta(eventId: string): WebinarMeta | undefined {
   return [
-    helping_your_autistic_child_with_transitions,
-    is_it_all_my_fault,
-    eotas_what_to_expect,
-    writing_for_wellbeing
+    helping_your_teen_with_anxiety
   ].find((webMeta) => eventId === webMeta.id);
 }
