@@ -21,7 +21,8 @@ import { getOrderedPosts } from "../../scripts/blog";
 
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getTagMeta } from "../../scripts/tagMeta";
+import DisplayTagContent from "../../components/DisplayTagContent.astro";
+
 import Picture from "astro/components/Picture.astro";
 
 export async function getStaticPaths() {
@@ -85,8 +86,6 @@ const aimedAtText = forTags.includes(tagName)
     ? "about children aged "
     : "on";
 
-const tagMeta = getTagMeta(tagName);
-
 // console.log("WEBINARS: " + webinars.length);
 
 const metaDescription =
@@ -134,18 +133,7 @@ const metaDescription =
     )
   }
 
-  <div class="page-intro-wrapper">
-    <div class="page-intro-image">
-      <Picture
-        src={tagMeta?.image}
-        widths={[620, 1016, 2176]}
-        sizes={`(min-width: 1185px) 1088px, (min-width: 780px) 754px, 100vw`}
-        alt="Alt"
-        pictureAttributes={{}}
-      />
-    </div>
-    <div class="page-intro-text" set:html={tagMeta?.description} />
-  </div>
+  <DisplayTagContent tagName={tagName}/>
 
   {
     webinars.length > 0 && (

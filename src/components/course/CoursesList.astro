@@ -9,16 +9,6 @@ const quotes = (await getEntry("course-quotes", "general-course-quotes")).data;
 ---
 
 {
-  categoryName && (
-    <a name={categoryId} class="anchor">
-      <h2 class="section-title">
-        <span class="courses-section-title">{categoryName}</span>
-      </h2>
-    </a>
-  )
-}
-
-{
   courses.map((course, index) =>
     index != 0 && (index + 1) % 4 == 0 ? (
       <>
