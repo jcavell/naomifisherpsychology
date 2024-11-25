@@ -67,5 +67,5 @@ export const category2courses:ReadonlyMap<string, any> = new Map([
     [tagALDP, lowDemandParentingCourses],
     [tagEHCPs, ehcpCourses],
     [tagSEN, senCourses],
-    [latestCat, latestCourses]
+    // [latestCat, latestCourses]
 ]);
