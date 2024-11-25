@@ -8,7 +8,7 @@ import {
   tagEHCPs,
   tagSchool,
   tagSEN,
-  tagMentalHealth,
+  tagMentalHealth, tagDemandAvoidance,
 } from "./tags";
 
 import { naomi, abi, eliza, kate } from "./people";
@@ -42,9 +42,23 @@ const helping_your_teen_with_anxiety: WebinarMeta = {
   contributers: [naomi],
 };
 
+const my_child_doesnt_have_an_ehcp: WebinarMeta = {
+  id: "1090127222869",
+  tags: [tagEHCPs, tagSchool, age5To11, age11To19, forParents],
+  contributers: [abi],
+};
+
+const navigating_christmas: WebinarMeta = {
+  id: "1095132794669",
+  tags: [tagAutism, tagDemandAvoidance, age5To11, age11To19, forParents],
+  contributers: [naomi],
+};
+
 // !! ADD WEBINAR HERE !!
 export function getWebinarMeta(eventId: string): WebinarMeta | undefined {
   return [
-    helping_your_teen_with_anxiety
+    helping_your_teen_with_anxiety,
+      my_child_doesnt_have_an_ehcp,
+      navigating_christmas
   ].find((webMeta) => eventId === webMeta.id);
 }
