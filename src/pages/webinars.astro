@@ -33,10 +33,14 @@ const metaDescription =
       />
     </div>
     <div class="page-intro-text">
+      <h3>Webinars</h3>
       <p>
-        We regularly run live webinars on Zoom for parents. They are recorded
-        and available for 30 days if you choose the recorded ticket.
+        Our live webinars for parents and professionals combine psychological theory with practical ideas.</p><p>They are recorded and available for 30 days if you choose the recorded ticket.
       </p>
+
+      <div class="accordion-wrapper">
+        <button class="accordion no-title-accordion">Read More</button>
+        <div class="panel">
       <p>
         We started these webinars because so many parents were getting in touch
         with Naomi asking for consultations or therapy and it was impossible for
@@ -52,6 +56,8 @@ const metaDescription =
         webinars and if you have something which you would particularly like to
         see covered, then please do get in touch.
       </p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -60,7 +66,7 @@ const metaDescription =
   {
     webinars.length > 0 && (
       <>
-        <h2 class="section-title">Upcoming Webinars</h2>
+        <!--<h2 class="section-title">Upcoming Webinars</h2>-->
 
         {webinars.map((webinar, index) => (
           <WebinarSummary webinar={webinar} />

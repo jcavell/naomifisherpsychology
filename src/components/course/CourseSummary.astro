@@ -23,8 +23,8 @@ const summary = course.description;
 
   <div class="card-details">
     <a href="/courses" class="card-type-course"> RECORDED COURSE </a>
-    <span class="duration"> {course.meta?.runningTime} </span>
-    <span class="cost"> {price} </span>
+    <!--<span class="duration"> {course.meta?.runningTime} </span>-->
+    {price.replace('.00', '').replace('GBP', '')}
   </div>
 
   <p>
