@@ -59,6 +59,8 @@ const metaDescription =
          </div>
   </div>
 
+  <Newsletter />
+
   {
     webinars.length > 0 && (
       <a name="webinars" class="anchor">
@@ -76,24 +78,22 @@ const metaDescription =
 
   <!-- <GenerateQuote client:load quotes={webinarQuotes} /> -->
 
-  <Newsletter />
 
-  <CoursesList
-    courses={featuredCourses1}
-    categoryId="featured"
-    categoryName="Featured Courses"
-  />
 
-  <!-- <CoursesList courses={featuredCourses2} /> -->
+  <!--<CoursesList-->
+  <!--  courses={featuredCourses1}-->
+  <!--  categoryId="featured"-->
+  <!--  categoryName="Featured Courses"-->
+  <!--/>-->
 
-  <a href="/courses" class="load-more"> See All Courses </a>
+  <!--<a href="/courses" class="load-more"> See All Courses </a>-->
 
-  <a name="books" class="anchor">
-    <h2 class="section-title">
-      <span class="books-section-title">Featured Books</span>
-    </h2>
-  </a>
-  {featuredBooks.map((book) => <BookSummary book={book.data} />)}
+  <!--<a name="books" class="anchor">-->
+  <!--  <h2 class="section-title">-->
+  <!--    <span class="books-section-title">Featured Books</span>-->
+  <!--  </h2>-->
+  <!--</a>-->
+  <!--{featuredBooks.map((book) => <BookSummary book={book.data} />)}-->
 
   <!-- <a name="blog" class="anchor">
     <h2 class="section-title">

@@ -5,32 +5,40 @@ const { active } = Astro.props;
 <div id="menu">
   <nav>
     <ul>
+
       <a href="/" class={active === "home" ? "active" : "inactive"}>
         <li>Home</li>
       </a>
+
       <a href="/webinars" class={active === "webinars" ? "active" : "inactive"}>
         <li>Webinars</li>
       </a>
+
       <a href="/courses" class={active === "courses" ? "active" : "inactive"}>
         <li>Courses</li>
       </a>
+
       <a href="/books" class={active === "books" ? "active" : "inactive"}>
         <li>Books</li>
-      </a>
-
-      <a href="/blog" class={active === "blog" ? "active" : "inactive"}>
-        <li>Blog</li>
       </a>
 
       <a
         href="/training"
         class={active === "training" ? "active" : "inactive"}
       >
-        <li>Training</li>
+        <li>EMDR Training</li>
       </a>
 
       <a href="/about" class={active === "about" ? "active" : "inactive"}>
-        <li>About</li>
+        <li>About Us</li>
+      </a>
+
+      <a href="/press" class={active === "about" ? "active" : "inactive"}>
+        <li>Press Coverage</li>
+      </a>
+
+      <a href="/blog" class={active === "blog" ? "active" : "inactive"}>
+        <li>Blog</li>
       </a>
 
       <a href="/contact" class={active === "contact" ? "active" : "inactive"}>
