@@ -56,24 +56,23 @@ const tag2regex: Readonly<Record<string, RegExp>> = {
 };
 
 export const topicTags = [
-  tagAutism,
-  tagDemandAvoidance,
-  tagNeurodiversity,
-  tagMentalHealth,
   tagAnxiety,
+  tagAutism,
   tagBurnout,
-  tagTrauma,
-  tagSchool,
+  tagDemandAvoidance,
   tagEHCPs,
-  tagSEN,
-  tagScreens,
   tagALDP,
-  tagEMDR,
+  tagMentalHealth,
+  tagNeurodiversity,
+  tagSEN,
+  tagSchool,
+  tagScreens,
+  tagTrauma,
 ];
 
 export const ageTags = [age5To11, age11To19];
 
-export const forTags = [forParents, forTeens, forProfessionals];
+export const forTags = [forParents, forProfessionals, forTeens];
 
 export const allTags = [topicTags, ageTags, forTags].flat();
 
