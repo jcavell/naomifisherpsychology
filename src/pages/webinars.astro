@@ -8,6 +8,7 @@ import GenerateQuote from "../components/Quoter";
 import { getEntry } from "astro:content";
 import StaticImage from "../components/StaticImage.astro";
 import naomiAndElizaImage from "../images/static/naomi-and-eliza-looking-at-book.jpg";
+import Newsletter from "../components/Newsletter.astro";
 
 const quotes = (await getEntry("webinar-quotes", "general-webinar-quotes"))
   .data;
@@ -33,10 +34,9 @@ const metaDescription =
       />
     </div>
     <div class="page-intro-text">
-      <h3>Webinars</h3>
+      <h3>WEBINARS</h3>
       <p>
-        Our live webinars for parents and professionals combine psychological theory with practical ideas.</p><p>They are recorded and available for 30 days if you choose the recorded ticket.
-      </p>
+        Our live webinars for parents and professionals are hosted on Zoom. They combine psychological theory with practical ideas to help. <p>They are recorded and available for 30 days.</p>
 
       <div class="accordion-wrapper">
         <button class="accordion no-title-accordion">Read More</button>
@@ -45,6 +45,7 @@ const metaDescription =
         We started these webinars because so many parents were getting in touch
         with Naomi asking for consultations or therapy and it was impossible for
         her to see them all. When she did see parents, she often ended up saying
+
         similar things and she thought that if we could put this into a webinar,
         then we could reach many more parents, whilst also being much more
         affordable and accessible.
@@ -66,7 +67,7 @@ const metaDescription =
   {
     webinars.length > 0 && (
       <>
-        <!--<h2 class="section-title">Upcoming Webinars</h2>-->
+        <h2 class="section-title">Upcoming</h2>
 
         {webinars.map((webinar, index) => (
           <WebinarSummary webinar={webinar} />
@@ -75,4 +76,7 @@ const metaDescription =
       </>
     )
   }
+
+  <Newsletter />
+
 </BaseLayout>

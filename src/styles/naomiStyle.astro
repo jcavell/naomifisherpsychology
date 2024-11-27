@@ -37,6 +37,40 @@
         padding-right: 20px;
     }
 
+    header a {
+        text-decoration: none;
+    }
+
+    .promotion-badge {
+        position: relative;
+        background: #387668;
+        border-radius: 12px;
+        text-align: center;
+        color: #fff;
+        padding: 10px;
+        box-sizing: border-box;
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-top: 24px;
+        margin-bottom: -14px;
+    }
+
+    .promotion-main {
+
+    }
+
+    .promotion-sub {
+
+    }
+
+    .promotion-details {
+        display: block;
+        line-height: 1.3;
+        margin-top: 5px;
+        padding-top: 5px;
+        border-top: 1px solid rgba(255,255,255,0.4);
+    }
+
     .icon-links {
         position: fixed;
         top: 0;
@@ -218,6 +252,12 @@
             margin-bottom: 0.5em;
             /*display: none;*/
         }
+
+        #menu ul a.active {
+            color: #d56c8d;
+            pointer-events: none;
+        }
+
     }
 
     .filter-menu {
@@ -346,7 +386,7 @@
         line-height: 1.1;
     }
 
-    .card-details, .card-meta, .card-buttons, .live-date, .sale-badge, nav, .tag-footer a, .footer-title, .footer-menu a, .page-title, .quote span, .details-category, .accordion, .mock-accordion, .purchase-wrapper, .card h2 span, h3, .details h1 span, .filter-menu, .filter-menu-button, .formkit-form[data-uid="a4bc346f2b"] .formkit-submit, .section-title, .info-links a, .top-trigger a, .load-more, .reviews-accordion div span, .home .page-intro-text h1, .home .page-intro-text h2 {
+    .card-details, .card-meta, .card-buttons, .live-date, .sale-badge, nav, .tag-footer a, .footer-title, .footer-menu a, .page-title, .quote span, .details-category, .accordion, .mock-accordion, .purchase-wrapper, .card h2 span, h3, .details h1 span, .filter-menu, .filter-menu-button, .formkit-form[data-uid="a4bc346f2b"] .formkit-submit, .section-title, .info-links a, .top-trigger a, .load-more, .reviews-accordion div span, .home .page-intro-text h1, .home .page-intro-text h2, .promotion-badge {
         font-family: "Oswald", sans-serif;
         font-optical-sizing: auto;
         font-weight: 500;
@@ -432,15 +472,17 @@
         padding-top: 20px;
         padding-bottom: 20px;
         letter-spacing: 0.04em;
-    }
-
-    .card h2, .form-title h2 {
-        letter-spacing: 0.04em;
         font-size: 28px;
+        line-height: 1;
     }
 
     .form-title h2 {
-        color: #d56c8d;
+        color: #fff;
+        letter-spacing: 0.04em;
+        font-size: 60px;
+        line-height: 1;
+        margin-top: 0;
+        margin-bottom: 6px;
     }
 
     .card h2 a {
@@ -453,6 +495,8 @@
         text-transform: capitalize;
         font-size: 16px;
         letter-spacing: 0;
+        line-height: 1.2;
+        margin-bottom: -6px;
     }
 
     .h3 {
@@ -627,6 +671,15 @@
 
     .audience {
         background-image: url(icon-eye.svg);
+    }
+
+    .article {
+        background-image: url(icon-article.svg);
+    }
+
+    .podcast {
+        background-image: url(icon-podcast.svg);
+        background-size: 18px 18px !important;
     }
 
     .card-meta a {
@@ -1294,6 +1347,7 @@
 
     .card-books h2 {
         border-top: 12px solid #dba940;
+        min-height: 88px;
     }
 
     .card-books .card-details a {
@@ -1335,8 +1389,6 @@
         color: #45627e;
     }
 
-
-
     .details-blog .details-category {
         border-top: 12px solid #753d5c;
         color: #753d5c;
@@ -1352,7 +1404,25 @@
     }
 
     .card-blog .card-details a {
-        color: #753d5c;
+        color: #000;
+    }
+
+    .details-media .details-category {
+        border-top: 12px solid #000;
+        color: #000;
+    }
+
+    .details-media {
+        border-bottom: 16px solid #000;
+    }
+
+    .card-media h2 {
+        border-top: 12px solid #000;
+        min-height: 88px;
+    }
+
+    .card-media .card-details a {
+        color: #000;
     }
 
     .page-intro-wrapper {
@@ -1383,7 +1453,7 @@
         position: relative;
         width: 100%;
         overflow: hidden;
-        aspect-ratio: 1/1;
+        aspect-ratio: 3/2;
         border-top: 1px solid rgba(0,0,0,0.5);
         border-bottom: 1px solid rgba(0,0,0,0.5);
         margin-bottom: 2em;
@@ -1591,6 +1661,7 @@
         background-repeat: no-repeat;
         background-position: center 12px;
         background-image: url(icon-top.svg);
+        z-index: 11;
     }
 
     .top-trigger.top-button-active a {
@@ -1733,22 +1804,51 @@
     /* form */
 
     .form-wrapper {
-        max-width: 800px;
         display: flex;
-        border-top: 4px dotted black;
-        border-bottom: 4px dotted black;
-        padding-top: 2em;
-        padding-bottom: 2em;
-        margin-top: 20px;
-        margin-bottom: 40px;
+        padding-top: 1em;
+        padding-bottom: 1em;
         margin-left: auto;
         margin-right: auto;
         flex-direction: column;
+        background: #d56c8d;
+        position: relative;
+        width: 100%;
+        border-radius: 12px;
+        overflow: hidden;
+        margin-top: 40px;
+        margin-bottom: 40px;
     }
 
     .form-title {
-        display: none;
+        width: 100%;
+        box-sizing: border-box;
+        padding-left: 20px;
+        padding-right: 20px;
+        text-align: right;
     }
+
+    .form-title img {
+        width: 100px;
+        display: inline-block;
+        opacity: 0.5;
+        margin-bottom: 4px;
+    }
+
+    .form {
+        width: 100%;
+        box-sizing: border-box;
+        padding-left: 20px;
+        padding-right: 20px;
+        border-left: 1px rgba(255,255,255,0.5) solid;
+        color: #fff;
+    }
+
+    .form-smallprint {
+        font-style: italic;
+        font-size: 11px;
+        margin-top: 14px;
+    }
+
 
     /* formkit */
 
@@ -2258,7 +2358,7 @@
     }
 
     .formkit-form[data-uid="a4bc346f2b"] {
-        max-width: 700px;
+        /*max-width: 700px;*/
     }
 
     .formkit-form[data-uid="a4bc346f2b"] [data-style="clean"] {
@@ -2341,6 +2441,14 @@
             width: calc(50% - 10px);
             margin-bottom: 30px;
         }
+
+        .form-title h2 {
+            font-size: 80px;
+            line-height: 1;
+            margin-top: 0;
+            margin-bottom: 6px;
+        }
+
 
 
     }
@@ -2657,7 +2765,8 @@
         }
 
         .form-title h2 {
-            font-size: 32px;
+            font-size: 100px;
+            text-align: right;
         }
 
         .details {
@@ -2960,25 +3069,30 @@
         }
 
         .form-wrapper {
-            margin-top: 10px;
-            margin-bottom: 10px;
-            margin-left: auto;
-            margin-right: auto;
+            padding-top: 3em;
+            padding-bottom: 2.5em;
             flex-direction: row;
+            margin-top: 0;
+            margin-bottom: 0;
         }
 
         .form-title {
-            width: 216px;
-            display: block;
-            text-align: right;
+            width: 50%;
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+
+        .form-title img {
+            width: 220px;
+            margin-left: auto;
+            margin-bottom: 10px;
         }
 
         .form {
-            margin-left: 1.5em;
-            padding-left: 1.5em;
-            border-left: 1px solid rgba(0,0,0,0.2);
-            margin-top: 0;
-            padding-top: 0;
+            width: 50%;
+            padding-left: 30px;
+            padding-right: 40px;
+            border-left: 1px rgba(255,255,255,0.5) solid;
         }
 
         .page-intro-wrapper {
@@ -2986,7 +3100,6 @@
             flex-direction: row;
             margin: 0;
             width: 100%;
-
         }
 
         .tag-page .page-intro-wrapper, .category-courses .page-intro-wrapper {
@@ -3008,6 +3121,15 @@
         .page-intro-static-image {
             width: 50%;
             margin-bottom: 0;
+        }
+
+        .page-full-width-text {
+            position: relative;
+            margin-top: -30px;
+        }
+
+        .page-full-width-text p:last-child {
+            margin-bottom: 0px;
         }
 
         .section-title {
@@ -3070,5 +3192,41 @@
             display: flex;
         }
 
+        .promotion-badge {
+            position: absolute;
+            top: 20px;
+            left: 390px;
+            height: 200px;
+            width: 200px;
+            background: #387668;
+            border-radius: 50%;
+            border: 4px solid white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: #fff;
+            padding: 24px;
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        .promotion-main {
+            font-size: 3em;
+            line-height: 1;
+            font-weight: 400;
+        }
+
+        .promotion-sub {
+
+        }
+
+        .promotion-details {
+            line-height: 1.3;
+            padding-bottom: 10px;
+            margin-top: 6px;
+            padding-top: 6px;
+        }
+
     }
-</style>
+    </style>

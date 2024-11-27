@@ -22,6 +22,10 @@ const { active } = Astro.props;
         <li>Books</li>
       </a>
 
+      <a href="/media" class={active === "media" ? "active" : "inactive"}>
+        <li>Media</li>
+      </a>
+
       <a
         href="https://www.emdrtraininguk.co.uk/"
         target="_blank"
@@ -34,10 +38,6 @@ const { active } = Astro.props;
         <li>About Us</li>
       </a>
 
-      <a href="/press" class={active === "about" ? "active" : "inactive"}>
-        <li>Press Coverage</li>
-      </a>
-
       <a href="/blog" class={active === "blog" ? "active" : "inactive"}>
         <li>Blog</li>
       </a>
@@ -47,4 +47,15 @@ const { active } = Astro.props;
       </a>
     </ul>
   </nav>
+
+  {active === "courses" &&(
+    <a href="https://courses.naomifisher.co.uk/login">
+    <div class="sale-badge login-badge">
+      <!--<span class="sale-amount">LOGIN</span>-->
+      <span class="sale-text">Course</span>
+      <span class="sale-text">Login</span>
+    </div>
+  </a>
+  )}
+
 </div>

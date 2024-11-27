@@ -13,7 +13,7 @@ import { getFeaturedBooks } from "../scripts/book";
 import Newsletter from "../components/Newsletter.astro";
 import BlogList from "../components/blog/BlogList.astro";
 import StaticImage from "../components/StaticImage.astro";
-import homeImage from "../images/static/i-trust-you-to-listen-and-understand.png";
+import homeImage from "../images/static/1080w/abi-naomi-on-swing.webp";
 
 const webinars = await getWebinars();
 
@@ -46,6 +46,10 @@ const metaDescription =
 
     <div class="page-intro-text">
 
+      <!--<h2 class="feature-headline">-->
+      <!--  FEATURE HEADLINE-->
+      <!--</h2>-->
+
       <h1>WELCOME</h1>
       <p>Here you’ll find the work of Dr Naomi Fisher and Dr Abigail Fisher.</p>
       <p>Naomi is a clinical psychologist, EMDR-Europe Accredited trainer and author of several books. Since she was a small child, she has asked the world why.  Why do things have to be this way – and what would it be like if it were different?</p>
@@ -65,9 +69,14 @@ const metaDescription =
     webinars.length > 0 && (
       <a name="webinars" class="anchor">
         <h2 class="section-title">
-          <span class="webinars-section-title">Upcoming Webinars</span>
+          <span class="webinars-section-title">Webinars</span>
         </h2>
       </a>
+
+          <div class="page-full-width-text">
+            <p>
+              Our upcoming webinars for parents and professionals are below. These are live events but you can choose to buy the recording as well.</p>
+          </div>
     )
   }
 
@@ -76,17 +85,26 @@ const metaDescription =
   <!-- {console.log(webinars.length)}
   {webinars.length % 2 !== 0 && <Newsletter />} -->
 
-  <!-- <GenerateQuote client:load quotes={webinarQuotes} /> -->
+   <GenerateQuote client:load quotes={webinarQuotes} />
 
+  <a name="webinars" class="anchor">
+    <h2 class="section-title">
+      <span class="courses-section-title">Courses</span>
+    </h2>
+  </a>
 
+  <div class="page-full-width-text">
+    <p>
+      Our on-demand video courses cover topics including <a href = "/courses/categories/anxiety">anxiety</a>, <a href = "/courses/categories/autism">autism</a>, <a href = "/courses/categories/demand-avoidance">demand avoidance</a>, <a href = "/courses/categories/burnout">burnout</a> and <a href = "/courses/categories/school">school</a>. They are available to watch for 12 months after purchase.</p>
+  </div>
 
-  <!--<CoursesList-->
-  <!--  courses={featuredCourses1}-->
-  <!--  categoryId="featured"-->
-  <!--  categoryName="Featured Courses"-->
-  <!--/>-->
+  <CoursesList
+      courses={featuredCourses1}
+      categoryId="featured"
+      categoryName="Featured Courses"
+  />
 
-  <!--<a href="/courses" class="load-more"> See All Courses </a>-->
+  <a href="/courses" class="load-more"> See All Courses </a>
 
   <!--<a name="books" class="anchor">-->
   <!--  <h2 class="section-title">-->
