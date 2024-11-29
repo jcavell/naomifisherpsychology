@@ -1,6 +1,7 @@
 ---
 import {
-  getCoursesWithTagWithoutOtherTags, getFeaturedCourses,
+  getCoursesWithTagWithoutOtherTags,
+  getFeaturedCourses,
   getLatestCourses,
 } from "../scripts/courses";
 import BaseLayout from "../layouts/BaseLayout.astro";
@@ -23,10 +24,15 @@ const metaDescription =
 >
   <div class="info-section-wrapper">
     <div class="info-text">
-      <p>We created our pre-recorded video courses when we discovered families were finding it hard to access high quality, affordable psychological information which addressed their children’s needs.</p>
-      <p> They are divided into manageable modules.</p>
       <p>
-        You or your child can watch them in your own time for 12 months after purchase.
+        We created our pre-recorded video courses when we discovered families
+        were finding it hard to access high quality, affordable psychological
+        information which addressed their children’s needs.
+      </p>
+      <p>They are divided into manageable modules.</p>
+      <p>
+        You or your child can watch them in your own time for 12 months after
+        purchase.
       </p>
     </div>
 
@@ -35,7 +41,9 @@ const metaDescription =
       <a href="/courses/categories/anxiety" class="filter-courses"> Anxiety </a>
       <a href="/courses/categories/autism" class="filter-courses"> Autism </a>
       <a href="/courses/categories/burnout" class="filter-courses"> Burnout </a>
-      <a href="/courses/categories/demand-avoidance" class="filter-courses"> Demand Avoidance </a>
+      <a href="/courses/categories/demand-avoidance" class="filter-courses">
+        Demand Avoidance
+      </a>
 
       <a href="/courses/categories/ehcps" class="filter-courses"> EHCPs </a>
 
@@ -51,7 +59,6 @@ const metaDescription =
       <a href="/courses/categories/sen" class="filter-courses"> SEN </a>
 
       <a href="/courses/categories/teens" class="filter-courses">for Teens </a>
-
     </div>
   </div>
 
@@ -62,8 +69,7 @@ const metaDescription =
     <!--<h2 class="feature-headline">-->
     <!--  FEATURE HEADLINE-->
     <!--</h2>-->
-    <div class="page-intro-text">
-    </div>
+    <div class="page-intro-text"></div>
   </div>
 
   <h2 class="section-title">
@@ -74,6 +80,4 @@ const metaDescription =
     categoryId="featured"
     categoryName="Featured Courses"
   />
-
-
 </BaseLayout>

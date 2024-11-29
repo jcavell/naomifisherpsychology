@@ -33,7 +33,7 @@ export async function getStaticPaths() {
 
   // Sort newest book first
   const books = (await getCollection("books")).sort(
-    (a, b) => b.data.id - a.data.id
+    (a, b) => b.data.id - a.data.id,
   );
   function getAllResources(tags: string[]) {
     const taggedWebinars = getTaggedWebinars(webinars, tags);
@@ -77,7 +77,7 @@ const hasBooks = books.length > 0;
 const hasPosts = posts.length > 0;
 
 const numberCategories = [hasWebinars, hasCourses, hasBooks, hasPosts].filter(
-  (r) => r
+  (r) => r,
 ).length;
 
 const aimedAtText = forTags.includes(tagName)
@@ -133,14 +133,13 @@ const metaDescription =
     )
   }
 
-  <DisplayTagContent tagName={tagName}/>
+  <DisplayTagContent tagName={tagName} />
 
   {
     webinars.length > 0 && (
       <a name="webinars" class="anchor">
         <h2 class="section-title">
           <span class="webinars-section-title">Webinars</span>
-
         </h2>
       </a>
     )
@@ -152,7 +151,6 @@ const metaDescription =
       <a name="courses" class="anchor">
         <h2 class="section-title">
           <span class="courses-section-title">Courses</span>
-
         </h2>
       </a>
     )

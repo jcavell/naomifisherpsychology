@@ -1,63 +1,50 @@
 ---
+import { Picture } from "astro:assets";
+import { type Media, MediaType } from "../../scripts/media";
+import { formatDate } from "../../scripts/formatDateUtil";
 import { makeUrl } from "../../scripts/url";
-import Contributers from "../Contributers.astro";
-import Tags from "../Tags.astro";
-import CourseImage from "./CourseImage.astro";
-import {Picture} from "astro:assets";
 
-// const { course } = Astro.props;
-//
-// const price = course.price;
-// const checkoutURL = course.checkoutUrl;
-// const title = course.title;
-// const summary = course.description;
+const { media } = Astro.props as { media: Media };
 
-import defaultImage from "../../images/static/1080w/nf-oxford.webp";
-
+// console.log(JSON.stringify(media));
 ---
 
 <div class="card card-media">
-
   <h2>
-    <a href="https://inews.co.uk/inews-lifestyle/child-psychologist-punish-bad-behaviour-3373814" target="_blank">I’m a child psychologist –</a>
+       <a href={media.url} target="_blank">{media.title}</a>
     <span>
-			 why parents shouldn’t punish bad behaviour
-		</span>
+      {media.subtitle}
+    </span>
   </h2>
   <div class="card-image">
-      <Picture
-              src={defaultImage}
-              widths={[620, 1016, 2176]}
-              sizes={`(min-width: 1185px) 1088px, (min-width: 780px) 754px, 100vw`}
-              alt={`Alt text`}
-              pictureAttributes={{}}
-      />  </div>
+    <Picture
+      src={media.image}
+      widths={[620, 1016, 2176]}
+      sizes={`(min-width: 1185px) 1088px, (min-width: 780px) 754px, 100vw`}
+      alt={media.imageAlt}
+      pictureAttributes={{}}
+    />
+  </div>
 
   <div class="card-details">
-    <a href="#">
-      I NEWS
-    </a>
-    <span class="article">
-			  	Article
-			</span>
+    {media.publication}
+
+    <span class={media.type === MediaType.ARTICLE ? "article" : "podcast"}>
+      {media.type}
+    </span>
     <span class="date">
-				12/11/2024
-			</span>
+      {formatDate(media.date)}
+    </span>
   </div>
-  <p>
-    In this article for <em>I News</em> Naomi discusses why sticker charts and 'the naughty step' are about controlling children's behaviour - try reducing the pressure on them instead.
-  </p>
+  <p>{media.description}</p>
 
   <div class="card-meta">
     <span class="tags">
-				<a href="/low-demand-parenting/">Low Demand Parenting</a>, <a href="/demand-avoidance/">Demand Avoidance</a>
-			</span>
+      {media.tags.map((tag) => <a href={`/tags/${makeUrl(tag)}`}>{tag}</a>)}
+    </span>
   </div>
 
   <div class="card-buttons">
-    <a href="https://inews.co.uk/inews-lifestyle/child-psychologist-punish-bad-behaviour-3373814" target="_blank">
-      Read Article
-    </a>
+    <a href={media.url} target="_blank"> {media.type === MediaType.ARTICLE ? "Read Article" : "Listen to podcast"} </a>
   </div>
-
 </div>

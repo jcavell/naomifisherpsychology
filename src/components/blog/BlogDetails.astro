@@ -13,11 +13,10 @@ const subtitle = post.subtitle;
 const pubDate = post.pubDate;
 const paragraphs = post.paragraphs;
 
-const tags = getTags(title, subtitle, paragraphs.join(' '));
+const tags = getTags(title, subtitle, paragraphs.join(" "));
 
 const courses = await getCourses();
 const relatedCourses = getTaggedCourses(courses, [tags[0]]);
-
 ---
 
 <div class="details details-blog">

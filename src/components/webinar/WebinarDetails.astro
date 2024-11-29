@@ -21,7 +21,7 @@ const checkoutURL = webinar.url;
 ---
 
 <div class="details details-webinars">
-  <div class="details-category">LIVE WEBINAR</div>
+  <div class="details-category">LIVE WEBINAR ON ZOOM</div>
 
   <div class="live-date">
     <span class="live-day">{webinar.day}</span>
@@ -138,13 +138,15 @@ const checkoutURL = webinar.url;
           <div class="card-details">
             <span class="date">
               {webinar.day}
-              {webinar.monthLong}
-              {webinar.year}
-            </span>
-            <span class="time">
+              {webinar.month},
               {`${webinar.startTime} - ${webinar.endTime}`}
             </span>
-            <span class="globe"> Online via Zoom </span>
+            <Contributers people={meta?.contributers} />
+            <Tags tags={meta?.tags} />
+            <!--<span class="time">-->
+            <!--  {`${webinar.startTime} - ${webinar.endTime}`}-->
+            <!--</span>-->
+            <!--<span class="globe"> Online via Zoom </span>-->
           </div>
         </div>
 
@@ -164,10 +166,10 @@ const checkoutURL = webinar.url;
           ))
         }
       </div>
-      <div class="card-meta details-meta">
-        <Contributers people={meta?.contributers} />
-        <Tags tags={meta?.tags} />
-      </div>
+      <!--<div class="card-meta details-meta">-->
+      <!--  <Contributers people={meta?.contributers} />-->
+      <!--  <Tags tags={meta?.tags} />-->
+      <!--</div>-->
     </div>
   </div>
 </div>

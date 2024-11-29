@@ -5,13 +5,13 @@ import { getEntry } from "astro:content";
 import StaticImage from "../components/StaticImage.astro";
 import naomiAndElizaImage from "../images/static/naomi-and-eliza-looking-at-book.jpg";
 import MediaSummary from "../components/media/MediaSummary.astro";
+import { allMedia } from "../scripts/media";
 
 const quotes = (await getEntry("webinar-quotes", "general-webinar-quotes"))
   .data;
 
 const pageTitle = "Media";
 
-//console.log(JSON.stringify(webinars));
 const metaDescription =
   "Dr Naomi Fisher and Dr Abigail Fisher's upcoming live webinars on helping your autistic teenagers and children, for parents worried about their child's anxiety, demand avoidance and burnout. For helping families with problems at school, SEN, EHCPs. With Elia Fricker, the Art of Low Demand Parenting";
 ---
@@ -30,18 +30,18 @@ const metaDescription =
     </div>
     <div class="page-intro-text">
       <h3>MEDIA</h3>
-      <p>Here you will find links to Naomi's podcasts and publications in magazines and newspapers.</p>
       <p>
-        If you are a journalist or broadcaster wanting to contact Naomi, you can email <a
-          href="mailto:press@naomifisher.co.uk">media@naomifisher.co.uk</a
-      >
+        Here you will find links to Naomi's podcasts and publications in
+        magazines and newspapers.
+      </p>
+      <p>
+        If you are a journalist or broadcaster wanting to contact Naomi, you can
+        email <a href="mailto:press@naomifisher.co.uk"
+          >media@naomifisher.co.uk</a
+        >
       </p>
     </div>
   </div>
 
-    <MediaSummary/>
-    <MediaSummary/>
-
-
-
+  {allMedia.map((media) => <MediaSummary media={media} />)};
 </BaseLayout>
