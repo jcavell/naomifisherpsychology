@@ -13,7 +13,7 @@ ebookIsbn: "9781472148674"
 audiobookIsbn: "9781405559461"
 pages: 176
 people: ["Dr Naomi Fisher", "Eliza Fricker"]
-tags: ["Burnout", "Low Demand Parenting", "Parents"]
+tags: ["Burnout", "Low Demand Parenting", "Teens"]
 toc: ["Introduction",
       "Burnout and Stress",
       "The Burnout Traps",
