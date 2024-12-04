@@ -11,7 +11,7 @@ const { media } = Astro.props as { media: Media };
 
 <div class="card card-media">
   <h2>
-       <a href={media.url} target="_blank">{media.title}</a>
+    <a href={media.url} target="_blank">{media.title}</a>
     <span>
       {media.subtitle}
     </span>
@@ -40,7 +40,8 @@ const { media } = Astro.props as { media: Media };
 
   <div class="card-meta">
     <span class="tags">
-      {media.tags.map((tag) => <a href={`/tags/${makeUrl(tag)}`}>{tag}</a>)}
+      {media.tags.map((tag, index) => <a href={`/tags/${makeUrl(tag)}`}>{tag}</a>
+        <span>{index < media.tags.length - 1 && ", "}</span>)}
     </span>
   </div>
 
