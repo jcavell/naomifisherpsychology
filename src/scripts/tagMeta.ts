@@ -47,7 +47,7 @@ import testImage from "../images/tags/test-tag-image.jpg";
 import age5To12Image from "../images/tags/age-5-12.png";
 import age13To18Image from "../images/tags/age-13-18.png";
 import tagEMDRImage from "../images/tags/emdr-logs-on-a-river.png";
-import tagAnxietyImage from "../images/tags/tag-anxiety.png";
+import tagAnxietyImage from "../images/tags/clouds-and-sun.jpg";
 import tagAutismImage from "../images/tags/tag-autism.png";
 import tagBurnoutImage from "../images/tags/tag-burnout.png";
 import tagEHCPImage from "../images/tags/tag-ehcp.png";
@@ -62,6 +62,14 @@ import tagScreensImage from "../images/tags/tag-screens.png";
 import tagALDPImage from "../images/courses/ALDP-1-10.webp";
 import tagDemandAvoidanceImage from "../images/tags/tag-demand-avoidance.png";
 import tagMentalHealthImage from "../images/tags/mental-health.jpg";
+
+export function splitContentByPTags(compiledContent: string): string[] {
+  // Use a regular expression to split the content on `<p>` tags
+  return compiledContent
+    .split(/<\/?p>/)
+    .map((paragraph) => paragraph.trim())
+    .filter((paragraph) => paragraph !== "");
+}
 
 type TagMeta = {
   tag: string;

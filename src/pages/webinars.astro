@@ -27,7 +27,7 @@ const metaDescription =
   metaDescription={metaDescription}
 >
   <div class="page-intro-wrapper">
-    <div class="page-intro-image">
+    <div class="page-intro-static-image">
       <StaticImage
         image={naomiAndElizaImage}
         alt="Naomi and Eliza sitting with bookshelf in background "
@@ -37,53 +37,47 @@ const metaDescription =
       <h3>WEBINARS</h3>
       <p>
         Our live webinars for parents and professionals are hosted on Zoom. They
-        combine psychological theory with practical ideas to help. <p>
-          They are recorded and available for 30 days.
-        </p>
-
-        <div class="accordion-wrapper">
-          <button class="accordion no-title-accordion">Read More</button>
-          <div class="panel">
-            <p>
-              We started these webinars because so many parents were getting in
-              touch with Naomi asking for consultations or therapy and it was
-              impossible for her to see them all. When she did see parents, she
-              often ended up saying similar things and she thought that if we
-              could put this into a webinar, then we could reach many more
-              parents, whilst also being much more affordable and accessible.
-            </p>
-            <p>
-              Our aim is to communicate useful psychological concepts and ideas
-              in a way which empowers parents to help their children. Each
-              webinar combines theory with practical ideas and examples. We are
-              always writing new webinars and if you have something which you
-              would particularly like to see covered, then please do get in
-              touch.
-            </p>
-          </div>
-        </div>
+        combine psychological theory with practical ideas to help. They are
+        recorded and available for 30 days.
       </p>
+
+      <div class="accordion-wrapper">
+        <button class="accordion no-title-accordion">Read More</button>
+        <div class="panel">
+          <p>
+            We started these webinars because so many parents were getting in
+            touch with Naomi asking for consultations or therapy and it was
+            impossible for her to see them all. When she did see parents, she
+            often ended up saying similar things and she thought that if we
+            could put this into a webinar, then we could reach many more
+            parents, whilst also being much more affordable and accessible.
+          </p>
+          <p>
+            Our aim is to communicate useful psychological concepts and ideas in
+            a way which empowers parents to help their children. Each webinar
+            combines theory with practical ideas and examples. We are always
+            writing new webinars and if you have something which you would
+            particularly like to see covered, then please do get in touch.
+          </p>
+        </div>
+      </div>
     </div>
-
-    {
-      webinars.length === 0 && (
-        <h2 class="section-title">No upcoming Webinars</h2>
-      )
-    }
-
-    {
-      webinars.length > 0 && (
-        <>
-          <h2 class="section-title">Upcoming</h2>
-
-          {webinars.map((webinar, index) => (
-            <WebinarSummary webinar={webinar} />
-          ))}
-          <GenerateQuote client:load quotes={quotes} />
-        </>
-      )
-    }
-
-    <Newsletter />
   </div>
+
+  {webinars.length === 0 && <h2 class="section-title">No upcoming Webinars</h2>}
+
+  {
+    webinars.length > 0 && (
+      <>
+        <h2 class="section-title">Upcoming</h2>
+
+        {webinars.map((webinar, index) => (
+          <WebinarSummary webinar={webinar} />
+        ))}
+        <GenerateQuote client:load quotes={quotes} />
+      </>
+    )
+  }
+
+  <Newsletter />
 </BaseLayout>

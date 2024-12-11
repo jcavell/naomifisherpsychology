@@ -3,7 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import GenerateQuote from "../components/Quoter";
 import { getEntry } from "astro:content";
 import StaticImage from "../components/StaticImage.astro";
-import mediaImage from "../images/static/1080w/naomi-resting-on-stable-door.webp";
+import mediaImage from "../images/static/1080w/naomi-and-abi-outside.webp";
 import MediaSummary from "../components/media/MediaSummary.astro";
 import { allMedia } from "../scripts/media";
 
@@ -22,8 +22,8 @@ const metaDescription =
   metaDescription={metaDescription}
 >
   <div class="page-intro-wrapper">
-    <div class="page-intro-image">
-      <StaticImage image={mediaImage} alt="Naomi with chin on hands" />
+    <div class="page-intro-static-image">
+      <StaticImage image={mediaImage} alt="Naomi and Abi sitting outsdie" />
     </div>
     <div class="page-intro-text">
       <h3>MEDIA</h3>

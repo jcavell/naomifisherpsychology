@@ -1,16 +1,18 @@
 ---
-import { getTagMeta } from "../scripts/tagMeta";
+import { getTagMeta, splitContentByPTags } from "../scripts/tagMeta";
 import Picture from "astro/components/Picture.astro";
 
 const { tagName } = Astro.props;
 
 const tagMeta = getTagMeta(tagName);
 
+const descriptions = splitContentByPTags(tagMeta!.description);
+
 // console.log("tag name", tagName);
 ---
 
 <div class="page-intro-wrapper">
-  <div class="page-intro-image">
+  <div class="page-intro-static-image">
     <Picture
       src={tagMeta?.image}
       widths={[620, 1016, 2176]}
@@ -19,5 +21,18 @@ const tagMeta = getTagMeta(tagName);
       pictureAttributes={{}}
     />
   </div>
-  <div class="page-intro-text" set:html={tagMeta?.description} />
+  <div class="page-intro-text">
+    <p set:html={descriptions[0]} />
+
+    <div class="accordion-wrapper">
+      <button class="accordion no-title-accordion">Read More</button>
+      <div class="panel">
+        {
+          descriptions
+            .slice(1)
+            .map((description) => <p set:html={description} />)
+        }
+      </div>
+    </div>
+  </div>
 </div>
