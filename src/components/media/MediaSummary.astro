@@ -3,6 +3,7 @@ import { Picture } from "astro:assets";
 import { type Media, MediaType } from "../../scripts/media";
 import { formatDate } from "../../scripts/formatDateUtil";
 import { makeUrl } from "../../scripts/url";
+import Tags from "../Tags.astro";
 
 const { media } = Astro.props as { media: Media };
 
@@ -39,13 +40,12 @@ const { media } = Astro.props as { media: Media };
   <p>{media.description}</p>
 
   <div class="card-meta">
-    <span class="tags">
-      {media.tags.map((tag, index) => <a href={`/tags/${makeUrl(tag)}`}>{tag}</a>
-        <span>{index < media.tags.length - 1 && ", "}</span>)}
-    </span>
+    <Tags tags={media.tags} />
   </div>
 
   <div class="card-buttons">
-    <a href={media.url} target="_blank"> {media.type === MediaType.ARTICLE ? "Read Article" : "Listen to podcast"} </a>
+    <a href={media.url} target="_blank">
+      {media.type === MediaType.ARTICLE ? "Read Article" : "Listen to podcast"}
+    </a>
   </div>
 </div>

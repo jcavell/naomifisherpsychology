@@ -251,7 +251,6 @@
 
     #menu ul a.active {
       color: #d56c8d;
-      pointer-events: none;
     }
   }
 
@@ -732,6 +731,8 @@
   .card-buttons {
     display: flex;
     letter-spacing: 0.03em;
+    margin-top: auto;
+    padding-top: 0.8em;
   }
 
   .card-buttons a {
@@ -847,7 +848,7 @@
 
   .preview-quote {
     max-width: 800px;
-    font-size: 32px;
+    font-size: 28px;
     margin-left: auto;
     margin-right: auto;
     line-height: 1;
@@ -954,6 +955,14 @@
     width: 200px;
     padding-right: 16px;
     margin-bottom: 20px;
+  }
+
+  .footer-primary a:nth-child(2) img {
+    width: 200px;
+    padding-right: 16px;
+    margin-bottom: 20px;
+    top: 0;
+    height: auto;
   }
 
   .footer-menu {
@@ -1511,7 +1520,6 @@
 
   .page-intro-image img:not(.home .page-intro-image img),
   .page-intro-static-image img {
-    filter: grayscale(1) contrast(1.2);
   }
 
   .page-intro-static-image {
@@ -1617,6 +1625,7 @@
   }
 
   .info-section-wrapper {
+    width: 100%;
     border-top: 12px solid black;
     border-top-right-radius: 16px;
     border-top-left-radius: 16px;
@@ -2933,7 +2942,7 @@
     .preview-quote {
       margin-top: 85px;
       margin-bottom: 50px;
-      font-size: 60px;
+      font-size: 46px;
       margin-top: 55px;
       margin-bottom: 20px;
     }

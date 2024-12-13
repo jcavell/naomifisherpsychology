@@ -43,11 +43,10 @@ import { compiledContent as traumaContent } from "../content/tags/trauma.md";
 import { compiledContent as mentalHealthContent } from "../content/tags/mental-health.md";
 
 // Tag Images
-import testImage from "../images/tags/test-tag-image.jpg";
 import age5To12Image from "../images/tags/age-5-12.png";
 import age13To18Image from "../images/tags/age-13-18.png";
 import tagEMDRImage from "../images/tags/emdr-logs-on-a-river.png";
-import tagAnxietyImage from "../images/tags/clouds-and-sun.jpg";
+import tagAnxietyImage from "../images/tags/tag-anxiety.png";
 import tagAutismImage from "../images/tags/tag-autism.png";
 import tagBurnoutImage from "../images/tags/tag-burnout.png";
 import tagEHCPImage from "../images/tags/tag-ehcp.png";
@@ -61,7 +60,7 @@ import tagSchoolImage from "../images/tags/tag-school.png";
 import tagScreensImage from "../images/tags/tag-screens.png";
 import tagALDPImage from "../images/courses/ALDP-1-10.webp";
 import tagDemandAvoidanceImage from "../images/tags/tag-demand-avoidance.png";
-import tagMentalHealthImage from "../images/tags/mental-health.jpg";
+import tagMentalHealthImage from "../images/tags/mental-health.png";
 
 export function splitContentByPTags(compiledContent: string): string[] {
   // Use a regular expression to split the content on `<p>` tags
@@ -175,7 +174,7 @@ const traumaMeta: TagMeta = {
 
 const aggressionMeta: TagMeta = {
   tag: tagAggression,
-  image: testImage,
+  image: tagMentalHealth,
   description: aggressionContent(),
 };
 
@@ -187,7 +186,7 @@ const neurodiversityMeta: TagMeta = {
 
 const adhdMeta: TagMeta = {
   tag: tagADHD,
-  image: testImage,
+  image: tagMentalHealth,
   description: adhdContent(),
 };
 

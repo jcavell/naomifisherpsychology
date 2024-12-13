@@ -40,11 +40,11 @@ const checkoutURL = webinar.url;
       {
         webinar.agenda && (
           <h3>Agenda</h3>
-            <ul>
-              {webinar.agenda.map((a) => (
-                <li>{a}</li>
-              ))}
-            </ul>
+          <ul>
+            {webinar.agenda.map((a) => (
+              <li>{a}</li>
+            ))}
+          </ul>
         )
       }
 
@@ -61,7 +61,8 @@ const checkoutURL = webinar.url;
           </p>
         </div>
         <button class="accordion"
-          >Can I miss the webinar and watch it later?</button
+        >Can I miss the webinar and watch it later?
+        </button
         >
         <div class="panel">
           <p>
@@ -70,13 +71,15 @@ const checkoutURL = webinar.url;
           </p>
         </div>
         <button class="accordion"
-          >When will I be sent a link to the recording?</button
+        >When will I be sent a link to the recording?
+        </button
         >
         <div class="panel">
           <p>We'll send a link by the morning after the webinar</p>
         </div>
         <button class="accordion"
-          >How long can I watch the recording for?</button
+        >How long can I watch the recording for?
+        </button
         >
         <div class="panel">
           <p>You can watch the recording for 30 days after the webinar</p>
@@ -134,21 +137,7 @@ const checkoutURL = webinar.url;
 
     <div class="details-body-B">
       <div class="purchase-wrapper">
-        <div class="purchase-title">
-          <div class="card-details">
-            <span class="date">
-              {webinar.day}
-              {webinar.month},
-              {`${webinar.startTime} - ${webinar.endTime}`}
-            </span>
-            <Contributers people={meta?.contributers} />
-            <Tags tags={meta?.tags} />
-            <!--<span class="time">-->
-            <!--  {`${webinar.startTime} - ${webinar.endTime}`}-->
-            <!--</span>-->
-            <!--<span class="globe"> Online via Zoom </span>-->
-          </div>
-        </div>
+        <div class="purchase-title"></div>
 
         {
           tickets.filter((t) => !t.hidden).map((ticket) => (
@@ -165,6 +154,23 @@ const checkoutURL = webinar.url;
             </a>
           ))
         }
+
+          <div class="card-meta details-meta">
+            <div class="card-details">
+            <span class="date">
+              {webinar.day}
+              {webinar.month},
+              {`${webinar.startTime} - ${webinar.endTime}`}
+            </span>
+            </div>
+            <Contributers people={meta?.contributers} />
+            <Tags tags={meta?.tags} />
+          </div>
+          <!--<span class="time">-->
+          <!--  {`${webinar.startTime} - ${webinar.endTime}`}-->
+          <!--</span>-->
+          <!--<span class="globe"> Online via Zoom </span>-->
+
       </div>
       <!--<div class="card-meta details-meta">-->
       <!--  <Contributers people={meta?.contributers} />-->
