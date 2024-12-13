@@ -8,7 +8,8 @@ import {
   tagEHCPs,
   tagSchool,
   tagSEN,
-  tagMentalHealth, tagDemandAvoidance,
+  tagMentalHealth,
+  tagDemandAvoidance,
 } from "./tags";
 
 import { naomi, abi, eliza, kate } from "./people";
@@ -54,11 +55,21 @@ const navigating_christmas: WebinarMeta = {
   contributers: [naomi],
 };
 
+const now_what: WebinarMeta = {
+  id: "1105531537589",
+  tags: [tagALDP, age5To11, age11To19, forParents],
+  contributers: [naomi, eliza],
+};
+
+const helping_your_demand_avoidant_child_with_change: WebinarMeta = {
+  id: "1111413330189",
+  tags: [tagDemandAvoidance, age5To11, age11To19, forParents],
+  contributers: [naomi],
+};
+
 // !! ADD WEBINAR HERE !!
 export function getWebinarMeta(eventId: string): WebinarMeta | undefined {
-  return [
-    helping_your_teen_with_anxiety,
-      my_child_doesnt_have_an_ehcp,
-      navigating_christmas
-  ].find((webMeta) => eventId === webMeta.id);
+  return [now_what, helping_your_demand_avoidant_child_with_change].find(
+    (webMeta) => eventId === webMeta.id,
+  );
 }
