@@ -208,6 +208,11 @@
   }
 
   @media (max-width: 1200px) {
+    .page-full-width-text:not(.page-intro .page-full-width-text) {
+      margin-top: -10px;
+      margin-bottom: 30px;
+    }
+
     nav {
       box-sizing: border-box;
       width: 100%;
@@ -1638,6 +1643,7 @@
     padding: 20px;
     margin-top: 20px;
     margin-bottom: 30px;
+    box-sizing: border-box;
   }
 
   .info-section-wrapper::first-child {
@@ -1748,12 +1754,12 @@
   }
 
   /*
-     * Hamburgers
-     * @description Tasty CSS-animated hamburgers
-     * @author Jonathan Suh @jonsuh
-     * @site https://jonsuh.com/hamburgers
-     * @link https://github.com/jonsuh/hamburgers
-     */
+       * Hamburgers
+       * @description Tasty CSS-animated hamburgers
+       * @author Jonathan Suh @jonsuh
+       * @site https://jonsuh.com/hamburgers
+       * @link https://github.com/jonsuh/hamburgers
+       */
 
   .hamburger {
     display: block;
@@ -2980,7 +2986,6 @@
     }
 
     /* Category Colour Variations */
-
     .category-courses nav {
       border-bottom: 4px solid #45627e;
     }

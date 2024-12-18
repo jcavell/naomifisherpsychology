@@ -13,7 +13,7 @@ import { getFeaturedBooks } from "../scripts/book";
 import Newsletter from "../components/Newsletter.astro";
 import BlogList from "../components/blog/BlogList.astro";
 import StaticImage from "../components/StaticImage.astro";
-import homeImage from "../images/static/1080w/abi-naomi-on-swing.webp";
+import homeImage from "../images/static/1080w/abi-naomi-on-swing.png";
 
 const webinars = await getWebinars();
 
@@ -52,15 +52,25 @@ const metaDescription =
 
       <h1>WELCOME</h1>
       <p>Here you’ll find the work of Dr Naomi Fisher and Dr Abigail Fisher.</p>
-      <p>Naomi is a clinical psychologist, EMDR-Europe Accredited trainer and author of several books. Since she was a small child, she has asked the world why.  Why do things have to be this way – and what would it be like if it were different?</p>
+      <p>Naomi is a clinical psychologist, EMDR-Europe Accredited trainer and author. Since she was a small child, she
+        has asked the world why. Why do things have to be this way – and what would it be like if it were different?</p>
 
-      <p>She applies this to education, parenting and clinical psychology. She asks whether school is always the best way for children to learn, and whether the things ‘we all know’ to be true about parenting are in fact the case. She pushes for new ways to understand difference and to include voices which go unheard. Her work brings psychological theory and evidence-based practice together with real life clinical experience and open curiosity.</p>
+      <p>She applies this to education, parenting and clinical psychology. She asks whether school is always the best
+        way for children to learn, and whether the things ‘we all know’ to be true about parenting are in fact the case.
+        She pushes for new ways to understand difference and to include voices which go unheard. Her work brings
+        psychological theory and evidence-based practice together with real life clinical experience and open
+        curiosity.</p>
 
-       <p> The thread that ties her work together is her willingness to take a step outside the conventional and to challenge the status quo, even when others disagree.</p>
+      <p> The thread that ties her work together is her willingness to take a step outside the conventional and to
+        challenge the status quo, even when others disagree.</p>
 
-       <p> Abigail is an educational psychologist and qualified teacher.</p>
+      <p> Dr Abigail Fisher is an educational psychologist and qualified teacher.
+        She has special interests in helping parents navigate complex and confusing SEN processes and in supporting
+        parents to look after themselves so they can better care for their families.
+        Her forthcoming book <em>The Essential EHCP Guide for Parents and Carers</em> will be published by Jessica
+        Kingsley in 2025.</p>
 
-         </div>
+    </div>
   </div>
 
   <Newsletter />
@@ -73,21 +83,22 @@ const metaDescription =
         </h2>
       </a>
 
-          <div class="page-full-width-text">
-            <p>
-              Naomi and Abigail run live webinars for parents and professionals.</p>
-            <p>You can choose to buy a live ticket, or a live + recording ticket, available to watch for 30 days.</p>
+      <div class="page-full-width-text">
+        <p>
+          Naomi and Abigail run live webinars for parents and professionals.</p>
+        <p>You can choose to buy a live ticket, or a live + recording ticket, available to watch for 30 days.</p>
 
-          </div>
+      </div>
     )
   }
 
-  {webinars.map((webinar, index) => <WebinarSummary webinar={webinar} />)}
+  {webinars.map((webinar, index) =>
+    <WebinarSummary webinar={webinar} />)}
 
   <!-- {console.log(webinars.length)}
   {webinars.length % 2 !== 0 && <Newsletter />} -->
 
-   <GenerateQuote client:load quotes={webinarQuotes} />
+  <GenerateQuote client:load quotes={webinarQuotes} />
 
   <a name="webinars" class="anchor">
     <h2 class="section-title">
@@ -97,13 +108,16 @@ const metaDescription =
 
   <div class="page-full-width-text">
     <p>
-      Our on-demand video courses cover topics including <a href = "/courses/categories/anxiety">anxiety</a>, <a href = "/courses/categories/autism">autism</a>, <a href = "/courses/categories/demand-avoidance">demand avoidance</a>, <a href = "/courses/categories/burnout">burnout</a> and <a href = "/courses/categories/school">school</a>. They are available to watch for 12 months after purchase.</p>
+      Our on-demand video courses cover topics including <a href="/courses/categories/anxiety">anxiety</a>, <a
+      href="/courses/categories/autism">autism</a>, <a href="/courses/categories/demand-avoidance">demand avoidance</a>,
+      <a href="/courses/categories/burnout">burnout</a> and <a href="/courses/categories/school">school</a>.</p>
+    <p>They are available to watch for 12 months after purchase.</p>
   </div>
 
   <CoursesList
-      courses={featuredCourses1}
-      categoryId="featured"
-      categoryName="Featured Courses"
+    courses={featuredCourses1}
+    categoryId="featured"
+    categoryName="Featured Courses"
   />
 
   <a href="/courses" class="load-more"> See All Courses </a>
