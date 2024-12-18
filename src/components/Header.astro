@@ -14,6 +14,20 @@ const { active } = Astro.props;
     alt="Dr. Naomi Fisher white logo"
   />
 
+  {
+    active === "home" && (
+      <a href="#newsletter">
+        <div class="promotion-badge">
+          <span class="promotion-main"> 25% </span>
+          <span class="promotion-sub"> OFF YOUR 1st COURSE </span>
+          <span class="promotion-details">
+            When you sign up to our newsletter
+          </span>
+        </div>
+      </a>
+    )
+  }
+
   <!--<a href="/courses">-->
   <!--  <div class="promotion-badge">-->
   <!--		<span class="promotion-main">-->
