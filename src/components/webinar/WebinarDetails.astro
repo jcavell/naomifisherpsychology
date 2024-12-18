@@ -136,6 +136,7 @@ const checkoutURL = webinar.url;
     </div>
 
     <div class="details-body-B">
+
       <div class="purchase-wrapper">
         <div class="purchase-title"></div>
 
@@ -157,14 +158,12 @@ const checkoutURL = webinar.url;
 
       </div>
       <div class="card-meta details-meta">
-        <div class="card-details">
-            <span class="date">
-              {webinar.day}
-              {webinar.month},
-              {`${webinar.startTime} - ${webinar.endTime}`}
-            </span>
-        </div>
+
+        <span class="date">{webinar.day} {webinar.month}, {`${webinar.startTime} - ${webinar.endTime}`}</span>
         <Contributers people={meta?.contributers} />
+        <p></p>
+
+
         <Tags tags={meta?.tags} />
       </div>
       <!--<span class="time">-->

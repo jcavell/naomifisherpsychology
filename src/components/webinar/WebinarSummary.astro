@@ -35,12 +35,12 @@ const ticketText = tickets[0].cost
   </div>
 
   <div class="card-details">
-    <Contributers people={meta?.contributers} />
     <span class="date">
-      {`${webinar.day} ${webinar.month}`}, {
-        `${webinar.startTime} - ${webinar.endTime}`
-      }
+      {`${webinar.day} ${webinar.month}`} at
+      {`${webinar.startTime}`}
     </span>
+    <Contributers people={meta?.contributers} />
+
     <!--<span class="time">-->
     <!--  {`${webinar.startTime} - ${webinar.endTime}`}-->
     <!--</span>-->
