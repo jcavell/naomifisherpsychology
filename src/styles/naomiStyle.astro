@@ -1107,8 +1107,8 @@
     order: 1;
   }
 
-  .details-blog .details-body-B {
-    display: none;
+  .details-body-A:not(.details-blog .details-body-A) {
+    order: 2;
   }
 
   .video-wrapper {
@@ -1754,12 +1754,12 @@
   }
 
   /*
-       * Hamburgers
-       * @description Tasty CSS-animated hamburgers
-       * @author Jonathan Suh @jonsuh
-       * @site https://jonsuh.com/hamburgers
-       * @link https://github.com/jonsuh/hamburgers
-       */
+         * Hamburgers
+         * @description Tasty CSS-animated hamburgers
+         * @author Jonathan Suh @jonsuh
+         * @site https://jonsuh.com/hamburgers
+         * @link https://github.com/jonsuh/hamburgers
+         */
 
   .hamburger {
     display: block;
@@ -2560,6 +2560,10 @@
   }
 
   @media (min-width: 800px) {
+    .card-blog h2 {
+      min-height: 134px;
+    }
+
     .wrapper {
       display: flex;
       flex-wrap: wrap;
