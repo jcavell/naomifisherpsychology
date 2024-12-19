@@ -13,7 +13,7 @@ ebookIsbn: "9781472148674"
 audiobookIsbn: "9781405559461"
 pages: 176
 people: ["Dr Naomi Fisher", "Eliza Fricker"]
-tags: ["Burnout", "Low Demand Parenting", "Teens"]
+tags: ["Burnout", "Low Demand Parenting", "Parents"]
 toc: ["Introduction",
       "Burnout and Stress",
       "The Burnout Traps",
@@ -32,8 +32,8 @@ dimensions: "15.3 x 2.2 x 23.4 cm"
 publisherUrl: "https://www.littlebrown.co.uk/titles/naomi-fisher/when-the-naughty-step-makes-things-worse/9781472148674/"
 amazonUrl: "https://www.amazon.co.uk/When-Naughty-Makes-Things-Worse/dp/1472148681"
 amazonPrice: "£13.65"
-psychologicalTherapiesUrl: ""
-psychologicalTherapiesPrice: ""
+psychologicalTherapiesUrl: "https://www.psychologicaltherapybooks.co.uk/product/the-teenagers-guide-to-burnout-finding-the-road-to-recovery/"
+psychologicalTherapiesPrice: "£13.75"
 kindleUrl: "https://www.amazon.co.uk/Teenagers-Guide-Burnout-Finding-Recovery-ebook/dp/B0CYTD1G5T"
 kindlePrice: "£9.99"
 googleUrl: "https://play.google.com/store/books/details?pcampaignid=books_read_action&id=1wXwEAAAQBAJ"

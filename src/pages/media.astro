@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import GenerateQuote from "../components/Quoter";
+import { getEntry } from "astro:content";
+import StaticImage from "../components/StaticImage.astro";
+import mediaImage from "../images/static/1080w/naomi-and-abi-outside.webp";
+import MediaSummary from "../components/media/MediaSummary.astro";
+import { allMedia } from "../scripts/media";
+
+const quotes = (await getEntry("webinar-quotes", "general-webinar-quotes"))
+  .data;
+
+const pageTitle = "Media";
+
+const metaDescription =
+  "Dr Naomi Fisher's podcasts and articles in magazines and newspapers including The Guardian, The i Newspaper, The Psychologist";
+---
+
+<BaseLayout
+  active="media"
+  pageTitle={pageTitle}
+  metaDescription={metaDescription}
+>
+  <div class="page-intro-wrapper">
+    <div class="page-intro-static-image">
+      <StaticImage image={mediaImage} alt="Naomi and Abi sitting outside" />
+    </div>
+
+    <div class="page-intro-text">
+      <h3>MEDIA</h3>
+      <p>
+        If you are a journalist or broadcaster wanting to contact Naomi, you can
+        email <a href="mailto:press@naomifisher.co.uk"
+          >media@naomifisher.co.uk</a
+        >
+      </p>
+      <p>
+        Below, you can see some of Naomi's articles in various newspapers and
+        her podcast appearances.
+      </p>
+      <p></p>
+    </div>
+  </div>
+
+  {allMedia.map((media) => <MediaSummary media={media} />)};
+</BaseLayout>

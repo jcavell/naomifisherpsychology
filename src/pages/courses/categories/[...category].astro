@@ -3,10 +3,10 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { category2courses } from "../../../scripts/courseCategories";
 import CoursesList from "../../../components/course/CoursesList.astro";
 import DisplayTagContent from "../../../components/DisplayTagContent.astro";
-import {makeUrl} from "../../../scripts/url";
+import { makeUrl } from "../../../scripts/url";
+import Newsletter from "../../../components/Newsletter.astro";
 
 export async function getStaticPaths() {
-
   return Array.from(category2courses).map(([cat, courses]) => ({
     params: { category: makeUrl(cat) },
     props: {
@@ -16,34 +16,31 @@ export async function getStaticPaths() {
   }));
 }
 
-const {category} = Astro.params;
+const { category } = Astro.params;
 const { categoryName, courses } = Astro.props;
 
-
-const metaDescription =
-  "Dr Naomi Fisher's recorded courses: " +
-  categoryName;
-
+const metaDescription = "Dr Naomi Fisher's recorded courses: " + categoryName;
 
 // console.log("COURSE: " + course.data.title + " " + JSON.stringify(course.related));
 ---
 
 <BaseLayout
   active="courses"
-  pageTitle={category + ' courses'}
+  pageTitle={category + " courses"}
   metaDescription={metaDescription}
 >
-
   <h1 class="section-title">
-    <span class="courses-section-title"><a href = "/courses">Courses</a> &rarr; {categoryName}</span>
+    <span class="courses-section-title"
+      ><a href="/courses">Courses</a> &rarr; {categoryName}</span
+    >
   </h1>
 
-  <DisplayTagContent tagName={categoryName}/>
-
+  <DisplayTagContent tagName={categoryName} />
 
   <CoursesList
-      courses={courses}
-      categoryId={category}
-      categoryName={categoryName}
+    courses={courses}
+    categoryId={category}
+    categoryName={categoryName}
   />
+  <Newsletter />
 </BaseLayout>

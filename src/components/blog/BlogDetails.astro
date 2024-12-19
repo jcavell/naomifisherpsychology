@@ -13,11 +13,10 @@ const subtitle = post.subtitle;
 const pubDate = post.pubDate;
 const paragraphs = post.paragraphs;
 
-const tags = getTags(title, subtitle, paragraphs.join(' '));
+const tags = getTags(title, subtitle, paragraphs.join(" "));
 
 const courses = await getCourses();
 const relatedCourses = getTaggedCourses(courses, [tags[0]]);
-
 ---
 
 <div class="details details-blog">
@@ -45,27 +44,29 @@ const relatedCourses = getTaggedCourses(courses, [tags[0]]);
       {paragraphs.map((p, i) => <p>{paragraphs[i]}</p>)}
     </div>
 
-    <div class="details-body-B">
-      <div class="purchase-wrapper">
-        <div class="purchase-title">
-          <div class="purchase-title-primary purchase-title-courses">
-            RELATED COURSES
+    {
+      relatedCourses.length > 0 && (
+        <div class="details-body-B">
+          <div class="purchase-wrapper">
+            <div class="purchase-title">
+              <div class="purchase-title-primary purchase-title-courses">
+                RELATED COURSES
+              </div>
+            </div>
+            {relatedCourses.map((course) => (
+              <a href={`/courses/${makeUrl(course.data.title)}`}>
+                <div class="purchase">
+                  <div class="company">{course.data.title}</div>
+                  <div class="buy-now">
+                    <span> View </span>
+                  </div>
+                </div>
+              </a>
+            ))}
           </div>
         </div>
-        {
-          relatedCourses.map((course) => (
-            <a href={`/courses/${makeUrl(course.data.title)}`}>
-              <div class="purchase">
-                <div class="company">{course.data.title}</div>
-                <div class="buy-now">
-                  <span> View </span>
-                </div>
-              </div>
-            </a>
-          ))
-        }
-      </div>
-    </div>
+      )
+    }
   </div>
 
   <div class="card-meta">

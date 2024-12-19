@@ -507,7 +507,7 @@ export const helpingYourAutisticChildWithTransitions: CourseMeta = {
 
 export const eotasWhatToExpect: CourseMeta = {
   title: "EOTAS: What to Expect",
-  tags: [tagSEN, tagAnxiety, tagMentalHealth, age5To11, age11To19, forParents],
+  tags: [tagEHCPs, tagSEN, tagAnxiety, tagMentalHealth, age5To11, age11To19, forParents],
   contributers: [abi],
   image: eotasWhatToExpectImage,
   runningTime: "58 mins",
@@ -516,11 +516,7 @@ export const eotasWhatToExpect: CourseMeta = {
 // !! ADD NEW COURSES HERE !!
 // Most recent first
 export const allCourseMetas = [
-  eotasWhatToExpect,
-  helpingYourAutisticChildWithOCD,
-  helpingYourAutisticChildWithTransitions,
   navigatingTheSenTribunalProcess,
-  helpingYourChildWithLearningDisabilitiesWithAnxiety,
   takingControlOfYourEhcpAnnualReview,
   demandAvoidance101,
   demandAvoidantAdolescent,
@@ -532,6 +528,9 @@ export const allCourseMetas = [
   childWithAnxietyUnder8s,
   childWithAnxiety6To13,
   childWithSevereAnxiety,
+  helpingYourChildWithLearningDisabilitiesWithAnxiety,
+  helpingYourAutisticChildWithTransitions,
+  helpingYourAutisticChildWithOCD,
   burntOutBySchool,
   afterSchoolMovingOnFromSchoolTrauma,
   autisticChildrenWithSchool,
@@ -542,9 +541,10 @@ export const allCourseMetas = [
   whatIsDemandAvoidanceGuideForTeenagers,
   traumaAndLoss,
   workingWithDemandAvoidantChildrenTherapy,
-  findingYourWayThroughTheEHCPJungle,
   thrivingAfterSchoolBreakdown,
   helpingYourAutisticChildWithStartingSchool,
+  eotasWhatToExpect,
+  findingYourWayThroughTheEHCPJungle,
   ALDP1To10,
   ALDP1To5,
   ALDP6To10,
@@ -569,9 +569,9 @@ export const allCourseMetas = [
 
 // For the featured list on the homepage
 export const featuredCourses = [
-  helpingYourAutisticChildWithOCD,
+  demandAvoidance101,
   helpingYourAutisticChildWithTransitions,
-  neurodiversity101,
+  burntOutBySchool,
   ALDP1To10,
 ];
 

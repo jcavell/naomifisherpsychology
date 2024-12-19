@@ -35,13 +35,15 @@ const ticketText = tickets[0].cost
   </div>
 
   <div class="card-details">
-    <a href="/webinars/"> LIVE WEBINAR </a>
     <span class="date">
-      {`${webinar.day} ${webinar.monthLong} ${webinar.year}`}
+      {`${webinar.day} ${webinar.month}`} at
+      {`${webinar.startTime}`}
     </span>
-    <span class="time">
-      {`${webinar.startTime} - ${webinar.endTime}`}
-    </span>
+    <Contributers people={meta?.contributers} />
+
+    <!--<span class="time">-->
+    <!--  {`${webinar.startTime} - ${webinar.endTime}`}-->
+    <!--</span>-->
     <span class="cost">
       from {tickets[0].costPlusFee}
     </span>
@@ -53,10 +55,10 @@ const ticketText = tickets[0].cost
 
   {meta?.subsubtitle && <p>{meta.subsubtitle}</p>}
 
-  <div class="card-meta">
-    <Contributers people={meta?.contributers} />
-    <Tags tags={meta?.tags} />
-  </div>
+  <!--<div class="card-meta">-->
+  <!--  <Contributers people={meta?.contributers} />-->
+  <!--  <Tags tags={meta?.tags} />-->
+  <!--</div>-->
 
   <div class="card-buttons">
     <a href={`/webinars/${eventId}`}> Learn More </a>

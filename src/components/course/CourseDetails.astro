@@ -6,6 +6,7 @@ import Tags from "../Tags.astro";
 import { getCourseFromTitle, parseDescriptions } from "../../scripts/courses";
 import CourseImage from "./CourseImage.astro";
 import Vimeo from "../Vimeo.astro";
+import Newsletter from "../Newsletter.astro";
 
 const { course } = Astro.props;
 
@@ -64,10 +65,10 @@ const relatedCourses = (
     <div class="details-body-B">
       <div class="purchase-wrapper">
         <div class="purchase-title">
-          <div class="card-details">
-            <span class="duration"> {course.meta?.runningTime} </span>
-            <span class="globe"> Watch Online </span>
-          </div>
+          <!--<div class="card-details">-->
+          <!--  <span class="duration"> {course.meta?.runningTime} </span>-->
+          <!--  <span class="globe"> Watch Online </span>-->
+          <!--</div>-->
         </div>
         <a href={checkoutURL} target="blank" class="test">
           <div class="purchase">
@@ -99,3 +100,5 @@ const relatedCourses = (
   relatedCourses &&
     relatedCourses.map((related) => <CourseSummary course={related.data} />)
 }
+
+<Newsletter />

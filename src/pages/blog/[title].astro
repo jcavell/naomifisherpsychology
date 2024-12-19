@@ -4,21 +4,17 @@ import { makeUrl } from "../../scripts/url";
 import BlogDetails from "../../components/blog/BlogDetails.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 export async function getStaticPaths() {
- 
   const posts = await getCollection("blog");
 
-  return (
-    posts
-      .map((post) => ({
-        params: { title: makeUrl(post.data.title) },
-        props: { post },
-      }))
-  );
+  return posts.map((post) => ({
+    params: { title: makeUrl(post.data.title) },
+    props: { post },
+  }));
 }
 
 const { post } = Astro.props;
 ---
 
-<BaseLayout active = "blog" pageTitle={post.data.title}>
-  <BlogDetails post = {post.data}/>
+<BaseLayout active="blog" pageTitle={post.data.title}>
+  <BlogDetails post={post.data} />
 </BaseLayout>

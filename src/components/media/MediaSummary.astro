@@ -1,0 +1,51 @@
+---
+import { Picture } from "astro:assets";
+import { type Media, MediaType } from "../../scripts/media";
+import { formatDate } from "../../scripts/formatDateUtil";
+import { makeUrl } from "../../scripts/url";
+import Tags from "../Tags.astro";
+
+const { media } = Astro.props as { media: Media };
+
+// console.log(JSON.stringify(media));
+---
+
+<div class="card card-media">
+  <h2>
+    <a href={media.url} target="_blank">{media.title}</a>
+    <span>
+      {media.subtitle}
+    </span>
+  </h2>
+  <div class="card-image">
+    <Picture
+      src={media.image}
+      widths={[620, 1016, 2176]}
+      sizes={`(min-width: 1185px) 1088px, (min-width: 780px) 754px, 100vw`}
+      alt={media.imageAlt}
+      pictureAttributes={{}}
+    />
+  </div>
+
+  <div class="card-details">
+    {media.publication}
+
+    <span class={media.type === MediaType.ARTICLE ? "article" : "podcast"}>
+      {media.type}
+    </span>
+    <span class="date">
+      {formatDate(media.date)}
+    </span>
+  </div>
+  <p>{media.description}</p>
+
+  <div class="card-meta">
+    <Tags tags={media.tags} />
+  </div>
+
+  <div class="card-buttons">
+    <a href={media.url} target="_blank">
+      {media.type === MediaType.ARTICLE ? "Read Article" : "Listen to podcast"}
+    </a>
+  </div>
+</div>

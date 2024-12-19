@@ -4,7 +4,6 @@ import { topicTags, forTags, ageTags } from "../scripts/tags";
 
 const { tags = [], uri = "tags" } = Astro.props;
 
-
 //console.log("Core and synonym tags: " + coreAndSynonymTags);
 
 const includedTopicTags = tags.filter((t) => topicTags.includes(t));
@@ -39,14 +38,14 @@ const includedForTags = tags.filter((t) => forTags.includes(t));
 }
 
 {
-  includedForTags.length > 0 && (
-    <span class="audience">
-      {includedForTags.map((tag: string, index: number) => (
-        <>
-          <a href={`/${uri}/${makeUrl(tag)}`}>{tag}</a>
-          {includedForTags.length > index + 1 && <>, </>}
-        </>
-      ))}
-    </span>
-  )
+  // includedForTags.length > 0 && (
+  //   <span class="audience">
+  //     {includedForTags.map((tag: string, index: number) => (
+  //       <>
+  //         <a href={`/${uri}/${makeUrl(tag)}`}>{tag}</a>
+  //         {includedForTags.length > index + 1 && <>, </>}
+  //       </>
+  //     ))}
+  //   </span>
+  // )
 }

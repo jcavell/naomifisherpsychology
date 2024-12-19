@@ -17,6 +17,6 @@ const quotes = (await getEntry("course-quotes", "general-course-quotes")).data;
       </>
     ) : (
       <CourseSummary course={course.data} />
-    )
+    ),
   )
 }

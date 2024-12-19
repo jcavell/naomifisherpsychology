@@ -33,7 +33,7 @@ export async function getStaticPaths() {
 
   // Sort newest book first
   const books = (await getCollection("books")).sort(
-    (a, b) => b.data.id - a.data.id
+    (a, b) => b.data.id - a.data.id,
   );
   function getAllResources(tags: string[]) {
     const taggedWebinars = getTaggedWebinars(webinars, tags);
@@ -77,7 +77,7 @@ const hasBooks = books.length > 0;
 const hasPosts = posts.length > 0;
 
 const numberCategories = [hasWebinars, hasCourses, hasBooks, hasPosts].filter(
-  (r) => r
+  (r) => r,
 ).length;
 
 const aimedAtText = forTags.includes(tagName)
@@ -133,14 +133,13 @@ const metaDescription =
     )
   }
 
-  <DisplayTagContent tagName={tagName}/>
+  <DisplayTagContent tagName={tagName} />
 
   {
     webinars.length > 0 && (
       <a name="webinars" class="anchor">
         <h2 class="section-title">
-          <span class="webinars-section-title">Webinars</span> {aimedAtText}
-          {tagName}
+          <span class="webinars-section-title">Webinars</span>
         </h2>
       </a>
     )
@@ -151,8 +150,7 @@ const metaDescription =
     courses.length > 0 && (
       <a name="courses" class="anchor">
         <h2 class="section-title">
-          <span class="courses-section-title">Courses</span> {aimedAtText}
-          {tagName}
+          <span class="courses-section-title">Courses</span>
         </h2>
       </a>
     )
@@ -163,8 +161,7 @@ const metaDescription =
     books.length > 0 && (
       <a name="books" class="anchor">
         <h2 class="section-title">
-          <span class="books-section-title">Books</span> {aimedAtText}
-          {tagName}
+          <span class="books-section-title">Books</span>
         </h2>
       </a>
     )
@@ -176,8 +173,6 @@ const metaDescription =
       <a name="blog" class="anchor">
         <h2 class="section-title">
           <span class="blog-section-title">Latest blog posts</span>{" "}
-          {aimedAtText}
-          {tagName}
         </h2>
       </a>
     )

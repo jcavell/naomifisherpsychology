@@ -8,6 +8,7 @@ import GenerateQuote from "../components/Quoter";
 import { getEntry } from "astro:content";
 import StaticImage from "../components/StaticImage.astro";
 import naomiAndElizaImage from "../images/static/naomi-and-eliza-looking-at-book.jpg";
+import Newsletter from "../components/Newsletter.astro";
 
 const quotes = (await getEntry("webinar-quotes", "general-webinar-quotes"))
   .data;
@@ -26,32 +27,40 @@ const metaDescription =
   metaDescription={metaDescription}
 >
   <div class="page-intro-wrapper">
-    <div class="page-intro-image">
+    <div class="page-intro-static-image">
       <StaticImage
         image={naomiAndElizaImage}
         alt="Naomi and Eliza sitting with bookshelf in background "
       />
     </div>
     <div class="page-intro-text">
+      <h3>WEBINARS</h3>
       <p>
-        We regularly run live webinars on Zoom for parents. They are recorded
-        and available for 30 days if you choose the recorded ticket.
+        Our live webinars for parents and professionals are hosted on Zoom. They
+        combine psychological theory with practical ideas to help. They are
+        recorded and available for 30 days.
       </p>
-      <p>
-        We started these webinars because so many parents were getting in touch
-        with Naomi asking for consultations or therapy and it was impossible for
-        her to see them all. When she did see parents, she often ended up saying
-        similar things and she thought that if we could put this into a webinar,
-        then we could reach many more parents, whilst also being much more
-        affordable and accessible.
-      </p>
-      <p>
-        Our aim is to communicate useful psychological concepts and ideas in a
-        way which empowers parents to help their children. Each webinar combines
-        theory with practical ideas and examples. We are always writing new
-        webinars and if you have something which you would particularly like to
-        see covered, then please do get in touch.
-      </p>
+
+      <div class="accordion-wrapper">
+        <button class="accordion no-title-accordion">Read More</button>
+        <div class="panel">
+          <p>
+            We started these webinars because so many parents were getting in
+            touch with Naomi asking for consultations or therapy and it was
+            impossible for her to see them all. When she did see parents, she
+            often ended up saying similar things and she thought that if we
+            could put this into a webinar, then we could reach many more
+            parents, whilst also being much more affordable and accessible.
+          </p>
+          <p>
+            Our aim is to communicate useful psychological concepts and ideas in
+            a way which empowers parents to help their children. Each webinar
+            combines theory with practical ideas and examples. We are always
+            writing new webinars and if you have something which you would
+            particularly like to see covered, then please do get in touch.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -60,7 +69,7 @@ const metaDescription =
   {
     webinars.length > 0 && (
       <>
-        <h2 class="section-title">Upcoming Webinars</h2>
+        <h2 class="section-title">Upcoming</h2>
 
         {webinars.map((webinar, index) => (
           <WebinarSummary webinar={webinar} />
@@ -69,4 +78,6 @@ const metaDescription =
       </>
     )
   }
+
+  <Newsletter />
 </BaseLayout>

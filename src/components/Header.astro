@@ -13,6 +13,35 @@ const { active } = Astro.props;
     src="/images/header/dr-naomi-fisher-logo.svg"
     alt="Dr. Naomi Fisher white logo"
   />
+
+  {
+    (active === "home" || active === "courses") && (
+      <a href="#newsletter">
+        <div class="promotion-badge">
+          <span class="promotion-main"> 25% </span>
+          <span class="promotion-sub"> off your first course </span>
+          <span class="promotion-details">
+            When you sign up to our newsletter
+          </span>
+        </div>
+      </a>
+    )
+  }
+
+  <!--<a href="/courses">-->
+  <!--  <div class="promotion-badge">-->
+  <!--		<span class="promotion-main">-->
+  <!--			50%-->
+  <!--		</span>-->
+  <!--    <span class="promotion-sub">-->
+  <!--			OFF ALL COURSES-->
+  <!--		</span>-->
+  <!--    <span class="promotion-details">-->
+  <!--			All courses on sale until 25/12/24-->
+  <!--		</span>-->
+  <!--  </div>-->
+  <!--</a>-->
+
   <Navigation active={active} />
 
   <FilterMenu />

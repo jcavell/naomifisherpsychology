@@ -6,22 +6,22 @@ const posts = await getOrderedPosts();
 const { start = 0, length = 8 } = Astro.props;
 ---
 
-  {
-    posts.slice(start, length).map((post, index) =>
-      index != 0 && (index + 1) % 4 == 0 ? (
-        <>
-          <BlogSummary post={post.data} />
-          <iframe
-            src="https://naomicfisher.substack.com/embed"
-            width="100%"
-            height="320"
-            style="border:1px solid #EEE; background:white;"
-            frameborder="0"
-            scrolling="no"
-          />
-        </>
-      ) : (
+{
+  posts.slice(start, length).map((post, index) =>
+    index != 0 && (index + 1) % 4 == 0 ? (
+      <>
         <BlogSummary post={post.data} />
-      )
-    )
-  }
+        <iframe
+          src="https://naomicfisher.substack.com/embed"
+          width="100%"
+          height="320"
+          style="border:1px solid #EEE; background:white;"
+          frameborder="0"
+          scrolling="no"
+        />
+      </>
+    ) : (
+      <BlogSummary post={post.data} />
+    ),
+  )
+}

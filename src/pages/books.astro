@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import BookSummary from "../components/book/BookSummary.astro";
 import StaticImage from "../components/StaticImage.astro";
-import homeImage from "../images/static/1080w/naomi-and-abi-books.webp";
+import homeImage from "../images/static/1080w/different-way-to learn-thorn.webp";
 const pageTitle = "Books";
 
 // Sort newest first
@@ -21,8 +21,11 @@ const metaDescription =
   metaDescription={metaDescription}
 >
   <div class="page-intro-wrapper">
-    <div class="page-intro-image">
-      <StaticImage image={homeImage} alt="Drawing of parent comforting child" />
+    <div class="page-intro-static-image">
+      <StaticImage
+        image={homeImage}
+        alt="Naomi and Child reading A Different Way To Learn"
+      />
     </div>
 
     <div class="page-intro-text">
@@ -38,34 +41,41 @@ const metaDescription =
         psychology perspective.
       </p>
 
-      <p>
-        I then took a side step into academia and mental health for my next book
-        <a href="/books/psychology-of-mental-health"
-          >Psychology of Mental Health</a
-        >. This is an undergraduate text book and encourages students to take a
-        step back from the dominant paradigms of mental health and think
-        critically.
-      </p>
+      <div class="accordion-wrapper">
+        <button class="accordion no-title-accordion">Read More</button>
+        <div class="panel">
+          <p>
+            I then took a side step into academia and mental health for my next
+            book
+            <a href="/books/psychology-of-mental-health"
+              >Psychology of Mental Health</a
+            >. This is an undergraduate text book and encourages students to
+            take a step back from the dominant paradigms of mental health and
+            think critically.
+          </p>
 
-      <p>
-        Most recently, <a href="/books/when-the-naughty-step-makes-things-worse"
-          >When the Naughty Step Makes Things Worse</a
-        > (with Eliza Fricker) addresses something which had bothered me for a while
-        – what happens when conventional parenting strategies result in parent and
-        child being locked into battles? Often parents are told to just keep trying,
-        and this book offers something different.
-      </p>
+          <p>
+            Most recently, <a
+              href="/books/when-the-naughty-step-makes-things-worse"
+              >When the Naughty Step Makes Things Worse</a
+            > (with Eliza Fricker) addresses something which had bothered me for
+            a while – what happens when conventional parenting strategies result
+            in parent and child being locked into battles? Often parents are told
+            to just keep trying, and this book offers something different.
+          </p>
 
-      <p>
-        Parents would often ask me whether there was anything for their
-        teenagers when they had stopped going to school which didn’t assume that
-        going back to school was the only answer. I couldn’t find anything, and
-        so Eliza Fricker and I wrote one. <a
-          href="/books/the-teenagers-guide-to-burnout"
-          >The Teenager’s Guide to Burnout</a
-        > is an illustrated guide for teens on finding their way back to the life
-        they want to lead.
-      </p>
+          <p>
+            Parents would often ask me whether there was anything for their
+            teenagers when they had stopped going to school which didn’t assume
+            that going back to school was the only answer. I couldn’t find
+            anything, and so Eliza Fricker and I wrote one. <a
+              href="/books/the-teenagers-guide-to-burnout"
+              >The Teenager’s Guide to Burnout</a
+            > is an illustrated guide for teens on finding their way back to the
+            life they want to lead.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 
