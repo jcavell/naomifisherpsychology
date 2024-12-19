@@ -9,6 +9,7 @@ import CoursesList from "../components/course/CoursesList.astro";
 
 import StaticImage from "../components/StaticImage.astro";
 import image from "../images/static/naomi-in-stables.jpg";
+import Newsletter from "../components/Newsletter.astro";
 
 const featuredCourses1 = await getFeaturedCourses(0, 4);
 const featuredCourses2 = await getFeaturedCourses(2, 4);
@@ -62,6 +63,8 @@ const metaDescription =
     </div>
   </div>
 
+  <Newsletter />
+
   <!--<div class="page-intro-wrapper">-->
   <!--  <div class="page-intro-static-image">-->
   <!--    <StaticImage image={image} alt="Collage of all courses" />-->
@@ -73,7 +76,7 @@ const metaDescription =
   <!--</div>-->
 
   <h2 class="section-title">
-    <span class="courses-section-title">Featured</span>
+    <span class="courses-section-title">Featured Courses</span>
   </h2>
   <CoursesList
     courses={featuredCourses1}

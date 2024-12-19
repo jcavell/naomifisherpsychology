@@ -15,10 +15,12 @@ import {
 import { naomi, abi, eliza, kate } from "./people";
 
 // Webinar Images
-import eotasImage from "../images/webinars/eotas-what-to-expect.jpg";
 import myFaultImage from "../images/webinars/is-it-all-my-fault.jpg";
-import transitionsImage from "../images/webinars/helping-your-autistic-child-with-transitions.jpg";
-import writingForWellbeingImage from "../images/webinars/writing-for-wellbeing.jpg";
+import helpingYourDemandAvoidantChildWithChangeImage from "../images/webinars/helping-your-demand-avoidant-child-with-change.webp";
+import dyslexiaAndReadingDifficultiesImage from "../images/webinars/dyslexia-and-reading-difficulties.webp";
+import lowPressureParentingImage from "../images/webinars/low-pressure-parenting.webp";
+import restoringYourBalanceImage from "../images/webinars/restoring-your-balance.webp";
+import nowWhatAtHomeImage from "../images/webinars/now-what-at-home.webp";
 
 type WebinarMeta = {
   id: string;
@@ -37,39 +39,46 @@ const example_webinar: WebinarMeta = {
   contributers: [naomi, eliza],
 };
 
-const helping_your_teen_with_anxiety: WebinarMeta = {
-  id: "1082385577399",
-  tags: [tagAnxiety, age11To19, forParents],
-  contributers: [naomi],
-};
-
-const my_child_doesnt_have_an_ehcp: WebinarMeta = {
-  id: "1090127222869",
-  tags: [tagEHCPs, tagSchool, age5To11, age11To19, forParents],
-  contributers: [abi],
-};
-
-const navigating_christmas: WebinarMeta = {
-  id: "1095132794669",
-  tags: [tagAutism, tagDemandAvoidance, age5To11, age11To19, forParents],
-  contributers: [naomi],
-};
-
-const now_what: WebinarMeta = {
+const now_what_at_home: WebinarMeta = {
   id: "1105531537589",
+  image: nowWhatAtHomeImage,
   tags: [tagALDP, age5To11, age11To19, forParents],
   contributers: [naomi, eliza],
 };
 
 const helping_your_demand_avoidant_child_with_change: WebinarMeta = {
   id: "1111413330189",
+  image: helpingYourDemandAvoidantChildWithChangeImage,
   tags: [tagDemandAvoidance, age5To11, age11To19, forParents],
   contributers: [naomi],
 };
 
-// !! ADD WEBINAR HERE !!
+const low_pressure_parenting_for_teens: WebinarMeta = {
+  id: "1118800224589",
+  image: lowPressureParentingImage,
+  tags: [tagALDP, age11To19, forParents],
+  contributers: [naomi, eliza],
+};
+
+const restoring_your_energy: WebinarMeta = {
+  id: "1098609644019",
+  image: restoringYourBalanceImage,
+  tags: [tagMentalHealth, forParents],
+  contributers: [abi],
+};
+
+const understanding_dyslexia: WebinarMeta = {
+  id: "1118945458989",
+  image: dyslexiaAndReadingDifficultiesImage,
+  tags: [tagSEN, age5To11, age11To19, forParents],
+  contributers: [abi],
+}; // !! ADD WEBINAR HERE !!
 export function getWebinarMeta(eventId: string): WebinarMeta | undefined {
-  return [now_what, helping_your_demand_avoidant_child_with_change].find(
-    (webMeta) => eventId === webMeta.id,
-  );
+  return [
+    now_what_at_home,
+    helping_your_demand_avoidant_child_with_change,
+    low_pressure_parenting_for_teens,
+    restoring_your_energy,
+    understanding_dyslexia,
+  ].find((webMeta) => eventId === webMeta.id);
 }

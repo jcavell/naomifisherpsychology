@@ -4,6 +4,7 @@ import { category2courses } from "../../../scripts/courseCategories";
 import CoursesList from "../../../components/course/CoursesList.astro";
 import DisplayTagContent from "../../../components/DisplayTagContent.astro";
 import { makeUrl } from "../../../scripts/url";
+import Newsletter from "../../../components/Newsletter.astro";
 
 export async function getStaticPaths() {
   return Array.from(category2courses).map(([cat, courses]) => ({
@@ -41,4 +42,5 @@ const metaDescription = "Dr Naomi Fisher's recorded courses: " + categoryName;
     categoryId={category}
     categoryName={categoryName}
   />
+  <Newsletter />
 </BaseLayout>

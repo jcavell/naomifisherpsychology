@@ -15,7 +15,7 @@ const { active } = Astro.props;
   />
 
   {
-    active === "home" && (
+    (active === "home" || active === "courses") && (
       <a href="#newsletter">
         <div class="promotion-badge">
           <span class="promotion-main"> 25% </span>

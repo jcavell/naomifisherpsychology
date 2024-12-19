@@ -145,7 +145,7 @@ const checkoutURL = webinar.url;
             <a href={checkoutURL} target="blank">
               <div class="purchase">
                 <div class="price">
-                  £{(ticket.costValue + ticket.feeValue) / 100}
+                  £{((ticket.costValue + ticket.feeValue) / 100).toFixed(2)}
                 </div>
                 <div class="company eventbrite">{ticket.name}</div>
                 <div class="buy-now">
