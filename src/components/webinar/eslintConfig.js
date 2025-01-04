@@ -1,12 +1,11 @@
 // .eslintrc.js
 module.exports = {
   extends: [
-    'plugin:astro/recommended',  // Add this line
-    'plugin:preact/recommended',
+    "plugin:astro/recommended", // Add this line
   ],
   settings: {
-    'astro': {
-      'rootDir': ['src/astro'],   // Adjust according to your Astro root directory
+    astro: {
+      rootDir: ["src/astro"], // Adjust according to your Astro root directory
     },
   },
 };
