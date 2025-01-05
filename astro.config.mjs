@@ -1,25 +1,23 @@
 import { defineConfig } from "astro/config";
-
 import partytown from "@astrojs/partytown";
 import sitemap from "@astrojs/sitemap";
-
 import react from "@astrojs/react";
+import netlify from "@astrojs/netlify";
 
-// https://astro.build/config
 export default defineConfig({
+  // Specify your site URL
   site: "https://www.naomifisher.co.uk",
-  // output: "server",
-  // server: {
-  //     headers: {
-  //     "Access-Control-Allow-Origin": "*",
-  //     "Access-Control-Allow-Methods": "*",
-  //     "Access-Control-Allow-Headers": "*",
-  //     "Access-Control-Allow-Credentials" : "*"
-  //     }
-  // },
-  integrations: [sitemap(), partytown({
-    config: {
-      forward: ["dataLayer.push"],
-    },
-  }), react()],
+
+  adapter: netlify(),
+
+  // Using integrations
+  integrations: [
+    sitemap(),
+    partytown({
+      config: {
+        forward: ["dataLayer.push"],
+      },
+    }),
+    react(),
+  ],
 });
