@@ -5,7 +5,7 @@ export async function GET() {
   return new Response(
     JSON.stringify({
       number,
-      message: `Here's a random number: ${number}`,
+      message: `Here's a changing random number: ${number}`,
     }),
   );
 }
