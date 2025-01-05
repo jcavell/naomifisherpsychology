@@ -8,6 +8,7 @@ export default defineConfig({
   // Specify your site URL
   site: "https://www.naomifisher.co.uk",
 
+  output: "hybrid",
   adapter: netlify(),
 
   // Using integrations
