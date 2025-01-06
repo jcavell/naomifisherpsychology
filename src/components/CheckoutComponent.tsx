@@ -42,7 +42,7 @@ const CheckoutForm = () => {
   );
 };
 
-const CheckoutApp: React.FC = () => {
+const CheckoutComponent: React.FC = () => {
   return (
     <CartProvider id="website">
       <CheckoutForm />
@@ -50,4 +50,4 @@ const CheckoutApp: React.FC = () => {
   );
 };
 
-export default CheckoutApp;
+export default CheckoutComponent;

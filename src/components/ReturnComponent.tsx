@@ -1,7 +1,8 @@
 import React, { useCallback, useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
+import { CartProvider, useCart } from "react-use-cart";
 
-export const ReturnElement = () => {
+const ReturnElement = () => {
   const [status, setStatus] = useState(null);
   const [customerEmail, setCustomerEmail] = useState("");
 
@@ -23,12 +24,17 @@ export const ReturnElement = () => {
   }
 
   if (status === "complete") {
+    const { emptyCart } = useCart();
+    emptyCart();
     return (
       <section id="success">
         <p>
-          We appreciate your business! A confirmation email will be sent to{" "}
+          Thank you for your purchase A confirmation email will be sent to{" "}
           {customerEmail}. If you have any questions, please email{" "}
-          <a href="mailto:orders@example.com">orders@example.com</a>.
+          <a href="mailto:support@naomifisher.co.uk">
+            support@naomifisher.co.uk
+          </a>
+          .
         </p>
       </section>
     );
@@ -36,3 +42,13 @@ export const ReturnElement = () => {
 
   return null;
 };
+
+const ReturnComponent: React.FC = () => {
+  return (
+    <CartProvider id="website">
+      <ReturnElement />
+    </CartProvider>
+  );
+};
+
+export default ReturnComponent;

@@ -67,7 +67,7 @@ const Cart: React.FC = () => {
     window.location.href = "/checkout";
   };
 
-  if (isEmpty) return <p>Your cart is empty</p>;
+  if (isEmpty) return <p>Your basket is empty</p>;
 
   const formattedPrice = new Intl.NumberFormat("en-GB", {
     style: "currency",
@@ -101,18 +101,18 @@ const Cart: React.FC = () => {
         ))}
       </ul>
       <button onClick={handleCheckout}>Checkout</button>
-      {!isEmpty && <button onClick={emptyCart}>Empty cart</button>}
+      {!isEmpty && <button onClick={emptyCart}>Empty basket</button>}
       {/*<pre>Metadata: {JSON.stringify(metadata, null, 2)}</pre>*/}
     </>
   );
 };
 
-const CartApp: React.FC = () => {
+const BasketComponent: React.FC = () => {
   return (
     <CartProvider
       id="website"
       onItemAdd={(item) => console.log(`Item ${item.id} added!`)}
-      onItemUpdate={(item) => console.log(`Item ${item.id} updated.!`)}
+      onItemUpdate={(item) => console.log(`Item ${item} updated.!`)}
       onItemRemove={() => console.log(`Item removed!`)}
     >
       <Cart />
@@ -121,4 +121,4 @@ const CartApp: React.FC = () => {
   );
 };
 
-export default CartApp;
+export default BasketComponent;
