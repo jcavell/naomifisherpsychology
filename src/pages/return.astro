@@ -1,0 +1,10 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const pageTitle = "Thank you";
+import { ReturnElement } from "../components/Return";
+import GenerateQuote from "../components/Quoter";
+---
+
+<BaseLayout active="checkout" pageTitle={pageTitle}>
+  <ReturnElement client:load />
+</BaseLayout>

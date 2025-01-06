@@ -1,0 +1,10 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const pageTitle = "Checkout";
+import { CheckoutForm } from "../components/Checkout";
+import GenerateQuote from "../components/Quoter";
+---
+
+<BaseLayout active="checkout" pageTitle={pageTitle}>
+  <CheckoutForm client:load />
+</BaseLayout>
