@@ -8,9 +8,17 @@ const stripe: Stripe = new Stripe(
 const site = import.meta.env.SITE || "http://localhost:4321";
 
 export async function GET({ params, request }) {
-  const session = await stripe.checkout.sessions.retrieve(
-    request.query.session_id,
-  );
+  const url = new URL(request.url);
+  const sessionId = url.searchParams.get("session_id");
+
+  if (!sessionId) {
+    return new Response(JSON.stringify({ error: "No session_id provided" }), {
+      status: 400,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+
+  const session = await stripe.checkout.sessions.retrieve(sessionId);
 
   return new Response(
     JSON.stringify({
