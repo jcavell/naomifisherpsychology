@@ -2,24 +2,35 @@ import Stripe from "stripe";
 
 export const prerender = false;
 
-const stripe: Stripe = new Stripe(
-  "sk_test_51QYVqyReZarnNjSdyod4dc2MX3YyUMEdJli7HrjPC42x3tGU1XG3uJYKgYD3bUtnR3pBZoPtDXcpddDmCWstq7fB00UxqAL7hS",
-);
+const stripe: Stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY);
 
 export async function POST({ params, request }) {
   const { origin } = new URL(request.url);
+
+  const json = await request.json();
+  const { line_items } = json;
+
+  console.log("JSON: " + JSON.stringify(json));
+
+  // Validate line_items
+  if (
+    !line_items ||
+    !Array.isArray(line_items) ||
+    line_items.length === 0 ||
+    !line_items.every((item) => item.price && item.quantity)
+  ) {
+    return new Response(
+      JSON.stringify({
+        error: "Invalid line_items data",
+        line_items: line_items,
+      }),
+      { status: 400 }, // Bad Request
+    );
+  }
+
   const session = await stripe.checkout.sessions.create({
     ui_mode: "embedded",
-    line_items: [
-      {
-        price: "price_1Qc47iReZarnNjSd5z0YEPBJ",
-        quantity: 1,
-      },
-      {
-        price: "price_1QeG0iReZarnNjSd7QT3M2zJ",
-        quantity: 1,
-      },
-    ],
+    line_items,
     discounts: [{ coupon: "qkhhR4P7" }],
     mode: "payment",
     return_url: `${origin}/return?session_id={CHECKOUT_SESSION_ID}`,

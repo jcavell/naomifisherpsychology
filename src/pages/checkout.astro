@@ -1,10 +1,10 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 const pageTitle = "Checkout";
-import { CheckoutForm } from "../components/Checkout";
-import GenerateQuote from "../components/Quoter";
+import CheckoutApp from "../components/Checkout";
+const pk = import.meta.env.STRIPE_PUBLISHABLE_KEY;
 ---
 
 <BaseLayout active="checkout" pageTitle={pageTitle}>
-  <CheckoutForm client:load />
+  <CheckoutApp client:load />
 </BaseLayout>
