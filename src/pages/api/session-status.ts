@@ -5,7 +5,6 @@ export const prerender = false;
 const stripe: Stripe = new Stripe(
   "sk_test_51QYVqyReZarnNjSdyod4dc2MX3YyUMEdJli7HrjPC42x3tGU1XG3uJYKgYD3bUtnR3pBZoPtDXcpddDmCWstq7fB00UxqAL7hS",
 );
-const site = import.meta.env.SITE || "http://localhost:4321";
 
 export async function GET({ params, request }) {
   const url = new URL(request.url);
