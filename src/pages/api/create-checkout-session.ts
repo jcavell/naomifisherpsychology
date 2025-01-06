@@ -12,11 +12,15 @@ export async function POST({ params, request }) {
     ui_mode: "embedded",
     line_items: [
       {
-        // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
         price: "price_1Qc47iReZarnNjSd5z0YEPBJ",
         quantity: 1,
       },
+      {
+        price: "price_1QeG0iReZarnNjSd7QT3M2zJ",
+        quantity: 1,
+      },
     ],
+    discounts: [{ coupon: "qkhhR4P7" }],
     mode: "payment",
     return_url: `${origin}/return?session_id={CHECKOUT_SESSION_ID}`,
   });
