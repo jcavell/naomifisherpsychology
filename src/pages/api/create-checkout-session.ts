@@ -1,4 +1,7 @@
 import Stripe from "stripe";
+
+export const prerender = false;
+
 const stripe: Stripe = new Stripe(
   "sk_test_51QYVqyReZarnNjSdyod4dc2MX3YyUMEdJli7HrjPC42x3tGU1XG3uJYKgYD3bUtnR3pBZoPtDXcpddDmCWstq7fB00UxqAL7hS",
 );
