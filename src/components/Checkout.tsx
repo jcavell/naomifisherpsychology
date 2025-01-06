@@ -6,7 +6,7 @@ import {
 } from "@stripe/react-stripe-js";
 
 const stripePromise = loadStripe(
-  "sk_test_51QYVqyReZarnNjSdyod4dc2MX3YyUMEdJli7HrjPC42x3tGU1XG3uJYKgYD3bUtnR3pBZoPtDXcpddDmCWstq7fB00UxqAL7hS",
+  "pk_test_51QYVqyReZarnNjSdXTVkgrinPbJQp3aD1HQ3MJctPLTBw3X3j51veVbxDOOPK8jDGHwCSCKJTlsN6osGFfNggqIB003lu3X1Ju",
 );
 
 export const CheckoutForm = () => {
