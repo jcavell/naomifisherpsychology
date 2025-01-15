@@ -10,6 +10,7 @@ import {
   tagSEN,
   tagMentalHealth,
   tagDemandAvoidance,
+  tagBurnout,
 } from "./tags";
 
 import { naomi, abi, eliza, kate } from "./people";
@@ -20,7 +21,7 @@ import helpingYourDemandAvoidantChildWithChangeImage from "../images/webinars/he
 import dyslexiaAndReadingDifficultiesImage from "../images/webinars/dyslexia-and-reading-difficulties.webp";
 import lowPressureParentingImage from "../images/webinars/low-pressure-parenting.webp";
 import restoringYourBalanceImage from "../images/webinars/restoring-your-balance.webp";
-import nowWhatAtHomeImage from "../images/webinars/now-what-at-home.webp";
+import helpingYourChildWithBurnoutImage from "../images/webinars/helping-your-child-with-burnout.jpeg";
 
 type WebinarMeta = {
   id: string;
@@ -36,13 +37,6 @@ const example_webinar: WebinarMeta = {
   image: myFaultImage,
   subsubtitle:
     "In an exclusive special offer, we are offering a free ticket to anyone who orders our new book before Oct 9th. Click Learn More for details.",
-  contributers: [naomi, eliza],
-};
-
-const now_what_at_home: WebinarMeta = {
-  id: "1105531537589",
-  image: nowWhatAtHomeImage,
-  tags: [tagALDP, age5To11, age11To19, forParents],
   contributers: [naomi, eliza],
 };
 
@@ -72,13 +66,29 @@ const understanding_dyslexia: WebinarMeta = {
   image: dyslexiaAndReadingDifficultiesImage,
   tags: [tagSEN, age5To11, age11To19, forParents],
   contributers: [abi],
-}; // !! ADD WEBINAR HERE !!
+};
+
+const helping_your_child_with_burnout: WebinarMeta = {
+  id: "1139703857919",
+  image: helpingYourChildWithBurnoutImage,
+  tags: [tagBurnout, age5To11, age11To19, forParents],
+  contributers: [naomi],
+};
+
+const burnt_out_by_parenting: WebinarMeta = {
+  id: "1152421787589",
+  tags: [tagBurnout, forParents],
+  contributers: [naomi],
+};
+
+// !! ADD WEBINAR HERE !!
 export function getWebinarMeta(eventId: string): WebinarMeta | undefined {
   return [
-    now_what_at_home,
     helping_your_demand_avoidant_child_with_change,
     low_pressure_parenting_for_teens,
     restoring_your_energy,
     understanding_dyslexia,
+    helping_your_child_with_burnout,
+    burnt_out_by_parenting,
   ].find((webMeta) => eventId === webMeta.id);
 }

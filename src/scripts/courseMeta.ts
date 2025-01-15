@@ -16,7 +16,7 @@ import {
   tagEMDR,
   tagNeurodiversity,
   tagSEN,
-  tagMentalHealth
+  tagMentalHealth,
 } from "./tags";
 import { naomi, abi, eliza } from "./people";
 
@@ -190,13 +190,7 @@ export const childWithSevereAnxiety: CourseMeta = {
 
 export const burntOutBySchool: CourseMeta = {
   title: "Burnt Out by School",
-  tags: [
-    tagBurnout,
-    tagSchool,
-    tagMentalHealth,
-    age11To19,
-    forParents,
-  ],
+  tags: [tagBurnout, tagSchool, tagMentalHealth, age11To19, forParents],
   contributers: [naomi],
   image: burntOutBySchoolImage,
   runningTime: "1 hour 40 mins",
@@ -475,7 +469,7 @@ export const EMDR1To6: CourseMeta = {
 
 export const traumaAndLoss: CourseMeta = {
   title: "Helping your Child Recover from Trauma and Loss",
-  tags: [tagTrauma, tagMentalHealth,  age5To11, age11To19],
+  tags: [tagTrauma, tagMentalHealth, age5To11, age11To19],
   contributers: [naomi],
   image: traumaAndLossImage,
   runningTime: "1 hour 49 mins",
@@ -491,7 +485,14 @@ export const helpingYourChildWithLearningDisabilitiesWithAnxiety: CourseMeta = {
 
 export const helpingYourAutisticChildWithOCD: CourseMeta = {
   title: "Helping Your Autistic Child with OCD",
-  tags: [tagAutism, tagAnxiety, tagMentalHealth, age5To11, age11To19, forParents],
+  tags: [
+    tagAutism,
+    tagAnxiety,
+    tagMentalHealth,
+    age5To11,
+    age11To19,
+    forParents,
+  ],
   contributers: [naomi],
   image: helpingYourAutisticChildWithOCDImage,
   runningTime: "1 hour 16 mins",
@@ -499,7 +500,14 @@ export const helpingYourAutisticChildWithOCD: CourseMeta = {
 
 export const helpingYourAutisticChildWithTransitions: CourseMeta = {
   title: "Helping Your Autistic Child with Transitions",
-  tags: [tagAutism, tagAnxiety, tagMentalHealth, age5To11, age11To19, forParents],
+  tags: [
+    tagAutism,
+    tagAnxiety,
+    tagMentalHealth,
+    age5To11,
+    age11To19,
+    forParents,
+  ],
   contributers: [naomi],
   image: helpingYourAutisticChildWithTransitionsImage,
   runningTime: "1 hour 23 mins",
@@ -507,7 +515,15 @@ export const helpingYourAutisticChildWithTransitions: CourseMeta = {
 
 export const eotasWhatToExpect: CourseMeta = {
   title: "EOTAS: What to Expect",
-  tags: [tagEHCPs, tagSEN, tagAnxiety, tagMentalHealth, age5To11, age11To19, forParents],
+  tags: [
+    tagEHCPs,
+    tagSEN,
+    tagAnxiety,
+    tagMentalHealth,
+    age5To11,
+    age11To19,
+    forParents,
+  ],
   contributers: [abi],
   image: eotasWhatToExpectImage,
   runningTime: "58 mins",
@@ -569,24 +585,24 @@ export const allCourseMetas = [
 
 // For the featured list on the homepage
 export const featuredCourses = [
-  demandAvoidance101,
-  helpingYourAutisticChildWithTransitions,
+  demandAvoidantAdolescent,
   burntOutBySchool,
   ALDP1To10,
+  autisticTeenWithAnxiety,
 ];
 
 // !! ADD RELATED COURSES HERE !!
 
 helpingYourAutisticChildWithOCD.relatedTitles = [
-    autisticChildWithAnxiety.title,
-    autisticTeenWithAnxiety.title,
-    helpingYourAutisticChildWithTransitions.title
+  autisticChildWithAnxiety.title,
+  autisticTeenWithAnxiety.title,
+  helpingYourAutisticChildWithTransitions.title,
 ];
 
 helpingYourAutisticChildWithTransitions.relatedTitles = [
-    autisticChildWithAnxiety.title,
-    autisticTeenWithAnxiety.title,
-    helpingYourAutisticChildWithOCD.title
+  autisticChildWithAnxiety.title,
+  autisticTeenWithAnxiety.title,
+  helpingYourAutisticChildWithOCD.title,
 ];
 
 demandAvoidance101.relatedTitles = [
@@ -1011,8 +1027,8 @@ export function lowerCaseAndRemoveWhitespace(input: string) {
 export function getCourseMetaFromTitle(title: string): CourseMeta | undefined {
   return allCourseMetas.find((meta) =>
     lowerCaseAndRemoveWhitespace(title).startsWith(
-      lowerCaseAndRemoveWhitespace(meta.title)
-    )
+      lowerCaseAndRemoveWhitespace(meta.title),
+    ),
   );
 }
 
@@ -1023,10 +1039,10 @@ export function getTaggedCourses(courses, tags: string[]) {
     .map((cm) =>
       courses.find((c) => {
         const course = lowerCaseAndRemoveWhitespace(c.data.title).startsWith(
-          lowerCaseAndRemoveWhitespace(cm.title)
+          lowerCaseAndRemoveWhitespace(cm.title),
         );
         return course;
-      })
+      }),
     );
 
   // console.log(`For tags ${tags} courses are  ${taggedCourses}`);
