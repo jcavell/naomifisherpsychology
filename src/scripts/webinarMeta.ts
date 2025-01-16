@@ -21,6 +21,7 @@ import helpingYourDemandAvoidantChildWithChangeImage from "../images/webinars/he
 import dyslexiaAndReadingDifficultiesImage from "../images/webinars/dyslexia-and-reading-difficulties.webp";
 import lowPressureParentingImage from "../images/webinars/low-pressure-parenting.webp";
 import restoringYourBalanceImage from "../images/webinars/restoring-your-balance.webp";
+import whatNowImage from "../images/webinars/what-now.jpg";
 import helpingYourChildWithBurnoutImage from "../images/webinars/helping-your-child-with-burnout.jpeg";
 
 type WebinarMeta = {
@@ -81,6 +82,13 @@ const burnt_out_by_parenting: WebinarMeta = {
   contributers: [naomi],
 };
 
+const what_now_diagnosis: WebinarMeta = {
+  id: "1203174349869",
+  tags: [tagALDP, age5To11, age11To19, forParents],
+  image: whatNowImage,
+  contributers: [naomi, eliza],
+};
+
 // !! ADD WEBINAR HERE !!
 export function getWebinarMeta(eventId: string): WebinarMeta | undefined {
   return [
@@ -90,5 +98,6 @@ export function getWebinarMeta(eventId: string): WebinarMeta | undefined {
     understanding_dyslexia,
     helping_your_child_with_burnout,
     burnt_out_by_parenting,
+    what_now_diagnosis,
   ].find((webMeta) => eventId === webMeta.id);
 }
