@@ -20,14 +20,25 @@ const LineItemsSummary: React.FC<LineItemsSummaryProps> = ({
       <ul>
         {items.map((item, index) => (
           <li key={index} className="line-item">
+            {/* Display the first image in the array if available */}
+            {item.product_data.images &&
+              item.product_data.images.length > 0 && (
+                <img
+                  src={item.product_data.images[0]} // Grab the first image in the array
+                  alt={item.product_data.name}
+                  className="product-image"
+                  style={{
+                    width: "75px", // Increased size
+                    height: "75px",
+                    marginRight: "10px",
+                  }}
+                />
+              )}
             {/* Display each item's details */}
-            <strong>{item.product_data.name}</strong>
-            {/*<p>*/}
-            {/*  {item.price_data?.product_data?.description ||*/}
-            {/*    "No description available."}*/}
-            {/*</p>*/}
-            {/*<p>Quantity: {item.quantity}</p>*/}
-            <p>Price: £{formatAmount(item.unit_amount)}</p>
+            <div className="item-details">
+              <strong>{item.product_data.name}</strong>
+              <p>Price: £{formatAmount(item.unit_amount)}</p>
+            </div>
           </li>
         ))}
       </ul>

@@ -101,6 +101,7 @@ const STATUS_CONTENT_MAP: Record<
 const CheckoutCompleteComponent: React.FC = () => {
   const stripe = useStripe();
 
+  const [loading, setLoading] = useState(true); // Added a loading state
   const [status, setStatus] = useState<PaymentStatus>("default");
   const [intentId, setIntentId] = useState<string | null>(null);
 
@@ -115,12 +116,20 @@ const CheckoutCompleteComponent: React.FC = () => {
 
     stripe.retrievePaymentIntent(clientSecret).then((result) => {
       const { paymentIntent } = result;
+
       if (paymentIntent) {
         setStatus(paymentIntent.status as PaymentStatus);
         setIntentId(paymentIntent.id);
       }
+
+      setLoading(false); // End loading after fetching the intent
     });
   }, [stripe]);
+
+  if (loading) {
+    // Show a neutral loading state
+    return <p>Loading payment status...</p>;
+  }
 
   return (
     <div id="payment-status">

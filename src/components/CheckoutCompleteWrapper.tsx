@@ -4,7 +4,7 @@ import { type Appearance, loadStripe } from "@stripe/stripe-js";
 import CheckoutCompleteComponent from "./CheckoutCompleteComponent";
 
 // Load stripe with our TEST publishable API key (pk....)
-const stripePublishableKey = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
+const stripePublishableKey = import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY;
 const stripePromise = loadStripe(stripePublishableKey);
 
 const CheckoutCompleteWrapper: React.FC = () => {

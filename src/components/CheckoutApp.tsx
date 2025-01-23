@@ -5,12 +5,11 @@ import CheckoutItemsSummary from "./CheckoutOrderSummary.tsx";
 import calculateOrderAmount from "../scripts/calculateOrderAmount.ts";
 
 import CheckoutForm from "./CheckoutForm";
-import CheckoutCompleteComponent from "./CheckoutCompleteComponent.tsx";
 import "./Checkout.css";
 import type { LineItem } from "../scripts/LineItem.ts";
 
 // Load stripe with our TEST publishable API key (pk....)
-const stripePublishableKey = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
+const stripePublishableKey = import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY;
 const stripePromise = loadStripe(stripePublishableKey);
 
 const getItems = (): LineItem[] => {
