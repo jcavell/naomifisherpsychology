@@ -1,66 +1,46 @@
 import React, { useState, useEffect } from "react";
 import { type Appearance, loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import CheckoutItemsSummary from "./CheckoutItemsSummary.tsx";
+import CheckoutItemsSummary from "./CheckoutOrderSummary.tsx";
 import calculateOrderAmount from "../scripts/calculateOrderAmount.ts";
 
 import CheckoutForm from "./CheckoutForm";
 import CheckoutCompleteComponent from "./CheckoutCompleteComponent.tsx";
 import "./Checkout.css";
+import type { LineItem } from "../scripts/LineItem.ts";
 
-//const stripePublishableKey = import.meta.env.STRIPE_PUBLISHABLE_KEY;
-const stripePublishableKey =
-  "pk_test_51QYVqyReZarnNjSdXTVkgrinPbJQp3aD1HQ3MJctPLTBw3X3j51veVbxDOOPK8jDGHwCSCKJTlsN6osGFfNggqIB003lu3X1Ju";
-// Make sure to call loadStripe outside of a component’s render to avoid
-// recreating the Stripe object on every render.
-
-// Our TEST publishable API key.
+// Load stripe with our TEST publishable API key (pk....)
+const stripePublishableKey = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
 const stripePromise = loadStripe(stripePublishableKey);
 
-const getItems = () => {
+const getItems = (): LineItem[] => {
   return [
     {
-      price_data: {
-        currency: "GBP",
-        product_data: {
-          name: "Low Pressure Parenting for Teens with Dr Naomi Fisher & Eliza Fricker",
-          description:
-            "Being (and having) a teen is demanding. What is low demand parenting for teens, and how can we help our pressure sensitive teens thrive?",
-          images: [
-            "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F920259243%2F137448283838%2F1%2Foriginal.20241219-114709?w=940&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C2160%2C1080&s=489895f5279f54d0b1d746943c90ee31",
-          ], // Array of public product image URLs
-          metadata: {
-            category: "webinar",
-            id: "1118800224589",
-          },
-        },
-        unit_amount: 1699, // Amount in pence
-      },
-      quantity: 1, // Two units of this item
-      adjustable_quantity: {
-        enabled: false, // Allow customers to increase/decrease quantity during checkout
+      currency: "GBP",
+      unit_amount: 1699, // Amount in pence
+      quantity: 1,
+      product_data: {
+        id: "webinar_1118800224589",
+        name: "Low Pressure Parenting for Teens with Dr Naomi Fisher & Eliza Fricker",
+        description:
+          "Being (and having) a teen is demanding. What is low demand parenting for teens, and how can we help our pressure sensitive teens thrive?",
+        images: [
+          "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F920259243%2F137448283838%2F1%2Foriginal.20241219-114709?w=940&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C2160%2C1080&s=489895f5279f54d0b1d746943c90ee31",
+        ],
       },
     },
     {
-      price_data: {
-        currency: "GBP",
-        product_data: {
-          name: "Now What? Diagnosis: with Dr Naomi Fisher and Eliza Fricker",
-          description:
-            "Your child has been given an autism or ADHD diagnosis, but what happens next?",
-          images: [
-            "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F936277653%2F137448283838%2F1%2Foriginal.20250115-124944?w=940&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C2160%2C1080&s=a1327c2e8c4074c89e60e14cdc3fd2cc",
-          ], // Array of public product image URLs
-          metadata: {
-            category: "webinar",
-            id: "1203174349869",
-          },
-        },
-        unit_amount: 1150, // Amount in pence
-      },
-      quantity: 1, // Two units of this item
-      adjustable_quantity: {
-        enabled: false, // Allow customers to increase/decrease quantity during checkout
+      currency: "GBP",
+      unit_amount: 1150, // Amount in pence
+      quantity: 1,
+      product_data: {
+        id: "webinar_1203174349869",
+        name: "Now What? Diagnosis: with Dr Naomi Fisher and Eliza Fricker",
+        description:
+          "Your child has been given an autism or ADHD diagnosis, but what happens next?",
+        images: [
+          "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F936277653%2F137448283838%2F1%2Foriginal.20250115-124944?w=940&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C2160%2C1080&s=a1327c2e8c4074c89e60e14cdc3fd2cc",
+        ],
       },
     },
   ];

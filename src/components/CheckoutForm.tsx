@@ -32,7 +32,7 @@ const CheckoutForm: React.FC = () => {
         elements,
         confirmParams: {
           // Redirect the user to this URL after payment
-          return_url: `${origin}/complete`, // Use dynamic origin
+          return_url: `${origin}/checkout-complete`, // Use dynamic origin
         },
       });
 

@@ -1,8 +1,9 @@
 import React from "react";
 import { Stripe } from "stripe";
+import type { LineItem } from "../scripts/LineItem.ts";
 
 interface LineItemsSummaryProps {
-  items: Stripe.Checkout.SessionCreateParams.LineItem[]; // Type each line item
+  items: LineItem[]; // Type each line item
   total: number; // Total price in pence
 }
 
@@ -20,15 +21,13 @@ const LineItemsSummary: React.FC<LineItemsSummaryProps> = ({
         {items.map((item, index) => (
           <li key={index} className="line-item">
             {/* Display each item's details */}
-            <strong>
-              {item.price_data?.product_data?.name || "Unknown Item"}
-            </strong>
+            <strong>{item.product_data.name}</strong>
             {/*<p>*/}
             {/*  {item.price_data?.product_data?.description ||*/}
             {/*    "No description available."}*/}
             {/*</p>*/}
             {/*<p>Quantity: {item.quantity}</p>*/}
-            <p>Price: £{formatAmount(item.price_data?.unit_amount ?? 0)}</p>
+            <p>Price: £{formatAmount(item.unit_amount)}</p>
           </li>
         ))}
       </ul>
