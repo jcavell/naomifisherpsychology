@@ -43,7 +43,7 @@ const ReturnElement = () => {
   return null;
 };
 
-const ReturnComponent: React.FC = () => {
+const OldReturnComponent: React.FC = () => {
   return (
     <CartProvider id="website">
       <ReturnElement />
@@ -51,4 +51,4 @@ const ReturnComponent: React.FC = () => {
   );
 };
 
-export default ReturnComponent;
+export default OldReturnComponent;

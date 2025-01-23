@@ -1,10 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import CheckoutApp from "../components/CheckoutApp";
 const pageTitle = "Checkout";
-import CheckoutComponent from "../components/CheckoutComponent";
-const pk = import.meta.env.STRIPE_PUBLISHABLE_KEY;
 ---
 
 <BaseLayout active="checkout" pageTitle={pageTitle}>
-  <CheckoutComponent client:load />
+  <CheckoutApp client:load />
 </BaseLayout>

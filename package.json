@@ -19,8 +19,6 @@
     "@astrojs/sitemap": "^3.1.6",
     "@stripe/react-stripe-js": "^3.1.1",
     "@stripe/stripe-js": "^5.4.0",
-    "@types/react": "^19.0.2",
-    "@types/react-dom": "^19.0.2",
     "astro": "^4.15.4",
     "express": "^4.21.2",
     "moment": "^2.30.1",
@@ -32,6 +30,8 @@
     "stripe": "^17.5.0"
   },
   "devDependencies": {
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-basic-ssl": "^1.2.0",
     "cypress": "^13.9.0",
     "prettier": "^3.4.1",

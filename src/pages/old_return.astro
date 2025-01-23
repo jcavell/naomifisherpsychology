@@ -1,9 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 const pageTitle = "Thank you";
-import ReturnComponent from "../components/ReturnComponent";
+import OldReturnComponent from "../components/OldReturnComponent";
 ---
 
 <BaseLayout active="checkout" pageTitle={pageTitle}>
-  <ReturnComponent client:load />
+  <OldReturnComponent client:load />
 </BaseLayout>
