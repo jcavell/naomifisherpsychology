@@ -1,6 +1,6 @@
 import { stripe } from "./init-stripe.ts";
 import calculateOrderAmount from "../../scripts/calculateOrderAmount.ts";
-import type { LineItem } from "../../scripts/LineItem.ts";
+import type { LineItem } from "../../types/LineItem.d.ts";
 
 export const prerender = false;
 

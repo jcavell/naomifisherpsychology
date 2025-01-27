@@ -1,5 +1,7 @@
 ---
 import getWebinars from "../../scripts/webinars";
+import type { Webinar } from "../../scripts/webinars"; // Import the Webinar type
+
 import { makeUrl } from "../../scripts/url";
 import WebinarDetails from "../../components/webinar/WebinarDetails.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
@@ -8,7 +10,7 @@ import { getWebinarMeta } from "../../scripts/webinarMeta";
 export async function getStaticPaths() {
   const webinars = await getWebinars();
 
-  return webinars.map((webinar) => {
+  return webinars.map((webinar: Webinar) => { // Use the Webinar type here
     return {
       params: { eventId: makeUrl(webinar.id) },
       props: {
@@ -17,20 +19,21 @@ export async function getStaticPaths() {
     };
   });
 }
-const { webinar } = Astro.props;
 
-const eventId = webinar.id;
+// Add the Webinar type for the `webinar` being used in Astro.props
+const { webinar }: { webinar: Webinar } = Astro.props;
+
+const eventId: string = webinar.id; // Use the correct type
 const meta = getWebinarMeta(eventId);
 
-const metaDescription =
+// Add proper typing for metaDescription
+const metaDescription: string =
   "Dr Naomi Fisher's webinar: " +
   webinar.name.text +
   ". " +
   webinar.description.text +
   " " +
   meta?.tags.map((t) => "#" + makeUrl(t)).join(" ");
-
-// console.log("webinar details is: " + JSON.stringify(webinar.detailsText));
 ---
 
 <BaseLayout

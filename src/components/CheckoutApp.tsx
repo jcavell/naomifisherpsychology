@@ -6,7 +6,7 @@ import calculateOrderAmount from "../scripts/calculateOrderAmount.ts";
 
 import CheckoutForm from "./CheckoutForm";
 import "./Checkout.css";
-import type { LineItem } from "../scripts/LineItem.ts";
+import type { LineItem } from "../types/LineItem.d.ts";
 
 // Load stripe with our TEST publishable API key (pk....)
 const stripePublishableKey = import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY;

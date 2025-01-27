@@ -7,7 +7,6 @@ import { getCourseFromTitle, parseDescriptions } from "../../scripts/courses";
 import CourseImage from "./CourseImage.astro";
 import Vimeo from "../Vimeo.astro";
 import Newsletter from "../Newsletter.astro";
-import BasketComponent from "../BasketComponent.tsx";
 
 const { course } = Astro.props;
 
@@ -29,8 +28,6 @@ const relatedCourses = (
 
 // console.log("RELATED COURSES: " + JSON.stringify(relatedCourses));
 ---
-
-<BasketComponent client:load />
 
 <div class="details details-courses">
   <div class="details-category">RECORDED COURSE</div>
@@ -79,9 +76,6 @@ const relatedCourses = (
             <div class="company">RECORDED COURSE</div>
             <div class="buy-now">
               <span> Buy Now </span>
-            </div>
-            <div class="buy-now">
-              <span> Add to Basket </span>
             </div>
           </div>
         </a>

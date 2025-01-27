@@ -1,6 +1,6 @@
 import React from "react";
 import { Stripe } from "stripe";
-import type { LineItem } from "../scripts/LineItem.ts";
+import type { LineItem } from "../types/LineItem.d.ts";
 
 interface LineItemsSummaryProps {
   items: LineItem[]; // Type each line item

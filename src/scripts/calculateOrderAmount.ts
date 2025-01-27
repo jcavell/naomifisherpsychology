@@ -1,4 +1,4 @@
-import type { LineItem } from "./LineItem.ts";
+import type { LineItem } from "../types/LineItem.d.ts";
 
 export default function calculateOrderAmount(items: LineItem[]): number {
   return items.reduce((total, item) => {

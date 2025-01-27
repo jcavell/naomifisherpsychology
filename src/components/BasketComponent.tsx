@@ -72,7 +72,7 @@ const Cart: React.FC = () => {
   const formattedPrice = new Intl.NumberFormat("en-GB", {
     style: "currency",
     currency: "GBP",
-  }).format(cartTotal / 100); // Divide by 100 if cartTotal is in cents/pennies
+  }).format(cartTotal / 100); // Divide by 100 because cartTotal is in pence
 
   return (
     <>
