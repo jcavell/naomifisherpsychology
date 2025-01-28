@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { CartProvider, useCart } from "react-use-cart";
 import type { CheckoutItem } from "../types/checkoutItem";
+import "./overlay.css";
 
 export type BasketItemType = "webinar" | "course";
 
@@ -11,7 +12,7 @@ export interface BasketItem {
 
 const handleFetchAndAddItem = async (addItem, inCart, id: string) => {
   // Check if the item already exists in the cart
-  alert("Adding to basket...");
+  // alert("Adding to basket...");
   if (inCart(id)) {
     // alert("This item is already in the cart.");
     return;
@@ -27,7 +28,7 @@ const handleFetchAndAddItem = async (addItem, inCart, id: string) => {
     // Add CheckoutItem to basket
     const checkoutItem: CheckoutItem = await response.json(); // Parse the JSON response
     addItem(checkoutItem);
-    alert(`${JSON.stringify(checkoutItem)} added to the cart`);
+    // alert(`${JSON.stringify(checkoutItem)} added to the cart`);
   } catch (err) {
     // console.error("Error fetching item:", err);
     // alert("Failed to fetch item details. Please try again.");
@@ -35,11 +36,17 @@ const handleFetchAndAddItem = async (addItem, inCart, id: string) => {
 };
 
 const Button: React.FC<BasketItem> = ({ id, type }) => {
-  const { addItem, inCart, removeItem } = useCart();
+  const formattedPrice = new Intl.NumberFormat("en-GB", {
+    style: "currency",
+    currency: "GBP",
+  });
+  const { addItem, inCart, removeItem, items } = useCart();
 
   // Local state to track cart status
   const [isInCart, setIsInCart] = useState(false);
+  const [buttonText, setButtonText] = useState("Add to Basket");
   const [isLoading, setIsLoading] = useState(true); // Prevent flashing
+  const [showOverlay, setShowOverlay] = useState(false); // Tracks overlay visibility
 
   useEffect(() => {
     // Ensure cart status is updated after hydration
@@ -48,16 +55,27 @@ const Button: React.FC<BasketItem> = ({ id, type }) => {
   }, [inCart, id]);
 
   const handleAddToBasket = async () => {
+    setButtonText("Adding to basket...");
     const itemExists = inCart(id);
     if (!itemExists) {
+      // only 1 of each item allowed
       await handleFetchAndAddItem(addItem, inCart, id);
       setIsInCart(true); // Update local state after adding
+      setButtonText("Add to Basket");
+      setShowOverlay(true); // Show the overlay after adding to basket
     }
   };
 
   const handleRemoveFromBasket = () => {
     removeItem(id);
+    setButtonText("Add to Basket");
     setIsInCart(false); // Update local state after removing
+    // setShowOverlay(false); // Show the overlay after adding to basket
+  };
+
+  const closeOverlay = () => {
+    console.log("Closing overlay"); // Debugging log for confirmation
+    setShowOverlay(false); // Update the visibility state
   };
 
   // Prevent flashing by showing nothing until the cart status is loaded
@@ -67,27 +85,62 @@ const Button: React.FC<BasketItem> = ({ id, type }) => {
 
   if (type === "webinar") {
     return (
-      <div className="buy-now">
-        {isInCart ? (
-          <button
-            onClick={(event) => {
-              event.preventDefault();
-              handleRemoveFromBasket();
+      <>
+        <div className="buy-now">
+          {isInCart ? (
+            <button
+              onClick={(event) => {
+                event.preventDefault();
+                handleRemoveFromBasket();
+              }}
+            >
+              <span>Remove &times;</span>
+            </button>
+          ) : (
+            <button
+              onClick={(event) => {
+                event.preventDefault();
+                handleAddToBasket();
+              }}
+            >
+              <span>{buttonText}</span>
+            </button>
+          )}
+        </div>
+        {/* Overlay Section */}
+        {showOverlay && (
+          <div
+            className="overlay"
+            onClick={(e) => {
+              if (e.target === e.currentTarget) {
+                closeOverlay(); // Invoked when clicking outside overlay-content
+              }
             }}
           >
-            <span>Remove &times;</span>
-          </button>
-        ) : (
-          <button
-            onClick={(event) => {
-              event.preventDefault();
-              handleAddToBasket();
-            }}
-          >
-            <span>Add to Basket</span>
-          </button>
+            <div className="overlay-content">
+              <h2>Basket</h2>
+              <ul>
+                {items.map((item) => (
+                  <li key={item.id}>
+                    {/*{JSON.stringify(item)}*/}
+                    {item.product_name} {item.variant_name}{" "}
+                    {formattedPrice.format(item.price / 100)}
+                    {/*each, quantity: {item.quantity ?? 1}, total {item.itemTotal}*/}
+                  </li>
+                ))}
+              </ul>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent closing overlay from internal button clicks
+                  closeOverlay();
+                }}
+              >
+                Close
+              </button>
+            </div>
+          </div>
         )}
-      </div>
+      </>
     );
   }
 };

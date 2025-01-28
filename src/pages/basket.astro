@@ -1,9 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import BasketComponent from "../components/BasketComponent";
 const pageTitle = "Checkout";
-import CheckoutComponent from "../components/NewCheckoutComponent";
 ---
 
 <BaseLayout active="checkout" pageTitle={pageTitle}>
-  <CheckoutComponent client:load />
+  <BasketComponent client:load />
 </BaseLayout>

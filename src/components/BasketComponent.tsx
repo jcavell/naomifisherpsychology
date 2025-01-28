@@ -1,73 +1,17 @@
 import React from "react";
 import { CartProvider, useCart } from "react-use-cart";
-
-export interface Product {
-  id: string;
-  name: string;
-  price: number;
-}
-
-const Page: React.FC = () => {
-  const { addItem, inCart, setCartMetadata, items } = useCart();
-
-  const products: Product[] = [
-    {
-      id: "price_1Qc47iReZarnNjSd5z0YEPBJ",
-      name: "Helping Me With Things",
-      price: 4000,
-    },
-    {
-      id: "price_1QeG0iReZarnNjSd7QT3M2zJ",
-      name: "A little something else",
-      price: 4000,
-    },
-    {
-      id: "3",
-      name: "Kullen",
-      price: 4500,
-    },
-  ];
-
-  return (
-    <div>
-      {products.map((p) => {
-        const alreadyAdded = inCart(p.id);
-
-        return (
-          <div key={p.id}>
-            {p.name}
-            {!alreadyAdded && (
-              <button onClick={() => addItem(p)}>Add to Basket</button>
-            )}
-          </div>
-        );
-      })}
-      {/*<button onClick={() => setCartMetadata({ hello: "world" })}>*/}
-      {/*  Set metadata*/}
-      {/*</button>*/}
-    </div>
-  );
-};
+import type { CheckoutItem } from "../types/checkoutItem";
+import styles from "./Cart.module.css"; // Modular CSS for styles
 
 const Cart: React.FC = () => {
-  const {
-    isEmpty,
-    cartTotal,
-    totalUniqueItems,
-    items,
-    updateItemQuantity,
-    removeItem,
-    emptyCart,
-    metadata,
-  } = useCart();
+  const { isEmpty, cartTotal, items, removeItem, emptyCart } = useCart();
 
   const handleCheckout = () => {
-    // Redirect to checkout page
     if (items.length === 0) return alert("No items in basket");
     window.location.href = "/checkout";
   };
 
-  if (isEmpty) return <p>Your basket is empty</p>;
+  if (isEmpty) return <p className={styles.emptyCart}>Your basket is empty</p>;
 
   const formattedPrice = new Intl.NumberFormat("en-GB", {
     style: "currency",
@@ -75,48 +19,55 @@ const Cart: React.FC = () => {
   }).format(cartTotal / 100); // Divide by 100 because cartTotal is in pence
 
   return (
-    <>
-      <h1>Basket</h1>
-      Total: {formattedPrice}
-      <ul>
-        {items.map((item) => (
-          <li key={item.id}>
-            {item.name}&nbsp;
-            {/*<button*/}
-            {/*  onClick={() =>*/}
-            {/*    updateItemQuantity(item.id, (item.quantity ?? 0) - 1)*/}
-            {/*  }*/}
-            {/*>*/}
-            {/*  -*/}
-            {/*</button>*/}
-            {/*<button*/}
-            {/*  onClick={() =>*/}
-            {/*    updateItemQuantity(item.id, (item.quantity ?? 0) + 1)*/}
-            {/*  }*/}
-            {/*>*/}
-            {/*  +*/}
-            {/*</button>*/}
-            <button onClick={() => removeItem(item.id)}>Remove &times;</button>
-          </li>
-        ))}
+    <div className={styles.cartContainer}>
+      <h1 className={styles.cartTitle}>Your Basket</h1>
+      <div className={styles.cartSummary}>
+        Total: <strong>{formattedPrice}</strong>
+      </div>
+
+      {/* Add column headings */}
+      <div className={styles.cartHeadings}>
+        <span>Webinar</span>
+        <span>Ticket</span>
+        <span>Price</span>
+      </div>
+
+      {/* Render the cart items */}
+      <ul className={styles.cartItems}>
+        {items.map((item) => {
+          // const checkoutItem = item as CheckoutItem; // Cast item to CheckoutItem
+          return (
+            <li key={item.id} className={styles.cartItem}>
+              <span className={styles.itemColumn}>{item.product_name}</span>
+              <span className={styles.itemColumn}>{item.variant_name}</span>
+              <span className={styles.itemColumn}>{formattedPrice}</span>
+              <button
+                className={styles.removeButton}
+                onClick={() => removeItem(item.id)}
+              >
+                Remove &times;
+              </button>
+            </li>
+          );
+        })}
       </ul>
-      <button onClick={handleCheckout}>Checkout</button>
-      {!isEmpty && <button onClick={emptyCart}>Empty basket</button>}
-      {/*<pre>Metadata: {JSON.stringify(metadata, null, 2)}</pre>*/}
-    </>
+
+      <div className={styles.cartActions}>
+        <button className={styles.checkoutButton} onClick={handleCheckout}>
+          Checkout
+        </button>
+        <button className={styles.emptyButton} onClick={emptyCart}>
+          Empty Basket
+        </button>
+      </div>
+    </div>
   );
 };
 
 const BasketComponent: React.FC = () => {
   return (
-    <CartProvider
-      id="website"
-      onItemAdd={(item) => console.log(`Item ${item.id} added!`)}
-      onItemUpdate={(item) => console.log(`Item ${item} updated.!`)}
-      onItemRemove={() => console.log(`Item removed!`)}
-    >
+    <CartProvider id="website">
       <Cart />
-      <Page />
     </CartProvider>
   );
 };

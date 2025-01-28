@@ -14,4 +14,5 @@ export type CheckoutItem = {
   variant_name: string;
   variant_description?: string;
   expires_at: string;
+  itemTotal?: number;
 };

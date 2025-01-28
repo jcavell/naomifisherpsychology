@@ -1,19 +1,20 @@
 import { stripe } from "./init-stripe.ts";
 import calculateOrderAmount from "../../scripts/calculateOrderAmount.ts";
 import type { LineItem } from "../../types/LineItem.d.ts";
+import type { CheckoutItem } from "../../types/checkoutItem";
 
 export const prerender = false;
 
-function createMetadataFromLineItems(
-  items: LineItem[],
+function createMetadataFromCheckoutItems(
+  items: CheckoutItem[],
 ): Record<string, string> {
   const metadataArray = items.map((item, index) => {
     const itemIndex = index + 1; // Start numbering from 1
 
     return {
-      [`item_${itemIndex}_name`]: item.product_data.name,
-      [`item_${itemIndex}_id`]: item.product_data.id,
-      [`item_${itemIndex}_price`]: item.unit_amount.toString(), // Convert price to string
+      [`item_${itemIndex}_name`]: item.product_name,
+      [`item_${itemIndex}_id`]: item.product_id,
+      [`item_${itemIndex}_price`]: item.price.toString(), // Convert price to string
     };
   });
 
@@ -24,8 +25,11 @@ function createMetadataFromLineItems(
 }
 
 export async function POST({ params, request }) {
-  const json = await request.json();
-  console.log("JSON: " + JSON.stringify(json));
+  const rawBody = await request.text();
+  console.log("Full raw request body: ", rawBody);
+
+  const json = JSON.parse(rawBody); // Safely parse the raw body as JSON
+  // console.log("Parsed request body (as JSON): ", json);
 
   const { items } = json;
 
@@ -33,7 +37,7 @@ export async function POST({ params, request }) {
   const paymentIntent = await stripe.paymentIntents.create({
     amount: calculateOrderAmount(items),
     currency: "gbp",
-    metadata: createMetadataFromLineItems(items),
+    metadata: createMetadataFromCheckoutItems(items),
     // In the latest version of the API, specifying the `automatic_payment_methods` parameter is optional because Stripe enables its functionality by default.
     automatic_payment_methods: {
       enabled: true,

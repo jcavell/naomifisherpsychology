@@ -1,7 +1,7 @@
-import type { LineItem } from "../types/LineItem.d.ts";
+import type { Item } from "react-use-cart";
 
-export default function calculateOrderAmount(items: LineItem[]): number {
+export default function calculateOrderAmount(items: Item[]): number {
   return items.reduce((total, item) => {
-    return total + item.unit_amount;
+    return total + item.price;
   }, 0);
 }

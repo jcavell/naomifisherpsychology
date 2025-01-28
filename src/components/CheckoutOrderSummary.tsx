@@ -1,16 +1,12 @@
 import React from "react";
-import { Stripe } from "stripe";
-import type { LineItem } from "../types/LineItem.d.ts";
+import type { CheckoutItem } from "../types/checkoutItem";
 
 interface LineItemsSummaryProps {
-  items: LineItem[]; // Type each line item
+  items: CheckoutItem[];
   total: number; // Total price in pence
 }
 
-const LineItemsSummary: React.FC<LineItemsSummaryProps> = ({
-  items,
-  total,
-}) => {
+const CheckoutSummary: React.FC<LineItemsSummaryProps> = ({ items, total }) => {
   // Function to format the amount into a readable price
   const formatAmount = (amount: number) => (amount / 100).toFixed(2);
 
@@ -21,23 +17,22 @@ const LineItemsSummary: React.FC<LineItemsSummaryProps> = ({
         {items.map((item, index) => (
           <li key={index} className="line-item">
             {/* Display the first image in the array if available */}
-            {item.product_data.images &&
-              item.product_data.images.length > 0 && (
-                <img
-                  src={item.product_data.images[0]} // Grab the first image in the array
-                  alt={item.product_data.name}
-                  className="product-image"
-                  style={{
-                    width: "75px", // Increased size
-                    height: "75px",
-                    marginRight: "10px",
-                  }}
-                />
-              )}
+            {item.product_images && item.product_images.length > 0 && (
+              <img
+                src={item.product_images[0]} // Grab the first image in the array
+                alt={item.product_name}
+                className="product-image"
+                style={{
+                  width: "75px", // Increased size
+                  height: "75px",
+                  marginRight: "10px",
+                }}
+              />
+            )}
             {/* Display each item's details */}
             <div className="item-details">
-              <strong>{item.product_data.name}</strong>
-              <p>Price: £{formatAmount(item.unit_amount)}</p>
+              <strong>{item.product_name}</strong>
+              <p>Price: £{formatAmount(item.price)}</p>
             </div>
           </li>
         ))}
@@ -48,4 +43,4 @@ const LineItemsSummary: React.FC<LineItemsSummaryProps> = ({
   );
 };
 
-export default LineItemsSummary;
+export default CheckoutSummary;

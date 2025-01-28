@@ -68,14 +68,10 @@ function addOrderedTickets(webinar: Webinar): void {
         100
       ).toLocaleString(undefined, { style: "currency", currency: "GBP" }),
       status: ticket.on_sale_status,
-      name:
-        ticket.display_name.toUpperCase().includes("RECORDING") &&
-        !ticket.display_name.toUpperCase().includes("WITHOUT")
-          ? "Live webinar + recording"
-          : ticket.display_name,
+      name: ticket.display_name,
     }))
     .filter((w) => w.cost)
-    .sort((a, b) => (a.costValue || 0) - (b.costValue || 0));
+    .sort((b, a) => (a.costValue || 0) - (b.costValue || 0));
 }
 
 // Add formatted date and time details to a webinar
