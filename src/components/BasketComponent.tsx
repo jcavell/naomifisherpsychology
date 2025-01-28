@@ -1,9 +1,18 @@
 import React from "react";
 import { CartProvider, useCart } from "react-use-cart";
-import type { CheckoutItem } from "../types/checkoutItem";
 import styles from "./Cart.module.css"; // Modular CSS for styles
 
-const Cart: React.FC = () => {
+export interface BasketProps {
+  showActions?: boolean;
+}
+
+const formatPrice = (amountInPence: number) =>
+  new Intl.NumberFormat("en-GB", {
+    style: "currency",
+    currency: "GBP",
+  }).format(amountInPence / 100); // Divide by 100 because amount is in pence
+
+export const Basket: React.FC<BasketProps> = ({ showActions = true }) => {
   const { isEmpty, cartTotal, items, removeItem, emptyCart } = useCart();
 
   const handleCheckout = () => {
@@ -13,17 +22,9 @@ const Cart: React.FC = () => {
 
   if (isEmpty) return <p className={styles.emptyCart}>Your basket is empty</p>;
 
-  const formattedPrice = new Intl.NumberFormat("en-GB", {
-    style: "currency",
-    currency: "GBP",
-  }).format(cartTotal / 100); // Divide by 100 because cartTotal is in pence
-
   return (
     <div className={styles.cartContainer}>
       <h1 className={styles.cartTitle}>Your Basket</h1>
-      <div className={styles.cartSummary}>
-        Total: <strong>{formattedPrice}</strong>
-      </div>
 
       {/* Add column headings */}
       <div className={styles.cartHeadings}>
@@ -40,7 +41,9 @@ const Cart: React.FC = () => {
             <li key={item.id} className={styles.cartItem}>
               <span className={styles.itemColumn}>{item.product_name}</span>
               <span className={styles.itemColumn}>{item.variant_name}</span>
-              <span className={styles.itemColumn}>{formattedPrice}</span>
+              <span className={styles.itemColumn}>
+                {formatPrice(item.price)}
+              </span>
               <button
                 className={styles.removeButton}
                 onClick={() => removeItem(item.id)}
@@ -52,14 +55,20 @@ const Cart: React.FC = () => {
         })}
       </ul>
 
-      <div className={styles.cartActions}>
-        <button className={styles.checkoutButton} onClick={handleCheckout}>
-          Checkout
-        </button>
-        <button className={styles.emptyButton} onClick={emptyCart}>
-          Empty Basket
-        </button>
+      <div className={styles.cartSummary}>
+        Total: <strong>{formatPrice(cartTotal)}</strong>
       </div>
+
+      {showActions && (
+        <div className={styles.cartActions}>
+          <button className={styles.checkoutButton} onClick={handleCheckout}>
+            Checkout
+          </button>
+          <button className={styles.emptyButton} onClick={emptyCart}>
+            Empty Basket
+          </button>
+        </div>
+      )}
     </div>
   );
 };
@@ -67,7 +76,7 @@ const Cart: React.FC = () => {
 const BasketComponent: React.FC = () => {
   return (
     <CartProvider id="website">
-      <Cart />
+      <Basket />
     </CartProvider>
   );
 };

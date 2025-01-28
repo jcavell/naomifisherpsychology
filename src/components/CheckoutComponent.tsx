@@ -5,13 +5,15 @@ import { type Appearance, loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./CheckoutForm.tsx";
 import "./Checkout.css";
+import { Basket } from "./BasketComponent.tsx";
 
 // Load stripe with our TEST publishable API key (pk....)
 const stripePublishableKey = import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY;
 const stripePromise = loadStripe(stripePublishableKey);
 
 const Checkout: React.FC = () => {
-  const { isEmpty, cartTotal, items, removeItem, emptyCart } = useCart();
+  const { isEmpty, cartTotal, items, removeItem, emptyCart, updateItem } =
+    useCart();
   const [isHydrated, setIsHydrated] = useState(false);
   const [clientSecret, setClientSecret] = useState<string | null>(null); // Track clientSecret for Stripe initialization
 
@@ -31,7 +33,7 @@ const Checkout: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (isHydrated && !isEmpty) {
+    if (isHydrated && items.length > 0) {
       console.log(
         "Calling create-payment-intent with Items: ",
         JSON.stringify(items),
@@ -59,7 +61,7 @@ const Checkout: React.FC = () => {
           console.error("Failed to fetch client secret: ", error);
         });
     }
-  }, [isHydrated, isEmpty, items]); // Run whenever hydration or cart state changes
+  }, [isHydrated, items]); // Run whenever hydration or items changes
 
   // Early UI return for loading or empty states
   if (!isHydrated) {
@@ -67,66 +69,34 @@ const Checkout: React.FC = () => {
   }
 
   if (isEmpty) {
-    return <p className={styles.emptyCart}>Your basket is empty</p>;
+    return;
   }
 
   const appearance: Appearance = {
     theme: "stripe",
   };
+
   // Enable the skeleton loader UI for optimal loading.
   const loader = "auto";
 
   return (
-    <div className={styles.checkoutPage}>
-      <div className={styles.cartAndCheckout}>
-        <div className={styles.cartContainer}>
-          <div className={styles.cartHeadings}>
-            <span>Webinar</span>
-            <span>Ticket</span>
-            <span>Price</span>
-          </div>
-
-          <ul className={styles.cartItems}>
-            {items.map((item) => (
-              <li key={item.id} className={styles.cartItem}>
-                <span className={styles.itemColumn}>{item.product_name}</span>
-                <span className={styles.itemColumn}>{item.variant_name}</span>
-                <span className={styles.itemColumn}>
-                  {formatPrice(item.price)}
-                </span>
-                <button
-                  className={styles.removeButton}
-                  onClick={() => removeItem(item.id)}
-                >
-                  Remove &times;
-                </button>
-              </li>
-            ))}
-          </ul>
-          <div className={styles.cartSummary}>
-            Total: <strong>{formatPrice(cartTotal)}</strong>
-          </div>
-        </div>
-
-        {clientSecret && (
-          <div className={styles.checkoutFormWrapper}>
-            <Elements
-              options={{ clientSecret, appearance }}
-              stripe={stripePromise}
-            >
-              <CheckoutForm />
-            </Elements>
-          </div>
-        )}
+    clientSecret && (
+      <div className={styles.checkoutFormWrapper}>
+        <Elements options={{ clientSecret, appearance }} stripe={stripePromise}>
+          <CheckoutForm />
+        </Elements>
       </div>
-    </div>
+    )
   );
 };
 
 const CheckoutComponent: React.FC = () => {
   return (
     <CartProvider id="website">
-      <Checkout />
+      <div className={styles.cartAndCheckout}>
+        <Basket showActions={false} />
+        <Checkout />
+      </div>
     </CartProvider>
   );
 };
