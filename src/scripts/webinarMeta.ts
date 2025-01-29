@@ -82,6 +82,12 @@ const burnt_out_by_parenting: WebinarMeta = {
   contributers: [naomi],
 };
 
+const helping_your_autistic_child_with_anger: WebinarMeta = {
+  id: "1216716193889",
+  tags: [tagAutism, forParents, age5To11, age11To19],
+  contributers: [naomi],
+};
+
 const what_now_diagnosis: WebinarMeta = {
   id: "1203174349869",
   tags: [tagALDP, age5To11, age11To19, forParents],
@@ -92,6 +98,7 @@ const what_now_diagnosis: WebinarMeta = {
 // !! ADD WEBINAR HERE !!
 export function getWebinarMeta(eventId: string): WebinarMeta | undefined {
   return [
+    helping_your_autistic_child_with_anger,
     helping_your_demand_avoidant_child_with_change,
     low_pressure_parenting_for_teens,
     restoring_your_energy,
