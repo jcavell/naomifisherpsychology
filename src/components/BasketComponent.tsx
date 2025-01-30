@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CartProvider, useCart } from "react-use-cart";
 import styles from "./Cart.module.css"; // Modular CSS for styles
 
@@ -74,6 +74,16 @@ export const Basket: React.FC<BasketProps> = ({ showActions = true }) => {
 };
 
 const BasketComponent: React.FC = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true); // Ensures this component renders only on the client
+  }, []);
+
+  if (!isClient) {
+    return null; // Return nothing during SSR to prevent mismatched HTML
+  }
+
   return (
     <CartProvider id="website">
       <Basket />

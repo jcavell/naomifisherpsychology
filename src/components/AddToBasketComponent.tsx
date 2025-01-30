@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { CartProvider, useCart } from "react-use-cart";
-import type { CheckoutItem } from "../types/checkoutItem";
+import type { BasketAndCheckoutItem } from "../types/basket-and-checkout-item";
 import "./overlay.css";
 
 export type BasketItemType = "webinar" | "course";
@@ -26,11 +26,11 @@ const handleFetchAndAddItem = async (addItem, inCart, id: string) => {
     }
 
     // Add CheckoutItem to basket
-    const checkoutItem: CheckoutItem = await response.json(); // Parse the JSON response
+    const checkoutItem: BasketAndCheckoutItem = await response.json(); // Parse the JSON response
     addItem(checkoutItem);
     // alert(`${JSON.stringify(checkoutItem)} added to the cart`);
   } catch (err) {
-    // console.error("Error fetching item:", err);
+    console.error("Error fetching item:", err);
     // alert("Failed to fetch item details. Please try again.");
   }
 };

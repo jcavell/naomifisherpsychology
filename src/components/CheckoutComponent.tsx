@@ -17,13 +17,6 @@ const Checkout: React.FC = () => {
   const [isHydrated, setIsHydrated] = useState(false);
   const [clientSecret, setClientSecret] = useState<string | null>(null); // Track clientSecret for Stripe initialization
 
-  const formatPrice = (valueInPence: number): string => {
-    return new Intl.NumberFormat("en-GB", {
-      style: "currency",
-      currency: "GBP",
-    }).format(valueInPence / 100);
-  };
-
   // Ensure the cart is fully hydrated before rendering
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -91,6 +84,15 @@ const Checkout: React.FC = () => {
 };
 
 const CheckoutComponent: React.FC = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true); // Ensures this component renders only on the client
+  }, []);
+
+  if (!isClient) {
+    return null; // Return nothing during SSR to prevent mismatched HTML
+  }
   return (
     <CartProvider id="website">
       <div className={styles.cartAndCheckout}>

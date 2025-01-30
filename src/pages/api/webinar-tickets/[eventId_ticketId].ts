@@ -1,7 +1,13 @@
 import type { Webinar } from "../../../types/webinar";
-import type { CheckoutItem } from "../../../types/checkoutItem";
+import type { BasketAndCheckoutItem } from "../../../types/basket-and-checkout-item";
 
 export const prerender = false;
+
+const calculateExpiryIn30Days = (date: string) => {
+  const expiryDate = new Date(date);
+  expiryDate.setDate(expiryDate.getDate() + 30);
+  return expiryDate.toISOString();
+};
 
 export async function GET({ params, request }) {
   const eventIdTicketId = params.eventId_ticketId;
@@ -27,7 +33,7 @@ export async function GET({ params, request }) {
     });
   }
 
-  const checkoutItem: CheckoutItem = {
+  const checkoutItem: BasketAndCheckoutItem = {
     id: eventId + "_" + ticketClass.id,
     product_type: "webinar",
     product_id: eventId,
@@ -38,9 +44,20 @@ export async function GET({ params, request }) {
     variant_name: ticketClass.name,
     currency: ticketClass.cost?.currency || "GBP",
     price: ticketClass.cost?.value || 0,
-    expires_at: ticketClass.sales_end,
+    added_at: new Date().toISOString(),
+    expires_at:
+      ticketClass.name.includes("+ recording") ||
+      ticketClass.name.includes("and recording") ||
+      ticketClass.name.includes("plus recording")
+        ? calculateExpiryIn30Days(ticketClass.sales_end)
+        : ticketClass.sales_end,
     quantity: 1, // Default quantity
+    vatable: false, // default
   };
+
+  console.log(
+    "api/webinar-tickets checkout items" + JSON.stringify(checkoutItem),
+  );
 
   return new Response(JSON.stringify(checkoutItem), {
     headers: { "Content-Type": "application/json" },
