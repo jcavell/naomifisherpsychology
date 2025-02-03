@@ -1,24 +1,33 @@
 {
 	"type": "CHECKOUT",
-	"url": "https://courses.naomifisher.co.uk/offers/jLbWvRoa",
+	"url": "https://courses.naomifisher.co.uk/offers/sVWpRtm2",
 	"descriptions": [
-		"p:Are you a parent navigating the complexities of the Special Educational Needs (SEN) Tribunal process? Parents say it ranks as one of their most stressful life events.",
-		"p:Dr Abigail Fisher will help you understand the appeals and tribunal process and highlight common challenges which parents face, she offers tips for preparation and draws on real life experiences to help you anticipate problems and plan how to best navigate the process. She draws on her experience working as an educational psychologist in local authorities and independently in England. ",
-		"p:This course is designed specifically to guide parents through the challenging journey. Whether you're new to the process or seeking to deepen your understanding, this mini-course will equip you with the knowledge and confidence you need to advocate effectively for your child's educational needs.",
+		"p:I'm Dr Naomi Fisher. I'm a clinical psychologist. That means I'm a psychologist who specialises in mental health and behaviour, and I work with a lot of young people and their families.",
+		"p:This course is for young people and also their parents if they want to watch. It's about burnout recovery for young people.",
+		"p:Using videos from a young person called Chloe (\"Me Just Me\" on YouTube), and with original illustrations by Eliza Fricker (missingthemark.co.uk ) I'll describe burnout through the metaphor of a road vehicle.",
+		"p:When our vehicle navigates too many obstacles without enough maintenance, we start to show wear and tear. We get less able to cope with stress. We find it harder to keep calm and we're more affected by change and challenge. And sometimes we break down altogether.",
+		"p:I'll define burnout so you can see if it applies to you, and:",
+		"li:\nI'll describe some of the things that you can to keep you safely on the road.\n",
+		"p:I'll describe some of the things that you can to keep you safely on the road.",
+		"li:\nChloe will describe how hard she finds things once her 'bucket is full', and how she can help to keep her bucket from filling up.\n",
+		"p:Chloe will describe how hard she finds things once her 'bucket is full', and how she can help to keep her bucket from filling up.",
+		"li:\nI'll talk about the four main stages in recovering from burnout and what you need to support you in this recovery.\n",
+		"p:I'll talk about the four main stages in recovering from burnout and what you need to support you in this recovery.",
+		"p:I'll talk about how you can be easier on yourself, and how you can start making the first small steps to recover from burnout.",
 		"h3:Information",
 		"p:This course is available to watch for 12 months after purchase.",
+		"p:It is suitable for children with and without a diagnosis ",
 		"h3:Agenda",
-		"li:Welcome and Introduction (2 mins)",
-		"li:Disagreeing with a decision (24 mins)",
-		"li:Tribunals (20 mins)",
-		"li:Things to consider (19 mins)",
-		"li:Managing the process (9 mins) ",
-		"li:Tips and Advice (9 mins)   ",
-		"li:Bonus content - 6 handoutsTotal running time: 1 hour 23 mins",
+		"li:Intro music",
+		"li:Introduction (1 min)",
+		"li:Why Do You Feel the Way You Do? (19 mins)",
+		"li:What Has Happened to You? (14 mins)",
+		"li:What Happens Next? (5 mins)",
+		"li:How People Recover (19 mins)",
+		"li:What do I Want in the Future? (11 mins)",
+		"p:Total running time: 1 hour 10 mins",
 		"h3:Presenter",
-		"p: Dr Abigail Fisher is an educational psychologist who has worked in local authorities and now works independently. She has a special interest in helping parents navigate complex and confusing SEN processes, through providing clear, easy to digest information."
+		"p:Dr Naomi Fisher is a clinical psychologist and author. She specialises in trauma, autism and alternative approaches to education. She is registered with the HCPC. This course is not therapy and should not be used as a replacement for therapy."
 	],
-	"testimonials": [
-		"Such a help to have the process explained in an understandable and digestible way!"
-	]
+	"testimonials": []
 }

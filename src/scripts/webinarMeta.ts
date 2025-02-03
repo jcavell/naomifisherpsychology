@@ -11,6 +11,7 @@ import {
   tagMentalHealth,
   tagDemandAvoidance,
   tagBurnout,
+  tagNeurodiversity,
 } from "./tags";
 
 import { naomi, abi, eliza, kate } from "./people";
@@ -88,6 +89,12 @@ const helping_your_autistic_child_with_anger: WebinarMeta = {
   contributers: [naomi],
 };
 
+const helping_your_neurodivergent_teen_recover_from_school: WebinarMeta = {
+  id: "1230238058149",
+  tags: [tagNeurodiversity, tagAutism, forParents, age11To19],
+  contributers: [naomi],
+};
+
 const what_now_diagnosis: WebinarMeta = {
   id: "1203174349869",
   tags: [tagALDP, age5To11, age11To19, forParents],
@@ -98,6 +105,7 @@ const what_now_diagnosis: WebinarMeta = {
 // !! ADD WEBINAR HERE !!
 export function getWebinarMeta(eventId: string): WebinarMeta | undefined {
   return [
+    helping_your_neurodivergent_teen_recover_from_school,
     helping_your_autistic_child_with_anger,
     helping_your_demand_avoidant_child_with_change,
     low_pressure_parenting_for_teens,
