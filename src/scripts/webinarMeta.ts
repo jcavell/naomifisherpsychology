@@ -12,6 +12,7 @@ import {
   tagDemandAvoidance,
   tagBurnout,
   tagNeurodiversity,
+  tagScreens,
 } from "./tags";
 
 import { naomi, abi, eliza, kate } from "./people";
@@ -91,7 +92,7 @@ const helping_your_autistic_child_with_anger: WebinarMeta = {
 
 const helping_your_neurodivergent_teen_recover_from_school: WebinarMeta = {
   id: "1230238058149",
-  tags: [tagNeurodiversity, tagAutism, forParents, age11To19],
+  tags: [tagNeurodiversity, tagSchool, forParents, age11To19],
   contributers: [naomi],
 };
 
