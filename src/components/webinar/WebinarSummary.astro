@@ -1,23 +1,19 @@
 ---
 import Tags from "../Tags.astro";
 import Contributers from "../Contributers.astro";
-import Vimeo from "../Vimeo.astro";
 import { getWebinarMeta } from "../../scripts/webinarMeta";
 import WebinarImage from "./WebinarImage.astro";
-
+import ChooseWebinarTicketsWrapper from "../ChooseWebinarTicketsWrapper";
 const { webinar } = Astro.props;
 
 const eventId = webinar.id;
 const meta = getWebinarMeta(eventId);
 
-const checkoutURL = webinar.url;
 const title = webinar.name.text;
 const subtitle = webinar.description.text;
 const tickets = webinar.orderedTickets;
 
-const ticketText = tickets[0].cost
-  ? `from ${tickets[0].cost} + booking fee`
-  : "Free";
+// console.log(webinar.ticket_classes);
 ---
 
 <div class="card card-webinars">
@@ -62,6 +58,11 @@ const ticketText = tickets[0].cost
 
   <div class="card-buttons">
     <a href={`/webinars/${eventId}`}> Learn More </a>
-    <a href={`${checkoutURL}?aff=web`}> Tickets </a>
+
+    <ChooseWebinarTicketsWrapper
+      webinarId={webinar.id}
+      ticketClasses={webinar.ticket_classes.filter((t) => !t.hidden)}
+      client:load
+    />
   </div>
 </div>
