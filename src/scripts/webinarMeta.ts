@@ -13,6 +13,7 @@ import {
   tagBurnout,
   tagNeurodiversity,
   tagScreens,
+  tagWellbeing,
 } from "./tags";
 
 import { naomi, abi, eliza, kate } from "./people";
@@ -103,9 +104,23 @@ const what_now_diagnosis: WebinarMeta = {
   contributers: [naomi, eliza],
 };
 
+const calm_and_connect: WebinarMeta = {
+  id: "1244751046889",
+  tags: [tagWellbeing, forParents],
+  contributers: [abi],
+};
+
+const demand_avoidant_child: WebinarMeta = {
+  id: "1246046932919",
+  tags: [tagDemandAvoidance, forParents, age5To11, age11To19],
+  contributers: [naomi],
+};
+
 // !! ADD WEBINAR HERE !!
 export function getWebinarMeta(eventId: string): WebinarMeta | undefined {
   return [
+    calm_and_connect,
+    demand_avoidant_child,
     helping_your_neurodivergent_teen_recover_from_school,
     helping_your_autistic_child_with_anger,
     helping_your_demand_avoidant_child_with_change,
