@@ -1,0 +1,398 @@
+<div
+  role="dialog">
+  <div>
+    <div>
+      <div>
+        <div>
+          <div>
+            <header>
+              <div><h2 id="eds-modal-title"
+
+
+                       data-testid="eds-modal__title">Calm
+                and Connect: Nervous System Care for Parents</h2><span
+
+                data-testid="eds-modal__secondary-title">Wed, 26 Feb 2025 12:00 - 13:00 GMT</span>
+                <div>
+                  <hr
+                  >
+                </div>
+              </div>
+            </header>
+            <main data-testid="eds-modal__main">
+              <div>
+                <div id="edsModalContentChildren">
+                  <div
+
+                  >
+                    <div></div>
+                    <div
+                    >
+                      <div>
+                        <div>
+                          <div>
+                            <form data-automation="promo-code-form"
+                                  data-testid="promo-code-form">
+                              <div>
+                                <div>
+                                  <div>
+                                    <div><input type="text"
+                                                id="promo-code-field"
+
+                                                title="Promo Code"
+
+                                                placeholder="Enter code"
+                                                data-automation="promo-code-field"
+
+                                                value="" name="promo"><label
+                                      id="label-promo-code"
+                                      for="promo-code-field">Promo Code</label></div>
+                                    <span></span><span
+                                  ><button disabled=""
+                                           data-automation="promo-code-form-cta-text"
+
+                                           data-testid="promo-code-form-cta-text"
+
+                                           type="button"><span
+                                  >Apply</span></button></span>
+                                  </div>
+                                  <div>
+                                    <div></div>
+                                  </div>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                          <div></div>
+                        </div>
+                      </div>
+                      <form data-testid="ticket-selection-full-size-page-form">
+                        <div>
+                          <div>
+                            <div data-automation="tickets-container"
+                                 data-testid="tickets-selection-list-container">
+                              <ul>
+                                <li>
+                                  <div role="presentation">
+                                    <div role="presentation"
+
+                                         data-testid="ticket-display-card-content-full-size">
+                                      <div>
+                                        <div
+
+                                          data-testid="ticket-name-wrapper">Live Webinar + recording for 30 days
+                                        </div>
+                                        <div
+                                          data-testid="ticket-stepper-selector-2226232943">
+                                          <div data-testid="eds-stepper">
+                                            <div data-testid="eds-stepper-decrease-button-wrapper">
+                                              <button
+                                                data-testid="eds-stepper-decrease-button" type="button"
+                                              ><i
+
+                                                data-testid="icon">
+                                                <svg id="minus-chunky_svg__eds-icon-minus-chunky" x="0" y="0"
+                                                     viewBox="0 0 24 24" xml:space="preserve"><g><path fill="#fff" d="M6.5 11.5h11v1h-11z"></path><path
+                                                  d="M18 11H6v2h12v-2z"></path></g></svg>
+                                              </i></button>
+                                            </div>
+                                            <div
+
+                                              data-testid="eds-stepper-quantity-wrapper"><span
+
+                                              data-testid="eds-stepper-quantity" role="spinbutton"
+                                            >1</span></div>
+                                            <button
+                                              data-testid="eds-stepper-increase-button" type="button"
+                                            ><i
+
+                                              data-testid="icon">
+                                              <svg id="plus-chunky_svg__eds-icon--plus-chunky_svg" x="0" y="0"
+                                                   viewBox="0 0 24 24" xml:space="preserve"><path id="plus-chunky_svg__eds-icon--plus-chunky_base" fill-rule="evenodd" clip-rule="evenodd" d="M13 11V4h-2v7H4v2h7v7h2v-7h7v-2z"></path></svg>
+                                            </i></button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <hr
+                                      >
+                                      <div
+                                      >
+                                        <div data-testid="ticket-price-count-date">
+                                          <div
+                                          >
+                                            <div data-testid="ticket-price">
+                                              <span
+
+                                                data-testid="ticket-price__price">£16.99</span></div>
+                                          </div>
+                                          <div><span
+
+                                            data-testid="ticket-sales-end-date">Sales end on 26 Feb 2025</span></div>
+                                        </div>
+                                      </div>
+                                      <div></div>
+                                    </div>
+                                  </div>
+                                </li>
+                                <li>
+                                  <div role="presentation">
+                                    <div role="presentation"
+
+                                         data-testid="ticket-display-card-content-full-size">
+                                      <div>
+                                        <div
+
+                                          data-testid="ticket-name-wrapper">Live webinar only (reduced price)
+                                        </div>
+                                        <div
+                                          data-testid="ticket-stepper-selector-2226232953">
+                                          <div data-testid="eds-stepper">
+                                            <div data-testid="eds-stepper-decrease-button-wrapper">
+                                              <button
+                                                data-testid="eds-stepper-decrease-button" type="button"
+                                              ><i
+
+                                                data-testid="icon">
+                                                <svg id="minus-chunky_svg__eds-icon-minus-chunky" x="0" y="0"
+                                                     viewBox="0 0 24 24" xml:space="preserve"><g><path fill="#fff" d="M6.5 11.5h11v1h-11z"></path><path
+                                                  d="M18 11H6v2h12v-2z"></path></g></svg>
+                                              </i></button>
+                                            </div>
+                                            <div
+
+                                              data-testid="eds-stepper-quantity-wrapper"><span
+
+                                              data-testid="eds-stepper-quantity" role="spinbutton"
+                                            >1</span></div>
+                                            <button
+                                              data-testid="eds-stepper-increase-button" type="button"
+                                            ><i
+
+                                              data-testid="icon">
+                                              <svg id="plus-chunky_svg__eds-icon--plus-chunky_svg" x="0" y="0"
+                                                   viewBox="0 0 24 24" xml:space="preserve"><path id="plus-chunky_svg__eds-icon--plus-chunky_base" fill-rule="evenodd" clip-rule="evenodd" d="M13 11V4h-2v7H4v2h7v7h2v-7h7v-2z"></path></svg>
+                                            </i></button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <hr
+                                      >
+                                      <div
+                                      >
+                                        <div data-testid="ticket-price-count-date">
+                                          <div
+                                          >
+                                            <div data-testid="ticket-price">
+                                              <span
+
+                                                data-testid="ticket-price__price">£11.50</span></div>
+                                          </div>
+                                          <div><span
+
+                                            data-testid="ticket-sales-end-date">Sales end on 26 Feb 2025</span></div>
+                                        </div>
+                                      </div>
+                                      <div></div>
+                                    </div>
+                                  </div>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    <div
+                    >
+                      <div>
+                        <a target="_blank" rel="noopener noreferrer"
+
+                           title="Powered by Eventbrite" href="https://eventbrite.co.uk">Powered by<i
+
+                          data-testid="icon">
+                          <svg viewBox="0 0 200 36">
+                            <g fill-rule="evenodd">
+                              <g>
+                                <g transform="translate(.347)">
+                                  <path
+                                    d="M185.945 17.513c2.693-.61 5.381.495 6.878 2.584l-11.905 2.693c.411-2.52 2.333-4.668 5.027-5.277zm6.944 9.91a6.57 6.57 0 01-3.979 2.679c-2.711.614-5.417-.51-6.908-2.626l11.942-2.702 1.945-.44 3.719-.841a11.782 11.782 0 00-.31-2.372c-1.513-6.426-8.055-10.432-14.611-8.949-6.556 1.484-10.644 7.896-9.13 14.321 1.513 6.426 8.055 10.433 14.61 8.95 3.864-.875 6.869-3.46 8.377-6.751l-5.655-1.269z"></path>
+                                  <path id="logo-wordmark-brand_svg__Fill-10"
+                                        d="M164.788 35.118V18.082h-3.677v-5.804h3.677V4.289h6.244v7.989h4.69v5.804h-4.69v17.036z"></path>
+                                  <path
+                                    d="M152.86 35.118h6.03v-22.84h-6.03v22.84zm-.785-30.853c0-2.114 1.667-3.7 3.825-3.7 2.157 0 3.775 1.586 3.775 3.7 0 2.115-1.618 3.748-3.775 3.748-2.158 0-3.825-1.633-3.825-3.748zM150.76 12.342c-3.082.16-4.9.633-6.75 1.973v-2.037h-6.026v22.84h6.026v-11.2c0-3.524.86-5.529 6.75-5.726v-5.85zM117.16 24.057c.15 3.333 3.051 6.128 6.602 6.128 3.601 0 6.552-2.942 6.552-6.422 0-3.432-2.95-6.373-6.552-6.373-3.551 0-6.452 2.843-6.602 6.128v.539zm-5.88 11.061V1.38l6.03-1.364v13.962c1.863-1.49 4.07-2.115 6.472-2.115 6.864 0 12.355 5.286 12.355 11.918 0 6.583-5.491 11.965-12.355 11.965-2.403 0-4.609-.624-6.472-2.114v1.487h-6.03z"></path>
+                                  <path id="logo-wordmark-brand_svg__Fill-1"
+                                        d="M98.445 35.118V17.965h-3.677v-5.687h3.677V4.283l6.244-1.413v9.408h4.69v5.687h-4.69v17.153z"></path>
+                                  <path
+                                    d="M87.394 35.118V22.915c0-4.421-2.402-5.382-4.805-5.382-2.402 0-4.805.913-4.805 5.286v12.299h-6.03v-22.84h6.03v1.699c1.324-.961 2.942-2.115 6.13-2.115 5.098 0 9.51 2.932 9.51 10.092v13.164h-6.03zM56.484 17.513c2.694-.61 5.382.495 6.878 2.584L51.458 22.79c.41-2.52 2.332-4.668 5.026-5.277zm6.945 9.91a6.57 6.57 0 01-3.98 2.679c-2.711.614-5.416-.51-6.907-2.626l11.942-2.702 1.944-.44 3.72-.841a11.782 11.782 0 00-.31-2.372c-1.514-6.426-8.056-10.432-14.612-8.949-6.556 1.484-10.644 7.896-9.13 14.321 1.513 6.426 8.055 10.433 14.611 8.95 3.863-.875 6.868-3.46 8.376-6.751l-5.654-1.269z"></path>
+                                  <path id="logo-wordmark-brand_svg__Fill-2"
+                                        d="M31.89 35.118l-9.364-22.84h6.57l5.932 15.49 5.982-15.49h6.57l-9.365 22.84z"></path>
+                                  <path
+                                    d="M10.703 17.507c2.694-.61 5.382.495 6.878 2.584L5.677 22.785c.41-2.52 2.332-4.668 5.026-5.278zm6.945 9.91a6.57 6.57 0 01-3.98 2.68c-2.71.613-5.416-.51-6.907-2.626l11.942-2.702 1.945-.44 3.718-.842a11.782 11.782 0 00-.31-2.371c-1.513-6.426-8.055-10.433-14.61-8.95C2.888 13.65-1.2 20.063.314 26.489c1.514 6.426 8.055 10.432 14.611 8.949 3.864-.874 6.869-3.46 8.376-6.75l-5.654-1.27z"></path>
+                                </g>
+                              </g>
+                            </g>
+                          </svg>
+                        </i></a></div>
+                      <div
+
+                        data-automation="language-selector">
+                        <div>
+                          <div><span
+
+                            data-testid="language-selector-label">Language:</span>
+                            <div
+                              style="margin-bottom:8px" data-automation="language-dropdown-wrapper"
+                            >
+                              <div>
+                                <div>
+                                  <div>
+                                    <div><label
+
+                                      id="language-select-field-label" for="language-select-field"
+                                    ><span
+                                    >Select your language</span></label></div>
+                                    <div><span
+                                    ><span
+                                    >English (UK)</span><span
+                                    ><i
+                                      data-testid="icon"
+                                    ><svg id="chevron-down-chunky_svg__eds-icon--chevron-down-chunky_svg-language-select-field" x="0" y="0" viewBox="0 0 24 24" xml:space="preserve"><path id="chevron-down-chunky_svg__eds-icon--chevron-down-chunky_base" fill-rule="evenodd" clip-rule="evenodd" d="M7 10.2l5 5 5-5-1.4-1.4-3.6 3.6-3.6-3.6z"></path></svg></i></span></span><select
+
+
+                                      data-automation="language-dropdown" id="language-select-field"
+                                      name="language-select-field">
+                                      <option value="de_DE">Deutsch</option>
+                                      <option value="de_CH">Deutsch (CH)</option>
+                                      <option value="en_AU">English (AU)</option>
+                                      <option value="en_CA">English (CA)</option>
+                                      <option value="en_DK">English (DK)</option>
+                                      <option value="en_FI">English (FI)</option>
+                                      <option selected="" value="en_GB">English (UK)</option>
+                                      <option value="en_US">English (US)</option>
+                                      <option value="es_AR">Español (AR)</option>
+                                      <option value="es_ES">Español (ES)</option>
+                                      <option value="es_MX">Español (MX)</option>
+                                      <option value="fr_FR">Français</option>
+                                      <option value="fr_CA">Français (CA)</option>
+                                      <option value="fr_CH">Français (CH)</option>
+                                      <option value="it_IT">Italiano</option>
+                                      <option value="nl_NL">Nederlands</option>
+                                      <option value="pt_PT">Português</option>
+                                      <option value="pt_BR">Português (BR)</option>
+                                      <option value="sv">Svenska</option>
+                                    </select></div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div
+
+                  >
+                    <div>
+                      <div>
+                        <button data-testid="cart-summary-button"
+
+                                type="button">
+                          <div>
+                            <div><span
+
+                              data-automation="modal-footer-ticket-price" data-testid="modal-footer-ticket-price"><span><i
+                              data-testid="icon"
+                            ><svg id="chevron-down-chunky_svg__eds-icon--chevron-down-chunky_svg" x="0" y="0" viewBox="0 0 24 24" xml:space="preserve"><path id="chevron-down-chunky_svg__eds-icon--chevron-down-chunky_base" fill-rule="evenodd" clip-rule="evenodd" d="M7 10.2l5 5 5-5-1.4-1.4-3.6 3.6-3.6-3.6z"></path></svg></i></span>£28.49</span>
+                            </div>
+                          </div>
+                        </button>
+                      </div>
+                      <div>
+                        <button data-automation="eds-modal__primary-button"
+                                data-testid="eds-modal__primary-button"
+                                type="button">Check
+                          out
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </main>
+          </div>
+        </div>
+        <div>
+          <div style="bottom:0">
+            <aside id="order-summary"
+            >
+              <div><img
+                alt="Calm and Connect: Nervous System Care for Parents"
+                src="https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F956879333%2F499288384627%2F1%2Foriginal.20250210-115938?w=720&amp;auto=format%2Ccompress&amp;q=75&amp;sharp=10&amp;rect=0%2C504%2C6016%2C3008&amp;s=e71523ff5286243fe0f822c82306e6a3"
+                data-testid="ticket-page-image">
+                <div></div>
+              </div>
+              <div style="margin-bottom: 0px;"
+                   data-testid="order-summary-container" id="order-summary-container">
+                <div
+
+                >
+                  <div data-testid="order-summary-wrapper" role="grid">
+                    <div>
+                      <div role="row">
+                        <div
+
+                          role="gridcell">Order summary
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div role="row">
+                        <div role="gridcell"><span
+                        >1 x Live Webinar + recording for 30 days</span>
+                        </div>
+                        <div role="gridcell"><span
+                        >£16.99</span>
+                        </div>
+                      </div>
+                      <div role="row">
+                        <div role="gridcell"><span
+                        >1 x Live webinar only (reduced price)</span>
+                        </div>
+                        <div role="gridcell"><span
+                        >£11.50</span>
+                        </div>
+                      </div>
+                    </div>
+                    <hr
+                      role="row">
+                    <div></div>
+                    <div role="row">
+                      <div role="gridcell">
+                        <div>Total £28.49</div>
+                        <span
+                        >Total</span>
+                      </div>
+                      <div role="gridcell"><span
+                      ><span></span>&nbsp;<span
+                      >£28.49</span></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+      <div><span
+      ><button
+        data-automation="modal-close-button"
+        type="button"><i
+        title="" data-testid="icon"><svg id="cross-chunky_svg__eds-icon--cross-chunky_svg" x="0" y="0" viewBox="0 0 24 24" xml:space="preserve"><path id="cross-chunky_svg__eds-icon--cross-chunky_base" d="M13.4 12l3.5-3.5-1.4-1.4-3.5 3.5-3.5-3.5-1.4 1.4 3.5 3.5-3.5 3.5 1.4 1.4 3.5-3.5 3.5 3.5 1.4-1.4z"></path></svg><span
+      >Close</span></i></button></span></div>
+    </div>
+  </div>
+</div>
