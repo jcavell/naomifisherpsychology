@@ -58,7 +58,7 @@ const Checkout: React.FC = () => {
 
   // Early UI return for loading or empty states
   if (!isHydrated) {
-    return <p className={styles.emptyCart}>Loading your cart...</p>;
+    return <p className={styles.emptyCart}>Loading shopping basket.</p>;
   }
 
   if (isEmpty) {

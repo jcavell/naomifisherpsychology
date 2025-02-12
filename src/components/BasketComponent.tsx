@@ -85,9 +85,9 @@ const BasketComponent: React.FC = () => {
   }
 
   return (
-    <CartProvider id="website">
-      <Basket />
-    </CartProvider>
+    // <CartProvider id="website">
+    <Basket />
+    // </CartProvider>
   );
 };
 

@@ -262,3 +262,46 @@ td {
 .item-details p {
     margin: 0; /* Reset default margins for cleaner look */
 }
+
+/* Ensures form fields for First Name, Surname, Email have consistent spacing and style */
+.checkout-form-field {
+    margin-bottom: 24px; /* Same spacing as #payment-element */
+    display: flex;
+    flex-direction: column; /* Stack label and input vertically */
+}
+
+.checkout-form-field label {
+    font-size: 14px; /* Match the text style */
+    font-weight: bold;
+    margin-bottom: 8px; /* Provide spacing between label and input */
+    color: #30313D; /* Ensure consistency with other text (#30313D is used for headings) */
+}
+
+.checkout-form-field input {
+    font-size: 16px;
+    padding: 12px;
+    border: 1px solid #ccc; /* Matches the surrounding UI */
+    border-radius: 4px; /* Rounded corners like buttons */
+    outline: none;
+    transition: all 0.3s ease;
+    box-sizing: border-box; /* Ensures padding doesn't break layout */
+}
+
+.checkout-form-field input:focus {
+    border-color: #0055DE; /* Highlight border when focused to match button hover */
+    box-shadow: 0 0 0 1px #0055DE; /* Outline effect */
+}
+
+.checkout-form-field input::placeholder {
+    color: #aaa; /* Placeholder text styling */
+    font-style: italic; /* Makes placeholders visually distinct */
+}
+
+/* Match the style of #payment-message for error display */
+.checkout-message {
+    color: rgb(105, 115, 134);
+    font-size: 14px;
+    line-height: 18px;
+    padding-top: 8px;
+    text-align: center;
+}

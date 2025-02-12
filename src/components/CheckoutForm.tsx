@@ -9,7 +9,10 @@ const CheckoutForm: React.FC = () => {
   const stripe = useStripe();
   const elements = useElements();
 
-  // State with proper TypeScript annotations
+  // State variables to store user details and manage UI state
+  const [firstName, setFirstName] = useState<string>("");
+  const [surname, setSurname] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [message, setMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -33,6 +36,12 @@ const CheckoutForm: React.FC = () => {
         confirmParams: {
           // Redirect the user to this URL after payment
           return_url: `${origin}/checkout-complete`, // Use dynamic origin
+          payment_method_data: {
+            billing_details: {
+              name: `${firstName} ${surname}`, // Full name
+              email: email, // Email address
+            },
+          },
         },
       });
 
@@ -62,16 +71,63 @@ const CheckoutForm: React.FC = () => {
 
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
-      {/* Stripe Payment Element */}
-      <PaymentElement id="payment-element" options={paymentElementOptions} />
+      {/* Input for First Name */}
+      <div className="checkout-form-field">
+        <label htmlFor="first-name">First Name</label>
+        <input
+          id="first-name"
+          type="text"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          required
+          className="checkout-input"
+        />
+      </div>
+
+      {/* Input for Surname */}
+      <div className="checkout-form-field">
+        <label htmlFor="surname">Surname</label>
+        <input
+          id="surname"
+          type="text"
+          value={surname}
+          onChange={(e) => setSurname(e.target.value)}
+          required
+          className="checkout-input"
+        />
+      </div>
+
+      {/* Input for Email */}
+      <div className="checkout-form-field">
+        <label htmlFor="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          className="checkout-input"
+        />
+      </div>
+
+      {/* Stripe PaymentElement */}
+      <div className="checkout-payment-element">
+        <PaymentElement id="payment-element" options={paymentElementOptions} />
+      </div>
+
       {/* Submit button */}
-      <button disabled={isLoading || !stripe || !elements} id="submit">
+      <button
+        className="checkout-submit-button"
+        disabled={isLoading || !stripe || !elements}
+        id="submit"
+      >
         <span id="button-text">
           {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
         </span>
       </button>
-      {/* Display error or success messages */}
-      {message && <div id="payment-message">{message}</div>}
+
+      {/* Error or success messages */}
+      {message && <div className="checkout-message">{message}</div>}
     </form>
   );
 };
