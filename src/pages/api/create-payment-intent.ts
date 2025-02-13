@@ -25,7 +25,7 @@ export const prerender = false;
 
 export async function POST({ params, request }) {
   const rawBody = await request.text();
-  console.log("Full raw request body: ", rawBody);
+  // console.log("Full raw request body: ", rawBody);
 
   const json = JSON.parse(rawBody); // Safely parse the raw body as JSON
   // console.log("Parsed request body (as JSON): ", json);

@@ -116,6 +116,8 @@ const CheckoutCompleteComponent: React.FC = () => {
     stripe.retrievePaymentIntent(clientSecret).then((result) => {
       const { paymentIntent } = result;
 
+      // console.log("PAYMENT INTENT: " + JSON.stringify(paymentIntent));
+
       if (paymentIntent) {
         setStatus(paymentIntent.status as PaymentStatus);
         setIntentId(paymentIntent.id);

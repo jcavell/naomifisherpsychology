@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   PaymentElement,
   useStripe,
@@ -18,6 +18,35 @@ const CheckoutForm: React.FC = () => {
 
   const origin = window.location.origin;
 
+  // Fetch user data from cookies and prefill inputs on mount
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch("/api/get-user-cookie", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          const { firstName, surname, email } = data;
+          setFirstName(firstName || ""); // Fill fields if data exists
+          setSurname(surname || "");
+          setEmail(email || "");
+        } else {
+          // Optionally handle cases where no user data exists
+          console.log("checkout form: No user data found in cookies.");
+        }
+      } catch (error) {
+        console.error("checout form: Error fetching user data:", error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
   // Form submission handler
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -30,7 +59,23 @@ const CheckoutForm: React.FC = () => {
     setIsLoading(true);
 
     try {
-      // Confirm payment using Stripe
+      // Step 1: Update user data in cookies
+      const updatedUserInfo = { firstName, surname, email };
+
+      const response = await fetch("/api/set-user-cookie", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedUserInfo),
+      });
+
+      const data = await response.json();
+      // console.log(
+      //   "CheckoutForm: response from set-user-cookie: " + data.message,
+      // );
+
+      // Step 2: Confirm payment using Stripe
       const { error } = await stripe.confirmPayment({
         elements,
         confirmParams: {
