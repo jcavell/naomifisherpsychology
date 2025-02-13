@@ -1,8 +1,8 @@
 // AddWebinarTicketsToBasket.tsx
 import React from "react";
 import { CartProvider } from "react-use-cart";
-import AddToBasketComponent from "./AddToBasketComponent";
-import type { ProcessedTicket } from "../types/webinar";
+import AddToBasketComponent from "./AddToBasketComponent.tsx";
+import type { ProcessedTicket } from "../../types/webinar";
 
 interface AddWebinarTicketsToBasketProps {
   tickets: ProcessedTicket[];

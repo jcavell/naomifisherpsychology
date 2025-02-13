@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { CartProvider, useCart } from "react-use-cart";
-import styles from "./Cart.module.css"; // Modular CSS for styles
+import styles from "../basket/Cart.module.css"; // Modular CSS for styles
 import { type Appearance, loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./CheckoutForm.tsx";
 import "./Checkout.css";
-import { Basket } from "./BasketComponent.tsx";
+import { Basket } from "../basket/Basket.tsx";
 
 // Load stripe with our TEST publishable API key (pk....)
 const stripePublishableKey = import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY;

@@ -1,5 +1,5 @@
 import React from "react";
-import type { BasketAndCheckoutItem } from "../types/basket-and-checkout-item";
+import type { BasketAndCheckoutItem } from "../../types/basket-and-checkout-item";
 
 interface LineItemsSummaryProps {
   items: BasketAndCheckoutItem[];

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import type { JSX } from "react";
 import { useStripe } from "@stripe/react-stripe-js";
 import "./Checkout.css";
-import { loadStripe } from "@stripe/stripe-js";
 
 // Define type for payment status
 type PaymentStatus =

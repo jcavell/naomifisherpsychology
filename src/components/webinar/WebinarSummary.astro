@@ -3,8 +3,10 @@ import Tags from "../Tags.astro";
 import Contributers from "../Contributers.astro";
 import { getWebinarMeta } from "../../scripts/webinarMeta";
 import WebinarImage from "./WebinarImage.astro";
-import ChooseWebinarTicketsWrapper from "../ChooseWebinarTicketsWrapper";
-const { webinar } = Astro.props;
+import ChooseWebinarTicketsWrapper from "../basket/ChooseWebinarTicketsWrapper";
+import type { Webinar } from "../../types/webinar";
+
+const { webinar } = Astro.props as { webinar: Webinar }; // Explicitly typing webinar
 
 const eventId = webinar.id;
 const meta = getWebinarMeta(eventId);
@@ -59,10 +61,6 @@ const tickets = webinar.orderedTickets;
   <div class="card-buttons">
     <a href={`/webinars/${eventId}`}> Learn More </a>
 
-    <ChooseWebinarTicketsWrapper
-      webinarId={webinar.id}
-      ticketClasses={webinar.ticket_classes.filter((t) => !t.hidden)}
-      client:load
-    />
+    <ChooseWebinarTicketsWrapper webinar={webinar} client:load />
   </div>
 </div>

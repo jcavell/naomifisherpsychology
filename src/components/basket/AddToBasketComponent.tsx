@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { CartProvider, useCart } from "react-use-cart";
-import type { BasketAndCheckoutItem } from "../types/basket-and-checkout-item";
+import { useCart } from "react-use-cart";
+import type { BasketAndCheckoutItem } from "../../types/basket-and-checkout-item";
 import "./overlay.css";
 
 export type BasketItemType = "webinar" | "course";

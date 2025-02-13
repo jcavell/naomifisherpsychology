@@ -32,7 +32,16 @@ export async function POST({ params, request }) {
 
   const { items } = json as { items: BasketAndCheckoutItem[] };
   const itemsForMetaData = items.map(
-    ({ product_description, product_images, id, expires_at, ...rest }) => rest,
+    ({
+      product_id,
+      variant_name,
+      added_at,
+      variant_description,
+      product_description,
+      product_images,
+      expires_at,
+      ...rest
+    }) => rest,
   );
 
   // Create a PaymentIntent with the order amount and currency

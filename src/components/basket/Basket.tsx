@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { CartProvider, useCart } from "react-use-cart";
+import { useCart } from "react-use-cart";
 import styles from "./Cart.module.css"; // Modular CSS for styles
 
 export interface BasketProps {
@@ -13,22 +13,31 @@ const formatPrice = (amountInPence: number) =>
   }).format(amountInPence / 100); // Divide by 100 because amount is in pence
 
 export const Basket: React.FC<BasketProps> = ({ showActions = true }) => {
+  const [isClient, setIsClient] = useState(false);
   const { isEmpty, cartTotal, items, removeItem, emptyCart } = useCart();
+
+  useEffect(() => {
+    setIsClient(true); // Ensures this component renders only on the client
+  }, []);
+
+  if (!isClient) {
+    return null; // Return nothing during SSR to prevent mismatched HTML
+  }
 
   const handleCheckout = () => {
     if (items.length === 0) return alert("No items in basket");
     window.location.href = "/checkout";
   };
 
-  if (isEmpty) return <p className={styles.emptyCart}>Your basket is empty</p>;
+  if (isEmpty) return <p className={styles.emptyCart}></p>;
 
   return (
     <div className={styles.cartContainer}>
-      <h1 className={styles.cartTitle}>Your Basket</h1>
+      <h1 className={styles.cartTitle}>Order Summary</h1>
 
       {/* Add column headings */}
       <div className={styles.cartHeadings}>
-        <span>Webinar</span>
+        <span>Product</span>
         <span>Ticket</span>
         <span>Price</span>
       </div>
@@ -64,31 +73,13 @@ export const Basket: React.FC<BasketProps> = ({ showActions = true }) => {
           <button className={styles.checkoutButton} onClick={handleCheckout}>
             Checkout
           </button>
-          <button className={styles.emptyButton} onClick={emptyCart}>
-            Empty Basket
-          </button>
+          {/*<button className={styles.emptyButton} onClick={emptyCart}>*/}
+          {/*  Empty Basket*/}
+          {/*</button>*/}
         </div>
       )}
     </div>
   );
 };
 
-const BasketComponent: React.FC = () => {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true); // Ensures this component renders only on the client
-  }, []);
-
-  if (!isClient) {
-    return null; // Return nothing during SSR to prevent mismatched HTML
-  }
-
-  return (
-    // <CartProvider id="website">
-    <Basket />
-    // </CartProvider>
-  );
-};
-
-export default BasketComponent;
+export default Basket;
