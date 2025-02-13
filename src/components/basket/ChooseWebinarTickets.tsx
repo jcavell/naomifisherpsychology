@@ -78,33 +78,35 @@ const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
       >
         <h2>{webinar.name.text}</h2>
         {`${webinar.day} ${webinar.month}`} at {`${webinar.startTime}`}
-        {/* Ticket Options (non-hidden) */}
-        {webinar.ticket_classes
-          .filter((t) => !t.hidden)
-          .map((ticket) => (
-            <div key={ticket.id} style={{ marginBottom: "10px" }}>
-              <span>
-                {ticket.display_name} - {ticket.cost?.display ?? "Free"}
-              </span>
-              {inCart(`${webinar.id}_${ticket.id}`) ? (
+        {webinar.ticket_classes.some((ticket) =>
+          inCart(`${webinar.id}_${ticket.id}`),
+        ) ? (
+          <p>
+            {
+              webinar.ticket_classes.find((ticket) =>
+                inCart(`${webinar.id}_${ticket.id}`),
+              )?.display_name
+            }{" "}
+            is in your basket.
+          </p>
+        ) : (
+          webinar.ticket_classes
+            .filter((ticket) => !ticket.hidden)
+            .map((ticket) => (
+              <div key={ticket.id} style={{ marginBottom: "10px" }}>
+                <span>
+                  {ticket.display_name} - {ticket.cost?.display ?? "Free"}
+                </span>
                 <button
                   style={{ marginLeft: "10px" }}
-                  onClick={() => {
-                    handleRemoveFromBasket(ticket); // Call the handler
-                  }}
-                >
-                  Remove from Basket
-                </button>
-              ) : (
-                <button
-                  style={{ marginLeft: "10px" }}
+                  className="add-to-basket"
                   onClick={() => handleAddToBasket(ticket)}
                 >
                   Add to Basket
                 </button>
-              )}
-            </div>
-          ))}
+              </div>
+            ))
+        )}
         {/* Always Display Basket at the Bottom */}
         <div style={{ marginTop: "20px" }}>
           <Basket onItemRemoved={handleItemRemovedFromBasket} />
