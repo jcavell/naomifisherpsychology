@@ -17,6 +17,14 @@ export type Widget = {
   };
 };
 
+export type Logo = {
+  original: {
+    url: string;
+    width: number;
+    height: number;
+  };
+};
+
 export type Webinar = {
   id: string;
   name: { text: string };
@@ -26,6 +34,7 @@ export type Webinar = {
   ticket_classes: Ticket[];
   widgets: Widget[];
   url: string;
+  logo: Logo;
 
   // Added during processing
   agenda?: string[];

@@ -46,21 +46,30 @@ export const Basket: React.FC<BasketProps> = ({
     <div className={styles.cartContainer}>
       <h1 className={styles.cartTitle}>Order Summary</h1>
 
-      {/* Add column headings */}
-      <div className={styles.cartHeadings}>
-        <span>Product</span>
-        <span>Ticket</span>
-        <span>Price</span>
-      </div>
-
       {/* Render the cart items */}
       <ul className={styles.cartItems}>
         {items.map((item) => {
           // const checkoutItem = item as CheckoutItem; // Cast item to CheckoutItem
           return (
             <li key={item.id} className={styles.cartItem}>
-              <span className={styles.itemColumn}>{item.product_name}</span>
-              <span className={styles.itemColumn}>{item.variant_name}</span>
+              <span
+                className={styles.itemColumn}
+                style={{ display: "flex", alignItems: "center", gap: "10px" }}
+              >
+                {item.product_images?.length > 0 && (
+                  <img
+                    src={item.product_images[0]}
+                    alt={item.product_name}
+                    style={{
+                      width: "50px",
+                      height: "auto",
+                      objectFit: "cover",
+                      borderRadius: "4px",
+                    }}
+                  />
+                )}
+                {item.product_name} ({item.variant_name} ticket)
+              </span>
               <span className={styles.itemColumn}>
                 {formatPrice(item.price)}
               </span>

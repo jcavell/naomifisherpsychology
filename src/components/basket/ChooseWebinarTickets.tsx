@@ -80,7 +80,18 @@ const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
         className="overlay-content"
         onClick={(e) => e.stopPropagation()} // Prevent event bubbling
       >
-        <h2>{webinar.name.text}</h2>
+        <h2 style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <img
+            src={webinar.logo.original.url}
+            alt={`${webinar.name.text} logo`}
+            style={{
+              width: "40px", // Adjust the size of the image
+              height: "auto",
+              borderRadius: "4px",
+            }}
+          />
+          {webinar.name.text}
+        </h2>
         {`${webinar.day} ${webinar.month}`} at {`${webinar.startTime}`}
         {webinar.ticket_classes.some((ticket) =>
           inCart(`${webinar.id}_${ticket.id}`),

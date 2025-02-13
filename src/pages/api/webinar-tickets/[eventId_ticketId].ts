@@ -39,7 +39,7 @@ export async function GET({ params, request }) {
     product_id: eventId,
     product_name: webinar.name.text,
     product_description: webinar.description.text,
-    product_images: [],
+    product_images: [webinar.logo.original.url],
     variant_id: ticketClass.id,
     variant_name: ticketClass.name,
     currency: ticketClass.cost?.currency || "GBP",

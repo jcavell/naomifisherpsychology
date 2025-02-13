@@ -43,10 +43,9 @@
   padding: 0;
 }
 
-/* Each item aligns with the headings */
 .cartItem {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr auto; /* Three columns + button */
+  grid-template-columns: 2fr 1fr 1fr auto; /* Make the first column (item name) wider */
   align-items: center;
   padding: 10px 0;
   border-bottom: 1px solid #eee;
