@@ -13,17 +13,24 @@
 }
 
 /* Overlay content box */
+/*.overlay-content {*/
+/*    background: white; !* Makes the content box stand out *!*/
+/*    padding: 20px; !* Adds spacing inside the box *!*/
+/*    border-radius: 8px; !* Rounds the corners *!*/
+/*    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); !* Gives the box a slight shadow *!*/
+/*    width: 80%; !* Sets a max width for responsiveness *!*/
+/*    max-width: 500px; !* Ensures it doesn’t grow too large *!*/
+/*    text-align: center; !* Centers text and content *!*/
+/*}*/
+
+/* Ensure overlay-content has relative positioning for the button to work */
 .overlay-content {
-    background: white; /* Makes the content box stand out */
-    padding: 20px; /* Adds spacing inside the box */
-    border-radius: 8px; /* Rounds the corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Gives the box a slight shadow */
-    width: 80%; /* Sets a max width for responsiveness */
-    max-width: 500px; /* Ensures it doesn’t grow too large */
-    text-align: center; /* Centers text and content */
+    position: relative; /* Ensures absolute positioning works for the close button */
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
-
 
 .overlay-content button:hover {
     background: #cc0000; /* Darker red for hover effect */
@@ -89,4 +96,60 @@
     100% {
         transform: rotate(360deg);
     }
+}
+
+.close-overlay-button {
+    position: absolute;
+    top: 8px; /* Adjusted for a tighter fit */
+    right: 8px; /* Aligns it to the right */
+    background: none; /* No background for a clean look */
+    border: none; /* Removes border */
+    font-size: 0.8rem; /* Makes the button smaller */
+    color: #333; /* Neutral color */
+    cursor: pointer; /* Indicates it's clickable */
+    padding: 0; /* Removes default padding */
+    line-height: 1; /* Ensures the button doesn't appear large */
+    text-align: center; /* Centers the button visually */
+}
+
+.close-overlay-button:hover {
+    color: #ff0000; /* Highlight in red on hover for better visibility */
+}
+
+/* Ticket row container */
+.ticket-row {
+    display: grid; /* Use grid layout for columns */
+    grid-template-columns: 2fr 1fr auto; /* 2fr for name, 1fr for cost, auto for button */
+    align-items: center; /* Vertically align items */
+    gap: 10px; /* Add spacing between columns */
+    margin-bottom: 10px; /* Add spacing between rows */
+}
+
+/* Ticket name styling */
+.ticket-name {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Ticket cost styling */
+.ticket-cost {
+    font-size: 0.9rem;
+    color: #555;
+    text-align: right; /* Align the cost to the right */
+}
+
+/* Add-to-basket button (reuse existing styles) */
+.add-to-basket {
+    background: green;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.add-to-basket:hover {
+    background: darkgreen;
 }

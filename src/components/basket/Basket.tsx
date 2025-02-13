@@ -3,7 +3,8 @@ import { useCart } from "react-use-cart";
 import styles from "./Cart.module.css"; // Modular CSS for styles
 
 export interface BasketProps {
-  showActions?: boolean;
+  showEmptyBasketMessage?: boolean;
+  showCheckoutButton?: boolean;
   onItemRemoved?: () => void; // Callback when an item is removed
 }
 
@@ -14,7 +15,8 @@ const formatPrice = (amountInPence: number) =>
   }).format(amountInPence / 100); // Divide by 100 because amount is in pence
 
 export const Basket: React.FC<BasketProps> = ({
-  showActions = true,
+  showEmptyBasketMessage = true,
+  showCheckoutButton = true,
   onItemRemoved,
 }) => {
   const [isClient, setIsClient] = useState(false);
@@ -40,7 +42,8 @@ export const Basket: React.FC<BasketProps> = ({
     window.location.href = "/checkout";
   };
 
-  if (isEmpty) return <p className={styles.emptyCart}></p>;
+  if (isEmpty && showEmptyBasketMessage)
+    return <p className={styles.emptyCart}>Your basket it empty.</p>;
 
   return (
     <div className={styles.cartContainer}>
@@ -88,7 +91,7 @@ export const Basket: React.FC<BasketProps> = ({
         Total: <strong>{formatPrice(cartTotal)}</strong>
       </div>
 
-      {showActions && (
+      {showCheckoutButton && items.length > 0 && (
         <div className={styles.cartActions}>
           <button className={styles.checkoutButton} onClick={handleCheckout}>
             Checkout

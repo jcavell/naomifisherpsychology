@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useCart } from "react-use-cart";
 import type { BasketAndCheckoutItem } from "../../types/basket-and-checkout-item";
 import "./overlay.css";
+import Basket from "./Basket.tsx";
 
 export type BasketItemType = "webinar" | "course";
 
@@ -118,25 +119,17 @@ const Button: React.FC<BasketItem> = ({ id, type }) => {
             }}
           >
             <div className="overlay-content">
-              <h2>Basket</h2>
-              <ul>
-                {items.map((item) => (
-                  <li key={item.id}>
-                    {/*{JSON.stringify(item)}*/}
-                    {item.product_name} {item.variant_name}{" "}
-                    {formattedPrice.format(item.price / 100)}
-                    {/*each, quantity: {item.quantity ?? 1}, total {item.itemTotal}*/}
-                  </li>
-                ))}
-              </ul>
+              {/* Add a close button */}
               <button
+                className="close-overlay-button"
                 onClick={(e) => {
-                  e.stopPropagation(); // Prevent closing overlay from internal button clicks
+                  e.stopPropagation(); // Prevent the overlay click handler
                   closeOverlay();
                 }}
               >
-                Close
+                &times;
               </button>
+              <Basket />
             </div>
           </div>
         )}

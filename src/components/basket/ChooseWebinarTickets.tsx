@@ -80,6 +80,10 @@ const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
         className="overlay-content"
         onClick={(e) => e.stopPropagation()} // Prevent event bubbling
       >
+        {/* Cross Button for Close */}
+        <button className="close-overlay-button" onClick={handleClose}>
+          &times;
+        </button>
         <h2 style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <img
             src={webinar.logo.original.url}
@@ -108,12 +112,12 @@ const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
           webinar.ticket_classes
             .filter((ticket) => !ticket.hidden)
             .map((ticket) => (
-              <div key={ticket.id} style={{ marginBottom: "10px" }}>
-                <span>
-                  {ticket.display_name} - {ticket.cost?.display ?? "Free"}
+              <div className="ticket-row" key={ticket.id}>
+                <span className="ticket-name">{ticket.display_name}</span>
+                <span className="ticket-cost">
+                  {ticket.cost?.display ?? "Free"}
                 </span>
                 <button
-                  style={{ marginLeft: "10px" }}
                   className="add-to-basket"
                   onClick={() => handleAddToBasket(ticket)}
                   disabled={loading === `${webinar.id}_${ticket.id}`} // Disable button if loading
@@ -129,12 +133,11 @@ const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
         )}
         {/* Always Display Basket at the Bottom */}
         <div style={{ marginTop: "20px" }}>
-          <Basket onItemRemoved={handleItemRemovedFromBasket} />
+          <Basket
+            showEmptyBasketMessage={false}
+            onItemRemoved={handleItemRemovedFromBasket}
+          />
         </div>
-        {/* Close Button */}
-        <button onClick={handleClose} style={{ marginTop: "20px" }}>
-          Close
-        </button>
       </div>
     </div>
   );

@@ -1,9 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import BasketComponent from "../components/basket/Basket";
 const pageTitle = "Basket";
+import BasketWrapper from "../components/basket/BasketWrapper";
 ---
 
 <BaseLayout active="basket" pageTitle={pageTitle}>
-  <BasketComponent client:load />
+  <BasketWrapper client:load />
 </BaseLayout>

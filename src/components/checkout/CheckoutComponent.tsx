@@ -96,7 +96,7 @@ const CheckoutComponent: React.FC = () => {
   return (
     <CartProvider id="website">
       <div className={styles.cartAndCheckout}>
-        <Basket showActions={false} />
+        <Basket showCheckoutButton={false} />
         <Checkout />
       </div>
     </CartProvider>
