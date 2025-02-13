@@ -7,22 +7,17 @@ import type { BasketAndCheckoutItem } from "../../types/basket-and-checkout-item
 
 interface TicketSelectionOverlayProps {
   webinar: Webinar;
-  onClose: () => void;
+  onModifiedClose: () => void; // Notify modifications occurred and close
+  onCloseWithoutModification: () => void; // Close without modifications
 }
 
-const TicketSelectionOverlay: React.FC<
-  TicketSelectionOverlayProps & { reloadBasket: boolean }
-> = ({ webinar, reloadBasket, onClose }) => {
-  const { addItem, removeItem, inCart, emptyCart, items } = useCart();
-
-  useEffect(() => {
-    console.log("Reloading basket for webinar:", webinar.id);
-
-    // 2. If the cart is already empty, stop here to avoid unnecessary operations
-    if (items.length === 0) {
-      console.warn("Basket is already empty. Nothing to reload.");
-    }
-  }, [reloadBasket, webinar.id]);
+const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
+  webinar,
+  onModifiedClose,
+  onCloseWithoutModification,
+}) => {
+  const { addItem, removeItem, inCart } = useCart();
+  const [hasModified, setHasModified] = useState(false); // Local flag for modifications
 
   const handleAddToBasket = async (ticket: Ticket) => {
     const id = `${webinar.id}_${ticket.id}`;
@@ -39,20 +34,43 @@ const TicketSelectionOverlay: React.FC<
       } catch (error) {
         console.error("Error adding ticket to basket:", error);
       }
+      setHasModified(true); // Mark as modified locally
     }
   };
 
   const handleRemoveFromBasket = (ticket: Ticket) => {
+    setHasModified(true); // Mark as modified locally
     const id = `${webinar.id}_${ticket.id}`;
-    if (inCart(id)) {
-      removeItem(id);
+    try {
+      if (inCart(id)) {
+        console.log("Removing from basket", id);
+        removeItem(id);
+      } else {
+        console.warn("Ticket is not in the cart, nothing to remove");
+      }
+    } catch (error) {
+      console.error("Error in handleRemoveFromBasket:", error);
+    }
+  };
+
+  // Callback to detect when an item is removed directly from the basket
+  const handleItemRemovedFromBasket = () => {
+    console.log("Item removed from Basket component");
+    setHasModified(true); // Mark as modified
+  };
+
+  const handleClose = () => {
+    if (hasModified) {
+      onModifiedClose(); // Notify parent of modifications
+    } else {
+      onCloseWithoutModification(); // Notify no modifications
     }
   };
 
   return (
     <div
       className="overlay"
-      onClick={(e) => e.target === e.currentTarget && onClose()}
+      onClick={(e) => e.target === e.currentTarget && handleClose()}
     >
       <div
         className="overlay-content"
@@ -71,7 +89,9 @@ const TicketSelectionOverlay: React.FC<
               {inCart(`${webinar.id}_${ticket.id}`) ? (
                 <button
                   style={{ marginLeft: "10px" }}
-                  onClick={() => handleRemoveFromBasket(ticket)}
+                  onClick={() => {
+                    handleRemoveFromBasket(ticket); // Call the handler
+                  }}
                 >
                   Remove from Basket
                 </button>
@@ -87,10 +107,10 @@ const TicketSelectionOverlay: React.FC<
           ))}
         {/* Always Display Basket at the Bottom */}
         <div style={{ marginTop: "20px" }}>
-          <Basket />
+          <Basket onItemRemoved={handleItemRemovedFromBasket} />
         </div>
         {/* Close Button */}
-        <button onClick={onClose} style={{ marginTop: "20px" }}>
+        <button onClick={handleClose} style={{ marginTop: "20px" }}>
           Close
         </button>
       </div>
@@ -106,15 +126,20 @@ const TicketSelectorButton: React.FC<TicketSelectorButtonProps> = ({
   webinar,
 }) => {
   const [showOverlay, setShowOverlay] = useState(false);
-  const [reloadBasket, setReloadBasket] = useState(false); // Track when to reload the basket
+
+  const handleCloseWithoutModification = useCallback(() => {
+    console.log("No modifications detected, skipping reload!");
+    setShowOverlay(false); // Close overlay
+  }, []);
+
+  const handleModifiedClose = useCallback(() => {
+    console.log("Modifications detected");
+    setShowOverlay(false); // Close overlay
+    window.location.reload(); // Reload because no modifications occurred
+  }, []);
 
   const handleOpenOverlay = () => {
-    setShowOverlay(true); // Show the overlay
-    setReloadBasket((prev) => !prev); // Toggle reloadBasket (used to force refresh)
-  };
-
-  const handleCloseOverlay = () => {
-    setShowOverlay(false);
+    setShowOverlay(true); // Open overlay
   };
 
   return (
@@ -123,7 +148,8 @@ const TicketSelectorButton: React.FC<TicketSelectorButtonProps> = ({
       {showOverlay && (
         <TicketSelectionOverlay
           webinar={webinar}
-          onClose={handleCloseOverlay}
+          onModifiedClose={handleModifiedClose}
+          onCloseWithoutModification={handleCloseWithoutModification}
         />
       )}
     </>

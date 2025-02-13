@@ -4,6 +4,7 @@ import styles from "./Cart.module.css"; // Modular CSS for styles
 
 export interface BasketProps {
   showActions?: boolean;
+  onItemRemoved?: () => void; // Callback when an item is removed
 }
 
 const formatPrice = (amountInPence: number) =>
@@ -12,7 +13,10 @@ const formatPrice = (amountInPence: number) =>
     currency: "GBP",
   }).format(amountInPence / 100); // Divide by 100 because amount is in pence
 
-export const Basket: React.FC<BasketProps> = ({ showActions = true }) => {
+export const Basket: React.FC<BasketProps> = ({
+  showActions = true,
+  onItemRemoved,
+}) => {
   const [isClient, setIsClient] = useState(false);
   const { isEmpty, cartTotal, items, removeItem, emptyCart } = useCart();
 
@@ -23,6 +27,13 @@ export const Basket: React.FC<BasketProps> = ({ showActions = true }) => {
   if (!isClient) {
     return null; // Return nothing during SSR to prevent mismatched HTML
   }
+
+  const handleRemoveItem = (id: string) => {
+    removeItem(id); // Call the cart removal logic
+    if (onItemRemoved) {
+      onItemRemoved(); // Notify the parent component
+    }
+  };
 
   const handleCheckout = () => {
     if (items.length === 0) return alert("No items in basket");
@@ -55,7 +66,7 @@ export const Basket: React.FC<BasketProps> = ({ showActions = true }) => {
               </span>
               <button
                 className={styles.removeButton}
-                onClick={() => removeItem(item.id)}
+                onClick={() => handleRemoveItem(item.id)}
               >
                 Remove &times;
               </button>
