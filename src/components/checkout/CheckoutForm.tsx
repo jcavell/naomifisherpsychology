@@ -293,9 +293,12 @@ const CheckoutForm: React.FC = () => {
 
         <h2 className="checkout-heading">Choose your payment method</h2>
 
-        {/* Stripe PaymentElement */}
+        {/* STRIPE PAYMENT ELEMENT */}
         <div className="checkout-payment-element">
-          <PaymentElement />
+          <PaymentElement
+            id="payment-element"
+            options={paymentElementOptions}
+          />
         </div>
 
         {/* Checkbox for Terms and Conditions */}
@@ -310,7 +313,11 @@ const CheckoutForm: React.FC = () => {
               style={{ marginRight: "8px" }}
             />
             I agree to the &nbsp;
-            <a href="/terms" target="_blank" rel="noopener noreferrer">
+            <a
+              href="/terms-and-conditions"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               terms and conditions
             </a>
             .
