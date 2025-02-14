@@ -36,7 +36,7 @@ form {
 
 /* Buttons and links */
 button {
-    background: #0055DE;
+    background: green; /* Green background */
     font-family: Arial, sans-serif;
     color: #ffffff;
     border-radius: 4px;
@@ -48,11 +48,11 @@ button {
     display: block;
     transition: all 0.2s ease;
     box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
-    width: 100%;
+    width: 150px;
 }
 
 button:hover {
-    filter: contrast(115%);
+    filter: brightness(85%); /* Dark green hover effect */
 }
 
 button:disabled {
@@ -304,4 +304,62 @@ td {
     line-height: 18px;
     padding-top: 8px;
     text-align: center;
+}
+
+
+.form-error-message {
+    color: #d4351c; /* GOV.UK red */
+    font-size: 16px;
+    margin-bottom: 16px;
+}
+
+.checkout-form-field {
+    margin-bottom: 16px;
+}
+
+.field-error input,
+.field-error textarea,
+.field-error select {
+    border: 2px solid #d4351c; /* GOV.UK red */
+}
+
+.error-message {
+    color: #d4351c; /* GOV.UK red */
+    font-size: 14px;
+    margin-top: 4px; /* Space between input and error */
+}
+
+.checkout-checkbox {
+    margin-bottom: 16px;
+}
+
+.checkout-checkbox .error-message {
+    margin-left: 26px; /* Offset for checkbox error for alignment */
+}
+
+.checkout-checkbox label {
+    font-size: 14px;
+    color: #30313d;
+    display: flex;
+    align-items: center; /* Ensures proper alignment of the checkbox and text */
+}
+
+.checkout-checkbox input {
+    margin-right: 8px; /* Space between the checkbox and label text */
+}
+
+.checkout-checkbox a {
+    color: #0055de;
+    text-decoration: none;
+}
+
+.checkout-checkbox a:hover {
+    text-decoration: underline;
+}
+
+@media only screen and (max-width: 600px) {
+    #payment-element {
+        width: 100%;
+        max-width: 90%; /* Prevents tight layout */
+    }
 }
