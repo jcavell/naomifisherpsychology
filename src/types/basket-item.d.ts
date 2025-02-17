@@ -1,6 +1,6 @@
 export type product_type = "webinar" | "course";
 
-export type BasketAndCheckoutItem = {
+export type BasketItem = {
   id: string; //
   price: number; // in pence
   currency: string;

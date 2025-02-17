@@ -1,5 +1,5 @@
 import type { Webinar } from "../../../types/webinar";
-import type { BasketAndCheckoutItem } from "../../../types/basket-and-checkout-item";
+import type { BasketItem } from "../../../types/basket-item";
 
 export const prerender = false;
 
@@ -33,7 +33,7 @@ export async function GET({ params, request }) {
     });
   }
 
-  const checkoutItem: BasketAndCheckoutItem = {
+  const checkoutItem: BasketItem = {
     id: eventId + "_" + ticketClass.id,
     product_type: "webinar",
     product_id: eventId,

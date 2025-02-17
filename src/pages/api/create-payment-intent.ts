@@ -1,27 +1,9 @@
 import { stripe } from "./init-stripe.ts";
 import calculateOrderAmount from "../../scripts/calculateOrderAmount.ts";
-import type { BasketAndCheckoutItem } from "../../types/basket-and-checkout-item";
+import type { BasketItem } from "../../types/basket-item";
+import type { StripePaymentItemMetadata } from "../../types/stripe-payment-item-metadata";
 
 export const prerender = false;
-
-// function createMetadataFromCheckoutItems(
-//   items: BasketAndCheckoutItem[],
-// ): Record<string, string> {
-//   const metadataArray = items.map((item, index) => {
-//     const itemIndex = index + 1; // Start numbering from 1
-//
-//     return {
-//       [`item_${itemIndex}_name`]: item.product_name,
-//       [`item_${itemIndex}_id`]: item.product_id,
-//       [`item_${itemIndex}_price`]: item.unit_price.toString(), // Convert price to string
-//     };
-//   });
-//
-//   // Reduce the array of objects into a single metadata object
-//   return metadataArray.reduce((metadata, currentItem) => {
-//     return { ...metadata, ...currentItem };
-//   }, {});
-// }
 
 export async function POST({ params, request }) {
   const rawBody = await request.text();
@@ -30,10 +12,9 @@ export async function POST({ params, request }) {
   const json = JSON.parse(rawBody); // Safely parse the raw body as JSON
   // console.log("Parsed request body (as JSON): ", json);
 
-  const { items } = json as { items: BasketAndCheckoutItem[] };
-  const itemsForMetaData = items.map(
+  const { items } = json as { items: BasketItem[] };
+  const itemsMetadata: StripePaymentItemMetadata[] = items.map(
     ({
-      product_id,
       variant_name,
       added_at,
       variant_description,
@@ -48,7 +29,7 @@ export async function POST({ params, request }) {
   const paymentIntent = await stripe.paymentIntents.create({
     amount: calculateOrderAmount(items),
     currency: "gbp",
-    metadata: { items: JSON.stringify(itemsForMetaData) },
+    metadata: { items: JSON.stringify(itemsMetadata) },
     // In the latest version of the API, specifying the `automatic_payment_methods` parameter is optional because Stripe enables its functionality by default.
     automatic_payment_methods: {
       enabled: true,

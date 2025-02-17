@@ -5,7 +5,11 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 
-const CheckoutForm: React.FC = () => {
+interface CheckoutFormProps {
+  clientSecret: string;
+}
+
+const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -15,12 +19,22 @@ const CheckoutForm: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [message, setMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [paymentIntentId, setPaymentIntentId] = useState<string | null>(null);
+  const [kitSubscriberId, setKitSubscriberId] = useState<string | null>(null);
 
   // State variables for checkboxes
   const [agreedToTerms, setAgreedToTerms] = useState<boolean>(false);
   const [receiveUpdates, setReceiveUpdates] = useState<boolean>(false);
   const [showUpdatesCheckbox, setShowUpdatesCheckbox] = useState(false); // NEW: Control visibility of checkbox
-  const [isEmailValidating, setIsEmailValidating] = useState(false); // NEW: Track email validation state
+  const [isCheckingKit, setIsCheckingKit] = useState(false);
+
+  useEffect(() => {
+    // Extract paymentIntentId from the clientSecret
+    if (clientSecret) {
+      const extractedPaymentIntentId = clientSecret.split("_secret")[0];
+      setPaymentIntentId(extractedPaymentIntentId);
+    }
+  }, [clientSecret]);
 
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -58,41 +72,53 @@ const CheckoutForm: React.FC = () => {
     }
   };
 
-  // Handle email validation and API check to conditionally show checkbox
-  const handleEmailChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  // Handle changes to the email field
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const emailInput = e.target.value;
     setEmail(emailInput);
 
-    // First, check if email is valid
-    if (validateEmail(emailInput)) {
-      setIsEmailValidating(true); // Indicate validation in progress
+    // Clear subscriber ID immediately if the email is changed/removed
+    setKitSubscriberId(null);
+
+    // Validate email and update errors
+    if (!validateEmail(emailInput)) {
+      setErrors((prev) => ({
+        ...prev,
+        email: "Please enter a valid email address.",
+      }));
+      setShowUpdatesCheckbox(false);
+    } else {
       setErrors((prev) => ({ ...prev, email: "" }));
+    }
+  };
+
+  // Handle when the user finishes editing the email field
+  const handleEmailBlur = async () => {
+    // Check if the email is valid before making the request
+    if (validateEmail(email)) {
+      setIsCheckingKit(true); // Indicate the ConvertKit check is in progress
 
       try {
-        // Check if email exists in ConvertKit via API
-        const res = await fetch(`/api/get-kit-user?email=${emailInput}`);
+        const res = await fetch(`/api/get-kit-user?email=${email}`);
         const data = await res.json();
 
         if (res.ok && data.subscriber) {
-          // User exists in ConvertKit, hide the checkbox
-          setShowUpdatesCheckbox(false);
+          setKitSubscriberId(data.subscriber.id); // Set the subscriber ID
+          setShowUpdatesCheckbox(false); // Hide checkbox if user exists
         } else {
-          // User does not exist, show the checkbox
-          setShowUpdatesCheckbox(true);
+          setKitSubscriberId(null);
+          setShowUpdatesCheckbox(true); // Show checkbox if user doesn't exist
         }
       } catch (error) {
         console.error("Error validating email:", error);
         setMessage("An error occurred while validating the email.");
       } finally {
-        setIsEmailValidating(false); // Validation complete
+        setIsCheckingKit(false); // API call complete
       }
     } else {
-      // Invalid email format
-      setErrors((prev) => ({
-        ...prev,
-        email: "Please enter a valid email address.",
-      }));
-      setShowUpdatesCheckbox(false); // Hide checkbox if email is invalid
+      // Reset any existing subscriber ID since the email is invalid
+      setKitSubscriberId(null);
+      setShowUpdatesCheckbox(false); // Hide updates checkbox for invalid email
     }
   };
 
@@ -201,8 +227,30 @@ const CheckoutForm: React.FC = () => {
       //   "CheckoutForm: response from set-user-cookie: " + data.message,
       // );
 
-      // Step 2: Confirm payment using Stripe
+      // Step 1: Store user and unconfirmed payment details in supabase
+      const response = await fetch("/api/sb-insert-unconfirmed-purchase", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          paymentIntentId,
+          user: {
+            first_name: firstName,
+            surname: surname,
+            email,
+            kit_subscriber_id: kitSubscriberId,
+            subscribed_to_marketing: receiveUpdates,
+          },
+        }),
+      });
 
+      const data = await response.json();
+      if (!response.ok) {
+        // Log error but don't fail payment
+        console.error("Error creating a purchase on the server:", data.message);
+        setMessage(data.message);
+      }
+
+      // Step 2: Confirm payment using Stripe
       const { error } = await stripe.confirmPayment({
         elements,
         confirmParams: {
@@ -284,9 +332,10 @@ const CheckoutForm: React.FC = () => {
             id="email"
             type="email"
             value={email}
-            onChange={handleEmailChange} // Trigger validation on change
+            onChange={handleEmailChange}
+            onBlur={handleEmailBlur}
             className="checkout-input"
-            disabled={isEmailValidating} // Disable input while validating
+            disabled={isCheckingKit} // Disable input while checking ConvertKit
           />
           {errors.email && <p className="error-message">{errors.email}</p>}
         </div>

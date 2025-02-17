@@ -1,3 +1,37 @@
+## API endpoints 
+
+### GET /api/kit-user?email={email}
+https://localhost:4321/api/get-kit-user?email=jonny.cavell@gmail.com
+
+```json{
+"subscriber":{"id":2270329001,"first_name":"Jonny Cavell gmail","email_address":"jonny.cavell@gmail.com","state":"active","created_at":"2023-08-01T18:52:31Z","fields":{"last_name":"Cavell"}}}
+```
+
+### GET /api/webinar-tickets/{webinar_id}_{ticket_id}
+https://localhost:4321/api/webinar-tickets/1203174349869_2131545083
+
+```json{
+"id": "1203174349869_2131545083",
+"product_type": "webinar",
+"product_id": "1203174349869",
+"product_name": "Now What? Diagnosis: with Dr Naomi Fisher and Eliza Fricker",
+"product_description": "Your child has been given an autism or ADHD diagnosis, but what happens next?",
+"product_images": [
+"https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F936277653%2F137448283838%2F1%2Foriginal.20250115-124944?auto=format%2Ccompress&q=75&sharp=10&s=643bf26bc67b99c12ed34cd449da1ee0"
+],
+"variant_id": "2131545083",
+"variant_name": "Live Webinar",
+"currency": "GBP",
+"price": 1150,
+"added_at": "2025-02-13T14:42:52.713Z",
+"expires_at": "2025-02-27T12:00:00Z",
+"quantity": 1,
+"vatable": false
+}
+```
+
+## Purchase flow
+
 1. **User Adds Items to Cart**
    The user browses through the website and adds items to their shopping cart using the `react-use-cart` library. The shopping cart details, including products and their quantities, are tracked in state.
 2. **Navigating to the Checkout Page**

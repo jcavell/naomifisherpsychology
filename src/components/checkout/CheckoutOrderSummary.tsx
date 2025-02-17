@@ -1,8 +1,8 @@
 import React from "react";
-import type { BasketAndCheckoutItem } from "../../types/basket-and-checkout-item";
+import type { BasketItem } from "../../types/basket-item";
 
 interface LineItemsSummaryProps {
-  items: BasketAndCheckoutItem[];
+  items: BasketItem[];
   total: number; // Total price in pence
 }
 

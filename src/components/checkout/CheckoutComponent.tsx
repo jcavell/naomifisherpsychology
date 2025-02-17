@@ -76,7 +76,7 @@ const Checkout: React.FC = () => {
     clientSecret && (
       <div className={styles.checkoutFormWrapper}>
         <Elements options={{ clientSecret, appearance }} stripe={stripePromise}>
-          <CheckoutForm />
+          <CheckoutForm clientSecret={clientSecret} />
         </Elements>
       </div>
     )

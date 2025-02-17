@@ -3,7 +3,7 @@ import "./overlay.css"; // Overlay styles
 import { useCart } from "react-use-cart";
 import type { Ticket, Webinar } from "../../types/webinar";
 import Basket from "./Basket.tsx";
-import type { BasketAndCheckoutItem } from "../../types/basket-and-checkout-item";
+import type { BasketItem } from "../../types/basket-item";
 
 interface TicketSelectionOverlayProps {
   webinar: Webinar;
@@ -27,8 +27,7 @@ const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
       // Fetch ticket details and add to basket
       try {
         const response = await fetch(`/api/webinar-tickets/${id}`);
-        const basketAndCheckoutItem: BasketAndCheckoutItem =
-          await response.json(); // Parse the JSON response
+        const basketAndCheckoutItem: BasketItem = await response.json(); // Parse the JSON response
         if (!response.ok) {
           throw new Error(`Error: ${response.status} - ${response.statusText}`);
         }

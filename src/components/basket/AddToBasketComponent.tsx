@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useCart } from "react-use-cart";
-import type { BasketAndCheckoutItem } from "../../types/basket-and-checkout-item";
+import type { BasketItem } from "../../types/basket-item";
 import "./overlay.css";
 import Basket from "./Basket.tsx";
 
@@ -27,7 +27,7 @@ const handleFetchAndAddItem = async (addItem, inCart, id: string) => {
     }
 
     // Add CheckoutItem to basket
-    const checkoutItem: BasketAndCheckoutItem = await response.json(); // Parse the JSON response
+    const checkoutItem: BasketItem = await response.json(); // Parse the JSON response
     addItem(checkoutItem);
     // alert(`${JSON.stringify(checkoutItem)} added to the cart`);
   } catch (err) {
