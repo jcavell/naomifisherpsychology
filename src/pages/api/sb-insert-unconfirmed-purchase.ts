@@ -2,6 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import { stripe } from "./init-stripe.ts";
 import type { User } from "../../types/user";
 import type { StripePayment } from "../../types/stripe-payment";
+import type { BasketItem } from "../../types/basket-item";
 
 export const prerender = false;
 
@@ -14,36 +15,37 @@ export async function POST({ request }: { request: Request }) {
   try {
     // Parse the incoming request body
     const body = await request.json();
-    const { paymentIntentId, user }: { paymentIntentId: string; user: User } =
+    const {
+      payment_intent_id,
+      user,
+      basket_items,
+    }: { payment_intent_id: string; user: User; basket_items: BasketItem[] } =
       body;
 
-    // Validate paymentIntentId and user object
-    if (!paymentIntentId || !user || !user.email) {
+    // Validate paymentIntentId, user object, and basketItems array
+    if (
+      !payment_intent_id ||
+      !user ||
+      !user.email ||
+      !basket_items ||
+      !basket_items.length
+    ) {
+      console.error("Invalid request. Missing required fields.", {
+        payment_intent_id: payment_intent_id,
+        user,
+        basket_items: basket_items,
+      });
       return new Response(
-        JSON.stringify({ error: "Invalid request. Missing required fields." }),
+        JSON.stringify({
+          error: "Invalid request. Missing required fields.",
+        }),
         {
           status: 400,
         },
       );
     }
 
-    // Step 1: Retrieve the PaymentIntent from Stripe
-    const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
-
-    if (!paymentIntent) {
-      return new Response(
-        JSON.stringify({ error: "Failed to retrieve PaymentIntent." }),
-        { status: 404 },
-      );
-    }
-
-    // Step 2: Extract information from PaymentIntent
-    const items = paymentIntent.metadata.items
-      ? JSON.parse(paymentIntent.metadata.items)
-      : [];
-    const payment_method = paymentIntent.payment_method;
-
-    // Step 3: Upsert the user data into Supabase
+    // Step 1: Upsert the user data into Supabase
     const { data: upsertedUser, error: upsertUserError } = await supabase
       .from("Users")
       .upsert(
@@ -66,12 +68,12 @@ export async function POST({ request }: { request: Request }) {
       throw new Error(`Failed to upsert user: ${upsertUserError.message}`);
     }
 
-    // Step 4: Insert the purchase into Supabase
+    // Step 2: Insert the purchase into Supabase
     const userId = upsertedUser.id;
     const stripePayment: StripePayment = {
-      stripe_payment_id: paymentIntentId,
-      payment_amount_pence: paymentIntent.amount_received,
-      items, // Parsed from metadata
+      stripe_payment_id: payment_intent_id,
+      payment_amount_pence: 0,
+      items: basket_items,
       user_id: userId,
       payment_confirmed: false,
     };

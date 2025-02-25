@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import type { JSX } from "react";
 import { useStripe } from "@stripe/react-stripe-js";
 import "./Checkout.css";
+import { useCart } from "react-use-cart";
+import type { BasketItem } from "../../types/basket-item";
 
 // Define type for payment status
 type PaymentStatus =
@@ -99,10 +101,12 @@ const STATUS_CONTENT_MAP: Record<
 
 const CheckoutCompleteComponent: React.FC = () => {
   const stripe = useStripe();
+  const { items, emptyCart } = useCart();
 
   const [loading, setLoading] = useState(true); // Added a loading state
   const [status, setStatus] = useState<PaymentStatus>("default");
   const [intentId, setIntentId] = useState<string | null>(null);
+  const [purchasedItems, setPurchasedItems] = useState<BasketItem[]>([]); // Explicitly set to BasketItem[]
 
   useEffect(() => {
     if (!stripe) return;
@@ -121,6 +125,13 @@ const CheckoutCompleteComponent: React.FC = () => {
       if (paymentIntent) {
         setStatus(paymentIntent.status as PaymentStatus);
         setIntentId(paymentIntent.id);
+
+        // Empty the cart if the payment succeeded
+        if (paymentIntent.status === "succeeded") {
+          const cachedItems = [...items] as BasketItem[]; // Cast items to BasketItem[]
+          setPurchasedItems(cachedItems); // Save the cached items
+          emptyCart(); // Clear the cart
+        }
       }
 
       setLoading(false); // End loading after fetching the intent
@@ -141,6 +152,21 @@ const CheckoutCompleteComponent: React.FC = () => {
         {STATUS_CONTENT_MAP[status].icon}
       </div>
       <h2 id="status-text">{STATUS_CONTENT_MAP[status].text}</h2>
+
+      {status === "succeeded" && purchasedItems.length > 0 && (
+        <div id="purchased-items">
+          <h3>Items Purchased:</h3>
+          <ul>
+            {purchasedItems.map((item) => (
+              <li key={item.id}>
+                {item.quantity} x {item.product_name} (£
+                {(item.price / 100).toFixed(2)}){" "}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       {intentId && (
         <div id="details-table">
           <table>

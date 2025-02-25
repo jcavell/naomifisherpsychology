@@ -15,6 +15,11 @@ export async function POST({ params, request }) {
   const { items } = json as { items: BasketItem[] };
   const itemsMetadata: StripePaymentItemMetadata[] = items.map(
     ({
+      product_id,
+      variant_id,
+      quantity,
+      currency,
+      product_name,
       variant_name,
       added_at,
       variant_description,

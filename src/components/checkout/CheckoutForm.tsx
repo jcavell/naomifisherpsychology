@@ -4,6 +4,8 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
+import { checkoutFormStateAndValidation } from "./CheckoutFormStateAndValidation.ts";
+import { useCart } from "react-use-cart";
 
 interface CheckoutFormProps {
   clientSecret: string;
@@ -12,20 +14,32 @@ interface CheckoutFormProps {
 const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
   const stripe = useStripe();
   const elements = useElements();
+  const { items } = useCart();
 
-  // State variables to store user details and manage UI state
-  const [firstName, setFirstName] = useState<string>("");
-  const [surname, setSurname] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
+  const {
+    firstName,
+    setFirstName,
+    surname,
+    setSurname,
+    email,
+    setEmail,
+    agreedToTerms,
+    setAgreedToTerms,
+    receiveUpdates,
+    setReceiveUpdates,
+    showUpdatesCheckbox,
+    setShowUpdatesCheckbox,
+    errors,
+    setErrors,
+    validateForm,
+    validateEmail,
+  } = checkoutFormStateAndValidation();
+
+  // State variables
   const [message, setMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [paymentIntentId, setPaymentIntentId] = useState<string | null>(null);
   const [kitSubscriberId, setKitSubscriberId] = useState<string | null>(null);
-
-  // State variables for checkboxes
-  const [agreedToTerms, setAgreedToTerms] = useState<boolean>(false);
-  const [receiveUpdates, setReceiveUpdates] = useState<boolean>(false);
-  const [showUpdatesCheckbox, setShowUpdatesCheckbox] = useState(false); // NEW: Control visibility of checkbox
   const [isCheckingKit, setIsCheckingKit] = useState(false);
 
   useEffect(() => {
@@ -35,11 +49,6 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
       setPaymentIntentId(extractedPaymentIntentId);
     }
   }, [clientSecret]);
-
-  const validateEmail = (email: string): boolean => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
 
   // Handle First Name Change
   const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -122,14 +131,6 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
     }
   };
 
-  // Field-specific error messages
-  const [errors, setErrors] = useState({
-    firstName: "",
-    surname: "",
-    email: "",
-    terms: "",
-  });
-
   const origin = window.location.origin;
 
   // Fetch user data from cookies and prefill inputs on mount
@@ -165,49 +166,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    let formErrors = { ...errors };
-
-    // Validation: First Name
-    if (!firstName.trim()) {
-      formErrors.firstName = "Enter your first name.";
-    } else {
-      formErrors.firstName = "";
-    }
-
-    // Validation: Surname
-    if (!surname.trim()) {
-      formErrors.surname = "Enter your surname.";
-    } else {
-      formErrors.surname = "";
-    }
-
-    // Validation: Email
-    if (!email || !validateEmail(email)) {
-      formErrors.email = "Enter a valid email address.";
-    } else {
-      formErrors.email = "";
-    }
-
-    // Validation: Terms checkbox
-    if (!agreedToTerms) {
-      formErrors.terms = "You must agree to the terms and conditions.";
-    } else {
-      formErrors.terms = "";
-    }
-
-    setErrors(formErrors);
-
-    // Check if any errors exist
-    const hasErrors = Object.values(formErrors).some((error) => error !== "");
-    if (hasErrors) {
-      setMessage("Please fix the errors below.");
-      return;
-    }
-
-    if (!stripe || !elements) {
-      // Stripe hasn't loaded yet, disable form submission
-      return;
-    }
+    if (!validateForm() || !stripe || !elements) return;
 
     setIsLoading(true);
     try {
@@ -232,7 +191,8 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          paymentIntentId,
+          payment_intent_id: paymentIntentId,
+          basket_items: items,
           user: {
             first_name: firstName,
             surname: surname,

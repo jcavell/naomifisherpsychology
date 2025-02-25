@@ -20,7 +20,7 @@ export const Basket: React.FC<BasketProps> = ({
   onItemRemoved,
 }) => {
   const [isClient, setIsClient] = useState(false);
-  const { isEmpty, cartTotal, items, removeItem, emptyCart } = useCart();
+  const { isEmpty, cartTotal, items, removeItem } = useCart();
 
   useEffect(() => {
     setIsClient(true); // Ensures this component renders only on the client
