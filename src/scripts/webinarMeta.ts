@@ -44,53 +44,6 @@ const example_webinar: WebinarMeta = {
   contributers: [naomi, eliza],
 };
 
-const helping_your_demand_avoidant_child_with_change: WebinarMeta = {
-  id: "1111413330189",
-  image: helpingYourDemandAvoidantChildWithChangeImage,
-  tags: [tagDemandAvoidance, age5To11, age11To19, forParents],
-  contributers: [naomi],
-};
-
-const low_pressure_parenting_for_teens: WebinarMeta = {
-  id: "1118800224589",
-  image: lowPressureParentingImage,
-  tags: [tagALDP, age11To19, forParents],
-  contributers: [naomi, eliza],
-};
-
-const restoring_your_energy: WebinarMeta = {
-  id: "1098609644019",
-  image: restoringYourBalanceImage,
-  tags: [tagMentalHealth, forParents],
-  contributers: [abi],
-};
-
-const understanding_dyslexia: WebinarMeta = {
-  id: "1118945458989",
-  image: dyslexiaAndReadingDifficultiesImage,
-  tags: [tagSEN, age5To11, age11To19, forParents],
-  contributers: [abi],
-};
-
-const helping_your_child_with_burnout: WebinarMeta = {
-  id: "1139703857919",
-  image: helpingYourChildWithBurnoutImage,
-  tags: [tagBurnout, age5To11, age11To19, forParents],
-  contributers: [naomi],
-};
-
-const burnt_out_by_parenting: WebinarMeta = {
-  id: "1152421787589",
-  tags: [tagBurnout, forParents],
-  contributers: [naomi],
-};
-
-const helping_your_autistic_child_with_anger: WebinarMeta = {
-  id: "1216716193889",
-  tags: [tagAutism, forParents, age5To11, age11To19],
-  contributers: [naomi],
-};
-
 const helping_your_neurodivergent_teen_recover_from_school: WebinarMeta = {
   id: "1230238058149",
   tags: [tagNeurodiversity, tagSchool, forParents, age11To19],
@@ -110,6 +63,12 @@ const calm_and_connect: WebinarMeta = {
   contributers: [abi],
 };
 
+const my_child_hates_maths: WebinarMeta = {
+  id: "1244786462819",
+  tags: [tagSEN, tagSchool, age5To11, age11To19, forParents],
+  contributers: [abi],
+};
+
 const demand_avoidant_child: WebinarMeta = {
   id: "1246046932919",
   tags: [tagDemandAvoidance, forParents, age5To11, age11To19],
@@ -122,13 +81,7 @@ export function getWebinarMeta(eventId: string): WebinarMeta | undefined {
     calm_and_connect,
     demand_avoidant_child,
     helping_your_neurodivergent_teen_recover_from_school,
-    helping_your_autistic_child_with_anger,
-    helping_your_demand_avoidant_child_with_change,
-    low_pressure_parenting_for_teens,
-    restoring_your_energy,
-    understanding_dyslexia,
-    helping_your_child_with_burnout,
-    burnt_out_by_parenting,
+    my_child_hates_maths,
     what_now_diagnosis,
   ].find((webMeta) => eventId === webMeta.id);
 }
