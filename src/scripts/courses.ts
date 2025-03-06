@@ -14,7 +14,7 @@ export default async function getCourses() {
   courseCards.forEach((card) => {
     // Add checkout details
     const checkout = courseCheckouts.find(
-      (co) => co.data.url === card.data.checkoutUrl
+      (co) => co.data.url === card.data.checkoutUrl,
     );
     card.data.checkout = checkout?.data;
 
@@ -27,8 +27,13 @@ export default async function getCourses() {
 
   const sortedCards = courseCards.sort(
     (a, b) =>
-      allCourseMetas.indexOf(a.data.meta) - allCourseMetas.indexOf(b.data.meta)
+      allCourseMetas.indexOf(a.data.meta) - allCourseMetas.indexOf(b.data.meta),
   );
+
+  // Log each sorted card's id and data
+  sortedCards.forEach((card) => {
+    console.log(`Course ID: ${card.id}, Checkout URL:`, card.data?.checkoutUrl);
+  });
 
   return sortedCards;
 }
@@ -45,15 +50,16 @@ export function parseDescriptions(descriptions: string[]): string {
         (index === 0 || !tagged[index - 1].startsWith("<li>"))
         ? "<ul>" + line
         : line.endsWith("</li>") &&
-          (index + 1 === tagged.length || !tagged[index + 1].startsWith("<li>"))
-        ? line + "</ul>"
-        : line;
+            (index + 1 === tagged.length ||
+              !tagged[index + 1].startsWith("<li>"))
+          ? line + "</ul>"
+          : line;
     })
     .join("");
 }
 
 export function getTotalRunningTimeFromDescriptions(
-  descriptions: string[]
+  descriptions: string[],
 ): string {
   let runningTime = "";
   descriptions.forEach((line) => {
@@ -68,8 +74,8 @@ export async function getCourseFromTitle(title: string) {
   const courses = await getCourses();
   const course = courses.find((course) =>
     lowerCaseAndRemoveWhitespace(course.data.title).startsWith(
-      lowerCaseAndRemoveWhitespace(title)
-    )
+      lowerCaseAndRemoveWhitespace(title),
+    ),
   );
   // console.log(
   //   "Trying to find course with name " +
@@ -93,7 +99,7 @@ export async function getCoursesWithTag(tags: string[]) {
 
 export async function getCoursesWithTagWithoutOtherTags(
   withTags: string[],
-  withoutTags: string[] = []
+  withoutTags: string[] = [],
 ) {
   const courses = await getCourses();
 

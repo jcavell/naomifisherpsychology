@@ -1,3 +1,5 @@
+All school courses are half price until Sunday! Visit https://courses.naomifisher.co.uk/
+
 We (almost) all go to **school**, and there we learn many things. We learn that school is a good thing, and that we have to go to school in order to learn. We learn that without school, we’d get nowhere in life. 
 
 These beliefs run deep. The things we learn about ourselves and education at school often stay with us for our whole lives. 

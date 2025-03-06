@@ -215,7 +215,7 @@ export const anxietyAGuideForTeenagers: CourseMeta = {
 };
 
 export const afterSchoolMovingOnFromSchoolTrauma: CourseMeta = {
-  title: "After School: Helping your Autistic Child Move on from School Trauma",
+  title: "Helping your Autistic Child Move on from School Trauma",
   tags: [
     tagTrauma,
     tagSchool,
@@ -550,10 +550,12 @@ export const eotasWhatToExpect: CourseMeta = {
 // !! ADD NEW COURSES HERE !!
 // Most recent first
 export const allCourseMetas = [
+  burntOutBySchool,
+  afterSchoolMovingOnFromSchoolTrauma,
+  autisticChildrenWithSchool,
+  myChildIsNotFineAtSchool,
   anxietyAGuideForTeenagers,
   helpingYourTeenWithAnxiety,
-  navigatingTheSenTribunalProcess,
-  takingControlOfYourEhcpAnnualReview,
   demandAvoidance101,
   demandAvoidantAdolescent,
   neurodiversity101,
@@ -567,20 +569,18 @@ export const allCourseMetas = [
   helpingYourChildWithLearningDisabilitiesWithAnxiety,
   helpingYourAutisticChildWithTransitions,
   helpingYourAutisticChildWithOCD,
-  burntOutBySchool,
-  afterSchoolMovingOnFromSchoolTrauma,
-  autisticChildrenWithSchool,
-  myChildIsNotFineAtSchool,
-  doWeNeedAnEhcp,
-  weDontHaveAnEhcpWhatToExpectFromSchool,
   burnoutAGuideForTeenagers,
   demandAvoidanceGuideForTeenagers,
   traumaAndLoss,
   workingWithDemandAvoidantChildrenTherapy,
   thrivingAfterSchoolBreakdown,
-  helpingYourAutisticChildWithStartingSchool,
-  eotasWhatToExpect,
-  findingYourWayThroughTheEHCPJungle,
+  // doWeNeedAnEhcp,
+  // weDontHaveAnEhcpWhatToExpectFromSchool,
+  // helpingYourAutisticChildWithStartingSchool,
+  // eotasWhatToExpect,
+  // findingYourWayThroughTheEHCPJungle,
+  // navigatingTheSenTribunalProcess,
+  // takingControlOfYourEhcpAnnualReview,
   ALDP1To10,
   ALDP1To5,
   ALDP6To10,
@@ -605,10 +605,10 @@ export const allCourseMetas = [
 
 // For the featured list on the homepage
 export const featuredCourses = [
-  anxietyAGuideForTeenagers,
-  helpingYourTeenWithAnxiety,
-  autisticTeenWithAnxiety,
-  childWithSevereAnxiety,
+  burntOutBySchool,
+  myChildIsNotFineAtSchool,
+  autisticChildrenWithSchool,
+  afterSchoolMovingOnFromSchoolTrauma,
 ];
 
 // !! ADD RELATED COURSES HERE !!

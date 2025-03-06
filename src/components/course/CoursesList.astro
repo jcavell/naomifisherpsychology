@@ -6,6 +6,15 @@ import { getEntry } from "astro:content";
 const { categoryId, categoryName, courses } = Astro.props;
 
 const quotes = (await getEntry("course-quotes", "general-course-quotes")).data;
+
+// Log all course IDs
+courses.forEach((course) => {
+  if (!course) {
+    console.log("Course is empty");
+  } else {
+    console.log(`Course ID: ${course.id}, data: ${course.data?.checkoutUrl}`);
+  }
+});
 ---
 
 {
