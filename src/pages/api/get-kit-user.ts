@@ -18,12 +18,15 @@ export async function GET({ request }: { request: Request }) {
 
   try {
     // Step 3: Call the ConvertKit API with X-Kit-Api-Key header
-    const response = await fetch(`${KIT_BASE_URL}?email_address=${email}`, {
-      headers: {
-        "X-Kit-Api-Key": KIT_API_KEY, // Include the API key in the header
-        "Content-Type": "application/json",
+    const response = await fetch(
+      `${KIT_BASE_URL}?email_address=${encodeURIComponent(email)}`,
+      {
+        headers: {
+          "X-Kit-Api-Key": KIT_API_KEY, // Include the API key in the header
+          "Content-Type": "application/json",
+        },
       },
-    });
+    );
     if (!response.ok) {
       return new Response(
         JSON.stringify({

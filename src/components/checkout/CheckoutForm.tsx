@@ -108,7 +108,9 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
       setIsCheckingKit(true); // Indicate the ConvertKit check is in progress
 
       try {
-        const res = await fetch(`/api/get-kit-user?email=${email}`);
+        const res = await fetch(
+          `/api/get-kit-user?email=${encodeURIComponent(email)}`,
+        );
         const data = await res.json();
 
         if (res.ok && data.subscriber) {
