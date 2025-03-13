@@ -19,6 +19,7 @@ export async function POST({ params, request }) {
       variant_id,
       quantity,
       currency,
+      formatted_price,
       product_name,
       variant_name,
       added_at,

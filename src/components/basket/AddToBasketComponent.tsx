@@ -37,10 +37,6 @@ const handleFetchAndAddItem = async (addItem, inCart, id: string) => {
 };
 
 const Button: React.FC<BasketItem> = ({ id, type }) => {
-  const formattedPrice = new Intl.NumberFormat("en-GB", {
-    style: "currency",
-    currency: "GBP",
-  });
   const { addItem, inCart, removeItem, items } = useCart();
 
   // Local state to track cart status

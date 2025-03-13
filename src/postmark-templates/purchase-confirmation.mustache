@@ -1,0 +1,67 @@
+<h1>Dear {{first_name}}</h1>
+<p>Thank you for ordering with Naomi Fisher Psychology.</p>
+
+<table class="purchase" width="100%" cellpadding="0" cellspacing="0">
+  <tr>
+    <td>
+      <h3>Payment reference: {{stripe_payment_id}}</h3>
+    </td>
+    <td>
+      <h3 class="align-right">{{purchase_date}}</h3>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <table class="purchase_content" width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <th class="purchase_heading">
+            <p>Product</p>
+          </th>
+          <th class="purchase_heading">
+            <p>Description</p>
+          </th>
+          <th class="purchase_heading">
+            <p class="align-right">Price</p>
+          </th>
+        </tr>
+
+        {{#each items}}
+          <tr>
+            <td width="40%" class="purchase_item">
+              <p><strong>{{product_name}}</strong></p>
+            </td>
+            <td width="40%" class="purchase_item">
+              <p>{{variant_name}}</p>
+            </td>
+            <td class="align-right purchase_item" width="20%">
+              <p>{{formatted_price}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3" class="purchase_message">
+              {{#is_course}}
+                <p><a href="https://courses.naomifisher.co.uk/login">Log in</a> to view your courses.</p>
+              {{/is_course}}
+              {{#is_webinar}}
+                <p><em>You will be emailed instructions on how to join the webinar 2 hours before it starts.</em></p>
+              {{/is_webinar}}
+            </td>
+          </tr>
+        {{/each}}
+
+        <tr>
+          <td colspan="4" class="purchase_footer" valign="middle">
+            <p class="purchase_total purchase_total--label">Total</p>
+          </td>
+          <td class="align-right purchase_footer" valign="middle">
+            <p class="purchase_total">{{total}}</p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<p>If you have any questions, simply reply to this email or reach out to our <a
+  href="https://naomifisher.co.uk/contact/">support team</a> for help.</p>
+<p>Best wishes,<br>Naomi Fisher Psychology</p>

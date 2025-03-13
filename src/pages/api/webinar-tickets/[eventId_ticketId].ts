@@ -36,6 +36,8 @@ export async function GET({ params, request }) {
   const checkoutItem: BasketItem = {
     id: eventId + "_" + ticketClass.id,
     product_type: "webinar",
+    is_course: false,
+    is_webinar: true,
     product_id: eventId,
     product_name: webinar.name.text,
     product_description: webinar.description.text,
@@ -44,6 +46,7 @@ export async function GET({ params, request }) {
     variant_name: ticketClass.name,
     currency: ticketClass.cost?.currency || "GBP",
     price: ticketClass.cost?.value || 0,
+    formatted_price: ticketClass.cost?.display || "£0.00",
     added_at: new Date().toISOString(),
     expires_at:
       ticketClass.name.includes("+ recording") ||

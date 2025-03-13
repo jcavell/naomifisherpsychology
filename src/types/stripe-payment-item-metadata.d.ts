@@ -1,6 +1,7 @@
 export type StripePaymentItemMetadata = {
   id: string;
   price: number;
-  product_type: product_type;
+  is_course: boolean;
+  is_webinar: boolean;
   vatable: boolean;
 };

@@ -1,0 +1,26 @@
+************
+Dear {{first_name}},
+************
+
+Thank you for your purchase with Naomi Fisher Psychology.
+
+**Payment Reference:** {{stripe_payment_id}}
+
+**Purchase Date:** {{purchase_date}}
+
+**Purchase Details:**
+
+{{#each items}}
+- **Product:** {{product_name}} ({{variant_name}})
+**Description:** {{product_description}}
+**Price:** {{formatted_price}}
+{{#is_course}} _Login to view your course here: [Hyperlink removed for security reasons]()_ {{/is_course}} {{#is_webinar}} _You will be emailed instructions on how to join the webinar 2 hours before it starts._ {{/is_webinar}}
+
+{{/each}}
+
+**Total:** {{total}}
+
+If you have any questions, simply reply to this email or reach out to our support team at support@naomifisher.co.uk.
+
+Best wishes,
+Naomi Fisher Psychology

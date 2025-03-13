@@ -2,8 +2,17 @@ import Stripe from "stripe";
 import { createClient } from "@supabase/supabase-js";
 import { stripe } from "./init-stripe.ts";
 import Logger from "../../scripts/logger.ts";
+import type { Purchase } from "../../types/postmark-purchase";
+import { sendPurchaseConfirmationEmail } from "../../scripts/send-purchase-confirmation-via-postmark.ts";
+import type { BasketItem } from "../../types/basket-item";
+import moment from "moment";
 
 export const prerender = false; // Disable static pre-rendering for this endpoint
+
+const formattedPrice = new Intl.NumberFormat("en-GB", {
+  style: "currency",
+  currency: "GBP",
+});
 
 const supabase = createClient(
   import.meta.env.SUPABASE_API_URL,
@@ -56,7 +65,9 @@ export async function POST({ request }: { request: Request }) {
     // Step 1: Retrieve `user_id` from the `Purchases` table
     const { data: purchase, error: purchaseError } = await supabase
       .from("Purchases")
-      .select("user_id")
+      .select(
+        "user_id, payment_authorised_timestamp, payment_amount_pence, items",
+      )
       .eq("stripe_payment_id", paymentIntentId)
       .single();
 
@@ -104,7 +115,21 @@ export async function POST({ request }: { request: Request }) {
 
     Logger.INFO("User details retrieved", user);
 
-    // Step 4 Only continue if the user is subscribed to marketing
+    // Step 4 Send purchase confirmation email
+    const postmarkPurchase: Purchase = {
+      first_name: user.first_name,
+      surname: user.surname,
+      email: user.email,
+      stripe_payment_id: paymentIntent.id,
+      purchase_date: moment().format("Do MMMM YYYY"),
+      total: formattedPrice.format(paymentIntent.amount),
+      items: purchase.items as BasketItem[],
+    };
+
+    // TODO - maybe await and then update the users table with email confirmation sent
+    sendPurchaseConfirmationEmail(postmarkPurchase);
+
+    // Step 5 POST user to Kit only if the user clicked subscribe to marketing
     if (user.subscribed_to_marketing) {
       // Step 2.C. Double check they are not in Kit already
       const KIT_API_KEY = import.meta.env.KIT_API_KEY;
