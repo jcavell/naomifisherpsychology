@@ -1,3 +1,4 @@
+export let url = undefined;
 export type Ticket = {
   id: string;
   name: string;
@@ -25,6 +26,24 @@ export type Logo = {
   };
 };
 
+type VideoThumbnail = {
+  url: string;
+};
+
+type VideoThumbnails = {
+  small: VideoThumbnail;
+  medium: VideoThumbnail;
+  large: VideoThumbnail;
+};
+
+// Define the video data structure
+type VideoData = {
+  url: string;
+  embed_url: string;
+  thumbnail: VideoThumbnails;
+  provider: string;
+};
+
 export type Webinar = {
   id: string;
   name: { text: string };
@@ -38,7 +57,7 @@ export type Webinar = {
 
   // Added during processing
   agenda?: string[];
-  videoData?: string;
+  videoData?: VideoData; // Add the new videoData property
   orderedTickets?: ProcessedTicket[];
   startDateTime?: Date;
   endDateTime?: Date;

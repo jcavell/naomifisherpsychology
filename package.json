@@ -9,7 +9,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test": "vitest"
+    "test": "vitest",
+    "generate-eb-csv": "tsx src/scripts/create-webinar-csv-for-meta.ts"
   },
   "dependencies": {
     "@astrojs/netlify": "^5.5.4",
@@ -32,12 +33,17 @@
     "winston": "^3.17.0"
   },
   "devDependencies": {
+    "@types/node": "^22.13.11",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-basic-ssl": "^1.2.0",
     "cypress": "^13.9.0",
+    "dotenv": "^16.4.7",
     "prettier": "^3.4.1",
     "prettier-plugin-astro": "^0.14.1",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2",
     "vitest": "^1.6.0"
   }
 }

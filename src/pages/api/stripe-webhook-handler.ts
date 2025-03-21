@@ -19,6 +19,61 @@ const supabase = createClient(
   import.meta.env.SUPABASE_API_KEY,
 );
 
+async function createWebinarTickets(
+  purchaseId: number,
+  basketItems: BasketItem[],
+  userId: number,
+): Promise<void> {
+  // Filter only webinar items
+  const webinarItems = basketItems.filter((item) => item.is_webinar);
+
+  // Get webinars one by one (since we need to handle each ticket separately anyway)
+  const tickets = await Promise.all(
+    webinarItems.map(async (item) => {
+      const webinarId = parseInt(item.product_id);
+      const ticketId = parseInt(item.variant_id);
+
+      const { data: webinar, error: webinarError } = await supabase
+        .from("Webinars")
+        .select("recorded_ticket_id")
+        .eq("webinar_id", webinarId)
+        .single();
+
+      if (webinarError) {
+        Logger.ERROR("Failed to fetch webinar details", {
+          error: webinarError,
+          webinarId,
+        });
+        throw new Error(
+          `Failed to fetch webinar details: ${webinarError.message}`,
+        );
+      }
+
+      return {
+        webinar_id: webinarId,
+        purchase_id: purchaseId,
+        ticket_id: ticketId,
+        ticket_name: item.variant_name,
+        user_id: userId,
+        is_recording_ticket: webinar.recorded_ticket_id === ticketId,
+        email_sent_sent_starting_in_2_hours: false,
+        email_sent_sent_starting_in_20_mins: false,
+        email_sent_recording: false,
+      };
+    }),
+  );
+
+  // Insert tickets into Supabase
+  if (tickets.length > 0) {
+    const { error } = await supabase.from("WebinarTickets").insert(tickets);
+
+    if (error) {
+      Logger.ERROR("Failed to create webinar tickets", { error });
+      throw new Error(`Failed to create webinar tickets: ${error.message}`);
+    }
+  }
+}
+
 export async function POST({ request }: { request: Request }) {
   const sig = request.headers.get("stripe-signature");
   let event: Stripe.Event;
@@ -55,7 +110,7 @@ export async function POST({ request }: { request: Request }) {
   try {
     // Fetch the full PaymentIntent object using the Stripe API
     const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
-    Logger.INFO(`Retrieved PaymentIntent: ${JSON.stringify(paymentIntent)}`);
+    // Logger.INFO(`Retrieved PaymentIntent: ${JSON.stringify(paymentIntent)}`);
 
     Logger.INFO(
       "Attempting to retrieve user_id from Purchases table for stripe_charge_id of " +
@@ -66,7 +121,7 @@ export async function POST({ request }: { request: Request }) {
     const { data: purchase, error: purchaseError } = await supabase
       .from("Purchases")
       .select(
-        "user_id, payment_authorised_timestamp, payment_amount_pence, items",
+        "id, user_id, payment_authorised_timestamp, payment_amount_pence, items",
       )
       .eq("stripe_payment_id", paymentIntentId)
       .single();
@@ -101,7 +156,30 @@ export async function POST({ request }: { request: Request }) {
 
     console.log("Purchase record successfully updated.");
 
-    // Step 3: Fetch the user details from the `Users` table
+    // Step 3 insert ticket into WebinarTickets
+    try {
+      await createWebinarTickets(
+        purchase.id,
+        purchase.items as BasketItem[],
+        userId,
+      );
+      Logger.INFO("Successfully created webinar tickets", {
+        purchaseId: purchase.id,
+        userId,
+        itemCount: purchase.items.length,
+      });
+    } catch (error) {
+      Logger.ERROR("Failed to create webinar tickets", {
+        error: error instanceof Error ? error.message : "Unknown error",
+        userId,
+        items: purchase.items,
+      });
+      throw new Error(
+        "Failed to create webinar tickets. Please try again later.",
+      );
+    }
+
+    // Step 4: Fetch the user details from the `Users` table
     const { data: user, error: userError } = await supabase
       .from("Users")
       .select("first_name, surname, email, subscribed_to_marketing")
@@ -115,7 +193,7 @@ export async function POST({ request }: { request: Request }) {
 
     Logger.INFO("User details retrieved", user);
 
-    // Step 4 Send purchase confirmation email
+    // Step 5 Send purchase confirmation email
     const postmarkPurchase: Purchase = {
       first_name: user.first_name,
       surname: user.surname,
@@ -129,7 +207,7 @@ export async function POST({ request }: { request: Request }) {
     // TODO - maybe await and then update the users table with email confirmation sent
     sendPurchaseConfirmationEmail(postmarkPurchase);
 
-    // Step 5 POST user to Kit only if the user clicked subscribe to marketing
+    // Step 6 POST user to Kit only if the user clicked subscribe to marketing
     if (user.subscribed_to_marketing) {
       // Step 2.C. Double check they are not in Kit already
       const KIT_API_KEY = import.meta.env.KIT_API_KEY;

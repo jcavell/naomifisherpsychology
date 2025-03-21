@@ -8,8 +8,19 @@ import testWebinars1 from "../test-data/eventbrite/1event.json";
 import testWebinars3 from "../test-data/eventbrite/3events.json";
 
 // Environment variables
-const EB_BEARER = import.meta.env.EB_BEARER as string;
-const isDev = import.meta.env.DEV as boolean;
+// At the top of webinars.ts
+let EB_BEARER: string;
+let isDev: boolean = false; // default to false for Node.js context
+
+// Handle both Astro and Node.js environments
+if (import.meta.env) {
+  // Astro
+  EB_BEARER = import.meta.env.EB_BEARER;
+  isDev = import.meta.env.DEV;
+} else {
+  // Node
+  EB_BEARER = process.env.EB_BEARER as string;
+}
 
 // Fetch webinar details responses
 const getDetailsResponses = (webinars: Webinar[]): Promise<Response[]> => {
