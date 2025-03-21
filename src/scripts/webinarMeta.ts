@@ -39,12 +39,6 @@ const example_webinar: WebinarMeta = {
   contributers: [naomi, eliza],
 };
 
-const helping_your_neurodivergent_teen_recover_from_school: WebinarMeta = {
-  id: "1230238058149",
-  tags: [tagNeurodiversity, tagSchool, forParents, age11To19],
-  contributers: [naomi],
-};
-
 const demand_avoidant_child: WebinarMeta = {
   id: "1246046932919",
   tags: [tagDemandAvoidance, forParents, age5To11, age11To19],
@@ -69,13 +63,39 @@ const helping_your_autistic_child_with_trauma: WebinarMeta = {
   contributers: [naomi],
 };
 
+const does_my_child_need_an_ehcp: WebinarMeta = {
+  id: "1284018246139",
+  tags: [tagSEN, tagEHCPs, tagSchool, forParents, age5To11, age11To19],
+  contributers: [abi],
+};
+
+const book_launch_school_not_working: WebinarMeta = {
+  id: "1292582281399",
+  tags: [tagSchool, forParents, age5To11, age11To19],
+  contributers: [naomi, abi, eliza],
+};
+
+const not_fine_at_school_kinship: WebinarMeta = {
+  id: "1292558791139",
+  tags: [tagSchool, forParents, age5To11, age11To19],
+  contributers: [naomi],
+};
+const understanding_demand_avoidant_teen: WebinarMeta = {
+  id: "1283983492189",
+  tags: [tagDemandAvoidance, forParents, age11To19],
+  contributers: [naomi],
+};
+
 // !! ADD WEBINAR HERE !!
 export function getWebinarMeta(eventId: string): WebinarMeta | undefined {
   return [
     demand_avoidant_child,
-    helping_your_neurodivergent_teen_recover_from_school,
     navigating_the_sen_tribunal_process,
     now_what_not_fine_at_school,
     helping_your_autistic_child_with_trauma,
+    does_my_child_need_an_ehcp,
+    book_launch_school_not_working,
+    not_fine_at_school_kinship,
+    understanding_demand_avoidant_teen,
   ].find((webMeta) => eventId === webMeta.id);
 }
