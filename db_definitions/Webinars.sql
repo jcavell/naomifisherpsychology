@@ -5,6 +5,7 @@ create table public."Webinars"
     zoom_meeting_id    bigint                   not null,
     webinar_name       character varying        not null,
     recorded_ticket_id bigint                   not null,
+    zoom_account_name public.account_type not null default 'naomi'::account_type,
     constraint webinar_pkey primary key (webinar_id),
     constraint webinar_webinar_id_key unique (webinar_id)
 ) TABLESPACE pg_default;

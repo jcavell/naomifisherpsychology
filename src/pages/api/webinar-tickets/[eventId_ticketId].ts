@@ -48,12 +48,7 @@ export async function GET({ params, request }) {
     price: ticketClass.cost?.value || 0,
     formatted_price: ticketClass.cost?.display || "£0.00",
     added_at: new Date().toISOString(),
-    expires_at:
-      ticketClass.name.includes("+ recording") ||
-      ticketClass.name.includes("and recording") ||
-      ticketClass.name.includes("plus recording")
-        ? calculateExpiryIn30Days(ticketClass.sales_end)
-        : ticketClass.sales_end,
+    expires_at: ticketClass.sales_end,
     quantity: 1, // Default quantity
     vatable: false, // default
   };

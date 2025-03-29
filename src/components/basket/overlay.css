@@ -139,17 +139,23 @@
     text-align: right; /* Align the cost to the right */
 }
 
-/* Add-to-basket button (reuse existing styles) */
 .add-to-basket {
-    background: green;
+    background-color: #4CAF50; /* Original green color */
     color: white;
     border: none;
+    padding: 8px 16px;
     border-radius: 4px;
-    padding: 8px 12px;
     cursor: pointer;
-    font-size: 0.9rem;
+    transition: all 0.3s ease;
 }
 
-.add-to-basket:hover {
-    background: darkgreen;
+.add-to-basket:disabled {
+    background-color: #9ed4a1; /* Washed out green */
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Optional hover effect for non-disabled state */
+.add-to-basket:not(:disabled):hover {
+    background-color: #45a049;
 }

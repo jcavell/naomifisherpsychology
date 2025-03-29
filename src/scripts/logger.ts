@@ -42,8 +42,6 @@ class Logger {
     ),
     transports: [
       new winston.transports.Console(), // Logs to console
-      // Uncomment this for writing logs to a file in production:
-      // new winston.transports.File({ filename: 'app.log' })
     ],
   });
 

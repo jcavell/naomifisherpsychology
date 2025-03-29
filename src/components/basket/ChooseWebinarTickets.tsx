@@ -19,23 +19,27 @@ const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
   const { addItem, removeItem, inCart } = useCart();
   const [hasModified, setHasModified] = useState(false); // Local flag for modifications
   const [loading, setLoading] = useState<string | null>(null); // Keeps track of loading ticket ID
+  const [isAnyButtonLoading, setIsAnyButtonLoading] = useState(false); // New state
 
   const handleAddToBasket = async (ticket: Ticket) => {
     const id = `${webinar.id}_${ticket.id}`;
     if (!inCart(id)) {
       setLoading(id); // Set loading state for this ticket
+      setIsAnyButtonLoading(true); // Set global loading state
+
       // Fetch ticket details and add to basket
       try {
         const response = await fetch(`/api/webinar-tickets/${id}`);
-        const basketAndCheckoutItem: BasketItem = await response.json(); // Parse the JSON response
+        const basketItem: BasketItem = await response.json(); // Parse the JSON response
         if (!response.ok) {
           throw new Error(`Error: ${response.status} - ${response.statusText}`);
         }
-        addItem(basketAndCheckoutItem);
+        addItem(basketItem);
       } catch (error) {
         console.error("Error adding ticket to basket:", error);
       } finally {
         setLoading(null); // Clear loading state after completion
+        setIsAnyButtonLoading(false); // Clear global loading state
       }
       setHasModified(true); // Mark as modified locally
     }
@@ -119,7 +123,7 @@ const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
                 <button
                   className="add-to-basket"
                   onClick={() => handleAddToBasket(ticket)}
-                  disabled={loading === `${webinar.id}_${ticket.id}`} // Disable button if loading
+                  disabled={isAnyButtonLoading} // Use global loading state
                 >
                   {loading === `${webinar.id}_${ticket.id}` ? (
                     <span className="spinner" />

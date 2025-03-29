@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useCart } from "react-use-cart";
 import styles from "./Cart.module.css"; // Modular CSS for styles
+import type { BasketItem } from "../../types/basket-item";
 
 export interface BasketProps {
   showEmptyBasketMessage?: boolean;
@@ -14,6 +15,30 @@ const formatPrice = (amountInPence: number) =>
     currency: "GBP",
   }).format(amountInPence / 100); // Divide by 100 because amount is in pence
 
+function removeExpiredItemsFromCart(
+  removeItem: (id: string) => void,
+  basketItems: BasketItem[],
+) {
+  const now = new Date();
+  const twentyMinutesFromNow = new Date(now.getTime() + 20 * 60 * 1000);
+
+  const expiredItems: BasketItem[] = [];
+
+  basketItems.forEach((item) => {
+    const expiresAt = new Date(item.expires_at);
+
+    if (expiresAt < twentyMinutesFromNow) {
+      console.log("Expired, removing from cart:");
+      expiredItems.push(item);
+
+      // Remove from cart
+      removeItem(item.id);
+    }
+  });
+
+  return expiredItems;
+}
+
 export const Basket: React.FC<BasketProps> = ({
   showEmptyBasketMessage = true,
   showCheckoutButton = true,
@@ -21,10 +46,41 @@ export const Basket: React.FC<BasketProps> = ({
 }) => {
   const [isClient, setIsClient] = useState(false);
   const { isEmpty, cartTotal, items, removeItem } = useCart();
+  const [expiredCartItems, setExpiredCartItems] = useState<BasketItem[]>([]);
+  const [hasJustExpired, setHasJustExpired] = useState(false);
 
   useEffect(() => {
     setIsClient(true); // Ensures this component renders only on the client
   }, []);
+
+  // Run expired items check periodically
+  useEffect(() => {
+    if (!items.length) return;
+
+    // Initial check
+    const expiredItems = removeExpiredItemsFromCart(
+      removeItem,
+      items as BasketItem[],
+    );
+    if (expiredItems.length > 0) {
+      setExpiredCartItems(expiredItems);
+      setHasJustExpired(true);
+    }
+
+    // Set up interval to check every minute
+    const interval = setInterval(() => {
+      const expiredItems = removeExpiredItemsFromCart(
+        removeItem,
+        items as BasketItem[],
+      );
+      if (expiredItems.length > 0) {
+        setExpiredCartItems(expiredItems);
+        setHasJustExpired(true);
+      }
+    }, 60000);
+
+    return () => clearInterval(interval);
+  }, [items, removeItem]);
 
   if (!isClient) {
     return null; // Return nothing during SSR to prevent mismatched HTML
@@ -42,8 +98,31 @@ export const Basket: React.FC<BasketProps> = ({
     window.location.href = "/checkout";
   };
 
-  if (isEmpty && showEmptyBasketMessage)
-    return <p className={styles.emptyCart}>Your basket it empty.</p>;
+  // Show either expired items or empty basket message
+  if (isEmpty) {
+    return (
+      <div className={styles.cartContainer}>
+        {hasJustExpired && expiredCartItems.length > 0 ? (
+          <div className={styles.expiredMessage}>
+            <h2>Items Removed (Expired)</h2>
+            {expiredCartItems.map((item) => (
+              <div key={item.id} className={styles.expiredItem}>
+                <h3>{item.product_name}</h3>
+                <p>Expired at: {new Date(item.expires_at).toLocaleString()}</p>
+              </div>
+            ))}
+            {showEmptyBasketMessage && (
+              <p className={styles.emptyCart}>Your basket is now empty.</p>
+            )}
+          </div>
+        ) : (
+          showEmptyBasketMessage && (
+            <p className={styles.emptyCart}>Your basket is empty.</p>
+          )
+        )}
+      </div>
+    );
+  }
 
   return (
     <div className={styles.cartContainer}>

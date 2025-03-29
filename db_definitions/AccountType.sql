@@ -1,0 +1,1 @@
+CREATE TYPE account_type AS ENUM ('abi', 'naomi');

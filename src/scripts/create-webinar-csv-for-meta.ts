@@ -13,23 +13,47 @@ const __dirname = dirname(__filename);
 // Load environment variables from the project root
 dotenv.config({ path: join(__dirname, "../../.env") });
 
-export const getLowestPrice = (webinar: Webinar): number => {
+function generateWebinarEntries(webinar: Webinar) {
   if (!webinar.ticket_classes || webinar.ticket_classes.length === 0) {
-    return 0;
+    // If no ticket classes, return single product
+    return [
+      {
+        id: String(webinar.id),
+        title: webinar.name.text,
+        price: 0,
+        item_group_id: "",
+        variant_name: "",
+      },
+    ];
   }
 
-  // Filter visible tickets with valid cost and sort by price
-  const visibleTickets = webinar.ticket_classes
-    .filter((ticket) => !ticket.hidden && ticket.cost?.value !== undefined)
-    .sort((a, b) => (a.cost?.value || 0) - (b.cost?.value || 0));
+  const visibleTickets = webinar.ticket_classes.filter(
+    (ticket) => !ticket.hidden,
+  );
+  if (visibleTickets.length === 0) return [];
 
-  if (visibleTickets.length === 0) {
-    return 0;
+  // If there's only one ticket type, create a single product with no variants
+  if (visibleTickets.length === 1) {
+    return [
+      {
+        id: String(webinar.id),
+        title: webinar.name.text,
+        price: (visibleTickets[0].cost?.value || 0) / 100,
+        item_group_id: "", // No group ID for single products
+        variant_name: "",
+      },
+    ];
   }
 
-  // Return the lowest price
-  return (visibleTickets[0].cost?.value || 0) / 100; // Converting from pence to pounds
-};
+  // For multiple tickets, create only the variant entries (no parent row)
+  return visibleTickets.map((ticket) => ({
+    id: `${webinar.id}_${ticket.id}`,
+    title: webinar.name.text,
+    price: (ticket.cost?.value || 0) / 100,
+    item_group_id: String(webinar.id), // Same group ID for all variants
+    variant_name: ticket.name,
+  }));
+}
 
 async function generateWebinarsCsv(): Promise<void> {
   try {
@@ -72,42 +96,46 @@ async function generateWebinarsCsv(): Promise<void> {
     ].join(",");
 
     // Process each webinar into CSV rows
-    const rows = webinars.map((webinar) => {
-      const price = `${getLowestPrice(webinar).toFixed(2)} GBP`;
+    const rows = webinars.flatMap((webinar) => {
+      const entries = generateWebinarEntries(webinar);
 
-      return [
-        webinar.id,
-        `"${webinar.name.text.replace(/"/g, '""')}"`,
-        `"${webinar.description.text.replace(/"/g, '""')}"`,
-        "in stock",
-        "new",
-        price,
-        webinar.url,
-        webinar.logo?.original.url || "",
-        "Naomi Fisher Psychology",
-        "Education > Educational Resources > Parenting Resources",
-        "Services > Education & Learning",
-        "1000",
-        "", // sale_price
-        "", // sale_price_effective_date
-        "", // item_group_id
-        "unisex", // gender
-        "", // color
-        "", // size
-        "adult", // age_group
-        "", // material
-        "", // pattern
-        "", // shipping
-        "", // shipping_weight
-        "", // gtin
-        webinar.videoData?.url || "", // video url
-        "", // video tag
-        "online webinar", // product_tag[0]
-        "child psychology", // product_tag[1]
-        "parent education", // product_tags[2]
-        "child development", // product_tags[3]
-        "", // style[0]
-      ].join(",");
+      return entries.map((entry) => {
+        const price = `${entry.price.toFixed(2)} GBP`;
+
+        return [
+          entry.id,
+          `"${entry.title.replace(/"/g, '""')}"`,
+          `"${webinar.description.text.replace(/"/g, '""')}"`,
+          "in stock",
+          "new",
+          price,
+          webinar.url,
+          webinar.logo?.original.url || "",
+          "Naomi Fisher Psychology",
+          "Education > Educational Resources > Parenting Resources",
+          "Services > Education & Learning",
+          "1000",
+          "", // sale_price
+          "", // sale_price_effective_date
+          entry.item_group_id, // Group ID for variants
+          "unisex", // gender
+          "", // color
+          entry.variant_name, // Variant name in size field
+          "adult", // age_group
+          "", // material
+          "", // pattern
+          "", // shipping
+          "", // shipping_weight
+          "", // gtin
+          webinar.videoData?.url || "", // video url
+          "", // video tag
+          "online webinar", // product_tag[0]
+          "child psychology", // product_tag[1]
+          "parent education", // product_tags[2]
+          "child development", // product_tags[3]
+          "", // style[0]
+        ].join(",");
+      });
     });
 
     // Combine header and rows

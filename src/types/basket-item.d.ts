@@ -16,7 +16,7 @@ export type BasketItem = {
   variant_id: string;
   variant_name: string;
   variant_description?: string;
-  added_at: string;
-  expires_at: string;
+  added_at: string; // format "2025-02-13T14:42:52.713Z"
+  expires_at: string; // format "2024-09-23T12:30:00Z"
   vatable: boolean;
 };
