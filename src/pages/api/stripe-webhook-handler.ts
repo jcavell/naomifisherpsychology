@@ -9,6 +9,9 @@ import moment from "moment";
 
 export const prerender = false; // Disable static pre-rendering for this endpoint
 
+const KIT_API_KEY = import.meta.env.KIT_API_KEY;
+const KIT_BASE_URL = "https://api.convertkit.com/v4";
+
 const formattedPrice = new Intl.NumberFormat("en-GB", {
   style: "currency",
   currency: "GBP",
@@ -44,7 +47,7 @@ async function createWebinarTickets(
         Logger.INFO("Fetching webinar details", { webinarId, ticketId });
         const { data: webinar, error: webinarError } = await supabase
           .from("Webinars")
-          .select("recorded_ticket_id")
+          .select("webinar_name, recorded_ticket_id")
           .eq("webinar_id", webinarId)
           .single();
 
@@ -63,7 +66,7 @@ async function createWebinarTickets(
           webinar_id: webinarId,
           purchase_id: purchaseId,
           ticket_id: ticketId,
-          ticket_name: item.variant_name,
+          ticket_name: webinar.webinar_name + " " + item.variant_name,
           user_id: userId,
           is_recording_ticket: webinar.recorded_ticket_id === ticketId,
           emailed_starting_in_10_mins: false,
@@ -129,6 +132,7 @@ export async function POST({ request }: { request: Request }) {
     },
   );
 
+  // TODO Update purchase_event with event = webhook_received value = ${event.type}
   if (event.type !== "charge.succeeded") {
     Logger.INFO(`*** IGNORING EVENT ${event.type}`);
     return success;
@@ -159,12 +163,14 @@ export async function POST({ request }: { request: Request }) {
       .single();
 
     if (purchaseError || !purchase) {
+      // TODO Update purchase_event with error = event = Failed to retrieve Purchases record or user_id value = ${purchaseError}`
       Logger.ERROR(
         `Failed to retrieve Purchases record or user_id: ${purchaseError}`,
       );
       throw new Error("Failed to retrieve user_id from Purchases record.");
     }
     const userId = purchase.user_id;
+    // TODO Update purchase_event with event = User ID retrieved from Purchases value = ${userId}
     Logger.INFO(`User ID retrieved from Purchases: ${userId}`);
 
     // Step 2. Update pre-purchase with payment method, timestamp and confirm the purchase
@@ -181,12 +187,14 @@ export async function POST({ request }: { request: Request }) {
       .eq("stripe_payment_id", paymentIntent.id);
 
     if (updateError) {
+      // TODO Update purchase_event with error = event = 'Failed to upsert purchase record' value = ${updateError}`
       throw new Error(
         `Failed to upsert purchase record: ${updateError.message}`,
       );
     }
 
     console.log("Purchase record successfully updated.");
+    // TODO Update purchase_event with event Purchase updated to confirm purchase value = ''
 
     // Step 3 insert ticket into WebinarTickets
     try {
@@ -214,7 +222,9 @@ export async function POST({ request }: { request: Request }) {
     // Step 4: Fetch the user details from the `Users` table
     const { data: user, error: userError } = await supabase
       .from("Users")
-      .select("first_name, surname, email, subscribed_to_marketing")
+      .select(
+        "first_name, surname, email, subscribed_to_marketing, kit_subscriber_id",
+      )
       .eq("id", userId)
       .single();
 
@@ -232,20 +242,26 @@ export async function POST({ request }: { request: Request }) {
       email: user.email,
       stripe_payment_id: paymentIntent.id,
       purchase_date: moment().format("Do MMMM YYYY"),
-      total: formattedPrice.format(paymentIntent.amount),
+      total: formattedPrice.format(paymentIntent.amount / 100), // amount is in pence
       items: purchase.items as BasketItem[],
     };
 
-    // TODO - maybe await and then update the users table with email confirmation sent
+    // TODO - await update purchase_event table with email_sent event
     sendPurchaseConfirmationEmail(postmarkPurchase);
 
-    // Step 6 POST user to Kit only if the user clicked subscribe to marketing
-    if (user.subscribed_to_marketing) {
-      // Step 2.C. Double check they are not in Kit already
-      const KIT_API_KEY = import.meta.env.KIT_API_KEY;
-      const KIT_BASE_URL = "https://api.convertkit.com/v4";
+    Logger.INFO(
+      "User ticked subscribe to marketing? " + user.subscribed_to_marketing,
+    );
+    Logger.INFO(
+      "User already has a kit subscriber id? " + user.kit_subscriber_id
+        ? "YES: " + user.kit_subscriber_id
+        : "NO",
+    );
 
-      // Step 5 Upsert subscriber in Kit
+    // Step 6 Create new Kit subscriber (POST user to Kit /subscribers) only if:
+    // (1) The user clicked subscribe to marketing checkbox AND
+    // (2) They don't already have a kit_subscriber_id
+    if (user.subscribed_to_marketing && !user.kit_subscriber_id) {
       const inputBody = {
         email_address: user.email,
         first_name: user.first_name, // First name from Supabase
@@ -256,7 +272,10 @@ export async function POST({ request }: { request: Request }) {
         },
       };
 
-      Logger.INFO("Input body for new Kit subscriber:", inputBody);
+      Logger.INFO(
+        "Adding subscriber to kit with input body for new Kit subscriber:",
+        inputBody,
+      );
 
       const createResponse = await fetch(`${KIT_BASE_URL}/subscribers`, {
         method: "POST",
@@ -278,7 +297,7 @@ export async function POST({ request }: { request: Request }) {
       const subscriberId = createData.subscriber.id;
 
       if (subscriberId) {
-        // Step 6 Add the new subscriber to a form
+        // Add the new Kit subscriber to a form
         const formId = 7696333;
 
         const addToFormResponse = await fetch(
@@ -300,6 +319,10 @@ export async function POST({ request }: { request: Request }) {
 
         Logger.INFO(`Subscriber successfully added to form ${formId}.`);
       }
+    } else {
+      Logger.INFO(
+        "Skipping Kit subscriber creation as user already has a kit subscriber id.",
+      );
     }
 
     // Return 200 to indicate successful purchase

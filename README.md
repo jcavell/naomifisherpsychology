@@ -94,3 +94,73 @@ https://localhost:4321/api/webinar-tickets/1203174349869_2131545083
 - **Webhooks** on the backend ensure no payments go unlogged or tampered with.
 - The frontend manages payment state using `clientSecret` and interacts with Stripe for confirmation and status retrieval.
 - The `CheckoutComplete` page acts as the final summary for the user's transaction.
+
+## Testing Stripe Integration Locally
+
+### Development Sandbox Setup
+1. **Use the Dev Environment**
+    - Ensure you're using the "dev" sandbox in Stripe Dashboard
+    - Look for "Test Mode" indicator in the dashboard
+    - API keys should start with `pk_test_` and `sk_test_`
+
+2. **Environment Variables**
+   Add these to your `.env` file:
+   ```plaintext
+   STRIPE_SECRET_KEY=sk_test_...    # From dev sandbox
+   STRIPE_PUBLISHABLE_KEY=pk_test_...  # From dev sandbox
+   ```
+
+3. **Test Cards**
+   Use these cards for testing:
+    - Success: `4242 4242 4242 4242`
+    - Requires Authentication: `4000 0027 6000 3184`
+    - Decline: `4000 0000 0000 0002`
+
+   Use any future expiry date and any 3-digit CVC.
+
+### Local webhook setup
+
+1. **Login to Stripe CLI**
+```bash
+stripe login
+```
+
+2. **Start webhook forwarding**
+```bash
+stripe listen --forward-to https://localhost:4321/api/stripe-webhook-handler --skip-verify
+```
+
+This command will provide you with a webhook signing secret. Add it to your `.env` file:
+```plaintext
+STRIPE_WEBHOOK_SECRET=whsec_xxxxxxxxxxxxxxxxxxxxx
+```
+
+### Testing Webhook Events
+
+To trigger test events:
+```bash
+stripe trigger payment_intent.succeeded
+```
+
+To see all available webhook events:
+```bash
+stripe trigger --list
+```
+
+### Troubleshooting
+- Keep the Stripe CLI running while testing
+- Monitor webhook delivery in:
+    - Stripe CLI output
+    - Astro server logs
+    - Stripe Dashboard (Events section)
+- If webhooks aren't being received despite "Listening" status in Dashboard:
+    1. Log out of Stripe CLI: `stripe logout`
+    2. Log back in: `stripe login`
+    3. Start a new listener to get a fresh webhook signing secret:
+       ```bash
+       stripe listen --forward-to https://localhost:4321/api/stripe-webhook-handler --skip-verify
+       ```
+    4. Update your `.env` file with the new webhook signing secret
+
+  Note: Sometimes the webhook connection can become stale on Stripe's end even though
+  the Dashboard shows "Listening". A fresh login and new webhook key usually resolves this.
