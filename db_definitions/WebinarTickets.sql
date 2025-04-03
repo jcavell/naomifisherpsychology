@@ -12,6 +12,8 @@ create table public."WebinarTickets"
     emailed_zoom_details        boolean                                 not null default false,
     emailed_starting_in_2_hours boolean                                 not null default false,
     emailed_recording           boolean                                 not null default false,
+    emailed_first_invite        boolean                                 not null default false,
+    emailed_reminder            boolean                                 not null default false,
     constraint WebinarTickets_pkey primary key (id),
     constraint WebinarTickets_purchase_id_fkey foreign KEY (purchase_id) references "Purchases" (id),
     constraint WebinarTickets_user_id_fkey foreign KEY (user_id) references "Users" (id),
