@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useCart } from "react-use-cart";
-import type { BasketItem } from "../../types/basket-item";
 import "./overlay.css";
 import Basket from "./Basket.tsx";
 
@@ -9,6 +8,8 @@ export type BasketItemType = "webinar" | "course";
 export interface BasketItem {
   id: string;
   type: BasketItemType;
+  isProcessing: boolean;
+  setIsProcessing: (value: boolean) => void;
 }
 
 const handleFetchAndAddItem = async (addItem, inCart, id: string) => {
@@ -36,7 +37,12 @@ const handleFetchAndAddItem = async (addItem, inCart, id: string) => {
   }
 };
 
-const Button: React.FC<BasketItem> = ({ id, type }) => {
+const Button: React.FC<BasketItem> = ({
+  id,
+  type,
+  isProcessing,
+  setIsProcessing,
+}) => {
   const { addItem, inCart, removeItem, items } = useCart();
 
   // Local state to track cart status
@@ -52,7 +58,8 @@ const Button: React.FC<BasketItem> = ({ id, type }) => {
   }, [inCart, id]);
 
   const handleAddToBasket = async () => {
-    setButtonText("Adding to basket...");
+    setIsProcessing(true); // Disable all buttons
+    setButtonText("Adding item to basket.");
     const itemExists = inCart(id);
     if (!itemExists) {
       // only 1 of each item allowed
@@ -61,6 +68,7 @@ const Button: React.FC<BasketItem> = ({ id, type }) => {
       setButtonText("Add to Basket");
       setShowOverlay(true); // Show the overlay after adding to basket
     }
+    setIsProcessing(false); // Re-enable buttons
   };
 
   const handleRemoveFromBasket = () => {
@@ -68,6 +76,7 @@ const Button: React.FC<BasketItem> = ({ id, type }) => {
     setButtonText("Add to Basket");
     setIsInCart(false); // Update local state after removing
     // setShowOverlay(false); // Show the overlay after adding to basket
+    setIsProcessing(false); // Ensure buttons are enabled after remove
   };
 
   const closeOverlay = () => {
@@ -86,6 +95,7 @@ const Button: React.FC<BasketItem> = ({ id, type }) => {
         <div className="buy-now">
           {isInCart ? (
             <button
+              className="add-to-basket remove"
               onClick={(event) => {
                 event.preventDefault();
                 handleRemoveFromBasket();
@@ -95,6 +105,8 @@ const Button: React.FC<BasketItem> = ({ id, type }) => {
             </button>
           ) : (
             <button
+              className="add-to-basket"
+              disabled={isProcessing}
               onClick={(event) => {
                 event.preventDefault();
                 handleAddToBasket();
@@ -134,8 +146,20 @@ const Button: React.FC<BasketItem> = ({ id, type }) => {
   }
 };
 
-const AddToBasketComponent: React.FC<BasketItem> = ({ id, type }) => {
-  return <Button id={id} type={type} />;
+const AddToBasketComponent: React.FC<BasketItem> = ({
+  id,
+  type,
+  isProcessing,
+  setIsProcessing,
+}) => {
+  return (
+    <Button
+      id={id}
+      type={type}
+      isProcessing={isProcessing}
+      setIsProcessing={setIsProcessing}
+    />
+  );
 };
 
 export default AddToBasketComponent;

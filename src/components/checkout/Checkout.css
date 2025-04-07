@@ -363,3 +363,136 @@ td {
         max-width: 90%; /* Prevents tight layout */
     }
 }
+
+.purchase-summary {
+    margin: 2rem auto;
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    width: 90%;
+    max-width: 800px;
+}
+
+/* Add styling for variant name */
+.variant-name {
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.zoom-info {
+    font-style: italic;
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin-top: 0.25rem;
+}
+
+.webinar-name {
+    font-weight: 600;
+    color: #30313D;
+}
+
+.zoom-info {
+    font-style: italic;
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin-top: 0.25rem;
+}
+
+/* Adjust item details container */
+.item-details > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.purchase-summary h3 {
+    color: #30313D;
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+}
+
+.purchase-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    background: white;
+}
+
+.purchase-table th,
+.purchase-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.purchase-table th {
+    background-color: #f1f3f5;
+    font-weight: 600;
+    color: #30313D;
+}
+
+.purchase-table td {
+    color: #6D6E78;
+}
+
+.item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #dee2e6;
+}
+
+.item-details {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.item-details > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.total-row {
+    font-weight: 600;
+    background-color: #f8f9fa;
+}
+
+.total-row td {
+    color: #30313D;
+}
+
+.expires-text {
+    color: #6c757d;
+    font-size: 0.875rem;
+}
+
+/* Responsive adjustments */
+@media only screen and (max-width: 600px) {
+    .purchase-summary {
+        padding: 1rem;
+        margin: 1rem 0;
+    }
+
+    .purchase-table {
+        font-size: 0.875rem;
+    }
+
+    .purchase-table th,
+    .purchase-table td {
+        padding: 0.75rem;
+    }
+
+    .item-image {
+        width: 60px;
+        height: 60px;
+    }
+
+    .expires-text {
+        font-size: 0.75rem;
+    }
+}

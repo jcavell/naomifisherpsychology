@@ -81,8 +81,8 @@ function addOrderedTickets(webinar: Webinar): void {
       status: ticket.on_sale_status,
       name: ticket.display_name,
     }))
-    .filter((w) => w.cost)
-    .sort((b, a) => (a.costValue || 0) - (b.costValue || 0));
+    .filter((t) => !t.hidden)
+    .sort((a, b) => a.costValue - b.costValue);
 }
 
 // Add formatted date and time details to a webinar
@@ -189,6 +189,8 @@ export default async function getWebinars(): Promise<Webinar[]> {
     });
   }
 
+  webinars.forEach(logWebinarSummary);
+
   // Return webinars that have tickets and haven't ended
   return webinars.filter((w) => {
     const endDateTime = new Date(Date.parse(w.end.utc));
@@ -196,4 +198,16 @@ export default async function getWebinars(): Promise<Webinar[]> {
 
     return w.orderedTickets?.length && endDateTime > now;
   });
+}
+
+function logWebinarSummary(webinar: Webinar): void {
+  console.log(`
+Webinar Summary:
+ID: ${webinar.id}
+Name: ${webinar.name.text}
+Tickets:
+${webinar.orderedTickets
+  ?.map((ticket) => `- ${ticket.name}: ${ticket.costPlusFee}`)
+  .join("\n")}
+-------------------`);
 }

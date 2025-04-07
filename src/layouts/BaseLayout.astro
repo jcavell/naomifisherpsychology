@@ -2,6 +2,7 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import NaomiStyle from "../styles/naomiStyle.astro";
+import CookieConsent from "../components/CookieConsent.astro";
 
 const { active, tagName, tagUrl, bodyClassName, metaDescription } = Astro.props;
 
@@ -77,5 +78,6 @@ const bodyClass = bodyClassName
     <div class="top-trigger">
       <a href="#"> Top </a>
     </div>
+    <CookieConsent />
   </body>
 </html>

@@ -2,73 +2,117 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout pageTitle="Privacy Policy">
+<BaseLayout pageTitle="Cookie Policy">
   <div class="page-intro-wrapper">
     <div class="page-intro-text">
+      <style>
+        .page-intro-text ul {
+          margin-bottom: 2rem; /* Adds space after bullet points */
+        }
+
+        .page-intro-text h2 {
+          margin-top: 2rem; /* Consistent spacing before headings */
+        }
+      </style>
+
       <h1>Website Cookie Policy</h1>
 
       <p>
-        Our website uses cookies to distinguish you from other users of our
-        website. This helps us to provide you with a good experience when you
-        browse our website and also allows us to improve our site.
+        Our website uses cookies to distinguish you from other users and provide
+        essential functionality. This helps us provide you with a good
+        experience and allows us to improve our site.
       </p>
+
+      <h2>What is a Cookie?</h2>
       <p>
         A cookie is a small file of letters and numbers that we store on your
-        browser or the hard drive of your computer if you agree. Cookies contain
-        information that is transferred to your computer's hard drive.
-      </p><p>
-        We use the following cookies:
-        <ul>
-          <li>
-            Strictly necessary cookies. These are cookies that are required for
-            the operation of our website. They include, for example, cookies
-            that enable you to log into secure areas of our website, use a
-            shopping cart or make use of e-billing services.
-          </li>
-          <li>
-            Analytical or performance cookies. These allow us to recognise and
-            count the number of visitors and to see how visitors move around our
-            website when they are using it. This helps us to improve the way our
-            website works, for example, by ensuring that users are finding what
-            they are looking for easily.
-          </li>
-          <li>
-            Functionality cookies. These are used to recognise you when you
-            return to our website. This enables us to personalise our content
-            for you, greet you by name and remember your preferences (for
-            example, your choice of language or region).
-          </li>
-          <li>
-            Targeting cookies. These cookies record your visit to our website,
-            the pages you have visited and the links you have followed. We will
-            use this information to make our website and the advertising
-            displayed on it more relevant to your interests. [We may also share
-            this information with third parties for this purpose.]
-          </li>
-        </ul>
+        browser or computer's hard drive with your consent. Cookies contain
+        information that is transferred to your computer.
+      </p>
 
-        <!-- <p>
-          You can find more information about the individual cookies we use and
-          the purposes for which we use them in the table below:
+      <h2>Essential Cookies</h2>
+      <p>
+        These cookies are necessary for the website to function and cannot be
+        switched off:
+      </p>
+      <ul>
+        <li>
+          <strong>Stripe Payment Processing:</strong> Used to process payments securely
+          and maintain shopping cart functionality
+        </li>
+        <li>Session management and security features</li>
+        <li>Shopping cart and checkout functionality</li>
+      </ul>
 
-          <table>
-            <th>Cookie key</th>
-            <th>Domain Path</th>
-            <th>Cookie type </th><th>Expiration</th>
-            <th>Description</th>
-            <tr>
-              <td>__cf_bm More info</td>
-              <td> .convertkit.com</td>
-              <td>Third-party</td>
-              <td>30 minutes</td>
-              <td
-                >This cookie is used to distinguish between humans and bots.
-                This is beneficial for the website, in order to make valid
-                reports on the use of their website.</td
-              >
-            </tr>
-          </table>
-        </p> -->
+      <h2>Analytics and Performance Cookies</h2>
+      <p>
+        We use Google Tag Manager and Google Analytics to understand how
+        visitors use our website:
+      </p>
+      <ul>
+        <li>Visitor usage patterns and popular pages</li>
+        <li>Website traffic sources</li>
+        <li>Anonymous demographic information</li>
+        <li>Website performance metrics</li>
+      </ul>
+
+      <h2>Cookie Duration</h2>
+      <ul>
+        <li>
+          <strong>Essential Cookies (Stripe):</strong> Session-based and some persistent
+          cookies (up to 1 year)
+        </li>
+        <li>
+          <strong>Analytics Cookies:</strong> Up to 2 years for certain Google Analytics
+          cookies
+        </li>
+      </ul>
+
+      <h2>Data Usage & Privacy</h2>
+      <ul>
+        <li>
+          Payment data is processed securely by Stripe and never stored on our
+          servers
+        </li>
+        <li>
+          Analytics data is anonymized and used only for website improvement
+        </li>
+        <li>We do not sell or share your personal data with third parties</li>
+      </ul>
+
+      <h2>Your Choices</h2>
+      <p>
+        While essential cookies cannot be disabled due to their crucial role in
+        website functionality, you have control over analytics cookies through:
+      </p>
+      <ul>
+        <li>Our cookie consent banner settings</li>
+        <li>Your browser's cookie settings</li>
+        <li>Google Analytics opt-out browser add-on</li>
+      </ul>
+
+      <h2>Third-Party Privacy Policies</h2>
+      <p>
+        For more detailed information about how our service providers handle
+        your data, please visit:
+      </p>
+      <ul>
+        <li>
+          <a href="https://stripe.com/privacy" target="_blank"
+            >Stripe Privacy Policy</a
+          >
+        </li>
+        <li>
+          <a href="https://policies.google.com/privacy" target="_blank"
+            >Google Privacy Policy</a
+          >
+        </li>
+      </ul>
+
+      <h2>Updates to This Policy</h2>
+      <p>
+        We may update this cookie policy from time to time. Please check back
+        regularly to stay informed about how we use cookies on our website.
       </p>
     </div>
   </div>

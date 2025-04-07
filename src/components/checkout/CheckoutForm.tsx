@@ -12,9 +12,15 @@ interface CheckoutFormProps {
 }
 
 const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
-  const stripe = useStripe();
-  const elements = useElements();
+  // Only initialize Stripe hooks if we have a clientSecret (paid items)
+  const stripe = clientSecret ? useStripe() : null;
+  const elements = clientSecret ? useElements() : null;
+
   const { items } = useCart();
+
+  const isBasketFree = (items: any[]): boolean => {
+    return items.every((item) => item.price === 0);
+  };
 
   const {
     firstName,
@@ -164,9 +170,56 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
   //   fetchUserData();
   // }, []);
 
+  const handleFreeCheckout = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!validateForm()) return;
+
+    setIsLoading(true);
+    try {
+      const response = await fetch("/api/process-free-checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          basket_items: items,
+          user: {
+            first_name: firstName,
+            surname: surname,
+            email,
+            kit_subscriber_id: kitSubscriberId,
+            subscribed_to_marketing: receiveUpdates,
+          },
+        }),
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.message);
+      }
+
+      // Redirect to success page
+      window.location.href = `${origin}/checkout-complete`;
+    } catch (error) {
+      setMessage(
+        error instanceof Error
+          ? error.message
+          : "An error occurred processing your free items.",
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   // Form submission handler
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (isBasketFree(items)) {
+      await handleFreeCheckout(e);
+      return;
+    }
+
+    // Paid for
 
     if (!validateForm() || !stripe || !elements) return;
 
@@ -243,6 +296,11 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
     layout: "accordion", // Customize the PaymentElement layout
   };
 
+  const getButtonText = () => {
+    if (isLoading) return <div className="spinner" id="spinner"></div>;
+    return isBasketFree(items) ? "Complete Registration" : "Pay now";
+  };
+
   return (
     <div className="checkout-container">
       {message && <p className="form-error-message">{message}</p>}
@@ -302,15 +360,19 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
           {errors.email && <p className="error-message">{errors.email}</p>}
         </div>
 
-        <h2 className="checkout-heading">Choose your payment method</h2>
-
         {/* STRIPE PAYMENT ELEMENT */}
-        <div className="checkout-payment-element">
-          <PaymentElement
-            id="payment-element"
-            options={paymentElementOptions}
-          />
-        </div>
+        {!isBasketFree(items) && (
+          <>
+            <h2 className="checkout-heading">Choose your payment method</h2>
+
+            <div className="checkout-payment-element">
+              <PaymentElement
+                id="payment-element"
+                options={paymentElementOptions}
+              />
+            </div>
+          </>
+        )}
 
         {/* Checkbox for Terms and Conditions */}
         <div
@@ -350,19 +412,14 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
           </div>
         )}
 
-        {/* Submit button */}
         <button
           className="checkout-submit-button"
-          disabled={isLoading || !stripe || !elements}
+          disabled={
+            isLoading || (!isBasketFree(items) && (!stripe || !elements))
+          }
           id="submit"
         >
-          <span id="button-text">
-            {isLoading ? (
-              <div className="spinner" id="spinner"></div>
-            ) : (
-              "Pay now"
-            )}
-          </span>
+          <span id="button-text">{getButtonText()}</span>
         </button>
       </form>
     </div>

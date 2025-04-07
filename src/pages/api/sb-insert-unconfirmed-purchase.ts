@@ -1,8 +1,8 @@
 import { createClient } from "@supabase/supabase-js";
-import { stripe } from "./init-stripe.ts";
 import type { User } from "../../types/user";
 import type { StripePayment } from "../../types/stripe-payment";
 import type { BasketItem } from "../../types/basket-item";
+import { upsertUser } from "./sb-users.ts";
 
 export const prerender = false;
 
@@ -46,27 +46,7 @@ export async function POST({ request }: { request: Request }) {
     }
 
     // Step 1: Upsert the user data into Supabase
-    const { data: upsertedUser, error: upsertUserError } = await supabase
-      .from("Users")
-      .upsert(
-        {
-          first_name: user.first_name,
-          surname: user.surname,
-          email: user.email,
-          kit_subscriber_id: user.kit_subscriber_id || null,
-          subscribed_to_marketing: user.kit_subscriber_id
-            ? true
-            : (user.subscribed_to_marketing ?? false),
-        },
-        { onConflict: "email" },
-      )
-      .select("id")
-      .single();
-
-    if (upsertUserError) {
-      console.error("Failed to upsert user:", upsertUserError);
-      throw new Error(`Failed to upsert user: ${upsertUserError.message}`);
-    }
+    const upsertedUser = await upsertUser(user);
 
     // Step 2: Insert the purchase into Supabase
     const userId = upsertedUser.id;

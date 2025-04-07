@@ -9,6 +9,7 @@ import { getEntry } from "astro:content";
 import StaticImage from "../components/StaticImage.astro";
 import naomiAndElizaImage from "../images/static/naomi-and-eliza-looking-at-book.jpg";
 import Newsletter from "../components/Newsletter.astro";
+import { RemoveFinishedWebinars } from "../components/webinar/RemoveFinishedWebinars";
 
 const quotes = (await getEntry("webinar-quotes", "general-webinar-quotes"))
   .data;
@@ -16,7 +17,6 @@ const quotes = (await getEntry("webinar-quotes", "general-webinar-quotes"))
 const pageTitle = "Webinars";
 const webinars = await getWebinars();
 
-//console.log(JSON.stringify(webinars));
 const metaDescription =
   "Dr Naomi Fisher and Dr Abigail Fisher's upcoming live webinars on helping your autistic teenagers and children, for parents worried about their child's anxiety, demand avoidance and burnout. For helping families with problems at school, SEN, EHCPs. With Elia Fricker, the Art of Low Demand Parenting";
 ---
@@ -70,6 +70,8 @@ const metaDescription =
     webinars.length > 0 && (
       <>
         <h2 class="section-title">Upcoming</h2>
+
+        <RemoveFinishedWebinars client:load />
 
         {webinars.map((webinar, index) => (
           <WebinarSummary webinar={webinar} />

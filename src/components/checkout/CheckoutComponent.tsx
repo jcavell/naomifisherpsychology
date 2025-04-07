@@ -17,6 +17,10 @@ const Checkout: React.FC = () => {
   const [isHydrated, setIsHydrated] = useState(false);
   const [clientSecret, setClientSecret] = useState<string | null>(null); // Track clientSecret for Stripe initialization
 
+  const isBasketFree = (items: any[]): boolean => {
+    return items.every((item) => item.price === 0);
+  };
+
   // Ensure the cart is fully hydrated before rendering
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -26,7 +30,7 @@ const Checkout: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (isHydrated && items.length > 0) {
+    if (isHydrated && items.length > 0 && !isBasketFree(items)) {
       console.log(
         "Calling create-payment-intent with Items: ",
         JSON.stringify(items),
@@ -63,6 +67,20 @@ const Checkout: React.FC = () => {
 
   if (isEmpty) {
     return;
+  }
+
+  // For free items, render CheckoutForm without Stripe Elements
+  if (isBasketFree(items)) {
+    return (
+      <div className={styles.checkoutFormWrapper}>
+        <CheckoutForm clientSecret="" />
+      </div>
+    );
+  }
+
+  // Show loading state while waiting for clientSecret for paid items
+  if (!clientSecret) {
+    return <p className={styles.emptyCart}>Loading payment form.</p>;
   }
 
   const appearance: Appearance = {

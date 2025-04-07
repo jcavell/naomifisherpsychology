@@ -18,7 +18,10 @@ const tickets = webinar.orderedTickets;
 // console.log(webinar.ticket_classes);
 ---
 
-<div class="card card-webinars">
+<div
+  class="card card-webinars"
+  data-webinar-end={webinar.endDateTime?.toISOString()}
+>
   <div class="live-date">
     <span class="live-day">{webinar.day}</span>
     <span class="live-month">{webinar.month}</span>
@@ -43,7 +46,13 @@ const tickets = webinar.orderedTickets;
     <!--  {`${webinar.startTime} - ${webinar.endTime}`}-->
     <!--</span>-->
     <span class="cost">
-      from {tickets[0].costPlusFee}
+      {
+        tickets.length === 1
+          ? tickets[0].costValue === 0
+            ? "Free"
+            : tickets[0].costPlusFee
+          : `from ${tickets[0].costPlusFee}`
+      }
     </span>
   </div>
 

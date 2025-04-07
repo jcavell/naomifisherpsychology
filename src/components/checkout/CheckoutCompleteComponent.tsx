@@ -5,6 +5,8 @@ import "./Checkout.css";
 import { useCart } from "react-use-cart";
 import type { BasketItem } from "../../types/basket-item";
 
+const isDev = import.meta.env.DEV;
+
 // Define type for payment status
 type PaymentStatus =
   | "succeeded"
@@ -18,7 +20,7 @@ const STATUS_CONTENT_MAP: Record<
   { text: string; iconColor: string; icon: JSX.Element }
 > = {
   succeeded: {
-    text: "Payment succeeded",
+    text: "Purchase Success",
     iconColor: "#30B130",
     icon: (
       <svg
@@ -109,38 +111,39 @@ const CheckoutCompleteComponent: React.FC = () => {
   const [purchasedItems, setPurchasedItems] = useState<BasketItem[]>([]); // Explicitly set to BasketItem[]
 
   useEffect(() => {
-    if (!stripe) return;
-
+    // Check for Stripe payment first
     const clientSecret = new URLSearchParams(window.location.search).get(
       "payment_intent_client_secret",
     );
 
-    if (!clientSecret) return;
-
-    stripe.retrievePaymentIntent(clientSecret).then((result) => {
-      const { paymentIntent } = result;
-
-      // console.log("PAYMENT INTENT: " + JSON.stringify(paymentIntent));
-
-      if (paymentIntent) {
-        setStatus(paymentIntent.status as PaymentStatus);
-        setIntentId(paymentIntent.id);
-
-        // Empty the cart if the payment succeeded
-        if (paymentIntent.status === "succeeded") {
-          const cachedItems = [...items] as BasketItem[]; // Cast items to BasketItem[]
-          setPurchasedItems(cachedItems); // Save the cached items
-          emptyCart(); // Clear the cart
+    if (clientSecret && stripe) {
+      // Handle paid purchase with Stripe
+      stripe.retrievePaymentIntent(clientSecret).then((result) => {
+        const { paymentIntent } = result;
+        if (paymentIntent) {
+          setStatus(paymentIntent.status as PaymentStatus);
+          setIntentId(paymentIntent.id);
+          if (paymentIntent.status === "succeeded") {
+            const cachedItems = [...items] as BasketItem[];
+            setPurchasedItems(cachedItems);
+            if (!isDev) emptyCart();
+          }
         }
-      }
-
-      setLoading(false); // End loading after fetching the intent
-    });
-  }, [stripe]);
+        setLoading(false);
+      });
+    } else {
+      // Handle free purchase
+      const cachedItems = [...items] as BasketItem[];
+      setPurchasedItems(cachedItems);
+      setStatus("succeeded");
+      if (!isDev) emptyCart();
+      setLoading(false);
+    }
+  }, [stripe, items]);
 
   if (loading) {
     // Show a neutral loading state
-    return <p>Loading payment status...</p>;
+    return <p>Loading payment status</p>;
   }
 
   return (
@@ -154,20 +157,61 @@ const CheckoutCompleteComponent: React.FC = () => {
       <h2 id="status-text">{STATUS_CONTENT_MAP[status].text}</h2>
 
       {status === "succeeded" && purchasedItems.length > 0 && (
-        <div id="purchased-items">
-          <h3>Items Purchased:</h3>
-          <ul>
-            {purchasedItems.map((item) => (
-              <li key={item.id}>
-                {item.quantity} x {item.product_name} (£
-                {(item.price / 100).toFixed(2)}){" "}
-              </li>
-            ))}
-          </ul>
+        <div className="purchase-summary">
+          <h3>Purchase Summary</h3>
+          <table className="purchase-table">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {purchasedItems.map((item) => (
+                <tr key={item.id}>
+                  <td>
+                    <div className="item-details">
+                      {item.product_images?.[0] && (
+                        <img
+                          src={item.product_images[0]}
+                          alt={item.product_name}
+                          className="item-image"
+                        />
+                      )}
+                      <div>
+                        <div className="webinar-name">{item.product_name}</div>
+                        <div className="variant-name">{item.variant_name}</div>
+                        <div className="zoom-info">
+                          Zoom link will be sent 2 hours before the start
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>£{(item.price / 100).toFixed(2)}</td>
+                  <td>{item.quantity}</td>
+                  <td>£{((item.price * item.quantity) / 100).toFixed(2)}</td>
+                </tr>
+              ))}
+              <tr className="total-row">
+                <td colSpan={3}>Total</td>
+                <td>
+                  £
+                  {(
+                    purchasedItems.reduce(
+                      (acc, item) => acc + item.price * item.quantity,
+                      0,
+                    ) / 100
+                  ).toFixed(2)}
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       )}
 
-      {intentId && (
+      {isDev && intentId && (
         <div id="details-table">
           <table>
             <tbody>
@@ -187,7 +231,7 @@ const CheckoutCompleteComponent: React.FC = () => {
           </table>
         </div>
       )}
-      {intentId && (
+      {isDev && intentId && (
         <a
           href={`https://dashboard.stripe.com/payments/${intentId}`}
           id="view-details"
@@ -197,9 +241,6 @@ const CheckoutCompleteComponent: React.FC = () => {
           View details
         </a>
       )}
-      <a id="retry-button" href="/checkout">
-        Test another
-      </a>
     </div>
   );
 };

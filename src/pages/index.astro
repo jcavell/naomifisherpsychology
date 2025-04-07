@@ -14,6 +14,7 @@ import Newsletter from "../components/Newsletter.astro";
 import BlogList from "../components/blog/BlogList.astro";
 import StaticImage from "../components/StaticImage.astro";
 import homeImage from "../images/static/1080w/abi-naomi-on-swing.png";
+import { RemoveFinishedWebinars } from "../components/webinar/RemoveFinishedWebinars";
 
 const webinars = await getWebinars();
 
@@ -92,6 +93,8 @@ const metaDescription =
     )
   }
 
+  <RemoveFinishedWebinars client:load />
+
   {webinars.map((webinar, index) =>
     <WebinarSummary webinar={webinar} />)}
 
@@ -142,4 +145,5 @@ const metaDescription =
   <!-- <BlogList length="2" />
 
   <a href="/blog" class="load-more"> See All Blog Posts </a> -->
+
 </BaseLayout>

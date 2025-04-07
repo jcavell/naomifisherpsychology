@@ -1,0 +1,192 @@
+---
+
+---
+
+<div id="cookie-consent" class="cookie-banner" style="display: none;">
+  <div class="cookie-content">
+    <p>
+      We use cookies to enhance your experience. By continuing to visit this
+      site you agree to our use of cookies. <a href="/cookie-policy"
+        >Learn more</a
+      >
+    </p>
+    <div class="cookie-buttons">
+      <button id="accept-cookies">Accept All</button>
+      <button id="reject-cookies">Reject Non-Essential</button>
+      <button id="customize-cookies">Customize</button>
+    </div>
+  </div>
+
+  <div id="cookie-settings" class="cookie-settings hidden">
+    <h3>Cookie Preferences</h3>
+    <div class="cookie-option">
+      <label>
+        <input type="checkbox" disabled checked />
+        Essential Cookies (Required)
+      </label>
+      <p>Necessary for the website to function (e.g., Stripe payments)</p>
+    </div>
+    <div class="cookie-option">
+      <label>
+        <input type="checkbox" id="analytics-cookies" />
+        Analytics Cookies
+      </label>
+      <p>Help us improve our website (Google Analytics)</p>
+    </div>
+    <button id="save-preferences">Save Preferences</button>
+  </div>
+</div>
+
+<style>
+  .cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    padding: 1rem;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+
+  .cookie-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .cookie-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  #accept-cookies {
+    background: #4caf50;
+    color: white;
+  }
+
+  #reject-cookies {
+    background: #f44336;
+    color: white;
+  }
+
+  #customize-cookies {
+    background: #2196f3;
+    color: white;
+  }
+
+  .cookie-settings {
+    max-width: 600px;
+    margin: 1rem auto;
+    padding: 1rem;
+    background: #f5f5f5;
+    border-radius: 4px;
+  }
+
+  .cookie-option {
+    margin: 1rem 0;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .cookie-content {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>
+
+<script>
+  declare global {
+    interface Window {
+      gtag: (...args: any[]) => void;
+      dataLayer: any[];
+    }
+  }
+
+  const cookieConsent = document.getElementById("cookie-consent");
+  const cookieSettings = document.getElementById("cookie-settings");
+  const acceptButton = document.getElementById("accept-cookies");
+  const rejectButton = document.getElementById("reject-cookies");
+  const customizeButton = document.getElementById("customize-cookies");
+  const saveButton = document.getElementById("save-preferences");
+  const analyticsCheckbox = document.getElementById("analytics-cookies");
+
+  function needsConsent(): boolean {
+    return !document.cookie.includes("cookie-consent=");
+  }
+
+  if (needsConsent()) {
+    cookieConsent?.style.removeProperty("display");
+  }
+
+  // Function to set cookie
+  function setCookie(name: string, value: string, days: number) {
+    const date = new Date();
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+    document.cookie = `${name}=${value};expires=${date.toUTCString()};path=/`;
+  }
+
+  // Function to handle Google Analytics
+  function handleAnalytics(enable: boolean) {
+    if (typeof window.gtag !== "function") {
+      // Initialize dataLayer if it doesn't exist
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () {
+        window.dataLayer.push(arguments);
+      };
+    }
+
+    try {
+      window.gtag("consent", "update", {
+        analytics_storage: enable ? "granted" : "denied",
+      });
+    } catch (error) {
+      console.warn("Google Analytics not loaded yet:", error);
+    }
+  }
+
+  // Accept all cookies
+  acceptButton?.addEventListener("click", () => {
+    setCookie("cookie-consent", "full", 365);
+    handleAnalytics(true);
+    cookieConsent?.remove();
+  });
+
+  // Reject non-essential cookies
+  rejectButton?.addEventListener("click", () => {
+    setCookie("cookie-consent", "essential", 365);
+    handleAnalytics(false);
+    cookieConsent?.remove();
+  });
+
+  // Show cookie settings
+  customizeButton?.addEventListener("click", () => {
+    cookieSettings?.classList.toggle("hidden");
+  });
+
+  // Save preferences
+  saveButton?.addEventListener("click", () => {
+    const analyticsEnabled = (analyticsCheckbox as HTMLInputElement)?.checked;
+    setCookie(
+      "cookie-consent",
+      analyticsEnabled ? "custom-full" : "custom-essential",
+      365,
+    );
+    handleAnalytics(analyticsEnabled || false);
+    cookieConsent?.remove();
+  });
+</script>
