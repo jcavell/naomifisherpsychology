@@ -17,6 +17,10 @@ export async function POST({ request }: { request: Request }) {
   const sig = request.headers.get("stripe-signature");
   let event: Stripe.Event;
 
+  Logger.INFO("Webhook received", {
+    signature: sig?.substring(0, 10), // Log partial signature for security
+  });
+
   try {
     const bodyBuffer = await request.text(); // Raw request body
     event = stripe.webhooks.constructEvent(
@@ -24,6 +28,11 @@ export async function POST({ request }: { request: Request }) {
       sig!,
       env.STRIPE_WEBHOOK_SECRET,
     );
+
+    Logger.INFO("Event constructed successfully", {
+      type: event.type,
+      id: event.id,
+    });
   } catch (err) {
     Logger.ERROR(`Webhook signature verification failed: ${err.message}`);
     return new Response(`Webhook Error: ${err.message}`, { status: 400 });
@@ -40,7 +49,7 @@ export async function POST({ request }: { request: Request }) {
 
   // TODO Update purchase_event with event = webhook_received value = ${event.type}
   if (event.type !== "charge.succeeded") {
-    Logger.INFO(`*** IGNORING EVENT ${event.type}`);
+    Logger.INFO(`Ignoring event ${event.type} - not charge.succeeded`);
     return success;
   }
 
