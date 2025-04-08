@@ -132,7 +132,7 @@ const CheckoutCompleteComponent: React.FC = () => {
           if (paymentIntent.status === "succeeded") {
             const cachedItems = [...items] as BasketItem[];
             setPurchasedItems(cachedItems);
-            if (!isDev) emptyCart();
+            // if (!isDev) emptyCart();
           }
         }
         setLoading(false);
