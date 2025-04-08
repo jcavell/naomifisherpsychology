@@ -38,12 +38,7 @@ class Logger {
         }
 
         const logMessage = `${timestamp} [${level}] (${location}): ${message}`;
-
-        // Ensure logs are visible in Netlify
-        if (process.env.NETLIFY) {
-          console.log(logMessage);
-        }
-
+        console.log(logMessage);
         return logMessage;
       }),
     ),

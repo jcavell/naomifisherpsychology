@@ -16,30 +16,30 @@ export default defineConfig({
     functionPerRoute: true,
   }),
 
-  security: {
-    contentSecurityPolicy: {
-      directives: {
-        "script-src": [
-          "'self'",
-          "https://*.stripe.com",
-          "https://*.hcaptcha.com",
-          "'unsafe-inline'",
-        ],
-        "frame-src": [
-          "'self'",
-          "https://*.stripe.com",
-          "https://*.hcaptcha.com",
-        ],
-        "connect-src": [
-          "'self'",
-          "https://*.stripe.com",
-          "https://*.hcaptcha.com",
-        ],
-        "style-src": ["'self'", "'unsafe-inline'"],
-        "img-src": ["'self'", "data:", "https:", "blob:"],
-      },
-    },
-  },
+  // security: {
+  //   contentSecurityPolicy: {
+  //     directives: {
+  //       "script-src": [
+  //         "'self'",
+  //         "https://*.stripe.com",
+  //         "https://*.hcaptcha.com",
+  //         "'unsafe-inline'",
+  //       ],
+  //       "frame-src": [
+  //         "'self'",
+  //         "https://*.stripe.com",
+  //         "https://*.hcaptcha.com",
+  //       ],
+  //       "connect-src": [
+  //         "'self'",
+  //         "https://*.stripe.com",
+  //         "https://*.hcaptcha.com",
+  //       ],
+  //       "style-src": ["'self'", "'unsafe-inline'"],
+  //       "img-src": ["'self'", "data:", "https:", "blob:"],
+  //     },
+  //   },
+  // },
 
   vite: {
     plugins: [basicSsl()],
@@ -50,11 +50,7 @@ export default defineConfig({
       exclude: ["@hcaptcha/types"],
     },
     server: {
-      headers: {
-        https: true,
-        "Cross-Origin-Opener-Policy": "same-origin",
-        "Cross-Origin-Embedder-Policy": "require-corp",
-      },
+      https: true,
     },
   },
   css: {
