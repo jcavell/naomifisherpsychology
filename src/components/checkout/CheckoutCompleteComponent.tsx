@@ -116,7 +116,13 @@ const CheckoutCompleteComponent: React.FC = () => {
       "payment_intent_client_secret",
     );
 
-    if (clientSecret && stripe) {
+    if (!stripe) {
+      // Don't do anything until Stripe is ready
+      return;
+    }
+
+    if (clientSecret) {
+      // Now we know Stripe is available
       // Handle paid purchase with Stripe
       stripe.retrievePaymentIntent(clientSecret).then((result) => {
         const { paymentIntent } = result;

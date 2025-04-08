@@ -13,7 +13,7 @@ const EMAIL_HEADING = "Order Confirmation";
  * @param purchase The purchase details object.
  */
 export async function sendPurchaseConfirmationEmail(
-  purchase: Purchase,
+  purchase: Purchase
 ): Promise<void> {
   const postmarkPayload = {
     From: "support@naomifisher.co.uk",
@@ -40,9 +40,9 @@ export async function sendPurchaseConfirmationEmail(
         product_description: item.product_description,
         variant_id: item.variant_id,
         variant_name: item.variant_name,
-        variant_description: item.variant_description,
-      })),
-    },
+        variant_description: item.variant_description
+      }))
+    }
   };
 
   const response = await fetch(POSTMARK_API_URL, {
@@ -50,9 +50,9 @@ export async function sendPurchaseConfirmationEmail(
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      "X-Postmark-Server-Token": env.POSTMARK_SERVER_TOKEN,
+      "X-Postmark-Server-Token": env.POSTMARK_SERVER_TOKEN
     },
-    body: JSON.stringify(postmarkPayload),
+    body: JSON.stringify(postmarkPayload)
   });
 
   const responseText = await response.text();
@@ -62,5 +62,24 @@ export async function sendPurchaseConfirmationEmail(
     throw new Error(`Failed to send email: ${response.statusText}`);
   }
 
+// Parse and check for Postmark API errors
+  try {
+    const responseData = JSON.parse(responseText);
+    if (responseData.ErrorCode && responseData.ErrorCode !== 0) {
+      Logger.ERROR("Postmark API error", {
+        error: responseData.Message,
+        errorCode: responseData.ErrorCode,
+        email: purchase.email,
+        paymentId: purchase.stripe_payment_id
+      });
+      throw new Error(`Postmark API error: ${responseData.Message}`);
+    }
+  } catch (error) {
+    Logger.ERROR("Failed to parse Postmark response", {
+      error: error.message,
+      responseText
+    });
+    throw error;
+  }
+
   Logger.INFO("Confirmation email successfully sent via Postmark.");
-}
