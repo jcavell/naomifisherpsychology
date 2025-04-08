@@ -16,45 +16,11 @@ export default defineConfig({
     functionPerRoute: true,
   }),
 
-  // security: {
-  //   contentSecurityPolicy: {
-  //     directives: {
-  //       "script-src": [
-  //         "'self'",
-  //         "https://*.stripe.com",
-  //         "https://*.hcaptcha.com",
-  //         "'unsafe-inline'",
-  //       ],
-  //       "frame-src": [
-  //         "'self'",
-  //         "https://*.stripe.com",
-  //         "https://*.hcaptcha.com",
-  //       ],
-  //       "connect-src": [
-  //         "'self'",
-  //         "https://*.stripe.com",
-  //         "https://*.hcaptcha.com",
-  //       ],
-  //       "style-src": ["'self'", "'unsafe-inline'"],
-  //       "img-src": ["'self'", "data:", "https:", "blob:"],
-  //     },
-  //   },
-  // },
-
   vite: {
     plugins: [basicSsl()],
-    build: {
-      sourcemap: true,
-    },
-    optimizeDeps: {
-      exclude: ["@hcaptcha/types"],
-    },
     server: {
       https: true,
     },
-  },
-  css: {
-    devSourcemap: false,
   },
 
   // Using integrations

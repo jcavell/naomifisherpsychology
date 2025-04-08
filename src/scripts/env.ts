@@ -11,13 +11,27 @@ export function getEnvVar(key: string): string {
   throw new Error(`Environment variable ${key} is not defined`);
 }
 
-// Define and export environment variables
+// Define and export environment variables with getters
 export const env = {
-  EB_BEARER: getEnvVar("EB_BEARER"),
-  STRIPE_SECRET_KEY: getEnvVar("STRIPE_SECRET_KEY"),
-  KIT_API_KEY: getEnvVar("KIT_API_KEY"),
-  SUPABASE_API_URL: getEnvVar("SUPABASE_API_URL"),
-  SUPABASE_API_KEY: getEnvVar("SUPABASE_API_KEY"),
-  STRIPE_WEBHOOK_SECRET: getEnvVar("STRIPE_WEBHOOK_SECRET"),
-  POSTMARK_SERVER_TOKEN: getEnvVar("POSTMARK_SERVER_TOKEN"),
+  get EB_BEARER() {
+    return getEnvVar("EB_BEARER");
+  },
+  get STRIPE_SECRET_KEY() {
+    return getEnvVar("STRIPE_SECRET_KEY");
+  },
+  get KIT_API_KEY() {
+    return getEnvVar("KIT_API_KEY");
+  },
+  get SUPABASE_API_URL() {
+    return getEnvVar("SUPABASE_API_URL");
+  },
+  get SUPABASE_API_KEY() {
+    return getEnvVar("SUPABASE_API_KEY");
+  },
+  get STRIPE_WEBHOOK_SECRET() {
+    return getEnvVar("STRIPE_WEBHOOK_SECRET");
+  },
+  get POSTMARK_SERVER_TOKEN() {
+    return getEnvVar("POSTMARK_SERVER_TOKEN");
+  },
 } as const;
