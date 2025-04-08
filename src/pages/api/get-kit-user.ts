@@ -16,6 +16,12 @@ export async function GET({ request }: { request: Request }) {
   const KIT_API_KEY = import.meta.env.KIT_API_KEY;
   const KIT_BASE_URL = "https://api.convertkit.com/v4/subscribers";
 
+  console.log("***KIT API Key check:", {
+    hasKey: !!KIT_API_KEY,
+    keyLength: KIT_API_KEY?.length || 0,
+    lastFourChars: KIT_API_KEY ? KIT_API_KEY.slice(-4) : "none",
+  });
+
   try {
     // Step 3: Call the ConvertKit API with X-Kit-Api-Key header
     const response = await fetch(
