@@ -17,6 +17,7 @@ export default defineConfig({
         "script-src": ["'self'", "https://*.stripe.com"],
         "frame-src": ["'self'", "https://*.stripe.com"],
         "connect-src": ["'self'", "https://*.stripe.com"],
+        "default-src": ["'self'", "blob:"],
       },
     },
   },
