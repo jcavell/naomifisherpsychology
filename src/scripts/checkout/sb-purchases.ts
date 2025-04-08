@@ -10,7 +10,7 @@ export const getPurchase = async (paymentIntentId: string) => {
   const { data: purchase, error: purchaseError } = await supabase
     .from("Purchases")
     .select(
-      "id, user_id, payment_authorised_timestamp, payment_amount_pence, items",
+      "id, user_id, payment_authorised_timestamp, payment_amount_pence, items, payment_confirmed",
     )
     .eq("stripe_payment_id", paymentIntentId)
     .single();

@@ -17,10 +17,6 @@ export async function POST({ request }: { request: Request }) {
   const sig = request.headers.get("stripe-signature");
   let event: Stripe.Event;
 
-  Logger.INFO("Webhook received", {
-    signature: sig?.substring(0, 10), // Log partial signature for security
-  });
-
   try {
     const bodyBuffer = await request.text(); // Raw request body
     event = stripe.webhooks.constructEvent(
@@ -28,11 +24,6 @@ export async function POST({ request }: { request: Request }) {
       sig!,
       env.STRIPE_WEBHOOK_SECRET,
     );
-
-    Logger.INFO("Event constructed successfully", {
-      type: event.type,
-      id: event.id,
-    });
   } catch (err) {
     Logger.ERROR(`Webhook signature verification failed: ${err.message}`);
     return new Response(`Webhook Error: ${err.message}`, { status: 400 });
@@ -48,8 +39,10 @@ export async function POST({ request }: { request: Request }) {
   );
 
   // TODO Update purchase_event with event = webhook_received value = ${event.type}
-  if (event.type !== "charge.succeeded") {
-    Logger.INFO(`Ignoring event ${event.type} - not charge.succeeded`);
+  if (event.type !== "charge.succeeded" && event.type !== "charge.updated") {
+    Logger.INFO(
+      `Ignoring event ${event.type} - not charge.succeeded or charge.updated`,
+    );
     return success;
   }
 
@@ -59,13 +52,21 @@ export async function POST({ request }: { request: Request }) {
   const paymentIntentId = charge.payment_intent as string;
 
   try {
+    // Step 1: Retrieve purchase and user_id from the `Purchases` table
+    // First, check if purchase is already confirmed
+    const purchase = await getPurchase(paymentIntentId);
+
+    if (purchase.payment_confirmed) {
+      Logger.INFO("Payment already confirmed, skipping processing", {
+        paymentIntentId,
+      });
+      return success;
+    }
+
     const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
 
-    // Step 1: Retrieve purchase and user_id from the `Purchases` table
-    const purchase = await getPurchase(paymentIntentId);
-    const userId = purchase.user_id;
-
     // TODO Update purchase_event with event = User ID retrieved from Purchases value = ${userId}
+    const userId = purchase.user_id;
     Logger.INFO(`User ID retrieved from Purchases: ${userId}`);
 
     // Step 2. Update pre-purchase with payment method, timestamp and confirm the purchase
