@@ -29,6 +29,8 @@ export async function POST({ request }: { request: Request }) {
     return new Response(`Webhook Error: ${err.message}`, { status: 400 });
   }
 
+  Logger.INFO(`*** STRIPE WEBHOOK CALLED WITH EVENT ${event.type}`);
+
   const success = new Response(
     JSON.stringify({ processed_event: event.type }),
     {
