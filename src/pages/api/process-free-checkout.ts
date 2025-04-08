@@ -1,8 +1,8 @@
 import type { User } from "../../types/user";
 import type { BasketItem } from "../../types/basket-item";
-import { upsertUser } from "./sb-users.ts";
-import { insertWebinarTickets } from "./sb-webinar-tickets.ts";
-import { sendPurchaseConfirmationAndSubToKit } from "./send-purchase-confirmation.ts";
+import { upsertUser } from "../../scripts/checkout/sb-users.ts";
+import { insertWebinarTickets } from "../../scripts/checkout/sb-webinar-tickets.ts";
+import { sendPurchaseConfirmationAndSubToKit } from "../../scripts/checkout/send-purchase-confirmation.ts";
 import Logger from "../../scripts/logger.ts";
 
 export const prerender = false;

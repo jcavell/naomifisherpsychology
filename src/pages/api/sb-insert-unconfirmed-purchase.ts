@@ -2,7 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import type { User } from "../../types/user";
 import type { StripePayment } from "../../types/stripe-payment";
 import type { BasketItem } from "../../types/basket-item";
-import { upsertUser } from "./sb-users.ts";
+import { upsertUser } from "../../scripts/checkout/sb-users.ts";
 
 export const prerender = false;
 

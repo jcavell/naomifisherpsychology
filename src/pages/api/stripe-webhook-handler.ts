@@ -1,11 +1,14 @@
 import Stripe from "stripe";
-import { stripe } from "./init-stripe.ts";
+import { stripe } from "../../scripts/checkout/init-stripe.ts";
 import Logger from "../../scripts/logger.ts";
 import type { BasketItem } from "../../types/basket-item";
-import { insertWebinarTickets } from "./sb-webinar-tickets.ts";
-import { getUser } from "./sb-users.ts";
-import { sendPurchaseConfirmationAndSubToKit } from "./send-purchase-confirmation.ts";
-import { getPurchase, upsertPurchaseToConfirmPayment } from "./sb-purchases.ts";
+import { insertWebinarTickets } from "../../scripts/checkout/sb-webinar-tickets.ts";
+import { getUser } from "../../scripts/checkout/sb-users.ts";
+import { sendPurchaseConfirmationAndSubToKit } from "../../scripts/checkout/send-purchase-confirmation.ts";
+import {
+  getPurchase,
+  upsertPurchaseToConfirmPayment,
+} from "../../scripts/checkout/sb-purchases.ts";
 
 export const prerender = false; // Disable static pre-rendering for this endpoint
 

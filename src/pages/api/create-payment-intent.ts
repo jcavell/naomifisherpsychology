@@ -1,4 +1,4 @@
-import { stripe } from "./init-stripe.ts";
+import { stripe } from "../../scripts/checkout/init-stripe.ts";
 import calculateOrderAmount from "../../scripts/calculateOrderAmount.ts";
 import type { BasketItem } from "../../types/basket-item";
 import type { StripePaymentItemMetadata } from "../../types/stripe-payment-item-metadata";

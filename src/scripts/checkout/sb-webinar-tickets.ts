@@ -1,5 +1,5 @@
 import type { BasketItem } from "../../types/basket-item";
-import Logger from "../../scripts/logger.ts";
+import Logger from "../logger.ts";
 import { createClient } from "@supabase/supabase-js";
 
 const supabase = createClient(

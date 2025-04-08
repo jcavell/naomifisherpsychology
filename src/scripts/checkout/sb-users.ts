@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import type { User } from "../../types/user";
-import Logger from "../../scripts/logger.ts";
+import Logger from "../logger.ts";
 export const prerender = false;
 
 const supabase = createClient(

@@ -1,8 +1,8 @@
 import type { Purchase } from "../../types/postmark-purchase";
 import moment from "moment/moment";
 import type { BasketItem } from "../../types/basket-item";
-import { sendPurchaseConfirmationEmail } from "../../scripts/send-purchase-confirmation-via-postmark.ts";
-import Logger from "../../scripts/logger.ts";
+import { sendPurchaseConfirmationEmail } from "../send-purchase-confirmation-via-postmark.ts";
+import Logger from "../logger.ts";
 import type { User } from "../../types/user";
 
 const KIT_API_KEY = import.meta.env.KIT_API_KEY;

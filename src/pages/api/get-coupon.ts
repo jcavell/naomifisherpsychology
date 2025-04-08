@@ -1,4 +1,4 @@
-import { stripe } from "./init-stripe.ts";
+import { stripe } from "../../scripts/checkout/init-stripe.ts";
 
 export const prerender = false;
 

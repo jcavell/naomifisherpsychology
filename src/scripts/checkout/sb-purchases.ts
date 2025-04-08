@@ -1,4 +1,4 @@
-import Logger from "../../scripts/logger.ts";
+import Logger from "../logger.ts";
 import { createClient } from "@supabase/supabase-js";
 import Stripe from "stripe";
 
