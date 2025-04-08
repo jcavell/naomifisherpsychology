@@ -3,13 +3,11 @@ import type { User } from "../../types/user";
 import type { StripePayment } from "../../types/stripe-payment";
 import type { BasketItem } from "../../types/basket-item";
 import { upsertUser } from "../../scripts/checkout/sb-users.ts";
+import { createSbClient } from "../../scripts/checkout/create-sb-client.ts";
 
 export const prerender = false;
 
-const supabase = createClient(
-  import.meta.env.SUPABASE_API_URL,
-  import.meta.env.SUPABASE_API_KEY,
-);
+const supabase = createSbClient;
 
 export async function POST({ request }: { request: Request }) {
   try {

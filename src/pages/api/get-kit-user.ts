@@ -1,3 +1,5 @@
+import { getEnvVar } from "../../scripts/env.ts";
+
 export const prerender = false;
 
 export async function GET({ request }: { request: Request }) {
@@ -13,7 +15,7 @@ export async function GET({ request }: { request: Request }) {
   }
 
   // Step 2: ConvertKit API details again
-  const KIT_API_KEY = process.env.KIT_API_KEY;
+  const KIT_API_KEY = getEnvVar("KIT_API_KEY");
   const KIT_BASE_URL = "https://api.convertkit.com/v4/subscribers";
 
   console.log("***KIT API Key check:", {
@@ -28,7 +30,7 @@ export async function GET({ request }: { request: Request }) {
       `${KIT_BASE_URL}?email_address=${encodeURIComponent(email)}`,
       {
         headers: {
-          "X-Kit-Api-Key": KIT_API_KEY, // Include the API key in the header
+          "X-Kit-Api-Key": KIT_API_KEY!, // Include the API key in the header
           "Content-Type": "application/json",
         },
       },

@@ -1,26 +1,16 @@
 import { getTags } from "./tags";
 import { getPeople } from "./people";
 import * as fs from "fs";
+import { env } from "./env.ts";
+
+export const prerender = false;
 
 import type { Webinar } from "../types/webinar";
 
 import testWebinars1 from "../test-data/eventbrite/1event.json";
 import testWebinars3 from "../test-data/eventbrite/3events.json";
 
-// Environment variables
-// At the top of webinars.ts
-let EB_BEARER: string;
-let isDev: boolean = false; // default to false for Node.js context
-
-// Handle both Astro and Node.js environments
-if (import.meta.env) {
-  // Astro
-  EB_BEARER = import.meta.env.EB_BEARER;
-  isDev = import.meta.env.DEV;
-} else {
-  // Node
-  EB_BEARER = process.env.EB_BEARER as string;
-}
+const isDev = import.meta.env.DEV;
 
 // Fetch webinar details responses
 const getDetailsResponses = (webinars: Webinar[]): Promise<Response[]> => {
@@ -37,7 +27,7 @@ function getDetails(webinarId: string): Promise<Response> {
     `https://www.eventbriteapi.com/v3/events/${webinarId}/structured_content/`,
     {
       headers: {
-        Authorization: `Bearer ${EB_BEARER}`,
+        Authorization: `Bearer ${env.EB_BEARER}`,
       },
     },
   );
@@ -128,7 +118,7 @@ export default async function getWebinars(): Promise<Webinar[]> {
     "https://www.eventbriteapi.com/v3/organizations/495447088469/events/?expand=category,subcategory,ticket_availability,ticket_classes&status=live",
     {
       headers: {
-        Authorization: `Bearer ${EB_BEARER}`,
+        Authorization: `Bearer ${env.EB_BEARER}`,
       },
     },
   );

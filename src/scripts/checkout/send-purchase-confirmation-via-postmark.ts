@@ -1,7 +1,9 @@
-import type { Purchase } from "../types/postmark-purchase";
-import Logger from "./logger";
+import type { Purchase } from "../../types/postmark-purchase";
+import Logger from "../logger.ts";
+import { env } from "../../scripts/env";
 
-const POSTMARK_SERVER_TOKEN = import.meta.env.POSTMARK_SERVER_TOKEN;
+export const prerender = false;
+
 const POSTMARK_API_URL = "https://api.postmarkapp.com/email/withTemplate";
 const TEMPLATE_ALIAS = "order-confirmation";
 const EMAIL_HEADING = "Order Confirmation";
@@ -48,7 +50,7 @@ export async function sendPurchaseConfirmationEmail(
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      "X-Postmark-Server-Token": POSTMARK_SERVER_TOKEN,
+      "X-Postmark-Server-Token": env.POSTMARK_SERVER_TOKEN,
     },
     body: JSON.stringify(postmarkPayload),
   });

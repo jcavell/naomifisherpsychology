@@ -1,14 +1,14 @@
 import type { APIRoute } from "astro";
 import type { Webinar } from "../../../types/webinar";
-
-const EB_BEARER = import.meta.env.EB_BEARER as string;
+import { env } from "../../../scripts/env";
+export const prerender = false;
 
 const getLiveWebinars = async (): Promise<Webinar[]> => {
   const eventsResponse = await fetch(
     "https://www.eventbriteapi.com/v3/organizations/495447088469/events/?status=live",
     {
       headers: {
-        Authorization: `Bearer ${EB_BEARER}`,
+        Authorization: `Bearer ${env.EB_BEARER}`,
       },
     },
   );
@@ -23,7 +23,7 @@ export const GET: APIRoute = async ({ params, request }): Promise<Response> => {
     `https://www.eventbriteapi.com/v3/events/${eventId}/?expand=ticket_availability,ticket_classes`,
     {
       headers: {
-        Authorization: `Bearer ${EB_BEARER}`,
+        Authorization: `Bearer ${env.EB_BEARER}`,
       },
     },
   );

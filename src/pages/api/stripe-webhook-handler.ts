@@ -1,4 +1,5 @@
 import Stripe from "stripe";
+import { env } from "../../scripts/env";
 import { stripe } from "../../scripts/checkout/init-stripe.ts";
 import Logger from "../../scripts/logger.ts";
 import type { BasketItem } from "../../types/basket-item";
@@ -21,7 +22,7 @@ export async function POST({ request }: { request: Request }) {
     event = stripe.webhooks.constructEvent(
       bodyBuffer,
       sig!,
-      import.meta.env.STRIPE_WEBHOOK_SECRET!,
+      env.STRIPE_WEBHOOK_SECRET,
     );
   } catch (err) {
     Logger.ERROR(`Webhook signature verification failed: ${err.message}`);

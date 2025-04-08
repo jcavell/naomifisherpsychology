@@ -1,11 +1,10 @@
 import Logger from "../logger.ts";
-import { createClient } from "@supabase/supabase-js";
 import Stripe from "stripe";
+import { createSbClient } from "./create-sb-client.ts";
 
-const supabase = createClient(
-  import.meta.env.SUPABASE_API_URL,
-  import.meta.env.SUPABASE_API_KEY,
-);
+export const prerender = false;
+
+const supabase = createSbClient;
 
 export const getPurchase = async (paymentIntentId: string) => {
   const { data: purchase, error: purchaseError } = await supabase

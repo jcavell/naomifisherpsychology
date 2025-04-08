@@ -1,4 +1,4 @@
 import Stripe from "stripe";
-export const prerender = false;
+import { env } from "../env";
 
-export const stripe: Stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY);
+export const stripe: Stripe = new Stripe(env.STRIPE_SECRET_KEY);

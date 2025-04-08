@@ -1,11 +1,11 @@
 import type { BasketItem } from "../../types/basket-item";
 import Logger from "../logger.ts";
 import { createClient } from "@supabase/supabase-js";
+import { createSbClient } from "./create-sb-client.ts";
 
-const supabase = createClient(
-  import.meta.env.SUPABASE_API_URL,
-  import.meta.env.SUPABASE_API_KEY,
-);
+export const prerender = false;
+
+const supabase = createSbClient;
 
 export async function insertWebinarTickets(
   purchaseId: number | null,

@@ -1,12 +1,11 @@
 import { createClient } from "@supabase/supabase-js";
 import type { User } from "../../types/user";
 import Logger from "../logger.ts";
+import { createSbClient } from "./create-sb-client.ts";
+
 export const prerender = false;
 
-const supabase = createClient(
-  import.meta.env.SUPABASE_API_URL,
-  import.meta.env.SUPABASE_API_KEY,
-);
+const supabase = createSbClient;
 
 export const upsertUser = async (user: User) => {
   const { data: upsertedUser, error: upsertUserError } = await supabase
