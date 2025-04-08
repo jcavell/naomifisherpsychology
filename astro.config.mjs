@@ -14,10 +14,30 @@ export default defineConfig({
   security: {
     contentSecurityPolicy: {
       directives: {
-        "script-src": ["'self'", "https://*.stripe.com"],
-        "frame-src": ["'self'", "https://*.stripe.com"],
-        "connect-src": ["'self'", "https://*.stripe.com"],
-        "default-src": ["'self'", "blob:"],
+        "default-src": ["'self'"],
+        "script-src": [
+          "'self'",
+          "https://js.stripe.com",
+          "https://m.stripe.network",
+          "https://checkout.stripe.com",
+          "'sha256-5DA+a07wxWmEka9IdoWjSPVHb17Cp5284/lJzfbl8KA='",
+          "'sha256-/5Guo2nzv5n/w6ukZpOBZOtTJBJPSkJ6mhHpnBgm3Ls='",
+        ],
+        "frame-src": [
+          "'self'",
+          "https://js.stripe.com",
+          "https://hooks.stripe.com",
+          "https://checkout.stripe.com",
+          "https://m.stripe.network",
+        ],
+        "connect-src": [
+          "'self'",
+          "https://api.stripe.com",
+          "https://m.stripe.network",
+        ],
+        "img-src": ["'self'", "https:", "data:"],
+        "style-src": ["'self'", "'unsafe-inline'"],
+        "font-src": ["'self'", "data:"],
       },
     },
   },
