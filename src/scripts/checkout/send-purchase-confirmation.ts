@@ -33,16 +33,7 @@ export const sendPurchaseConfirmationAndSubToKit = async (
   };
 
   // TODO - await update purchase_event table with email_sent event
-  sendPurchaseConfirmationEmail(postmarkPurchase);
-
-  Logger.INFO(
-    "User ticked subscribe to marketing? " + user.subscribed_to_marketing,
-  );
-  Logger.INFO(
-    "User already has a kit subscriber id? " + user.kit_subscriber_id
-      ? "YES: " + user.kit_subscriber_id
-      : "NO",
-  );
+  await sendPurchaseConfirmationEmail(postmarkPurchase);
 
   // Create new Kit subscriber (POST user to Kit /subscribers) only if:
   // (1) The user clicked subscribe to marketing checkbox AND
