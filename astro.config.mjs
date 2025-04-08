@@ -9,46 +9,34 @@ export default defineConfig({
   site: "https://www.naomifisher.co.uk",
 
   output: "hybrid",
-  adapter: netlify(),
+
+  adapter: netlify({
+    edge: false,
+    serverLogging: true,
+    functionPerRoute: true,
+  }),
 
   security: {
     contentSecurityPolicy: {
       directives: {
-        // Previous directives...
         "script-src": [
           "'self'",
-          "https://js.stripe.com",
-          "https://m.stripe.network",
-          "https://checkout.stripe.com",
-          "https://newassets.hcaptcha.com",
-          "https://hcaptcha.com",
-          "'sha256-5DA+a07wxWmEka9IdoWjSPVHb17Cp5284/lJzfbl8KA='",
-          "'sha256-/5Guo2nzv5n/w6ukZpOBZOtTJBJPSkJ6mhHpnBgm3Ls='",
+          "https://*.stripe.com",
+          "https://*.hcaptcha.com",
+          "'unsafe-inline'",
         ],
         "frame-src": [
           "'self'",
-          "https://js.stripe.com",
-          "https://hooks.stripe.com",
-          "https://checkout.stripe.com",
-          "https://m.stripe.network",
-          "https://newassets.hcaptcha.com",
-          "https://hcaptcha.com",
+          "https://*.stripe.com",
+          "https://*.hcaptcha.com",
         ],
         "connect-src": [
           "'self'",
-          "https://api.stripe.com",
-          "https://m.stripe.network",
-          "https://newassets.hcaptcha.com",
-          "https://hcaptcha.com",
+          "https://*.stripe.com",
+          "https://*.hcaptcha.com",
         ],
-        "worker-src": ["'self'", "blob:", "https://newassets.hcaptcha.com"],
-        "style-src": [
-          "'self'",
-          "'unsafe-inline'",
-          "https://newassets.hcaptcha.com",
-        ],
+        "style-src": ["'self'", "'unsafe-inline'"],
         "img-src": ["'self'", "data:", "https:", "blob:"],
-        "wasm-src": ["'self'", "https://newassets.hcaptcha.com"],
       },
     },
   },
