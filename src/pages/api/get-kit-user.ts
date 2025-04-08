@@ -13,7 +13,7 @@ export async function GET({ request }: { request: Request }) {
   }
 
   // Step 2: ConvertKit API details again
-  const KIT_API_KEY = import.meta.env.KIT_API_KEY;
+  const KIT_API_KEY = process.env.KIT_API_KEY;
   const KIT_BASE_URL = "https://api.convertkit.com/v4/subscribers";
 
   console.log("***KIT API Key check:", {
