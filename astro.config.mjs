@@ -11,6 +11,16 @@ export default defineConfig({
   output: "hybrid",
   adapter: netlify(),
 
+  security: {
+    contentSecurityPolicy: {
+      directives: {
+        "script-src": ["'self'", "https://*.stripe.com"],
+        "frame-src": ["'self'", "https://*.stripe.com"],
+        "connect-src": ["'self'", "https://*.stripe.com"],
+      },
+    },
+  },
+
   vite: {
     plugins: [basicSsl()],
     server: {

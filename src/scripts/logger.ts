@@ -3,7 +3,7 @@ import path from "path";
 
 class Logger {
   private static logger = winston.createLogger({
-    level: "info", // Default log level
+    level: process.env.LOG_LEVEL || "info",
     format: winston.format.combine(
       winston.format.timestamp(),
       winston.format.printf(({ level, message, timestamp }) => {
@@ -37,48 +37,48 @@ class Logger {
           }
         }
 
-        return `${timestamp} [${level}] (${location}): ${message}`;
+        const logMessage = `${timestamp} [${level}] (${location}): ${message}`;
+
+        // Ensure logs are visible in Netlify
+        if (process.env.NETLIFY) {
+          console.log(logMessage);
+        }
+
+        return logMessage;
       }),
     ),
     transports: [
-      new winston.transports.Console(), // Logs to console
+      new winston.transports.Console({
+        format: winston.format.combine(
+          winston.format.colorize(),
+          winston.format.simple(),
+        ),
+      }),
     ],
   });
 
   // Log an INFO level message
   public static INFO(msg: string, obj?: object): void {
-    if (obj) {
-      Logger.logger.info(`${msg} | Data: ${JSON.stringify(obj)}`);
-    } else {
-      Logger.logger.info(msg);
-    }
+    const logMessage = obj ? `${msg} | Data: ${JSON.stringify(obj)}` : msg;
+    Logger.logger.info(logMessage);
   }
 
   // Log a DEBUG level message
   public static DEBUG(msg: string, obj?: object): void {
-    if (obj) {
-      Logger.logger.debug(`${msg} | Data: ${JSON.stringify(obj)}`);
-    } else {
-      Logger.logger.debug(msg);
-    }
+    const logMessage = obj ? `${msg} | Data: ${JSON.stringify(obj)}` : msg;
+    Logger.logger.debug(logMessage);
   }
 
   // Log a WARN level message
   public static WARN(msg: string, obj?: object): void {
-    if (obj) {
-      Logger.logger.warn(`${msg} | Data: ${JSON.stringify(obj)}`);
-    } else {
-      Logger.logger.warn(msg);
-    }
+    const logMessage = obj ? `${msg} | Data: ${JSON.stringify(obj)}` : msg;
+    Logger.logger.warn(logMessage);
   }
 
   // Log an ERROR level message
   public static ERROR(msg: string, obj?: object): void {
-    if (obj) {
-      Logger.logger.error(`${msg} | Data: ${JSON.stringify(obj)}`);
-    } else {
-      Logger.logger.error(msg);
-    }
+    const logMessage = obj ? `${msg} | Data: ${JSON.stringify(obj)}` : msg;
+    Logger.logger.error(logMessage);
   }
 }
 
