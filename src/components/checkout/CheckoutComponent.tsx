@@ -103,9 +103,14 @@ const Checkout: React.FC = () => {
 
 const CheckoutComponent: React.FC = () => {
   const [isClient, setIsClient] = useState(false);
+  const [isStylesLoaded, setIsStylesLoaded] = useState(false);
 
   useEffect(() => {
     setIsClient(true); // Ensures this component renders only on the client
+    // Small delay to ensure CSS is loaded and parsed
+    requestAnimationFrame(() => {
+      setIsStylesLoaded(true);
+    });
   }, []);
 
   if (!isClient) {
@@ -113,7 +118,11 @@ const CheckoutComponent: React.FC = () => {
   }
   return (
     <CartProvider id="website">
-      <div className={styles.cartAndCheckout}>
+      <div
+        className={`${styles.cartAndCheckout} ${isStylesLoaded ? styles.loaded : styles.loading}`}
+        aria-busy={!isStylesLoaded}
+      >
+        {" "}
         <Basket showCheckoutButton={false} />
         <Checkout />
       </div>
