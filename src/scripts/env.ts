@@ -11,6 +11,13 @@ export function getEnvVar(key: string): string {
   throw new Error(`Environment variable ${key} is not defined`);
 }
 
+export function isDev(): boolean {
+  const isDevelopment =
+    import.meta.env.DEV || process.env.NODE_ENV === "development";
+  console.log("IS DEV:", isDevelopment);
+  return isDevelopment;
+}
+
 // Define and export environment variables with getters
 export const env = {
   get EB_BEARER() {

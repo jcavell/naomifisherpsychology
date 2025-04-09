@@ -1,8 +1,37 @@
-import { getEnvVar } from "../../scripts/env.ts";
+import { getEnvVar, isDev } from "../../scripts/env.ts";
 
 export const prerender = false;
 
+function isValidReferer(referer: string | null): boolean {
+  if (isDev()) {
+    return true; // Skip referer check in development
+  }
+
+  // Not dev
+  if (!referer) return false;
+
+  try {
+    const refererUrl = new URL(referer);
+    const allowedDomains = ["naomifisher.co.uk", "naomifisher.netlify.app"];
+    return allowedDomains.some(
+      (domain) =>
+        refererUrl.hostname === domain ||
+        refererUrl.hostname.endsWith(`--${domain}`),
+    );
+  } catch {
+    return false;
+  }
+}
+
 export async function GET({ request }: { request: Request }) {
+  const referer = request.headers.get("Referer");
+  if (!isValidReferer(referer)) {
+    return new Response(JSON.stringify({ error: "Unauthorized request" }), {
+      status: 403,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+
   // Step 1: Extract email from query parameters
   const { searchParams } = new URL(request.url);
   const email = searchParams.get("email");
