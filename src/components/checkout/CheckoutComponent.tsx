@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { CartProvider, useCart } from "react-use-cart";
-import styles from "../basket/Cart.module.css"; // Modular CSS for styles
 import { type Appearance, loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./CheckoutForm.tsx";
-import "./Checkout.css";
 import { Basket } from "../basket/Basket.tsx";
+
+import formStyles from "../../styles/components/checkout/form.module.css";
+import paymentStyles from "../../styles/components/checkout/payment.module.css";
+import summaryStyles from "../../styles/components/checkout/summary.module.css";
 
 // Load stripe with our TEST publishable API key (pk....)
 const stripePublishableKey = import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY;
@@ -62,7 +64,7 @@ const Checkout: React.FC = () => {
 
   // Early UI return for loading or empty states
   if (!isHydrated) {
-    return <p className={styles.emptyCart}>Loading shopping basket.</p>;
+    return <p className={summaryStyles.emptyCart}>Loading shopping basket.</p>;
   }
 
   if (isEmpty) {
@@ -72,7 +74,7 @@ const Checkout: React.FC = () => {
   // For free items, render CheckoutForm without Stripe Elements
   if (isBasketFree(items)) {
     return (
-      <div className={styles.checkoutFormWrapper}>
+      <div className={formStyles.checkoutFormWrapper}>
         <CheckoutForm clientSecret="" />
       </div>
     );
@@ -80,7 +82,7 @@ const Checkout: React.FC = () => {
 
   // Show loading state while waiting for clientSecret for paid items
   if (!clientSecret) {
-    return <p className={styles.emptyCart}>Loading payment form.</p>;
+    return <p className={summaryStyles.emptyCart}>Loading payment form.</p>;
   }
 
   const appearance: Appearance = {
@@ -92,7 +94,7 @@ const Checkout: React.FC = () => {
 
   return (
     clientSecret && (
-      <div className={styles.checkoutFormWrapper}>
+      <div className={formStyles.checkoutFormWrapper}>
         <Elements options={{ clientSecret, appearance }} stripe={stripePromise}>
           <CheckoutForm clientSecret={clientSecret} />
         </Elements>
@@ -119,7 +121,7 @@ const CheckoutComponent: React.FC = () => {
   return (
     <CartProvider id="website">
       <div
-        className={`${styles.cartAndCheckout} ${isStylesLoaded ? styles.loaded : styles.loading}`}
+        className={`${paymentStyles.cartAndCheckout} ${isStylesLoaded ? paymentStyles.loaded : paymentStyles.loading}`}
         aria-busy={!isStylesLoaded}
       >
         {" "}

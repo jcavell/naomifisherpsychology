@@ -1,0 +1,56 @@
+/* src/styles/components/checkout/summary.module.css */
+.purchaseSummary {
+    margin: 2rem auto;
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    width: 90%;
+    max-width: 800px;
+}
+
+.lineItem {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.productImage {
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-right: 10px;
+}
+
+.itemDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.variantName {
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.webinarName {
+    font-weight: 600;
+    color: #30313D;
+}
+
+.zoomInfo {
+    font-style: italic;
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin-top: 0.25rem;
+}
+
+@media only screen and (max-width: 600px) {
+    .purchaseSummary {
+        padding: 1rem;
+        margin: 1rem 0;
+    }
+}

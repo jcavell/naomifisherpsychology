@@ -1,0 +1,41 @@
+/* src/styles/base/reset.css */
+* {
+    margin: 0;
+    padding: 0;
+    outline-style: none;
+    outline-width: 0;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #f7f6f5;
+    font-family: -apple-system, BlinkMacSystemFont, "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+
+/* Base styles for common elements */
+a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: Arial, sans-serif;
+    display: block;
+}
+
+a:hover {
+    filter: contrast(120%);
+}
+
+h2 {
+    margin: 0;
+    color: #30313D;
+    text-align: center;
+}

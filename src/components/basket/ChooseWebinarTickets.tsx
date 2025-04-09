@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
-import "./overlay.css"; // Overlay styles
+import styles from "../../styles/components/cart/overlay.module.css";
 import { useCart } from "react-use-cart";
 import type { Ticket, Webinar } from "../../types/webinar";
-import Basket from "./Basket.tsx";
+import Basket from "./Basket";
 import type { BasketItem } from "../../types/basket-item";
 
 interface TicketSelectionOverlayProps {
@@ -76,15 +76,19 @@ const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
 
   return (
     <div
-      className="overlay"
+      className={styles.overlay}
       onClick={(e) => e.target === e.currentTarget && handleClose()}
     >
       <div
-        className="overlay-content"
+        className={styles.overlayContent}
         onClick={(e) => e.stopPropagation()} // Prevent event bubbling
       >
         {/* Cross Button for Close */}
-        <button className="close-overlay-button" onClick={handleClose}>
+        <button
+          type="button"
+          className={styles.closeOverlayButton}
+          onClick={handleClose}
+        >
           &times;
         </button>
         <h2 style={{ display: "flex", alignItems: "center", gap: "10px" }}>
@@ -115,18 +119,19 @@ const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
           webinar.ticket_classes
             .filter((ticket) => !ticket.hidden)
             .map((ticket) => (
-              <div className="ticket-row" key={ticket.id}>
-                <span className="ticket-name">{ticket.display_name}</span>
-                <span className="ticket-cost">
+              <div className={styles.ticketRow} key={ticket.id}>
+                <span className={styles.ticketName}>{ticket.display_name}</span>
+                <span className={styles.ticketCost}>
                   {ticket.cost?.display ?? "Free"}
                 </span>
                 <button
-                  className="add-to-basket"
+                  type="button"
+                  className={styles.addToBasket}
                   onClick={() => handleAddToBasket(ticket)}
                   disabled={isAnyButtonLoading} // Use global loading state
                 >
                   {loading === `${webinar.id}_${ticket.id}` ? (
-                    <span className="spinner" />
+                    <span className={styles.spinner} />
                   ) : (
                     "Add to Basket"
                   )}
@@ -172,7 +177,9 @@ const TicketSelectorButton: React.FC<TicketSelectorButtonProps> = ({
 
   return (
     <>
-      <button onClick={handleOpenOverlay}>Select Tickets</button>
+      <button type="button" onClick={handleOpenOverlay}>
+        Select Tickets
+      </button>
       {showOverlay && (
         <TicketSelectionOverlay
           webinar={webinar}

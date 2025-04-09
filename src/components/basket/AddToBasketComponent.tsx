@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useCart } from "react-use-cart";
-import "./overlay.css";
+import styles from "../../styles/components/cart/overlay.module.css";
 import Basket from "./Basket.tsx";
 
 export type BasketItemType = "webinar" | "course";
@@ -92,10 +92,10 @@ const Button: React.FC<BasketItem> = ({
   if (type === "webinar") {
     return (
       <>
-        <div className="buy-now">
+        <div className={styles.buyNow}>
           {isInCart ? (
             <button
-              className="add-to-basket remove"
+              className={`${styles.addToBasket} ${styles.remove}`}
               onClick={(event) => {
                 event.preventDefault();
                 handleRemoveFromBasket();
@@ -105,7 +105,7 @@ const Button: React.FC<BasketItem> = ({
             </button>
           ) : (
             <button
-              className="add-to-basket"
+              className={styles.addToBasket}
               disabled={isProcessing}
               onClick={(event) => {
                 event.preventDefault();
@@ -119,17 +119,17 @@ const Button: React.FC<BasketItem> = ({
         {/* Overlay Section */}
         {showOverlay && (
           <div
-            className="overlay"
+            className={styles.overlay}
             onClick={(e) => {
               if (e.target === e.currentTarget) {
                 closeOverlay(); // Invoked when clicking outside overlay-content
               }
             }}
           >
-            <div className="overlay-content">
+            <div className={styles.overlayContent}>
               {/* Add a close button */}
               <button
-                className="close-overlay-button"
+                className={styles.closeOverlayButton}
                 onClick={(e) => {
                   e.stopPropagation(); // Prevent the overlay click handler
                   closeOverlay();

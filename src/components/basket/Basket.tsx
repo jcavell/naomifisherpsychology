@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useCart } from "react-use-cart";
-import styles from "./Cart.module.css"; // Modular CSS for styles
+import styles from "../../styles/components/cart/cart.module.css";
 import type { BasketItem } from "../../types/basket-item";
 
 export interface BasketProps {

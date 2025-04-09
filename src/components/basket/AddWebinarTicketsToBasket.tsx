@@ -1,4 +1,3 @@
-// AddWebinarTicketsToBasket.tsx
 import React, { useState } from "react";
 import { CartProvider } from "react-use-cart";
 import AddToBasketComponent from "./AddToBasketComponent.tsx";

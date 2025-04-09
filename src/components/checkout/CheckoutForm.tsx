@@ -6,6 +6,8 @@ import {
 } from "@stripe/react-stripe-js";
 import { checkoutFormStateAndValidation } from "./CheckoutFormStateAndValidation.ts";
 import { useCart } from "react-use-cart";
+import formStyles from "../../styles/components/checkout/form.module.css";
+import paymentStyles from "../../styles/components/checkout/payment.module.css";
 
 interface CheckoutFormProps {
   clientSecret: string;
@@ -306,23 +308,22 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
   };
 
   const getButtonText = () => {
-    if (isLoading) return <div className="spinner" id="spinner"></div>;
+    if (isLoading)
+      return <div className={paymentStyles.spinner} id="spinner"></div>;
     return isBasketFree(items) ? "Complete Registration" : "Pay now";
   };
 
   return (
-    <div className="checkout-container">
-      {message && <p className="form-error-message">{message}</p>}
+    <div className={formStyles.checkoutContainer}>
+      {message && <p className={formStyles.errorMessage}>{message}</p>}
       <form id="payment-form" onSubmit={handleSubmit} noValidate>
-        <h2 className="checkout-heading">
+        <h2 className={formStyles.checkoutHeading}>
           Enter your details for ticket delivery
         </h2>
 
         {/* Input for First Name */}
         <div
-          className={`checkout-form-field ${
-            errors.firstName ? "field-error" : ""
-          }`}
+          className={`${formStyles.formField} ${errors.firstName ? formStyles.fieldError : ""}`}
         >
           <label htmlFor="first-name">First Name</label>
           <input
@@ -330,16 +331,16 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
             type="text"
             value={firstName}
             onChange={handleFirstNameChange} // Handle live error clearing
-            className="checkout-input"
+            className={formStyles.input}
           />
           {errors.firstName && (
-            <p className="error-message">{errors.firstName}</p>
+            <p className={formStyles.errorMessage}>{errors.firstName}</p>
           )}
         </div>
 
         {/* Input for Surname */}
         <div
-          className={`checkout-form-field ${errors.surname ? "field-error" : ""}`}
+          className={`${formStyles.formField} ${errors.surname ? formStyles.fieldError : ""}`}
         >
           <label htmlFor="surname">Surname</label>
           <input
@@ -347,14 +348,16 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
             type="text"
             value={surname}
             onChange={handleSurnameChange} // Handle live error clearing
-            className="checkout-input"
+            className={formStyles.input}
           />
-          {errors.surname && <p className="error-message">{errors.surname}</p>}
+          {errors.surname && (
+            <p className={formStyles.errorMessage}>{errors.surname}</p>
+          )}
         </div>
 
         {/* Input for Email */}
         <div
-          className={`checkout-form-field ${errors.email ? "field-error" : ""}`}
+          className={`${formStyles.formField} ${errors.email ? formStyles.fieldError : ""}`}
         >
           <label htmlFor="email">Email</label>
           <input
@@ -363,18 +366,22 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
             value={email}
             onChange={handleEmailChange}
             onBlur={handleEmailBlur}
-            className="checkout-input"
+            className={formStyles.input}
             disabled={isCheckingKit} // Disable input while checking ConvertKit
           />
-          {errors.email && <p className="error-message">{errors.email}</p>}
+          {errors.email && (
+            <p className={formStyles.errorMessage}>{errors.email}</p>
+          )}
         </div>
 
         {/* STRIPE PAYMENT ELEMENT */}
         {!isBasketFree(items) && (
           <>
-            <h2 className="checkout-heading">Choose your payment method</h2>
+            <h2 className={formStyles.checkoutHeading}>
+              Choose your payment method
+            </h2>
 
-            <div className="checkout-payment-element">
+            <div className={paymentStyles.paymentElement}>
               <PaymentElement
                 id="payment-element"
                 options={paymentElementOptions}
@@ -385,14 +392,14 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
 
         {/* Checkbox for Terms and Conditions */}
         <div
-          className={`checkout-checkbox ${errors.terms ? "field-error" : ""}`}
+          className={`${formStyles.checkbox} ${errors.terms ? formStyles.fieldError : ""}`}
         >
-          <label style={{ display: "flex", alignItems: "center" }}>
+          <label className={formStyles.termsLabel}>
             <input
               type="checkbox"
               checked={agreedToTerms}
               onChange={handleTermsChange} // Handle live checkbox validation
-              style={{ marginRight: "8px" }}
+              className={formStyles.checkboxInput}
             />
             I agree to the &nbsp;
             <a
@@ -404,12 +411,14 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
             </a>
             .
           </label>
-          {errors.terms && <p className="error-message">{errors.terms}</p>}
+          {errors.terms && (
+            <p className={formStyles.errorMessage}>{errors.terms}</p>
+          )}
         </div>
 
         {/* Updates checkbox - displayed conditionally */}
         {showUpdatesCheckbox && (
-          <div className="checkout-checkbox">
+          <div className={formStyles.checkbox}>
             <label>
               <input
                 type="checkbox"
@@ -422,7 +431,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
         )}
 
         <button
-          className="checkout-submit-button"
+          className={paymentStyles.checkoutSubmitButton}
           disabled={
             isLoading || (!isBasketFree(items) && (!stripe || !elements))
           }
