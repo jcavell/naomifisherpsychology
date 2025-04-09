@@ -103,49 +103,64 @@ const STATUS_CONTENT_MAP: Record<
 
 const CheckoutCompleteComponent: React.FC = () => {
   const stripe = useStripe();
-  const { items, emptyCart } = useCart();
+  const { emptyCart } = useCart();
 
   const [loading, setLoading] = useState(true); // Added a loading state
   const [status, setStatus] = useState<PaymentStatus>("default");
   const [intentId, setIntentId] = useState<string | null>(null);
-  const [purchasedItems, setPurchasedItems] = useState<BasketItem[]>([]); // Explicitly set to BasketItem[]
+  const [purchasedItems, setPurchasedItems] = useState<BasketItem[]>([]);
 
   useEffect(() => {
-    // Check for Stripe payment first
+    const params = new URLSearchParams(window.location.search);
+
+    // Paid and free have this
+    const checkoutId = params.get("checkout_id");
+
+    // Only paid has this
     const clientSecret = new URLSearchParams(window.location.search).get(
       "payment_intent_client_secret",
     );
 
-    if (!stripe) {
-      // Don't do anything until Stripe is ready
+    if (!checkoutId) {
+      setStatus("default");
+      setLoading(false);
       return;
     }
 
-    if (clientSecret) {
-      // Now we know Stripe is available
-      // Handle paid purchase with Stripe
-      stripe.retrievePaymentIntent(clientSecret).then((result) => {
-        const { paymentIntent } = result;
-        if (paymentIntent) {
-          setStatus(paymentIntent.status as PaymentStatus);
-          setIntentId(paymentIntent.id);
-          if (paymentIntent.status === "succeeded") {
-            const cachedItems = [...items] as BasketItem[];
-            setPurchasedItems(cachedItems);
-            // if (!isDev) emptyCart();
-          }
-        }
-        setLoading(false);
-      });
-    } else {
-      // Handle free purchase
-      const cachedItems = [...items] as BasketItem[];
-      setPurchasedItems(cachedItems);
+    const storedItems = checkoutId
+      ? JSON.parse(sessionStorage.getItem(`${checkoutId}`) || "[]")
+      : [];
+
+    setPurchasedItems(storedItems); // Store items in state to use in render
+
+    // Handle free purchase
+    if (!clientSecret) {
       setStatus("succeeded");
-      if (!isDev) emptyCart();
+      emptyCart();
       setLoading(false);
+      return;
     }
-  }, [stripe, items]);
+
+    // Handle paid purchase
+    if (!stripe) {
+      // Keep loading true until Stripe is ready
+      return;
+    }
+
+    // Now we know Stripe is available
+    // Handle paid purchase with Stripe
+    stripe.retrievePaymentIntent(clientSecret).then((result) => {
+      const { paymentIntent } = result;
+      if (paymentIntent) {
+        setStatus(paymentIntent.status as PaymentStatus);
+        setIntentId(paymentIntent.id);
+        if (paymentIntent.status === "succeeded") {
+          emptyCart();
+        }
+      }
+      setLoading(false);
+    });
+  }, [stripe]);
 
   if (loading) {
     // Show a neutral loading state

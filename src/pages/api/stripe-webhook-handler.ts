@@ -39,10 +39,9 @@ export async function POST({ request }: { request: Request }) {
   );
 
   // TODO Update purchase_event with event = webhook_received value = ${event.type}
-  if (event.type !== "charge.succeeded" && event.type !== "charge.updated") {
-    Logger.INFO(
-      `Ignoring event ${event.type} - not charge.succeeded or charge.updated`,
-    );
+  // if (event.type !== "charge.succeeded" && event.type !== "charge.updated") {
+  if (event.type !== "charge.succeeded") {
+    Logger.INFO(`Ignoring event ${event.type} - not charge.succeeded`);
     return success;
   }
 

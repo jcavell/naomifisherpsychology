@@ -197,8 +197,11 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
         throw new Error(data.message);
       }
 
+      const checkoutId = `free_${Date.now()}_${btoa(email).substring(0, 8)}`;
+      sessionStorage.setItem(`${checkoutId}`, JSON.stringify(items));
+
       // Redirect to success page
-      window.location.href = `${origin}/checkout-complete`;
+      window.location.href = `${origin}/checkout-complete?checkout_id=${checkoutId}`;
     } catch (error) {
       setMessage(
         error instanceof Error
@@ -266,10 +269,13 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
       }
 
       // Step 2: Confirm payment using Stripe
+      // Store items in sessionStorage before payment confirmation
+      sessionStorage.setItem(`${paymentIntentId}`, JSON.stringify(items));
+
       const { error } = await stripe.confirmPayment({
         elements,
         confirmParams: {
-          return_url: `${origin}/checkout-complete`,
+          return_url: `${origin}/checkout-complete?checkout_id=${paymentIntentId}`,
           payment_method_data: {
             billing_details: {
               name: `${firstName} ${surname}`,
@@ -278,6 +284,9 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
           },
         },
       });
+
+      // WE'VE NOW REDIRECTED
+      // NO CODE BELOW HERE WILL BE RUN
 
       if (error) {
         setMessage(error.message || "An unexpected error occurred.");
