@@ -1,5 +1,4 @@
 import { defineConfig } from "astro/config";
-import partytown from "@astrojs/partytown";
 import sitemap from "@astrojs/sitemap";
 import react from "@astrojs/react";
 import netlify from "@astrojs/netlify";
