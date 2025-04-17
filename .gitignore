@@ -1,7 +1,10 @@
 # build output
 dist/
 
-# webinar json
+# Netlify functions for SSR
+.netlify/
+
+# webinar data
 webinars-json/*.json
 
 # dependencies
@@ -13,7 +16,6 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-
 # environment variables
 .env
 .env.production
@@ -24,9 +26,9 @@ pnpm-debug.log*
 # generated types
 .astro/
 
-   # SSL Certificates
-   *.pem
-   *-key.pem
+# SSL Certificates
+*.pem
+*-key.pem
 
 # IDE - VSCode
 .vscode/*
@@ -38,4 +40,4 @@ pnpm-debug.log*
 # IDE - JetBrains (WebStorm, IntelliJ, etc)
 .idea/
 *.iml
-*.iws
+*.iws.netlify/

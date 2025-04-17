@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import type { JSX } from "react";
-import "./Checkout.css";
+import styles from "../../styles/components/checkout/complete.module.css";
 import { useCart } from "react-use-cart";
 import type { BasketItem } from "../../types/basket-item";
 
@@ -85,28 +85,28 @@ const CheckoutCompleteComponent: React.FC = () => {
 
   if (loading) {
     return (
-      <div id="payment-status" className="payment-status-loading">
+      <div id="payment-status" className={styles.loadingStatus}>
         <p>Loading payment status.</p>
       </div>
     );
   }
 
   return (
-    <div id="payment-status">
+    <div className={styles.paymentStatus}>
       <div
-        id="status-icon"
+        className={styles.statusIcon}
         style={{ backgroundColor: STATUS_CONTENT_MAP[status].iconColor }}
       >
         {STATUS_CONTENT_MAP[status].icon}
       </div>
-      <h2 id="status-text">{STATUS_CONTENT_MAP[status].text}</h2>
+      <h2 className={styles.heading}>{STATUS_CONTENT_MAP[status].text}</h2>
 
       {status === "succeeded" && purchasedItems.length > 0 && (
-        <div className="purchase-summary">
-          <h3>Purchase Summary</h3>
-          <table className="purchase-table">
+        <div className={styles.detailsTable}>
+          <h3 className={styles.heading}>Purchase Summary</h3>
+          <table className={styles.table}>
             <thead>
-              <tr>
+              <tr className={styles.tableRow}>
                 <th>Item</th>
                 <th>Price</th>
                 <th>Quantity</th>
@@ -115,33 +115,48 @@ const CheckoutCompleteComponent: React.FC = () => {
             </thead>
             <tbody>
               {purchasedItems.map((item) => (
-                <tr key={item.id}>
-                  <td>
-                    <div className="item-details">
+                <tr key={item.id} className={styles.tableRow}>
+                  <td className={styles.tableCell}>
+                    <div className={styles.itemDetails}>
                       {item.product_images?.[0] && (
                         <img
                           src={item.product_images[0]}
                           alt={item.product_name}
-                          className="item-image"
+                          className={styles.productImage}
                         />
                       )}
                       <div>
-                        <div className="webinar-name">{item.product_name}</div>
-                        <div className="variant-name">{item.variant_name}</div>
-                        <div className="zoom-info">
+                        <div className={styles.webinarName}>
+                          {item.product_name}
+                        </div>
+                        <div className={styles.variantName}>
+                          {item.variant_name}
+                        </div>
+                        <div className={styles.zoomInfo}>
                           Zoom link will be sent 2 hours before the start
                         </div>
                       </div>
                     </div>
                   </td>
-                  <td>£{(item.price / 100).toFixed(2)}</td>
-                  <td>{item.quantity}</td>
-                  <td>£{((item.price * item.quantity) / 100).toFixed(2)}</td>
+                  <td className={`${styles.tableCell} ${styles.tableContent}`}>
+                    £{(item.price / 100).toFixed(2)}
+                  </td>
+                  <td className={`${styles.tableCell} ${styles.tableContent}`}>
+                    {item.quantity}
+                  </td>
+                  <td className={`${styles.tableCell} ${styles.tableContent}`}>
+                    £{((item.price * item.quantity) / 100).toFixed(2)}
+                  </td>
                 </tr>
               ))}
-              <tr className="total-row">
-                <td colSpan={3}>Total</td>
-                <td>
+              <tr className={`${styles.tableRow} ${styles.totalRow}`}>
+                <td
+                  className={`${styles.tableCell} ${styles.tableLabel}`}
+                  colSpan={3}
+                >
+                  Total
+                </td>
+                <td className={`${styles.tableCell} ${styles.tableContent}`}>
                   £
                   {(
                     purchasedItems.reduce(
