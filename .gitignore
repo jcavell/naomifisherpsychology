@@ -23,3 +23,7 @@ pnpm-debug.log*
 
 # generated types
 .astro/
+
+   # SSL Certificates
+   *.pem
+   *-key.pem

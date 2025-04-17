@@ -32,7 +32,16 @@ EB_BEARER=BEARER_TOKEN
 ZAPIER_WEBHOOK_URL=https://hooks.zapier.com/hooks/catch/...
 ```
 
-### Development
+### Local HTTPS Setup
+This project uses HTTPS in development. Run:
+   ```bash
+   mkcert localhost
+   # or
+   mkcert -install
+   mkcert localhost
+   ```
+
+### Running the app locally 
 
 Run the development server:
 ```bash
@@ -40,23 +49,25 @@ npm run dev
 ```
 This will start the development server at `https://localhost:4321`
 
-### Production Build
+Any changes you make in the code will be reflected immediately. Page are not pre-built - which is different to how it operates when deployed.
 
-1. **Create or test production build**
+### Deployment Build
+
+1. **Create or test deployment build**
 ```bash
 npm run build
 ```
 This will:
 - Type-check the project
-- Build the production assets
+- Build the deployment assets
 - Generate static pages where applicable
 - Output to the `dist` directory
 
-2. **Preview production build**
+2. **Preview deployment build**
 ```bash
 npm run preview
 ```
-This will serve the production build locally at `https://localhost:4321`
+This will serve the deployment build locally at `https://localhost:4321`
 
 ### Available Scripts
 
