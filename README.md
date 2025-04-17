@@ -67,6 +67,173 @@ This will serve the production build locally at `https://localhost:4321`
 - `npm run test` - Run tests
 - `npm run format` - Format code with Prettier
 
+## Pages
+```
+├── pages
+│   ├── about.astro
+│   ├── api (more details below)
+│   ├── basket.astro
+│   ├── blog
+│   │   ├── [title].astro
+│   ├── blog.astro
+│   ├── books
+│   │   ├── [...slug].astro
+│   ├── books.astro
+│   ├── checkout-complete.astro
+│   ├── checkout.astro
+│   ├── consultation.astro
+│   ├── contact.astro
+│   ├── cookie-policy.astro
+│   ├── courses
+│   │   ├── [...title].astro
+│   │   ├── categories
+│   │   │   └── [...category].astro
+│   ├── courses.astro
+│   ├── educationalpsychology.astro
+│   ├── index.astro
+│   ├── is-it-all-my-fault.astro
+│   ├── media.astro
+│   ├── privacy-policy.astro
+│   ├── random.js
+│   ├── subscribed.astro
+│   ├── tags
+│   │   ├── [tag].astro
+│   ├── terms-and-conditions.astro
+│   ├── training.astro
+│   ├── webinars
+│   │   ├── [eventId].astro
+│   ├── webinars.astro
+```
+
+## Components
+``` ├── components
+    │   ├── Contributers.astro
+    │   ├── CookieConsent.astro
+    │   ├── DisplayTagContent.astro
+    │   ├── FilterMenu.astro
+    │   ├── Footer.astro
+    │   ├── Hamburger.astro
+    │   ├── Header.astro
+    │   ├── IconLinks.astro
+    │   ├── Navigation.astro
+    │   ├── Newsletter.astro
+    │   ├── Quoter.tsx
+    │   ├── Social.astro
+    │   ├── StaticImage.astro
+    │   ├── Tags.astro
+    │   ├── ThemeIcon.astro
+    │   ├── Vimeo.astro
+    │   ├── basket
+    │   │   ├── AddCourseToBasket.tsx
+    │   │   ├── AddToBasketComponent.tsx
+    │   │   ├── AddWebinarTicketsToBasket.tsx
+    │   │   ├── Basket.tsx
+    │   │   ├── BasketWrapper.tsx
+    │   │   ├── ChooseWebinarTickets.tsx
+    │   │   ├── ChooseWebinarTicketsWrapper.tsx
+    │   ├── blog
+    │   │   ├── BlogDetails.astro
+    │   │   ├── BlogImage.astro
+    │   │   ├── BlogList.astro
+    │   │   ├── BlogSummary.astro
+    │   ├── book
+    │   │   ├── BookDetails.astro
+    │   │   ├── BookImage.astro
+    │   │   ├── BookSummary.astro
+    │   ├── checkout
+    │   │   ├── Checkout.css
+    │   │   ├── CheckoutCompleteComponent.tsx
+    │   │   ├── CheckoutCompleteWrapper.tsx
+    │   │   ├── CheckoutComponent.tsx
+    │   │   ├── CheckoutForm.tsx
+    │   │   ├── CheckoutFormStateAndValidation.ts
+    │   │   ├── CheckoutOrderSummary.tsx
+    │   ├── course
+    │   │   ├── CourseDetails.astro
+    │   │   ├── CourseImage.astro
+    │   │   ├── CourseSummary.astro
+    │   │   ├── CoursesList.astro
+    │   ├── media
+    │   │   ├── MediaSummary.astro
+    │   ├── webinar
+    │   │   └── RemoveFinishedWebinars.ts
+    │   │   └── WebinarDetails.astro
+    │   │   └── WebinarImage.astro
+    │   │   └── WebinarSummary.astro
+    
+   ```
+## Content
+
+```aiignore
+ ├── content
+    │   ├── blog
+    │   ├── book-excerpts
+    │   ├── book-quotes
+    │   ├── book-reviews
+    │   ├── books
+    │   ├── books-more-info
+    │   ├── config.ts
+    │   ├── course-quotes
+    │   ├── courseCards
+    │   ├── courseCheckouts
+    │   ├── static-pages-quotes
+    │   ├── tag-quotes
+    │   ├── tags
+    │   ├── webinar-quotes
+```
+
+## Scripts
+```aiignore
+   ├── scripts
+    │   ├── accordion.js
+    │   ├── blog.ts
+    │   ├── book.ts
+    │   ├── checkout
+    │   │   ├── calculateOrderAmount.ts
+    │   │   ├── create-sb-client.ts
+    │   │   ├── init-stripe.ts
+    │   │   ├── sb-purchases.ts
+    │   │   ├── sb-users.ts
+    │   │   ├── sb-webinar-tickets.ts
+    │   │   ├── send-purchase-confirmation-via-postmark.ts
+    │   │   ├── send-purchase-confirmation.ts
+    │   │   ├── zap.ts
+    │   ├── course-get-internal-id.ts
+    │   ├── courseCategories.ts
+    │   ├── courseMeta.ts
+    │   ├── courses.ts
+    │   ├── env.ts
+    │   ├── filterMenu.js
+    │   ├── formatDateUtil.ts
+    │   ├── getTaggedResources.ts
+    │   ├── logger.ts
+    │   ├── media.ts
+    │   ├── people.ts
+    │   ├── tagMeta.ts
+    │   ├── tags.ts
+    │   ├── url.ts
+    │   ├── webinarMeta.ts
+    │   ├── webinars.ts
+```
+
+## Styles
+```aiignore
+  ├── styles
+    │   ├── base
+    │   │   ├── reset.css
+    │   ├── components
+    │   │   ├── cart
+    │   │   │   ├── cart.module.css
+    │   │   │   ├── overlay.module.css
+    │   │   ├── checkout
+    │   │   │   └── form.module.css
+    │   │   │   └── payment.module.css
+    │   │   │   └── summary.module.css
+    │   ├── layouts
+    │   │   ├── header.css
+    │   ├── main.css
+    │   ├── naomiStyle.astro
+```
 ## Basket (Cart)
 
 React components are used for the shopping basket and checkout.
@@ -101,6 +268,26 @@ vatable: boolean;
 ```
 
 ## API endpoints 
+
+APIs are under /pages/api
+
+    ├── pages
+    │   ├── api
+    │   │   ├── courses
+    │   │   │   ├── [offerId].ts
+    │   │   ├── create-payment-intent.ts
+    │   │   ├── get-coupon.ts
+    │   │   ├── get-kit-user.ts
+    │   │   ├── get-user-cookie.ts
+    │   │   ├── process-free-checkout.ts
+    │   │   ├── sb-insert-unconfirmed-purchase.ts
+    │   │   ├── set-user-cookie.ts
+    │   │   ├── stripe-webhook-handler.ts
+    │   │   ├── webinar-tickets
+    │   │   │   ├── [eventId_ticketId].ts
+    │   │   ├── webinars
+    │   │   │   └── [eventId].ts
+
 The React components call local APIs to get information about courses, webinars, webinar tickets and whether a user has already subscribed to Kit.
 
 Upon checkout, React calls a local API to insert an unconfirmed purchase into Supabase. 
@@ -204,7 +391,6 @@ Processes free items in the shopping cart without Stripe payment processing.
     "lastName": "string"
   },
   "basket_items": [
-    ...
   ]
 }
 ```
@@ -233,7 +419,6 @@ Records initial purchase details in Supabase before payment processing.
     "lastName": "Doe"
   },
   "basket_items": [
-    ...
   ]
 }
 ```
