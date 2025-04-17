@@ -157,20 +157,20 @@ Example: https://localhost:4321/api/webinar-tickets/1203174349869_2131545083
     - If the payment fails or additional verification is needed, the user is prompted to retry or complete the required action (e.g., 3D Secure authentication).
 
 9. **Stripe Webhook**
-    - Stripe sends a `payment_intent.succeeded` event to stripe-webhook-handler.ts.
+    - Stripe asynchronously sends a `payment_intent.succeeded` event to stripe-webhook-handler.ts. This is typoically called after the user is redirected to the /checkout-complete page (see below).
     - The handler:
         - Verifies the event using the Stripe webhook signing secret.
         - Extracts the `PaymentIntent` details 
-        - Retrieves purchase details from database
+        - Retrieves purchase details from database (supabase)
         - Checks if payment was already confirmed to prevent double-processing
         - Retrieves full payment intent from Stripe
         - Updates purchase record with payment confirmation
     - Post-purchase actions
-      - Creates webinar tickets if applicable
-      - Retrieves user details
-      - Sends purchase confirmation email
-      - Subscribes user to Kit (if applicable)
-      - Posts course information to Zapier (if applicable)
+      - Inserts webinar tickets into supabase if applicable
+      - Retrieves user details from supabase
+      - Sends purchase confirmation email using Postmark
+      - Subscribes user to Kit (if applicable) via its API
+      - Posts user and course data to Zapier (if applicable) via a Zapier webhook with a secret URL. This Zap connects with Kajabi to grant the relevant offers.
 
 10. **Redirect to CheckoutComplete Page**
     After successful payment:
@@ -200,29 +200,6 @@ Example: https://localhost:4321/api/webinar-tickets/1203174349869_2131545083
 - The frontend manages payment state using `clientSecret` and interacts with Stripe for confirmation and status retrieval.
 - The `CheckoutComplete` page acts as the final summary for the user's transaction.
 
-### Stripe webhook handler flow
-
-1. **Signature Verification**
-    - Verifies the webhook signature using `STRIPE_WEBHOOK_SECRET`
-    - Returns 400 status if verification fails
-
-2. **Event Filtering**
-    - Only processes `charge.succeeded` events
-    - Other events are acknowledged but not processed
-
-3. **Payment Processing**
-    - Retrieves purchase details from database
-    - Checks if payment was already confirmed to prevent double-processing
-    - Retrieves full payment intent from Stripe
-    - Updates purchase record with payment confirmation
-
-4. **Post-Purchase Actions**
-    - Creates webinar tickets if applicable
-    - Retrieves user details
-    - Sends purchase confirmation email
-    - Subscribes user to Kit (if applicable)
-    - Posts course information to Zapier (if applicable)
-
 ## Testing Stripe Integration Locally
 
 ### Development Sandbox Setup
@@ -232,7 +209,7 @@ Example: https://localhost:4321/api/webinar-tickets/1203174349869_2131545083
     - API keys should start with `pk_test_` and `sk_test_`
 
 2. **Environment Variables**
-   Add these to your `.env` file:
+   Ensure you're using the Stripe test keys. In your `.env` file:
    ```plaintext
    STRIPE_SECRET_KEY=sk_test_...    # From dev sandbox
    STRIPE_PUBLISHABLE_KEY=pk_test_...  # From dev sandbox
