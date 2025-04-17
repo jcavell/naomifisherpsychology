@@ -103,20 +103,20 @@ const CheckoutCompleteComponent: React.FC = () => {
 
       {status === "succeeded" && purchasedItems.length > 0 && (
         <div className={styles.detailsTable}>
-          <h3 className={styles.heading}>Purchase Summary</h3>
+          <h3 className={styles.heading}>
+            Thank you for your purchase with Naomi Fisher Psychology
+          </h3>
           <table className={styles.table}>
             <thead>
-              <tr className={styles.tableRow}>
+              <tr>
                 <th>Item</th>
                 <th>Price</th>
-                <th>Quantity</th>
-                <th>Total</th>
               </tr>
             </thead>
             <tbody>
               {purchasedItems.map((item) => (
-                <tr key={item.id} className={styles.tableRow}>
-                  <td className={styles.tableCell}>
+                <tr key={item.id}>
+                  <td>
                     <div className={styles.itemDetails}>
                       {item.product_images?.[0] && (
                         <img
@@ -132,31 +132,26 @@ const CheckoutCompleteComponent: React.FC = () => {
                         <div className={styles.variantName}>
                           {item.variant_name}
                         </div>
-                        <div className={styles.zoomInfo}>
-                          Zoom link will be sent 2 hours before the start
-                        </div>
+                        {item.product_type === "webinar" && (
+                          <div className={styles.zoomInfo}>
+                            Zoom link will be sent 2 hours before the start
+                          </div>
+                        )}
+                        {item.product_type === "course" && (
+                          <div className={styles.zoomInfo}>
+                            Check your email for instructions on how to watch
+                            this course. It is available to watch for 12 months.
+                          </div>
+                        )}
                       </div>
                     </div>
                   </td>
-                  <td className={`${styles.tableCell} ${styles.tableContent}`}>
-                    £{(item.price / 100).toFixed(2)}
-                  </td>
-                  <td className={`${styles.tableCell} ${styles.tableContent}`}>
-                    {item.quantity}
-                  </td>
-                  <td className={`${styles.tableCell} ${styles.tableContent}`}>
-                    £{((item.price * item.quantity) / 100).toFixed(2)}
-                  </td>
+                  <td>£{(item.price / 100).toFixed(2)}</td>
                 </tr>
               ))}
-              <tr className={`${styles.tableRow} ${styles.totalRow}`}>
-                <td
-                  className={`${styles.tableCell} ${styles.tableLabel}`}
-                  colSpan={3}
-                >
-                  Total
-                </td>
-                <td className={`${styles.tableCell} ${styles.tableContent}`}>
+              <tr>
+                <td>Total</td>
+                <td>
                   £
                   {(
                     purchasedItems.reduce(

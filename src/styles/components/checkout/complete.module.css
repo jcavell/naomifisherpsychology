@@ -32,6 +32,7 @@
     text-align: center;
 }
 
+/* Table styles */
 .detailsTable {
     overflow-x: auto;
     width: 100%;
@@ -43,6 +44,19 @@
     border-collapse: collapse;
 }
 
+/* Table header styles */
+.table thead th {
+    text-align: left;
+    color: #6D6E78;
+    font-weight: normal;
+    padding-bottom: 10px;
+}
+
+.table thead th:last-child {
+    text-align: right;
+}
+
+/* Table body styles */
 .tableRow:first-child td {
     border-top: 1px solid #E6E6E6;
     padding-top: 10px;
@@ -56,9 +70,19 @@
     padding-bottom: 10px;
 }
 
-.tableContent {
+.table td {
+    text-align: left;
+    padding-bottom: 10px;
+}
+
+.table td:last-child {
     text-align: right;
-    color: #6D6E78;
+}
+
+/* Total row alignment */
+.table tbody tr:last-child td,
+.table tbody tr:last-child td:last-child {
+    text-align: left;
 }
 
 .tableLabel {
@@ -66,6 +90,39 @@
     color: #30313D;
 }
 
+/* Product styles */
+.productImage {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 12px;
+}
+
+.itemDetails {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.webinarName {
+    font-weight: 600;
+    color: #30313D;
+    margin-bottom: 4px;
+}
+
+.variantName {
+    color: #6D6E78;
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.zoomInfo {
+    color: #6D6E78;
+    font-size: 12px;
+}
+
+/* Button and link styles */
 .viewDetails {
     color: #0055DE;
     text-decoration: none;
@@ -91,6 +148,7 @@
     width: 100%;
 }
 
+/* Loading state */
 .loadingStatus {
     min-height: 50vh;
     display: flex;
@@ -99,12 +157,14 @@
     font-size: 1.2rem;
 }
 
+/* Animations */
 @keyframes fadeInAnimation {
     to {
         opacity: 1;
     }
 }
 
+/* Media queries */
 @media only screen and (max-width: 600px) {
     .paymentStatus {
         width: 80vw;
