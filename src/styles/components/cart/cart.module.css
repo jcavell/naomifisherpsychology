@@ -120,3 +120,9 @@
 .loaded {
     opacity: 1;
 }
+
+.variantName {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: #666;
+}

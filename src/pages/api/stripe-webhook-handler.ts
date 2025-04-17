@@ -10,6 +10,7 @@ import {
   getPurchase,
   upsertPurchaseToConfirmPayment,
 } from "../../scripts/checkout/sb-purchases.ts";
+import { postCoursesToZapier } from "../../scripts/checkout/zap.ts";
 
 export const prerender = false; // Disable static pre-rendering for this endpoint
 
@@ -71,23 +72,27 @@ export async function POST({ request }: { request: Request }) {
     // Step 2. Update pre-purchase with payment method, timestamp and confirm the purchase
     await upsertPurchaseToConfirmPayment(paymentIntent);
 
+    const basketItems = purchase.items as BasketItem[];
+    const webinarBasketItems = basketItems.filter(
+      (item) => item.product_type === "webinar",
+    );
+    const courseBasketItems = basketItems.filter(
+      (item) => item.product_type === "course",
+    );
+
     // Step 3 insert ticket into WebinarTickets
     try {
-      await insertWebinarTickets(
-        purchase.id,
-        purchase.items as BasketItem[],
-        userId,
-      );
+      await insertWebinarTickets(purchase.id, webinarBasketItems, userId);
       Logger.INFO("Successfully created webinar tickets", {
         purchaseId: purchase.id,
         userId,
-        itemCount: purchase.items.length,
+        itemCount: webinarBasketItems.length,
       });
     } catch (error) {
       Logger.ERROR("Failed to create webinar tickets", {
         error: error instanceof Error ? error.message : "Unknown error",
         userId,
-        items: purchase.items,
+        items: webinarBasketItems,
       });
       throw new Error(
         "Failed to create webinar tickets. Please try again later.",
@@ -105,6 +110,10 @@ export async function POST({ request }: { request: Request }) {
       paymentIntent.amount,
       purchase.items as BasketItem[],
     );
+
+    // Step 6
+    // Add Zapier webhook call for courses
+    await postCoursesToZapier(userId, user, courseBasketItems);
 
     // Return 200 to indicate successful purchase
     return success;

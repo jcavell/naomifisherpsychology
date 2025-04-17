@@ -28,7 +28,7 @@ function removeExpiredItemsFromCart(
     const expiresAt = new Date(item.expires_at);
 
     if (expiresAt < twentyMinutesFromNow) {
-      console.log("Expired, removing from cart:");
+      // console.log("Expired, removing from cart:");
       expiredItems.push(item);
 
       // Remove from cart
@@ -150,7 +150,8 @@ export const Basket: React.FC<BasketProps> = ({
                     }}
                   />
                 )}
-                {item.product_name} ({item.variant_name} ticket)
+                {item.product_name}
+                <span className={styles.variantName}> {item.variant_name}</span>
               </span>
               <span className={styles.itemColumn}>
                 {formatPrice(item.price)}

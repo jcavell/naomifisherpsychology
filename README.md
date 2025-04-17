@@ -1,14 +1,111 @@
+
+## Installation and Development
+
+### Prerequisites
+- Node.js (v18 or higher)
+- npm (included with Node.js)
+- Git
+
+### Installation
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/jcavell/naomifisherpsychology.git
+cd naomifisherpsychology
+```
+
+2. **Install dependencies**
+```bash
+npm install
+```
+
+3. **Set up environment variables**
+   Create a `.env` file in the root directory and add required variables. Look in .env.example which contains:
+```plaintext
+PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_....
+STRIPE_SECRET_KEY=sk_test_....
+KIT_API_KEY=kit_....
+SUPABASE_API_URL=https://....
+SUPABASE_API_KEY=KEY
+POSTMARK_SERVER_TOKEN=TOKEN
+EB_BEARER=BEARER_TOKEN
+ZAPIER_WEBHOOK_URL=https://hooks.zapier.com/hooks/catch/...
+```
+
+### Development
+
+Run the development server:
+```bash
+npm run dev
+```
+This will start the development server at `https://localhost:4321`
+
+### Production Build
+
+1. **Create production build**
+```bash
+npm run build
+```
+This will:
+- Type-check the project
+- Build the production assets
+- Generate static pages where applicable
+- Output to the `dist` directory
+
+2. **Preview production build**
+```bash
+npm run preview
+```
+This will serve the production build locally at `https://localhost:4321`
+
+### Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Create production build
+- `npm run preview` - Preview production build
+- `npm run check` - Run type checking
+- `npm run test` - Run tests
+- `npm run format` - Format code with Prettier
+
+## Basket (Cart)
+Items stored in the cart are of type BasketItem
+
+```typescript
+export type BasketItem = {
+id: string; //
+price: number; // in pence e.g. 1699
+currency: string;
+formatted_price: string; // e.g. £16.99, required by postmark template
+quantity: number;
+product_type: product_type;
+is_course: boolean; // required by postmark template
+is_webinar: boolean; // required by postmark template
+product_id: string;
+product_name: string;
+product_images: string[];
+product_description?: string;
+variant_id: string;
+variant_name: string;
+variant_description?: string;
+added_at: string; // format "2025-02-13T14:42:52.713Z"
+expires_at: string; // format "2024-09-23T12:30:00Z"
+vatable: boolean;
+};
+```
+
 ## API endpoints 
 
-### GET /api/kit-user?email={email}
-https://localhost:4321/api/get-kit-user?email=jonny.cavell@gmail.com
+### Get Kit subscriber
+#### GET /api/kit-user?email={email}
+Example: https://localhost:4321/api/get-kit-user?email=jonny.cavell@gmail.com
 
 ```json{
 "subscriber":{"id":2270329001,"first_name":"Jonny Cavell gmail","email_address":"jonny.cavell@gmail.com","state":"active","created_at":"2023-08-01T18:52:31Z","fields":{"last_name":"Cavell"}}}
 ```
 
-### GET /api/webinar-tickets/{webinar_id}_{ticket_id}
-https://localhost:4321/api/webinar-tickets/1203174349869_2131545083
+### Get webinar ticket
+#### GET /api/webinar-tickets/{webinar_id}_{ticket_id}
+Example: https://localhost:4321/api/webinar-tickets/1203174349869_2131545083
 
 ```json{
 "id": "1203174349869_2131545083",
@@ -35,7 +132,7 @@ https://localhost:4321/api/webinar-tickets/1203174349869_2131545083
 1. **User Adds Items to Cart**
    The user browses through the website and adds items to their shopping cart using the `react-use-cart` library. The shopping cart details, including products and their quantities, are tracked in state.
 2. **Navigating to the Checkout Page**
-   When the user decides to proceed with the purchase, they click the "Checkout" button in the cart, which navigates them to the `/checkout` page component.
+   When the user decides to proceed with the purchase, they click the "Checkout" button in the cart, which navigates them to the `/checkout` page.
 3. **Backend Creates a PaymentIntent**
    On the checkout page, the React app makes a `POST` request to the `/api/create-payment-intent` backend API. This API:
     - Sends the list of cart items to the server.
@@ -59,11 +156,21 @@ https://localhost:4321/api/webinar-tickets/1203174349869_2131545083
     - If the payment is successful (`paymentIntent.status === "succeeded"`), the confirmation is logged, and the user is redirected to the `/checkout-complete` page.
     - If the payment fails or additional verification is needed, the user is prompted to retry or complete the required action (e.g., 3D Secure authentication).
 
-9. **Saving PaymentIntent in Backend (Webhook)**
-    - Simultaneously, Stripe sends a `payment_intent.succeeded` event to your backend via a webhook.
-    - The webhook:
+9. **Stripe Webhook**
+    - Stripe sends a `payment_intent.succeeded` event to stripe-webhook-handler.ts.
+    - The handler:
         - Verifies the event using the Stripe webhook signing secret.
-        - Extracts the `PaymentIntent` details and stores them in the database for record-keeping (e.g., transaction ID, total amount, customer email).
+        - Extracts the `PaymentIntent` details 
+        - Retrieves purchase details from database
+        - Checks if payment was already confirmed to prevent double-processing
+        - Retrieves full payment intent from Stripe
+        - Updates purchase record with payment confirmation
+    - Post-purchase actions
+      - Creates webinar tickets if applicable
+      - Retrieves user details
+      - Sends purchase confirmation email
+      - Subscribes user to Kit (if applicable)
+      - Posts course information to Zapier (if applicable)
 
 10. **Redirect to CheckoutComplete Page**
     After successful payment:
@@ -82,18 +189,39 @@ https://localhost:4321/api/webinar-tickets/1203174349869_2131545083
     - Transaction `status` (e.g., `succeeded`).
     - A link to view the payment details in the Stripe Dashboard.
 
-13. **Logging in the Backend**
-    Based on the webhook information, the backend logs the transaction details, associates it with the user's account, and marks this order as "completed."
-14. **User Views Confirmation Page**
+    
+13. **User Views Confirmation Page**
     The user sees their payment confirmation details and order summary on the `CheckoutComplete` page.
-15. **Optional Retry or New Purchase**
-    If the payment failed or no payment was initiated, the `CheckoutCompleteComponent` offers the user a "Retry" button that redirects them back to the `/checkout` page.
+
 
 ### Key Points:
 - **Stripe Elements** provides a secure and PCI-compliant way to collect card details.
 - **Webhooks** on the backend ensure no payments go unlogged or tampered with.
 - The frontend manages payment state using `clientSecret` and interacts with Stripe for confirmation and status retrieval.
 - The `CheckoutComplete` page acts as the final summary for the user's transaction.
+
+### Stripe webhook handler flow
+
+1. **Signature Verification**
+    - Verifies the webhook signature using `STRIPE_WEBHOOK_SECRET`
+    - Returns 400 status if verification fails
+
+2. **Event Filtering**
+    - Only processes `charge.succeeded` events
+    - Other events are acknowledged but not processed
+
+3. **Payment Processing**
+    - Retrieves purchase details from database
+    - Checks if payment was already confirmed to prevent double-processing
+    - Retrieves full payment intent from Stripe
+    - Updates purchase record with payment confirmation
+
+4. **Post-Purchase Actions**
+    - Creates webinar tickets if applicable
+    - Retrieves user details
+    - Sends purchase confirmation email
+    - Subscribes user to Kit (if applicable)
+    - Posts course information to Zapier (if applicable)
 
 ## Testing Stripe Integration Locally
 

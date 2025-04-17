@@ -7,6 +7,7 @@ import { getCourseFromTitle, parseDescriptions } from "../../scripts/courses";
 import CourseImage from "./CourseImage.astro";
 import Vimeo from "../Vimeo.astro";
 import Newsletter from "../Newsletter.astro";
+import AddCourseToBasket from "../basket/AddCourseToBasket";
 
 const { course } = Astro.props;
 
@@ -17,6 +18,8 @@ const descriptions = course.checkout?.descriptions;
 const testimonials = course.checkout?.testimonials;
 
 const relatedTitles = course.meta?.relatedTitles || [];
+
+// console.log("COURSE: " + JSON.stringify(course));
 
 // Get related courses
 // Filter out possible undefined courses after promises are resolved.
@@ -70,15 +73,12 @@ const relatedCourses = (
           <!--  <span class="globe"> Watch Online </span>-->
           <!--</div>-->
         </div>
-        <a href={checkoutURL} target="blank" class="test">
-          <div class="purchase">
-            <div class="price">{price}</div>
-            <div class="company">RECORDED COURSE</div>
-            <div class="buy-now">
-              <span> Buy Now </span>
-            </div>
-          </div>
-        </a>
+
+        <AddCourseToBasket
+          offerId={course.offerId}
+          displayprice={price}
+          client:load
+        />
       </div>
       <div class="card-meta details-meta">
         <Contributers people={course.meta?.contributers} />

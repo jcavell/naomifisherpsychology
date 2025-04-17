@@ -41,4 +41,7 @@ export const env = {
   get POSTMARK_SERVER_TOKEN() {
     return getEnvVar("POSTMARK_SERVER_TOKEN");
   },
+  get ZAPIER_WEBHOOK_URL() {
+    return getEnvVar("ZAPIER_WEBHOOK_URL");
+  },
 } as const;

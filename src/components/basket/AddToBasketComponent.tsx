@@ -12,24 +12,28 @@ export interface BasketItem {
   setIsProcessing: (value: boolean) => void;
 }
 
-const handleFetchAndAddItem = async (addItem, inCart, id: string) => {
+const handleFetchAndAddItem = async (
+  addItem,
+  inCart,
+  id: string,
+  type: BasketItemType,
+) => {
   // Check if the item already exists in the cart
-  // alert("Adding to basket...");
   if (inCart(id)) {
-    // alert("This item is already in the cart.");
     return;
   }
 
-  // Get the CheckoutItem data from the id
   try {
-    const response = await fetch(`/api/webinar-tickets/${id}`);
+    const endpoint =
+      type === "course" ? `/api/courses/${id}` : `/api/webinar-tickets/${id}`;
+
+    const response = await fetch(endpoint);
     if (!response.ok) {
       throw new Error(`Error: ${response.status} - ${response.statusText}`);
     }
 
-    // Add CheckoutItem to basket
-    const checkoutItem: BasketItem = await response.json(); // Parse the JSON response
-    addItem(checkoutItem);
+    const basketItem: BasketItem = await response.json();
+    addItem(basketItem);
     // alert(`${JSON.stringify(checkoutItem)} added to the cart`);
   } catch (err) {
     console.error("Error fetching item:", err);
@@ -63,7 +67,7 @@ const Button: React.FC<BasketItem> = ({
     const itemExists = inCart(id);
     if (!itemExists) {
       // only 1 of each item allowed
-      await handleFetchAndAddItem(addItem, inCart, id);
+      await handleFetchAndAddItem(addItem, inCart, id, type);
       setIsInCart(true); // Update local state after adding
       setButtonText("Add to Basket");
       setShowOverlay(true); // Show the overlay after adding to basket
@@ -89,61 +93,59 @@ const Button: React.FC<BasketItem> = ({
     return null; // Render nothing while loading
   }
 
-  if (type === "webinar") {
-    return (
-      <>
-        <div className={styles.buyNow}>
-          {isInCart ? (
-            <button
-              className={`${styles.addToBasket} ${styles.remove}`}
-              onClick={(event) => {
-                event.preventDefault();
-                handleRemoveFromBasket();
-              }}
-            >
-              <span>Remove &times;</span>
-            </button>
-          ) : (
-            <button
-              className={styles.addToBasket}
-              disabled={isProcessing}
-              onClick={(event) => {
-                event.preventDefault();
-                handleAddToBasket();
-              }}
-            >
-              <span>{buttonText}</span>
-            </button>
-          )}
-        </div>
-        {/* Overlay Section */}
-        {showOverlay && (
-          <div
-            className={styles.overlay}
-            onClick={(e) => {
-              if (e.target === e.currentTarget) {
-                closeOverlay(); // Invoked when clicking outside overlay-content
-              }
+  return (
+    <>
+      <div className={styles.buyNow}>
+        {isInCart ? (
+          <button
+            className={`${styles.addToBasket} ${styles.remove}`}
+            onClick={(event) => {
+              event.preventDefault();
+              handleRemoveFromBasket();
             }}
           >
-            <div className={styles.overlayContent}>
-              {/* Add a close button */}
-              <button
-                className={styles.closeOverlayButton}
-                onClick={(e) => {
-                  e.stopPropagation(); // Prevent the overlay click handler
-                  closeOverlay();
-                }}
-              >
-                &times;
-              </button>
-              <Basket />
-            </div>
-          </div>
+            <span>Remove &times;</span>
+          </button>
+        ) : (
+          <button
+            className={styles.addToBasket}
+            disabled={isProcessing}
+            onClick={(event) => {
+              event.preventDefault();
+              handleAddToBasket();
+            }}
+          >
+            <span>{buttonText}</span>
+          </button>
         )}
-      </>
-    );
-  }
+      </div>
+      {/* Overlay Section */}
+      {showOverlay && (
+        <div
+          className={styles.overlay}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              closeOverlay(); // Invoked when clicking outside overlay-content
+            }
+          }}
+        >
+          <div className={styles.overlayContent}>
+            {/* Add a close button */}
+            <button
+              className={styles.closeOverlayButton}
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent the overlay click handler
+                closeOverlay();
+              }}
+            >
+              &times;
+            </button>
+            <Basket />
+          </div>
+        </div>
+      )}
+    </>
+  );
 };
 
 const AddToBasketComponent: React.FC<BasketItem> = ({
