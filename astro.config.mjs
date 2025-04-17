@@ -17,10 +17,11 @@ export default defineConfig({
   }),
 
   vite: {
-    plugins: [basicSsl()],
-    server: {
-      https: true,
-    },
+    plugins: [process.env.NODE_ENV === "development" && basicSsl()].filter(
+      Boolean,
+    ),
+    server:
+      process.env.NODE_ENV === "development" ? { https: true } : undefined,
   },
 
   // Using integrations
