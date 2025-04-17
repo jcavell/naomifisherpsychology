@@ -16,21 +16,21 @@ const bodyClass = bodyClassName
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics -->
     <script
       type="text/partytown"
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-12YTPF8CY7"></script>
 
-    <script type="text/partytown">
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "G-12YTPF8CY7");
-    </script>
+    <script
+      type="text/partytown"
+      set:html={`
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-12YTPF8CY7');
+`}
+    />
 
     <script src="../scripts/accordion.js"></script>
 
@@ -39,7 +39,6 @@ const bodyClass = bodyClassName
     {metaDescription && <meta name="description" content={metaDescription} />}
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="" />
     <title>Dr. Naomi Fisher</title>
     <link rel="icon" type="image/x-icon" href="/naomi-logo.ico" />
     <NaomiStyle />
