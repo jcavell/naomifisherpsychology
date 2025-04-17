@@ -14,7 +14,7 @@ const STATUS_CONTENT_MAP: Record<
   { text: string; iconColor: string; icon: JSX.Element }
 > = {
   succeeded: {
-    text: "Purchase Success",
+    text: "Success",
     iconColor: "#30B130",
     icon: (
       <svg

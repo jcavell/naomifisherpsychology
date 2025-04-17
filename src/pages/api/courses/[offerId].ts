@@ -28,10 +28,10 @@ export async function GET({ params }) {
     product_description: course.data.description,
     product_images: [course.data.imageURL],
     variant_id: "",
-    variant_name: "Course",
+    variant_name: "Recorded course",
     currency: "GBP", // Assuming GBP is default
     price: 100 * parseFloat(course.data.price.replace(/[^0-9.]/g, "")), // Remove currency symbol and convert to number
-    formatted_price: course.data.price,
+    formatted_price: course.data.price.replace(" GBP", ""),
     added_at: new Date().toISOString(),
     expires_at: oneYearFromNow.toISOString(),
     quantity: 1,

@@ -7,6 +7,7 @@ export const prerender = false;
 const POSTMARK_API_URL = "https://api.postmarkapp.com/email/withTemplate";
 const TEMPLATE_ALIAS = "order-confirmation";
 const EMAIL_HEADING = "Order Confirmation";
+const EMAIL_FROM = "support@naomifisher.co.uk";
 
 /**
  * Sends a purchase confirmation email via Postmark.
@@ -16,7 +17,7 @@ export async function sendPurchaseConfirmationEmail(
   purchase: Purchase,
 ): Promise<void> {
   const postmarkPayload = {
-    From: "support@naomifisher.co.uk",
+    From: EMAIL_FROM,
     To: purchase.email,
     TemplateAlias: TEMPLATE_ALIAS,
     TemplateModel: {
@@ -28,6 +29,7 @@ export async function sendPurchaseConfirmationEmail(
       stripe_payment_id: purchase.stripe_payment_id,
       purchase_date: purchase.purchase_date,
       contains_webinar: purchase.items.some((item) => item.is_webinar),
+      contains_course: purchase.items.some((item) => item.is_course),
       items: purchase.items.map((item) => ({
         id: item.id,
         formatted_price: item.formatted_price,
