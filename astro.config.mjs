@@ -24,14 +24,5 @@ export default defineConfig({
       process.env.NODE_ENV === "development" ? { https: true } : undefined,
   },
 
-  integrations: [
-    sitemap(),
-    partytown({
-      dir: "static/~partytown", // important: this ensures scripts are self-hosted
-      config: {
-        forward: ["dataLayer.push"], // allows GTM to function
-      },
-    }),
-    react(),
-  ],
+  integrations: [sitemap(), react()],
 });
