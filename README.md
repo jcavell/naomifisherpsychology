@@ -42,7 +42,7 @@ This will start the development server at `https://localhost:4321`
 
 ### Production Build
 
-1. **Create production build**
+1. **Create or test production build**
 ```bash
 npm run build
 ```
@@ -68,6 +68,15 @@ This will serve the production build locally at `https://localhost:4321`
 - `npm run format` - Format code with Prettier
 
 ## Pages
+
+These are the public pages or API endpoints.
+
+Any that are dynamic, e.g. APIs, must have prerender set to false at the top of the file:
+
+`export const prerender = false;`
+
+Otherwise, they are pre-built by Astro during the build phase and are not dynamic when deployed.
+
 ```
 ├── pages
 │   ├── about.astro
@@ -106,6 +115,9 @@ This will serve the production build locally at `https://localhost:4321`
 ```
 
 ## Components
+
+Both astro and React components are here.
+
 ``` ├── components
     │   ├── Contributers.astro
     │   ├── CookieConsent.astro
@@ -123,7 +135,7 @@ This will serve the production build locally at `https://localhost:4321`
     │   ├── Tags.astro
     │   ├── ThemeIcon.astro
     │   ├── Vimeo.astro
-    │   ├── basket
+    │   ├── basket (REACT)
     │   │   ├── AddCourseToBasket.tsx
     │   │   ├── AddToBasketComponent.tsx
     │   │   ├── AddWebinarTicketsToBasket.tsx
@@ -140,8 +152,7 @@ This will serve the production build locally at `https://localhost:4321`
     │   │   ├── BookDetails.astro
     │   │   ├── BookImage.astro
     │   │   ├── BookSummary.astro
-    │   ├── checkout
-    │   │   ├── Checkout.css
+    │   ├── checkout (REACT)
     │   │   ├── CheckoutCompleteComponent.tsx
     │   │   ├── CheckoutCompleteWrapper.tsx
     │   │   ├── CheckoutComponent.tsx
@@ -163,6 +174,9 @@ This will serve the production build locally at `https://localhost:4321`
     
    ```
 ## Content
+This directory contains Markdown and JSON data.
+
+Data for courses and the blog is obtained via web scraping in a different app.
 
 ```aiignore
  ├── content
@@ -217,6 +231,9 @@ This will serve the production build locally at `https://localhost:4321`
 ```
 
 ## Styles
+
+Currently moving to modular CSS (work in progress)
+
 ```aiignore
   ├── styles
     │   ├── base
