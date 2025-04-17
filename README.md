@@ -68,7 +68,14 @@ This will serve the production build locally at `https://localhost:4321`
 - `npm run format` - Format code with Prettier
 
 ## Basket (Cart)
-Items stored in the cart are of type BasketItem
+
+React components are used for the shopping basket and checkout.
+
+The styles are modular. They are defined within src/styles/components/cart and src/styles/components/checkout.
+
+the project uses react-use-cart: https://github.com/sammdec/use-cart. This stores the cart items in local storage.
+
+Items stored in the cart are of type `BasketItem` for both webinars and courses:
 
 ```typescript
 export type BasketItem = {
@@ -94,8 +101,13 @@ vatable: boolean;
 ```
 
 ## API endpoints 
+The React components call local APIs to get information about courses, webinars, webinar tickets and whether a user has already subscribed to Kit.
 
-### Get Kit subscriber
+Upon checkout, React calls a local API to insert an unconfirmed purchase into Supabase. 
+
+Finally, there is a stripe webhook which is a public endpoint called by Stripe upon successful purchase. This completes the purchase, updating it to confirmed in supabase, as well as sending out confirmation emails, inserting the webinar tickets into supabase, calling Kit to subscribe the user, calling Kajabi via Zapier to grant offers etc.
+
+### KIT USER API
 #### GET /api/kit-user?email={email}
 Example: https://localhost:4321/api/get-kit-user?email=jonny.cavell@gmail.com
 
@@ -103,54 +115,166 @@ Example: https://localhost:4321/api/get-kit-user?email=jonny.cavell@gmail.com
 "subscriber":{"id":2270329001,"first_name":"Jonny Cavell gmail","email_address":"jonny.cavell@gmail.com","state":"active","created_at":"2023-08-01T18:52:31Z","fields":{"last_name":"Cavell"}}}
 ```
 
-### Get webinar ticket
-#### GET /api/webinar-tickets/{webinar_id}_{ticket_id}
+### Webinar Tickets API
+
+The `/api/webinar-tickets/[eventId_ticketId]` endpoint provides ticket details for webinar events that can be added to the shopping cart.
+
 Example: https://localhost:4321/api/webinar-tickets/1203174349869_2131545083
 
-```json{
-"id": "1203174349869_2131545083",
-"product_type": "webinar",
-"product_id": "1203174349869",
-"product_name": "Now What? Diagnosis: with Dr Naomi Fisher and Eliza Fricker",
-"product_description": "Your child has been given an autism or ADHD diagnosis, but what happens next?",
-"product_images": [
-"https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F936277653%2F137448283838%2F1%2Foriginal.20250115-124944?auto=format%2Ccompress&q=75&sharp=10&s=643bf26bc67b99c12ed34cd449da1ee0"
-],
-"variant_id": "2131545083",
-"variant_name": "Live Webinar",
-"currency": "GBP",
-"price": 1150,
-"added_at": "2025-02-13T14:42:52.713Z",
-"expires_at": "2025-02-27T12:00:00Z",
-"quantity": 1,
-"vatable": false
+#### Features
+1. **Webinar Lookup**
+    - Fetches webinar details using the event ID
+    - Finds specific ticket class within the webinar
+    - Returns 404 if ticket not found
+
+2. **Basket Item Creation**
+   Creates a standardized `BasketItem` object containing:
+    - Webinar details (name, description, logo)
+    - Ticket class information
+    - Pricing details in GBP
+    - Event timing and expiration details
+#### Example Response
+```json
+{
+  "id": "1203174349869_2131545083",
+  "product_type": "webinar",
+  "is_course": false,
+  "is_webinar": true,
+  "product_id": "1203174349869",
+  "product_name": "Webinar Title",
+  "product_description": "Webinar description",
+  "product_images": ["https://example.com/logo.jpg"],
+  "variant_id": "2131545083",
+  "variant_name": "Live Webinar",
+  "currency": "GBP",
+  "price": 1150,
+  "formatted_price": "£11.50",
+  "added_at": "2024-02-13T14:42:52.713Z",
+  "expires_at": "2024-02-27T12:00:00Z",
+  "quantity": 1,
+  "vatable": false
 }
 ```
 
+### Courses API
+
+The `/api/courses/offerId/[offerId]` endpoint provides course details for the shopping cart based on Kajabi offer IDs.
+
+ It takes a Kajabi public offer ID and returns a `BasketItem` object that can be added to the shopping cart.
+
+**Price Formatting**
+    - Converts display prices (e.g., "£99.99") to cents/pence for Stripe
+    - Maintains original formatted price for display purposes
+
+#### Example Response
+```json
+{
+  "id": "offer_123",
+  "product_type": "course",
+  "is_course": true,
+  "is_webinar": false,
+  "product_id": "offer_123",
+  "product_name": "Course Title",
+  "product_description": "Course description",
+  "product_images": ["https://example.com/image.jpg"],
+  "variant_id": "",
+  "variant_name": "Course",
+  "currency": "GBP",
+  "price": 9999,
+  "formatted_price": "£99.99",
+  "added_at": "2024-02-20T12:00:00.000Z",
+  "expires_at": "2025-02-20T12:00:00.000Z",
+  "quantity": 1,
+  "vatable": false
+}
+```
+### Free Checkout API
+
+Processes free items in the shopping cart without Stripe payment processing.
+
+ `/api/free-checkout`
+
+
+#### Request Body Example
+```json
+{
+  "user": {
+    "email": "string",
+    "firstName": "string",
+    "lastName": "string"
+  },
+  "basket_items": [
+    ...
+  ]
+}
+```
+
+
+#### Notes
+- Only processes items with price = 0
+- Creates/updates user record
+- Creates webinar tickets if applicable
+- Sends confirmation email
+- Handles Kit subscription if needed
+
+### Create Purchase API
+
+Records initial purchase details in Supabase before payment processing.
+
+ `/api/create-purchase`
+
+#### Request Body Example
+```json
+{
+  "payment_intent_id": "pi_123...",
+  "user": {
+    "email": "user@example.com",
+    "firstName": "John",
+    "lastName": "Doe"
+  },
+  "basket_items": [
+    ...
+  ]
+}
+```
+
+
+#### Notes
+- Creates/updates user record
+- Records unconfirmed purchase in database
+- Payment confirmation and post-purchase steps handled separately via webhook - see below
+
 ## Purchase flow
 
+### Overview
+- **Stripe Elements** provides a secure and PCI-compliant way to collect card details.
+- **Webhooks** on the backend ensure no payments go unlogged or tampered with.
+- The frontend manages payment state using `clientSecret` and interacts with Stripe for confirmation and status retrieval.
+- The `CheckoutComplete` page acts as the final summary for the user's transaction.
+
+### Full details
 1. **User Adds Items to Cart**
-   The user browses through the website and adds items to their shopping cart using the `react-use-cart` library. The shopping cart details, including products and their quantities, are tracked in state.
+   - The user browses through the website and adds items to their shopping cart using the `react-use-cart` library. The shopping cart details, including products and their quantities, are tracked in state.
 2. **Navigating to the Checkout Page**
-   When the user decides to proceed with the purchase, they click the "Checkout" button in the cart, which navigates them to the `/checkout` page.
+   - When the user decides to proceed with the purchase, they click the "Checkout" button in the cart, which navigates them to the `/checkout` page.
 3. **Backend Creates a PaymentIntent**
-   On the checkout page, the React app makes a `POST` request to the `/api/create-payment-intent` backend API. This API:
-    - Sends the list of cart items to the server.
-    - Calculates the total order amount (using the `calculateOrderAmount` function).
-    - Calls Stripe's API to create a `PaymentIntent`.
-    - Returns the `clientSecret` from Stripe, which is needed to process the payment.
+   - On the checkout page, the React app makes a `POST` request to the `/api/create-payment-intent` backend API. This API:
+     - Sends the list of cart items to the server.
+     - Calculates the total order amount (using the `calculateOrderAmount` function).
+     - Calls Stripe's API to create a `PaymentIntent`.
+     - Returns the `clientSecret` from Stripe, which is needed to process the payment.
 
 4. **Client Receives the `clientSecret`**
-   The `clientSecret` returned from the backend is stored in React state (`setClientSecret`) to initialize Stripe's payment processing.
+   - The `clientSecret` returned from the backend is stored in React state (`setClientSecret`) to initialize Stripe's payment processing.
 5. **Stripe Elements Loads**
-   The Stripe Elements component (`<Elements>`), initialized with the `clientSecret`, displays a secure payment form (`CheckoutForm` component) for the user to input their card information.
+   - The Stripe Elements component (`<Elements>`), initialized with the `clientSecret`, displays a secure payment form (`CheckoutForm` component) for the user to input their card information.
 6. **Entering Payment Details**
-   The user enters their payment details (e.g., card number, expiration date, CVC) into the Stripe Elements form.
+   - The user enters their payment details (e.g., card number, expiration date, CVC) into the Stripe Elements form.
 7. **Submitting Payment**
-   Once the user clicks the "Pay" button, the `CheckoutForm` component:
-    - Calls the `stripe.confirmCardPayment` function with the `clientSecret` and the user's card details.
-    - Stripe processes the payment securely.
-    - If the payment is successful, Stripe returns a `PaymentIntent` object.
+   - Once the user clicks the "Pay" button, the `CheckoutForm` component:
+     - Calls the `stripe.confirmCardPayment` function with the `clientSecret` and the user's card details.
+     - Stripe processes the payment securely.
+     - If the payment is successful, Stripe returns a `PaymentIntent` object.
 
 8. **Handling Success or Failure on the Frontend**
     - If the payment is successful (`paymentIntent.status === "succeeded"`), the confirmation is logged, and the user is redirected to the `/checkout-complete` page.
@@ -171,34 +295,16 @@ Example: https://localhost:4321/api/webinar-tickets/1203174349869_2131545083
       - Sends purchase confirmation email using Postmark
       - Subscribes user to Kit (if applicable) via its API
       - Posts user and course data to Zapier (if applicable) via a Zapier webhook with a secret URL. This Zap connects with Kajabi to grant the relevant offers.
-
 10. **Redirect to CheckoutComplete Page**
-    After successful payment:
-    - The frontend redirects the user to the `/checkout-complete` page.
-    - This page optionally uses the `payment_intent_client_secret` from the URL query string to retrieve the `PaymentIntent` details.
+    - The checkout complete page (`/checkout-complete`) handles both successful payments and free transactions, displaying purchase confirmation and order details.
+    - It Shows a detailed breakdown of the purchased items including:
+      - Product name and variant
+      - Product image (if available)
+      - Individual item price
+      - Quantity
+      - Total price per item
+      - Order total
 
-11. **Load Payment Status on CheckoutComplete Page**
-    - The `CheckoutCompleteComponent` calls `stripe.retrievePaymentIntent` to fetch the `PaymentIntent` details.
-    - The component displays the payment status, including:
-        - A success message (`Payment succeeded`).
-        - The `paymentIntentId` for reference.
-
-12. **Display Payment Summary**
-    If `status === "succeeded"`, the `CheckoutCompleteComponent` shows:
-    - `Payment ID` (e.g., `pi_xxxxx`).
-    - Transaction `status` (e.g., `succeeded`).
-    - A link to view the payment details in the Stripe Dashboard.
-
-    
-13. **User Views Confirmation Page**
-    The user sees their payment confirmation details and order summary on the `CheckoutComplete` page.
-
-
-### Key Points:
-- **Stripe Elements** provides a secure and PCI-compliant way to collect card details.
-- **Webhooks** on the backend ensure no payments go unlogged or tampered with.
-- The frontend manages payment state using `clientSecret` and interacts with Stripe for confirmation and status retrieval.
-- The `CheckoutComplete` page acts as the final summary for the user's transaction.
 
 ## Testing Stripe Integration Locally
 
