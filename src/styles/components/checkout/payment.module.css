@@ -37,18 +37,18 @@
 }
 
 .fieldError input {
-    border-color: #d4351c;
+    border-color: var(--error-red);
 }
 
 .errorMessage {
-    color: #d4351c;
+    color: var(--error-red);
     font-size: 14px;
     margin-top: 4px;
 }
 
 .formErrorMessage {
-    color: #d4351c;
-    background-color: #fcecea;
+    color: var(--error-red);
+    background-color: var(--error-red-bg);
     padding: 12px;
     border-radius: 4px;
     margin-bottom: 16px;
@@ -81,7 +81,7 @@
 }
 
 .checkoutSubmitButton {
-    background: green;
+    background: var(--success-green);
     font-family: Arial, sans-serif;
     color: #ffffff;
     border-radius: 4px;

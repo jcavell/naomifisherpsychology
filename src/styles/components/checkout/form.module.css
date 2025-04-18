@@ -39,13 +39,12 @@
 }
 
 .errorMessage {
-    color: #d4351c;
-    font-size: 14px;
+    color: var(--error-red);    font-size: 14px;
     margin-top: 4px;
 }
 
 .fieldError input {
-    border: 2px solid #d4351c;
+    border: 2px solid var(--error-red);
 }
 
 @media only screen and (max-width: 600px) {
