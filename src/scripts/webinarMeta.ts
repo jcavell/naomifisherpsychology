@@ -10,17 +10,18 @@ import {
   tagSEN,
   tagMentalHealth,
   tagDemandAvoidance,
+  tagBurnout,
+  tagNeurodiversity,
+  tagScreens,
+  tagWellbeing,
+  tagTrauma,
+  forProfessionals,
 } from "./tags";
 
 import { naomi, abi, eliza, kate } from "./people";
 
 // Webinar Images
 import myFaultImage from "../images/webinars/is-it-all-my-fault.jpg";
-import helpingYourDemandAvoidantChildWithChangeImage from "../images/webinars/helping-your-demand-avoidant-child-with-change.webp";
-import dyslexiaAndReadingDifficultiesImage from "../images/webinars/dyslexia-and-reading-difficulties.webp";
-import lowPressureParentingImage from "../images/webinars/low-pressure-parenting.webp";
-import restoringYourBalanceImage from "../images/webinars/restoring-your-balance.webp";
-import nowWhatAtHomeImage from "../images/webinars/now-what-at-home.webp";
 
 type WebinarMeta = {
   id: string;
@@ -39,46 +40,82 @@ const example_webinar: WebinarMeta = {
   contributers: [naomi, eliza],
 };
 
-const now_what_at_home: WebinarMeta = {
-  id: "1105531537589",
-  image: nowWhatAtHomeImage,
-  tags: [tagALDP, age5To11, age11To19, forParents],
-  contributers: [naomi, eliza],
+const not_fine_at_school_kinship: WebinarMeta = {
+  id: "1292558791139",
+  tags: [tagSchool, forParents, age5To11, age11To19],
+  contributers: [naomi],
 };
-
-const helping_your_demand_avoidant_child_with_change: WebinarMeta = {
-  id: "1111413330189",
-  image: helpingYourDemandAvoidantChildWithChangeImage,
-  tags: [tagDemandAvoidance, age5To11, age11To19, forParents],
+const understanding_demand_avoidant_teen: WebinarMeta = {
+  id: "1283983492189",
+  tags: [tagDemandAvoidance, forParents, age11To19],
   contributers: [naomi],
 };
 
-const low_pressure_parenting_for_teens: WebinarMeta = {
-  id: "1118800224589",
-  image: lowPressureParentingImage,
-  tags: [tagALDP, age11To19, forParents],
+const now_what_recovering_after_school_breakdown: WebinarMeta = {
+  id: "1311499834309",
+  tags: [tagSchool, forParents, age5To11, age11To19],
   contributers: [naomi, eliza],
 };
 
-const restoring_your_energy: WebinarMeta = {
-  id: "1098609644019",
-  image: restoringYourBalanceImage,
-  tags: [tagMentalHealth, forParents],
+const eotas_what_to_expect: WebinarMeta = {
+  id: "1323455744759",
+  tags: [tagSchool, tagSEN, forParents, age5To11, age11To19],
   contributers: [abi],
 };
 
-const understanding_dyslexia: WebinarMeta = {
-  id: "1118945458989",
-  image: dyslexiaAndReadingDifficultiesImage,
-  tags: [tagSEN, age5To11, age11To19, forParents],
-  contributers: [abi],
+const helping_your_demand_avoidant_child_with_anxiety: WebinarMeta = {
+  id: "1312064092019",
+  tags: [tagDemandAvoidance, tagAnxiety, forParents, age5To11, age11To19],
+  contributers: [naomi],
+};
+
+const helping_your_autistic_child_with_ocd: WebinarMeta = {
+  id: "1312079718759",
+  tags: [tagMentalHealth, forParents, age5To11, age11To19],
+  contributers: [naomi],
+};
+
+const art_of_low_demand_therapy: WebinarMeta = {
+  id: "1312042738149",
+  tags: [tagDemandAvoidance, forProfessionals, age5To11, age11To19],
+  contributers: [naomi],
+};
+
+const aldp_communication: WebinarMeta = {
+  id: "1312030000049",
+  tags: [tagDemandAvoidance, forParents, age5To11, age11To19],
+  contributers: [naomi, eliza],
+};
+
+const helping_your_demand_avoidant_teen_with_anxiety: WebinarMeta = {
+  id: "1312091433799",
+  tags: [tagDemandAvoidance, forParents, age5To11, age11To19],
+  contributers: [naomi],
+};
+
+const helping_your_child_with_severe_anxiety: WebinarMeta = {
+  id: "1312038304889",
+  tags: [tagAnxiety, forParents, age5To11, age11To19],
+  contributers: [naomi],
+};
+
+const burnt_out_by_school: WebinarMeta = {
+  id: "1312049117229",
+  tags: [tagSchool, forParents, age5To11, age11To19],
+  contributers: [naomi],
 }; // !! ADD WEBINAR HERE !!
 export function getWebinarMeta(eventId: string): WebinarMeta | undefined {
   return [
-    now_what_at_home,
-    helping_your_demand_avoidant_child_with_change,
-    low_pressure_parenting_for_teens,
-    restoring_your_energy,
-    understanding_dyslexia,
+    burnt_out_by_school,
+    eotas_what_to_expect,
+    helping_your_autistic_child_with_ocd,
+    helping_your_demand_avoidant_child_with_anxiety,
+    helping_your_demand_avoidant_teen_with_anxiety,
+    helping_your_child_with_severe_anxiety,
+    aldp_communication,
+    art_of_low_demand_therapy,
+    now_what_recovering_after_school_breakdown,
+    not_fine_at_school_kinship,
+    understanding_demand_avoidant_teen,
   ].find((webMeta) => eventId === webMeta.id);
 }

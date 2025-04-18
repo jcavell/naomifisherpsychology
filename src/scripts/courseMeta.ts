@@ -16,7 +16,7 @@ import {
   tagEMDR,
   tagNeurodiversity,
   tagSEN,
-  tagMentalHealth
+  tagMentalHealth,
 } from "./tags";
 import { naomi, abi, eliza } from "./people";
 
@@ -41,7 +41,7 @@ import myChildIsNotFineAtSchoolImage from "../images/courses/my-child-is-not-fin
 import takingControlOfYourEhcpAnnualReviewImage from "../images/courses/taking-control-of-your-ehcp-annual-review.webp";
 import teenagerBurnout101Image from "../images/courses/teenager-burnout-101.webp";
 import weDontHaveAnEhcpWhatToExpectFromSchoolImage from "../images/courses/we-dont-have-an-ehcp-what-to-expect-from-school.webp";
-import whatIsDemandAvoidanceGuideForTeenagersImage from "../images/courses/what-is-demand-avoidance-a-guide-for-teenagers.webp";
+import demandAvoidanceGuideForTeenagersImage from "../images/courses/what-is-demand-avoidance-a-guide-for-teenagers.webp";
 import workingWithDemandAvoidantChildrenTherapyImage from "../images/courses/working-with-demand-avoidant-children-low-demand-therapy.webp";
 import traumaAndLossImage from "../images/courses/helping-your-child-recover-from-trauma-and-loss.webp";
 import ehcpJungleImage from "../images/courses/finding-your-way-through-the-ehcp-jungle.webp";
@@ -52,6 +52,8 @@ import helpingYourChildWithLearningDisabilitiesWithAnxietyImage from "../images/
 import helpingYourAutisticChildWithOCDImage from "../images/courses/helping-your-autistic-child-with-ocd.webp";
 import helpingYourAutisticChildWithTransitionsImage from "../images/courses/helping-your-autistic-child-with-transitions.webp";
 import eotasWhatToExpectImage from "../images/courses/eotas-what-to-expect.webp";
+import helpingYourTeenWithAnxietyImage from "../images/courses/helping-your-teen-with-anxiety.jpg";
+import anxietyAGuideForTeenagersImage from "../images/courses/anxiety-a-guide-for-teenagers.png";
 
 import ALDP1Image from "../images/courses/ALDP-1.webp";
 import ALDP2Image from "../images/courses/ALDP-2.webp";
@@ -190,16 +192,26 @@ export const childWithSevereAnxiety: CourseMeta = {
 
 export const burntOutBySchool: CourseMeta = {
   title: "Burnt Out by School",
-  tags: [
-    tagBurnout,
-    tagSchool,
-    tagMentalHealth,
-    age11To19,
-    forParents,
-  ],
+  tags: [tagBurnout, tagSchool, tagMentalHealth, age11To19, forParents],
   contributers: [naomi],
   image: burntOutBySchoolImage,
   runningTime: "1 hour 40 mins",
+};
+
+export const helpingYourTeenWithAnxiety: CourseMeta = {
+  title: "Helping Your Teen with Anxiety",
+  tags: [tagAnxiety, tagMentalHealth, age11To19, forParents],
+  contributers: [naomi],
+  image: helpingYourTeenWithAnxietyImage,
+  runningTime: "1 hour 28 mins",
+};
+
+export const anxietyAGuideForTeenagers: CourseMeta = {
+  title: "Anxiety - A Guide for Teenagers",
+  tags: [tagAnxiety, tagMentalHealth, age11To19, forTeens],
+  contributers: [naomi],
+  image: anxietyAGuideForTeenagersImage,
+  runningTime: "1 hour 8 mins",
 };
 
 export const afterSchoolMovingOnFromSchoolTrauma: CourseMeta = {
@@ -296,11 +308,11 @@ export const burnoutAGuideForTeenagers: CourseMeta = {
   runningTime: "1 hour 10 mins",
 };
 
-export const whatIsDemandAvoidanceGuideForTeenagers: CourseMeta = {
-  title: "What is Demand Avoidance? A Guide for Teenagers",
+export const demandAvoidanceGuideForTeenagers: CourseMeta = {
+  title: "Demand Avoidance - A Guide for Teenagers",
   tags: [tagDemandAvoidance, age11To19, forTeens],
   contributers: [naomi],
-  image: whatIsDemandAvoidanceGuideForTeenagersImage,
+  image: demandAvoidanceGuideForTeenagersImage,
   runningTime: "1 hour 12 mins",
 };
 
@@ -475,7 +487,7 @@ export const EMDR1To6: CourseMeta = {
 
 export const traumaAndLoss: CourseMeta = {
   title: "Helping your Child Recover from Trauma and Loss",
-  tags: [tagTrauma, tagMentalHealth,  age5To11, age11To19],
+  tags: [tagTrauma, tagMentalHealth, age5To11, age11To19],
   contributers: [naomi],
   image: traumaAndLossImage,
   runningTime: "1 hour 49 mins",
@@ -491,7 +503,14 @@ export const helpingYourChildWithLearningDisabilitiesWithAnxiety: CourseMeta = {
 
 export const helpingYourAutisticChildWithOCD: CourseMeta = {
   title: "Helping Your Autistic Child with OCD",
-  tags: [tagAutism, tagAnxiety, tagMentalHealth, age5To11, age11To19, forParents],
+  tags: [
+    tagAutism,
+    tagAnxiety,
+    tagMentalHealth,
+    age5To11,
+    age11To19,
+    forParents,
+  ],
   contributers: [naomi],
   image: helpingYourAutisticChildWithOCDImage,
   runningTime: "1 hour 16 mins",
@@ -499,7 +518,14 @@ export const helpingYourAutisticChildWithOCD: CourseMeta = {
 
 export const helpingYourAutisticChildWithTransitions: CourseMeta = {
   title: "Helping Your Autistic Child with Transitions",
-  tags: [tagAutism, tagAnxiety, tagMentalHealth, age5To11, age11To19, forParents],
+  tags: [
+    tagAutism,
+    tagAnxiety,
+    tagMentalHealth,
+    age5To11,
+    age11To19,
+    forParents,
+  ],
   contributers: [naomi],
   image: helpingYourAutisticChildWithTransitionsImage,
   runningTime: "1 hour 23 mins",
@@ -507,7 +533,15 @@ export const helpingYourAutisticChildWithTransitions: CourseMeta = {
 
 export const eotasWhatToExpect: CourseMeta = {
   title: "EOTAS: What to Expect",
-  tags: [tagEHCPs, tagSEN, tagAnxiety, tagMentalHealth, age5To11, age11To19, forParents],
+  tags: [
+    tagEHCPs,
+    tagSEN,
+    tagAnxiety,
+    tagMentalHealth,
+    age5To11,
+    age11To19,
+    forParents,
+  ],
   contributers: [abi],
   image: eotasWhatToExpectImage,
   runningTime: "58 mins",
@@ -516,6 +550,8 @@ export const eotasWhatToExpect: CourseMeta = {
 // !! ADD NEW COURSES HERE !!
 // Most recent first
 export const allCourseMetas = [
+  anxietyAGuideForTeenagers,
+  helpingYourTeenWithAnxiety,
   navigatingTheSenTribunalProcess,
   takingControlOfYourEhcpAnnualReview,
   demandAvoidance101,
@@ -538,7 +574,7 @@ export const allCourseMetas = [
   doWeNeedAnEhcp,
   weDontHaveAnEhcpWhatToExpectFromSchool,
   burnoutAGuideForTeenagers,
-  whatIsDemandAvoidanceGuideForTeenagers,
+  demandAvoidanceGuideForTeenagers,
   traumaAndLoss,
   workingWithDemandAvoidantChildrenTherapy,
   thrivingAfterSchoolBreakdown,
@@ -569,29 +605,29 @@ export const allCourseMetas = [
 
 // For the featured list on the homepage
 export const featuredCourses = [
-  demandAvoidance101,
-  helpingYourAutisticChildWithTransitions,
-  burntOutBySchool,
-  ALDP1To10,
+  anxietyAGuideForTeenagers,
+  helpingYourTeenWithAnxiety,
+  autisticTeenWithAnxiety,
+  childWithSevereAnxiety,
 ];
 
 // !! ADD RELATED COURSES HERE !!
 
 helpingYourAutisticChildWithOCD.relatedTitles = [
-    autisticChildWithAnxiety.title,
-    autisticTeenWithAnxiety.title,
-    helpingYourAutisticChildWithTransitions.title
+  autisticChildWithAnxiety.title,
+  autisticTeenWithAnxiety.title,
+  helpingYourAutisticChildWithTransitions.title,
 ];
 
 helpingYourAutisticChildWithTransitions.relatedTitles = [
-    autisticChildWithAnxiety.title,
-    autisticTeenWithAnxiety.title,
-    helpingYourAutisticChildWithOCD.title
+  autisticChildWithAnxiety.title,
+  autisticTeenWithAnxiety.title,
+  helpingYourAutisticChildWithOCD.title,
 ];
 
 demandAvoidance101.relatedTitles = [
   demandAvoidantAdolescent.title,
-  whatIsDemandAvoidanceGuideForTeenagers.title,
+  demandAvoidanceGuideForTeenagers.title,
 ];
 
 neurodiversity101.relatedTitles = [
@@ -601,11 +637,11 @@ neurodiversity101.relatedTitles = [
   autisticChildScreens.title,
   demandAvoidance101.title,
   demandAvoidantAdolescent.title,
-  whatIsDemandAvoidanceGuideForTeenagers.title,
+  demandAvoidanceGuideForTeenagers.title,
 ];
 
 demandAvoidantAdolescent.relatedTitles = [
-  whatIsDemandAvoidanceGuideForTeenagers.title,
+  demandAvoidanceGuideForTeenagers.title,
   demandAvoidance101.title,
 ];
 
@@ -717,11 +753,11 @@ thrivingAfterSchoolBreakdown.relatedTitles = [
 ];
 
 burnoutAGuideForTeenagers.relatedTitles = [
-  whatIsDemandAvoidanceGuideForTeenagers.title,
+  demandAvoidanceGuideForTeenagers.title,
   burntOutBySchool.title,
 ];
 
-whatIsDemandAvoidanceGuideForTeenagers.relatedTitles = [
+demandAvoidanceGuideForTeenagers.relatedTitles = [
   burnoutAGuideForTeenagers.title,
   demandAvoidance101.title,
   demandAvoidantAdolescent.title,
@@ -730,7 +766,7 @@ whatIsDemandAvoidanceGuideForTeenagers.relatedTitles = [
 workingWithDemandAvoidantChildrenTherapy.relatedTitles = [
   demandAvoidantAdolescent.title,
   demandAvoidance101.title,
-  whatIsDemandAvoidanceGuideForTeenagers.title,
+  demandAvoidanceGuideForTeenagers.title,
 ];
 traumaAndLoss.relatedTitles = [
   autisticChildWithTrauma.title,
@@ -1011,8 +1047,8 @@ export function lowerCaseAndRemoveWhitespace(input: string) {
 export function getCourseMetaFromTitle(title: string): CourseMeta | undefined {
   return allCourseMetas.find((meta) =>
     lowerCaseAndRemoveWhitespace(title).startsWith(
-      lowerCaseAndRemoveWhitespace(meta.title)
-    )
+      lowerCaseAndRemoveWhitespace(meta.title),
+    ),
   );
 }
 
@@ -1023,10 +1059,10 @@ export function getTaggedCourses(courses, tags: string[]) {
     .map((cm) =>
       courses.find((c) => {
         const course = lowerCaseAndRemoveWhitespace(c.data.title).startsWith(
-          lowerCaseAndRemoveWhitespace(cm.title)
+          lowerCaseAndRemoveWhitespace(cm.title),
         );
         return course;
-      })
+      }),
     );
 
   // console.log(`For tags ${tags} courses are  ${taggedCourses}`);
