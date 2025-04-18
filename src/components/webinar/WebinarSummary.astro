@@ -69,7 +69,15 @@ const tickets = webinar.orderedTickets;
 
   <div class="card-buttons">
     <a href={`/webinars/${eventId}`}> Learn More </a>
-
-    <ChooseWebinarTicketsWrapper webinar={webinar} client:load />
+    <a
+      style={{
+        borderTopRightRadius: "0px",
+        borderBottomRightRadius: "16px",
+        borderTopLeftRadius: "0",
+        borderBottomLeftRadius: "0",
+      }}
+    >
+      <ChooseWebinarTicketsWrapper webinar={webinar} client:load />
+    </a>
   </div>
 </div>

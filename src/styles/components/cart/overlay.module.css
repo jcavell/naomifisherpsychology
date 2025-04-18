@@ -34,27 +34,31 @@
 }
 
 .closeOverlayButton:hover {
-    color: #ff0000;
+    color: #dc2626;
 }
 
 .ticketRow {
     display: grid;
     grid-template-columns: 2fr 1fr auto;
     align-items: center;
-    gap: 10px;
+    gap: 8px;  /* Reduced from 20px */
     margin-bottom: 10px;
+    background-color: #f9f9f9;  /* Light background to create visual grouping */
+    padding: 8px 12px;  /* Add padding to create the block effect */
+    border-radius: 6px;  /* Rounded corners */
 }
 
 .ticketName {
     font-size: 1rem;
     font-weight: 500;
     color: #333;
+    text-align: left;
 }
 
 .ticketCost {
     font-size: 0.9rem;
     color: #555;
-    text-align: right;
+    text-align: left;
 }
 
 .addToBasket {
@@ -67,6 +71,7 @@
     margin: 0;
     outline: none;
     background: green;
+    justify-self: start;
 }
 
 .addToBasket:focus {
@@ -74,7 +79,7 @@
 }
 
 .addToBasket.remove {
-    background-color: #ff4c4c;
+    background-color: #dc2626;
 }
 
 .addToBasket:disabled {
@@ -84,7 +89,7 @@
 }
 
 .addToBasket.remove:disabled {
-    background-color: #ffb3b3;
+    background-color: #ef4444;
 }
 
 .addToBasket:not(:disabled):hover {
@@ -92,7 +97,7 @@
 }
 
 .addToBasket.remove:not(:disabled):hover {
-    background-color: #e64444;
+    background-color: #b91c1c;
 }
 
 .spinner {
@@ -108,4 +113,30 @@
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+.textButton {
+    all: unset;
+    cursor: pointer;
+    color: white;
+    transition: all 0.3s ease;
+    flex: 1;
+    text-align: center;
+    padding: 4px;
+    line-height: 1;
+}
+
+.textButton.remove {
+    background-color: #dc2626;
+}
+
+.textButton.remove:hover {
+    background-color: #b91c1c;
+}
+
+.inBasketMessage {
+    color: black;
+    margin-top: 4px;
+    margin-bottom: 16px;
+    font-size: 0.9rem;
 }

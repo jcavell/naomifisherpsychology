@@ -133,6 +133,32 @@
     font-size: 1em;
   }
 
+  .basket-button {
+    display: inline-block;
+    text-indent: -9999px;
+    width: 70px;
+    height: 40px;
+    transition: transform ease-in 0.2s;
+    text-align: left;
+    padding-right: 10px;
+    margin-right: 6px;
+    border: none;
+    background: none;
+    background-position: center 8px;
+    background-size: auto 28px; /* larger size */
+    background-repeat: no-repeat;
+    background-image: url(icon-basket.svg);
+    cursor: pointer;
+    z-index: 9999;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    font-size: 1em;
+  }
+
+  .basket-button:hover {
+    transform: scale(1.1);
+  }
+
   footer .filter-menu-button {
     display: none;
     margin-left: auto;

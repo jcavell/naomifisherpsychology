@@ -147,7 +147,7 @@ Both astro and React components are here.
     │   ├── ThemeIcon.astro
     │   ├── Vimeo.astro
     │   ├── basket (REACT)
-    │   │   ├── AddCourseToBasket.tsx
+    │   │   ├── CourseDetailsAddToBasket.tsx
     │   │   ├── AddToBasketComponent.tsx
     │   │   ├── AddWebinarTicketsToBasket.tsx
     │   │   ├── Basket.tsx

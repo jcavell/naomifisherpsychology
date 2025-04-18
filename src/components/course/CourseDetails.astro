@@ -7,7 +7,7 @@ import { getCourseFromTitle, parseDescriptions } from "../../scripts/courses";
 import CourseImage from "./CourseImage.astro";
 import Vimeo from "../Vimeo.astro";
 import Newsletter from "../Newsletter.astro";
-import AddCourseToBasket from "../basket/AddCourseToBasket";
+import CourseDetailsAddToBasket from "../basket/CourseDetailsAddToBasket";
 
 const { course } = Astro.props;
 
@@ -74,7 +74,7 @@ const relatedCourses = (
           <!--</div>-->
         </div>
 
-        <AddCourseToBasket
+        <CourseDetailsAddToBasket
           offerId={course.offerId}
           displayprice={price}
           client:load

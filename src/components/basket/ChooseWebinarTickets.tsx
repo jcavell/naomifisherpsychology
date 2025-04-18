@@ -21,8 +21,10 @@ const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
   const [loading, setLoading] = useState<string | null>(null); // Keeps track of loading ticket ID
   const [isAnyButtonLoading, setIsAnyButtonLoading] = useState(false); // New state
 
+  const getId = (ticket: Ticket) => `${webinar.id}_${ticket.id}`;
+
   const handleAddToBasket = async (ticket: Ticket) => {
-    const id = `${webinar.id}_${ticket.id}`;
+    const id = getId(ticket);
     if (!inCart(id)) {
       setLoading(id); // Set loading state for this ticket
       setIsAnyButtonLoading(true); // Set global loading state
@@ -47,7 +49,7 @@ const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
 
   const handleRemoveFromBasket = (ticket: Ticket) => {
     setHasModified(true); // Mark as modified locally
-    const id = `${webinar.id}_${ticket.id}`;
+    const id = getId(ticket);
     try {
       if (inCart(id)) {
         console.log("Removing from basket", id);
@@ -73,6 +75,12 @@ const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
       onCloseWithoutModification(); // Notify no modifications
     }
   };
+
+  const ticketsInCart = webinar.ticket_classes.map((ticket) =>
+    inCart(getId(ticket)),
+  );
+  // Then check if any are true
+  const hasTicketInCart = ticketsInCart.includes(true);
 
   return (
     <div
@@ -104,16 +112,9 @@ const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
           {webinar.name.text}
         </h2>
         {`${webinar.day} ${webinar.month}`} at {`${webinar.startTime}`}
-        {webinar.ticket_classes.some((ticket) =>
-          inCart(`${webinar.id}_${ticket.id}`),
-        ) ? (
-          <p>
-            {
-              webinar.ticket_classes.find((ticket) =>
-                inCart(`${webinar.id}_${ticket.id}`),
-              )?.display_name
-            }{" "}
-            is in your basket.
+        {hasTicketInCart ? (
+          <p className={styles.inBasketMessage}>
+            This webinar is in your basket
           </p>
         ) : (
           webinar.ticket_classes
@@ -130,7 +131,7 @@ const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
                   onClick={() => handleAddToBasket(ticket)}
                   disabled={isAnyButtonLoading} // Use global loading state
                 >
-                  {loading === `${webinar.id}_${ticket.id}` ? (
+                  {loading === getId(ticket) ? (
                     <span className={styles.spinner} />
                   ) : (
                     "Add to Basket"
@@ -177,7 +178,11 @@ const TicketSelectorButton: React.FC<TicketSelectorButtonProps> = ({
 
   return (
     <>
-      <button type="button" onClick={handleOpenOverlay}>
+      <button
+        type="button"
+        className={styles.textButton}
+        onClick={handleOpenOverlay}
+      >
         Select Tickets
       </button>
       {showOverlay && (

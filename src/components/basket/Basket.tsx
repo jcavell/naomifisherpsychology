@@ -134,24 +134,22 @@ export const Basket: React.FC<BasketProps> = ({
           // const checkoutItem = item as CheckoutItem; // Cast item to CheckoutItem
           return (
             <li key={item.id} className={styles.cartItem}>
-              <span
-                className={styles.itemColumn}
-                style={{ display: "flex", alignItems: "center", gap: "10px" }}
-              >
-                {item.product_images?.length > 0 && (
-                  <img
-                    src={item.product_images[0]}
-                    alt={item.product_name}
-                    style={{
-                      width: "50px",
-                      height: "auto",
-                      objectFit: "cover",
-                      borderRadius: "4px",
-                    }}
-                  />
-                )}
-                {item.product_name}
-                <span className={styles.variantName}> {item.variant_name}</span>
+              <span className={styles.itemColumn}>
+                <div className={styles.productContainer}>
+                  {item.product_images?.length > 0 && (
+                    <img
+                      src={item.product_images[0]}
+                      alt={item.product_name}
+                      className={styles.productImage}
+                    />
+                  )}
+                  <div className={styles.productInfo}>
+                    <span>{item.product_name}</span>
+                    <span className={styles.variantName}>
+                      {item.variant_name}
+                    </span>
+                  </div>
+                </div>
               </span>
               <span className={styles.itemColumn}>
                 {formatPrice(item.price)}

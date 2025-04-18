@@ -10,6 +10,7 @@ export interface BasketItem {
   type: BasketItemType;
   isProcessing: boolean;
   setIsProcessing: (value: boolean) => void;
+  buttonType?: "summary" | "detail";
 }
 
 const handleFetchAndAddItem = async (
@@ -46,6 +47,7 @@ const Button: React.FC<BasketItem> = ({
   type,
   isProcessing,
   setIsProcessing,
+  buttonType,
 }) => {
   const { addItem, inCart, removeItem, items } = useCart();
 
@@ -95,10 +97,14 @@ const Button: React.FC<BasketItem> = ({
 
   return (
     <>
-      <div className={styles.buyNow}>
+      <div className={buttonType === "detail" ? styles.buyNow : ""}>
         {isInCart ? (
           <button
-            className={`${styles.addToBasket} ${styles.remove}`}
+            className={
+              buttonType === "detail"
+                ? `${styles.addToBasket} ${styles.remove}`
+                : styles.textButton
+            }
             onClick={(event) => {
               event.preventDefault();
               handleRemoveFromBasket();
@@ -108,7 +114,9 @@ const Button: React.FC<BasketItem> = ({
           </button>
         ) : (
           <button
-            className={styles.addToBasket}
+            className={
+              buttonType === "detail" ? styles.addToBasket : styles.textButton
+            }
             disabled={isProcessing}
             onClick={(event) => {
               event.preventDefault();
@@ -153,6 +161,7 @@ const AddToBasketComponent: React.FC<BasketItem> = ({
   type,
   isProcessing,
   setIsProcessing,
+  buttonType = "detail",
 }) => {
   return (
     <Button
@@ -160,6 +169,7 @@ const AddToBasketComponent: React.FC<BasketItem> = ({
       type={type}
       isProcessing={isProcessing}
       setIsProcessing={setIsProcessing}
+      buttonType={buttonType}
     />
   );
 };

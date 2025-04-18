@@ -24,13 +24,14 @@ const AddWebinarTicketsToBasket: React.FC<AddWebinarTicketsToBasketProps> = ({
             {/* Render ticket display name */}
             <div>{ticket.name}</div>
 
-            {/* Add to Basket Component */}
-            <AddToBasketComponent
-              id={`${webinarId}_${ticket.id}`}
-              type="webinar"
-              isProcessing={isProcessing}
-              setIsProcessing={setIsProcessing}
-            />
+            <div style={{ marginLeft: "auto" }}>
+              <AddToBasketComponent
+                id={`${webinarId}_${ticket.id}`}
+                type="webinar"
+                isProcessing={isProcessing}
+                setIsProcessing={setIsProcessing}
+              />
+            </div>
           </div>
         ))}
     </CartProvider>

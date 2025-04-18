@@ -1,13 +1,11 @@
 ---
 import { makeUrl } from "../../scripts/url";
 import Contributers from "../Contributers.astro";
-import Tags from "../Tags.astro";
 import CourseImage from "./CourseImage.astro";
-
+import CourseSummaryAddToBasket from "../basket/CourseSummaryAddToBasket";
 const { course } = Astro.props;
 
 const price = course.price;
-const checkoutURL = course.checkoutUrl;
 const title = course.title;
 const summary = course.description;
 ---
@@ -38,6 +36,6 @@ const summary = course.description;
 
   <div class="card-buttons">
     <a href=`/courses/${makeUrl(title)}`> Learn More </a>
-    <a href={checkoutURL}> Buy Now </a>
+    <CourseSummaryAddToBasket offerId={course.offerId} client:load />
   </div>
 </div>
