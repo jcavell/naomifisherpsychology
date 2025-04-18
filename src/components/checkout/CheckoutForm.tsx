@@ -310,16 +310,14 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
   const getButtonText = () => {
     if (isLoading)
       return <div className={paymentStyles.spinner} id="spinner"></div>;
-    return isBasketFree(items) ? "Complete Registration" : "Pay now";
+    return isBasketFree(items) ? "Complete Registration" : "Pay Now";
   };
 
   return (
     <div className={formStyles.checkoutContainer}>
       {message && <p className={formStyles.errorMessage}>{message}</p>}
       <form id="payment-form" onSubmit={handleSubmit} noValidate>
-        <h2 className={formStyles.checkoutHeading}>
-          Enter your details for ticket delivery
-        </h2>
+        <h2 className={formStyles.checkoutHeading}>Your details</h2>
 
         {/* Input for First Name */}
         <div
@@ -377,9 +375,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
         {/* STRIPE PAYMENT ELEMENT */}
         {!isBasketFree(items) && (
           <>
-            <h2 className={formStyles.checkoutHeading}>
-              Choose your payment method
-            </h2>
+            <h2 className={formStyles.checkoutHeading}>Payment</h2>
 
             <div className={paymentStyles.paymentElement}>
               <PaymentElement
@@ -401,15 +397,16 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
               onChange={handleTermsChange} // Handle live checkbox validation
               className={formStyles.checkboxInput}
             />
-            I agree to the &nbsp;
-            <a
-              href="/terms-and-conditions"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              terms and conditions
-            </a>
-            .
+            <span>
+              I agree to the{" "}
+              <a
+                href="/terms-and-conditions"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                terms and conditions
+              </a>
+            </span>
           </label>
           {errors.terms && (
             <p className={formStyles.errorMessage}>{errors.terms}</p>
@@ -425,7 +422,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
                 checked={receiveUpdates}
                 onChange={(e) => setReceiveUpdates(e.target.checked)}
               />
-              I would like to receive offers and news from Naomi.
+              I would like to receive offers and news from Naomi
             </label>
           </div>
         )}

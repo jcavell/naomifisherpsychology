@@ -8,6 +8,7 @@ import { Basket } from "../basket/Basket.tsx";
 import formStyles from "../../styles/components/checkout/form.module.css";
 import paymentStyles from "../../styles/components/checkout/payment.module.css";
 import summaryStyles from "../../styles/components/checkout/summary.module.css";
+import cartStyles from "../../styles/components/cart/cart.module.css";
 
 // Load stripe with our TEST publishable API key (pk....)
 const stripePublishableKey = import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY;
@@ -120,10 +121,7 @@ const CheckoutComponent: React.FC = () => {
   }
   return (
     <CartProvider id="website">
-      <div
-        className={`${paymentStyles.cartAndCheckout} ${isStylesLoaded ? paymentStyles.loaded : paymentStyles.loading}`}
-        aria-busy={!isStylesLoaded}
-      >
+      <div className={cartStyles.cartAndCheckout}>
         {" "}
         <Basket showCheckoutButton={false} />
         <Checkout />

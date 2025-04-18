@@ -13,23 +13,11 @@ export async function POST({ params, request }) {
   // console.log("Parsed request body (as JSON): ", json);
 
   const { items } = json as { items: BasketItem[] };
-  const itemsMetadata: StripePaymentItemMetadata[] = items.map(
-    ({
-      product_id,
-      variant_id,
-      quantity,
-      currency,
-      formatted_price,
-      product_name,
-      variant_name,
-      added_at,
-      variant_description,
-      product_description,
-      product_images,
-      expires_at,
-      ...rest
-    }) => rest,
-  );
+  const itemsMetadata = items.map((item) => ({
+    id: item.id,
+    product_type: item.product_type,
+    price: item.price,
+  }));
 
   // Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({
