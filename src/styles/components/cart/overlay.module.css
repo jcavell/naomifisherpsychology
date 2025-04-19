@@ -7,8 +7,10 @@
     background: rgba(0, 0, 0, 0.7);
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Change from center to flex-start */
     z-index: 1000;
+    overflow-y: auto; /* Enable scrolling */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
 
 .overlayContent {
@@ -17,24 +19,68 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px; /* Add margin to prevent touching edges */
+    max-height: 90vh; /* Limit height */
+    overflow-y: auto; /* Enable scrolling within content */
+    width: calc(100% - 40px); /* Full width minus margins */
+    max-width: 600px; /* Optional: limit maximum width */
 }
 
 .closeOverlayButton {
     position: absolute;
-    top: 8px;
-    right: 8px;
-    background: none;
+    top: 12px;
+    right: 12px;
+    background: rgba(0, 0, 0, 0.1);
     border: none;
-    font-size: 0.8rem;
+    font-size: 1.5rem; /* Larger font size */
     color: #333;
     cursor: pointer;
-    padding: 0;
+    padding: 8px 12px; /* Larger touch target */
     line-height: 1;
     text-align: center;
+    border-radius: 50%; /* Make it circular */
+    width: 40px; /* Fixed width */
+    height: 40px; /* Fixed height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlayContent::after {
+    display: none; /* Remove the gradient completely */
+}
+
+.overlayTitle {
+    font-size: 1rem;
+    margin: 0;  /* Remove default margins */
+    color: #333;
+    font-weight: 500;
+    padding-right: 40px; /* Make space for close button */
+}
+
+/* Media queries for mobile */
+@media only screen and (max-width: 600px) {
+    .overlayContent {
+        margin: 10px; /* Smaller margin on mobile */
+        width: calc(100% - 20px);
+        padding: 16px;
+    }
+    .overlayTitle {
+        font-size: 1.1rem;
+    }
+
+    /* Add some space at the bottom for better scrolling */
+    .overlayContent::after {
+        height: 40px;
+    }
 }
 
 .closeOverlayButton:hover {
     color: var(--error-red);
+}
+
+.basketContainer {
+    margin-top: 20px;
 }
 
 .ticketRow {
@@ -43,7 +89,6 @@
     align-items: center;
     gap: 8px;  /* Reduced from 20px */
     margin-bottom: 10px;
-    background-color: #f9f9f9;  /* Light background to create visual grouping */
     padding: 8px 12px;  /* Add padding to create the block effect */
     border-radius: 6px;  /* Rounded corners */
 }

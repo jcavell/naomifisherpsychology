@@ -99,18 +99,7 @@ const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
         >
           &times;
         </button>
-        <h2 style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-          <img
-            src={webinar.logo.original.url}
-            alt={`${webinar.name.text} logo`}
-            style={{
-              width: "40px", // Adjust the size of the image
-              height: "auto",
-              borderRadius: "4px",
-            }}
-          />
-          {webinar.name.text}
-        </h2>
+        <div className={styles.overlayTitle}>{webinar.name.text}</div>
         {`${webinar.day} ${webinar.month}`} at {`${webinar.startTime}`}
         {hasTicketInCart ? (
           <p className={styles.inBasketMessage}>
@@ -140,13 +129,14 @@ const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
               </div>
             ))
         )}
-        {/* Always Display Basket at the Bottom */}
-        <div style={{ marginTop: "20px" }}>
-          <Basket
-            showEmptyBasketMessage={false}
-            onItemRemoved={handleItemRemovedFromBasket}
-          />
-        </div>
+        {hasModified && (
+          <div className={styles.basketContainer}>
+            <Basket
+              showEmptyBasketMessage={false}
+              onItemRemoved={handleItemRemovedFromBasket}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
