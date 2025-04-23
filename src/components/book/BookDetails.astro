@@ -47,6 +47,9 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
 
   <div class="details-body">
     <div class="details-body-A">
+      <p>
+        {book.summary}
+      </p>
       <BookContent />
 
 <!-- 
@@ -161,16 +164,16 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
           )
         }
 
-        <!--{-->
-        <!--  book.amazonUrl && (-->
-        <!--    <a href={book.amazonUrl} target="blank" class="test">-->
-        <!--      <div class="purchase">-->
-        <!--        <div class="price">{book.amazonPrice}</div>-->
-        <!--        <div class="company amazon" />-->
-        <!--      </div>-->
-        <!--    </a>-->
-        <!--  )-->
-        <!--}-->
+        {
+          ! book.psychologicalTherapiesUrl && book.amazonUrl && (
+            <a href={book.amazonUrl} target="blank" class="test">
+              <div class="purchase">
+                <!-- <div class="price">{book.amazonPrice}</div> -->
+                <div class="company amazon" />
+              </div>
+            </a>
+          )
+        }
 
         {
           book.blackwellUrl && (
