@@ -63,6 +63,12 @@ const eotas_what_to_expect: WebinarMeta = {
   contributers: [abi],
 };
 
+const taking_control_of_your_childs_ehcp_annual_review: WebinarMeta = {
+  id: "1323470398589",
+  tags: [tagSchool, tagEHCPs, forParents, age5To11, age11To19],
+  contributers: [abi],
+};
+
 const helping_your_demand_avoidant_child_with_anxiety: WebinarMeta = {
   id: "1312064092019",
   tags: [tagDemandAvoidance, tagAnxiety, forParents, age5To11, age11To19],
@@ -117,5 +123,6 @@ export function getWebinarMeta(eventId: string): WebinarMeta | undefined {
     now_what_recovering_after_school_breakdown,
     not_fine_at_school_kinship,
     understanding_demand_avoidant_teen,
+    taking_control_of_your_childs_ehcp_annual_review,
   ].find((webMeta) => eventId === webMeta.id);
 }
