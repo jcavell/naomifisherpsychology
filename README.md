@@ -330,22 +330,22 @@ Example: https://localhost:4321/api/get-kit-user?email=jonny.cavell@gmail.com
 "subscriber":{"id":2270329001,"first_name":"Jonny Cavell gmail","email_address":"jonny.cavell@gmail.com","state":"active","created_at":"2023-08-01T18:52:31Z","fields":{"last_name":"Cavell"}}}
 ```
 
-### Webinar Tickets API
+### EventbriteWebinar Tickets API
 
 The `/api/webinar-tickets/[eventId_ticketId]` endpoint provides ticket details for webinar events that can be added to the shopping cart.
 
 Example: https://localhost:4321/api/webinar-tickets/1203174349869_2131545083
 
 #### Features
-1. **Webinar Lookup**
+1. **EventbriteWebinar Lookup**
     - Fetches webinar details using the event ID
     - Finds specific ticket class within the webinar
     - Returns 404 if ticket not found
 
 2. **Basket Item Creation**
    Creates a standardized `BasketItem` object containing:
-    - Webinar details (name, description, logo)
-    - Ticket class information
+    - EventbriteWebinar details (name, description, logo)
+    - EventbriteTicket class information
     - Pricing details in GBP
     - Event timing and expiration details
 #### Example Response
@@ -356,11 +356,11 @@ Example: https://localhost:4321/api/webinar-tickets/1203174349869_2131545083
   "is_course": false,
   "is_webinar": true,
   "product_id": "1203174349869",
-  "product_name": "Webinar Title",
-  "product_description": "Webinar description",
+  "product_name": "EventbriteWebinar Title",
+  "product_description": "EventbriteWebinar description",
   "product_images": ["https://example.com/logo.jpg"],
   "variant_id": "2131545083",
-  "variant_name": "Live Webinar",
+  "variant_name": "Live EventbriteWebinar",
   "currency": "GBP",
   "price": 1150,
   "formatted_price": "£11.50",

@@ -1,5 +1,19 @@
 export let url = undefined;
-export type Ticket = {
+
+// Raw Webinar from Eventbrite API
+export type EventbriteWebinar = {
+  id: string;
+  name: { text: string };
+  description: { text: string };
+  start: { utc: string };
+  end: { utc: string };
+  ticket_classes: EventbriteTicket[];
+  widgets: EventbriteWidget[];
+  url: string;
+  logo: EventbriteLogo;
+};
+
+export type EventbriteTicket = {
   id: string;
   name: string;
   cost?: { display: string; value: number; currency: string };
@@ -10,7 +24,7 @@ export type Ticket = {
   display_name: string;
 };
 
-export type Widget = {
+export type EventbriteWidget = {
   type: string;
   data: {
     video?: string;
@@ -18,7 +32,7 @@ export type Widget = {
   };
 };
 
-export type Logo = {
+export type EventbriteLogo = {
   original: {
     url: string;
     width: number;
@@ -26,53 +40,60 @@ export type Logo = {
   };
 };
 
-type VideoThumbnail = {
+type EventbriteVideoThumbnail = {
   url: string;
 };
 
-type VideoThumbnails = {
-  small: VideoThumbnail;
-  medium: VideoThumbnail;
-  large: VideoThumbnail;
+type EventbriteVideoThumbnails = {
+  small: EventbriteVideoThumbnail;
+  medium: EventbriteVideoThumbnail;
+  large: EventbriteVideoThumbnail;
 };
 
-// Define the video data structure
-type VideoData = {
+type EventbriteVideoData = {
   url: string;
   embed_url: string;
-  thumbnail: VideoThumbnails;
+  thumbnail: EventbriteVideoThumbnails;
   provider: string;
 };
 
+// Transformed Webinar
 export type Webinar = {
   id: string;
-  name: { text: string };
-  description: { text: string };
-  start: { utc: string };
-  end: { utc: string };
-  ticket_classes: Ticket[];
-  widgets: Widget[];
+  title: string;
+  description: string;
+  detailsText: string;
+  startDate: Date;
+  endDate: Date;
+  tickets: WebinarTicket[];
+  agenda: string[];
   url: string;
-  logo: Logo;
+  logoUrl: string;
+  displayDate: {
+    day: string;
+    month: string;
+    monthLong: string;
+    year: string;
+    startTime: string;
+    endTime: string;
+  };
+  people: string[];
+  tags: string[];
+  videoData?: EventbriteVideoData;
 
-  // Added during processing
-  agenda?: string[];
-  videoData?: VideoData; // Add the new videoData property
-  orderedTickets?: ProcessedTicket[];
-  startDateTime?: Date;
-  endDateTime?: Date;
-  day?: string;
-  month?: string;
-  monthLong?: string;
-  year?: string;
-  startTime?: string;
-  endTime?: string;
-  people?: string[];
-  tags?: string[];
-  detailsText?: string;
+  // Keep for now - but replace with startDate and endDate at above
+  startDateTime: Date;
+  endDateTime: Date;
+  day: string;
+  month: string;
+  monthLong: string;
+  year: string;
+  startTime: string;
+  endTime: string;
 };
 
-export type ProcessedTicket = {
+// Transformed Webinar Ticket
+export type WebinarTicket = {
   id: string;
   cost: string | undefined;
   costValue: number | undefined;
@@ -82,4 +103,5 @@ export type ProcessedTicket = {
   costPlusFee: string;
   status: string;
   name: string;
+  salesEnd: string;
 };

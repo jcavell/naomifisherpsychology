@@ -1,7 +1,7 @@
 import React from "react";
 import { CartProvider } from "react-use-cart";
 import ChooseWebinarTickets from "./ChooseWebinarTickets.tsx";
-import type { Ticket, Webinar } from "../../types/webinar";
+import type { Webinar } from "../../types/webinar";
 
 // Define props for the wrapper
 interface ChooseWebinarTicketsWrapperProps {

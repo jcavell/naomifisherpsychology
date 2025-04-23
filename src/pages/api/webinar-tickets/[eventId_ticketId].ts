@@ -1,5 +1,6 @@
-import type { Webinar } from "../../../types/webinar";
 import type { BasketItem } from "../../../types/basket-item";
+import logger from "../../../scripts/logger.ts";
+import { getWebinar } from "../../../scripts/webinars.ts";
 
 export const prerender = false;
 
@@ -13,49 +14,54 @@ export async function GET({ params, request }) {
   const eventIdTicketId = params.eventId_ticketId;
   const eventId = eventIdTicketId.split("_")[0];
   const ticketId = eventIdTicketId.split("_")[1];
-  const baseUrl = new URL(request.url).origin;
 
   const isDev = import.meta.env.DEV;
-
   if (isDev) process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
-  const response = await fetch(`${baseUrl}/api/webinars/${eventId}`);
-  const webinar: Webinar = await response.json();
+  if (!eventId) {
+    return new Response(JSON.stringify({ error: "Event ID is required" }), {
+      headers: { "Content-Type": "application/json" },
+      status: 400,
+    });
+  }
 
-  const ticketClass = webinar.ticket_classes.find(
-    (ticket) => ticket.id === ticketId,
-  );
+  const webinar = await getWebinar(eventId);
 
-  if (!ticketClass) {
-    return new Response("Ticket not found", {
+  if (!webinar) {
+    return new Response(JSON.stringify({ error: "Webinar not found" }), {
+      headers: { "Content-Type": "application/json" },
+      status: 404,
+    });
+  }
+
+  const ticket = webinar.tickets.find((ticket) => ticket.id === ticketId);
+
+  if (!ticket) {
+    return new Response("EventbriteTicket not found", {
       headers: { "Content-Type": "application/json" },
       status: 404,
     });
   }
 
   const checkoutItem: BasketItem = {
-    id: eventId + "_" + ticketClass.id,
+    id: eventId + "_" + ticket.id,
     product_type: "webinar",
     is_course: false,
     is_webinar: true,
     product_id: eventId,
-    product_name: webinar.name.text,
-    product_description: webinar.description.text,
-    product_images: [webinar.logo.original.url],
-    variant_id: ticketClass.id,
-    variant_name: ticketClass.name,
-    currency: ticketClass.cost?.currency || "GBP",
-    price: ticketClass.cost?.value || 0,
-    formatted_price: ticketClass.cost?.display || "£0.00",
+    product_name: webinar.title,
+    product_description: webinar.description,
+    product_images: [webinar.logoUrl],
+    variant_id: ticket.id,
+    variant_name: ticket.name,
+    currency: "GBP",
+    price: ticket.costValue || 0,
+    formatted_price: ticket.costPlusFee,
     added_at: new Date().toISOString(),
-    expires_at: ticketClass.sales_end,
+    expires_at: ticket.salesEnd,
     quantity: 1, // Default quantity
     vatable: false, // default
   };
-
-  console.log(
-    "api/webinar-tickets checkout items" + JSON.stringify(checkoutItem),
-  );
 
   return new Response(JSON.stringify(checkoutItem), {
     headers: { "Content-Type": "application/json" },

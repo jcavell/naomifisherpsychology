@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import styles from "../../styles/components/cart/overlay.module.css";
 import { useCart } from "react-use-cart";
-import type { Ticket, Webinar } from "../../types/webinar";
+import type { WebinarTicket, Webinar } from "../../types/webinar";
 import Basket from "./Basket";
 import type { BasketItem } from "../../types/basket-item";
 
@@ -21,12 +21,12 @@ const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
   const [loading, setLoading] = useState<string | null>(null); // Keeps track of loading ticket ID
   const [isAnyButtonLoading, setIsAnyButtonLoading] = useState(false); // New state
 
-  const getId = (ticket: Ticket) => `${webinar.id}_${ticket.id}`;
+  const getId = (ticket: WebinarTicket) => `${webinar.id}_${ticket.id}`;
 
-  const handleAddToBasket = async (ticket: Ticket) => {
+  const handleAddToBasket = async (ticket: WebinarTicket) => {
     const id = getId(ticket);
     if (!inCart(id)) {
-      setLoading(id); // Set loading state for this ticket
+      setLoading(id);
       setIsAnyButtonLoading(true); // Set global loading state
 
       // Fetch ticket details and add to basket
@@ -47,15 +47,14 @@ const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
     }
   };
 
-  const handleRemoveFromBasket = (ticket: Ticket) => {
+  const handleRemoveFromBasket = (ticket: WebinarTicket) => {
     setHasModified(true); // Mark as modified locally
     const id = getId(ticket);
     try {
       if (inCart(id)) {
-        console.log("Removing from basket", id);
         removeItem(id);
       } else {
-        console.warn("Ticket is not in the cart, nothing to remove");
+        console.warn("EventbriteTicket is not in the cart, nothing to remove");
       }
     } catch (error) {
       console.error("Error in handleRemoveFromBasket:", error);
@@ -64,8 +63,7 @@ const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
 
   // Callback to detect when an item is removed directly from the basket
   const handleItemRemovedFromBasket = () => {
-    console.log("Item removed from Basket component");
-    setHasModified(true); // Mark as modified
+    setHasModified(true);
   };
 
   const handleClose = () => {
@@ -76,9 +74,7 @@ const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
     }
   };
 
-  const ticketsInCart = webinar.ticket_classes.map((ticket) =>
-    inCart(getId(ticket)),
-  );
+  const ticketsInCart = webinar.tickets.map((ticket) => inCart(getId(ticket)));
   // Then check if any are true
   const hasTicketInCart = ticketsInCart.includes(true);
 
@@ -99,21 +95,24 @@ const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
         >
           &times;
         </button>
-        <div className={styles.overlayTitle}>{webinar.name.text}</div>
-        {`${webinar.day} ${webinar.month}`} at {`${webinar.startTime}`}
+        <div className={styles.overlayTitle}>
+          <p>{webinar.title}</p>
+          <p>
+            {" "}
+            {`${webinar.day} ${webinar.month}`} at {`${webinar.startTime}`}
+          </p>
+        </div>
         {hasTicketInCart ? (
           <p className={styles.inBasketMessage}>
             This webinar is in your basket
           </p>
         ) : (
-          webinar.ticket_classes
-            .filter((ticket) => !ticket.hidden)
+          webinar
+            .tickets!.filter((ticket) => !ticket.hidden)
             .map((ticket) => (
               <div className={styles.ticketRow} key={ticket.id}>
-                <span className={styles.ticketName}>{ticket.display_name}</span>
-                <span className={styles.ticketCost}>
-                  {ticket.cost?.display ?? "Free"}
-                </span>
+                <span className={styles.ticketName}>{ticket.name}</span>
+                <span className={styles.ticketCost}>{ticket.costPlusFee}</span>
                 <button
                   type="button"
                   className={styles.addToBasket}
@@ -157,9 +156,8 @@ const TicketSelectorButton: React.FC<TicketSelectorButtonProps> = ({
   }, []);
 
   const handleModifiedClose = useCallback(() => {
-    console.log("Modifications detected");
     setShowOverlay(false); // Close overlay
-    window.location.reload(); // Reload because no modifications occurred
+    window.location.reload(); // Reload because modifications occurred
   }, []);
 
   const handleOpenOverlay = () => {
@@ -170,7 +168,7 @@ const TicketSelectorButton: React.FC<TicketSelectorButtonProps> = ({
     <>
       <button
         type="button"
-        className={styles.textButton}
+        className={`add-to-basket-from-summary ${styles.textButton}`}
         onClick={handleOpenOverlay}
       >
         Select Tickets

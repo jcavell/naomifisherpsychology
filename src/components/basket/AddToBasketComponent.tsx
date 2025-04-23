@@ -97,36 +97,37 @@ const Button: React.FC<BasketItem> = ({
 
   return (
     <>
-      <div className={buttonType === "detail" ? styles.buyNow : ""}>
-        {isInCart ? (
-          <button
-            className={
-              buttonType === "detail"
-                ? `${styles.addToBasket} ${styles.remove}`
-                : styles.textButton
-            }
-            onClick={(event) => {
-              event.preventDefault();
-              handleRemoveFromBasket();
-            }}
-          >
-            <span>Remove &times;</span>
-          </button>
-        ) : (
-          <button
-            className={
-              buttonType === "detail" ? styles.addToBasket : styles.textButton
-            }
-            disabled={isProcessing}
-            onClick={(event) => {
-              event.preventDefault();
-              handleAddToBasket();
-            }}
-          >
-            <span>{buttonText}</span>
-          </button>
-        )}
-      </div>
+      {isInCart ? (
+        <button
+          className={
+            buttonType === "detail"
+              ? `${styles.addToBasket} ${styles.remove}`
+              : `add-to-basket-from-summary ${styles.textButton}`
+          }
+          onClick={(event) => {
+            event.preventDefault();
+            handleRemoveFromBasket();
+          }}
+        >
+          <span>Remove &times;</span>
+        </button>
+      ) : (
+        <button
+          className={
+            buttonType === "detail"
+              ? styles.addToBasket
+              : `add-to-basket-from-summary ${styles.textButton}`
+          }
+          disabled={isProcessing}
+          onClick={(event) => {
+            event.preventDefault();
+            handleAddToBasket();
+          }}
+        >
+          {buttonText}
+        </button>
+      )}
+
       {/* Overlay Section */}
       {showOverlay && (
         <div
@@ -139,7 +140,7 @@ const Button: React.FC<BasketItem> = ({
         >
           <div className={styles.overlayContent}>
             {/* Add a close button */}
-            <button
+            <div
               className={styles.closeOverlayButton}
               onClick={(e) => {
                 e.stopPropagation(); // Prevent the overlay click handler
@@ -147,7 +148,7 @@ const Button: React.FC<BasketItem> = ({
               }}
             >
               &times;
-            </button>
+            </div>
             <Basket />
           </div>
         </div>

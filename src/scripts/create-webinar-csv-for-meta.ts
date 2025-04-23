@@ -1,7 +1,7 @@
 // webinarsToCsv.ts
 import * as fs from "node:fs";
 import getWebinars from "./webinars";
-import type { Webinar } from "../types/webinar";
+import type { EventbriteWebinar } from "../types/webinar";
 import * as dotenv from "dotenv";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
@@ -13,7 +13,7 @@ const __dirname = dirname(__filename);
 // Load environment variables from the project root
 dotenv.config({ path: join(__dirname, "../../.env") });
 
-function generateWebinarEntries(webinar: Webinar) {
+function generateWebinarEntries(webinar: EventbriteWebinar) {
   if (!webinar.ticket_classes || webinar.ticket_classes.length === 0) {
     // If no ticket classes, return single product
     return [

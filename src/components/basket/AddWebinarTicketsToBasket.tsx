@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { CartProvider } from "react-use-cart";
 import AddToBasketComponent from "./AddToBasketComponent.tsx";
-import type { ProcessedTicket } from "../../types/webinar";
+import type { WebinarTicket } from "../../types/webinar";
 
 interface AddWebinarTicketsToBasketProps {
-  tickets: ProcessedTicket[];
+  tickets: WebinarTicket[];
   webinarId: string;
 }
 

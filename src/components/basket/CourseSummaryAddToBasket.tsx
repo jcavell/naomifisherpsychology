@@ -13,22 +13,13 @@ const AddCourseSummaryToBasket: React.FC<AddCourseSummaryToBasketProps> = ({
 
   return (
     <CartProvider id="website">
-      <a
-        style={{
-          borderTopRightRadius: "0px",
-          borderBottomRightRadius: "16px",
-          borderTopLeftRadius: "0",
-          borderBottomLeftRadius: "0",
-        }}
-      >
-        <AddToBasketComponent
-          id={offerId}
-          type="course"
-          isProcessing={isProcessing}
-          setIsProcessing={setIsProcessing}
-          buttonType="summary"
-        />
-      </a>
+      <AddToBasketComponent
+        id={offerId}
+        type="course"
+        isProcessing={isProcessing}
+        setIsProcessing={setIsProcessing}
+        buttonType="summary"
+      />
     </CartProvider>
   );
 };

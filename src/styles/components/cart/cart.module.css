@@ -3,10 +3,10 @@
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    border: 1px solid #dadada;
+    /*border: 1px solid #dadada;*/
     border-radius: 8px;
     background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
 }
 
 .cartTitle {

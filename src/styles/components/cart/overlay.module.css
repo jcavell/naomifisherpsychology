@@ -30,12 +30,13 @@
     position: absolute;
     top: 12px;
     right: 12px;
-    background: rgba(0, 0, 0, 0.1);
+    background: rgb(0, 0, 0, 0.1);
     border: none;
-    font-size: 1.5rem; /* Larger font size */
-    color: #333;
+    font-size: 3rem; /* Larger font size */
+    font-weight: lighter;
+    color: #000;
     cursor: pointer;
-    padding: 8px 12px; /* Larger touch target */
+    padding: 8px; /* Larger touch target */
     line-height: 1;
     text-align: center;
     border-radius: 50%; /* Make it circular */

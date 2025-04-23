@@ -5,24 +5,22 @@ import { env } from "./env.ts";
 
 export const prerender = false;
 
-import type { Webinar } from "../types/webinar";
+import type {
+  EventbriteTicket,
+  EventbriteWebinar,
+  EventbriteWidget,
+  EventbriteVideoData,
+  Webinar,
+  WebinarTicket,
+} from "../types/webinar";
 
 import testWebinars1 from "../test-data/eventbrite/1event.json";
 import testWebinars3 from "../test-data/eventbrite/3events.json";
+import logger from "./logger.ts";
 
 const isDev = import.meta.env.DEV;
 
-// Fetch webinar details responses
-const getDetailsResponses = (webinars: Webinar[]): Promise<Response[]> => {
-  const responses = webinars.map((webinar) => {
-    return getDetails(webinar.id);
-  });
-
-  return Promise.all(responses);
-};
-
-// Fetch details for a single webinar
-function getDetails(webinarId: string): Promise<Response> {
+function getWebinarDetails(webinarId: string): Promise<Response> {
   return fetch(
     `https://www.eventbriteapi.com/v3/events/${webinarId}/structured_content/`,
     {
@@ -33,86 +31,163 @@ function getDetails(webinarId: string): Promise<Response> {
   );
 }
 
-// Extract video data from webinar widgets
-function addVideoData(webinar: Webinar): void {
-  const videoWidgets = webinar.widgets.filter(
+const getAllWebinarsDetails = (
+  webinars: EventbriteWebinar[],
+): Promise<Response[]> => {
+  const responses = webinars.map((webinar) => {
+    return getWebinarDetails(webinar.id);
+  });
+
+  return Promise.all(responses);
+};
+
+function transformEventbriteToWebinar(
+  eventbriteWebinar: EventbriteWebinar,
+  detailsJson: any,
+): Webinar {
+  const detailsText = detailsJson.modules[0]?.data?.body?.text ?? "";
+  const startDate = new Date(eventbriteWebinar.start.utc);
+  const endDate = new Date(eventbriteWebinar.end.utc);
+  const displayDate = formatDisplayDates(
+    eventbriteWebinar.start.utc,
+    eventbriteWebinar.end.utc,
+  );
+
+  return {
+    id: eventbriteWebinar.id,
+    title: eventbriteWebinar.name.text,
+    description: eventbriteWebinar.description.text,
+    startDate,
+    endDate,
+    detailsText,
+    videoData: extractVideoData(detailsJson.widgets),
+    tickets: transformTickets(eventbriteWebinar.ticket_classes),
+    agenda: extractAgenda(detailsJson.widgets),
+    url: `${eventbriteWebinar.url}?aff=web`,
+    logoUrl: eventbriteWebinar.logo.original.url,
+    displayDate: formatDisplayDates(
+      eventbriteWebinar.start.utc,
+      eventbriteWebinar.end.utc,
+    ),
+    people: getPeople(detailsText),
+    tags: getTags(
+      eventbriteWebinar.name.text,
+      eventbriteWebinar.description.text,
+      detailsText,
+    ),
+    // Legacy date fields - to be removed later
+    startDateTime: startDate,
+    endDateTime: endDate,
+    day: displayDate.day,
+    month: displayDate.month,
+    monthLong: displayDate.monthLong,
+    year: displayDate.year,
+    startTime: displayDate.startTime,
+    endTime: displayDate.endTime,
+  };
+}
+
+function extractVideoData(
+  widgets: EventbriteWidget[],
+): EventbriteVideoData | undefined {
+  const videoWidgets = widgets.filter(
     (widget) => widget.type === "featured_video",
   );
 
-  if (videoWidgets.length > 0) {
-    webinar.videoData = videoWidgets[0].data.video;
-  }
+  return videoWidgets[0]?.data.video as EventbriteVideoData | undefined;
 }
 
-// Extract agenda data from webinar widgets
-function addAgenda(webinar: Webinar): void {
-  const agendaWidgets = webinar.widgets.filter((w) => w.type === "agenda");
-
-  if (agendaWidgets.length > 0) {
-    webinar.agenda =
-      agendaWidgets[0].data.tabs?.[0]?.slots.map((slot) => slot.title) || [];
-  }
+function extractAgenda(widgets: EventbriteWidget[]): string[] {
+  const agendaWidgets = widgets.filter((w) => w.type === "agenda");
+  return (
+    agendaWidgets[0]?.data.tabs?.[0]?.slots.map((slot) => slot.title) || []
+  );
 }
 
-// Process and order ticket information
-function addOrderedTickets(webinar: Webinar): void {
-  webinar.orderedTickets = webinar.ticket_classes
+function transformTickets(ticketClasses: EventbriteTicket[]): WebinarTicket[] {
+  return ticketClasses
     .map((ticket) => ({
       id: ticket.id,
-      cost: ticket.cost?.display,
+      name: ticket.display_name.toLowerCase().includes("recording")
+        ? "Webinar + recording for 30 days"
+        : "Webinar",
+      cost: ticket.cost?.display || "Free",
       costValue: ticket.cost?.value || 0,
-      fee: ticket.fee?.display,
+      fee: ticket.fee?.display || "No fee",
       feeValue: ticket.fee?.value || 0,
-      hidden: ticket.hidden,
       costPlusFee: (
         ((ticket.cost?.value || 0) + (ticket.fee?.value || 0)) /
         100
       ).toLocaleString(undefined, { style: "currency", currency: "GBP" }),
       status: ticket.on_sale_status,
-      name: ticket.display_name,
+      salesEnd: ticket.sales_end,
+      hidden: ticket.hidden,
     }))
-    .filter((t) => !t.hidden)
-    .sort((a, b) => a.costValue - b.costValue);
+    .filter((ticket) => !ticket.hidden)
+    .sort((a, b) => b.costValue - a.costValue);
 }
 
-// Add formatted date and time details to a webinar
-function addDates(webinar: Webinar): void {
-  const start = webinar.start.utc;
-  const end = webinar.end.utc;
-
-  const startDateTime = new Date(Date.parse(start));
-  const endDateTime = new Date(Date.parse(end));
+function formatDisplayDates(startUtc: string, endUtc: string) {
+  const startDateTime = new Date(Date.parse(startUtc));
+  const endDateTime = new Date(Date.parse(endUtc));
 
   const displayDay: Intl.DateTimeFormatOptions = { day: "numeric" };
   const displayMonth: Intl.DateTimeFormatOptions = { month: "short" };
   const displayMonthLong: Intl.DateTimeFormatOptions = { month: "long" };
   const displayYear: Intl.DateTimeFormatOptions = { year: "numeric" };
-
-  const displayTimeStart: Intl.DateTimeFormatOptions = {
+  const displayTime: Intl.DateTimeFormatOptions = {
     hour: "numeric",
     minute: "numeric",
     timeZone: "Europe/London",
   };
 
-  const displayTimeEnd: Intl.DateTimeFormatOptions = {
-    hour: "numeric",
-    minute: "numeric",
-    timeZone: "Europe/London",
+  return {
+    day: startDateTime.toLocaleString(undefined, displayDay),
+    month: startDateTime.toLocaleString(undefined, displayMonth),
+    monthLong: startDateTime.toLocaleString(undefined, displayMonthLong),
+    year: startDateTime.toLocaleString(undefined, displayYear),
+    startTime: startDateTime.toLocaleString(undefined, displayTime),
+    endTime: endDateTime.toLocaleString(undefined, displayTime),
   };
-
-  // Add date values to webinar
-  webinar.startDateTime = startDateTime;
-  webinar.endDateTime = endDateTime;
-  webinar.day = startDateTime.toLocaleString(undefined, displayDay);
-  webinar.month = startDateTime.toLocaleString(undefined, displayMonth);
-  webinar.monthLong = startDateTime.toLocaleString(undefined, displayMonthLong);
-  webinar.year = startDateTime.toLocaleString(undefined, displayYear);
-
-  webinar.startTime = startDateTime.toLocaleString(undefined, displayTimeStart);
-  webinar.endTime = endDateTime.toLocaleString(undefined, displayTimeEnd);
 }
 
-// Main function to fetch and process webinars
+// Get a single webinar
+export const getWebinar = async (
+  webinarId: string,
+): Promise<Webinar | undefined> => {
+  const eventResponse = await fetch(
+    `https://www.eventbriteapi.com/v3/events/${webinarId}/?expand=category,subcategory,ticket_availability,ticket_classes&status=live`,
+    {
+      headers: {
+        Authorization: `Bearer ${env.EB_BEARER}`,
+      },
+    },
+  );
+
+  // Return undefined for 404, throw error for server issues
+  if (eventResponse.status === 404) {
+    return undefined;
+  }
+  if (!eventResponse.ok) {
+    throw new Error(`Server error: ${eventResponse.status}`);
+  }
+
+  const webinar: EventbriteWebinar = await eventResponse.json();
+  const detailsResponse = await getWebinarDetails(webinar.id);
+
+  // Return undefined for 404, throw error for server issues
+  if (detailsResponse.status === 404) {
+    return undefined;
+  }
+  if (!detailsResponse.ok) {
+    throw new Error(`Server error: ${detailsResponse.status}`);
+  }
+
+  const detailsJson = await detailsResponse.json();
+  return transformEventbriteToWebinar(webinar, detailsJson);
+};
+
+// Get all webinars
 export default async function getWebinars(): Promise<Webinar[]> {
   const eventsResponse = await fetch(
     "https://www.eventbriteapi.com/v3/organizations/495447088469/events/?expand=category,subcategory,ticket_availability,ticket_classes&status=live",
@@ -122,12 +197,15 @@ export default async function getWebinars(): Promise<Webinar[]> {
       },
     },
   );
+
+  logger.INFO("eventsResponse", eventsResponse);
+
   const eventsJson = await eventsResponse.json();
 
-  const webinars: Webinar[] = eventsJson.events;
+  const eventbriteWebinars: EventbriteWebinar[] = eventsJson.events;
 
   if (isDev) {
-    webinars.forEach((webinar) => {
+    eventbriteWebinars.forEach((webinar) => {
       fs.writeFileSync(
         `webinars-json/${webinar.id}_event.json`,
         JSON.stringify(webinar, null, 2),
@@ -135,7 +213,7 @@ export default async function getWebinars(): Promise<Webinar[]> {
     });
   }
 
-  const detailsResponses = await getDetailsResponses(webinars);
+  const detailsResponses = await getAllWebinarsDetails(eventbriteWebinars);
   const detailsJsons = await Promise.all(
     detailsResponses.map((wd) => wd.json()),
   );
@@ -143,35 +221,17 @@ export default async function getWebinars(): Promise<Webinar[]> {
   if (isDev) {
     detailsJsons.forEach((detail, index) => {
       fs.writeFileSync(
-        `webinars-json/${webinars[index].id}_detail.json`,
+        `webinars-json/${eventbriteWebinars[index].id}_detail.json`,
         JSON.stringify(detail, null, 2),
       );
     });
   }
-
-  webinars.map((webinar, index) => {
-    const detailsText = detailsJsons[index].modules[0]?.data?.body?.text ?? "";
-
-    webinar.widgets = detailsJsons[index].widgets;
-    webinar.detailsText = detailsText;
-    webinar.people = getPeople(detailsText);
-    webinar.tags = getTags(
-      webinar.name.text,
-      webinar.description.text,
-      detailsText,
-    );
-
-    // Add affiliate link
-    webinar.url = `${webinar.url}?aff=web`;
-
-    addAgenda(webinar);
-    addOrderedTickets(webinar);
-    addVideoData(webinar);
-    addDates(webinar);
-  });
+  const processedWebinars = eventsJson.events.map((webinar, index) =>
+    transformEventbriteToWebinar(webinar, detailsJsons[index]),
+  );
 
   if (isDev) {
-    webinars.forEach((webinar) => {
+    processedWebinars.forEach((webinar) => {
       fs.writeFileSync(
         `webinars-json/${webinar.id}_processed.json`,
         JSON.stringify(webinar, null, 2),
@@ -179,25 +239,11 @@ export default async function getWebinars(): Promise<Webinar[]> {
     });
   }
 
-  webinars.forEach(logWebinarSummary);
-
   // Return webinars that have tickets and haven't ended
-  return webinars.filter((w) => {
+  return processedWebinars.filter((w) => {
     const endDateTime = new Date(Date.parse(w.end.utc));
     const now = new Date();
 
-    return w.orderedTickets?.length && endDateTime > now;
+    return w.tickets?.length && endDateTime > now;
   });
-}
-
-function logWebinarSummary(webinar: Webinar): void {
-  console.log(`
-Webinar Summary:
-ID: ${webinar.id}
-Name: ${webinar.name.text}
-Tickets:
-${webinar.orderedTickets
-  ?.map((ticket) => `- ${ticket.name}: ${ticket.costPlusFee}`)
-  .join("\n")}
--------------------`);
 }

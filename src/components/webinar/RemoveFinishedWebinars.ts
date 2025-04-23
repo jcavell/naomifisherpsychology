@@ -12,7 +12,7 @@ export function RemoveFinishedWebinars() {
         const endTimeStr = element.getAttribute("data-webinar-end");
 
         if (!endTimeStr) {
-          console.log("Warning: Webinar card found without end time");
+          console.log("Warning: EventbriteWebinar card found without end time");
           return;
         }
 

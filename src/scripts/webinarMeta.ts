@@ -20,7 +20,7 @@ import {
 
 import { naomi, abi, eliza, kate } from "./people";
 
-// Webinar Images
+// EventbriteWebinar Images
 import myFaultImage from "../images/webinars/is-it-all-my-fault.jpg";
 
 type WebinarMeta = {
