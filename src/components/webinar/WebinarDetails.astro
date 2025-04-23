@@ -6,17 +6,19 @@ import AddWebinarTicketsToBasket from "../basket/AddWebinarTicketsToBasket";
 import { getWebinarMeta } from "../../scripts/webinarMeta";
 
 import WebinarImage from "./WebinarImage.astro";
+import type { Webinar } from "../../types/webinar";
+
+interface Props {
+  webinar: Webinar;
+}
 
 const { webinar } = Astro.props;
 
 const eventId = webinar.id;
 const meta = getWebinarMeta(eventId);
 
-const title = webinar.name.text;
-const subtitle = webinar.description.text;
-const tickets = webinar.orderedTickets;
+const tickets = webinar.tickets;
 const detailsText = webinar.detailsText;
-// console.log(webinar);
 ---
 
 <div class="details details-webinars">
@@ -27,7 +29,7 @@ const detailsText = webinar.detailsText;
     <span class="live-month">{webinar.month}</span>
   </div>
 
-  <h1>{title}</h1>
+  <h1>{webinar.title}</h1>
   <div class="details-image">
     <WebinarImage webinar={webinar} />
   </div>

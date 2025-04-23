@@ -1,17 +1,16 @@
 ---
 import getWebinars from "../../scripts/webinars";
-import type { EventbriteWebinar } from "../../scripts/webinars"; // Import the EventbriteWebinar type
 
 import { makeUrl } from "../../scripts/url";
 import WebinarDetails from "../../components/webinar/WebinarDetails.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getWebinarMeta } from "../../scripts/webinarMeta";
+import type { Webinar } from "../../types/webinar";
 
 export async function getStaticPaths() {
   const webinars = await getWebinars();
 
   return webinars.map((webinar: Webinar) => {
-    // Use the EventbriteWebinar type here
     return {
       params: { eventId: makeUrl(webinar.id) },
       props: {
@@ -30,16 +29,16 @@ const meta = getWebinarMeta(eventId);
 // Add proper typing for metaDescription
 const metaDescription: string =
   "Dr Naomi Fisher's webinar: " +
-  webinar.name.text +
+  webinar.title +
   ". " +
-  webinar.description.text +
+  webinar.description +
   " " +
   meta?.tags.map((t) => "#" + makeUrl(t)).join(" ");
 ---
 
 <BaseLayout
   active="webinars"
-  pageTitle={webinar.name.text}
+  pageTitle={webinar.title}
   metaDescription={metaDescription}
 >
   <WebinarDetails webinar={webinar} />

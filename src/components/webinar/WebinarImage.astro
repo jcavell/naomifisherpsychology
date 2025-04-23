@@ -2,8 +2,13 @@
 import { Picture } from "astro:assets";
 
 import { getWebinarMeta } from "../../scripts/webinarMeta";
-const { webinar } = Astro.props;
+import type { Webinar } from "../../types/webinar";
 
+interface Props {
+    webinar: Webinar;
+}
+
+const  { webinar } = Astro.props;
 const webinarMeta = getWebinarMeta(webinar.id);
 const image = webinarMeta?.image;
 ---
@@ -14,7 +19,7 @@ const image = webinarMeta?.image;
       src={image}
       widths={[620, 1016, 2176]}
       sizes={`(min-width: 1185px) 1088px, (min-width: 780px) 754px, 100vw`}
-      alt={`${webinar.name.text}`}
+      alt={`${webinar.title}`}
       pictureAttributes={{}}
     />
   )
@@ -24,8 +29,8 @@ const image = webinarMeta?.image;
   !image && (
     <img
       loading="lazy"
-      src={webinar.logo.original.url}
-      alt={`Image for ${webinar.name.text}`}
+      src={webinar.logoUrl}
+      alt={`Image for ${webinar.title}`}
     />
   )
 }

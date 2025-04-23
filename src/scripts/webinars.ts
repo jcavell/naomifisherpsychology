@@ -3,7 +3,7 @@ import { getPeople } from "./people";
 import * as fs from "fs";
 import { env } from "./env.ts";
 
-export const prerender = false;
+//export const prerender = false;
 
 import type {
   EventbriteTicket,
@@ -19,6 +19,101 @@ import testWebinars3 from "../test-data/eventbrite/3events.json";
 import logger from "./logger.ts";
 
 const isDev = import.meta.env.DEV;
+
+// Get a single webinar
+export const getWebinar = async (
+  webinarId: string,
+): Promise<Webinar | undefined> => {
+  const eventResponse = await fetch(
+    `https://www.eventbriteapi.com/v3/events/${webinarId}/?expand=ticket_classes`,
+    {
+      headers: {
+        Authorization: `Bearer ${env.EB_BEARER}`,
+      },
+    },
+  );
+
+  // Return undefined for 404, throw error for server issues
+  if (eventResponse.status === 404) {
+    return undefined;
+  }
+  if (!eventResponse.ok) {
+    throw new Error(`Server error: ${eventResponse.status}`);
+  }
+
+  const webinar: EventbriteWebinar = await eventResponse.json();
+  const detailsResponse = await getWebinarDetails(webinar.id);
+
+  // Return undefined for 404, throw error for server issues
+  if (detailsResponse.status === 404) {
+    return undefined;
+  }
+  if (!detailsResponse.ok) {
+    throw new Error(`Server error: ${detailsResponse.status}`);
+  }
+
+  const detailsJson = await detailsResponse.json();
+  return transformEventbriteToWebinar(webinar, detailsJson);
+};
+
+// Get all webinars
+export default async function getWebinars(): Promise<Webinar[]> {
+  const eventsResponse = await fetch(
+    "https://www.eventbriteapi.com/v3/organizations/495447088469/events/?expand=category,subcategory,ticket_availability,ticket_classes&status=live",
+    {
+      headers: {
+        Authorization: `Bearer ${env.EB_BEARER}`,
+      },
+    },
+  );
+
+  logger.INFO("eventsResponse", eventsResponse);
+
+  const eventsJson: { events: EventbriteWebinar[] }  = await eventsResponse.json();
+  const eventbriteWebinars: EventbriteWebinar[] = eventsJson.events;
+
+  if (isDev) {
+    eventbriteWebinars.forEach((webinar) => {
+      fs.writeFileSync(
+        `webinars-json/${webinar.id}_event.json`,
+        JSON.stringify(webinar, null, 2),
+      );
+    });
+  }
+
+  const detailsResponses = await getAllWebinarsDetails(eventbriteWebinars);
+  const detailsJsons = await Promise.all(
+    detailsResponses.map((wd) => wd.json()),
+  );
+
+  if (isDev) {
+    detailsJsons.forEach((detail, index) => {
+      fs.writeFileSync(
+        `webinars-json/${eventbriteWebinars[index].id}_detail.json`,
+        JSON.stringify(detail, null, 2),
+      );
+    });
+  }
+
+  const processedWebinars = eventsJson.events.map((webinar, index) =>
+    transformEventbriteToWebinar(webinar, detailsJsons[index]),
+  );
+
+  if (isDev) {
+    processedWebinars.forEach((webinar) => {
+      fs.writeFileSync(
+        `webinars-json/${webinar.id}_processed.json`,
+        JSON.stringify(webinar, null, 2),
+      );
+    });
+  }
+
+  // Return webinars that have tickets and haven't ended
+  return processedWebinars.filter((w) => {
+    const now = new Date();
+    return w.tickets?.length && w.endDateTime > now;
+  });
+}
 
 function getWebinarDetails(webinarId: string): Promise<Response> {
   return fetch(
@@ -149,101 +244,4 @@ function formatDisplayDates(startUtc: string, endUtc: string) {
     startTime: startDateTime.toLocaleString(undefined, displayTime),
     endTime: endDateTime.toLocaleString(undefined, displayTime),
   };
-}
-
-// Get a single webinar
-export const getWebinar = async (
-  webinarId: string,
-): Promise<Webinar | undefined> => {
-  const eventResponse = await fetch(
-    `https://www.eventbriteapi.com/v3/events/${webinarId}/?expand=category,subcategory,ticket_availability,ticket_classes&status=live`,
-    {
-      headers: {
-        Authorization: `Bearer ${env.EB_BEARER}`,
-      },
-    },
-  );
-
-  // Return undefined for 404, throw error for server issues
-  if (eventResponse.status === 404) {
-    return undefined;
-  }
-  if (!eventResponse.ok) {
-    throw new Error(`Server error: ${eventResponse.status}`);
-  }
-
-  const webinar: EventbriteWebinar = await eventResponse.json();
-  const detailsResponse = await getWebinarDetails(webinar.id);
-
-  // Return undefined for 404, throw error for server issues
-  if (detailsResponse.status === 404) {
-    return undefined;
-  }
-  if (!detailsResponse.ok) {
-    throw new Error(`Server error: ${detailsResponse.status}`);
-  }
-
-  const detailsJson = await detailsResponse.json();
-  return transformEventbriteToWebinar(webinar, detailsJson);
-};
-
-// Get all webinars
-export default async function getWebinars(): Promise<Webinar[]> {
-  const eventsResponse = await fetch(
-    "https://www.eventbriteapi.com/v3/organizations/495447088469/events/?expand=category,subcategory,ticket_availability,ticket_classes&status=live",
-    {
-      headers: {
-        Authorization: `Bearer ${env.EB_BEARER}`,
-      },
-    },
-  );
-
-  logger.INFO("eventsResponse", eventsResponse);
-
-  const eventsJson = await eventsResponse.json();
-
-  const eventbriteWebinars: EventbriteWebinar[] = eventsJson.events;
-
-  if (isDev) {
-    eventbriteWebinars.forEach((webinar) => {
-      fs.writeFileSync(
-        `webinars-json/${webinar.id}_event.json`,
-        JSON.stringify(webinar, null, 2),
-      );
-    });
-  }
-
-  const detailsResponses = await getAllWebinarsDetails(eventbriteWebinars);
-  const detailsJsons = await Promise.all(
-    detailsResponses.map((wd) => wd.json()),
-  );
-
-  if (isDev) {
-    detailsJsons.forEach((detail, index) => {
-      fs.writeFileSync(
-        `webinars-json/${eventbriteWebinars[index].id}_detail.json`,
-        JSON.stringify(detail, null, 2),
-      );
-    });
-  }
-  const processedWebinars = eventsJson.events.map((webinar, index) =>
-    transformEventbriteToWebinar(webinar, detailsJsons[index]),
-  );
-
-  if (isDev) {
-    processedWebinars.forEach((webinar) => {
-      fs.writeFileSync(
-        `webinars-json/${webinar.id}_processed.json`,
-        JSON.stringify(webinar, null, 2),
-      );
-    });
-  }
-
-  // Return webinars that have tickets and haven't ended
-  return processedWebinars.filter((w) => {
-    const endDateTime = new Date(Date.parse(w.end.utc));
-    const now = new Date();
-
-    return w.tickets?.length && endDateTime > now;
-  });
 }

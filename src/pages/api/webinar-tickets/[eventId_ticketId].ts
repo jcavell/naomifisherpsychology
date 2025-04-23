@@ -1,14 +1,27 @@
 import type { BasketItem } from "../../../types/basket-item";
 import logger from "../../../scripts/logger.ts";
-import { getWebinar } from "../../../scripts/webinars.ts";
+import getWebinars, { getWebinar } from "../../../scripts/webinars.ts";
 
-export const prerender = false;
+// export const prerender = false;
 
 const calculateExpiryIn30Days = (date: string) => {
   const expiryDate = new Date(date);
   expiryDate.setDate(expiryDate.getDate() + 30);
   return expiryDate.toISOString();
 };
+
+
+export async function getStaticPaths() {
+  const webinars = await getWebinars(); // Get all webinars
+
+  return webinars.flatMap(webinar =>
+    webinar.tickets.map(ticket => ({
+      params: {
+        eventId_ticketId: `${webinar.id}_${ticket.id}`
+      }
+    }))
+  );
+}
 
 export async function GET({ params, request }) {
   const eventIdTicketId = params.eventId_ticketId;
