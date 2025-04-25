@@ -14,14 +14,11 @@ const CheckoutCompleteWrapper: React.FC = () => {
   };
 
   return (
-    <div className="checkout-complete-wrapper">
-      {/* Wrap CheckoutCompleteComponent within Elements */}
       <Elements stripe={stripePromise} options={{ appearance }}>
         <CartProvider id="website">
           <CheckoutCompleteComponent />
         </CartProvider>
       </Elements>
-    </div>
   );
 };
 

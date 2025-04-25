@@ -4,7 +4,7 @@
     align-items: center;
     flex-direction: column;
     row-gap: 30px;
-    width: 30vw;
+    width: 50vw;
     min-width: 500px;
     min-height: 380px;
     align-self: center;
@@ -27,7 +27,7 @@
 }
 
 .heading {
-    margin: 0;
+    margin-bottom: 1.5rem;
     color: #30313D;
     text-align: center;
 }
@@ -41,7 +41,8 @@
 .table {
     width: 100%;
     font-size: 14px;
-    border-collapse: collapse;
+    border-spacing: 12px;
+
 }
 
 /* Table header styles */
@@ -112,7 +113,6 @@
 }
 
 .variantName {
-    color: #6D6E78;
     font-size: 12px;
     margin-bottom: 4px;
 }
@@ -169,6 +169,7 @@
     .paymentStatus {
         width: 80vw;
         min-width: initial;
+        box-shadow: none;
     }
 
     .loadingStatus {

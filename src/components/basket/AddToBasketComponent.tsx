@@ -109,7 +109,7 @@ const Button: React.FC<BasketItem> = ({
             handleRemoveFromBasket();
           }}
         >
-          <span>In basket &times;</span>
+          <span>In Basket &times;</span>
         </button>
       ) : (
         <button

@@ -20,8 +20,6 @@ export function RemoveFinishedWebinars() {
         if (!isNaN(endTime.getTime())) {
           if (currentTime > endTime) {
             element.style.display = "none";
-          } else {
-            element.style.display = "block";
           }
         }
       });

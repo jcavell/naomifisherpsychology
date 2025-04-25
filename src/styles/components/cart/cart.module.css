@@ -1,12 +1,14 @@
 /* src/styles/components/cart/cart.module.css */
 .cartContainer {
-    max-width: 800px;
+    max-width: 700px;
     margin: 20px auto;
     padding: 20px;
     /*border: 1px solid #dadada;*/
     border-radius: 8px;
     background-color: #fff;
     /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
+    width: 80vw;
+    min-width: 400px;
 }
 
 .cartTitle {
@@ -169,7 +171,7 @@
     color: #666;
 }
 
-@media only screen and ( max-width: 620px ) {
+@media only screen and ( max-width: 680px ) {
     .cartItem {
         grid-template-columns: 1fr auto;
     }

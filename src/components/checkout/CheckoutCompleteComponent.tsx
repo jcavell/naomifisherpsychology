@@ -107,24 +107,13 @@ const CheckoutCompleteComponent: React.FC = () => {
             Thank you for your purchase with Naomi Fisher Psychology
           </h3>
           <table className={styles.table}>
-            <thead>
-              <tr>
-                <th>Item</th>
-                <th>Price</th>
-              </tr>
-            </thead>
+
             <tbody>
               {purchasedItems.map((item) => (
                 <tr key={item.id}>
                   <td>
                     <div className={styles.itemDetails}>
-                      {item.product_images?.[0] && (
-                        <img
-                          src={item.product_images[0]}
-                          alt={item.product_name}
-                          className={styles.productImage}
-                        />
-                      )}
+
                       <div>
                         <div className={styles.webinarName}>
                           {item.product_name}
@@ -140,13 +129,15 @@ const CheckoutCompleteComponent: React.FC = () => {
                         {item.product_type === "course" && (
                           <div className={styles.zoomInfo}>
                             Check your email for instructions on how to watch
-                            this course. It is available to watch for 12 months.
+                            this course.
                           </div>
                         )}
                       </div>
                     </div>
                   </td>
                   <td>£{(item.price / 100).toFixed(2)}</td>
+
+
                 </tr>
               ))}
               <tr>
