@@ -42,7 +42,7 @@
 
 .cartItem {
     display: grid;
-    grid-template-columns: 2fr 1fr auto;
+    grid-template-columns: 3fr 1fr auto;
     align-items: center;
     padding: 10px 0;
     border-bottom: 1px solid #eee;
@@ -80,6 +80,7 @@
     align-items: flex-start;
 }
 
+
 .productInfo span {
     font-size: 0.95rem;
 }
@@ -89,6 +90,11 @@
     font-style: italic;
     color: #666;
     text-transform: none;
+}
+
+.price {
+  font-size: 0.8rem;
+    font-weight: bold;
 }
 
 .removeButton {
@@ -161,4 +167,13 @@
     font-size: 0.9rem;
     font-style: italic;
     color: #666;
+}
+
+@media only screen and ( max-width: 620px ) {
+    .cartItem {
+        grid-template-columns: 1fr auto;
+    }
+    .nameAndDescription {
+        grid-column: span 2;
+    }
 }

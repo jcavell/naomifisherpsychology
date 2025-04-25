@@ -134,7 +134,10 @@ export const Basket: React.FC<BasketProps> = ({
           // const checkoutItem = item as CheckoutItem; // Cast item to CheckoutItem
           return (
             <li key={item.id} className={styles.cartItem}>
-              <span className={styles.itemColumn}>
+              <span
+                className={`${styles.itemColumn} ${styles.nameAndDescription}`}
+              >
+                {" "}
                 <div className={styles.productContainer}>
                   {item.product_images?.length > 0 && (
                     <img
@@ -151,7 +154,9 @@ export const Basket: React.FC<BasketProps> = ({
                   </div>
                 </div>
               </span>
-              <span className={styles.itemColumn}>
+              <span
+                className={`${styles.itemColumn} ${styles.price}`}
+              >
                 {formatPrice(item.price)}
               </span>
               <button
