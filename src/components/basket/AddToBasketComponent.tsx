@@ -147,7 +147,7 @@ const Button: React.FC<BasketItem> = ({
             >
               &times;
             </div>
-            <h3>Added to basket</h3>
+            <h3>ADDED TO BASKET</h3>
             <p>
               {items.find((item) => item.id === id)?.product_name}
             </p>

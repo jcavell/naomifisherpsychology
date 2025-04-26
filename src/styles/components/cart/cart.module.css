@@ -109,10 +109,11 @@
     transition: all 0.2s ease;
 }
 
-.removeButton:hover {
+.removeButton:hover:not(:active) {
     background: var(--error-red-light);
     border-color: var(--error-red-hover);
 }
+
 .cartActions {
     display: flex;
     justify-content: space-between;

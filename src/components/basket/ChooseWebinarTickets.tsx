@@ -71,41 +71,41 @@ const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
           &times;
         </div>
 
-        <div className={styles.overlayTitle}>
-          <p>{webinar.title}</p>
-        </div>
-
         {hasTicketInCart ? (
-          <div>
-            <p className={styles.inBasketMessage}>Added to your basket.</p>
+          <>
+            <h3>ADDED TO BASKET</h3>
+            <p>{webinar.title}</p>
             <button
               className={cartStyles.checkoutButton}
               onClick={() => (window.location.href = "/checkout")}
             >
               Checkout
             </button>
-          </div>
+          </>
         ) : (
-          webinar
-            .tickets!.filter((ticket) => !ticket.hidden)
-            .map((ticket) => (
-              <div className={styles.ticketRow} key={ticket.id}>
-                <span className={styles.ticketName}>{ticket.name}</span>
-                <span className={styles.ticketCost}>{ticket.costPlusFee}</span>
-                <button
-                  type="button"
-                  className={styles.addToBasket}
-                  onClick={() => handleAddToBasket(ticket)}
-                  disabled={isAnyButtonLoading} // Use global loading state
-                >
-                  {loading === getId(ticket) ? (
-                    <span className={styles.spinner} />
-                  ) : (
-                    "Add to Basket"
-                  )}
-                </button>
-              </div>
-            ))
+          <>
+            <h3>{webinar.title}</h3>
+            {webinar
+              .tickets!.filter((ticket) => !ticket.hidden)
+              .map((ticket) => (
+                <div className={styles.ticketRow} key={ticket.id}>
+                  <span className={styles.ticketName}>{ticket.name}</span>
+                  <span className={styles.ticketCost}>{ticket.costPlusFee}</span>
+                  <button
+                    type="button"
+                    className={styles.addToBasket}
+                    onClick={() => handleAddToBasket(ticket)}
+                    disabled={isAnyButtonLoading}
+                  >
+                    {loading === getId(ticket) ? (
+                      <span className={styles.spinner} />
+                    ) : (
+                      "Add to Basket"
+                    )}
+                  </button>
+                </div>
+              ))}
+          </>
         )}
       </div>
     </div>
@@ -135,6 +135,7 @@ const TicketSelectorButton: React.FC<TicketSelectorButtonProps> = ({
     <>
       <button
         type="button"
+        role="button"
         className={`add-to-basket-from-summary ${styles.textButton}`}
         onClick={() => hasTicketInCart ? window.location.href = "/basket" : setShowOverlay(true)}
       >
