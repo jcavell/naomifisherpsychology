@@ -21,7 +21,6 @@ const AddWebinarTicketsToBasket: React.FC<AddWebinarTicketsToBasketProps> = ({
         .map((ticket) => (
           <div className="purchase" key={ticket.id}>
             <div className="price">{ticket.costPlusFee}</div>
-            {/* Render ticket display name */}
             <div>{ticket.name}</div>
 
             <div style={{ marginLeft: "auto" }}>

@@ -12,7 +12,7 @@ const CheckoutSummary: React.FC<LineItemsSummaryProps> = ({ items, total }) => {
 
   return (
     <div className="line-items-summary">
-      <h3>Order Summary</h3>
+      <h3>Basket</h3>
       <ul>
         {items.map((item, index) => (
           <li key={index} className="line-item">

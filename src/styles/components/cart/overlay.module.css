@@ -129,6 +129,11 @@
     background-color: var(--error-red);
 }
 
+.addToBasket.inBasket {
+    background-color: black;
+}
+
+
 .addToBasket:disabled {
     background-color: var(--success-green-light);
     cursor: not-allowed;

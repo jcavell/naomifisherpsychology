@@ -7,6 +7,7 @@ export interface BasketProps {
   showEmptyBasketMessage?: boolean;
   showCheckoutButton?: boolean;
   onItemRemoved?: () => void; // Callback when an item is removed
+  basketTitle?: string;
 }
 
 const formatPrice = (amountInPence: number) =>
@@ -43,6 +44,7 @@ export const Basket: React.FC<BasketProps> = ({
   showEmptyBasketMessage = true,
   showCheckoutButton = true,
   onItemRemoved,
+  basketTitle = "Basket",
 }) => {
   const [isClient, setIsClient] = useState(false);
   const { isEmpty, cartTotal, items, removeItem } = useCart();
@@ -126,7 +128,7 @@ export const Basket: React.FC<BasketProps> = ({
 
   return (
     <div className={styles.cartContainer}>
-      <h1 className={styles.cartTitle}>Order Summary</h1>
+      <h1 className={styles.cartTitle}>{basketTitle}</h1>
 
       {/* Render the cart items */}
       <ul className={styles.cartItems}>

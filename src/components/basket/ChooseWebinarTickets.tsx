@@ -1,19 +1,17 @@
 import React, { useState, useEffect, useCallback } from "react";
 import styles from "../../styles/components/cart/overlay.module.css";
+import cartStyles from "../../styles/components/cart/cart.module.css";
 import { useCart } from "react-use-cart";
 import type { WebinarTicket, Webinar } from "../../types/webinar";
-import Basket from "./Basket";
 import type { BasketItem } from "../../types/basket-item";
 
 interface TicketSelectionOverlayProps {
   webinar: Webinar;
-  onModifiedClose: () => void; // Notify modifications occurred and close
   onCloseWithoutModification: () => void; // Close without modifications
 }
 
 const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
   webinar,
-  onModifiedClose,
   onCloseWithoutModification,
 }) => {
   const { addItem, removeItem, inCart } = useCart();
@@ -47,35 +45,11 @@ const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
     }
   };
 
-  const handleRemoveFromBasket = (ticket: WebinarTicket) => {
-    setHasModified(true); // Mark as modified locally
-    const id = getId(ticket);
-    try {
-      if (inCart(id)) {
-        removeItem(id);
-      } else {
-        console.warn("EventbriteTicket is not in the cart, nothing to remove");
-      }
-    } catch (error) {
-      console.error("Error in handleRemoveFromBasket:", error);
-    }
-  };
-
-  // Callback to detect when an item is removed directly from the basket
-  const handleItemRemovedFromBasket = () => {
-    setHasModified(true);
-  };
-
   const handleClose = () => {
-    if (hasModified) {
-      onModifiedClose(); // Notify parent of modifications
-    } else {
-      onCloseWithoutModification(); // Notify no modifications
-    }
+    onCloseWithoutModification();
   };
 
   const ticketsInCart = webinar.tickets.map((ticket) => inCart(getId(ticket)));
-  // Then check if any are true
   const hasTicketInCart = ticketsInCart.includes(true);
 
   return (
@@ -87,25 +61,30 @@ const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
         className={styles.overlayContent}
         onClick={(e) => e.stopPropagation()} // Prevent event bubbling
       >
-        {/* Cross Button for Close */}
-        <button
-          type="button"
+        <div
           className={styles.closeOverlayButton}
-          onClick={handleClose}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleClose();
+          }}
         >
           &times;
-        </button>
+        </div>
+
         <div className={styles.overlayTitle}>
           <p>{webinar.title}</p>
-          <p>
-            {" "}
-            {`${webinar.day} ${webinar.month}`} at {`${webinar.startTime}`}
-          </p>
         </div>
+
         {hasTicketInCart ? (
-          <p className={styles.inBasketMessage}>
-            This webinar is in your basket
-          </p>
+          <div>
+            <p className={styles.inBasketMessage}>Added to your basket.</p>
+            <button
+              className={cartStyles.checkoutButton}
+              onClick={() => (window.location.href = "/checkout")}
+            >
+              Checkout
+            </button>
+          </div>
         ) : (
           webinar
             .tickets!.filter((ticket) => !ticket.hidden)
@@ -141,34 +120,29 @@ const TicketSelectorButton: React.FC<TicketSelectorButtonProps> = ({
   webinar,
 }) => {
   const [showOverlay, setShowOverlay] = useState(false);
+  const { inCart } = useCart();
 
   const handleCloseWithoutModification = useCallback(() => {
-    console.log("No modifications detected, skipping reload!");
     setShowOverlay(false); // Close overlay
   }, []);
 
-  const handleModifiedClose = useCallback(() => {
-    setShowOverlay(false); // Close overlay
-    window.location.reload(); // Reload because modifications occurred
-  }, []);
 
-  const handleOpenOverlay = () => {
-    setShowOverlay(true); // Open overlay
-  };
+  const hasTicketInCart = webinar.tickets.some((ticket) =>
+    inCart(`${webinar.id}_${ticket.id}`)
+  );
 
   return (
     <>
       <button
         type="button"
         className={`add-to-basket-from-summary ${styles.textButton}`}
-        onClick={handleOpenOverlay}
+        onClick={() => hasTicketInCart ? window.location.href = "/basket" : setShowOverlay(true)}
       >
-        Select Tickets
+        {hasTicketInCart ? <span>In Basket</span> : "Select Tickets"}
       </button>
       {showOverlay && (
         <TicketSelectionOverlay
           webinar={webinar}
-          onModifiedClose={handleModifiedClose}
           onCloseWithoutModification={handleCloseWithoutModification}
         />
       )}

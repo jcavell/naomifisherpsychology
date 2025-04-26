@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useCart } from "react-use-cart";
 import styles from "../../styles/components/cart/overlay.module.css";
-import Basket from "./Basket.tsx";
-
+import cartStyles from "../../styles/components/cart/cart.module.css";
 export type BasketItemType = "webinar" | "course";
 
 export interface BasketItem {
@@ -86,7 +85,6 @@ const Button: React.FC<BasketItem> = ({
   };
 
   const closeOverlay = () => {
-    console.log("Closing overlay"); // Debugging log for confirmation
     setShowOverlay(false); // Update the visibility state
   };
 
@@ -101,15 +99,15 @@ const Button: React.FC<BasketItem> = ({
         <button
           className={
             buttonType === "detail"
-              ? `${styles.addToBasket} ${styles.remove}`
+              ? `${styles.addToBasket} ${styles.inBasket}`
               : `add-to-basket-from-summary ${styles.textButton}`
           }
           onClick={(event) => {
             event.preventDefault();
-            handleRemoveFromBasket();
+            window.location.href = "/basket";
           }}
         >
-          <span>In Basket &times;</span>
+          <span>In Basket</span>
         </button>
       ) : (
         <button
@@ -149,6 +147,16 @@ const Button: React.FC<BasketItem> = ({
             >
               &times;
             </div>
+            <h3>Added to basket</h3>
+            <p>
+              {items.find((item) => item.id === id)?.product_name}
+            </p>
+            <button
+              className={cartStyles.checkoutButton}
+              onClick={() => (window.location.href = "/checkout")}
+            >
+              Checkout
+            </button>
           </div>
         </div>
       )}

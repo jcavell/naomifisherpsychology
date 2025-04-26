@@ -123,7 +123,7 @@ const CheckoutComponent: React.FC = () => {
     <CartProvider id="website">
       <div className={cartStyles.cartAndCheckout}>
         {" "}
-        <Basket showCheckoutButton={false} />
+        <Basket showCheckoutButton={false} basketTitle={"Order Summary"} />
         <Checkout />
       </div>
     </CartProvider>
