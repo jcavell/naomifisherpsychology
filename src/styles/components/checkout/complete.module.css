@@ -29,13 +29,13 @@
 .heading {
     margin-bottom: 1.5rem;
     color: #30313D;
-    text-align: center;
 }
 
 /* Table styles */
 .detailsTable {
     overflow-x: auto;
     width: 100%;
+    max-width: 800px;
 }
 
 .table {
@@ -74,16 +74,25 @@
 .table td {
     text-align: left;
     padding-bottom: 10px;
+    vertical-align: top;
 }
 
 .table td:last-child {
     text-align: right;
+    padding-top: 4px;
 }
 
-/* Total row alignment */
-.table tbody tr:last-child td,
-.table tbody tr:last-child td:last-child {
+/* Total row alignment and spacing */
+.table tbody tr:last-child td {
     text-align: left;
+    padding-top: 20px; /* Add space above the total row */
+    border-top: 1px solid #E6E6E6; /* Optional: adds a line above total */
+    vertical-align: middle; /* Centers content vertically */
+}
+
+.table tbody tr:last-child td:last-child {
+    text-align: right; /* Change this back to right alignment for the total amount */
+    padding-top: 0; /* Remove the padding we added for prices in regular rows */
 }
 
 .tableLabel {

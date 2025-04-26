@@ -7,7 +7,6 @@ interface LineItemsSummaryProps {
 }
 
 const CheckoutSummary: React.FC<LineItemsSummaryProps> = ({ items, total }) => {
-  // Function to format the amount into a readable price
   const formatAmount = (amount: number) => (amount / 100).toFixed(2);
 
   return (
@@ -16,7 +15,6 @@ const CheckoutSummary: React.FC<LineItemsSummaryProps> = ({ items, total }) => {
       <ul>
         {items.map((item, index) => (
           <li key={index} className="line-item">
-            {/* Display the first image in the array if available */}
             {item.product_images && item.product_images.length > 0 && (
               <img
                 src={item.product_images[0]} // Grab the first image in the array
@@ -29,7 +27,6 @@ const CheckoutSummary: React.FC<LineItemsSummaryProps> = ({ items, total }) => {
                 }}
               />
             )}
-            {/* Display each item's details */}
             <div className="item-details">
               <strong>{item.product_name}</strong>
               <p>Price: £{formatAmount(item.price)}</p>
@@ -37,7 +34,6 @@ const CheckoutSummary: React.FC<LineItemsSummaryProps> = ({ items, total }) => {
           </li>
         ))}
       </ul>
-      {/* Display the total price */}
       <h4>Total: £{formatAmount(total)}</h4>
     </div>
   );

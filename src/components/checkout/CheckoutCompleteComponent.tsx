@@ -104,8 +104,17 @@ const CheckoutCompleteComponent: React.FC = () => {
       {status === "succeeded" && purchasedItems.length > 0 && (
         <div className={styles.detailsTable}>
           <h3 className={styles.heading}>
-            Thank you for your purchase with Naomi Fisher Psychology
+            Thank you for your purchase
           </h3>
+          {purchasedItems.some(item => item.product_type === "course") && (
+            <p><a href = "https://courses.naomifisher.co.uk/login">Log in</a> to watch your courses.</p>
+          )}
+          {purchasedItems.some(item => item.product_type === "webinar") && (
+            <p>Webinar Zoom links will be sent 2 hours before the start</p>
+          )}
+
+          <h3>Order summary</h3>
+
           <table className={styles.table}>
 
             <tbody>
@@ -121,17 +130,6 @@ const CheckoutCompleteComponent: React.FC = () => {
                         <div className={styles.variantName}>
                           {item.variant_name}
                         </div>
-                        {item.product_type === "webinar" && (
-                          <div className={styles.zoomInfo}>
-                            Zoom link will be sent 2 hours before the start
-                          </div>
-                        )}
-                        {item.product_type === "course" && (
-                          <div className={styles.zoomInfo}>
-                            Check your email for instructions on how to watch
-                            this course.
-                          </div>
-                        )}
                       </div>
                     </div>
                   </td>
