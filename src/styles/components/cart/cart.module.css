@@ -100,18 +100,19 @@
 }
 
 .removeButton {
-    background: var(--error-red);
-    color: #fff;
-    border: none;
+    background: transparent;
+    color: #000;
+    border: 2px solid var(--error-red);
     border-radius: 4px;
     padding: 5px 10px;
     cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 .removeButton:hover {
-    background: var(--error-red-hover);
+    background: var(--error-red-light);
+    border-color: var(--error-red-hover);
 }
-
 .cartActions {
     display: flex;
     justify-content: space-between;

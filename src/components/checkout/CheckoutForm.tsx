@@ -49,6 +49,21 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
   const [paymentIntentId, setPaymentIntentId] = useState<string | null>(null);
   const [kitSubscriberId, setKitSubscriberId] = useState<string | null>(null);
   const [isCheckingKit, setIsCheckingKit] = useState(false);
+  const [paymentElementComplete, setPaymentElementComplete] = useState<boolean>(false);
+
+  const isFormComplete = (): boolean => {
+    const hasValidEmail = email.trim() !== '' && !errors.email;
+    const hasValidNames = firstName.trim() !== '' && surname.trim() !== '';
+    const hasAcceptedTerms = agreedToTerms;
+
+    // For paid items, check if payment element is complete
+    // This is held within a variable set by Stripe in the callback function of PaymentElement onChange
+    if (!isBasketFree(items)) {
+      return hasValidEmail && hasValidNames && hasAcceptedTerms && paymentElementComplete;
+    }
+
+    return hasValidEmail && hasValidNames && hasAcceptedTerms;
+  };
 
   useEffect(() => {
     // Extract paymentIntentId from the clientSecret
@@ -381,6 +396,9 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
               <PaymentElement
                 id="payment-element"
                 options={paymentElementOptions}
+                onChange={(event) => {
+                  setPaymentElementComplete(event.complete);
+                }}
               />
             </div>
           </>
@@ -429,9 +447,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
 
         <button
           className={paymentStyles.checkoutSubmitButton}
-          disabled={
-            isLoading || (!isBasketFree(items) && (!stripe || !elements))
-          }
+          disabled={isLoading || !isFormComplete()}
           id="submit"
         >
           <span id="button-text">{getButtonText()}</span>
