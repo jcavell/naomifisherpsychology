@@ -204,7 +204,7 @@ function transformTickets(ticketClasses: EventbriteTicket[]): WebinarTicket[] {
     .map((ticket) => ({
       id: ticket.id,
       name: ticket.display_name.toLowerCase().includes("recording")
-        ? "Webinar + recording for 30 days"
+        ? "Webinar + recording"
         : "Webinar",
       cost: ticket.cost?.display || "Free",
       costValue: ticket.cost?.value || 0,

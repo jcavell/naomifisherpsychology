@@ -181,9 +181,6 @@ export const Basket: React.FC<BasketProps> = ({
           <button className={styles.checkoutButton} onClick={handleCheckout}>
             Checkout
           </button>
-          {/*<button className={styles.emptyButton} onClick={emptyCart}>*/}
-          {/*  Empty Basket*/}
-          {/*</button>*/}
         </div>
       )}
     </div>

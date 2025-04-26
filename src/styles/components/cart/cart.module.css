@@ -107,11 +107,7 @@
     padding: 5px 10px;
     cursor: pointer;
     transition: all 0.2s ease;
-}
-
-.removeButton:hover:not(:active) {
-    background: var(--error-red-light);
-    border-color: var(--error-red-hover);
+    -webkit-tap-highlight-color: transparent; /* Prevent tap highlight on iOS */
 }
 
 .cartActions {
@@ -132,20 +128,6 @@
 
 .checkoutButton:hover {
     background: var(--success-green-hover) !important;
-}
-
-.emptyButton {
-    background: #ffc107;
-    color: #fff;
-    font-size: 1rem;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-.emptyButton:hover {
-    background: #e0a800;
 }
 
 .emptyCart {
