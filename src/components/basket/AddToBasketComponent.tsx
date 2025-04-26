@@ -149,7 +149,6 @@ const Button: React.FC<BasketItem> = ({
             >
               &times;
             </div>
-            <Basket />
           </div>
         </div>
       )}

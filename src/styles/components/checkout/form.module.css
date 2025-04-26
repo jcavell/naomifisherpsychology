@@ -80,14 +80,13 @@
 }
 
 .checkbox {
-    margin-bottom: 24px;
+    margin-bottom: 8px;
 }
 
 .checkbox label {
     display: flex;
     align-items: center;
-    font-family: 'Oswald', sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.5;
     gap: 8px;
 }
@@ -96,14 +95,11 @@
     margin: 0;  /* Remove all margins */
     color: var(--success-green);
     text-decoration: underline;
-    font-family: 'Oswald', sans-serif;
 }
 
 @media only screen and (max-width: 500px) {
     .checkoutContainer {
         width: 100%;
         padding: 15px; /* Reduce padding for mobile */
-        border-radius: 0; /* Optional: Remove border radius on mobile */
-        box-shadow: none; /* Optional: Remove shadow on mobile */
     }
 }

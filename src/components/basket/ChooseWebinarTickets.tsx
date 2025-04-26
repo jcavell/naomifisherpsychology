@@ -128,14 +128,6 @@ const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
               </div>
             ))
         )}
-        {hasModified && (
-          <div className={styles.basketContainer}>
-            <Basket
-              showEmptyBasketMessage={false}
-              onItemRemoved={handleItemRemovedFromBasket}
-            />
-          </div>
-        )}
       </div>
     </div>
   );
