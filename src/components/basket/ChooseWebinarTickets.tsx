@@ -144,6 +144,8 @@ const TicketSelectorButton: React.FC<TicketSelectorButtonProps> = ({
         role="button"
         className={`add-to-basket-from-summary ${styles.textButton}`}
         onClick={() => hasTicketInCart ? window.location.href = "/basket" : setShowOverlay(true)}
+        onTouchStart={(e) => e.currentTarget.classList.add('active')}
+        onTouchEnd={(e) => e.currentTarget.classList.remove('active')}
       >
         {hasTicketInCart ? <span>In Basket</span> : "Select Tickets"}
       </button>

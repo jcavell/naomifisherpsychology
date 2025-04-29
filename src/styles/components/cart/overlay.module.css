@@ -176,16 +176,51 @@
 }
 
 .textButton {
-    all: unset;
+    all: unset; /* Keep this but compensate for its effects */
     cursor: pointer;
     color: white;
     transition: all 0.3s ease;
     flex: 1;
     text-align: center;
-    padding: 4px;
-    line-height: 1;
-    touch-action: manipulation;
+
+    /* Improved touch target */
+    min-width: 44px;
+    min-height: 44px;
+    padding: 12px 24px; /* Increased from 4px */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* Needed for pseudo-elements */
+
+    /* Touch optimizations */
     -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    touch-action: manipulation;
+
+    /* Restore critical button styles removed by 'unset' */
+    appearance: button;
+    -webkit-appearance: button;
+    box-sizing: border-box;
+}
+
+/* Active state for iOS */
+.textButton:active {
+    transform: scale(0.96);
+    opacity: 0.9;
+}
+
+/* Visual feedback for touch devices */
+@media (hover: none) {
+    .textButton:active::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255,255,255,0.1);
+        border-radius: inherit;
+    }
 }
 
 .inBasketMessage {
