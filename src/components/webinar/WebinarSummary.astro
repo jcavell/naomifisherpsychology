@@ -3,7 +3,7 @@ import Tags from "../Tags.astro";
 import Contributers from "../Contributers.astro";
 import { getWebinarMeta } from "../../scripts/webinarMeta";
 import WebinarImage from "./WebinarImage.astro";
-import ChooseWebinarTicketsWrapper from "../basket/ChooseWebinarTicketsWrapper";
+import ChooseWebinarTickets from "../basket/ChooseWebinarTickets";
 import type { Webinar } from "../../types/webinar";
 
 const { webinar } = Astro.props as { webinar: Webinar };
@@ -69,6 +69,6 @@ const tickets = webinar.tickets;
 
   <div class="card-buttons">
     <a href={`/webinars/${eventId}`}> Learn More </a>
-    <ChooseWebinarTicketsWrapper webinar={webinar} client:load />
+    <ChooseWebinarTickets webinar={webinar} client:load />
   </div>
 </div>

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { CartProvider } from "react-use-cart";
 import AddToBasketComponent from "./AddToBasketComponent";
 
 interface AddCourseSummaryToBasketProps {
@@ -12,7 +11,6 @@ const AddCourseSummaryToBasket: React.FC<AddCourseSummaryToBasketProps> = ({
   const [isProcessing, setIsProcessing] = useState(false);
 
   return (
-    <CartProvider id="website">
       <AddToBasketComponent
         id={offerId}
         type="course"
@@ -20,7 +18,6 @@ const AddCourseSummaryToBasket: React.FC<AddCourseSummaryToBasketProps> = ({
         setIsProcessing={setIsProcessing}
         buttonType="summary"
       />
-    </CartProvider>
   );
 };
 

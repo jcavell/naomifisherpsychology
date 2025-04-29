@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
+import {useStore} from "@nanostores/react";
+import {getBasketItems} from "../../scripts/basket/basket.ts";
 import {
   PaymentElement,
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
 import { checkoutFormStateAndValidation } from "./CheckoutFormStateAndValidation.ts";
-import { useCart } from "react-use-cart";
 import formStyles from "../../styles/components/checkout/form.module.css";
 import paymentStyles from "../../styles/components/checkout/payment.module.css";
 
@@ -18,7 +19,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
   const stripe = clientSecret ? useStripe() : null;
   const elements = clientSecret ? useElements() : null;
 
-  const { items } = useCart();
+  const $items = useStore(getBasketItems);
 
   const isBasketFree = (items: any[]): boolean => {
     return items.every((item) => item.price === 0);
@@ -58,7 +59,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
 
     // For paid items, check if payment element is complete
     // This is held within a variable set by Stripe in the callback function of PaymentElement onChange
-    if (!isBasketFree(items)) {
+    if (!isBasketFree($items)) {
       return hasValidEmail && hasValidNames && hasAcceptedTerms && paymentElementComplete;
     }
 
@@ -198,7 +199,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          basket_items: items,
+          basket_items: $items,
           user: {
             first_name: firstName,
             surname: surname,
@@ -215,7 +216,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
       }
 
       const checkoutId = `free_${Date.now()}_${btoa(email).substring(0, 8)}`;
-      sessionStorage.setItem(`${checkoutId}`, JSON.stringify(items));
+      sessionStorage.setItem(`${checkoutId}`, JSON.stringify($items));
 
       // Redirect to success page
       window.location.href = `${origin}/checkout-complete?checkout_id=${checkoutId}`;
@@ -234,7 +235,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (isBasketFree(items)) {
+    if (isBasketFree($items)) {
       await handleFreeCheckout(e);
       return;
     }
@@ -267,7 +268,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           payment_intent_id: paymentIntentId,
-          basket_items: items,
+          basket_items: $items,
           user: {
             first_name: firstName,
             surname: surname,
@@ -287,7 +288,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
 
       // Step 2: Confirm payment using Stripe
       // Store items in sessionStorage before payment confirmation
-      sessionStorage.setItem(`${paymentIntentId}`, JSON.stringify(items));
+      sessionStorage.setItem(`${paymentIntentId}`, JSON.stringify($items));
 
       const { error } = await stripe.confirmPayment({
         elements,
@@ -325,7 +326,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
   const getButtonText = () => {
     if (isLoading)
       return <div className={paymentStyles.spinner} id="spinner"></div>;
-    return isBasketFree(items) ? "Complete Registration" : "Pay Now";
+    return isBasketFree($items) ? "Complete Registration" : "Pay Now";
   };
 
   return (
@@ -388,7 +389,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
         </div>
 
         {/* STRIPE PAYMENT ELEMENT */}
-        {!isBasketFree(items) && (
+        {!isBasketFree($items) && (
           <>
             <h2 className={formStyles.checkoutHeading}>Payment</h2>
 

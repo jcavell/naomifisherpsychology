@@ -1,4 +1,3 @@
-import { createClient } from "@supabase/supabase-js";
 import type { User } from "../../types/user";
 import type { StripePayment } from "../../types/stripe-payment";
 import type { BasketItem } from "../../types/basket-item";
@@ -20,7 +19,7 @@ export async function POST({ request }: { request: Request }) {
     }: { payment_intent_id: string; user: User; basket_items: BasketItem[] } =
       body;
 
-    // Validate paymentIntentId, user object, and basketItems array
+    // Validate paymentIntentId, user object, and getBasketItems array
     if (
       !payment_intent_id ||
       !user ||

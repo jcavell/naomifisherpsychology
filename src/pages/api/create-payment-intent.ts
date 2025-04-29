@@ -2,10 +2,14 @@ import { stripe } from "../../scripts/checkout/init-stripe.ts";
 import calculateOrderAmount from "../../scripts/checkout/calculateOrderAmount.ts";
 import type { BasketItem } from "../../types/basket-item";
 import type { StripePaymentItemMetadata } from "../../types/stripe-payment-item-metadata";
+import Logger from "../../scripts/logger.ts";
 
 export const prerender = false;
 
 export async function POST({ params, request }) {
+
+  Logger.INFO("***** API: POST /create-payment-intent", params);
+
   const rawBody = await request.text();
   // console.log("Full raw request body: ", rawBody);
 
@@ -29,6 +33,8 @@ export async function POST({ params, request }) {
       enabled: true,
     },
   });
+
+  Logger.INFO("***** Created a payment intent: ", {'pi' : paymentIntent.client_secret});
 
   return new Response(
     JSON.stringify({

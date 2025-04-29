@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import type { JSX } from "react";
 import styles from "../../styles/components/checkout/complete.module.css";
-import { useCart } from "react-use-cart";
 import type { BasketItem } from "../../types/basket-item";
+import {emptyBasket} from "../../scripts/basket/basket.ts";
 
 const isDev = import.meta.env.DEV;
 
@@ -56,7 +56,6 @@ const STATUS_CONTENT_MAP: Record<
 };
 
 const CheckoutCompleteComponent: React.FC = () => {
-  const { emptyCart } = useCart();
   const [status, setStatus] = useState<PaymentStatus>("default");
   const [loading, setLoading] = useState(true); // Add loading state back
   const [purchasedItems, setPurchasedItems] = useState<BasketItem[]>([]);
@@ -78,7 +77,7 @@ const CheckoutCompleteComponent: React.FC = () => {
     // If it's a free transaction (starts with 'free_') or paid with success, set succeeded
     if (checkoutId.startsWith("free_") || redirectStatus === "succeeded") {
       setStatus("succeeded");
-      emptyCart();
+      emptyBasket();
     }
     setLoading(false);
   }, []);

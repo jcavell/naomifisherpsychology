@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { CartProvider } from "react-use-cart";
 import AddToBasketComponent from "./AddToBasketComponent.tsx";
 import type { WebinarTicket } from "../../types/webinar";
 
@@ -15,7 +14,7 @@ const AddWebinarTicketsToBasket: React.FC<AddWebinarTicketsToBasketProps> = ({
   const [isProcessing, setIsProcessing] = useState(false);
 
   return (
-    <CartProvider id="website">
+    <>
       {tickets
         .filter((ticket) => !ticket.hidden)
         .map((ticket) => (
@@ -33,7 +32,7 @@ const AddWebinarTicketsToBasket: React.FC<AddWebinarTicketsToBasketProps> = ({
             </div>
           </div>
         ))}
-    </CartProvider>
+    </>
   );
 };
 

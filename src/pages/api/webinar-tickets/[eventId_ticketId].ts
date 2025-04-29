@@ -56,7 +56,7 @@ export async function GET({ params, request }) {
     });
   }
 
-  const checkoutItem: BasketItem = {
+  const basketItem: BasketItem = {
     id: eventId + "_" + ticket.id,
     product_type: "webinar",
     is_course: false,
@@ -76,7 +76,7 @@ export async function GET({ params, request }) {
     vatable: false, // default
   };
 
-  return new Response(JSON.stringify(checkoutItem), {
+  return new Response(JSON.stringify(basketItem), {
     headers: { "Content-Type": "application/json" },
     status: 200,
   });

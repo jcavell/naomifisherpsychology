@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { CartProvider } from "react-use-cart";
 import AddToBasketComponent from "./AddToBasketComponent";
 
 interface AddCourseToBasketProps {
@@ -14,7 +13,6 @@ const CourseDetailsAddToBasket: React.FC<AddCourseToBasketProps> = ({
   const [isProcessing, setIsProcessing] = useState(false);
 
   return (
-    <CartProvider id="website">
       <div className="purchase">
         <div className="price">{displayprice}</div>
         <div className="company">RECORDED COURSE</div>
@@ -25,7 +23,6 @@ const CourseDetailsAddToBasket: React.FC<AddCourseToBasketProps> = ({
           setIsProcessing={setIsProcessing}
         />
       </div>
-    </CartProvider>
   );
 };
 

@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import styles from "../../styles/components/cart/overlay.module.css";
 import cartStyles from "../../styles/components/cart/cart.module.css";
-import { useCart } from "react-use-cart";
 import type { WebinarTicket, Webinar } from "../../types/webinar";
 import type { BasketItem } from "../../types/basket-item";
+import {useStore} from "@nanostores/react";
+import {addItem, isInBasket} from "../../scripts/basket/basket.ts";
 
 interface TicketSelectionOverlayProps {
   webinar: Webinar;
@@ -14,16 +15,14 @@ const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
   webinar,
   onCloseWithoutModification,
 }) => {
-  const { addItem, removeItem, inCart } = useCart();
   const [hasModified, setHasModified] = useState(false); // Local flag for modifications
   const [loading, setLoading] = useState<string | null>(null); // Keeps track of loading ticket ID
-  const [isAnyButtonLoading, setIsAnyButtonLoading] = useState(false); // New state
-
+  const [isAnyButtonLoading, setIsAnyButtonLoading] = useState(false);
   const getId = (ticket: WebinarTicket) => `${webinar.id}_${ticket.id}`;
 
   const handleAddToBasket = async (ticket: WebinarTicket) => {
     const id = getId(ticket);
-    if (!inCart(id)) {
+    if (!isInBasket(id)) {
       setLoading(id);
       setIsAnyButtonLoading(true); // Set global loading state
 
@@ -49,7 +48,7 @@ const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
     onCloseWithoutModification();
   };
 
-  const ticketsInCart = webinar.tickets.map((ticket) => inCart(getId(ticket)));
+  const ticketsInCart = webinar.tickets.map((ticket) => isInBasket(getId(ticket)));
   const hasTicketInCart = ticketsInCart.includes(true);
 
   return (
@@ -75,12 +74,20 @@ const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
           <>
             <h3>ADDED TO BASKET</h3>
             <p>{webinar.title}</p>
-            <button
-              className={cartStyles.checkoutButton}
-              onClick={() => (window.location.href = "/checkout")}
-            >
-              Checkout
-            </button>
+            <div className={styles.buttonGroup}>
+              <button
+                className={styles.continueButton}
+                onClick={handleClose}
+              >
+                Continue Shopping
+              </button>
+              <button
+                className={cartStyles.checkoutButton}
+                onClick={() => (window.location.href = "/checkout")}
+              >
+                Checkout
+              </button>
+            </div>
           </>
         ) : (
           <>
@@ -120,7 +127,6 @@ const TicketSelectorButton: React.FC<TicketSelectorButtonProps> = ({
   webinar,
 }) => {
   const [showOverlay, setShowOverlay] = useState(false);
-  const { inCart } = useCart();
 
   const handleCloseWithoutModification = useCallback(() => {
     setShowOverlay(false); // Close overlay
@@ -128,7 +134,7 @@ const TicketSelectorButton: React.FC<TicketSelectorButtonProps> = ({
 
 
   const hasTicketInCart = webinar.tickets.some((ticket) =>
-    inCart(`${webinar.id}_${ticket.id}`)
+    isInBasket(`${webinar.id}_${ticket.id}`)
   );
 
   return (

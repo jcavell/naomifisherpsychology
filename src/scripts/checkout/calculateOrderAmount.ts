@@ -1,6 +1,6 @@
-import type { Item } from "react-use-cart";
+import type {BasketItem} from "../../types/basket-item";
 
-export default function calculateOrderAmount(items: Item[]): number {
+export default function calculateOrderAmount(items: BasketItem[]): number {
   return items.reduce((total, item) => {
     return total + item.price;
   }, 0);

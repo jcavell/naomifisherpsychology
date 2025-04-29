@@ -2,7 +2,6 @@ import React from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import { type Appearance, loadStripe } from "@stripe/stripe-js";
 import CheckoutCompleteComponent from "./CheckoutCompleteComponent.tsx";
-import { CartProvider } from "react-use-cart";
 
 // Load stripe with our TEST publishable API key (pk....)
 const stripePublishableKey = import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY;
@@ -15,9 +14,7 @@ const CheckoutCompleteWrapper: React.FC = () => {
 
   return (
       <Elements stripe={stripePromise} options={{ appearance }}>
-        <CartProvider id="website">
           <CheckoutCompleteComponent />
-        </CartProvider>
       </Elements>
   );
 };

@@ -16,6 +16,12 @@ export default defineConfig({
   }),
 
   vite: {
+    ssr: {
+      noExternal: [
+        '@nanostores/react',
+        '@nanostores/persistent'
+      ]
+    },
     plugins: [process.env.NODE_ENV === "development" && basicSsl()].filter(
       Boolean,
     ),
