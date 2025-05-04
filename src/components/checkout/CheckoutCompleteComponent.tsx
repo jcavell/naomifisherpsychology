@@ -3,6 +3,7 @@ import type { JSX } from "react";
 import styles from "../../styles/components/checkout/complete.module.css";
 import type { BasketItem } from "../../types/basket-item";
 import {emptyBasket} from "../../scripts/basket/basket.ts";
+import {formatAmount} from "../../scripts/basket/utils.ts";
 
 const isDev = import.meta.env.DEV;
 
@@ -132,7 +133,7 @@ const CheckoutCompleteComponent: React.FC = () => {
                       </div>
                     </div>
                   </td>
-                  <td>£{(item.price / 100).toFixed(2)}</td>
+                  <td>£{formatAmount(item.price)}</td>
 
 
                 </tr>

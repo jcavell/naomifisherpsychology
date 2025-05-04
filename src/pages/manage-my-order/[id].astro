@@ -1,0 +1,102 @@
+---
+// import OrderManagement from '../../components/OrderManagement';
+// import { getPurchase } from '../../lib/purchase-service';
+// import type { Purchase } from '../../types/purchase';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import {getPurchase} from "../../scripts/checkout/sb-purchases";
+import {formatAmount} from "../../scripts/basket/utils";
+const pageTitle = "Order Management";
+import completeStyles from '../../styles/components/checkout/complete.module.css';
+import {formatDate} from "../../scripts/formatDateUtil";
+export const prerender = false; // Disable static pre-rendering for this endpoint
+
+const {id} = Astro.params;
+
+let purchase;
+let error: string | null = null;
+
+try {
+    if (id) {
+        purchase = await getPurchase(id);
+    }
+} catch (err) {
+    error = err instanceof Error ? err.message : 'Failed to load order';
+}
+---
+<BaseLayout>
+
+    {error ? (
+            <div class="error">{error}</div>
+    ) : purchase && purchase.payment_confirmed ? (
+            <div class="order-management-container">
+                <h1 class={completeStyles.heading}>Manage Your Order</h1>
+                <p>
+                    Purchased on {formatDate(purchase.payment_authorised_timestamp)}
+                </p>
+
+                <div class={completeStyles.detailsTable}>
+                    <table class={completeStyles.table}>
+                        <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {purchase.items.map((item) => {
+                            const refundedAmount = item.refunded_amount || 0;
+                            const isFullyRefunded = refundedAmount >= item.price * item.quantity;
+                            const canRequestRefund = !isFullyRefunded && !item.refund_status;
+
+                            return (
+                                    <tr key={item.id} class={completeStyles.tableRow}>
+                                        <td class={completeStyles.tableCell}>
+                                            <div class={completeStyles.itemDetails}>
+                                                {item.product_images?.length > 0 && (
+                                                        <img
+                                                                src={item.product_images[0]}
+                                                                alt={item.product_name}
+                                                                class={completeStyles.productImage}
+                                                        />
+                                                )}
+                                                <div>
+                                                    <div class={completeStyles.webinarName}>{item.product_name}</div>
+                                                    {item.variant_name && (
+                                                            <div class={completeStyles.variantName}>{item.variant_name}</div>
+                                                    )}
+                                                    {refundedAmount > 0 && (
+                                                            <div class={completeStyles.zoomInfo}>
+                                                                Refunded: £{formatAmount(refundedAmount)}
+                                                            </div>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class={completeStyles.tableCell}>
+                                            £{formatAmount(item.price)}
+                                        </td>
+                                        <td class={completeStyles.tableCell}>
+                                            REFUND COMPONENT
+                                        </td>
+                                    </tr>
+                            );
+                        })}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    ) : purchase ? (
+            <div class="error">This order is not yet confirmed</div>
+    ) : (
+            <div class={completeStyles.loadingStatus}>Loading order details.</div>
+    )}
+
+    <!--{purchase?.payment_confirmed && (-->
+    <!--        <RefundOverlay-->
+    <!--                client:only="react"-->
+    <!--                purchase={purchase}-->
+    <!--        />-->
+    <!--)}-->
+
+</BaseLayout>

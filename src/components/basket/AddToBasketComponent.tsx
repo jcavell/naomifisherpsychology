@@ -60,7 +60,7 @@ const Button: React.FC<AddToBasketProps> = ({
 
     const handleAddToBasket = async () => {
         setIsProcessing(true);
-        setButtonText("Adding item to basket.");
+        setButtonText("Adding...");
 
         if (!$basketItem) {
             try {

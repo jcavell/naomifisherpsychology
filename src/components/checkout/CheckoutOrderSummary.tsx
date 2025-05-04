@@ -1,5 +1,6 @@
 import React from "react";
 import type { BasketItem } from "../../types/basket-item";
+import {formatAmount} from "../../scripts/basket/utils.ts";
 
 interface LineItemsSummaryProps {
   items: BasketItem[];
@@ -7,8 +8,6 @@ interface LineItemsSummaryProps {
 }
 
 const CheckoutSummary: React.FC<LineItemsSummaryProps> = ({ items, total }) => {
-  const formatAmount = (amount: number) => (amount / 100).toFixed(2);
-
   return (
     <div className="line-items-summary">
       <h3>Basket</h3>
