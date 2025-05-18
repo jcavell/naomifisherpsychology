@@ -32,6 +32,7 @@ import aldpBehImage from "../images/webinars/aldp_behaviour.avif";
 import autOCDImage from "../images/webinars/autistic_ocd.avif";
 import eotasImage from "../images/webinars/eotas.png";
 import burntOutBySchoolImage from "../images/webinars/burnt_out_by_school.avif";
+import screeensImage from "../images/webinars/screens.avif";
 
 type WebinarMeta = {
   id: string;
@@ -113,6 +114,14 @@ const helping_your_child_with_severe_anxiety: WebinarMeta = {
   contributers: [naomi],
 };
 
+const helping_your_child_develop_a_health_relationship_with_screens: WebinarMeta =
+  {
+    id: "1362789302489",
+    tags: [tagScreens, forParents, age5To11, age11To19],
+    image: screeensImage,
+    contributers: [naomi],
+  };
+
 const burnt_out_by_school: WebinarMeta = {
   id: "1312049117229",
   tags: [tagSchool, forParents, age5To11, age11To19],
@@ -131,5 +140,6 @@ export function getWebinarMeta(eventId: string): WebinarMeta | undefined {
     aldp_behaviour,
     not_fine_at_school_kinship,
     taking_control_of_your_childs_ehcp_annual_review,
+    helping_your_child_develop_a_health_relationship_with_screens,
   ].find((webMeta) => eventId === webMeta.id);
 }
