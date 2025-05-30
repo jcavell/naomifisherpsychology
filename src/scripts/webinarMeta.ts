@@ -23,16 +23,12 @@ import { naomi, abi, eliza, kate } from "./people";
 // Webinar Images
 import myFaultImage from "../images/webinars/is-it-all-my-fault.jpg";
 import severeAnxietyImage from "../images/webinars/severe_anxiety.avif";
-import notFineAdoptiveImage from "../images/webinars/not_fine_adoptive.avif";
 import demandAvoidantTeenAnxietyImage from "../images/webinars/demand_avoidant_teen_anxiety.avif";
 import demandAvoidantChildAnxietyImage from "../images/webinars/demand_avoidant_child_anxiety.avif";
-import ehcpAnnualImage from "../images/webinars/ehcp_annual_review.avif";
-import aldpCommImage from "../images/webinars/aldp_communication.avif";
 import aldpBehImage from "../images/webinars/aldp_behaviour.avif";
 import autOCDImage from "../images/webinars/autistic_ocd.avif";
-import eotasImage from "../images/webinars/eotas.png";
-import burntOutBySchoolImage from "../images/webinars/burnt_out_by_school.avif";
 import screeensImage from "../images/webinars/screens.avif";
+import ehcpEssentialsImage from "../images/webinars/ehcp-essentials.avif";
 
 type WebinarMeta = {
   id: string;
@@ -51,27 +47,6 @@ const example_webinar: WebinarMeta = {
   contributers: [naomi, eliza],
 };
 
-const not_fine_at_school_kinship: WebinarMeta = {
-  id: "1292558791139",
-  tags: [tagSchool, forParents, age5To11, age11To19],
-  image: notFineAdoptiveImage,
-  contributers: [naomi],
-};
-
-const eotas_what_to_expect: WebinarMeta = {
-  id: "1323455744759",
-  tags: [tagSchool, tagSEN, forParents, age5To11, age11To19],
-  image: eotasImage,
-  contributers: [abi],
-};
-
-const taking_control_of_your_childs_ehcp_annual_review: WebinarMeta = {
-  id: "1323470398589",
-  tags: [tagSchool, tagEHCPs, forParents, age5To11, age11To19],
-  image: ehcpAnnualImage,
-  contributers: [abi],
-};
-
 const helping_your_demand_avoidant_child_with_anxiety: WebinarMeta = {
   id: "1312064092019",
   tags: [tagDemandAvoidance, tagAnxiety, forParents, age5To11, age11To19],
@@ -86,18 +61,18 @@ const helping_your_autistic_child_with_ocd: WebinarMeta = {
   contributers: [naomi],
 };
 
-const aldp_communication: WebinarMeta = {
-  id: "1312030000049",
-  tags: [tagDemandAvoidance, forParents, age5To11, age11To19],
-  image: aldpCommImage,
-  contributers: [naomi, eliza],
-};
-
 const aldp_behaviour: WebinarMeta = {
   id: "1348567344229",
   tags: [tagDemandAvoidance, forParents, age5To11, age11To19],
   image: aldpBehImage,
   contributers: [naomi, eliza],
+};
+
+const ehcp_essentials: WebinarMeta = {
+  id: "1374374744859",
+  tags: [tagEHCPs, tagSEN, forParents, age5To11, age11To19],
+  image: ehcpEssentialsImage,
+  contributers: [abi],
 };
 
 const helping_your_demand_avoidant_teen_with_anxiety: WebinarMeta = {
@@ -122,24 +97,15 @@ const helping_your_child_develop_a_health_relationship_with_screens: WebinarMeta
     contributers: [naomi],
   };
 
-const burnt_out_by_school: WebinarMeta = {
-  id: "1312049117229",
-  tags: [tagSchool, forParents, age5To11, age11To19],
-  image: burntOutBySchoolImage,
-  contributers: [naomi],
-}; // !! ADD WEBINAR HERE !!
+// !! ADD WEBINAR HERE !!
 export function getWebinarMeta(eventId: string): WebinarMeta | undefined {
   return [
-    burnt_out_by_school,
-    eotas_what_to_expect,
+    ehcp_essentials,
     helping_your_autistic_child_with_ocd,
     helping_your_demand_avoidant_child_with_anxiety,
     helping_your_demand_avoidant_teen_with_anxiety,
     helping_your_child_with_severe_anxiety,
-    aldp_communication,
     aldp_behaviour,
-    not_fine_at_school_kinship,
-    taking_control_of_your_childs_ehcp_annual_review,
     helping_your_child_develop_a_health_relationship_with_screens,
   ].find((webMeta) => eventId === webMeta.id);
 }

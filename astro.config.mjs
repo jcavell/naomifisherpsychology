@@ -1,7 +1,7 @@
 import { defineConfig } from "astro/config";
 
 import preact from "@astrojs/preact";
-import partytown from '@astrojs/partytown'
+import partytown from "@astrojs/partytown";
 import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
@@ -16,9 +16,5 @@ export default defineConfig({
   //     "Access-Control-Allow-Credentials" : "*"
   //     }
   // },
-  integrations: [preact(), sitemap(), partytown({
-            config: {
-              forward: ["dataLayer.push"],
-            },
-        }),]
+  integrations: [preact(), sitemap()],
 });
