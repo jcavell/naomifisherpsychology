@@ -73,25 +73,7 @@ const metaDescription =
     </div>
   </div>
 
-  <a name="webinars" class="anchor">
-    <h2 class="section-title">
-      <span class="courses-section-title">Courses</span>
-    </h2>
-  </a>
-
-  <div class="page-full-width-text">
-
-    <p>We have a <a href = "https://courses.naomifisher.co.uk/">half price sale on our new courses</a> at the moment.</p>
-    <!--<p>-->
-    <!--  Our on-demand video courses cover topics including <a href="/courses/categories/anxiety">anxiety</a>, <a-->
-    <!--  href="/courses/categories/autism">autism</a>, <a href="/courses/categories/demand-avoidance">demand avoidance</a>,-->
-    <!--  <a href="/courses/categories/burnout">burnout</a> and <a href="/courses/categories/school">school</a>.</p>-->
-    <p>They are available to watch for 12 months after purchase.</p>
-  </div>
-
-
-
-  <!--<Newsletter />-->
+  <Newsletter />
 
   {
     webinars.length > 0 && (
@@ -124,6 +106,21 @@ const metaDescription =
     </h2>
   </a>
 
+  <div class="page-full-width-text">
+    <p>
+      Our on-demand video courses cover topics including <a href="/courses/categories/anxiety">anxiety</a>, <a
+      href="/courses/categories/autism">autism</a>, <a href="/courses/categories/demand-avoidance">demand avoidance</a>,
+      <a href="/courses/categories/burnout">burnout</a> and <a href="/courses/categories/school">school</a>.</p>
+    <p>They are available to watch for 12 months after purchase.</p>
+  </div>
+
+  <CoursesList
+    courses={featuredCourses1}
+    categoryId="featured"
+    categoryName="Featured Courses"
+  />
+
+  <a href="/courses" class="load-more"> See All Courses </a>
 
   <!--<a name="books" class="anchor">-->
   <!--  <h2 class="section-title">-->
