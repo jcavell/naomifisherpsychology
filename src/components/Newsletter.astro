@@ -1,3 +1,11 @@
+---
+interface Props {
+  formId?: string;
+}
+
+const { formId = "6662296" } = Astro.props;
+---
+
 <a id="newsletter"></a>
 <div class="form-wrapper">
   <div class="form-title">
@@ -9,10 +17,10 @@
   </div>
   <div class="form">
     <form
-      action="https://app.convertkit.com/forms/6662296/subscriptions"
+      action={`https://app.convertkit.com/forms/${formId}/subscriptions`}
       class="seva-form formkit-form"
       method="post"
-      data-sv-form="6662296"
+      data-sv-form={`${formId}`}
       data-uid="a4bc346f2b"
       data-format="inline"
       data-version="5"
