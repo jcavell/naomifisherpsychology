@@ -1,0 +1,41 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import naomiImage from "../images/naomi.jpg";
+import getWebinars from "../scripts/webinars";
+const webinars = await getWebinars();
+import BioWebinarSummary from "../components/webinar/BioWebinarSummary.astro";
+---
+
+<BaseLayout pageTitle="Bio">
+  <div class="page-intro-wrapper">
+    <div class="page-full-width-text">
+      Dr Naomi Fisher is an independent clinical psychologist and EMDR-Europe
+      trainer. She specialises in trauma, autism and alternative approaches to
+      education.
+
+      <p>📚Browse our <a href="/courses">courses</a></p>
+      <p>✉️Subscribe to our <a href="/newsletter">newsletter</a></p>
+      <p>
+        📝Read Naomi's <a href="https://naomicfisher.substack.com/">Substack</a>
+      </p>
+
+      {
+        webinars.length === 0 && (
+          <h2 class="section-title">No upcoming Webinars</h2>
+        )
+      }
+
+      {
+        webinars.length > 0 && (
+          <>
+            <h2 class="section-title">Upcoming Webinars</h2>
+
+            {webinars.map((webinar, index) => (
+              <BioWebinarSummary webinar={webinar} />
+            ))}
+          </>
+        )
+      }
+    </div>
+  </div></BaseLayout
+>
