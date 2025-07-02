@@ -1,0 +1,63 @@
+---
+import Tags from "../Tags.astro";
+import Contributers from "../Contributers.astro";
+import Vimeo from "../Vimeo.astro";
+import { getWebinarMeta } from "../../scripts/webinarMeta";
+import WebinarImage from "./WebinarImage.astro";
+
+const { webinar } = Astro.props;
+
+const eventId = webinar.id;
+const meta = getWebinarMeta(eventId);
+
+const checkoutURL = webinar.url;
+const title = webinar.name.text;
+const subtitle = webinar.description.text;
+const tickets = webinar.orderedTickets;
+
+const ticketText = tickets[0].cost
+  ? `from ${tickets[0].cost} + booking fee`
+  : "Free";
+---
+
+<div class="card card-webinars">
+  <div class="live-date">
+    <span class="live-day">{webinar.day}</span>
+    <span class="live-month">{webinar.month}</span>
+  </div>
+
+  <h2>
+    <a href={`/webinars/${eventId}`}>{title}</a>
+  </h2>
+
+  <div class="card-details">
+    <span class="date">
+      {`${webinar.day} ${webinar.month}`} at
+      {`${webinar.startTime}`}
+    </span>
+    <Contributers people={meta?.contributers} />
+
+    <!--<span class="time">-->
+    <!--  {`${webinar.startTime} - ${webinar.endTime}`}-->
+    <!--</span>-->
+    <span class="cost">
+      from {tickets[0].costPlusFee}
+    </span>
+  </div>
+
+  <p>
+    {subtitle}
+  </p>
+
+  {meta?.subsubtitle && <p>{meta.subsubtitle}</p>}
+
+  <!--<div class="card-meta">-->
+  <!--  <Contributers people={meta?.contributers} />-->
+  <!--  <Tags tags={meta?.tags} />-->
+  <!--</div>-->
+
+  <div class="card-buttons">
+    <a href={`/webinars/${eventId}`}> Learn More </a>
+    <a href={`${checkoutURL}?aff=web`}> Tickets </a>
+  </div>
+</div>
