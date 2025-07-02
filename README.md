@@ -523,8 +523,10 @@ Records initial purchase details in Supabase before payment processing.
 
 ### Development Sandbox Setup
 1. **Use the Dev Environment**
-    - Ensure you're using the "dev" sandbox in Stripe Dashboard
+    - Log into Stripe and choose the top naomifisher.co.uk account (Kajabi)
+    - Click on the dropdown and choose Switch to Sandbox -> "Dev" 
     - Look for "Test Mode" indicator in the dashboard
+    - Navigate to https://dashboard.stripe.com/test/apikeys to see the API keys
     - API keys should start with `pk_test_` and `sk_test_`
 
 2. **Environment Variables**
@@ -554,7 +556,9 @@ stripe login
 stripe listen --forward-to https://localhost:4321/api/stripe-webhook-handler --skip-verify
 ```
 
-This command will provide you with a webhook signing secret. Add it to your `.env` file:
+**NOTE** If you get `Error while authenticating with Stripe: Authorization failed, status=401`, run `stripe login`
+
+The output will provide you with a webhook signing secret. Add it to your `.env` file:
 ```plaintext
 STRIPE_WEBHOOK_SECRET=whsec_xxxxxxxxxxxxxxxxxxxxx
 ```
