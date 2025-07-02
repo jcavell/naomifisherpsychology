@@ -214,7 +214,7 @@ export const anxietyAGuideForTeenagers: CourseMeta = {
   runningTime: "1 hour 8 mins",
 };
 
-export const afterSchoolMovingOnFromSchoolTrauma: CourseMeta = {
+export const helpingYourAutisticChildMoveOnFromSchoolTrauma: CourseMeta = {
   title: "After School: Helping your Autistic Child Move on from School Trauma",
   tags: [
     tagTrauma,
@@ -560,15 +560,15 @@ export const allCourseMetas = [
   autisticChildWithAnxiety,
   autisticTeenWithAnxiety,
   autisticChildWithTrauma,
-  autisticChildScreens,
+  // autisticChildScreens,
   childWithAnxietyUnder8s,
   childWithAnxiety6To13,
   childWithSevereAnxiety,
-  helpingYourChildWithLearningDisabilitiesWithAnxiety,
+  // helpingYourChildWithLearningDisabilitiesWithAnxiety,
   helpingYourAutisticChildWithTransitions,
   helpingYourAutisticChildWithOCD,
   burntOutBySchool,
-  afterSchoolMovingOnFromSchoolTrauma,
+  helpingYourAutisticChildMoveOnFromSchoolTrauma,
   autisticChildrenWithSchool,
   myChildIsNotFineAtSchool,
   doWeNeedAnEhcp,
@@ -577,10 +577,10 @@ export const allCourseMetas = [
   demandAvoidanceGuideForTeenagers,
   traumaAndLoss,
   workingWithDemandAvoidantChildrenTherapy,
-  thrivingAfterSchoolBreakdown,
-  helpingYourAutisticChildWithStartingSchool,
+  // thrivingAfterSchoolBreakdown,
+  // helpingYourAutisticChildWithStartingSchool,
   eotasWhatToExpect,
-  findingYourWayThroughTheEHCPJungle,
+  // findingYourWayThroughTheEHCPJungle,
   ALDP1To10,
   ALDP1To5,
   ALDP6To10,
@@ -676,7 +676,7 @@ childWithAnxietyUnder8s.relatedTitles = [
 ];
 
 autisticChildWithTrauma.relatedTitles = [
-  afterSchoolMovingOnFromSchoolTrauma.title,
+  helpingYourAutisticChildMoveOnFromSchoolTrauma.title,
   traumaAndLoss.title,
   autisticChildWithAnxiety.title,
   childWithSevereAnxiety.title,
@@ -699,7 +699,7 @@ burntOutBySchool.relatedTitles = [
   thrivingAfterSchoolBreakdown.title,
 ];
 
-afterSchoolMovingOnFromSchoolTrauma.relatedTitles = [
+helpingYourAutisticChildMoveOnFromSchoolTrauma.relatedTitles = [
   burntOutBySchool.title,
   autisticChildWithTrauma.title,
   traumaAndLoss.title,
@@ -717,7 +717,7 @@ autisticChildrenWithSchool.relatedTitles = [
 myChildIsNotFineAtSchool.relatedTitles = [
   burntOutBySchool.title,
   autisticChildrenWithSchool.title,
-  afterSchoolMovingOnFromSchoolTrauma.title,
+  helpingYourAutisticChildMoveOnFromSchoolTrauma.title,
   thrivingAfterSchoolBreakdown.title,
 ];
 
@@ -746,7 +746,7 @@ findingYourWayThroughTheEHCPJungle.relatedTitles = [
 ];
 
 thrivingAfterSchoolBreakdown.relatedTitles = [
-  afterSchoolMovingOnFromSchoolTrauma.title,
+  helpingYourAutisticChildMoveOnFromSchoolTrauma.title,
   burntOutBySchool.title,
   myChildIsNotFineAtSchool.title,
   autisticChildrenWithSchool.title,
@@ -770,7 +770,7 @@ workingWithDemandAvoidantChildrenTherapy.relatedTitles = [
 ];
 traumaAndLoss.relatedTitles = [
   autisticChildWithTrauma.title,
-  afterSchoolMovingOnFromSchoolTrauma.title,
+  helpingYourAutisticChildMoveOnFromSchoolTrauma.title,
 ];
 
 navigatingTheSenTribunalProcess.relatedTitles = [
