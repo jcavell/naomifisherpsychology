@@ -54,6 +54,13 @@ import helpingYourAutisticChildWithTransitionsImage from "../images/courses/help
 import eotasWhatToExpectImage from "../images/courses/eotas-what-to-expect.webp";
 import helpingYourTeenWithAnxietyImage from "../images/courses/helping-your-teen-with-anxiety.jpg";
 import anxietyAGuideForTeenagersImage from "../images/courses/anxiety-a-guide-for-teenagers.png";
+import helpingYourDemandAvoidantChildWithChangeImage from "../images/courses/helping-your-demand-avoidant-child-with-change.webp";
+import autism101Image from "../images/courses/autism-101.jpg";
+import helpingYourAutisticChildWithAngerImage from "../images/courses/helping-your-autistic-child-with-anger.jpg";
+import helpingYourChildWithBurnoutImage from "../images/courses/helping-your-child-with-burnout.webp";
+import burntOutByParentingImage from "../images/courses/burnt-out-by-parenting.jpg";
+import howCanYouLearnIfYouDontGoToSchoolImage from "../images/courses/how-can-your-learn-if-you-dont-go-to-school.jpg";
+import helpingYourNDTeenRecoverFromSchoolImage from "../images/courses/helping-your-nd-teen-recover-from-school.jpg";
 
 import ALDP1Image from "../images/courses/ALDP-1.webp";
 import ALDP2Image from "../images/courses/ALDP-2.webp";
@@ -106,6 +113,66 @@ export const demandAvoidantAdolescent: CourseMeta = {
   videoUrl: makeVideoURL("957825416"),
 };
 
+export const helpingYourDemandAvoidantChildWithChange: CourseMeta = {
+  title: "Helping Your Demand Avoidant Child With Change",
+  tags: [tagDemandAvoidance, age5To11, age11To19, forParents],
+  contributers: [naomi],
+  runningTime: "1 hour 22 mins",
+  image: helpingYourDemandAvoidantChildWithChangeImage,
+  videoUrl: makeVideoURL("1098178517"),
+};
+
+export const autism101: CourseMeta = {
+  title: "Autism 101",
+  tags: [tagAutism, age5To11, age11To19, forParents],
+  contributers: [naomi],
+  runningTime: "1 hour 34 mins",
+  image: autism101Image,
+};
+
+export const helpingYourAutisticChildWithAnger: CourseMeta = {
+  title: "Helping your Autistic Child with Anger",
+  tags: [tagAutism, age5To11, age11To19, forParents],
+  contributers: [naomi],
+  runningTime: "1 hour 31 mins",
+  image: helpingYourAutisticChildWithAngerImage,
+};
+
+export const helpingYourChildWithBurnout: CourseMeta = {
+  title: "Helping your Child with Burnout",
+  tags: [tagBurnout, age5To11, age11To19, forParents],
+  contributers: [naomi],
+  runningTime: "1 hour 34 mins",
+  image: helpingYourChildWithBurnoutImage,
+  videoUrl: makeVideoURL("1098181501"),
+};
+
+export const burntOutByParenting: CourseMeta = {
+  title: "Burnt out by Parenting?",
+  tags: [tagBurnout, age5To11, age11To19, forParents],
+  contributers: [naomi],
+  runningTime: "1 hour 31 mins",
+  image: burntOutByParentingImage,
+  videoUrl: makeVideoURL("1098182559"),
+};
+
+export const howCanYouLearnIfYouDontGoToSchool: CourseMeta = {
+  title: "How Can You Learn if You Don't Go to School? A Guide for Teenagers",
+  tags: [age11To19, forTeens],
+  contributers: [naomi],
+  runningTime: "1 hour 18 mins",
+  image: howCanYouLearnIfYouDontGoToSchoolImage,
+};
+
+export const helpingYourNDTeenRecoverFromSchool: CourseMeta = {
+  title: "Helping your Neurodivergent Teen Recover from School",
+  tags: [tagNeurodiversity, tagSchool, age11To19, forParents],
+  contributers: [naomi],
+  runningTime: "1 hour 31 mins",
+  image: helpingYourNDTeenRecoverFromSchoolImage,
+  videoUrl: makeVideoURL("1098184380"),
+};
+
 export const demandAvoidance101: CourseMeta = {
   title: "Demand Avoidance 101",
   contributers: [naomi],
@@ -124,15 +191,16 @@ export const neurodiversity101: CourseMeta = {
   videoUrl: makeVideoURL("957813449"),
 };
 
-export const autisticChildScreens: CourseMeta = {
-  title:
-    "Helping Your Autistic Child Develop a Healthy Relationship with Screens",
-  tags: [tagAutism, tagScreens, age5To11, age11To19, forParents],
-  contributers: [naomi],
-  image: autisticChildScreensImage,
-  runningTime: "1 hour 16 mins",
-  videoUrl: makeVideoURL("957937308"),
-};
+//
+// export const autisticChildScreens: CourseMeta = {
+//   title:
+//     "Helping Your Autistic Child Develop a Healthy Relationship with Screens",
+//   tags: [tagAutism, tagScreens, age5To11, age11To19, forParents],
+//   contributers: [naomi],
+//   image: autisticChildScreensImage,
+//   runningTime: "1 hour 16 mins",
+//   videoUrl: makeVideoURL("957937308"),
+// };
 
 export const autisticTeenWithAnxiety: CourseMeta = {
   title: "Helping Your Autistic Teen with Anxiety",
@@ -150,13 +218,13 @@ export const autisticChildWithAnxiety: CourseMeta = {
   runningTime: "1 hour 7 mins",
 };
 
-export const helpingYourAutisticChildWithStartingSchool: CourseMeta = {
-  title: "Helping Your Autistic Child with Starting School",
-  tags: [tagAutism, tagSchool, age5To11, forParents],
-  contributers: [abi],
-  image: helpingYourAutisticChildWithStartingSchoolImage,
-  runningTime: "",
-};
+// export const helpingYourAutisticChildWithStartingSchool: CourseMeta = {
+//   title: "Helping Your Autistic Child with Starting School",
+//   tags: [tagAutism, tagSchool, age5To11, forParents],
+//   contributers: [abi],
+//   image: helpingYourAutisticChildWithStartingSchoolImage,
+//   runningTime: "",
+// };
 
 export const childWithAnxietyUnder8s: CourseMeta = {
   title: "Helping Your Child With Anxiety (Under 8s)",
@@ -215,7 +283,7 @@ export const anxietyAGuideForTeenagers: CourseMeta = {
 };
 
 export const helpingYourAutisticChildMoveOnFromSchoolTrauma: CourseMeta = {
-  title: "After School: Helping your Autistic Child Move on from School Trauma",
+  title: "Helping your Autistic Child Move on from School Trauma",
   tags: [
     tagTrauma,
     tagSchool,
@@ -239,14 +307,7 @@ export const autisticChildrenWithSchool: CourseMeta = {
 
 export const myChildIsNotFineAtSchool: CourseMeta = {
   title: "My Child is not Fine at School",
-  tags: [
-    tagSchool,
-    tagBurnout,
-    tagMentalHealth,
-    age5To11,
-    age11To19,
-    forParents,
-  ],
+  tags: [tagSchool, tagMentalHealth, age5To11, age11To19, forParents],
   contributers: [naomi],
   image: myChildIsNotFineAtSchoolImage,
   runningTime: "1 hour 46 mins",
@@ -276,13 +337,13 @@ export const weDontHaveAnEhcpWhatToExpectFromSchool: CourseMeta = {
   runningTime: "1 hour 7 mins",
 };
 
-export const findingYourWayThroughTheEHCPJungle: CourseMeta = {
-  title: "Finding Your Way Through the EHCP Jungle",
-  tags: [tagEHCPs, tagSchool, age5To11, age11To19, forParents],
-  contributers: [abi, eliza],
-  image: ehcpJungleImage,
-  runningTime: "1 hour 26 mins",
-};
+// export const findingYourWayThroughTheEHCPJungle: CourseMeta = {
+//   title: "Finding Your Way Through the EHCP Jungle",
+//   tags: [tagEHCPs, tagSchool, age5To11, age11To19, forParents],
+//   contributers: [abi, eliza],
+//   image: ehcpJungleImage,
+//   runningTime: "1 hour 26 mins",
+// };
 
 export const navigatingTheSenTribunalProcess: CourseMeta = {
   title: "Navigating the SEN Tribunal process",
@@ -292,13 +353,13 @@ export const navigatingTheSenTribunalProcess: CourseMeta = {
   runningTime: "1 hour 23 mins",
 };
 
-export const thrivingAfterSchoolBreakdown: CourseMeta = {
-  title: "Thriving After School Breakdown: An Illustrated Talk",
-  tags: [tagSchool, age5To11, age11To19, forParents],
-  contributers: [naomi, eliza],
-  image: thrivingAfterSchoolBreakdownImage,
-  runningTime: "1 hour 36 mins",
-};
+// export const thrivingAfterSchoolBreakdown: CourseMeta = {
+//   title: "Thriving After School Breakdown: An Illustrated Talk",
+//   tags: [tagSchool, age5To11, age11To19, forParents],
+//   contributers: [naomi, eliza],
+//   image: thrivingAfterSchoolBreakdownImage,
+//   runningTime: "1 hour 36 mins",
+// };
 
 export const burnoutAGuideForTeenagers: CourseMeta = {
   title: "Burnout - A Guide for Teenagers",
@@ -493,13 +554,13 @@ export const traumaAndLoss: CourseMeta = {
   runningTime: "1 hour 49 mins",
 };
 
-export const helpingYourChildWithLearningDisabilitiesWithAnxiety: CourseMeta = {
-  title: "Helping Your Child with Learning Disabilities with Anxiety",
-  tags: [tagSEN, tagAnxiety, tagMentalHealth, age5To11, age11To19, forParents],
-  contributers: [naomi],
-  image: helpingYourChildWithLearningDisabilitiesWithAnxietyImage,
-  runningTime: "1 hour 29 mins",
-};
+// export const helpingYourChildWithLearningDisabilitiesWithAnxiety: CourseMeta = {
+//   title: "Helping Your Child with Learning Disabilities with Anxiety",
+//   tags: [tagSEN, tagAnxiety, tagMentalHealth, age5To11, age11To19, forParents],
+//   contributers: [naomi],
+//   image: helpingYourChildWithLearningDisabilitiesWithAnxietyImage,
+//   runningTime: "1 hour 29 mins",
+// };
 
 export const helpingYourAutisticChildWithOCD: CourseMeta = {
   title: "Helping Your Autistic Child with OCD",
@@ -548,39 +609,49 @@ export const eotasWhatToExpect: CourseMeta = {
 };
 
 // !! ADD NEW COURSES HERE !!
-// Most recent first
 export const allCourseMetas = [
-  anxietyAGuideForTeenagers,
-  helpingYourTeenWithAnxiety,
-  navigatingTheSenTribunalProcess,
-  takingControlOfYourEhcpAnnualReview,
+  // DEMAND AVOIDANCE
   demandAvoidance101,
   demandAvoidantAdolescent,
-  neurodiversity101,
-  autisticChildWithAnxiety,
-  autisticTeenWithAnxiety,
-  autisticChildWithTrauma,
-  // autisticChildScreens,
+  helpingYourDemandAvoidantChildWithChange,
+  // ANXIETY
   childWithAnxietyUnder8s,
   childWithAnxiety6To13,
+  helpingYourTeenWithAnxiety,
   childWithSevereAnxiety,
-  // helpingYourChildWithLearningDisabilitiesWithAnxiety,
-  helpingYourAutisticChildWithTransitions,
-  helpingYourAutisticChildWithOCD,
-  burntOutBySchool,
-  helpingYourAutisticChildMoveOnFromSchoolTrauma,
-  autisticChildrenWithSchool,
-  myChildIsNotFineAtSchool,
-  doWeNeedAnEhcp,
-  weDontHaveAnEhcpWhatToExpectFromSchool,
+  traumaAndLoss,
+  helpingYourChildWithBurnout,
+  burntOutByParenting,
+  // FOR TEENS
+  anxietyAGuideForTeenagers,
   burnoutAGuideForTeenagers,
   demandAvoidanceGuideForTeenagers,
-  traumaAndLoss,
-  workingWithDemandAvoidantChildrenTherapy,
-  // thrivingAfterSchoolBreakdown,
-  // helpingYourAutisticChildWithStartingSchool,
+  howCanYouLearnIfYouDontGoToSchool,
+  // AUTISM
+  autism101,
+  autisticChildWithAnxiety,
+  autisticTeenWithAnxiety,
+  helpingYourAutisticChildWithAnger,
+  helpingYourAutisticChildWithTransitions,
+  helpingYourAutisticChildWithOCD,
+  autisticChildWithTrauma,
+  // autisticChildScreens,
+  // SCHOOL
+  myChildIsNotFineAtSchool,
+  burntOutBySchool,
+  autisticChildrenWithSchool,
+  helpingYourAutisticChildMoveOnFromSchoolTrauma,
+  doWeNeedAnEhcp,
+  weDontHaveAnEhcpWhatToExpectFromSchool,
+  navigatingTheSenTribunalProcess,
+  takingControlOfYourEhcpAnnualReview,
   eotasWhatToExpect,
-  // findingYourWayThroughTheEHCPJungle,
+  // ND
+  neurodiversity101,
+  helpingYourNDTeenRecoverFromSchool,
+  // PROS
+  workingWithDemandAvoidantChildrenTherapy,
+  // ALDP
   ALDP1To10,
   ALDP1To5,
   ALDP6To10,
@@ -594,6 +665,7 @@ export const allCourseMetas = [
   ALDP8,
   ALDP9,
   ALDP10,
+  // EMDR
   EMDR1To6,
   EMDR1,
   EMDR2,
@@ -601,74 +673,85 @@ export const allCourseMetas = [
   EMDR4,
   EMDR5,
   EMDR6,
+  // NO LONGER USED
+  // helpingYourChildWithLearningDisabilitiesWithAnxiety,
+  // thrivingAfterSchoolBreakdown,
+  // helpingYourAutisticChildWithStartingSchool,
+  // findingYourWayThroughTheEHCPJungle,
 ];
 
 // For the featured list on the homepage
 export const featuredCourses = [
-  anxietyAGuideForTeenagers,
-  helpingYourTeenWithAnxiety,
-  autisticTeenWithAnxiety,
-  childWithSevereAnxiety,
+  helpingYourAutisticChildWithTransitions,
+  burntOutByParenting,
+  helpingYourChildWithBurnout,
+  helpingYourDemandAvoidantChildWithChange,
 ];
 
 // !! ADD RELATED COURSES HERE !!
+
+helpingYourAutisticChildWithAnger.relatedTitles = [
+  helpingYourAutisticChildWithOCD.title,
+  helpingYourAutisticChildWithTransitions.title,
+  autisticChildWithAnxiety.title,
+  autisticTeenWithAnxiety.title,
+];
 
 helpingYourAutisticChildWithOCD.relatedTitles = [
   autisticChildWithAnxiety.title,
   autisticTeenWithAnxiety.title,
   helpingYourAutisticChildWithTransitions.title,
+  helpingYourAutisticChildWithAnger.title,
 ];
 
 helpingYourAutisticChildWithTransitions.relatedTitles = [
   autisticChildWithAnxiety.title,
   autisticTeenWithAnxiety.title,
   helpingYourAutisticChildWithOCD.title,
+  helpingYourAutisticChildWithAnger.title,
 ];
 
 demandAvoidance101.relatedTitles = [
   demandAvoidantAdolescent.title,
+  helpingYourDemandAvoidantChildWithChange.title,
   demandAvoidanceGuideForTeenagers.title,
 ];
 
-neurodiversity101.relatedTitles = [
-  autisticChildrenWithSchool.title,
-  autisticChildWithAnxiety.title,
-  autisticTeenWithAnxiety.title,
-  autisticChildScreens.title,
-  demandAvoidance101.title,
-  demandAvoidantAdolescent.title,
-  demandAvoidanceGuideForTeenagers.title,
-];
+helpingYourNDTeenRecoverFromSchool.relatedTitles = [neurodiversity101.title];
+
+neurodiversity101.relatedTitles = [helpingYourNDTeenRecoverFromSchool.title];
 
 demandAvoidantAdolescent.relatedTitles = [
-  demandAvoidanceGuideForTeenagers.title,
+  helpingYourDemandAvoidantChildWithChange.title,
   demandAvoidance101.title,
+  demandAvoidanceGuideForTeenagers.title,
 ];
 
-autisticChildScreens.relatedTitles = [
-  autisticChildWithAnxiety.title,
-  autisticTeenWithAnxiety.title,
-  autisticChildWithTrauma.title,
-  childWithSevereAnxiety.title,
-];
+//  autisticChildScreens.relatedTitles = [
+//   autisticChildWithAnxiety.title,
+//   autisticTeenWithAnxiety.title,
+//   autisticChildWithTrauma.title,
+//   childWithSevereAnxiety.title
+// ];
 
 autisticTeenWithAnxiety.relatedTitles = [
   autisticChildWithAnxiety.title,
-  childWithSevereAnxiety.title,
-  childWithAnxiety6To13.title,
+  helpingYourAutisticChildWithAnger.title,
+  helpingYourAutisticChildWithOCD.title,
+  helpingYourAutisticChildWithTransitions.title,
 ];
 
 autisticChildWithAnxiety.relatedTitles = [
   autisticTeenWithAnxiety.title,
-  childWithSevereAnxiety.title,
-  childWithAnxietyUnder8s.title,
-  childWithAnxiety6To13.title,
+  helpingYourAutisticChildWithAnger.title,
+  helpingYourAutisticChildWithOCD.title,
+  helpingYourAutisticChildWithTransitions.title,
 ];
 
-helpingYourAutisticChildWithStartingSchool.relatedTitles = [
-  autisticChildrenWithSchool.title,
-  autisticChildWithAnxiety.title,
-];
+//  helpingYourAutisticChildWithStartingSchool.relatedTitles = [
+//   autisticChildrenWithSchool.title,
+//   autisticChildWithAnxiety.title
+// ];
 
 childWithAnxietyUnder8s.relatedTitles = [
   childWithAnxiety6To13.title,
@@ -685,101 +768,135 @@ autisticChildWithTrauma.relatedTitles = [
 childWithAnxiety6To13.relatedTitles = [
   childWithSevereAnxiety.title,
   childWithAnxietyUnder8s.title,
+  helpingYourTeenWithAnxiety.title,
 ];
 
 childWithSevereAnxiety.relatedTitles = [
   childWithAnxietyUnder8s.title,
   childWithAnxiety6To13.title,
+  helpingYourTeenWithAnxiety.title,
 ];
 
 burntOutBySchool.relatedTitles = [
   burnoutAGuideForTeenagers.title,
   myChildIsNotFineAtSchool.title,
   autisticChildrenWithSchool.title,
-  thrivingAfterSchoolBreakdown.title,
+  // thrivingAfterSchoolBreakdown.title,
 ];
 
 helpingYourAutisticChildMoveOnFromSchoolTrauma.relatedTitles = [
   burntOutBySchool.title,
   autisticChildWithTrauma.title,
-  traumaAndLoss.title,
   burnoutAGuideForTeenagers.title,
+  helpingYourNDTeenRecoverFromSchool.title,
 ];
 
 autisticChildrenWithSchool.relatedTitles = [
-  helpingYourAutisticChildWithStartingSchool.title,
+  // helpingYourAutisticChildWithStartingSchool.title,
   autisticChildWithAnxiety.title,
   autisticTeenWithAnxiety.title,
   burntOutBySchool.title,
   myChildIsNotFineAtSchool.title,
+  helpingYourNDTeenRecoverFromSchool.title,
 ];
 
 myChildIsNotFineAtSchool.relatedTitles = [
-  burntOutBySchool.title,
   autisticChildrenWithSchool.title,
+  burntOutBySchool.title,
   helpingYourAutisticChildMoveOnFromSchoolTrauma.title,
-  thrivingAfterSchoolBreakdown.title,
+  // thrivingAfterSchoolBreakdown.title,
 ];
 
 doWeNeedAnEhcp.relatedTitles = [
   weDontHaveAnEhcpWhatToExpectFromSchool.title,
   takingControlOfYourEhcpAnnualReview.title,
-  findingYourWayThroughTheEHCPJungle.title,
+  navigatingTheSenTribunalProcess.title,
+  // findingYourWayThroughTheEHCPJungle.title,
 ];
 
 takingControlOfYourEhcpAnnualReview.relatedTitles = [
-  weDontHaveAnEhcpWhatToExpectFromSchool.title,
   doWeNeedAnEhcp.title,
-  findingYourWayThroughTheEHCPJungle.title,
+  weDontHaveAnEhcpWhatToExpectFromSchool.title,
+  navigatingTheSenTribunalProcess.title,
+  // findingYourWayThroughTheEHCPJungle.title,
 ];
 
 weDontHaveAnEhcpWhatToExpectFromSchool.relatedTitles = [
-  takingControlOfYourEhcpAnnualReview.title,
   doWeNeedAnEhcp.title,
-  findingYourWayThroughTheEHCPJungle.title,
+  takingControlOfYourEhcpAnnualReview.title,
+  navigatingTheSenTribunalProcess.title,
+  // findingYourWayThroughTheEHCPJungle.title,
 ];
 
-findingYourWayThroughTheEHCPJungle.relatedTitles = [
+navigatingTheSenTribunalProcess.relatedTitles = [
+  doWeNeedAnEhcp.title,
   weDontHaveAnEhcpWhatToExpectFromSchool.title,
-  doWeNeedAnEhcp.title,
   takingControlOfYourEhcpAnnualReview.title,
+  // findingYourWayThroughTheEHCPJungle.title,
 ];
 
-thrivingAfterSchoolBreakdown.relatedTitles = [
-  helpingYourAutisticChildMoveOnFromSchoolTrauma.title,
-  burntOutBySchool.title,
-  myChildIsNotFineAtSchool.title,
-  autisticChildrenWithSchool.title,
-];
+// findingYourWayThroughTheEHCPJungle.relatedTitles = [
+//   weDontHaveAnEhcpWhatToExpectFromSchool.title,
+//   doWeNeedAnEhcp.title,
+//   takingControlOfYourEhcpAnnualReview.title
+// ];
+
+//  thrivingAfterSchoolBreakdown.relatedTitles = [
+//   helpingYourAutisticChildMoveOnFromSchoolTrauma.title,
+//   burntOutBySchool.title,
+//   myChildIsNotFineAtSchool.title,
+//   autisticChildrenWithSchool.title
+// ];
 
 burnoutAGuideForTeenagers.relatedTitles = [
   demandAvoidanceGuideForTeenagers.title,
+  anxietyAGuideForTeenagers.title,
+  howCanYouLearnIfYouDontGoToSchool.title,
+  helpingYourChildWithBurnout.title,
   burntOutBySchool.title,
 ];
 
 demandAvoidanceGuideForTeenagers.relatedTitles = [
   burnoutAGuideForTeenagers.title,
+  anxietyAGuideForTeenagers.title,
   demandAvoidance101.title,
   demandAvoidantAdolescent.title,
 ];
+
+anxietyAGuideForTeenagers.relatedTitles = [
+  burnoutAGuideForTeenagers.title,
+  demandAvoidanceGuideForTeenagers.title,
+  helpingYourTeenWithAnxiety.title,
+];
+
+howCanYouLearnIfYouDontGoToSchool.relatedTitles = [
+  burnoutAGuideForTeenagers.title,
+  demandAvoidanceGuideForTeenagers.title,
+  anxietyAGuideForTeenagers.title,
+  burntOutBySchool.title,
+];
+
+helpingYourChildWithBurnout.relatedTitles = [
+  burntOutBySchool.title,
+  burnoutAGuideForTeenagers.title,
+];
+
+burntOutByParenting.relatedTitles = [ALDP1To10.title];
 
 workingWithDemandAvoidantChildrenTherapy.relatedTitles = [
   demandAvoidantAdolescent.title,
   demandAvoidance101.title,
   demandAvoidanceGuideForTeenagers.title,
 ];
+
 traumaAndLoss.relatedTitles = [
   autisticChildWithTrauma.title,
   helpingYourAutisticChildMoveOnFromSchoolTrauma.title,
 ];
 
-navigatingTheSenTribunalProcess.relatedTitles = [
-  helpingYourChildWithLearningDisabilitiesWithAnxiety.title,
-];
-
-helpingYourChildWithLearningDisabilitiesWithAnxiety.relatedTitles = [
-  navigatingTheSenTribunalProcess.title,
-];
+// helpingYourChildWithLearningDisabilitiesWithAnxiety.relatedTitles = [
+//   navigatingTheSenTribunalProcess.title,
+// ];
 
 ALDP1.relatedTitles = [
   ALDP2.title,

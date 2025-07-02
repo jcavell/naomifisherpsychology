@@ -17,6 +17,8 @@ const tags = getTags(title, subtitle, paragraphs.join(" "));
 
 const courses = await getCourses();
 const relatedCourses = getTaggedCourses(courses, [tags[0]]);
+
+// console.log("RELATED: " + JSON.stringify(relatedCourses));
 ---
 
 <div class="details details-blog">
@@ -53,16 +55,20 @@ const relatedCourses = getTaggedCourses(courses, [tags[0]]);
                 RELATED COURSES
               </div>
             </div>
-            {relatedCourses.map((course) => (
-              <a href={`/courses/${makeUrl(course.data.title)}`}>
-                <div class="purchase">
-                  <div class="company">{course.data.title}</div>
-                  <div class="buy-now">
-                    <span> View </span>
+            {relatedCourses
+              // Filter out nulls or elements with no data or title
+              // This can happen if there is an entry in courseMeta but not from Kajabi
+              .filter((c) => c?.data?.title)
+              .map((course) => (
+                <a href={`/courses/${makeUrl(course.data.title)}`}>
+                  <div class="purchase">
+                    <div class="company">{course.data.title}</div>
+                    <div class="buy-now">
+                      <span> View </span>
+                    </div>
                   </div>
-                </div>
-              </a>
-            ))}
+                </a>
+              ))}
           </div>
         </div>
       )
