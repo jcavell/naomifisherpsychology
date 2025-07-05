@@ -47,6 +47,9 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
 
   <div class="details-body">
     <div class="details-body-A">
+      <p>
+        {book.summary}
+      </p>
       <BookContent />
 
 <!-- 
@@ -154,29 +157,29 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
               class="test"
             >
               <div class="purchase">
-                <!--<div class="discountedPriceInPence">{book.psychologicalTherapiesPrice}</div>-->
+                <!--<div class="price">{book.psychologicalTherapiesPrice}</div>-->
                 <div class="company">Psychological Therapy Books</div>
               </div>
             </a>
           )
         }
 
-        <!--{-->
-        <!--  book.amazonUrl && (-->
-        <!--    <a href={book.amazonUrl} target="blank" class="test">-->
-        <!--      <div class="purchase">-->
-        <!--        <div class="discountedPriceInPence">{book.amazonPrice}</div>-->
-        <!--        <div class="company amazon" />-->
-        <!--      </div>-->
-        <!--    </a>-->
-        <!--  )-->
-        <!--}-->
+        {
+          ! book.psychologicalTherapiesUrl && book.amazonUrl && (
+            <a href={book.amazonUrl} target="blank" class="test">
+              <div class="purchase">
+                <!-- <div class="price">{book.amazonPrice}</div> -->
+                <div class="company amazon" />
+              </div>
+            </a>
+          )
+        }
 
         {
           book.blackwellUrl && (
             <a href={book.blackwellUrl} target="blank" class="test">
               <div class="purchase">
-                <!--<div class="discountedPriceInPence">{book.blackwellPrice}</div>-->
+                <!--<div class="price">{book.blackwellPrice}</div>-->
                 <div class="company blackwells" />{" "}
               </div>
             </a>
@@ -187,7 +190,7 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
         <!--  book.waterstonesUrl && (-->
         <!--    <a href={book.waterstonesUrl} target="blank" class="test">-->
         <!--      <div class="purchase">-->
-        <!--        <div class="discountedPriceInPence">{book.waterstonesPrice}</div>-->
+        <!--        <div class="price">{book.waterstonesPrice}</div>-->
         <!--        <div class="company waterstones" />{" "}-->
         <!--      </div>-->
         <!--    </a>-->
@@ -211,7 +214,7 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
               {book.kindleUrl && (
                 <a href={book.kindleUrl} target="blank">
                   <div class="purchase">
-                    <!--<div class="discountedPriceInPence">{book.kindlePrice}</div>-->
+                    <!--<div class="price">{book.kindlePrice}</div>-->
                     <div class="company kindle" />
                   </div>
                 </a>
@@ -220,7 +223,7 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
               <!--{book.googleUrl && (-->
               <!--  <a href={book.googleUrl} target="blank">-->
               <!--    <div class="purchase">-->
-              <!--      <div class="discountedPriceInPence">{book.googlePrice}</div>-->
+              <!--      <div class="price">{book.googlePrice}</div>-->
               <!--      <div class="company google-books" />-->
               <!--    </div>-->
               <!--  </a>-->
@@ -229,7 +232,7 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
               <!--{book.appleBooksUrl && (-->
               <!--  <a href={book.appleBooksUrl} target="blank">-->
               <!--    <div class="purchase">-->
-              <!--      <div class="discountedPriceInPence">{book.appleBooksPrice}</div>-->
+              <!--      <div class="price">{book.appleBooksPrice}</div>-->
               <!--      <div class="company apple-books" />-->
               <!--    </div>-->
               <!--  </a>-->
@@ -255,7 +258,7 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
             {book.audibleUrl && (
               <a href={book.audibleUrl} target="blank">
                 <div class="purchase">
-                  <!--<div class="discountedPriceInPence">{book.audiblePrice}</div>-->
+                  <!--<div class="price">{book.audiblePrice}</div>-->
                   <div class="company audible" />
                 </div>
               </a>
@@ -264,7 +267,7 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
             <!--{book.koboAudiobookUrl && (-->
             <!--  <a href={book.koboAudiobookUrl} target="blank">-->
             <!--    <div class="purchase">-->
-            <!--      <div class="discountedPriceInPence">{book.koboAudiobookPrice}</div>-->
+            <!--      <div class="price">{book.koboAudiobookPrice}</div>-->
             <!--      <div class="company kobo" />-->
             <!--    </div>-->
             <!--  </a>-->
@@ -273,7 +276,7 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
             {/* {book.xigxagAudiobookUrl && (
               <a href={book.xigxagAudiobookUrl} target="blank">
                 <div class="purchase">
-                  <div class="discountedPriceInPence">{book.xigxagAudiobookPrice}</div>
+                  <div class="price">{book.xigxagAudiobookPrice}</div>
                   <div class="company xigxag" />
                 </div>
               </a>

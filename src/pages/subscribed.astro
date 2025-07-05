@@ -1,9 +1,49 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import StaticImage from "../components/StaticImage.astro";
+import naomiImage from "../images/static/1080w/naomi-resting-on-stable-door.webp";
 ---
 
-<BaseLayout pageTitle="Privacy Policy">
+<BaseLayout pageTitle="Welcome">
   <div class="page-intro-wrapper">
-    <div class="page-intro-text">Thank you for subscribing.</div>
-  </div></BaseLayout
->
+    <div class="page-intro-static-image">
+      <StaticImage image={naomiImage} alt="Dr. Naomi Fisher" />
+    </div>
+
+    <div class="page-intro-text">
+      <slot />
+      <h3>Welcome to Naomi's mailing list</h3>
+      <p>
+        Thank you for subscribing! There is lots here so take your time and have
+        a look around.
+      </p>
+      <p>
+        You will receive an email with a bit more about me and what I do. We are
+        really pleased you are here.
+      </p>
+
+      <h3>More from Naomi</h3>
+      <p>
+        You can sign up to Naomi's weekly <a
+          href="https://naomicfisher.substack.com/">Substack</a
+        > for free or follow her on <a
+          href="https://www.facebook.com/drnaomifisher">Facebook</a
+        > and join in the lively discussions there.
+      </p>
+
+      <p>
+        If you're interested in her EMDR and training work (for professionals)
+        you can follow her on <a
+          href="https://uk.linkedin.com/in/naomi-fisher-psychologist"
+          >Linked In</a
+        >.
+      </p>
+
+      <p>
+        You can peruse her <a href="/webinars">webinars</a>, <a href="/courses"
+          >courses</a
+        > and <a href="/books">books</a> here.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

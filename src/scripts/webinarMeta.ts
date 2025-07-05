@@ -22,6 +22,13 @@ import { naomi, abi, eliza, kate } from "./people";
 
 // EventbriteWebinar Images
 import myFaultImage from "../images/webinars/is-it-all-my-fault.jpg";
+import severeAnxietyImage from "../images/webinars/severe_anxiety.avif";
+import demandAvoidantTeenAnxietyImage from "../images/webinars/demand_avoidant_teen_anxiety.avif";
+import demandAvoidantChildAnxietyImage from "../images/webinars/demand_avoidant_child_anxiety.avif";
+import aldpBehImage from "../images/webinars/aldp_behaviour.avif";
+import autOCDImage from "../images/webinars/autistic_ocd.avif";
+import screeensImage from "../images/webinars/screens.avif";
+import ehcpEssentialsImage from "../images/webinars/ehcp-essentials.avif";
 
 type WebinarMeta = {
   id: string;
@@ -40,82 +47,65 @@ const example_webinar: WebinarMeta = {
   contributers: [naomi, eliza],
 };
 
-const not_fine_at_school_kinship: WebinarMeta = {
-  id: "1292558791139",
-  tags: [tagSchool, forParents, age5To11, age11To19],
-  contributers: [naomi],
-};
-const understanding_demand_avoidant_teen: WebinarMeta = {
-  id: "1283983492189",
-  tags: [tagDemandAvoidance, forParents, age11To19],
-  contributers: [naomi],
-};
-
-const now_what_recovering_after_school_breakdown: WebinarMeta = {
-  id: "1311499834309",
-  tags: [tagSchool, forParents, age5To11, age11To19],
-  contributers: [naomi, eliza],
-};
-
-const eotas_what_to_expect: WebinarMeta = {
-  id: "1323455744759",
-  tags: [tagSchool, tagSEN, forParents, age5To11, age11To19],
-  contributers: [abi],
-};
-
 const helping_your_demand_avoidant_child_with_anxiety: WebinarMeta = {
   id: "1312064092019",
   tags: [tagDemandAvoidance, tagAnxiety, forParents, age5To11, age11To19],
+  image: demandAvoidantChildAnxietyImage,
   contributers: [naomi],
 };
 
 const helping_your_autistic_child_with_ocd: WebinarMeta = {
   id: "1312079718759",
   tags: [tagMentalHealth, forParents, age5To11, age11To19],
+  image: autOCDImage,
   contributers: [naomi],
 };
 
-const art_of_low_demand_therapy: WebinarMeta = {
-  id: "1312042738149",
-  tags: [tagDemandAvoidance, forProfessionals, age5To11, age11To19],
-  contributers: [naomi],
-};
-
-const aldp_communication: WebinarMeta = {
-  id: "1312030000049",
+const aldp_behaviour: WebinarMeta = {
+  id: "1348567344229",
   tags: [tagDemandAvoidance, forParents, age5To11, age11To19],
+  image: aldpBehImage,
   contributers: [naomi, eliza],
+};
+
+const ehcp_essentials: WebinarMeta = {
+  id: "1374374744859",
+  tags: [tagEHCPs, tagSEN, forParents, age5To11, age11To19],
+  image: ehcpEssentialsImage,
+  contributers: [abi],
 };
 
 const helping_your_demand_avoidant_teen_with_anxiety: WebinarMeta = {
   id: "1312091433799",
   tags: [tagDemandAvoidance, forParents, age5To11, age11To19],
+  image: demandAvoidantTeenAnxietyImage,
   contributers: [naomi],
 };
 
 const helping_your_child_with_severe_anxiety: WebinarMeta = {
   id: "1312038304889",
   tags: [tagAnxiety, forParents, age5To11, age11To19],
+  image: severeAnxietyImage,
   contributers: [naomi],
 };
 
-const burnt_out_by_school: WebinarMeta = {
-  id: "1312049117229",
-  tags: [tagSchool, forParents, age5To11, age11To19],
-  contributers: [naomi],
-}; // !! ADD WEBINAR HERE !!
+const helping_your_child_develop_a_health_relationship_with_screens: WebinarMeta =
+  {
+    id: "1362789302489",
+    tags: [tagScreens, forParents, age5To11, age11To19],
+    image: screeensImage,
+    contributers: [naomi],
+  };
+
+// !! ADD WEBINAR HERE !!
 export function getWebinarMeta(eventId: string): WebinarMeta | undefined {
   return [
-    burnt_out_by_school,
-    eotas_what_to_expect,
+    ehcp_essentials,
     helping_your_autistic_child_with_ocd,
     helping_your_demand_avoidant_child_with_anxiety,
     helping_your_demand_avoidant_teen_with_anxiety,
     helping_your_child_with_severe_anxiety,
-    aldp_communication,
-    art_of_low_demand_therapy,
-    now_what_recovering_after_school_breakdown,
-    not_fine_at_school_kinship,
-    understanding_demand_avoidant_teen,
+    aldp_behaviour,
+    helping_your_child_develop_a_health_relationship_with_screens,
   ].find((webMeta) => eventId === webMeta.id);
 }
