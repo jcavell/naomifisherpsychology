@@ -4,7 +4,7 @@ import {formatAmount} from "../../scripts/basket/utils.ts";
 
 interface LineItemsSummaryProps {
   items: BasketItem[];
-  total: number; // Total price in pence
+  total: number; // Total discountedPriceInPence in pence
 }
 
 const CheckoutSummary: React.FC<LineItemsSummaryProps> = ({ items, total }) => {
@@ -28,7 +28,7 @@ const CheckoutSummary: React.FC<LineItemsSummaryProps> = ({ items, total }) => {
             )}
             <div className="item-details">
               <strong>{item.product_name}</strong>
-              <p>Price: £{formatAmount(item.price)}</p>
+              <p>Price: £{formatAmount(item.discountedPriceInPence)}</p>
             </div>
           </li>
         ))}

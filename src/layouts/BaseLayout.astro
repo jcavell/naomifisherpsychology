@@ -16,6 +16,29 @@ const bodyClass = bodyClassName
 <!doctype html>
 <html lang="en">
   <head>
+
+    <script>
+      import type { CouponDataInLocalStorage } from "../types/coupon";
+
+      document.addEventListener('DOMContentLoaded', () => {
+        // Get the coupon code from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const couponCode = urlParams.get('cocd');
+
+        if (couponCode) {
+          const expirationDate = new Date();
+          expirationDate.setDate(expirationDate.getDate() + 7); // 7 days from now
+
+          const couponData: CouponDataInLocalStorage = {
+            code: couponCode,
+            expires: expirationDate.getTime()
+          };
+
+          localStorage.setItem('cocd', JSON.stringify(couponData));
+        }
+      });
+    </script>
+
     <!-- Google Analytics -->
     <script defer src="https://www.googletagmanager.com/gtag/js?id=G-12YTPF8CY7"
     ></script>

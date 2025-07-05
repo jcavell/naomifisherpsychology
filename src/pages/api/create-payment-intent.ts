@@ -20,7 +20,7 @@ export async function POST({ params, request }) {
   const itemsMetadata = items.map((item) => ({
     id: item.id,
     product_type: item.product_type,
-    price: item.price,
+    price: item.discountedPriceInPence,
   }));
 
   // Create a PaymentIntent with the order amount and currency

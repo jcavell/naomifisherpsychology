@@ -2,12 +2,24 @@
 import { makeUrl } from "../../scripts/url";
 import Contributers from "../Contributers.astro";
 import CourseImage from "./CourseImage.astro";
+import { DiscountedPrice } from "../basket/DiscountedPrice";
 import CourseSummaryAddToBasket from "../basket/CourseSummaryAddToBasket";
+import type { CourseCard } from "../../content/config";
+import {
+  getCouponCodeFromRequestOrLS,
+  getDiscountedDisplayPrice,
+} from "../../scripts/coupon/couponApplier";
+
+interface Props {
+  course: CourseCard;
+}
+
 const { course } = Astro.props;
 
-const price = course.price;
 const title = course.title;
 const summary = course.description;
+const offerId = course.offerId!;
+const priceInPence = course.priceInPence!;
 ---
 
 <div class="card card-courses">
@@ -22,7 +34,13 @@ const summary = course.description;
   <div class="card-details">
     <Contributers people={course.meta?.contributers} />
     <!--<span class="duration"> {course.meta?.runningTime} </span>-->
-    <span class="cost">{price.replace("GBP", "")}</span>
+    <span class="cost">
+      <DiscountedPrice
+        offerId={offerId}
+        priceInPence={course.priceInPence!}
+        client:load
+      />
+    </span>
   </div>
 
   <p>
@@ -36,6 +54,6 @@ const summary = course.description;
 
   <div class="card-buttons">
     <a href=`/courses/${makeUrl(title)}`> Learn More </a>
-    <CourseSummaryAddToBasket offerId={course.offerId} client:load />
+    <CourseSummaryAddToBasket offerId={offerId} client:load />
   </div>
 </div>

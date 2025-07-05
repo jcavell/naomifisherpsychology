@@ -95,7 +95,8 @@ const CourseCardSchema = z.object({
   imageURL: z.string(),
   imageFileName: z.string(),
   description: z.string(),
-  price: z.string(),
+  price: z.string(), // Kajabi price
+  priceInPence: z.number().optional(), // converted to price in pence
   checkoutUrl: z.string(),
   offerId: z.string().optional(),
   checkout: CourseCheckoutSchema.optional(),

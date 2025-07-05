@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import AddToBasketComponent from "./AddToBasketComponent.tsx";
 import type { WebinarTicket } from "../../types/webinar";
 

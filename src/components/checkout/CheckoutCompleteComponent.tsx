@@ -133,7 +133,7 @@ const CheckoutCompleteComponent: React.FC = () => {
                       </div>
                     </div>
                   </td>
-                  <td>£{formatAmount(item.price)}</td>
+                  <td>£{formatAmount(item.discountedPriceInPence)}</td>
 
 
                 </tr>
@@ -144,7 +144,7 @@ const CheckoutCompleteComponent: React.FC = () => {
                   £
                   {(
                     purchasedItems.reduce(
-                      (acc, item) => acc + item.price * item.quantity,
+                      (acc, item) => acc + item.discountedPriceInPence * item.quantity,
                       0,
                     ) / 100
                   ).toFixed(2)}

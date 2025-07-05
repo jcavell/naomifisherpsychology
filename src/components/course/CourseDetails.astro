@@ -1,5 +1,4 @@
 ---
-import { makeUrl } from "../../scripts/url";
 import Contributers from "../Contributers.astro";
 import CourseSummary from "./CourseSummary.astro";
 import Tags from "../Tags.astro";
@@ -8,10 +7,15 @@ import CourseImage from "./CourseImage.astro";
 import Vimeo from "../Vimeo.astro";
 import Newsletter from "../Newsletter.astro";
 import CourseDetailsAddToBasket from "../basket/CourseDetailsAddToBasket";
+import type { CourseCard } from '../../content/config';
+
+interface Props {
+  course: CourseCard;
+}
 
 const { course } = Astro.props;
 
-const price = course.price;
+const priceInPence = course.priceInPence!;
 const checkoutURL = course.checkoutUrl;
 const title = course.title;
 const descriptions = course.checkout?.descriptions;
@@ -40,7 +44,7 @@ const relatedCourses = (
   </div>
 
   <div class="details-body">
-    <div class="details-body-A" set:html={parseDescriptions(descriptions)}>
+    <div class="details-body-A" set:html={parseDescriptions(descriptions!)}>
       <Vimeo embedUrl={course.meta?.videoUrl} />
 
       <!-- <div class="preview-quote-wrapper">
@@ -75,8 +79,8 @@ const relatedCourses = (
         </div>
 
         <CourseDetailsAddToBasket
-          offerId={course.offerId}
-          displayprice={price}
+          offerId={course.offerId!}
+          priceInPence={priceInPence}
           client:load
         />
       </div>
@@ -98,7 +102,7 @@ const relatedCourses = (
 
 {
   relatedCourses &&
-    relatedCourses.map((related) => <CourseSummary course={related.data} />)
+    relatedCourses.map((related) => <CourseSummary course={related!.data} />)
 }
 
 <Newsletter />

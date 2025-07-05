@@ -34,7 +34,7 @@ export const getItemCount = computed(basketStore, $basket => $basket.length);
 export const getIsEmpty = computed(getItemCount, $count => $count === 0);
 
 export const getTotalPrice = computed(basketStore, $basket =>
-    $basket.reduce((sum, item) => sum + item.price, 0)
+    $basket.reduce((sum, item) => sum + item.discountedPriceInPence, 0)
 );
 
 export const isInBasket = (id: string) =>

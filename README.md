@@ -275,7 +275,7 @@ Items stored in the cart are of type `BasketItem` for both webinars and courses:
 ```typescript
 export type BasketItem = {
 id: string; //
-price: number; // in pence e.g. 1699
+discountedPriceInPence: number; // in pence e.g. 1699
 currency: string;
 formatted_price: string; // e.g. £16.99, required by postmark template
 quantity: number;
@@ -362,7 +362,7 @@ Example: https://localhost:4321/api/webinar-tickets/1203174349869_2131545083
   "variant_id": "2131545083",
   "variant_name": "Live EventbriteWebinar",
   "currency": "GBP",
-  "price": 1150,
+  "discountedPriceInPence": 1150,
   "formatted_price": "£11.50",
   "added_at": "2024-02-13T14:42:52.713Z",
   "expires_at": "2024-02-27T12:00:00Z",
@@ -379,7 +379,7 @@ The `/api/courses/offerId/[offerId]` endpoint provides course details for the sh
 
 **Price Formatting**
     - Converts display prices (e.g., "£99.99") to cents/pence for Stripe
-    - Maintains original formatted price for display purposes
+    - Maintains original formatted discountedPriceInPence for display purposes
 
 #### Example Response
 ```json
@@ -395,7 +395,7 @@ The `/api/courses/offerId/[offerId]` endpoint provides course details for the sh
   "variant_id": "",
   "variant_name": "Course",
   "currency": "GBP",
-  "price": 9999,
+  "discountedPriceInPence": 9999,
   "formatted_price": "£99.99",
   "added_at": "2024-02-20T12:00:00.000Z",
   "expires_at": "2025-02-20T12:00:00.000Z",
@@ -425,7 +425,7 @@ Processes free items in the shopping cart without Stripe payment processing.
 
 
 #### Notes
-- Only processes items with price = 0
+- Only processes items with discountedPriceInPence = 0
 - Creates/updates user record
 - Creates webinar tickets if applicable
 - Sends confirmation email
@@ -513,9 +513,9 @@ Records initial purchase details in Supabase before payment processing.
     - It Shows a detailed breakdown of the purchased items including:
       - Product name and variant
       - Product image (if available)
-      - Individual item price
+      - Individual item discountedPriceInPence
       - Quantity
-      - Total price per item
+      - Total discountedPriceInPence per item
       - Order total
 
 

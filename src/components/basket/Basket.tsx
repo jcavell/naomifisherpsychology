@@ -147,7 +147,7 @@ export const Basket: React.FC<BasketProps> = ({
                         <span
                             className={`${styles.itemColumn} ${styles.price}`}
                         >
-                {formatPrice(item.price)}
+                {formatPrice(item.discountedPriceInPence)}
               </span>
                         <button
                             className={styles.removeButton}

@@ -45,6 +45,7 @@ export default async function getCourses(): Promise<CourseCardEntry[]> {
       );
     }
     card.data.offerId = extractedOfferId;
+    card.data.priceInPence = convertKajabiPriceToPriceInPence(card.data.price);
 
     // Add meta data from title
     const title = card.data.title;
@@ -152,3 +153,7 @@ export async function getFeaturedCourses(
     .slice(start, numCourses)
     .map((m) => courses.find((c) => c.data.meta === m));
 }
+
+ const convertKajabiPriceToPriceInPence = (kajabiPrice: string) => {
+  return 100 * parseFloat(kajabiPrice.replace(/[^0-9.]/g, ""))// Remove currency symbol and convert to number
+};

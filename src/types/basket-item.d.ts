@@ -1,10 +1,12 @@
 export type product_type = "webinar" | "course";
 
 export type BasketItem = {
-  id: string; //
-  price: number; // in pence e.g. 1699
-  currency: string;
-  formatted_price: string; // e.g. £16.99, required by postmark template
+  id: string;
+  couponCode: null | string;
+  originalPriceInPence: number;  // Pre-coupon in pence, e.g. 4000
+  discountedPriceInPence: number; // Post-coupon in pence e.g. 2000
+  formatted_price: string; // Post-coupon, e.g. £20 (50% off). Required by postmark template
+  currency: string; // E.g. GBP. Not currently used
   quantity: number;
   product_type: product_type;
   is_course: boolean; // required by postmark template

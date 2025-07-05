@@ -5,6 +5,7 @@ import overlayStyles from "../../styles/components/cart/overlay.module.css";
 import cartStyles from "../../styles/components/cart/cart.module.css";
 import type {BasketItem} from "../../types/basket-item";
 import {useClientOnly} from "../../scripts/basket/use-client-only-hook.ts";
+import { getCouponCodeFromRequestOrLS } from "../../scripts/coupon/couponApplier.ts";
 
 export type BasketItemType = "webinar" | "course";
 
@@ -21,8 +22,15 @@ const fetchItem = async (
     type: BasketItemType,
 ): Promise<BasketItem | undefined> => {
     try {
-        const endpoint =
-            type === "course" ? `/api/courses/${id}` : `/api/webinar-tickets/${id}`;
+
+        const maybeCouponCode = getCouponCodeFromRequestOrLS();
+        const baseEndpoint = type === "course"
+          ? `/api/courses/${id}`
+          : `/api/webinar-tickets/${id}`;
+
+        const endpoint = maybeCouponCode
+          ? `${baseEndpoint}?cocd=${maybeCouponCode}`
+          : baseEndpoint;
 
         const response = await fetch(endpoint);
         if (!response.ok) {
