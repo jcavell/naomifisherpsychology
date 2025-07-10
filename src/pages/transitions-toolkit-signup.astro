@@ -1,0 +1,15 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Newsletter from "../components/Newsletter.astro";
+---
+
+<BaseLayout pageTitle="Privacy Policy">
+  <div class="page-full-width-text">
+    Sign up to our newsletter below to get our Transitions Toolkit
+  </div>
+
+  <!--6662296 is the normal newsletter form -->
+  <!-- 7379328 is low demand toolkit form -->
+  <!-- 8293826 is transitions toolkit form -->
+  <Newsletter formId="8293826" />
+</BaseLayout>
