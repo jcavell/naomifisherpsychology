@@ -1,73 +1,82 @@
-import type {CouponDataInLocalStorage} from "../../types/coupon";
-import {coupons} from "./coupons";
+import type { Coupon } from "../../types/coupon";
+import { coupons } from "./coupons";
+
+export enum CouponValidationStatus {
+  EMPTY_COUPON = "EMPTY_COUPON",
+  NO_SUCH_COUPON = "NO_SUCH_COUPON",
+  COUPON_EXPIRED = "COUPON_EXPIRED",
+  COUPON_NOT_VALID_FOR_OFFER = "COUPON_NOT_VALID_FOR_OFFER",
+  VALID = "VALID",
+}
+
+type CouponResult = {
+  status: CouponValidationStatus;
+  coupon: Coupon | null;
+};
+
+export const findValidCoupon = (couponCode: string | null, offerId: string) => {
+  const result: CouponResult = {
+    status: CouponValidationStatus.VALID,
+    coupon: null,
+  };
+
+  if (!couponCode) {
+    result.status = CouponValidationStatus.EMPTY_COUPON;
+  } else {
+    const coupon = coupons.find((c) => c.name === couponCode);
+
+    if (!coupon) {
+      result.status = CouponValidationStatus.NO_SUCH_COUPON;
+    } else if (!coupon.applicableOfferIDs.includes(offerId)) {
+      result.status = CouponValidationStatus.COUPON_NOT_VALID_FOR_OFFER;
+    } else {
+      // Check dates
+      const now = new Date();
+      const validFrom = new Date(coupon.validFrom);
+      const validUntil = new Date(coupon.validUntil);
+
+      if (now < validFrom || now > validUntil) {
+        result.status = CouponValidationStatus.COUPON_EXPIRED;
+      } else {
+          // All good
+        result.coupon = coupon;
+      }
+    }
+  }
+  return result;
+};
+
+const calculateDiscountedPriceInPence = (originalPriceInPence: number, coupon: Coupon | null) => {
+  if (!coupon) {
+      return originalPriceInPence;
+  }
+  return (originalPriceInPence * coupon.discountPercent) / 100;
+};
 
 export const getDiscountedDisplayPrice = (couponCode: string | null, offerId: string, originalPriceInPence: number) => {
 
-    const originalDisplayPrice =  `£${(originalPriceInPence / 100).toFixed(2)}`;
+  const originalDisplayPrice = `£${(originalPriceInPence / 100).toFixed(2)}`;
+  const result = findValidCoupon(couponCode, offerId);
 
-    if (!couponCode) return originalDisplayPrice;
+  if (result.status != CouponValidationStatus.VALID) {
+      return originalDisplayPrice;
+  }
 
-    const coupon = coupons.find(c => c.name === couponCode && c.applicableOfferIDs.includes(offerId));
-    if (!coupon) return originalDisplayPrice;
+  const coupon = result.coupon!;
 
-    const now = new Date();
-    const validFrom = new Date(coupon.validFrom);
-    const validUntil = new Date(coupon.validUntil);
+  const discountedPriceInPence = calculateDiscountedPriceInPence(
+    originalPriceInPence,
+    coupon,
+  );
 
-    if (now >= validFrom && now <= validUntil) {
-        // Apply the coupon
-        const discountedPriceInPence =  (originalPriceInPence * coupon.discountPercent / 100);
-
-        // Format the output
-        return `£${(discountedPriceInPence / 100).toFixed(2)} (${coupon.couponInfoText})`;
-    }
-
-    // Not in current time period
-    return originalDisplayPrice;
-
-}
+  return `£${(discountedPriceInPence / 100).toFixed(2)} (${coupon.couponInfoText})`;
+};
 
 export const getDiscountedPriceInPence = (couponCode: string | null, offerId: string, originalPriceInPence: number) => {
-    if (!couponCode) return originalPriceInPence;
+    const result = findValidCoupon(couponCode, offerId);
 
-    const coupon = coupons.find(c => c.name === couponCode && c.applicableOfferIDs.includes(offerId));
-    if (!coupon) return originalPriceInPence;
-
-    const now = new Date();
-    const validFrom = new Date(coupon.validFrom);
-    const validUntil = new Date(coupon.validUntil);
-
-    if (now >= validFrom && now <= validUntil) {
-        // Apply the coupon
-        return  (originalPriceInPence * coupon.discountPercent / 100);
+    if (result.status != CouponValidationStatus.VALID) {
+        return originalPriceInPence;
     }
-
-    // Not in current time period
-    return originalPriceInPence;
-}
-
-export const getCouponCodeFromRequestOrLS = () => {
-
-    console.log("Attempting to get coupon code from URL and then LS");
-    // Check URL params first
-    const urlParams = new URLSearchParams(window.location.search);
-    const urlCouponCode = urlParams.get('cocd');
-    if (urlCouponCode) {
-        return urlCouponCode;
-    }
-
-    // Then check localStorage
-    const storedCoupon = localStorage.getItem('cocd');
-    if (!storedCoupon) return null;
-
-    const couponData: CouponDataInLocalStorage = JSON.parse(storedCoupon);
-    const now = new Date().getTime();
-
-    if (now > couponData.expires) {
-        localStorage.removeItem('cocd');
-        return null;
-    }
-
-    console.log("cocd: " + couponData.code);
-    return couponData.code;
+    const coupon = result.coupon!;  return calculateDiscountedPriceInPence(originalPriceInPence, coupon);
 };

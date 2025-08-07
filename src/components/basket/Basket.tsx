@@ -1,8 +1,18 @@
 import React, {useEffect, useState} from "react";
 import {useStore} from "@nanostores/react";
-import {removeItem, getItemCount, getTotalPrice, getIsEmpty, getBasketItems} from "../../scripts/basket/basket.ts";
+import {
+    removeItem,
+    getItemCount,
+    getTotalPrice,
+    getIsEmpty,
+    getBasketItems,
+    refreshBasketItems
+} from "../../scripts/basket/basket.ts";
 import styles from "../../styles/components/cart/cart.module.css";
 import type {BasketItem} from "../../types/basket-item";
+import { removeCouponCodeFromStore } from "../../scripts/coupon/couponRetrieverAndStorer.ts";
+import { persistentCoupon } from "../../scripts/coupon/couponStore.ts";
+import { isCouponCodeValid } from "../../scripts/coupon/coupons.ts";
 
 export interface BasketProps {
     showEmptyBasketMessage?: boolean;
@@ -43,6 +53,8 @@ export const Basket: React.FC<BasketProps> = ({
     const [isClient, setIsClient] = useState(false);
     const [expiredBasketItems, setExpiredBasketItems] = useState<BasketItem[]>([]);
     const [hasJustExpired, setHasJustExpired] = useState(false);
+    const [couponCode, setCouponCode] = useState("");
+    const [couponError, setCouponError] = useState<string>('');
 
     const $basketItems = useStore(getBasketItems);
     const $isEmpty = useStore(getIsEmpty);
@@ -75,9 +87,65 @@ export const Basket: React.FC<BasketProps> = ({
         return () => clearInterval(interval);
     }, [$basketItems, $count]);
 
+    useEffect(() => {
+        if (!isClient) return;
+
+        const unsubscribe = persistentCoupon.listen((newValue, oldValue) => {
+            if (newValue !== oldValue) {
+                refreshBasketItems();
+            }
+        });
+
+        // Clean up both the listener and any pending refreshBasketItems calls
+        return () => {
+            unsubscribe();
+            refreshBasketItems.cancel();
+        };
+    }, [isClient]); // Only run when client-side
+
     if (!isClient) {
         return null; // Return nothing during SSR to prevent mismatched HTML
     }
+
+    const hasAppliedCoupon = () => {
+        return $basketItems.some(
+          item => item.originalPriceInPence !== item.discountedPriceInPence
+        );
+    };
+
+
+    // HANDLER FUNCTIONS
+    const handleApplyCoupon = () => {
+        const trimmedCode = couponCode.trim();
+
+        // Clear any previous error
+        setCouponError('');
+
+        // Validate input
+        if (!trimmedCode) {
+            setCouponError('Please enter a coupon code');
+            return;
+        }
+
+        // Validate coupon code
+        if (!isCouponCodeValid(trimmedCode)) {
+            setCouponError('Coupon is invalid or has expired');
+            return;
+        }
+
+        try {
+            // Only set the coupon if it's valid
+            persistentCoupon.set(trimmedCode);
+            setCouponCode(''); // Clear input after successful application
+        } catch (error) {
+            console.error('Failed to apply coupon:', error);
+            setCouponError('Failed to apply coupon. Please try again.');
+        }
+    };
+
+    const handleRemoveCoupon = () => {
+        removeCouponCodeFromStore();
+    };
 
     const handleRemoveItem = (id: string) => {
         removeItem(id); // Call the cart removal logic
@@ -118,25 +186,64 @@ export const Basket: React.FC<BasketProps> = ({
     }
 
     return (
-        <div className={styles.cartContainer}>
-            <h1 className={styles.cartTitle}>{basketTitle}</h1>
+      <div className={styles.cartContainer}>
+        <h1 className={styles.cartTitle}>{basketTitle}</h1>
 
-            <ul className={styles.cartItems}>
-                {$basketItems.map((item) => (
-                    <li key={item.id} className={styles.cartItem}>
+        <div className={styles.couponSection}>
+          {hasAppliedCoupon() ? (
+            <div className={styles.appliedCoupon}>
+              <span>
+                Coupon{" "}
+                {$basketItems.find((item) => item.couponCode)?.couponCode}{" "}
+                applied
+              </span>
+              <button
+                className={styles.removeCouponButton}
+                onClick={handleRemoveCoupon}
+                aria-label="Remove coupon"
+              >
+                ×
+              </button>
+            </div>
+          ) : (
+            <div className={styles.couponInput}>
+              <input
+                type="text"
+                value={couponCode}
+                onChange={(e) => setCouponCode(e.target.value)}
+                placeholder="Enter coupon code"
+                className={styles.couponCodeInput}
+              />
+              <button
+                className={styles.applyCouponButton}
+                onClick={handleApplyCoupon}
+                disabled={!couponCode.trim()} // Disable if empty
+              >
+                Apply
+              </button>
+              {couponError && (
+                <div className={styles.couponError}>{couponError}</div>
+              )}
+            </div>
+          )}
+        </div>
+
+        <ul className={styles.cartItems}>
+          {$basketItems.map((item) => (
+            <li key={item.id} className={styles.cartItem}>
               <span
-                  className={`${styles.itemColumn} ${styles.nameAndDescription}`}
+                className={`${styles.itemColumn} ${styles.nameAndDescription}`}
               >
                 {" "}
-                  <div className={styles.productContainer}>
+                <div className={styles.productContainer}>
                   {item.product_images?.length > 0 && (
-                      <img
-                          src={item.product_images[0]}
-                          alt={item.product_name}
-                          className={styles.productImage}
-                      />
+                    <img
+                      src={item.product_images[0]}
+                      alt={item.product_name}
+                      className={styles.productImage}
+                    />
                   )}
-                      <div className={styles.productInfo}>
+                  <div className={styles.productInfo}>
                     <span>{item.product_name}</span>
                     <span className={styles.variantName}>
                       {item.variant_name}
@@ -144,34 +251,36 @@ export const Basket: React.FC<BasketProps> = ({
                   </div>
                 </div>
               </span>
-                        <span
-                            className={`${styles.itemColumn} ${styles.price}`}
-                        >
+              <span className={`${styles.itemColumn} ${styles.price}`}>
+                {item.originalPriceInPence !== item.discountedPriceInPence && (
+                  <span className={styles.originalPrice}>
+                    {formatPrice(item.originalPriceInPence)}
+                  </span>
+                )}
                 {formatPrice(item.discountedPriceInPence)}
               </span>
-                        <button
-                            className={styles.removeButton}
-                            onClick={() => handleRemoveItem(item.id)}
-                        >
-                            Remove &times;
-                        </button>
-                    </li>
-                ))
-                }
-            </ul>
+              <button
+                className={styles.removeButton}
+                onClick={() => handleRemoveItem(item.id)}
+              >
+                Remove &times;
+              </button>
+            </li>
+          ))}
+        </ul>
 
-            <div className={styles.cartSummary}>
-                Total: <strong>{formatPrice($total)}</strong>
-            </div>
-
-            {showCheckoutButton && !$isEmpty && (
-                <div className={styles.cartActions}>
-                    <button className={styles.checkoutButton} onClick={handleCheckout}>
-                        Checkout
-                    </button>
-                </div>
-            )}
+        <div className={styles.cartSummary}>
+          Total: <strong>{formatPrice($total)}</strong>
         </div>
+
+        {showCheckoutButton && !$isEmpty && (
+          <div className={styles.cartActions}>
+            <button className={styles.checkoutButton} onClick={handleCheckout}>
+              Checkout
+            </button>
+          </div>
+        )}
+      </div>
     );
 };
 

@@ -1,6 +1,8 @@
 import { persistentAtom } from '@nanostores/persistent';
 import { computed } from 'nanostores';
 import type { BasketItem } from "../../types/basket-item";
+import { fetchItemFromAPI } from "./getCourseOrWebinarFromAPI.ts";
+import debounce from 'lodash/debounce';
 
 // Main store using an array to maintain order
 export const basketStore = persistentAtom<BasketItem[]>(
@@ -51,3 +53,20 @@ export function removeItem(id: string) {
 export function emptyBasket() {
     basketStore.set([]);
 }
+
+export const refreshBasketItems = debounce(async () => {
+  const currentItems = basketStore.get();
+  if (currentItems.length === 0) return;
+
+  const updatedItems = await Promise.all(
+    currentItems.map(async (item) => {
+      const updatedItem = await fetchItemFromAPI(
+        item.id,
+        item.is_course ? 'course' : 'webinar'
+      );
+      return updatedItem ?? item;
+    })
+  );
+
+  basketStore.set(updatedItems);
+}, 500);

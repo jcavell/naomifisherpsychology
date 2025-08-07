@@ -5,10 +5,6 @@ import CourseImage from "./CourseImage.astro";
 import { DiscountedPrice } from "../basket/DiscountedPrice";
 import CourseSummaryAddToBasket from "../basket/CourseSummaryAddToBasket";
 import type { CourseCard } from "../../content/config";
-import {
-  getCouponCodeFromRequestOrLS,
-  getDiscountedDisplayPrice,
-} from "../../scripts/coupon/couponApplier";
 
 interface Props {
   course: CourseCard;

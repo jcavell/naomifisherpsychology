@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
 import AddToBasketComponent from "./AddToBasketComponent";
-import {
-  getCouponCodeFromRequestOrLS,
-  getDiscountedDisplayPrice,
-} from "../../scripts/coupon/couponApplier.ts";
 import { DiscountedPrice } from "./DiscountedPrice.tsx";
 
 interface AddCourseToBasketProps {

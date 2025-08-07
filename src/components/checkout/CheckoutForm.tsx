@@ -74,7 +74,6 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
     }
   }, [clientSecret]);
 
-  // Handle First Name Change
   const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFirstName(e.target.value);
 
@@ -84,7 +83,6 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
     }
   };
 
-  // Handle Surname Change
   const handleSurnameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSurname(e.target.value);
 
@@ -94,7 +92,6 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
     }
   };
 
-  // Handle Terms Checkbox Interaction
   const handleTermsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const isChecked = e.target.checked;
     setAgreedToTerms(isChecked);
@@ -105,7 +102,6 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ clientSecret }) => {
     }
   };
 
-  // Handle changes to the email field
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const emailInput = e.target.value;
     setEmail(emailInput);

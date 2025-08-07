@@ -5,8 +5,19 @@ export const coupons: Coupon[] = [
         name: "SELECTED50",
         discountPercent: 50,
         couponInfoText: "50% OFF",
-        validFrom: "2025-07-01T00:00:00Z",
-        validUntil: "2025-08-31T23:59:59Z",
-        applicableOfferIDs: ["veqRLt2E"],
+        validFrom: new Date("2025-07-01T00:00:00Z").getTime(),
+        validUntil: new Date("2025-08-31T23:59:59Z").getTime(),
+        applicableOfferIDs: ["veqRLt2E"], // Anxiety a guide for teenagers
     },
 ];
+
+export const isCouponCodeValid = (couponCode: string) => {
+    const coupon = coupons.find((c) => c.name === couponCode);
+
+    // No coupon found
+    if(!coupon) return false;
+
+    // Coupon found - check it hasn't expired
+    const now = new Date().getTime();
+    return now >= coupon.validFrom && now <= coupon.validUntil;
+};

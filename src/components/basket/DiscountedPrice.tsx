@@ -1,22 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { getCouponCodeFromRequestOrLS, getDiscountedDisplayPrice } from "../../scripts/coupon/couponApplier";
+import { getDiscountedDisplayPrice } from "../../scripts/coupon/couponApplier";
+import { useStore } from "@nanostores/react";
+import { persistentCoupon } from "../../scripts/coupon/couponStore";
 
 interface DiscountedPriceProps {
   offerId: string;
   priceInPence: number;
 }
 
-export const DiscountedPrice: React.FC<DiscountedPriceProps> = ({ offerId, priceInPence }) => {
-  const [price, setPrice] = useState(`£${(priceInPence / 100).toFixed(2)}`);
-
-  useEffect(() => {
-    const discountedPrice = getDiscountedDisplayPrice(
-      getCouponCodeFromRequestOrLS(),
-      offerId,
-      priceInPence
-    );
-    setPrice(discountedPrice);
-  }, [offerId, priceInPence]);
-
-  return price;
+export const DiscountedPrice: React.FC<DiscountedPriceProps> = ({
+  offerId,
+  priceInPence,
+}) => {
+  const couponCode = useStore(persistentCoupon);
+  return getDiscountedDisplayPrice(couponCode, offerId, priceInPence);
 };

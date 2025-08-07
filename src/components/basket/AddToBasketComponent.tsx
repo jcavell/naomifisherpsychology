@@ -3,9 +3,8 @@ import {useStore} from "@nanostores/react";
 import {addItem, removeItem, getBasketItem} from "../../scripts/basket/basket.ts";
 import overlayStyles from "../../styles/components/cart/overlay.module.css";
 import cartStyles from "../../styles/components/cart/cart.module.css";
-import type {BasketItem} from "../../types/basket-item";
 import {useClientOnly} from "../../scripts/basket/use-client-only-hook.ts";
-import { getCouponCodeFromRequestOrLS } from "../../scripts/coupon/couponApplier.ts";
+import { fetchItemFromAPI } from "../../scripts/basket/getCourseOrWebinarFromAPI.ts";
 
 export type BasketItemType = "webinar" | "course";
 
@@ -16,32 +15,6 @@ export interface AddToBasketProps {
     setIsProcessing: (value: boolean) => void;
     buttonType?: "summary" | "detail";
 }
-
-const fetchItem = async (
-    id: string,
-    type: BasketItemType,
-): Promise<BasketItem | undefined> => {
-    try {
-
-        const maybeCouponCode = getCouponCodeFromRequestOrLS();
-        const baseEndpoint = type === "course"
-          ? `/api/courses/${id}`
-          : `/api/webinar-tickets/${id}`;
-
-        const endpoint = maybeCouponCode
-          ? `${baseEndpoint}?cocd=${maybeCouponCode}`
-          : baseEndpoint;
-
-        const response = await fetch(endpoint);
-        if (!response.ok) {
-            throw new Error(`Error: ${response.status} - ${response.statusText}`);
-        }
-
-        return await response.json();
-    } catch (err) {
-        console.error("Error fetching item:", err);
-    }
-};
 
 const Button: React.FC<AddToBasketProps> = ({
                                           id,
@@ -72,7 +45,7 @@ const Button: React.FC<AddToBasketProps> = ({
 
         if (!$basketItem) {
             try {
-                const basketItem = await fetchItem(id, type);
+                const basketItem = await fetchItemFromAPI(id, type);
                 if (basketItem !== undefined) {
                     addItem(basketItem);
                 }
