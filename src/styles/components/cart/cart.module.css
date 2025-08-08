@@ -126,6 +126,12 @@
     cursor: pointer;
 }
 
+.checkoutButton:disabled {
+    background: #cccccc !important;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
 .checkoutButton:hover {
     background: var(--success-green-hover) !important;
 }
@@ -180,6 +186,13 @@
 
 .couponInput {
     display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-width: 300px;
+}
+
+.couponInputRow {
+    display: flex;
     gap: 0.5rem;
 }
 
@@ -187,7 +200,7 @@
     padding: 0.5rem;
     border: 1px solid #ddd;
     border-radius: 4px;
-    flex: 1;
+    width: 150px; /* Fixed width for the input */
 }
 
 .applyCouponButton {
@@ -197,6 +210,11 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+}
+
+.applyCouponButton:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
 }
 
 .applyCouponButton:hover {
@@ -229,4 +247,11 @@
     color: #dc3545;
     font-size: 0.875rem;
     margin-top: 0.25rem;
+    line-height: 1.2;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
 }

@@ -39,8 +39,7 @@ export async function POST({ request }: { request: Request }) {
     },
   );
 
-  // TODO Update purchase_event with event = webhook_received value = ${event.type}
-  // if (event.type !== "charge.succeeded" && event.type !== "charge.updated") {
+
   if (event.type !== "charge.succeeded") {
     Logger.INFO(`Ignoring event ${event.type} - not charge.succeeded`);
     return success;
@@ -80,23 +79,25 @@ export async function POST({ request }: { request: Request }) {
       (item) => item.product_type === "course",
     );
 
-    // Step 3 insert ticket into WebinarTickets
-    try {
-      await insertWebinarTickets(purchase.id, webinarBasketItems, userId);
-      Logger.INFO("Successfully created webinar tickets", {
-        purchaseId: purchase.id,
-        userId,
-        itemCount: webinarBasketItems.length,
-      });
-    } catch (error) {
-      Logger.ERROR("Failed to create webinar tickets", {
-        error: error instanceof Error ? error.message : "Unknown error",
-        userId,
-        items: webinarBasketItems,
-      });
-      throw new Error(
-        "Failed to create webinar tickets. Please try again later.",
-      );
+    // Step 3 insert ticket into WebinarTickets if there are any
+    if (webinarBasketItems.length > 0) {
+      try {
+        await insertWebinarTickets(purchase.id, webinarBasketItems, userId);
+        Logger.INFO("Successfully created webinar tickets", {
+          purchaseId: purchase.id,
+          userId,
+          itemCount: webinarBasketItems.length,
+        });
+      } catch (error) {
+        Logger.ERROR("Failed to create webinar tickets", {
+          error: error instanceof Error ? error.message : "Unknown error",
+          userId,
+          items: webinarBasketItems,
+        });
+        throw new Error(
+          "Failed to create webinar tickets. Please try again later.",
+        );
+      }
     }
 
     // Step 4: Fetch the user details from the `Users` table

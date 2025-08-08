@@ -3,21 +3,20 @@ import { persistentCoupon } from "../coupon/couponStore";
 
 export type ItemType = "webinar" | "course";
 
-export const fetchItemFromAPI = async (
-    id: string,
-    type: ItemType,
+export const fetchItemFromAPI = async (id: string, type: ItemType, couponCode: string | null, origin: string | null
 ): Promise<BasketItem | undefined> => {
     try {
-        const couponCode = persistentCoupon.get();
-        const baseEndpoint = type === "course"
-            ? `/api/courses/${id}`
-            : `/api/webinar-tickets/${id}`;
+        const endpoint = type === "course"
+          ? `/api/courses/${id}`
+          : `/api/webinar-tickets/${id}`;
 
-        const endpoint = couponCode
-            ? `${baseEndpoint}?cocd=${couponCode}`
-            : baseEndpoint;
+        const endpointWithCouponCode = couponCode
+          ? `${endpoint}?cocd=${couponCode}`
+          : endpoint;
 
-        const response = await fetch(endpoint);
+        const requestUrl = origin ? `${origin}${endpointWithCouponCode}` : endpointWithCouponCode;
+
+        const response = await fetch(requestUrl);
         if (!response.ok) {
             throw new Error(`Error: ${response.status} - ${response.statusText}`);
         }
@@ -26,4 +25,10 @@ export const fetchItemFromAPI = async (
     } catch (err) {
         console.error("Error fetching item:", err);
     }
+};
+
+export const clientFetchItemFromAPI = async (id: string, type: ItemType,
+): Promise<BasketItem | undefined> => {
+    const couponCode= persistentCoupon.get();
+    return fetchItemFromAPI(id, type, couponCode, null);
 };

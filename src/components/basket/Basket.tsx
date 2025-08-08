@@ -129,13 +129,24 @@ export const Basket: React.FC<BasketProps> = ({
 
         // Validate coupon code
         if (!isCouponCodeValid(trimmedCode)) {
-            setCouponError('Coupon is invalid or has expired');
+            setCouponError('Coupon not valid');
             return;
         }
 
         try {
             // Only set the coupon if it's valid
             persistentCoupon.set(trimmedCode);
+
+            // Check if the coupon affected any prices
+            const hasDiscount = $basketItems.some(
+              item => item.originalPriceInPence !== item.discountedPriceInPence
+            );
+
+            if (!hasDiscount) {
+                setCouponError('Coupon not valid for any of your items');
+                return;
+            }
+
             setCouponCode(''); // Clear input after successful application
         } catch (error) {
             console.error('Failed to apply coupon:', error);
@@ -207,20 +218,22 @@ export const Basket: React.FC<BasketProps> = ({
             </div>
           ) : (
             <div className={styles.couponInput}>
-              <input
-                type="text"
-                value={couponCode}
-                onChange={(e) => setCouponCode(e.target.value)}
-                placeholder="Enter coupon code"
-                className={styles.couponCodeInput}
-              />
-              <button
-                className={styles.applyCouponButton}
-                onClick={handleApplyCoupon}
-                disabled={!couponCode.trim()} // Disable if empty
-              >
-                Apply
-              </button>
+              <div className={styles.couponInputRow}>
+                <input
+                  type="text"
+                  value={couponCode}
+                  onChange={(e) => setCouponCode(e.target.value)}
+                  placeholder="Enter coupon code"
+                  className={styles.couponCodeInput}
+                />
+                <button
+                  className={styles.applyCouponButton}
+                  onClick={handleApplyCoupon}
+                  disabled={!couponCode.trim()}
+                >
+                  Apply
+                </button>
+              </div>
               {couponError && (
                 <div className={styles.couponError}>{couponError}</div>
               )}

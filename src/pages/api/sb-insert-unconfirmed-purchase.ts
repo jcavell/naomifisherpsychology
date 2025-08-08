@@ -19,6 +19,8 @@ export async function POST({ request }: { request: Request }) {
     }: { payment_intent_id: string; user: User; basket_items: BasketItem[] } =
       body;
 
+    console.log("***sb-insert-unconfirmed-purchase POST:", JSON.stringify(body))
+
     // Validate paymentIntentId, user object, and getBasketItems array
     if (
       !payment_intent_id ||

@@ -4,7 +4,7 @@ import {addItem, removeItem, getBasketItem} from "../../scripts/basket/basket.ts
 import overlayStyles from "../../styles/components/cart/overlay.module.css";
 import cartStyles from "../../styles/components/cart/cart.module.css";
 import {useClientOnly} from "../../scripts/basket/use-client-only-hook.ts";
-import { fetchItemFromAPI } from "../../scripts/basket/getCourseOrWebinarFromAPI.ts";
+import { clientFetchItemFromAPI } from "../../scripts/basket/getCourseOrWebinarFromAPI.ts";
 
 export type BasketItemType = "webinar" | "course";
 
@@ -45,7 +45,7 @@ const Button: React.FC<AddToBasketProps> = ({
 
         if (!$basketItem) {
             try {
-                const basketItem = await fetchItemFromAPI(id, type);
+                const basketItem = await clientFetchItemFromAPI(id, type);
                 if (basketItem !== undefined) {
                     addItem(basketItem);
                 }

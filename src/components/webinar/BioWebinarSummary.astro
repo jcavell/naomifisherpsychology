@@ -1,26 +1,27 @@
 ---
 import Tags from "../Tags.astro";
 import Contributers from "../Contributers.astro";
-import Vimeo from "../Vimeo.astro";
 import { getWebinarMeta } from "../../scripts/webinarMeta";
 import WebinarImage from "./WebinarImage.astro";
+import ChooseWebinarTickets from "../basket/ChooseWebinarTickets";
+import type { Webinar } from "../../types/webinar";
 
-const { webinar } = Astro.props;
+const { webinar } = Astro.props as { webinar: Webinar };
 
 const eventId = webinar.id;
 const meta = getWebinarMeta(eventId);
 
-const checkoutURL = webinar.url;
-const title = webinar.name.text;
-const subtitle = webinar.description.text;
-const tickets = webinar.orderedTickets;
+const title = webinar.title;
+const subtitle = webinar.description;
+const tickets = webinar.tickets;
 
-const ticketText = tickets[0].cost
-  ? `from ${tickets[0].cost} + booking fee`
-  : "Free";
+// console.log(webinar.ticket_classes);
 ---
 
-<div class="card card-webinars">
+<div
+  class="card card-webinars"
+  data-webinar-end={webinar.endDateTime?.toISOString()}
+>
   <div class="live-date">
     <span class="live-day">{webinar.day}</span>
     <span class="live-month">{webinar.month}</span>
@@ -29,6 +30,10 @@ const ticketText = tickets[0].cost
   <h2>
     <a href={`/webinars/${eventId}`}>{title}</a>
   </h2>
+
+  <div class="card-image">
+    <WebinarImage webinar={webinar} />
+  </div>
 
   <div class="card-details">
     <span class="date">
@@ -41,7 +46,13 @@ const ticketText = tickets[0].cost
     <!--  {`${webinar.startTime} - ${webinar.endTime}`}-->
     <!--</span>-->
     <span class="cost">
-      from {tickets[0].costPlusFee}
+      {
+        tickets.length === 1
+          ? tickets[0].costValue === 0
+            ? "Free"
+            : tickets[0].costPlusFee
+          : `from ${tickets[0].costPlusFee}`
+      }
     </span>
   </div>
 
@@ -58,6 +69,6 @@ const ticketText = tickets[0].cost
 
   <div class="card-buttons">
     <a href={`/webinars/${eventId}`}> Learn More </a>
-    <a href={`${checkoutURL}?aff=web`}> Tickets </a>
+    <ChooseWebinarTickets webinar={webinar} client:load />
   </div>
 </div>

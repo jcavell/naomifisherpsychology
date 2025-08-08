@@ -1,73 +1,98 @@
 import React, { useState, useEffect } from "react";
 import { type Appearance, loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import CheckoutForm from "./CheckoutForm.tsx";
 import { Basket } from "../basket/Basket.tsx";
-import {useClientOnly} from "../../scripts/basket/use-client-only-hook.ts";
+import { UserDetailsForm } from "./UserDetailsForm.tsx";
+import { PaymentForm } from "./PaymentForm.tsx";
+import { useClientOnly } from "../../scripts/basket/use-client-only-hook.ts";
 
 import formStyles from "../../styles/components/checkout/form.module.css";
 import summaryStyles from "../../styles/components/checkout/summary.module.css";
 import cartStyles from "../../styles/components/cart/cart.module.css";
-import {useStore} from "@nanostores/react";
-import {getBasketItems, getIsEmpty} from "../../scripts/basket/basket.ts";
+import { useStore } from "@nanostores/react";
+import { getBasketItems, getIsEmpty } from "../../scripts/basket/basket.ts";
+import type { User } from "../../types/user";
 
 // Load stripe with our TEST publishable API key (pk....)
 const stripePublishableKey = import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY;
 const stripePromise = loadStripe(stripePublishableKey);
 
-const Checkout: React.FC = () => {
+const Checkout: React.FC<{ setError: (error: string | null) => void }> = ({
+                                                                            setError,
+                                                                          }) => {
   const $basketItems = useStore(getBasketItems);
   const $isEmpty = useStore(getIsEmpty);
   const isClient = useClientOnly(); // Hook to check client-side
 
   const [clientSecret, setClientSecret] = useState<string | null>(null); // Track clientSecret for Stripe initialization
+  const [userDetails, setUserDetails] = useState<User | null>(null);
 
   const isBasketFree = (items: any[]): boolean => {
     return items.every((item) => item.price === 0);
   };
 
-  useEffect(() => {
-    if (!isClient || clientSecret) return;
 
+  const createPaymentIntent = async () => {
     if ($basketItems.length > 0 && !isBasketFree($basketItems)) {
-      console.log(
-        "Calling create-payment-intent with Items: ",
-        JSON.stringify($basketItems),
-      );
-      fetch("/api/create-payment-intent", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ items: $basketItems }),
-      })
-        .then((res) => {
-          if (!res.ok) {
-            return Promise.reject(`HTTP error! Status: ${res.status}`);
-          }
-          return res.json(); // Parse response JSON
-        })
-        .then((data) => {
-          if (data.clientSecret) {
-            console.log("Received clientSecret: ", data.clientSecret);
-            setClientSecret(data.clientSecret); // Set the clientSecret in state
-          } else {
-            console.error("No clientSecret in response");
-          }
-        })
-        .catch((error) => {
-          console.error("Failed to fetch client secret: ", error);
+      try {
+        const res = await fetch("/api/create-payment-intent", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ items: $basketItems }),
         });
+
+        if (!res.ok) {
+          const errorData = await res.json();
+          throw new Error(errorData.error || `HTTP error! Status: ${res.status}`);
+        }
+
+        const data = await res.json();
+        if (data.clientSecret) {
+          setClientSecret(data.clientSecret);
+        } else {
+          throw new Error("No clientSecret in response");
+        }
+      } catch (error) {
+        console.error("Failed to fetch client secret: ", error);
+        setError(
+          error.message || "Failed to process payment. Please try again."
+        );
+      }
     }
-  }, [isClient, $basketItems, clientSecret]); // Run whenever hydration or items changes
+  };
+
+  const handleUserDetailsComplete = async (user: User) => {
+    setUserDetails(user);
+    if (!isBasketFree($basketItems)) {
+      await createPaymentIntent();
+    }
+  };
+
 
   if ($isEmpty) {
     return;
   }
 
+  // Show user details form if we don't have user details yet
+  if (!userDetails) {
+    return (
+      <div className={formStyles.checkoutFormWrapper}>
+        <UserDetailsForm onComplete={handleUserDetailsComplete} />
+      </div>
+    );
+  }
+
+
+
   // For free items, render CheckoutForm without Stripe Elements
   if (isBasketFree($basketItems)) {
     return (
       <div className={formStyles.checkoutFormWrapper}>
-        <CheckoutForm clientSecret="" />
+        <PaymentForm
+          clientSecret=""
+          userDetails={userDetails}
+          basketItems={$basketItems}
+        />
       </div>
     );
   }
@@ -82,26 +107,31 @@ const Checkout: React.FC = () => {
   };
 
   return (
-      <div className={formStyles.checkoutFormWrapper}>
-        <Elements options={{ clientSecret, appearance }} stripe={stripePromise}>
-          <CheckoutForm clientSecret={clientSecret} />
-        </Elements>
-      </div>
+    <div className={formStyles.checkoutFormWrapper}>
+      <Elements options={{ clientSecret, appearance }} stripe={stripePromise}>
+        <PaymentForm
+          clientSecret={clientSecret}
+          userDetails={userDetails}
+          basketItems={$basketItems}
+        />{" "}
+      </Elements>
+    </div>
   );
 };
 
 const CheckoutComponent: React.FC = () => {
+  const [error, setError] = useState<string | null>(null);
   const isClient = useClientOnly(); // Also moved inside the component
 
   if (!isClient) {
     return null; // Return nothing during SSR
   }
   return (
-      <div className={cartStyles.cartAndCheckout}>
-        {" "}
-        <Basket showCheckoutButton={false} basketTitle={"Order Summary"} />
-        <Checkout />
-      </div>
+    <div className={cartStyles.cartAndCheckout}>
+      {error && <div className={formStyles.error}>{error}</div>}
+      <Basket showCheckoutButton={false} basketTitle={"Order Summary"} />
+      <Checkout setError={setError} />
+    </div>
   );
 };
 
