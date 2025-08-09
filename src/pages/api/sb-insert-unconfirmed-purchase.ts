@@ -1,6 +1,6 @@
 import type { User } from "../../types/user";
 import type { StripePayment } from "../../types/stripe-payment";
-import type { BasketItem } from "../../types/basket-item";
+import type { BasketItem, BasketItemSummary } from "../../types/basket-item";
 import { upsertUser } from "../../scripts/checkout/sb-users.ts";
 import { createSbClient } from "../../scripts/checkout/create-sb-client.ts";
 
@@ -16,10 +16,20 @@ export async function POST({ request }: { request: Request }) {
       payment_intent_id,
       user,
       basket_items,
-    }: { payment_intent_id: string; user: User; basket_items: BasketItem[] } =
-      body;
+      coupon_code,
+      t,
+    }: {
+      payment_intent_id: string;
+      user: User;
+      basket_items: BasketItem[];
+      coupon_code;
+      t;
+    } = body;
 
-    console.log("***sb-insert-unconfirmed-purchase POST:", JSON.stringify(body))
+    console.log(
+      "***sb-insert-unconfirmed-purchase POST:",
+      JSON.stringify(body),
+    );
 
     // Validate paymentIntentId, user object, and getBasketItems array
     if (
@@ -48,13 +58,33 @@ export async function POST({ request }: { request: Request }) {
     const upsertedUser = await upsertUser(user);
 
     // Step 2: Insert the purchase into Supabase
+
+    const basketItemsSummary = basket_items.map((item) => ({
+      id: item.id,
+      couponCode: item.couponCode,
+      originalPriceInPence: item.originalPriceInPence,
+      discountedPriceInPence: item.discountedPriceInPence,
+      currency: item.currency,
+      quantity: item.quantity,
+      product_type: item.product_type,
+      is_course: item.is_course,
+      is_webinar: item.is_webinar,
+      product_id: item.product_id,
+      product_name: item.product_name,
+      variant_id: item.variant_id,
+      variant_name: item.variant_name,
+      vatable: item.vatable,
+    }));
+
     const userId = upsertedUser.id;
     const stripePayment: StripePayment = {
       stripe_payment_id: payment_intent_id,
       payment_amount_pence: 0,
-      items: basket_items,
+      items: basketItemsSummary,
       user_id: userId,
       payment_confirmed: false,
+      coupon_code: coupon_code,
+      t: t,
     };
 
     const { error: purchaseError } = await supabase

@@ -22,3 +22,21 @@ export type BasketItem = {
   expires_at: string; // format "2024-09-23T12:30:00Z"
   vatable: boolean;
 };
+
+
+export type BasketItemSummary = {
+  id: string;
+  couponCode: null | string;
+  originalPriceInPence: number;  // Pre-coupon in pence, e.g. 4000
+  discountedPriceInPence: number; // Post-coupon in pence e.g. 2000
+  currency: string; // E.g. GBP. Not currently used
+  quantity: number;
+  product_type: product_type;
+  is_course: boolean; // required by postmark template
+  is_webinar: boolean; // required by postmark template
+  product_id: string;
+  product_name: string;
+  variant_id: string;
+  variant_name: string;
+  vatable: boolean;
+};

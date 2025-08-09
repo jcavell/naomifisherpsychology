@@ -1,4 +1,4 @@
-import type { BasketItem } from "./basket-item";
+import type { BasketItem, BasketItemSummary } from "./basket-item";
 
 export type StripePayment = {
   user_id: bigint;
@@ -7,5 +7,7 @@ export type StripePayment = {
   payment_method?: string; // Credit card, bank transfer, etc. Matches 'payment_type'
   payment_amount_pence: number; // Matches 'payment_amount_pence' column
   payment_confirmed: boolean;
-  items: BasketItem[]; // Matches detailed schema for items
+  items: BasketItemSummary[];
+  coupon_code?: string;
+  t?:string;
 };

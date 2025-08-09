@@ -12,6 +12,7 @@ import cartStyles from "../../styles/components/cart/cart.module.css";
 import { useStore } from "@nanostores/react";
 import { getBasketItems, getIsEmpty } from "../../scripts/basket/basket.ts";
 import type { User } from "../../types/user";
+import { getTrackerFromStore } from "../../scripts/tracking/trackerRetrieverAndStorer.ts";
 
 // Load stripe with our TEST publishable API key (pk....)
 const stripePublishableKey = import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY;
@@ -38,7 +39,7 @@ const Checkout: React.FC<{ setError: (error: string | null) => void }> = ({
         const res = await fetch("/api/create-payment-intent", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ items: $basketItems }),
+          body: JSON.stringify({ items: $basketItems, t:getTrackerFromStore() }),
         });
 
         if (!res.ok) {

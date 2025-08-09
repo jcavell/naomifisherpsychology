@@ -17,3 +17,7 @@ export function persistCouponFromURL() {
 export function removeCouponCodeFromStore() {
   persistentCoupon.set("");
 }
+
+export function getCouponCodeFromStore() {
+  return persistentCoupon.get();
+}

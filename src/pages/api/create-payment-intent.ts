@@ -1,7 +1,6 @@
 import { stripe } from "../../scripts/checkout/init-stripe.ts";
 import calculateOrderAmount from "../../scripts/checkout/calculateOrderAmount.ts";
 import type { BasketItem } from "../../types/basket-item";
-import type { StripePaymentItemMetadata } from "../../types/stripe-payment-item-metadata";
 import Logger from "../../scripts/logger.ts";
 import { fetchItemFromAPI } from "../../scripts/basket/getCourseOrWebinarFromAPI.ts";
 
@@ -58,12 +57,12 @@ export async function POST({ params, request }) {
 
 
 
-    // Concise metadata for Stripe has: id, t (product_type), p (price) and c (coupon)
+    // Concise metadata for Stripe has: id, t (product_type), p (price) and c (coupon) if it was applied
     const itemsMetadata = items.map((item) => ({
       id: item.id,
       t: item.product_type === "course" ? "c" : "w",
       p: item.discountedPriceInPence,
-      ...(item.couponCode && { c: item.couponCode }),
+      ...(item.couponCode && item.discountedPriceInPence < item.originalPriceInPence && { c: item.couponCode }),
     }));
 
     // Create a PaymentIntent with the order amount and currency

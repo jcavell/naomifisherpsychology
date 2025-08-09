@@ -8,6 +8,8 @@ import formStyles from "../../styles/components/checkout/form.module.css";
 import paymentStyles from "../../styles/components/checkout/payment.module.css";
 import type { BasketItem } from "../../types/basket-item";
 import type { User } from "../../types/user";
+import { getTrackerFromStore } from "../../scripts/tracking/trackerRetrieverAndStorer.ts";
+import { getCouponCodeFromStore } from "../../scripts/coupon/couponRetrieverAndStorer.ts";
 
 interface CheckoutFormProps {
   clientSecret: string;
@@ -58,7 +60,11 @@ export const PaymentForm: React.FC<CheckoutFormProps> = ({ clientSecret, userDet
   }, [userDetails.email]);
 
 
+  // Body data used for both free and paid purchases
+  // NOTE snake_case
   const getInsertPurchaseBodyData = () => ({
+    t:getTrackerFromStore(),
+    coupon_code:getCouponCodeFromStore(),
     basket_items: basketItems,
     user: {
       ...userDetails,
@@ -98,7 +104,7 @@ export const PaymentForm: React.FC<CheckoutFormProps> = ({ clientSecret, userDet
     }
   };
 
-  const handlePaidSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (isBasketFree(basketItems)) {
@@ -106,12 +112,15 @@ export const PaymentForm: React.FC<CheckoutFormProps> = ({ clientSecret, userDet
       return;
     }
 
+    // Paid submit
+
     if (!stripe || !elements) return;
     setIsLoading(true);
     const paymentIntentId = clientSecret.split("_secret")[0];
 
     try {
-      // Step 1: Store user and unconfirmed payment details in supabase
+      // Step 1: Store user and unconfirmed payment details in Supabase
+      // Add payment_intent_id to body
       const response = await fetch("/api/sb-insert-unconfirmed-purchase", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -152,7 +161,7 @@ export const PaymentForm: React.FC<CheckoutFormProps> = ({ clientSecret, userDet
   };
 
   return (
-    <form onSubmit={handlePaidSubmit}>
+    <form onSubmit={handleSubmit}>
       <h2>Payment</h2>
       <div className={paymentStyles.paymentElement}>
         <PaymentElement
