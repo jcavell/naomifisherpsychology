@@ -279,7 +279,7 @@ discountedPriceInPence: number; // in pence e.g. 1699
 currency: string;
 formatted_price: string; // e.g. £16.99, required by postmark template
 quantity: number;
-product_type: product_type;
+ProductType: ProductType;
 is_course: boolean; // required by postmark template
 is_webinar: boolean; // required by postmark template
 product_id: string;
@@ -352,7 +352,7 @@ Example: https://localhost:4321/api/webinar-tickets/1203174349869_2131545083
 ```json
 {
   "id": "1203174349869_2131545083",
-  "product_type": "webinar",
+  "ProductType": "webinar",
   "is_course": false,
   "is_webinar": true,
   "product_id": "1203174349869",
@@ -385,7 +385,7 @@ The `/api/courses/offerId/[offerId]` endpoint provides course details for the sh
 ```json
 {
   "id": "offer_123",
-  "product_type": "course",
+  "ProductType": "course",
   "is_course": true,
   "is_webinar": false,
   "product_id": "offer_123",

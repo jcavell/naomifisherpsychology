@@ -57,7 +57,7 @@ export async function POST({ params, request }) {
 
 
 
-    // Concise metadata for Stripe has: id, t (product_type), p (price) and c (coupon) if it was applied
+    // Concise metadata for Stripe has: id, t (ProductType), p (price) and c (coupon) if it was applied
     const itemsMetadata = items.map((item) => ({
       id: item.id,
       t: item.product_type === "course" ? "c" : "w",

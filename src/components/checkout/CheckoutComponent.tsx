@@ -13,6 +13,12 @@ import { useStore } from "@nanostores/react";
 import { getBasketItems, getIsEmpty } from "../../scripts/basket/basket.ts";
 import type { User } from "../../types/user";
 import { getTrackerFromStore } from "../../scripts/tracking/trackerRetrieverAndStorer.ts";
+import {
+  META_BASKET_PRODUCT_TYPE,
+  type MetaBasketProductType,
+  trackCheckoutEvent
+} from "../../scripts/tracking/metaPixel.ts";
+import { PRODUCT_TYPE, type ProductType } from "../../types/basket-item";
 
 // Load stripe with our TEST publishable API key (pk....)
 const stripePublishableKey = import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY;
@@ -123,6 +129,39 @@ const Checkout: React.FC<{ setError: (error: string | null) => void }> = ({
 const CheckoutComponent: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const isClient = useClientOnly(); // Also moved inside the component
+  const $basketItems = useStore(getBasketItems);
+
+  useEffect(() => {
+    if (isClient && $basketItems.length > 0) {
+      const basketItemIds = $basketItems.map(item => item.id).sort().join('-');
+      const eventId = `checkout-${basketItemIds}`;
+
+      if (!sessionStorage.getItem(eventId)) {
+        const cart = $basketItems.map(item => ({
+          id: item.id,
+          quantity: 1,
+          item_price: item.discountedPriceInPence / 100,
+          content_type: item.product_type as ProductType
+        }));
+
+        // Determine overall content_type based on cart contents
+        const contentType: MetaBasketProductType = cart.every(item => item.content_type === PRODUCT_TYPE.WEBINAR)
+          ? META_BASKET_PRODUCT_TYPE.WEBINARS
+          : cart.every(item => item.content_type === PRODUCT_TYPE.COURSE)
+            ? META_BASKET_PRODUCT_TYPE.COURSES
+            : META_BASKET_PRODUCT_TYPE.MIXED;
+
+        trackCheckoutEvent({
+          value: cart.reduce((sum, item) => sum + (item.item_price * item.quantity), 0),
+          currency: 'GBP',
+          contents: cart,
+          content_type: contentType
+        }, { eventID: eventId });
+
+        sessionStorage.setItem(eventId, 'true');
+      }
+    }
+  }, [isClient, $basketItems]);
 
   if (!isClient) {
     return null; // Return nothing during SSR

@@ -1,4 +1,10 @@
-export type product_type = "webinar" | "course";
+export const PRODUCT_TYPE = {
+  WEBINAR: "webinar",
+  COURSE: "course"
+} as const;
+
+// Define the type based on the values of the constant
+export type ProductType = typeof PRODUCT_TYPE[keyof typeof PRODUCT_TYPE];
 
 export type BasketItem = {
   id: string;
@@ -8,7 +14,7 @@ export type BasketItem = {
   formatted_price: string; // Post-coupon, e.g. £20 (50% off). Required by postmark template
   currency: string; // E.g. GBP. Not currently used
   quantity: number;
-  product_type: product_type;
+  product_type: ProductType;
   is_course: boolean; // required by postmark template
   is_webinar: boolean; // required by postmark template
   product_id: string;
@@ -31,7 +37,7 @@ export type BasketItemSummary = {
   discountedPriceInPence: number; // Post-coupon in pence e.g. 2000
   currency: string; // E.g. GBP. Not currently used
   quantity: number;
-  product_type: product_type;
+  product_type: ProductType;
   is_course: boolean; // required by postmark template
   is_webinar: boolean; // required by postmark template
   product_id: string;
