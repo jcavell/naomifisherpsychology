@@ -1,15 +1,123 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Newsletter from "../components/Newsletter.astro";
+
+const formId = "6662296";
 ---
 
-<BaseLayout pageTitle="Privacy Policy">
-  <div class="page-full-width-text">
-    Sign up to our newsletter below to get our Transitions Toolkit
+<BaseLayout pageTitle="Transitions Toolkit">
+  <div class="newsletter-bottom-image">
+    <img
+      src="/images/newsletter/transitions-toolkit.png"
+      alt="Lfe is Full of Transitions"
+    />
   </div>
 
-  <!--6662296 is the normal newsletter form -->
-  <!-- 7379328 is low demand toolkit form -->
-  <!-- 8293826 is transitions toolkit form -->
-  <Newsletter formId="8293826" />
+  <a id="newsletter"></a>
+  <div class="form-wrapper">
+    <div class="form-title">
+      <h2>Get the toolkit</h2>
+    </div>
+    <div class="form">
+      <form
+        action={`https://app.convertkit.com/forms/${formId}/subscriptions`}
+        class="seva-form formkit-form"
+        method="post"
+        data-sv-form={`${formId}`}
+        data-uid="a4bc346f2b"
+        data-format="inline"
+        data-version="5"
+        data-options='{"settings":{"after_subscribe":{"action":"message","success_message":"Success! Now check your email to confirm your subscription.","redirect_url":""},"analytics":{"google":null,"fathom":null,"facebook":null,"segment":null,"pinterest":null,"sparkloop":null,"googletagmanager":null},"modal":{"trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"powered_by":{"show":false,"url":"https://convertkit.com/features/forms?utm_campaign=poweredby&utm_content=form&utm_medium=referral&utm_source=dynamic"},"recaptcha":{"enabled":false},"return_visitor":{"action":"hide","custom_content":""},"slide_in":{"display_in":"bottom_right","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"sticky_bar":{"display_in":"top","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15}},"version":"5"}'
+        min-width="400 500 600 700 800"
+      >
+        <div data-style="clean">
+          <ul
+            class="formkit-alert formkit-alert-error"
+            data-element="errors"
+            data-group="alert"
+          >
+          </ul>
+          <div
+            data-element="fields"
+            data-stacked="true"
+            class="seva-fields formkit-fields"
+          >
+            <div class="formkit-field">
+              <input
+                class="formkit-input"
+                name="email_address"
+                aria-label="Email Address"
+                placeholder="Your Email Address"
+                required=""
+                type="email"
+              />
+            </div>
+            <div class="formkit-field null-field">
+              <div role="button" tabindex="0">
+                <fieldset
+                  data-group="checkboxes"
+                  class="formkit-4446"
+                  type="Custom"
+                  order="1"
+                  save_as="Tag"
+                  group="field"
+                >
+                </fieldset>
+              </div>
+            </div>
+            <div class="formkit-field">
+              <div role="button" tabindex="0">
+                <fieldset
+                  data-group="checkboxes"
+                  class="formkit-4892"
+                  type="Custom"
+                  order="2"
+                  save_as="Tag"
+                  group="field"
+                >
+                  <div
+                    class="formkit-checkboxes"
+                    data-element="tags-checkboxes"
+                    data-group="checkbox"
+                  >
+                    <input
+                      class="formkit-checkbox"
+                      id={`tag-${formId}-3368044`}
+                      type="checkbox"
+                      name="tags[]"
+                      value="3368044"
+                    />
+                    <label for={`tag-${formId}-3368044`}>I'm a parent</label>
+                  </div>
+                  <div
+                    class="formkit-checkboxes"
+                    data-element="tags-checkboxes"
+                    data-group="checkbox"
+                  >
+                    <input
+                      class="formkit-checkbox"
+                      id={`tag-${formId}-3368045`}
+                      type="checkbox"
+                      name="tags[]"
+                      value="3368045"
+                    />
+                    <label for={`tag-${formId}-3368045`}
+                      >I'm a professional</label
+                    >
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+            <button data-element="submit" class="formkit-submit formkit-submit">
+              <div class="formkit-spinner">
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              <span class="">Subscribe</span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 </BaseLayout>

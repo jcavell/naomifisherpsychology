@@ -79,12 +79,12 @@ const { formId = "6662296" } = Astro.props;
                 >
                   <input
                     class="formkit-checkbox"
-                    id="tag-1063115788-3368044"
+                    id={`tag-${formId}-3368044`}
                     type="checkbox"
                     name="tags[]"
                     value="3368044"
                   />
-                  <label for="tag-1063115788-3368044">I'm a parent</label>
+                  <label for={`tag-${formId}-3368044`}>I'm a parent</label>
                 </div>
                 <div
                   class="formkit-checkboxes"
@@ -93,12 +93,13 @@ const { formId = "6662296" } = Astro.props;
                 >
                   <input
                     class="formkit-checkbox"
-                    id="tag-1063115788-3368045"
+                    id={`tag-${formId}-3368045`}
                     type="checkbox"
                     name="tags[]"
                     value="3368045"
                   />
-                  <label for="tag-1063115788-3368045">I'm a professional</label>
+                  <label for={`tag-${formId}-3368045`}>I'm a professional</label
+                  >
                 </div>
               </fieldset>
             </div>
