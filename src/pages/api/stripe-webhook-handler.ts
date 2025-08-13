@@ -2,7 +2,7 @@ import Stripe from "stripe";
 import { env } from "../../scripts/env";
 import { stripe } from "../../scripts/checkout/init-stripe.ts";
 import Logger from "../../scripts/logger.ts";
-import type { BasketItem } from "../../types/basket-item";
+import type { BasketItem } from "../../types/basket-item..ts";
 import { insertWebinarTickets } from "../../scripts/checkout/sb-webinar-tickets.ts";
 import { getUser } from "../../scripts/checkout/sb-users.ts";
 import { sendPurchaseConfirmationAndSubToKit } from "../../scripts/checkout/send-purchase-confirmation.ts";

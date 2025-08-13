@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import type {BasketItem} from "../../types/basket-item";
+import type {BasketItem} from "../../types/basket-item..ts";
 import {useClientOnly} from "../../scripts/basket/use-client-only-hook.ts";
 import overlayStyles from "../../styles/components/cart/overlay.module.css";
 

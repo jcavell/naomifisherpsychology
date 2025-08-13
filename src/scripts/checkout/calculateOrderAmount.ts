@@ -1,4 +1,4 @@
-import type {BasketItem} from "../../types/basket-item";
+import type {BasketItem} from "../../types/basket-item..ts";
 
 export default function calculateOrderAmount(items: BasketItem[]): number {
   return items.reduce((total, item) => {

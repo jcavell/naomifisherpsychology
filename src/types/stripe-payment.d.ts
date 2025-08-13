@@ -1,4 +1,4 @@
-import type { BasketItem, BasketItemSummary } from "./basket-item";
+import type { BasketItem, BasketItemSummary } from "./basket-item..ts";
 
 export type StripePayment = {
   user_id: bigint;

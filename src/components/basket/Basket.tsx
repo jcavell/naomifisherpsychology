@@ -9,7 +9,7 @@ import {
     refreshBasketItems
 } from "../../scripts/basket/basket.ts";
 import styles from "../../styles/components/cart/cart.module.css";
-import type {BasketItem} from "../../types/basket-item";
+import type {BasketItem} from "../../types/basket-item..ts";
 import { removeCouponCodeFromStore } from "../../scripts/coupon/couponRetrieverAndStorer.ts";
 import { persistentCoupon } from "../../scripts/coupon/couponStore.ts";
 import { isCouponCodeValid } from "../../scripts/coupon/coupons.ts";

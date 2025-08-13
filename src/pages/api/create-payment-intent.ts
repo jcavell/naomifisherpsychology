@@ -1,6 +1,6 @@
 import { stripe } from "../../scripts/checkout/init-stripe.ts";
 import calculateOrderAmount from "../../scripts/checkout/calculateOrderAmount.ts";
-import type { BasketItem } from "../../types/basket-item";
+import type { BasketItem } from "../../types/basket-item..ts";
 import Logger from "../../scripts/logger.ts";
 import { fetchItemFromAPI } from "../../scripts/basket/getCourseOrWebinarFromAPI.ts";
 

@@ -1,6 +1,6 @@
 import type { User } from "../../types/user";
 import type { StripePayment } from "../../types/stripe-payment";
-import type { BasketItem, BasketItemSummary } from "../../types/basket-item";
+import type { BasketItem, BasketItemSummary } from "../../types/basket-item..ts";
 import { upsertUser } from "../../scripts/checkout/sb-users.ts";
 import { createSbClient } from "../../scripts/checkout/create-sb-client.ts";
 

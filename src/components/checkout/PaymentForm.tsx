@@ -6,7 +6,7 @@ import {
 } from "@stripe/react-stripe-js";
 import formStyles from "../../styles/components/checkout/form.module.css";
 import paymentStyles from "../../styles/components/checkout/payment.module.css";
-import type { BasketItem } from "../../types/basket-item";
+import type { BasketItem } from "../../types/basket-item..ts";
 import type { User } from "../../types/user";
 import { getTrackerFromStore } from "../../scripts/tracking/trackerRetrieverAndStorer.ts";
 import { getCouponCodeFromStore } from "../../scripts/coupon/couponRetrieverAndStorer.ts";

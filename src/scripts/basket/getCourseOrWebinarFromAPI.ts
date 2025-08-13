@@ -1,4 +1,4 @@
-import type { BasketItem } from "../../types/basket-item";
+import type { BasketItem } from "../../types/basket-item..ts";
 import { persistentCoupon } from "../coupon/couponStore";
 
 export type ItemType = "webinar" | "course";

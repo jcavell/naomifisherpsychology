@@ -1,4 +1,4 @@
-import type {BasketItem} from "../../../types/basket-item";
+import type {BasketItem} from "../../../types/basket-item..ts";
 import {getCourseByOfferId} from "../../../scripts/courses";
 import { getDiscountedDisplayPrice, getDiscountedPriceInPence } from "../../../scripts/coupon/couponApplier.ts";
 import type { APIContext } from 'astro';

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { type Appearance, loadStripe } from "@stripe/stripe-js";
+import { type Appearance, loadStripe, type Stripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { Basket } from "../basket/Basket.tsx";
 import { UserDetailsForm } from "./UserDetailsForm.tsx";
@@ -18,11 +18,14 @@ import {
   type MetaBasketProductType,
   trackCheckoutEvent
 } from "../../scripts/tracking/metaPixel.ts";
-import { PRODUCT_TYPE, type ProductType } from "../../types/basket-item";
+import { PRODUCT_TYPE, type ProductType } from "../../types/basket-item..ts";
+
+// Define the correct type for the stripe loader
+type StripePromiseType = ReturnType<typeof loadStripe>;
 
 // Load stripe with our TEST publishable API key (pk....)
 const stripePublishableKey = import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY;
-const stripePromise = loadStripe(stripePublishableKey);
+// const stripePromise = loadStripe(stripePublishableKey);
 
 const Checkout: React.FC<{ setError: (error: string | null) => void }> = ({
                                                                             setError,
@@ -33,6 +36,7 @@ const Checkout: React.FC<{ setError: (error: string | null) => void }> = ({
 
   const [clientSecret, setClientSecret] = useState<string | null>(null); // Track clientSecret for Stripe initialization
   const [userDetails, setUserDetails] = useState<User | null>(null);
+  const [stripePromise, setStripePromise] = useState<Promise<Stripe | null> | null>(null);
 
   const isBasketFree = (items: any[]): boolean => {
     return items.every((item) => item.price === 0);
@@ -42,6 +46,12 @@ const Checkout: React.FC<{ setError: (error: string | null) => void }> = ({
   const createPaymentIntent = async () => {
     if ($basketItems.length > 0 && !isBasketFree($basketItems)) {
       try {
+        // Initialize Stripe only when needed
+        if (!stripePromise) {
+          const promise = loadStripe(import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY);
+          setStripePromise(promise);
+        }
+
         const res = await fetch("/api/create-payment-intent", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -130,19 +140,30 @@ const CheckoutComponent: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const isClient = useClientOnly(); // Also moved inside the component
   const $basketItems = useStore(getBasketItems);
+  const [hasTracked, setHasTracked] = useState<boolean>(false);
+
 
   useEffect(() => {
+    if (hasTracked || !isClient || $basketItems.length === 0) return;
+
+    setHasTracked(true);
+
     if (isClient && $basketItems.length > 0) {
       const basketItemIds = $basketItems.map(item => item.id).sort().join('-');
       const eventId = `checkout-${basketItemIds}`;
+      // console.log('Generated eventId:', eventId);
+
 
       if (!sessionStorage.getItem(eventId)) {
+
         const cart = $basketItems.map(item => ({
           id: item.id,
           quantity: 1,
           item_price: item.discountedPriceInPence / 100,
           content_type: item.product_type as ProductType
         }));
+
+        // console.log('Cart data:', cart);
 
         // Determine overall content_type based on cart contents
         const contentType: MetaBasketProductType = cart.every(item => item.content_type === PRODUCT_TYPE.WEBINAR)
@@ -151,12 +172,15 @@ const CheckoutComponent: React.FC = () => {
             ? META_BASKET_PRODUCT_TYPE.COURSES
             : META_BASKET_PRODUCT_TYPE.MIXED;
 
-        trackCheckoutEvent({
+        const eventData = {
           value: cart.reduce((sum, item) => sum + (item.item_price * item.quantity), 0),
           currency: 'GBP',
           contents: cart,
           content_type: contentType
-        }, { eventID: eventId });
+        };
+
+        // console.log('Meta Pixel available:', typeof (window as any).fbq === 'function');
+        trackCheckoutEvent(eventData, { eventID: eventId });
 
         sessionStorage.setItem(eventId, 'true');
       }

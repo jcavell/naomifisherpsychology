@@ -1,9 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-const pageTitle = "Thank you";
-import CheckoutCompleteWrapper from "../components/checkout/CheckoutCompleteWrapper";
+import CheckoutCompleteComponent from "../components/checkout/CheckoutCompleteComponent";
 ---
-
-<BaseLayout active="checkout" pageTitle={pageTitle}>
-  <CheckoutCompleteWrapper client:load />
+<BaseLayout active="checkout" pageTitle="Thank you">
+    <CheckoutCompleteComponent client:load />
 </BaseLayout>

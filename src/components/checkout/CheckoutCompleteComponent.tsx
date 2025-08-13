@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
 import type { JSX } from "react";
 import styles from "../../styles/components/checkout/complete.module.css";
-import type { BasketItem } from "../../types/basket-item";
+import type {BasketItem, ProductType} from "../../types/basket-item..ts";
 import {emptyBasket} from "../../scripts/basket/basket.ts";
 import {formatAmount} from "../../scripts/basket/utils.ts";
+import {
+  META_BASKET_PRODUCT_TYPE,
+  type MetaBasketProductType,
+  trackPurchaseEvent
+} from "../../scripts/tracking/metaPixel.ts";
 
 const isDev = import.meta.env.DEV;
 
@@ -71,12 +76,43 @@ const CheckoutCompleteComponent: React.FC = () => {
       return;
     }
 
-    const storedItems = JSON.parse(sessionStorage.getItem(checkoutId) || "[]");
+    const storedItems = JSON.parse(sessionStorage.getItem(checkoutId) || "[]") as BasketItem[];
     setPurchasedItems(storedItems);
 
+    // Sent meta pixel event
     // If it's a paid transaction, check redirect_status
     // If it's a free transaction (starts with 'free_') or paid with success, set succeeded
     if (checkoutId.startsWith("free_") || redirectStatus === "succeeded") {
+      if (storedItems.length > 0 && !localStorage.getItem(`purchase-tracked-${checkoutId}`)) {
+        const cart = storedItems.map(item => ({
+          id: item.id,
+          quantity: 1,
+          item_price: item.discountedPriceInPence / 100,
+          content_type: item.product_type as ProductType
+        }));
+
+        const contentType: MetaBasketProductType = cart.every(item =>
+            item.content_type === "webinar")
+            ? META_BASKET_PRODUCT_TYPE.WEBINARS
+            : cart.every(item => item.content_type === "course")
+                ? META_BASKET_PRODUCT_TYPE.COURSES
+                : META_BASKET_PRODUCT_TYPE.MIXED;
+
+        const purchaseEvent = {
+          value: cart.reduce((sum, item) => sum + (item.item_price * item.quantity), 0),
+          currency: 'GBP',
+          contents: cart,
+          content_type: contentType,
+          transactionId: checkoutId
+        };
+
+        trackPurchaseEvent(purchaseEvent, {
+          eventID: `purchase-${checkoutId}`
+        });
+
+        localStorage.setItem(`purchase-tracked-${checkoutId}`, 'true');
+      }
+
       setStatus("succeeded");
       emptyBasket();
     }

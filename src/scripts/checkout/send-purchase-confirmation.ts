@@ -1,6 +1,6 @@
 import type { Purchase } from "../../types/postmark-purchase";
 import moment from "moment/moment";
-import type { BasketItem } from "../../types/basket-item";
+import type { BasketItem } from "../../types/basket-item..ts";
 import { sendPurchaseConfirmationEmail } from "./send-purchase-confirmation-via-postmark.ts";
 import Logger from "../logger.ts";
 import type { User } from "../../types/user";

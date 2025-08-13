@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import styles from "../../styles/components/cart/overlay.module.css";
 import cartStyles from "../../styles/components/cart/cart.module.css";
 import type { WebinarTicket, Webinar } from "../../types/webinar";
-import type { BasketItem } from "../../types/basket-item";
+import type { BasketItem } from "../../types/basket-item..ts";
 import {useStore} from "@nanostores/react";
 import {addItem, isInBasket} from "../../scripts/basket/basket.ts";
 

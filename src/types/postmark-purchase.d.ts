@@ -1,4 +1,4 @@
-import type { BasketItem } from "./basket-item";
+import type { BasketItem } from "./basket-item..ts";
 
 export type Purchase = {
   first_name: string;
