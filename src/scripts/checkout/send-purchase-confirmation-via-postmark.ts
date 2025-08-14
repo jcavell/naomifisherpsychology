@@ -9,6 +9,11 @@ const TEMPLATE_ALIAS = "order-confirmation";
 const EMAIL_HEADING = "Order Confirmation";
 const EMAIL_FROM = "support@naomifisher.co.uk";
 
+const formattedPrice = new Intl.NumberFormat("en-GB", {
+  style: "currency",
+  currency: "GBP",
+});
+
 /**
  * Sends a purchase confirmation email via Postmark.
  * @param purchase The purchase details object.
@@ -32,7 +37,7 @@ export async function sendPurchaseConfirmationEmail(
       contains_course: purchase.items.some((item) => item.is_course),
       items: purchase.items.map((item) => ({
         id: item.id,
-        formatted_price: item.formatted_price,
+        formatted_price: formattedPrice.format(item.discountedPriceInPence / 100),
         quantity: item.quantity,
         is_course: item.is_course,
         is_webinar: item.is_webinar,
@@ -46,6 +51,8 @@ export async function sendPurchaseConfirmationEmail(
       })),
     },
   };
+
+  console.log("Purchase confirmation payload: " + JSON.stringify(postmarkPayload));
 
   const response = await fetch(POSTMARK_API_URL, {
     method: "POST",

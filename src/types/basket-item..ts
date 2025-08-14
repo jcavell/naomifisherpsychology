@@ -11,7 +11,6 @@ export type BasketItem = {
   couponCode: null | string;
   originalPriceInPence: number;  // Pre-coupon in pence, e.g. 4000
   discountedPriceInPence: number; // Post-coupon in pence e.g. 2000
-  formatted_price: string; // Post-coupon, e.g. £20 (50% off). Required by postmark template
   currency: string; // E.g. GBP. Not currently used
   quantity: number;
   product_type: ProductType;

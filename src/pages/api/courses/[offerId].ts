@@ -48,7 +48,6 @@ export async function GET({params, request}: APIContext) {
         variant_name: "Recorded course",
         originalPriceInPence: originalPriceInPence, // pre-coupon
         discountedPriceInPence: discountedPriceInPence, // post-coupon
-        formatted_price: discountDisplayPrice,
         added_at: new Date().toISOString(),
         expires_at: oneYearFromNow.toISOString(),
         quantity: 1,

@@ -138,57 +138,63 @@ const CheckoutCompleteComponent: React.FC = () => {
       <h2 className={styles.heading}>{STATUS_CONTENT_MAP[status].text}</h2>
 
       {status === "succeeded" && purchasedItems.length > 0 && (
-        <div className={styles.detailsTable}>
-          <h3 className={styles.heading}>
-            Thank you for your purchase
-          </h3>
-          {purchasedItems.some(item => item.product_type === "course") && (
-            <p><a href = "https://courses.naomifisher.co.uk/login">Log in</a> to watch your courses.</p>
-          )}
-          {purchasedItems.some(item => item.product_type === "webinar") && (
-            <p>Webinar Zoom links will be sent 2 hours before the start</p>
-          )}
+          <div className={styles.detailsTable}>
+            <h3 className={styles.heading}>
+              Thank you for your order
+            </h3>
+            {purchasedItems.some(item => item.product_type === "course") && (
+                <p>Check your email for instructions on how to watch your course.</p>
+            )}
+            {purchasedItems.some(item => item.product_type === "webinar") && (
+                <p>Webinar Zoom links will be sent 2 hours before the start</p>
+            )}
 
-          <h3>Order summary</h3>
+            <p>
+              If you have any questions, please email <a
+                href="mailto:support@naomifisher.co.uk">support@naomifisher.co.uk</a
+            >
+            </p>
 
-          <table className={styles.table}>
+            <h3>Order summary</h3>
 
-            <tbody>
+            <table className={styles.table}>
+
+              <tbody>
               {purchasedItems.map((item) => (
-                <tr key={item.id}>
-                  <td>
-                    <div className={styles.itemDetails}>
+                  <tr key={item.id}>
+                    <td>
+                      <div className={styles.itemDetails}>
 
-                      <div>
-                        <div className={styles.webinarName}>
-                          {item.product_name}
-                        </div>
-                        <div className={styles.variantName}>
-                          {item.variant_name}
+                        <div>
+                          <div className={styles.webinarName}>
+                            {item.product_name}
+                          </div>
+                          <div className={styles.variantName}>
+                            {item.variant_name}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </td>
-                  <td>£{formatAmount(item.discountedPriceInPence)}</td>
+                    </td>
+                    <td>£{formatAmount(item.discountedPriceInPence)}</td>
 
 
-                </tr>
+                  </tr>
               ))}
               <tr>
                 <td>Total</td>
                 <td>
                   £
                   {(
-                    purchasedItems.reduce(
-                      (acc, item) => acc + item.discountedPriceInPence * item.quantity,
-                      0,
-                    ) / 100
+                      purchasedItems.reduce(
+                          (acc, item) => acc + item.discountedPriceInPence * item.quantity,
+                          0,
+                      ) / 100
                   ).toFixed(2)}
                 </td>
               </tr>
-            </tbody>
-          </table>
-        </div>
+              </tbody>
+            </table>
+          </div>
       )}
     </div>
   );

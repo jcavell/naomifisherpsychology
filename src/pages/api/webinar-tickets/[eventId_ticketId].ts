@@ -69,7 +69,6 @@ export async function GET({ params, request }) {
     variant_name: ticket.name,
     currency: "GBP",
     discountedPriceInPence: ticket.costValue || 0,
-    formatted_price: ticket.costPlusFee,
     added_at: new Date().toISOString(),
     expires_at: ticket.salesEnd,
     quantity: 1, // Default quantity
