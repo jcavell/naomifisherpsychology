@@ -1,7 +1,7 @@
 import type { Purchase } from "../../types/postmark-purchase";
 import moment from "moment/moment";
 import type { BasketItem } from "../../types/basket-item..ts";
-import { sendPurchaseConfirmationEmail } from "./send-purchase-confirmation-via-postmark.ts";
+import { sendPurchaseConfirmationEmailWithRetry } from "./send-purchase-confirmation-via-postmark.ts";
 import Logger from "../logger.ts";
 import type { User } from "../../types/user";
 import { env } from "../env";
@@ -33,7 +33,7 @@ export const sendPurchaseConfirmationAndSubToKit = async (
   };
 
   // TODO - await update purchase_event table with email_sent event
-  await sendPurchaseConfirmationEmail(postmarkPurchase);
+  await sendPurchaseConfirmationEmailWithRetry(postmarkPurchase);
 
   // Create new Kit subscriber (POST user to Kit /subscribers) only if:
   // (1) The user clicked subscribe to marketing checkbox AND

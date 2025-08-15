@@ -10,7 +10,7 @@ import {
   getPurchase,
   upsertPurchaseToConfirmPayment,
 } from "../../scripts/checkout/sb-purchases.ts";
-import { postCoursesToZapier } from "../../scripts/checkout/zap.ts";
+import { postCoursesToZapierWithRetry } from "../../scripts/checkout/zap.ts";
 
 export const prerender = false; // Disable static pre-rendering for this endpoint
 
@@ -114,7 +114,7 @@ export async function POST({ request }: { request: Request }) {
 
     // Step 6
     // Add Zapier webhook call for courses
-    await postCoursesToZapier(userId, user, courseBasketItems);
+    await postCoursesToZapierWithRetry(userId, user, courseBasketItems);
 
     // Return 200 to indicate successful purchase
     return success;

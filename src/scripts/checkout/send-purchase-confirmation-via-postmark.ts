@@ -1,6 +1,7 @@
 import type { Purchase } from "../../types/postmark-purchase";
 import Logger from "../logger.ts";
 import { env } from "../env.ts";
+import { withRetry } from "./retry.ts";
 
 export const prerender = false;
 
@@ -14,11 +15,20 @@ const formattedPrice = new Intl.NumberFormat("en-GB", {
   currency: "GBP",
 });
 
+
+export async function sendPurchaseConfirmationEmailWithRetry(purchase: Purchase): Promise<void> {
+  return withRetry(
+    async () => {
+      return sendPurchaseConfirmationEmail(purchase);
+    },
+    'Send purchase confirmation email'
+  );
+}
 /**
  * Sends a purchase confirmation email via Postmark.
  * @param purchase The purchase details object.
  */
-export async function sendPurchaseConfirmationEmail(
+ async function sendPurchaseConfirmationEmail(
   purchase: Purchase,
 ): Promise<void> {
   const postmarkPayload = {

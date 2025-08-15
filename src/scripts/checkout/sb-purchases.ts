@@ -1,4 +1,3 @@
-import Logger from "../logger.ts";
 import Stripe from "stripe";
 import { createSbClient } from "./create-sb-client.ts";
 import logger from "../logger.ts";
@@ -29,7 +28,7 @@ export const getPurchase = async (paymentIntentId: string) => {
       paymentIntentId,
     };
 
-    Logger.ERROR("Failed to retrieve Purchases record", {
+    logger.ERROR("Failed to retrieve Purchases record", {
       error: errorDetails,
       context: {
         paymentIntentId,
@@ -42,7 +41,7 @@ export const getPurchase = async (paymentIntentId: string) => {
   }
 
   if (!purchase) {
-    Logger.ERROR("No purchase record found", {
+    logger.ERROR("No purchase record found", {
       context: {
         paymentIntentId,
         timestamp: new Date().toISOString(),

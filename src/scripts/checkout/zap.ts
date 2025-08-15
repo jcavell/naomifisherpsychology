@@ -3,10 +3,20 @@ import type { User } from "../../types/user";
 import { getInternalIdFromOfferId } from "../course-get-internal-id.ts";
 import Logger from "../logger";
 import { env } from "../env.ts";
+import { withRetry } from "./retry.ts";
 
 const ZAPIER_WEBHOOK_URL = env.ZAPIER_WEBHOOK_URL;
 
-export async function postCoursesToZapier(
+export async function postCoursesToZapierWithRetry(userId: any, user: User, courseBasketItems: BasketItem[]) {
+  return withRetry(
+    async () => {
+     return postCoursesToZapier(userId, user, courseBasketItems);
+    },
+    'Post courses to Zapier'
+  );
+}
+
+async function postCoursesToZapier(
   userId: any,
   user: User,
   courseBasketItems: BasketItem[],
