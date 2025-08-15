@@ -87,9 +87,14 @@ export async function POST({ request }: { request: Request }) {
       t: t,
     };
 
+    // Upsert used to cater for scenario of the same Stripe payment_intent_id
+    // Happens if their card is declined and they try with a different card
     const { error: purchaseError } = await supabase
       .from("Purchases")
-      .insert([stripePayment]);
+      .upsert([stripePayment], {
+        onConflict: 'stripe_payment_id',
+        ignoreDuplicates: false
+      });
 
     if (purchaseError) {
       console.error("Failed to insert purchase into Supabase:", purchaseError);
