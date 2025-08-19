@@ -1,32 +1,36 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
+import StaticImage from "../components/StaticImage.astro";
+import homeImage from "../images/static/1080w/nf-oxford.webp";
 const formId = "6662296";
+const pageTitle = "Transitions Toolkit";
+const metaDescription = "Dr Naomi Fisher's free Transitions Toolkit";
 ---
 
-<BaseLayout pageTitle="Transitions Toolkit">
-  <a id="newsletter"></a>
-
-  <div class="newsletter-content">
-    <h2>Transitions</h2>
-    <p>
-      Many parents say that before they had children, they never realised just
-      how many transitions there were in a day.
-    </p>
-    <p>
-      And then along came the child who found them difficult -and suddenly life
-      was full of transitions.
-    </p>
-    <p>
-      Sign up below to get Naomi's <strong>free, evidenced based toolkit</strong
-      > and psychologically-informed tips, sent to your inbox.
-    </p>
-  </div>
-  <div class="form-wrapper">
-    <div class="form-title">
-      <h3>Transitions Toolkit</h3>
+<BaseLayout
+  active="freebie"
+  pageTitle={pageTitle}
+  metaDescription={metaDescription}
+>
+  <div class="page-intro-wrapper">
+    <div class="page-intro-static-image">
+      <StaticImage image={homeImage} alt="Naomi Fisher" />
     </div>
-    <div class="form">
+
+    <div class="page-intro-text">
+      <h3>Transitions</h3>
+      <p>
+        Transitions are hard. You’re doing one thing, and then you have to stop
+        and start doing something else. For many autistic children, this takes a
+        lot of effort. Daily requirements like leaving the house or getting
+        dressed are difficult – and they show us that through their behaviour.
+        Life can feel like walking on eggshells. What can parents do to help?
+      </p>
+      <p>
+        Sign up to get Naomi's free, evidenced based toolkit and
+        psychologically-informed tips, sent to your inbox.
+      </p>
+
       <form
         action={`https://app.convertkit.com/forms/${formId}/subscriptions`}
         class="seva-form formkit-form"
@@ -60,69 +64,9 @@ const formId = "6662296";
                 type="email"
               />
             </div>
-            <div class="formkit-field null-field">
-              <div role="button" tabindex="0">
-                <fieldset
-                  data-group="checkboxes"
-                  class="formkit-4446"
-                  type="Custom"
-                  order="1"
-                  save_as="Tag"
-                  group="field"
-                >
-                </fieldset>
-              </div>
-            </div>
-            <div class="formkit-field">
-              <div role="button" tabindex="0">
-                <fieldset
-                  data-group="checkboxes"
-                  class="formkit-4892"
-                  type="Custom"
-                  order="2"
-                  save_as="Tag"
-                  group="field"
-                >
-                  <div
-                    class="formkit-checkboxes"
-                    data-element="tags-checkboxes"
-                    data-group="checkbox"
-                  >
-                    <input
-                      class="formkit-checkbox"
-                      id={`tag-${formId}-3368044`}
-                      type="checkbox"
-                      name="tags[]"
-                      value="3368044"
-                    />
-                    <label for={`tag-${formId}-3368044`}>I'm a parent</label>
-                  </div>
-                  <div
-                    class="formkit-checkboxes"
-                    data-element="tags-checkboxes"
-                    data-group="checkbox"
-                  >
-                    <input
-                      class="formkit-checkbox"
-                      id={`tag-${formId}-3368045`}
-                      type="checkbox"
-                      name="tags[]"
-                      value="3368045"
-                    />
-                    <label for={`tag-${formId}-3368045`}
-                      >I'm a professional</label
-                    >
-                  </div>
-                </fieldset>
-              </div>
-            </div>
+
             <button data-element="submit" class="formkit-submit formkit-submit">
-              <div class="formkit-spinner">
-                <div></div>
-                <div></div>
-                <div></div>
-              </div>
-              <span class="">Subscribe</span>
+              <span class="">Get your toolkit</span>
             </button>
           </div>
         </div>
