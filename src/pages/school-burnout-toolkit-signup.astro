@@ -1,16 +1,40 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
+import StaticImage from "../components/StaticImage.astro";
+import homeImage from "../images/static/1080w/nf-oxford.webp";
 const formId = "6662296";
+const pageTitle = "School Burnout Toolkit";
+const metaDescription =
+  "Dr Naomi Fisher's free toolkit on school burnout for autistic children";
 ---
 
-<BaseLayout pageTitle="School Burnout Toolkit">
-  <a id="newsletter"></a>
-  <div class="form-wrapper">
-    <div class="form-title">
-      <h3>School Burnout Toolkit</h3>
+<BaseLayout
+  active="freebie"
+  pageTitle={pageTitle}
+  metaDescription={metaDescription}
+>
+  <div class="page-intro-wrapper">
+    <div class="page-intro-static-image">
+      <StaticImage
+        image={homeImage}
+        alt="Naomi and Child reading A Different Way To Learn"
+      />
     </div>
-    <div class="form">
+
+    <div class="page-intro-text">
+      <h3>School Burnout</h3>
+      <p>
+        I write the books I would have liked to read. My earlier books <a
+          href="/books/changing-our-minds">Changing Our Minds</a
+        > and <a href="/books/a-different-way-to-learn"
+          >A Different Way to Learn</a
+        > reflect the years I spent home educating my children, when I felt that
+        there was little which reflected our educational experience. I saw how differently
+        they learnt through not going to school, and how little there was available
+        which looked at the process of learning outside school from a developmental
+        psychology perspective.
+      </p>
+
       <form
         action={`https://app.convertkit.com/forms/${formId}/subscriptions`}
         class="seva-form formkit-form"
@@ -44,69 +68,14 @@ const formId = "6662296";
                 type="email"
               />
             </div>
-            <div class="formkit-field null-field">
-              <div role="button" tabindex="0">
-                <fieldset
-                  data-group="checkboxes"
-                  class="formkit-4446"
-                  type="Custom"
-                  order="1"
-                  save_as="Tag"
-                  group="field"
-                >
-                </fieldset>
-              </div>
-            </div>
-            <div class="formkit-field">
-              <div role="button" tabindex="0">
-                <fieldset
-                  data-group="checkboxes"
-                  class="formkit-4892"
-                  type="Custom"
-                  order="2"
-                  save_as="Tag"
-                  group="field"
-                >
-                  <div
-                    class="formkit-checkboxes"
-                    data-element="tags-checkboxes"
-                    data-group="checkbox"
-                  >
-                    <input
-                      class="formkit-checkbox"
-                      id={`tag-${formId}-3368044`}
-                      type="checkbox"
-                      name="tags[]"
-                      value="3368044"
-                    />
-                    <label for={`tag-${formId}-3368044`}>I'm a parent</label>
-                  </div>
-                  <div
-                    class="formkit-checkboxes"
-                    data-element="tags-checkboxes"
-                    data-group="checkbox"
-                  >
-                    <input
-                      class="formkit-checkbox"
-                      id={`tag-${formId}-3368045`}
-                      type="checkbox"
-                      name="tags[]"
-                      value="3368045"
-                    />
-                    <label for={`tag-${formId}-3368045`}
-                      >I'm a professional</label
-                    >
-                  </div>
-                </fieldset>
-              </div>
-            </div>
+
             <button data-element="submit" class="formkit-submit formkit-submit">
               <div class="formkit-spinner">
                 <div></div>
                 <div></div>
                 <div></div>
               </div>
-              <span class="">Subscribe</span>
+              <span class="">Get your toolkit</span>
             </button>
           </div>
         </div>
