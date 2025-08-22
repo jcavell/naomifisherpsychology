@@ -11,8 +11,8 @@
 1. **Clone the repository**
 ```bash
 git clone https://github.com/jcavell/naomifisherpsychology.git
-git checkout basket
 cd naomifisherpsychology
+git checkout basket
 ```
 
 2. **Install dependencies**
@@ -22,21 +22,12 @@ npm install
 
 3. **Set up environment variables**
 
-Create a `.env` file in the root directory and add the required variables. You can copy from .env.example, which contains:
-
-```plaintext
-PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_....
-STRIPE_SECRET_KEY=sk_test_....
-KIT_API_KEY=kit_....
-SUPABASE_API_URL=https://....
-SUPABASE_API_KEY=KEY
-POSTMARK_SERVER_TOKEN=TOKEN
-EB_BEARER=BEARER_TOKEN
-ZAPIER_WEBHOOK_URL=https://hooks.zapier.com/hooks/catch/...
-DEV_USES_CACHED_WEBINARS=true
+Create a `.env` file in the root directory and add the required variables. You can copy from .env.example:
+```bash
+cp .env.example .env
 ```
 
-**NOTE** if you are not using the checkout, the only env variable you need is `DEV_USES_CACHED_WEBINARS=true`
+If you are not using the checkout, the only env variable you need is `DEV_USES_CACHED_WEBINARS=true` which will have been copied by the command above.
 
 ### Local HTTPS Setup
 This project uses HTTPS in development. Run:
