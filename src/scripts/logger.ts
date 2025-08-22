@@ -38,7 +38,7 @@ class Logger {
         }
 
         const logMessage = `${timestamp} [${level}] (${location}): ${message}`;
-        console.log(logMessage);
+        // console.log(logMessage);
         return logMessage;
       }),
     ),

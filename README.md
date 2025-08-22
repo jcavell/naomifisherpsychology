@@ -11,6 +11,7 @@
 1. **Clone the repository**
 ```bash
 git clone https://github.com/jcavell/naomifisherpsychology.git
+git checkout basket
 cd naomifisherpsychology
 ```
 
@@ -20,7 +21,9 @@ npm install
 ```
 
 3. **Set up environment variables**
-   Create a `.env` file in the root directory and add required variables. Look in .env.example which contains:
+
+Create a `.env` file in the root directory and add the required variables. You can copy from .env.example, which contains:
+
 ```plaintext
 PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_....
 STRIPE_SECRET_KEY=sk_test_....
@@ -30,7 +33,10 @@ SUPABASE_API_KEY=KEY
 POSTMARK_SERVER_TOKEN=TOKEN
 EB_BEARER=BEARER_TOKEN
 ZAPIER_WEBHOOK_URL=https://hooks.zapier.com/hooks/catch/...
+DEV_USES_CACHED_WEBINARS=true
 ```
+
+**NOTE** if you are not using the checkout, the only env variable you need is `DEV_USES_CACHED_WEBINARS=true`
 
 ### Local HTTPS Setup
 This project uses HTTPS in development. Run:
@@ -50,6 +56,8 @@ npm run dev
 This will start the development server at `https://localhost:4321`
 
 Any changes you make in the code will be reflected immediately. Page are not pre-built - which is different to how it operates when deployed.
+
+If you have set `DEV_USES_CACHED_WEBINARS=true` then this will use the webinar data in `src/test-data/eventbrite` 
 
 ### Deployment Build
 
@@ -88,102 +96,11 @@ Any that are dynamic, e.g. APIs, must have prerender set to false at the top of 
 
 Otherwise, they are pre-built by Astro during the build phase and are not dynamic when deployed.
 
-```
-├── pages
-│   ├── about.astro
-│   ├── api (more details below)
-│   ├── basket.astro
-│   ├── blog
-│   │   ├── [title].astro
-│   ├── blog.astro
-│   ├── books
-│   │   ├── [...slug].astro
-│   ├── books.astro
-│   ├── checkout-complete.astro
-│   ├── checkout.astro
-│   ├── consultation.astro
-│   ├── contact.astro
-│   ├── cookie-policy.astro
-│   ├── courses
-│   │   ├── [...title].astro
-│   │   ├── categories
-│   │   │   └── [...category].astro
-│   ├── courses.astro
-│   ├── educationalpsychology.astro
-│   ├── index.astro
-│   ├── is-it-all-my-fault.astro
-│   ├── media.astro
-│   ├── privacy-policy.astro
-│   ├── random.js
-│   ├── subscribed.astro
-│   ├── tags
-│   │   ├── [tag].astro
-│   ├── terms-and-conditions.astro
-│   ├── training.astro
-│   ├── webinars
-│   │   ├── [eventId].astro
-│   ├── webinars.astro
-```
 
 ## Components
 
 Both astro and React components are here.
 
-``` ├── components
-    │   ├── Contributers.astro
-    │   ├── CookieConsent.astro
-    │   ├── DisplayTagContent.astro
-    │   ├── FilterMenu.astro
-    │   ├── Footer.astro
-    │   ├── Hamburger.astro
-    │   ├── Header.astro
-    │   ├── IconLinks.astro
-    │   ├── Navigation.astro
-    │   ├── Newsletter.astro
-    │   ├── Quoter.tsx
-    │   ├── Social.astro
-    │   ├── StaticImage.astro
-    │   ├── Tags.astro
-    │   ├── ThemeIcon.astro
-    │   ├── Vimeo.astro
-    │   ├── basket (REACT)
-    │   │   ├── CourseDetailsAddToBasket.tsx
-    │   │   ├── AddToBasketComponent.tsx
-    │   │   ├── AddWebinarTicketsToBasket.tsx
-    │   │   ├── Basket.tsx
-    │   │   ├── BasketWrapper.tsx
-    │   │   ├── ChooseWebinarTickets.tsx
-    │   │   ├── ChooseWebinarTicketsWrapper.tsx
-    │   ├── blog
-    │   │   ├── BlogDetails.astro
-    │   │   ├── BlogImage.astro
-    │   │   ├── BlogList.astro
-    │   │   ├── BlogSummary.astro
-    │   ├── book
-    │   │   ├── BookDetails.astro
-    │   │   ├── BookImage.astro
-    │   │   ├── BookSummary.astro
-    │   ├── checkout (REACT)
-    │   │   ├── CheckoutCompleteComponent.tsx
-    │   │   ├── CheckoutCompleteWrapper.tsx
-    │   │   ├── CheckoutComponent.tsx
-    │   │   ├── CheckoutForm.tsx
-    │   │   ├── CheckoutFormStateAndValidation.ts
-    │   │   ├── CheckoutOrderSummary.tsx
-    │   ├── course
-    │   │   ├── CourseDetails.astro
-    │   │   ├── CourseImage.astro
-    │   │   ├── CourseSummary.astro
-    │   │   ├── CoursesList.astro
-    │   ├── media
-    │   │   ├── MediaSummary.astro
-    │   ├── webinar
-    │   │   └── RemoveFinishedWebinars.ts
-    │   │   └── WebinarDetails.astro
-    │   │   └── WebinarImage.astro
-    │   │   └── WebinarSummary.astro
-    
-   ```
 ## Content
 This directory contains Markdown and JSON data.
 
@@ -205,40 +122,6 @@ Data for courses and the blog is obtained via web scraping in a different app.
     │   ├── tag-quotes
     │   ├── tags
     │   ├── webinar-quotes
-```
-
-## Scripts
-```aiignore
-   ├── scripts
-    │   ├── accordion.js
-    │   ├── blog.ts
-    │   ├── book.ts
-    │   ├── checkout
-    │   │   ├── calculateOrderAmount.ts
-    │   │   ├── create-sb-client.ts
-    │   │   ├── init-stripe.ts
-    │   │   ├── sb-purchases.ts
-    │   │   ├── sb-users.ts
-    │   │   ├── sb-webinar-tickets.ts
-    │   │   ├── send-purchase-confirmation-via-postmark.ts
-    │   │   ├── send-purchase-confirmation.ts
-    │   │   ├── zap.ts
-    │   ├── course-get-internal-id.ts
-    │   ├── courseCategories.ts
-    │   ├── courseMeta.ts
-    │   ├── courses.ts
-    │   ├── env.ts
-    │   ├── filterMenu.js
-    │   ├── formatDateUtil.ts
-    │   ├── getTaggedResources.ts
-    │   ├── logger.ts
-    │   ├── media.ts
-    │   ├── people.ts
-    │   ├── tagMeta.ts
-    │   ├── tags.ts
-    │   ├── url.ts
-    │   ├── webinarMeta.ts
-    │   ├── webinars.ts
 ```
 
 ## Styles
@@ -268,53 +151,11 @@ React components are used for the shopping basket and checkout.
 
 The styles are modular. They are defined within src/styles/components/cart and src/styles/components/checkout.
 
-the project uses react-use-cart: https://github.com/sammdec/use-cart. This stores the cart items in local storage.
-
-Items stored in the cart are of type `BasketItem` for both webinars and courses:
-
-```typescript
-export type BasketItem = {
-id: string; //
-discountedPriceInPence: number; // in pence e.g. 1699
-currency: string;
-formatted_price: string; // e.g. £16.99, required by postmark template
-quantity: number;
-ProductType: ProductType;
-is_course: boolean; // required by postmark template
-is_webinar: boolean; // required by postmark template
-product_id: string;
-product_name: string;
-product_images: string[];
-product_description?: string;
-variant_id: string;
-variant_name: string;
-variant_description?: string;
-added_at: string; // format "2025-02-13T14:42:52.713Z"
-expires_at: string; // format "2024-09-23T12:30:00Z"
-vatable: boolean;
-};
-```
+Items stored in the cart are of type `BasketItem` for both webinars and courses.
 
 ## API endpoints 
 
 APIs are under /pages/api
-
-    ├── pages
-    │   ├── api
-    │   │   ├── courses
-    │   │   │   ├── [offerId].ts
-    │   │   ├── create-payment-intent.ts
-    │   │   ├── get-coupon.ts
-    │   │   ├── get-kit-user.ts
-    │   │   ├── get-user-cookie.ts
-    │   │   ├── process-free-checkout.ts
-    │   │   ├── sb-insert-unconfirmed-purchase.ts
-    │   │   ├── set-user-cookie.ts
-    │   │   ├── stripe-webhook-handler.ts
-    │   │   ├── webinar-tickets
-    │   │   │   ├── [eventId_ticketId].ts
-    │   │   ├── webinars
-    │   │   │   └── [eventId].ts
 
 The React components call local APIs to get information about courses, webinars, webinar tickets and whether a user has already subscribed to Kit.
 
@@ -348,28 +189,6 @@ Example: https://localhost:4321/api/webinar-tickets/1203174349869_2131545083
     - EventbriteTicket class information
     - Pricing details in GBP
     - Event timing and expiration details
-#### Example Response
-```json
-{
-  "id": "1203174349869_2131545083",
-  "ProductType": "webinar",
-  "is_course": false,
-  "is_webinar": true,
-  "product_id": "1203174349869",
-  "product_name": "EventbriteWebinar Title",
-  "product_description": "EventbriteWebinar description",
-  "product_images": ["https://example.com/logo.jpg"],
-  "variant_id": "2131545083",
-  "variant_name": "Live EventbriteWebinar",
-  "currency": "GBP",
-  "discountedPriceInPence": 1150,
-  "formatted_price": "£11.50",
-  "added_at": "2024-02-13T14:42:52.713Z",
-  "expires_at": "2024-02-27T12:00:00Z",
-  "quantity": 1,
-  "vatable": false
-}
-```
 
 ### Courses API
 
@@ -381,47 +200,12 @@ The `/api/courses/offerId/[offerId]` endpoint provides course details for the sh
     - Converts display prices (e.g., "£99.99") to cents/pence for Stripe
     - Maintains original formatted discountedPriceInPence for display purposes
 
-#### Example Response
-```json
-{
-  "id": "offer_123",
-  "ProductType": "course",
-  "is_course": true,
-  "is_webinar": false,
-  "product_id": "offer_123",
-  "product_name": "Course Title",
-  "product_description": "Course description",
-  "product_images": ["https://example.com/image.jpg"],
-  "variant_id": "",
-  "variant_name": "Course",
-  "currency": "GBP",
-  "discountedPriceInPence": 9999,
-  "formatted_price": "£99.99",
-  "added_at": "2024-02-20T12:00:00.000Z",
-  "expires_at": "2025-02-20T12:00:00.000Z",
-  "quantity": 1,
-  "vatable": false
-}
-```
 ### Free Checkout API
 
 Processes free items in the shopping cart without Stripe payment processing.
 
  `/api/free-checkout`
 
-
-#### Request Body Example
-```json
-{
-  "user": {
-    "email": "string",
-    "firstName": "string",
-    "lastName": "string"
-  },
-  "basket_items": [
-  ]
-}
-```
 
 
 #### Notes
@@ -436,20 +220,6 @@ Processes free items in the shopping cart without Stripe payment processing.
 Records initial purchase details in Supabase before payment processing.
 
  `/api/create-purchase`
-
-#### Request Body Example
-```json
-{
-  "payment_intent_id": "pi_123...",
-  "user": {
-    "email": "user@example.com",
-    "firstName": "John",
-    "lastName": "Doe"
-  },
-  "basket_items": [
-  ]
-}
-```
 
 
 #### Notes
@@ -467,7 +237,7 @@ Records initial purchase details in Supabase before payment processing.
 
 ### Full details
 1. **User Adds Items to Cart**
-   - The user browses through the website and adds items to their shopping cart using the `react-use-cart` library. The shopping cart details, including products and their quantities, are tracked in state.
+   - The user browses through the website and adds items to their shopping cart. The shopping cart details, including products and their quantities, are stored in local storage.
 2. **Navigating to the Checkout Page**
    - When the user decides to proceed with the purchase, they click the "Checkout" button in the cart, which navigates them to the `/checkout` page.
 3. **Backend Creates a PaymentIntent**
@@ -533,7 +303,7 @@ Records initial purchase details in Supabase before payment processing.
    Ensure you're using the Stripe test keys. In your `.env` file:
    ```plaintext
    STRIPE_SECRET_KEY=sk_test_...    # From dev sandbox
-   STRIPE_PUBLISHABLE_KEY=pk_test_...  # From dev sandbox
+   STRIPE_PUBLISHABLE_KEY=pk_test_... (or rk_test for a restricted key)  # From dev sandbox
    ```
 
 3. **Test Cards**

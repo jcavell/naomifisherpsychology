@@ -14,15 +14,12 @@ export function getEnvVar(key: string): string {
 export function isDev(): boolean {
   const isDevelopment =
     import.meta.env.DEV || process.env.NODE_ENV === "development";
-  console.log("IS DEV:", isDevelopment);
   return isDevelopment;
 }
 
 // Define and export environment variables with getters
 export const env = {
-  get EB_BEARER() {
-    return getEnvVar("EB_BEARER");
-  },
+  EB_BEARER: getEnvVar("EB_BEARER"),
   get STRIPE_SECRET_KEY() {
     return getEnvVar("STRIPE_SECRET_KEY");
   },
@@ -43,5 +40,8 @@ export const env = {
   },
   get ZAPIER_WEBHOOK_URL() {
     return getEnvVar("ZAPIER_WEBHOOK_URL");
+  },
+  get DEV_USES_CACHED_WEBINARS() {
+    return getEnvVar("DEV_USES_CACHED_WEBINARS") === "true";
   },
 } as const;

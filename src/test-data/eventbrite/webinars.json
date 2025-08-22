@@ -1,0 +1,761 @@
+[
+  {
+    "name": {
+      "text": "Helping Your Autistic Child with Transitions",
+      "html": "Helping Your Autistic Child with Transitions"
+    },
+    "description": {
+      "text": "Life is full of transitions - and many autistic children find them really difficult. Why is this, and how can parents help?",
+      "html": "Life is full of transitions - and many autistic children find them really difficult. Why is this, and how can parents help?"
+    },
+    "url": "https://www.eventbrite.co.uk/e/helping-your-autistic-child-with-transitions-tickets-1472461725659",
+    "start": {
+      "timezone": "Europe/London",
+      "local": "2025-09-10T12:00:00",
+      "utc": "2025-09-10T11:00:00Z"
+    },
+    "end": {
+      "timezone": "Europe/London",
+      "local": "2025-09-10T13:30:00",
+      "utc": "2025-09-10T12:30:00Z"
+    },
+    "organization_id": "495447088469",
+    "created": "2025-07-08T08:50:43Z",
+    "changed": "2025-08-22T09:19:29Z",
+    "published": "2025-07-10T15:15:59Z",
+    "capacity": 16777215,
+    "capacity_is_custom": true,
+    "status": "live",
+    "currency": "GBP",
+    "listed": true,
+    "shareable": true,
+    "invite_only": false,
+    "online_event": true,
+    "show_remaining": false,
+    "tx_time_limit": 1200,
+    "hide_start_date": false,
+    "hide_end_date": false,
+    "locale": "en_GB",
+    "is_locked": false,
+    "privacy_setting": "unlocked",
+    "is_series": false,
+    "is_series_parent": false,
+    "inventory_type": "limited",
+    "is_reserved_seating": false,
+    "show_pick_a_seat": false,
+    "show_seatmap_thumbnail": false,
+    "show_colors_in_seatmap_thumbnail": false,
+    "source": "coyote",
+    "is_free": false,
+    "version": null,
+    "summary": "Life is full of transitions - and many autistic children find them really difficult. Why is this, and how can parents help?",
+    "facebook_event_id": null,
+    "logo_id": "851288169",
+    "organizer_id": "32877900485",
+    "venue_id": null,
+    "category_id": "115",
+    "subcategory_id": "15003",
+    "format_id": "2",
+    "id": "1472461725659",
+    "resource_uri": "https://www.eventbriteapi.com/v3/events/1472461725659/",
+    "is_externally_ticketed": false,
+    "category": {
+      "resource_uri": "https://www.eventbriteapi.com/v3/categories/115/",
+      "id": "115",
+      "name": "Family & Education",
+      "name_localized": "Family & Education",
+      "short_name": "Family & Education",
+      "short_name_localized": "Family & Education"
+    },
+    "subcategory": {
+      "resource_uri": "https://www.eventbriteapi.com/v3/subcategories/15003/",
+      "id": "15003",
+      "name": "Parenting",
+      "name_localized": "Parenting"
+    },
+    "logo": {
+      "crop_mask": {
+        "top_left": {
+          "x": 0,
+          "y": 775
+        },
+        "width": 8688,
+        "height": 4344
+      },
+      "original": {
+        "url": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F851288169%2F137448283838%2F1%2Foriginal.20240916-144228?auto=format%2Ccompress&q=75&sharp=10&s=2c98c74467136b69121ee629ce8fe1f2",
+        "width": 8688,
+        "height": 5792
+      },
+      "id": "851288169",
+      "url": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F851288169%2F137448283838%2F1%2Foriginal.20240916-144228?h=200&w=450&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C775%2C8688%2C4344&s=d4e8b329163f8cc8e4cf4f581a99a8fc",
+      "aspect_ratio": "2",
+      "edge_color": "#362716",
+      "edge_color_set": true
+    },
+    "ticket_classes": [
+      {
+        "actual_cost": null,
+        "actual_fee": {
+          "display": "£2.21",
+          "currency": "GBP",
+          "value": 221,
+          "major_value": "2.21"
+        },
+        "cost": {
+          "display": "£17.99",
+          "currency": "GBP",
+          "value": 1799,
+          "major_value": "17.99"
+        },
+        "fee": {
+          "display": "£0.00",
+          "currency": "GBP",
+          "value": 0,
+          "major_value": "0.00"
+        },
+        "tax": {
+          "display": "£0.00",
+          "currency": "GBP",
+          "value": 0,
+          "major_value": "0.00"
+        },
+        "resource_uri": "https://www.eventbriteapi.com/v3/events/1472461725659/ticket_classes/2611067213/",
+        "display_name": "Live Webinar + recording for 4 weeks",
+        "name": "Live Webinar + recording for 4 weeks",
+        "description": null,
+        "sorting": 1,
+        "donation": false,
+        "free": false,
+        "minimum_quantity": 1,
+        "maximum_quantity": 1,
+        "maximum_quantity_per_order": 1,
+        "on_sale_status": "AVAILABLE",
+        "has_pdf_ticket": false,
+        "order_confirmation_message": null,
+        "delivery_methods": [
+          "electronic"
+        ],
+        "category": "admission",
+        "sales_channels": [
+          "online",
+          "atd"
+        ],
+        "secondary_assignment_enabled": false,
+        "event_id": "1472461725659",
+        "image_id": null,
+        "id": "2611067213",
+        "capacity": 750,
+        "quantity_total": 750,
+        "quantity_sold": 47,
+        "sales_start": "2025-07-09T23:00:00Z",
+        "sales_end": "2025-09-10T12:30:00Z",
+        "sales_end_relative": null,
+        "hidden": false,
+        "hidden_currently": false,
+        "include_fee": true,
+        "split_fee": false,
+        "hide_description": true,
+        "hide_sale_dates": false,
+        "ticket_parent_id": null,
+        "auto_hide": false,
+        "payment_constraints": []
+      },
+      {
+        "actual_cost": null,
+        "actual_fee": {
+          "display": "£1.79",
+          "currency": "GBP",
+          "value": 179,
+          "major_value": "1.79"
+        },
+        "cost": {
+          "display": "£12.99",
+          "currency": "GBP",
+          "value": 1299,
+          "major_value": "12.99"
+        },
+        "fee": {
+          "display": "£0.00",
+          "currency": "GBP",
+          "value": 0,
+          "major_value": "0.00"
+        },
+        "tax": {
+          "display": "£0.00",
+          "currency": "GBP",
+          "value": 0,
+          "major_value": "0.00"
+        },
+        "resource_uri": "https://www.eventbriteapi.com/v3/events/1472461725659/ticket_classes/2611067223/",
+        "display_name": "Live Webinar",
+        "name": "Live Webinar",
+        "description": null,
+        "sorting": 2,
+        "donation": false,
+        "free": false,
+        "minimum_quantity": 1,
+        "maximum_quantity": 1,
+        "maximum_quantity_per_order": 1,
+        "on_sale_status": "AVAILABLE",
+        "has_pdf_ticket": false,
+        "order_confirmation_message": null,
+        "delivery_methods": [
+          "electronic"
+        ],
+        "category": "admission",
+        "sales_channels": [
+          "online",
+          "atd"
+        ],
+        "secondary_assignment_enabled": false,
+        "event_id": "1472461725659",
+        "image_id": null,
+        "id": "2611067223",
+        "capacity": 250,
+        "quantity_total": 250,
+        "quantity_sold": 9,
+        "sales_start": "2025-07-08T23:00:00Z",
+        "sales_end": "2025-09-10T11:00:00Z",
+        "sales_end_relative": null,
+        "hidden": false,
+        "hidden_currently": false,
+        "include_fee": true,
+        "split_fee": false,
+        "hide_description": true,
+        "hide_sale_dates": false,
+        "ticket_parent_id": null,
+        "auto_hide": false,
+        "payment_constraints": []
+      }
+    ],
+    "ticket_availability": {
+      "has_available_tickets": true,
+      "minimum_ticket_price": {
+        "currency": "GBP",
+        "major_value": "12.99",
+        "value": 1299,
+        "display": "12.99 GBP"
+      },
+      "maximum_ticket_price": {
+        "currency": "GBP",
+        "major_value": "17.99",
+        "value": 1799,
+        "display": "17.99 GBP"
+      },
+      "is_sold_out": false,
+      "start_sales_date": {
+        "timezone": "Europe/London",
+        "local": "2025-07-09T00:00:00",
+        "utc": "2025-07-08T23:00:00Z"
+      },
+      "waitlist_available": false
+    }
+  },
+  {
+    "name": {
+      "text": "Helping Your Autistic Teen With Anxiety",
+      "html": "Helping Your Autistic Teen With Anxiety"
+    },
+    "description": {
+      "text": "Why are so many autistic teenagers anxious - and what can parents do to help? Gain understanding, insight and practical tips.",
+      "html": "Why are so many autistic teenagers anxious - and what can parents do to help? Gain understanding, insight and practical tips."
+    },
+    "url": "https://www.eventbrite.co.uk/e/helping-your-autistic-teen-with-anxiety-tickets-1472472718539",
+    "start": {
+      "timezone": "Europe/London",
+      "local": "2025-09-24T12:00:00",
+      "utc": "2025-09-24T11:00:00Z"
+    },
+    "end": {
+      "timezone": "Europe/London",
+      "local": "2025-09-24T13:30:00",
+      "utc": "2025-09-24T12:30:00Z"
+    },
+    "organization_id": "495447088469",
+    "created": "2025-07-08T08:57:59Z",
+    "changed": "2025-08-21T22:08:05Z",
+    "published": "2025-07-10T15:18:58Z",
+    "capacity": 16777215,
+    "capacity_is_custom": true,
+    "status": "live",
+    "currency": "GBP",
+    "listed": true,
+    "shareable": true,
+    "invite_only": false,
+    "online_event": true,
+    "show_remaining": false,
+    "tx_time_limit": 1200,
+    "hide_start_date": false,
+    "hide_end_date": false,
+    "locale": "en_GB",
+    "is_locked": false,
+    "privacy_setting": "unlocked",
+    "is_series": false,
+    "is_series_parent": false,
+    "inventory_type": "limited",
+    "is_reserved_seating": false,
+    "show_pick_a_seat": false,
+    "show_seatmap_thumbnail": false,
+    "show_colors_in_seatmap_thumbnail": false,
+    "source": "coyote",
+    "is_free": false,
+    "version": null,
+    "summary": "Why are so many autistic teenagers anxious - and what can parents do to help? Gain understanding, insight and practical tips.",
+    "facebook_event_id": null,
+    "logo_id": "843771239",
+    "organizer_id": "32877900485",
+    "venue_id": null,
+    "category_id": "115",
+    "subcategory_id": "15003",
+    "format_id": "2",
+    "id": "1472472718539",
+    "resource_uri": "https://www.eventbriteapi.com/v3/events/1472472718539/",
+    "is_externally_ticketed": false,
+    "category": {
+      "resource_uri": "https://www.eventbriteapi.com/v3/categories/115/",
+      "id": "115",
+      "name": "Family & Education",
+      "name_localized": "Family & Education",
+      "short_name": "Family & Education",
+      "short_name_localized": "Family & Education"
+    },
+    "subcategory": {
+      "resource_uri": "https://www.eventbriteapi.com/v3/subcategories/15003/",
+      "id": "15003",
+      "name": "Parenting",
+      "name_localized": "Parenting"
+    },
+    "logo": {
+      "crop_mask": {
+        "top_left": {
+          "x": 0,
+          "y": 81
+        },
+        "width": 5956,
+        "height": 2978
+      },
+      "original": {
+        "url": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F843771239%2F137448283838%2F1%2Foriginal.20240906-171105?auto=format%2Ccompress&q=75&sharp=10&s=f8cd0f280ec79268f1ffd9390296ebde",
+        "width": 5956,
+        "height": 3971
+      },
+      "id": "843771239",
+      "url": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F843771239%2F137448283838%2F1%2Foriginal.20240906-171105?h=200&w=450&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C81%2C5956%2C2978&s=caecf33b3e411ef4588eda26f2ff45be",
+      "aspect_ratio": "2",
+      "edge_color": "#7f8c98",
+      "edge_color_set": true
+    },
+    "ticket_classes": [
+      {
+        "actual_cost": null,
+        "actual_fee": {
+          "display": "£2.21",
+          "currency": "GBP",
+          "value": 221,
+          "major_value": "2.21"
+        },
+        "cost": {
+          "display": "£17.99",
+          "currency": "GBP",
+          "value": 1799,
+          "major_value": "17.99"
+        },
+        "fee": {
+          "display": "£0.00",
+          "currency": "GBP",
+          "value": 0,
+          "major_value": "0.00"
+        },
+        "tax": {
+          "display": "£0.00",
+          "currency": "GBP",
+          "value": 0,
+          "major_value": "0.00"
+        },
+        "resource_uri": "https://www.eventbriteapi.com/v3/events/1472472718539/ticket_classes/2611088003/",
+        "display_name": "Live webinar + recording (available for 30 days)",
+        "name": "Live webinar + recording (available for 30 days)",
+        "description": null,
+        "sorting": 1,
+        "donation": false,
+        "free": false,
+        "minimum_quantity": 1,
+        "maximum_quantity": 1,
+        "maximum_quantity_per_order": 1,
+        "on_sale_status": "AVAILABLE",
+        "has_pdf_ticket": false,
+        "order_confirmation_message": null,
+        "delivery_methods": [
+          "electronic"
+        ],
+        "category": "admission",
+        "sales_channels": [
+          "online",
+          "atd"
+        ],
+        "secondary_assignment_enabled": false,
+        "event_id": "1472472718539",
+        "image_id": null,
+        "id": "2611088003",
+        "capacity": 1100,
+        "quantity_total": 1100,
+        "quantity_sold": 32,
+        "sales_start": "2024-09-24T11:00:00Z",
+        "sales_end": "2025-09-24T12:30:00Z",
+        "sales_end_relative": null,
+        "hidden": false,
+        "hidden_currently": false,
+        "include_fee": true,
+        "split_fee": false,
+        "hide_description": true,
+        "hide_sale_dates": false,
+        "ticket_parent_id": null,
+        "auto_hide": false,
+        "payment_constraints": []
+      },
+      {
+        "actual_cost": null,
+        "actual_fee": {
+          "display": "£1.79",
+          "currency": "GBP",
+          "value": 179,
+          "major_value": "1.79"
+        },
+        "cost": {
+          "display": "£12.99",
+          "currency": "GBP",
+          "value": 1299,
+          "major_value": "12.99"
+        },
+        "fee": {
+          "display": "£0.00",
+          "currency": "GBP",
+          "value": 0,
+          "major_value": "0.00"
+        },
+        "tax": {
+          "display": "£0.00",
+          "currency": "GBP",
+          "value": 0,
+          "major_value": "0.00"
+        },
+        "resource_uri": "https://www.eventbriteapi.com/v3/events/1472472718539/ticket_classes/2611087993/",
+        "display_name": "Live webinar",
+        "name": "Live webinar",
+        "description": null,
+        "sorting": 2,
+        "donation": false,
+        "free": false,
+        "minimum_quantity": 1,
+        "maximum_quantity": 10,
+        "maximum_quantity_per_order": 10,
+        "on_sale_status": "AVAILABLE",
+        "has_pdf_ticket": false,
+        "order_confirmation_message": null,
+        "delivery_methods": [
+          "electronic"
+        ],
+        "category": "admission",
+        "sales_channels": [
+          "online",
+          "atd"
+        ],
+        "secondary_assignment_enabled": false,
+        "event_id": "1472472718539",
+        "image_id": null,
+        "id": "2611087993",
+        "capacity": 500,
+        "quantity_total": 500,
+        "quantity_sold": 4,
+        "sales_start": "2025-07-08T23:00:00Z",
+        "sales_end": "2025-09-24T11:00:00Z",
+        "sales_end_relative": null,
+        "hidden": false,
+        "hidden_currently": false,
+        "include_fee": true,
+        "split_fee": false,
+        "hide_description": true,
+        "hide_sale_dates": false,
+        "ticket_parent_id": null,
+        "auto_hide": false,
+        "payment_constraints": []
+      }
+    ],
+    "ticket_availability": {
+      "has_available_tickets": true,
+      "minimum_ticket_price": {
+        "currency": "GBP",
+        "major_value": "12.99",
+        "value": 1299,
+        "display": "12.99 GBP"
+      },
+      "maximum_ticket_price": {
+        "currency": "GBP",
+        "major_value": "17.99",
+        "value": 1799,
+        "display": "17.99 GBP"
+      },
+      "is_sold_out": false,
+      "start_sales_date": {
+        "timezone": "Europe/London",
+        "local": "2024-09-24T12:00:00",
+        "utc": "2024-09-24T11:00:00Z"
+      },
+      "waitlist_available": false
+    }
+  },
+  {
+    "name": {
+      "text": "Understanding and Helping Your Demand Avoidant Child",
+      "html": "Understanding and Helping Your Demand Avoidant Child"
+    },
+    "description": {
+      "text": "What is demand avoidance? Dr Naomi Fisher will explain the psychology of demand avoidance and what parents can do to help.",
+      "html": "What is demand avoidance? Dr Naomi Fisher will explain the psychology of demand avoidance and what parents can do to help."
+    },
+    "url": "https://www.eventbrite.co.uk/e/understanding-and-helping-your-demand-avoidant-child-tickets-1472494212829",
+    "start": {
+      "timezone": "Europe/London",
+      "local": "2025-10-08T12:00:00",
+      "utc": "2025-10-08T11:00:00Z"
+    },
+    "end": {
+      "timezone": "Europe/London",
+      "local": "2025-10-08T13:30:00",
+      "utc": "2025-10-08T12:30:00Z"
+    },
+    "organization_id": "495447088469",
+    "created": "2025-07-08T09:10:32Z",
+    "changed": "2025-08-22T03:14:48Z",
+    "published": "2025-07-10T15:20:47Z",
+    "capacity": 16777215,
+    "capacity_is_custom": true,
+    "status": "live",
+    "currency": "GBP",
+    "listed": true,
+    "shareable": true,
+    "invite_only": false,
+    "online_event": true,
+    "show_remaining": false,
+    "tx_time_limit": 1200,
+    "hide_start_date": false,
+    "hide_end_date": false,
+    "locale": "en_GB",
+    "is_locked": false,
+    "privacy_setting": "unlocked",
+    "is_series": false,
+    "is_series_parent": false,
+    "inventory_type": "limited",
+    "is_reserved_seating": false,
+    "show_pick_a_seat": false,
+    "show_seatmap_thumbnail": false,
+    "show_colors_in_seatmap_thumbnail": false,
+    "source": "coyote",
+    "is_free": false,
+    "version": null,
+    "summary": "What is demand avoidance? Dr Naomi Fisher will explain the psychology of demand avoidance and what parents can do to help.",
+    "facebook_event_id": null,
+    "logo_id": "703645599",
+    "organizer_id": "32877900485",
+    "venue_id": null,
+    "category_id": "115",
+    "subcategory_id": "15003",
+    "format_id": "2",
+    "id": "1472494212829",
+    "resource_uri": "https://www.eventbriteapi.com/v3/events/1472494212829/",
+    "is_externally_ticketed": false,
+    "category": {
+      "resource_uri": "https://www.eventbriteapi.com/v3/categories/115/",
+      "id": "115",
+      "name": "Family & Education",
+      "name_localized": "Family & Education",
+      "short_name": "Family & Education",
+      "short_name_localized": "Family & Education"
+    },
+    "subcategory": {
+      "resource_uri": "https://www.eventbriteapi.com/v3/subcategories/15003/",
+      "id": "15003",
+      "name": "Parenting",
+      "name_localized": "Parenting"
+    },
+    "logo": {
+      "crop_mask": {
+        "top_left": {
+          "x": 0,
+          "y": 0
+        },
+        "width": 940,
+        "height": 470
+      },
+      "original": {
+        "url": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F703645599%2F137448283838%2F1%2Foriginal.20240223-100938?auto=format%2Ccompress&q=75&sharp=10&s=20fe8e5cb605371f296b953745b34e4c",
+        "width": 940,
+        "height": 470
+      },
+      "id": "703645599",
+      "url": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F703645599%2F137448283838%2F1%2Foriginal.20240223-100938?h=200&w=450&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C940%2C470&s=a0b435a8b6f54861cf65be0d35e3324a",
+      "aspect_ratio": "2",
+      "edge_color": "#2c2a2a",
+      "edge_color_set": true
+    },
+    "ticket_classes": [
+      {
+        "actual_cost": null,
+        "actual_fee": {
+          "display": "£2.21",
+          "currency": "GBP",
+          "value": 221,
+          "major_value": "2.21"
+        },
+        "cost": {
+          "display": "£17.99",
+          "currency": "GBP",
+          "value": 1799,
+          "major_value": "17.99"
+        },
+        "fee": {
+          "display": "£0.00",
+          "currency": "GBP",
+          "value": 0,
+          "major_value": "0.00"
+        },
+        "tax": {
+          "display": "£0.00",
+          "currency": "GBP",
+          "value": 0,
+          "major_value": "0.00"
+        },
+        "resource_uri": "https://www.eventbriteapi.com/v3/events/1472494212829/ticket_classes/2611125803/",
+        "display_name": "Live webinar + recording (available for 30 days)",
+        "name": "Live webinar + recording (available for 30 days)",
+        "description": null,
+        "sorting": 1,
+        "donation": false,
+        "free": false,
+        "minimum_quantity": 1,
+        "maximum_quantity": 1,
+        "maximum_quantity_per_order": 1,
+        "on_sale_status": "AVAILABLE",
+        "has_pdf_ticket": false,
+        "order_confirmation_message": null,
+        "delivery_methods": [
+          "electronic"
+        ],
+        "category": "admission",
+        "sales_channels": [
+          "online",
+          "atd"
+        ],
+        "secondary_assignment_enabled": false,
+        "event_id": "1472494212829",
+        "image_id": null,
+        "id": "2611125803",
+        "capacity": 800,
+        "quantity_total": 800,
+        "quantity_sold": 4,
+        "sales_start": "2025-07-08T23:00:00Z",
+        "sales_end": "2025-10-08T12:30:00Z",
+        "sales_end_relative": null,
+        "hidden": false,
+        "hidden_currently": false,
+        "include_fee": true,
+        "split_fee": false,
+        "hide_description": true,
+        "hide_sale_dates": false,
+        "ticket_parent_id": null,
+        "auto_hide": false,
+        "payment_constraints": []
+      },
+      {
+        "actual_cost": null,
+        "actual_fee": {
+          "display": "£1.79",
+          "currency": "GBP",
+          "value": 179,
+          "major_value": "1.79"
+        },
+        "cost": {
+          "display": "£12.99",
+          "currency": "GBP",
+          "value": 1299,
+          "major_value": "12.99"
+        },
+        "fee": {
+          "display": "£0.00",
+          "currency": "GBP",
+          "value": 0,
+          "major_value": "0.00"
+        },
+        "tax": {
+          "display": "£0.00",
+          "currency": "GBP",
+          "value": 0,
+          "major_value": "0.00"
+        },
+        "resource_uri": "https://www.eventbriteapi.com/v3/events/1472494212829/ticket_classes/2611125793/",
+        "display_name": "Live webinar only (reduced rate)",
+        "name": "Live webinar only (reduced rate)",
+        "description": null,
+        "sorting": 2,
+        "donation": false,
+        "free": false,
+        "minimum_quantity": 1,
+        "maximum_quantity": 10,
+        "maximum_quantity_per_order": 10,
+        "on_sale_status": "AVAILABLE",
+        "has_pdf_ticket": false,
+        "order_confirmation_message": null,
+        "delivery_methods": [
+          "electronic"
+        ],
+        "category": "admission",
+        "sales_channels": [
+          "online",
+          "atd"
+        ],
+        "secondary_assignment_enabled": false,
+        "event_id": "1472494212829",
+        "image_id": null,
+        "id": "2611125793",
+        "capacity": 300,
+        "quantity_total": 300,
+        "quantity_sold": 2,
+        "sales_start": "2025-07-08T23:00:00Z",
+        "sales_end": "2025-10-08T11:00:00Z",
+        "sales_end_relative": null,
+        "hidden": false,
+        "hidden_currently": false,
+        "include_fee": true,
+        "split_fee": false,
+        "hide_description": true,
+        "hide_sale_dates": false,
+        "ticket_parent_id": null,
+        "auto_hide": false,
+        "payment_constraints": []
+      }
+    ],
+    "ticket_availability": {
+      "has_available_tickets": true,
+      "minimum_ticket_price": {
+        "currency": "GBP",
+        "major_value": "12.99",
+        "value": 1299,
+        "display": "12.99 GBP"
+      },
+      "maximum_ticket_price": {
+        "currency": "GBP",
+        "major_value": "17.99",
+        "value": 1799,
+        "display": "17.99 GBP"
+      },
+      "is_sold_out": false,
+      "start_sales_date": {
+        "timezone": "Europe/London",
+        "local": "2025-07-09T00:00:00",
+        "utc": "2025-07-08T23:00:00Z"
+      },
+      "waitlist_available": false
+    }
+  }
+]
