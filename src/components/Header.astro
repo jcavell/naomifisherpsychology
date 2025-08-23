@@ -3,11 +3,11 @@ import IconLinks from "./IconLinks.astro";
 import Navigation from "./Navigation.astro";
 import FilterMenu from "./FilterMenu.astro";
 
-const { active } = Astro.props;
+const { active, hideNav } = Astro.props;
 ---
 
 <header>
-  <IconLinks />
+  {!hideNav && <IconLinks />}
 
   <img
     src="/images/header/dr-naomi-fisher-logo.svg"
@@ -36,7 +36,10 @@ const { active } = Astro.props;
   <!--  </div>-->
   <!--</a>-->
 
-  <Navigation active={active} />
 
-  <FilterMenu />
+  {
+    !hideNav && (<Navigation active={active} />
+    <FilterMenu />)
+  }
+
 </header>

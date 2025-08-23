@@ -1,5 +1,5 @@
 ---
-
+const { active, hideNav } = Astro.props;
 ---
 
 <footer id="tag-menu">
@@ -15,6 +15,7 @@
       />
     </a>
 
+    {!hideNav &&(
     <ul class="footer-menu footer-menu-A">
       <li>
         <a href="/webinars/">Webinars</a>
@@ -51,6 +52,7 @@
       </li>
     </ul>
 
+
     <button
       class="filter-menu-button"
       id="footer-filter-menu-toggle"
@@ -58,7 +60,7 @@
     >
       Search
     </button>
-
+    )}
     <div class="smallprint">
       <p>
         &copy; {new Date().getFullYear()} Naomi Fisher Psychology Ltd, all rights

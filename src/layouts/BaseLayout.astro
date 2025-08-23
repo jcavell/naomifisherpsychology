@@ -4,7 +4,7 @@ import Footer from "../components/Footer.astro";
 import NaomiStyle from "../styles/naomiStyle.astro";
 import CookieConsent from "../components/CookieConsent.astro";
 
-const { active, tagName, tagUrl, bodyClassName, metaDescription } = Astro.props;
+const { active, tagName, tagUrl, bodyClassName, metaDescription, hideNav } = Astro.props;
 
 const bodyClass = bodyClassName
   ? bodyClassName
@@ -106,7 +106,7 @@ const bodyClass = bodyClassName
       </span>
     </button>
 
-    <Header active={active} />
+    <Header active={active} hideNav={hideNav} />
 
     {
       tagName && tagUrl && (
@@ -121,7 +121,7 @@ const bodyClass = bodyClassName
     <div class="wrapper">
       <slot />
     </div>
-    <Footer />
+    <Footer hideNav={hideNav}/>
 
     <div class="top-trigger">
       <a href="#"> Top </a>
