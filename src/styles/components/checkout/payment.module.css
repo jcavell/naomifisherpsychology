@@ -12,6 +12,40 @@
     margin-bottom: 24px;
 }
 
+.cardElement {
+    background: #ffffff;
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 16px;
+}
+
+.cardElement label {
+    display: block;
+    color: rgb(105, 115, 134);
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.cardRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+/* Style for when the card element is focused */
+.cardElement:focus-within {
+    border-color: var(--success-green);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Style for when the card element has an error */
+.cardElement.error {
+    border-color: var(--error-red);
+    background-color: var(--error-red-bg);
+}
+
 .paymentMessage {
     color: rgb(105, 115, 134);
     font-size: 16px;

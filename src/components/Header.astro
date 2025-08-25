@@ -38,8 +38,13 @@ const { active, hideNav } = Astro.props;
 
 
   {
-    !hideNav && (<Navigation active={active} />
-    <FilterMenu />)
+    !hideNav && (
+      <>
+        <Navigation active={active} />
+        <FilterMenu />
+        <script src="../scripts/filterMenu.js"></script>
+      </>
+    )
   }
 
 </header>

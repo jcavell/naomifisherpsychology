@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { type Appearance, loadStripe, type Stripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
 import { Basket } from "../basket/Basket.tsx";
 import { UserDetailsForm } from "./UserDetailsForm.tsx";
 import { PaymentForm } from "./PaymentForm.tsx";
 import { useClientOnly } from "../../scripts/basket/use-client-only-hook.ts";
+
+// Stripe types only - actual code is imported dynamically
+import type { Appearance, Stripe } from "@stripe/stripe-js";
+import type { Elements } from "@stripe/react-stripe-js";
 
 import formStyles from "../../styles/components/checkout/form.module.css";
 import summaryStyles from "../../styles/components/checkout/summary.module.css";
@@ -20,23 +22,19 @@ import {
 } from "../../scripts/tracking/metaPixel.ts";
 import { PRODUCT_TYPE, type ProductType } from "../../types/basket-item..ts";
 
-// Define the correct type for the stripe loader
-type StripePromiseType = ReturnType<typeof loadStripe>;
-
-// Load stripe with our TEST publishable API key (pk....)
-const stripePublishableKey = import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY;
-// const stripePromise = loadStripe(stripePublishableKey);
-
 const Checkout: React.FC<{ setError: (error: string | null) => void }> = ({
                                                                             setError,
                                                                           }) => {
   const $basketItems = useStore(getBasketItems);
   const $isEmpty = useStore(getIsEmpty);
-  const isClient = useClientOnly(); // Hook to check client-side
 
-  const [clientSecret, setClientSecret] = useState<string | null>(null); // Track clientSecret for Stripe initialization
+  const [paymentReady, setPaymentReady] = useState({
+    clientSecret: null as string | null,
+    Elements: null as typeof Elements | null,
+    stripe: null as Promise<Stripe | null> | null
+  });
+
   const [userDetails, setUserDetails] = useState<User | null>(null);
-  const [stripePromise, setStripePromise] = useState<Promise<Stripe | null> | null>(null);
 
   const isBasketFree = (items: any[]): boolean => {
     return items.every((item) => item.price === 0);
@@ -46,16 +44,11 @@ const Checkout: React.FC<{ setError: (error: string | null) => void }> = ({
   const createPaymentIntent = async () => {
     if ($basketItems.length > 0 && !isBasketFree($basketItems)) {
       try {
-        // Initialize Stripe only when needed
-        if (!stripePromise) {
-          const promise = loadStripe(import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY);
-          setStripePromise(promise);
-        }
-
+        // 1. Create payment intent and get client secret before initializing Stripe
         const res = await fetch("/api/create-payment-intent", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ items: $basketItems, t:getTrackerFromStore() }),
+          body: JSON.stringify({ items: $basketItems, t: getTrackerFromStore() }),
         });
 
         if (!res.ok) {
@@ -64,8 +57,25 @@ const Checkout: React.FC<{ setError: (error: string | null) => void }> = ({
         }
 
         const data = await res.json();
+
+        // Only load Stripe after we have the client secret
         if (data.clientSecret) {
-          setClientSecret(data.clientSecret);
+
+          // 2. Load Stripe modules dynamically
+          const [stripeJs, reactStripeJs] = await Promise.all([
+            import('@stripe/stripe-js'),
+            import('@stripe/react-stripe-js')
+          ]);
+
+          // 3. Initialize everything at once
+          const { loadStripe } = stripeJs;
+          setPaymentReady({
+            clientSecret: data.clientSecret,
+            Elements: reactStripeJs.Elements,
+            stripe: loadStripe(import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY)
+          });
+
+
         } else {
           throw new Error("No clientSecret in response");
         }
@@ -85,7 +95,6 @@ const Checkout: React.FC<{ setError: (error: string | null) => void }> = ({
     }
   };
 
-
   if ($isEmpty) {
     return;
   }
@@ -98,8 +107,6 @@ const Checkout: React.FC<{ setError: (error: string | null) => void }> = ({
       </div>
     );
   }
-
-
 
   // For free items, render CheckoutForm without Stripe Elements
   if (isBasketFree($basketItems)) {
@@ -114,9 +121,8 @@ const Checkout: React.FC<{ setError: (error: string | null) => void }> = ({
     );
   }
 
-  // Show loading state while waiting for clientSecret for paid items
-  if (!clientSecret) {
-    return <p className={summaryStyles.emptyCart}>Loading payment form.</p>;
+  if (!paymentReady.clientSecret || !paymentReady.Elements || !paymentReady.stripe) {
+    return <p className={summaryStyles.emptyCart}>Loading payment form...</p>;
   }
 
   const appearance: Appearance = {
@@ -125,13 +131,18 @@ const Checkout: React.FC<{ setError: (error: string | null) => void }> = ({
 
   return (
     <div className={formStyles.checkoutFormWrapper}>
-      <Elements options={{ clientSecret, appearance }} stripe={stripePromise}>
-        <PaymentForm
-          clientSecret={clientSecret}
-          userDetails={userDetails}
-          basketItems={$basketItems}
-        />{" "}
-      </Elements>
+      {paymentReady.Elements && paymentReady.stripe && paymentReady.clientSecret && (
+        <paymentReady.Elements
+          options={{ clientSecret: paymentReady.clientSecret, appearance }}
+          stripe={paymentReady.stripe}
+        >
+          <PaymentForm
+            clientSecret={paymentReady.clientSecret}
+            userDetails={userDetails}
+            basketItems={$basketItems}
+          />
+        </paymentReady.Elements>
+      )}
     </div>
   );
 };
@@ -152,8 +163,6 @@ const CheckoutComponent: React.FC = () => {
       const basketItemIds = $basketItems.map(item => item.id).sort().join('-');
       const eventId = `checkout-${basketItemIds}`;
       // console.log('Generated eventId:', eventId);
-
-
       if (!sessionStorage.getItem(eventId)) {
 
         const cart = $basketItems.map(item => ({
