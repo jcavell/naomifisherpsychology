@@ -19,6 +19,7 @@
     "@astrojs/sitemap": "^3.1.6",
     "@nanostores/persistent": "^1.0.0",
     "@nanostores/react": "^1.0.0",
+    "@paypal/checkout-server-sdk": "^1.0.3",
     "@paypal/react-paypal-js": "^8.8.3",
     "@stripe/react-stripe-js": "^3.1.1",
     "@stripe/stripe-js": "^5.4.0",

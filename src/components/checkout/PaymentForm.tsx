@@ -6,12 +6,15 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
+import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import formStyles from "../../styles/components/checkout/form.module.css";
 import paymentStyles from "../../styles/components/checkout/payment.module.css";
 import type { BasketItem } from "../../types/basket-item..ts";
 import type { User } from "../../types/user";
 import { getTrackerFromStore } from "../../scripts/tracking/trackerRetrieverAndStorer.ts";
 import { getCouponCodeFromStore } from "../../scripts/coupon/couponRetrieverAndStorer.ts";
+
+type PaymentMethod = "card" | "paypal";
 
 interface CheckoutFormProps {
   clientSecret: string;
@@ -33,6 +36,8 @@ export const PaymentForm: React.FC<CheckoutFormProps> = ({
   const [cardNumberError, setCardNumberError] = useState<string | null>(null);
   const [cardExpiryError, setCardExpiryError] = useState<string | null>(null);
   const [cardCvcError, setCardCvcError] = useState<string | null>(null);
+
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("card");
 
   const [message, setMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -88,47 +93,54 @@ export const PaymentForm: React.FC<CheckoutFormProps> = ({
     checkKitSubscriber();
   }, [userDetails.email]);
 
-  // Body data used for both free and paid purchases
-  // NOTE snake_case
-  const getInsertPurchaseBodyData = () => ({
-    t: getTrackerFromStore(),
-    coupon_code: getCouponCodeFromStore(),
-    basket_items: basketItems,
-    user: {
-      ...userDetails,
-      kit_subscriber_id: kitSubscriberId,
-      subscribed_to_marketing: receiveUpdates,
-    },
-  });
+  const processPayment = async (
+    paymentId: string,
+    method: "card" | "paypal" | "free",
+  ) => {
+    const endpoint =
+      method === "free"
+        ? "/api/process-free-checkout"
+        : "/api/sb-insert-unconfirmed-purchase";
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          // Body data used for both free and paid purchases
+          // NOTE snake_case
+          ...(method !== "free" && { payment_intent_id: paymentId }),
+          t: getTrackerFromStore(),
+          coupon_code: getCouponCodeFromStore(),
+          basket_items: basketItems,
+          user: {
+            ...userDetails,
+            kit_subscriber_id: kitSubscriberId,
+            subscribed_to_marketing: receiveUpdates,
+          },
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error((await response.json()).message);
+      }
+
+      // Success - store basket items in session and redirect to checkout-complete page
+      sessionStorage.setItem(paymentId, JSON.stringify(basketItems));
+      window.location.href = `${window.location.origin}/checkout-complete?checkout_id=${paymentId}&redirect_status=succeeded`;
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Payment failed");
+      return false;
+    }
+    return true;
+  };
 
   const handleFreeSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     setIsLoading(true);
-    try {
-      const response = await fetch("/api/process-free-checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(getInsertPurchaseBodyData()),
-      });
-
-      const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.message);
-      }
-
-      const checkoutId = `free_${Date.now()}_${btoa(userDetails.email).substring(0, 8)}`;
-      sessionStorage.setItem(checkoutId, JSON.stringify(basketItems));
-      window.location.href = `${window.location.origin}/checkout-complete?checkout_id=${checkoutId}`;
-    } catch (error) {
-      setMessage(
-        error instanceof Error
-          ? error.message
-          : "An error occurred processing your free items.",
-      );
-    } finally {
-      setIsLoading(false);
-    }
+    const checkoutId = `free_${Date.now()}_${btoa(userDetails.email).substring(0, 8)}`;
+    await processPayment(checkoutId, "free");
+    setIsLoading(false);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -147,7 +159,6 @@ export const PaymentForm: React.FC<CheckoutFormProps> = ({
     }
 
     setIsLoading(true);
-    const paymentIntentId = clientSecret.split("_secret")[0];
 
     // Clear any existing errors
     setCardNumberError(null);
@@ -163,44 +174,27 @@ export const PaymentForm: React.FC<CheckoutFormProps> = ({
       return;
     }
 
-    // Step 1: Store user and unconfirmed payment details in Supabase
-    // Add payment_intent_id to body
-    const response = await fetch("/api/sb-insert-unconfirmed-purchase", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        payment_intent_id: paymentIntentId,
-        ...getInsertPurchaseBodyData(),
-      }),
-    });
-
-    if (!response.ok) {
-      const data = await response.json();
-      setMessage(data.message);
-    }
-
-    // Step 2: Confirm payment using Stripe
-    // Store items in sessionStorage before payment confirmation
-    sessionStorage.setItem(`${paymentIntentId}`, JSON.stringify(basketItems));
-
     if (!elements.getElement(CardNumberElement)) {
       setCardNumberError("Card number is required");
       return;
     }
 
-    const { paymentIntent, error } = await stripe.confirmCardPayment(clientSecret, {
-      payment_method: {
-        card: elements.getElement(CardNumberElement)!,
-        billing_details: {
-          name: `${userDetails.first_name} ${userDetails.surname}`,
-          email: userDetails.email,
+    const { paymentIntent, error } = await stripe.confirmCardPayment(
+      clientSecret,
+      {
+        payment_method: {
+          card: elements.getElement(CardNumberElement)!,
+          billing_details: {
+            name: `${userDetails.first_name} ${userDetails.surname}`,
+            email: userDetails.email,
+          },
         },
       },
-    });
+    );
 
-    // If payment successful, handle redirect manually
-    if (paymentIntent && paymentIntent.status === 'succeeded') {
-      window.location.href = `${origin}/checkout-complete?checkout_id=${paymentIntent.id}&redirect_status=succeeded`;
+    // If payment intent is successful, process the payment
+    if (paymentIntent && paymentIntent.status === "succeeded") {
+      await processPayment(paymentIntent.id, "card");
     }
 
     if (error) {
@@ -228,57 +222,116 @@ export const PaymentForm: React.FC<CheckoutFormProps> = ({
   return (
     <form onSubmit={handleSubmit}>
       <h2>Payment</h2>
-      <div className={paymentStyles.paymentElement}>
-        <div className={paymentStyles.cardElement}>
-          <label>Card Number</label>
-          <CardNumberElement
-            options={{
-              style: stripeElementStyle,
-            }}
-            onChange={(event) => {
-              setIsCardNumberComplete(event.complete);
-              setCardNumberError(null); // Clear error on change
-            }}
-          />
-          {cardNumberError && (
-            <div className={formStyles.error}>{cardNumberError}</div>
-          )}
+      {!isBasketFree(basketItems) && (
+        <div className={paymentStyles.paymentMethodSelector}>
+          <select
+            value={paymentMethod}
+            onChange={(e) => setPaymentMethod(e.target.value as PaymentMethod)}
+          >
+            <option value="card">Pay with Card</option>
+            <option value="paypal">Pay with PayPal</option>
+          </select>
         </div>
+      )}
 
-        <div className={paymentStyles.cardRow}>
+      {paymentMethod === "card" && (
+        <div className={paymentStyles.paymentElement}>
           <div className={paymentStyles.cardElement}>
-            <label>Expiration Date</label>
-            <CardExpiryElement
+            <label>Card Number</label>
+            <CardNumberElement
               options={{
                 style: stripeElementStyle,
               }}
               onChange={(event) => {
-                setIsCardExpiryComplete(event.complete);
-                setCardExpiryError(null); // Clear error on change
+                setIsCardNumberComplete(event.complete);
+                setCardNumberError(null); // Clear error on change
               }}
             />
-            {cardExpiryError && (
-              <div className={formStyles.error}>{cardExpiryError}</div>
+            {cardNumberError && (
+              <div className={formStyles.error}>{cardNumberError}</div>
             )}
           </div>
 
-          <div className={paymentStyles.cardElement}>
-            <label>CVC</label>
-            <CardCvcElement
-              options={{
-                style: stripeElementStyle,
-              }}
-              onChange={(event) => {
-                setIsCardCvcComplete(event.complete);
-                setCardCvcError(null); // Clear error on change
-              }}
-            />
-            {cardCvcError && (
-              <div className={formStyles.error}>{cardCvcError}</div>
-            )}
+          <div className={paymentStyles.cardRow}>
+            <div className={paymentStyles.cardElement}>
+              <label>Expiration Date</label>
+              <CardExpiryElement
+                options={{
+                  style: stripeElementStyle,
+                }}
+                onChange={(event) => {
+                  setIsCardExpiryComplete(event.complete);
+                  setCardExpiryError(null); // Clear error on change
+                }}
+              />
+              {cardExpiryError && (
+                <div className={formStyles.error}>{cardExpiryError}</div>
+              )}
+            </div>
+
+            <div className={paymentStyles.cardElement}>
+              <label>CVC</label>
+              <CardCvcElement
+                options={{
+                  style: stripeElementStyle,
+                }}
+                onChange={(event) => {
+                  setIsCardCvcComplete(event.complete);
+                  setCardCvcError(null); // Clear error on change
+                }}
+              />
+              {cardCvcError && (
+                <div className={formStyles.error}>{cardCvcError}</div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      )}
+
+      {paymentMethod === 'paypal' && (
+        <PayPalButtons
+          style={{ layout: "vertical" }}
+          createOrder={async () => {
+            try {
+              const response = await fetch('/api/create-paypal-order', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ items: basketItems })
+              });
+
+              if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.error || 'Failed to create PayPal order');
+              }
+
+              const { orderId } = await response.json();
+              return orderId;
+            } catch (error) {
+              setMessage(error instanceof Error ? error.message : 'Failed to create PayPal order');
+              throw error;
+            }
+          }}
+          onApprove={async (data, actions) => {
+            if (actions.order) {
+              try {
+                const order = await actions.order.capture();
+                if (!order.id) throw new Error('No order ID received');
+                const success = await processPayment(order.id, 'paypal');
+                if (!success) {
+                  setMessage('Failed to process payment');
+                }
+              } catch (error) {
+                setMessage('Failed to complete PayPal payment');
+                console.error('PayPal payment error:', error);
+              }
+            }
+          }}
+          onError={(err) => {
+            setMessage('PayPal payment failed. Please try again.');
+            console.error('PayPal Error:', err);
+          }}
+        />
+      )}
 
       <div className={formStyles.checkbox}>
         <label>
@@ -318,10 +371,9 @@ export const PaymentForm: React.FC<CheckoutFormProps> = ({
 
       <button
         disabled={
-          !stripe ||
           isLoading ||
-          !isPaymentComplete ||
           !agreedToTerms ||
+          (paymentMethod === 'card' && (!stripe || !isPaymentComplete)) ||
           isCheckingKit
         }
         className={paymentStyles.checkoutSubmitButton}
