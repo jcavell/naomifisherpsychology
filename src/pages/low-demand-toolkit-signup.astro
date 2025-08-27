@@ -1,14 +1,76 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Newsletter from "../components/Newsletter.astro";
+import StaticImage from "../components/StaticImage.astro";
+import homeImage from "../images/static/1080w/nf-oxford.webp";
+const formId = "7379328";
+const pageTitle = "Low Demand Communication Toolkit";
+const metaDescription =
+  "Dr Naomi Fisher's free Low Demand Communication Toolkit";
 ---
 
-<BaseLayout pageTitle="Privacy Policy">
-  <div class="page-full-width-text">
-    Sign up to our newsletter below to get our Low Demand Communication Toolkit
-  </div>
+<BaseLayout
+  active="freebie"
+  pageTitle={pageTitle}
+  metaDescription={metaDescription}
+>
+  <div class="page-intro-wrapper">
+    <div class="page-intro-static-image">
+      <StaticImage image={homeImage} alt="Naomi Fisher" />
+    </div>
 
-  <!--6662296 is the normal newsletter form -->
-  <!-- 7379328 is low demand toolkit form -->
-  <Newsletter formId="7379328" />
+    <div class="page-intro-text">
+      <h3>Low Demand Communication</h3>
+      <p>
+        Some children say NO a lot. It doesn’t matter what you suggest, you just
+        get another NO. They even say NO to things that they enjoy, like trips
+        to the park or ice cream. The reason this happens is because some
+        children are highly sensitive to pressure.
+      </p>
+      <p>
+        Sign up to get Naomi's free, evidenced based toolkit and learn about
+        what you can do differently to help your child get beyond the NO.
+      </p>
+
+      <form
+        action={`https://app.convertkit.com/forms/${formId}/subscriptions`}
+        class="seva-form formkit-form"
+        method="post"
+        data-sv-form={`${formId}`}
+        data-uid="a4bc346f2b"
+        data-format="inline"
+        data-version="5"
+        data-options='{"settings":{"after_subscribe":{"action":"message","success_message":"Success! Now check your email to confirm your subscription.","redirect_url":""},"analytics":{"google":null,"fathom":null,"facebook":null,"segment":null,"pinterest":null,"sparkloop":null,"googletagmanager":null},"modal":{"trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"powered_by":{"show":false,"url":"https://convertkit.com/features/forms?utm_campaign=poweredby&utm_content=form&utm_medium=referral&utm_source=dynamic"},"recaptcha":{"enabled":false},"return_visitor":{"action":"hide","custom_content":""},"slide_in":{"display_in":"bottom_right","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"sticky_bar":{"display_in":"top","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15}},"version":"5"}'
+        min-width="400 500 600 700 800"
+      >
+        <div data-style="clean">
+          <ul
+            class="formkit-alert formkit-alert-error"
+            data-element="errors"
+            data-group="alert"
+          >
+          </ul>
+          <div
+            data-element="fields"
+            data-stacked="true"
+            class="seva-fields formkit-fields"
+          >
+            <div class="formkit-field">
+              <input
+                class="formkit-input"
+                name="email_address"
+                aria-label="Email Address"
+                placeholder="Your Email Address"
+                required=""
+                type="email"
+              />
+            </div>
+
+            <button data-element="submit" class="formkit-submit formkit-submit">
+              <span class="">Get your toolkit</span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 </BaseLayout>
