@@ -43,8 +43,8 @@
 
   header img {
     display: block;
-    height: 130px;
-    padding-top: 96px;
+    height: 60px;
+    padding-top: 85px;
     padding-left: 20px;
     padding-right: 20px;
   }
@@ -508,7 +508,7 @@
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 40px;
+    margin-top: 16px;
     margin-bottom: 80px;
     padding-left: 20px;
     padding-right: 20px;
@@ -560,6 +560,36 @@
     line-height: 1;
     margin-top: 0;
     margin-bottom: 6px;
+  }
+
+  .form-title h3 {
+    color: #fff;
+    letter-spacing: 0.04em;
+    font-size: 50px;
+    line-height: 1.2;
+    margin: 0;
+    padding: 0 40px; /* Added horizontal padding for desktop */
+    border: none;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  /* Tablet breakpoint */
+  @media (max-width: 1200px) {
+    .form-title h3 {
+      font-size: 32px;
+      letter-spacing: 0.03em;
+      padding-bottom: 20px; /* Added padding for tablet */
+    }
+  }
+
+  /* Mobile breakpoint */
+  @media (max-width: 800px) {
+    .form-title h3 {
+      font-size: 24px;
+      line-height: 1.3;
+      padding-bottom: 15px; /* Added padding for tablet */
+    }
   }
 
   .card h2 a {
@@ -1925,6 +1955,20 @@
       transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
   }
 
+  .newsletter-bottom-image {
+    display: flex;
+    background: #387668;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 40px 0;
+  }
+
+  .newsletter-bottom-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
   /* form */
 
   .form-wrapper {
@@ -2647,9 +2691,9 @@
 
   @media (min-width: 1200px) {
     header img {
-      height: 180px;
+      height: 60px;
       padding-top: 40px;
-      padding-bottom: 30px;
+      padding-bottom: 15px;
     }
 
     .icon-links {
@@ -3276,6 +3320,14 @@
     }
 
     .form-wrapper {
+      padding-top: 3em;
+      padding-bottom: 2.5em;
+      flex-direction: row;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .newsletter-bottom-image {
       padding-top: 3em;
       padding-bottom: 2.5em;
       flex-direction: row;
