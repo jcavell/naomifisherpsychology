@@ -2,7 +2,7 @@
 import Tags from "../Tags.astro";
 import Contributers from "../Contributers.astro";
 import Vimeo from "../Vimeo.astro";
-import AddWebinarTicketsToBasket from "../basket/AddWebinarTicketsToBasket";
+
 import { getWebinarMeta } from "../../scripts/webinarMeta";
 
 import WebinarImage from "./WebinarImage.astro";
@@ -110,14 +110,14 @@ const detailsText = webinar.detailsText;
       <!-- <div class="preview-quote-wrapper">
         <div class="preview-quote quote">
           This was awesome. Like, life-changing and affirmative!
-          <span>Attendee of Low Demand Parenting EventbriteWebinar</span>
+          <span>Attendee of Low Demand Parenting Webinar</span>
         </div>
       </div>
       <div class="preview-quote-wrapper">
         <div class="preview-quote quote">
           Such a relief to be at the excellent low demand parenting seminar by
           Naomi Fisher and Eliza Fricker last night
-          <span>Attendee of Low Demand Parenting EventbriteWebinar</span>
+          <span>Attendee of Low Demand Parenting Webinar</span>
         </div>
       </div>
       <div class="preview-quote-wrapper">
@@ -125,7 +125,7 @@ const detailsText = webinar.detailsText;
           Such a humble, insightful and highly informative webinar. Dr Naomi
           Fisher and Eliza Fricker were the perfect duo of lived experience and
           academic knowledge
-          <span>Attendee of Low Demand Parenting EventbriteWebinar</span>
+          <span>Attendee of Low Demand Parenting Webinar</span>
         </div>
       </div>
       <p>
@@ -139,10 +139,23 @@ const detailsText = webinar.detailsText;
     <div class="details-body-B">
 
       <div class="purchase-wrapper">
-
         <div class="purchase-title"></div>
 
-        <AddWebinarTicketsToBasket tickets={tickets} webinarId={webinar.id} client:load/>
+        {
+          tickets.filter((t) => !t.hidden).map((ticket) => (
+            <a href={webinar.url} target="blank">
+              <div class="purchase">
+                <div class="price">
+                  £{((ticket.costValue + ticket.feeValue) / 100).toFixed(2)}
+                </div>
+                <div class="company eventbrite">{ticket.name}</div>
+                <div class="buy-now">
+                  <span> Buy Now </span>
+                </div>
+              </div>
+            </a>
+          ))
+        }
 
       </div>
       <div class="card-meta details-meta">
