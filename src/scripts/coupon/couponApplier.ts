@@ -50,7 +50,8 @@ const calculateDiscountedPriceInPence = (originalPriceInPence: number, coupon: C
   if (!coupon) {
       return originalPriceInPence;
   }
-  return (originalPriceInPence * coupon.discountPercent) / 100;
+  const discountAmount = (originalPriceInPence * coupon.discountPercent) / 100;
+  return originalPriceInPence - discountAmount;
 };
 
 export const getDiscountedDisplayPrice = (couponCode: string | null, offerId: string, originalPriceInPence: number) => {
