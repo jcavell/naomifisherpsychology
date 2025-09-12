@@ -353,3 +353,26 @@ stripe trigger --list
 
   Note: Sometimes the webhook connection can become stale on Stripe's end even though
   the Dashboard shows "Listening". A fresh login and new webhook key usually resolves this.
+
+### Which account to use?
+
+For local testing use SANDBOX - Naomi's website with account id acct_1S6FVNGwgcj0NWw5
+Don't use the prod account in test mode - this is different!
+
+Make sure that when you log in using the cli you are already logged in on the web with the correct account - Naomi's website - and switch to sandbox
+
+You can the see account the cli is using with `stripe accounts retrieve`
+Also you can view the config using `cat ~/.config/stripe/config.toml`
+
+You can logout with `stripe logout --all` if it's using the wrong account, then log in again.   
+
+### Deployment - stripe keys
+
+Make sure you set the PUBLIC_STRIPE_PUBLISHABLE_KEY AND STRIPE_SECRET_KEY env variable secrets (create a restricted key for this, it only requires read/write of PaymentIntents)
+
+### Deployment - Webhooks 
+
+Go the the workbench and choose Webhooks, or just search for Webhooks.
+
+Create a webhook in stripe. It should be called from `/api/stripe-webhook-handler` for the particular environment e.g. https://basket--naomifisher.netlify.app/api/stripe-webhook-handler
+Ensure you set the STRIPE_WEBHOOK_SECRET env variable secret - the value for this is shown in stripe for the webhook

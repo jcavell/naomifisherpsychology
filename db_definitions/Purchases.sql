@@ -10,6 +10,7 @@ create table public."Purchases" (
                                     payment_confirmed boolean not null default false,
                                     coupon_code character varying null,
                                     t character varying null,
+                                    order_id text null,
                                     constraint Purchases_pkey primary key (id),
                                     constraint Purchases_stripe_payment_id_key unique (stripe_payment_id),
                                     constraint Purchases_user_id_fkey foreign KEY (user_id) references "Users" (id) on update CASCADE on delete CASCADE
