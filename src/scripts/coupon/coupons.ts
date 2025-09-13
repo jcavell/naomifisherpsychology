@@ -15,7 +15,7 @@ export const coupons: Coupon[] = [
         couponInfoText: "99% OFF",
         validFrom: new Date("2025-08-01T00:00:00Z").getTime(),
         validUntil: new Date("2028-08-31T23:59:59Z").getTime(),
-        applicableOfferIDs: ["veqRLt2E", "3qPhcXAK", "9mEzpCdy"], // Anxiety a guide for teenagers and Helping your teen with anxiety
+        applicableOfferIDs: ["veqRLt2E", "3qPhcXAK", "9mEzpCdy", "52TX3LQu", "cspb95bK", "UgeLqYii"], // Anxiety a guide for teenagers and Helping your teen with anxiety
     }
 ];
 
