@@ -110,6 +110,12 @@ const CheckoutCompleteComponent: React.FC = () => {
           eventID: `purchase-${checkoutId}`
         });
 
+        // Remove any previous purchase-tracked items
+        Object.keys(localStorage).forEach(key => {
+          if (key.startsWith('purchase-tracked-')) {
+            localStorage.removeItem(key);
+          }
+        });
         localStorage.setItem(`purchase-tracked-${checkoutId}`, 'true');
       }
 

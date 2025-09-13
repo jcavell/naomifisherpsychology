@@ -100,11 +100,14 @@ const bodyClass = bodyClassName
   </head>
 
   <body class={bodyClass}>
-    <button class="hamburger hamburger--squeeze" id="menu-toggle" type="button">
+
+    {!hideNav && (
+      <button class="hamburger hamburger--squeeze" id="menu-toggle" type="button">
       <span class="hamburger-box">
-        <span class="hamburger-inner"></span>
+      <span class="hamburger-inner"></span>
       </span>
-    </button>
+      </button>
+      )}
 
     <Header active={active} hideNav={hideNav} />
 

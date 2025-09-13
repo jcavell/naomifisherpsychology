@@ -61,6 +61,19 @@ export const Basket: React.FC<BasketProps> = ({
     const $total = useStore(getTotalPrice);
     const $count = useStore(getItemCount);
 
+    // ALSO ADD this useEffect to prevent the coupon value from going back into the input:
+    useEffect(() => {
+        // Don't sync the coupon store value back to the input
+        // The input should only be controlled by user typing
+        const currentCoupon = persistentCoupon.get();
+        if (!currentCoupon) {
+            // Only clear if there's no applied coupon and input has content
+            if (couponCode && !hasAppliedCoupon()) {
+                setCouponCode('');
+            }
+        }
+    }, [persistentCoupon.get()]); // Listen to coupon store changes
+
     useEffect(() => {
         setIsClient(true); // Ensures this component renders only on the client
     }, []);
@@ -114,7 +127,8 @@ export const Basket: React.FC<BasketProps> = ({
     };
 
 
-    // HANDLER FUNCTIONS
+// MINIMAL CHANGES - Replace these two functions in your existing code:
+
     const handleApplyCoupon = () => {
         const trimmedCode = couponCode.trim();
 
@@ -134,20 +148,15 @@ export const Basket: React.FC<BasketProps> = ({
         }
 
         try {
-            // Only set the coupon if it's valid
+            // Apply the coupon
             persistentCoupon.set(trimmedCode);
 
-            // Check if the coupon affected any prices
-            const hasDiscount = $basketItems.some(
-              item => item.originalPriceInPence !== item.discountedPriceInPence
-            );
+            // Clear the input immediately (don't wait for validation)
+            setCouponCode('');
 
-            if (!hasDiscount) {
-                setCouponError('Coupon not valid for any of your items');
-                return;
-            }
+            // The basket will refresh automatically via the useEffect listener
+            // Don't validate here - let the UI update naturally
 
-            setCouponCode(''); // Clear input after successful application
         } catch (error) {
             console.error('Failed to apply coupon:', error);
             setCouponError('Failed to apply coupon. Please try again.');
@@ -155,8 +164,14 @@ export const Basket: React.FC<BasketProps> = ({
     };
 
     const handleRemoveCoupon = () => {
+        // Clear everything first
+        setCouponError('');
+        setCouponCode('');
+
+        // Then remove from store
         removeCouponCodeFromStore();
     };
+
 
     const handleRemoveItem = (id: string) => {
         removeItem(id); // Call the cart removal logic
@@ -231,7 +246,7 @@ export const Basket: React.FC<BasketProps> = ({
                   onClick={handleApplyCoupon}
                   disabled={!couponCode.trim()}
                 >
-                  Apply
+                   Apply
                 </button>
               </div>
               {couponError && (
