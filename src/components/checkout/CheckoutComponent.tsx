@@ -16,51 +16,57 @@ import { getTrackerFromStore } from "../../scripts/tracking/trackerRetrieverAndS
 import {
   META_BASKET_PRODUCT_TYPE,
   type MetaBasketProductType,
-  trackCheckoutEvent
+  trackCheckoutEvent,
 } from "../../scripts/tracking/metaPixel.ts";
 import { PRODUCT_TYPE, type ProductType } from "../../types/basket-item..ts";
 
-// Define the correct type for the stripe loader
-type StripePromiseType = ReturnType<typeof loadStripe>;
-
-// Load stripe with our TEST publishable API key (pk....)
-const stripePublishableKey = import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY;
-// const stripePromise = loadStripe(stripePublishableKey);
+const Spinner: React.FC = () => (
+  <div className={formStyles.spinnerContainer}>
+    <div className={formStyles.spinner}></div>
+  </div>
+);
 
 const Checkout: React.FC<{ setError: (error: string | null) => void }> = ({
-                                                                            setError,
-                                                                          }) => {
+  setError,
+}) => {
   const $basketItems = useStore(getBasketItems);
   const $isEmpty = useStore(getIsEmpty);
   const isClient = useClientOnly(); // Hook to check client-side
 
   const [clientSecret, setClientSecret] = useState<string | null>(null); // Track clientSecret for Stripe initialization
   const [userDetails, setUserDetails] = useState<User | null>(null);
-  const [stripePromise, setStripePromise] = useState<Promise<Stripe | null> | null>(null);
+  const [stripePromise, setStripePromise] =
+    useState<Promise<Stripe | null> | null>(null);
+
+  // Initialize Stripe when component mounts, not waiting for payment intent
+  useEffect(() => {
+    if (!stripePromise && !isBasketFree($basketItems)) {
+      const promise = loadStripe(import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY);
+      setStripePromise(promise);
+    }
+  }, []);
 
   const isBasketFree = (items: any[]): boolean => {
     return items.every((item) => item.price === 0);
   };
 
-
   const createPaymentIntent = async () => {
     if ($basketItems.length > 0 && !isBasketFree($basketItems)) {
       try {
-        // Initialize Stripe only when needed
-        if (!stripePromise) {
-          const promise = loadStripe(import.meta.env.PUBLIC_STRIPE_PUBLISHABLE_KEY);
-          setStripePromise(promise);
-        }
-
         const res = await fetch("/api/create-payment-intent", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ items: $basketItems, t:getTrackerFromStore() }),
+          body: JSON.stringify({
+            items: $basketItems,
+            t: getTrackerFromStore(),
+          }),
         });
 
         if (!res.ok) {
           const errorData = await res.json();
-          throw new Error(errorData.error || `HTTP error! Status: ${res.status}`);
+          throw new Error(
+            errorData.error || `HTTP error! Status: ${res.status}`,
+          );
         }
 
         const data = await res.json();
@@ -72,7 +78,7 @@ const Checkout: React.FC<{ setError: (error: string | null) => void }> = ({
       } catch (error) {
         console.error("Failed to fetch client secret: ", error);
         setError(
-          error.message || "Failed to process payment. Please try again."
+          error.message || "Failed to process payment. Please try again.",
         );
       }
     }
@@ -84,7 +90,6 @@ const Checkout: React.FC<{ setError: (error: string | null) => void }> = ({
       await createPaymentIntent();
     }
   };
-
 
   if ($isEmpty) {
     return;
@@ -98,8 +103,6 @@ const Checkout: React.FC<{ setError: (error: string | null) => void }> = ({
       </div>
     );
   }
-
-
 
   // For free items, render CheckoutForm without Stripe Elements
   if (isBasketFree($basketItems)) {
@@ -116,7 +119,12 @@ const Checkout: React.FC<{ setError: (error: string | null) => void }> = ({
 
   // Show loading state while waiting for clientSecret for paid items
   if (!clientSecret) {
-    return <p className={summaryStyles.emptyCart}>Loading payment form.</p>;
+    return (
+      <div className={summaryStyles.emptyCart}>
+        <Spinner />
+        <p>Loading payment form...</p>
+      </div>
+    );
   }
 
   const appearance: Appearance = {
@@ -142,47 +150,52 @@ const CheckoutComponent: React.FC = () => {
   const $basketItems = useStore(getBasketItems);
   const [hasTracked, setHasTracked] = useState<boolean>(false);
 
-
   useEffect(() => {
     if (hasTracked || !isClient || $basketItems.length === 0) return;
 
     setHasTracked(true);
 
     if (isClient && $basketItems.length > 0) {
-      const basketItemIds = $basketItems.map(item => item.id).sort().join('-');
+      const basketItemIds = $basketItems
+        .map((item) => item.id)
+        .sort()
+        .join("-");
       const eventId = `checkout-${basketItemIds}`;
       // console.log('Generated eventId:', eventId);
 
-
       if (!sessionStorage.getItem(eventId)) {
-
-        const cart = $basketItems.map(item => ({
+        const cart = $basketItems.map((item) => ({
           id: item.id,
           quantity: 1,
           item_price: item.discountedPriceInPence / 100,
-          content_type: item.product_type as ProductType
+          content_type: item.product_type as ProductType,
         }));
 
         // console.log('Cart data:', cart);
 
         // Determine overall content_type based on cart contents
-        const contentType: MetaBasketProductType = cart.every(item => item.content_type === PRODUCT_TYPE.WEBINAR)
+        const contentType: MetaBasketProductType = cart.every(
+          (item) => item.content_type === PRODUCT_TYPE.WEBINAR,
+        )
           ? META_BASKET_PRODUCT_TYPE.WEBINARS
-          : cart.every(item => item.content_type === PRODUCT_TYPE.COURSE)
+          : cart.every((item) => item.content_type === PRODUCT_TYPE.COURSE)
             ? META_BASKET_PRODUCT_TYPE.COURSES
             : META_BASKET_PRODUCT_TYPE.MIXED;
 
         const eventData = {
-          value: cart.reduce((sum, item) => sum + (item.item_price * item.quantity), 0),
-          currency: 'GBP',
+          value: cart.reduce(
+            (sum, item) => sum + item.item_price * item.quantity,
+            0,
+          ),
+          currency: "GBP",
           contents: cart,
-          content_type: contentType
+          content_type: contentType,
         };
 
         // console.log('Meta Pixel available:', typeof (window as any).fbq === 'function');
         trackCheckoutEvent(eventData, { eventID: eventId });
 
-        sessionStorage.setItem(eventId, 'true');
+        sessionStorage.setItem(eventId, "true");
       }
     }
   }, [isClient, $basketItems]);
