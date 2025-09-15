@@ -10,14 +10,15 @@ import type { BasketItem } from "../../types/basket-item..ts";
 import type { User } from "../../types/user";
 import { getTrackerFromStore } from "../../scripts/tracking/trackerRetrieverAndStorer.ts";
 import { getCouponCodeFromStore } from "../../scripts/coupon/couponRetrieverAndStorer.ts";
+import { type CheckoutSession, setCheckoutSession } from "../../scripts/checkout/checkout-session.ts";
 
 interface CheckoutFormProps {
-  clientSecret: string;
+  paymentIntentId: string;
   userDetails: User;
   basketItems: BasketItem[];
 }
 
-export const PaymentForm: React.FC<CheckoutFormProps> = ({ clientSecret, userDetails, basketItems }) => {
+export const PaymentForm: React.FC<CheckoutFormProps> = ({ paymentIntentId, userDetails, basketItems }) => {
 
   const stripe = useStripe();
   const elements = useElements();
@@ -91,6 +92,14 @@ export const PaymentForm: React.FC<CheckoutFormProps> = ({ clientSecret, userDet
 
       const checkoutId = `free_${Date.now()}_${btoa(userDetails.email).substring(0, 8)}`;
       sessionStorage.setItem(checkoutId, JSON.stringify(basketItems));
+      const checkoutSession: CheckoutSession = {
+        paymentIntentId: paymentIntentId, // "" for a free checkout
+        basketItems,
+        firstName: userDetails.first_name,
+        surname: userDetails.surname,
+        email: userDetails.email,
+      };
+      setCheckoutSession(checkoutId, checkoutSession);
       window.location.href = `${window.location.origin}/checkout-complete?checkout_id=${checkoutId}`;
 
     } catch (error) {
@@ -116,7 +125,6 @@ export const PaymentForm: React.FC<CheckoutFormProps> = ({ clientSecret, userDet
 
     if (!stripe || !elements) return;
     setIsLoading(true);
-    const paymentIntentId = clientSecret.split("_secret")[0];
 
     try {
       // Step 1: Store user and unconfirmed payment details in Supabase
@@ -136,12 +144,21 @@ export const PaymentForm: React.FC<CheckoutFormProps> = ({ clientSecret, userDet
       }
 
       // Step 2: Confirm payment using Stripe
+
       // Store items in sessionStorage before payment confirmation
-      sessionStorage.setItem(`${paymentIntentId}`, JSON.stringify(basketItems));
+      const checkoutSession: CheckoutSession = {
+        paymentIntentId: paymentIntentId,
+        basketItems,
+        firstName: userDetails.first_name,
+        surname: userDetails.surname,
+        email: userDetails.email,
+      };
+      setCheckoutSession(paymentIntentId, checkoutSession);
+
       const { error } = await stripe.confirmPayment({
         elements,
         confirmParams: {
-          return_url: `${origin}/checkout-complete?checkout_id=${paymentIntentId}`,
+          return_url: `${origin}/confirm-purchase?payment_intent_id=${paymentIntentId}`,
           payment_method_data: {
             billing_details: {
               name: `${userDetails.first_name} ${userDetails.surname}`,

@@ -1,8 +1,9 @@
 import { userDetailsFormStateAndValidation } from "./UserDetailsFormStateAndValidation.ts";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import formStyles from "../../styles/components/checkout/form.module.css";
 import cartStyles from "../../styles/components/cart/cart.module.css";
 import type { User } from "../../types/user";
+import { getCheckoutSession } from "../../scripts/checkout/checkout-session.ts";
 
 interface UserDetailsFormProps {
   onComplete: (userDetails: User) => Promise<void>;
@@ -23,6 +24,22 @@ export const UserDetailsForm: React.FC<UserDetailsFormProps> = ({
     validateForm,
     validateEmail,
   } = userDetailsFormStateAndValidation();
+
+  useEffect(() => {
+    // Check for existing payment_intent_id query string and associated session
+    // Will be the case e.g. if they cancelled a PayPal payment
+    const params = new URLSearchParams(window.location.search);
+    const paymentIntentId = params.get('payment_intent_id');
+
+    if (paymentIntentId) {
+      const sessionData = getCheckoutSession(paymentIntentId)
+      if (sessionData) {
+        setFirstName(sessionData.firstName);
+        setSurname(sessionData.surname);
+        setEmail(sessionData.email);
+      }
+    }
+  }, []);
 
   const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFirstName(e.target.value);

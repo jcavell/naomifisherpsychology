@@ -1,0 +1,40 @@
+---
+export const prerender = false;
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { stripe } from "../scripts/checkout/init-stripe";
+import Logger from "../scripts/logger";
+
+const { searchParams } = Astro.url;
+const paymentIntentId = searchParams.get("payment_intent_id");
+
+if (!paymentIntentId) {
+  return Astro.redirect("/checkout");
+}
+
+Logger.INFO("***** Retrieving payment intent for confirmation:", {
+  paymentIntentId,
+});
+
+const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+
+if (paymentIntent.status === "succeeded") {
+  Logger.INFO("***** Payment succeeded, redirecting to complete:", {
+    paymentIntentId,
+  });
+  return Astro.redirect(`/checkout-complete?checkout_id=${paymentIntentId}&redirect_status=succeeded`);
+} else {
+  Logger.INFO("***** Payment not successful:", {
+    paymentIntentId,
+    status: paymentIntent.status,
+  });
+  return Astro.redirect("/checkout?payment_cancelled=true");
+}
+---
+
+<BaseLayout active="checkout" pageTitle="Confirming Purchase">
+  <div class="container">
+    <h1>Confirming your purchase...</h1>
+    <p>Please wait while we confirm your payment.</p>
+  </div>
+</BaseLayout>

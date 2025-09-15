@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
 import type { JSX } from "react";
 import styles from "../../styles/components/checkout/complete.module.css";
-import type {BasketItem, ProductType} from "../../types/basket-item..ts";
-import {emptyBasket} from "../../scripts/basket/basket.ts";
-import {formatAmount} from "../../scripts/basket/utils.ts";
+import type { BasketItem, ProductType } from "../../types/basket-item..ts";
+import { emptyBasket } from "../../scripts/basket/basket.ts";
+import { formatAmount } from "../../scripts/basket/utils.ts";
 import {
   META_BASKET_PRODUCT_TYPE,
   type MetaBasketProductType,
-  trackPurchaseEvent
+  trackPurchaseEvent,
 } from "../../scripts/tracking/metaPixel.ts";
+import {
+  type CheckoutSession,
+  getCheckoutSession,
+} from "../../scripts/checkout/checkout-session.ts";
 
 const isDev = import.meta.env.DEV;
 
@@ -64,59 +68,69 @@ const STATUS_CONTENT_MAP: Record<
 const CheckoutCompleteComponent: React.FC = () => {
   const [status, setStatus] = useState<PaymentStatus>("default");
   const [loading, setLoading] = useState(true); // Add loading state back
-  const [purchasedItems, setPurchasedItems] = useState<BasketItem[]>([]);
+  const [checkoutSessionValue, setCheckoutSessionValue] =
+    useState<CheckoutSession | null>(null);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const checkoutId = params.get("checkout_id");
-    const redirectStatus = params.get("redirect_status");
+    const paymentSucceeded = params.get("redirect_status");
 
     if (!checkoutId) {
       setStatus("default");
       return;
     }
 
-    const storedItems = JSON.parse(sessionStorage.getItem(checkoutId) || "[]") as BasketItem[];
-    setPurchasedItems(storedItems);
+    const session = getCheckoutSession(checkoutId);
+    setCheckoutSessionValue(session);
 
-    // Sent meta pixel event
+    const basketItems = checkoutSessionValue?.basketItems || [];
+
+    // Send meta pixel event
     // If it's a paid transaction, check redirect_status
     // If it's a free transaction (starts with 'free_') or paid with success, set succeeded
-    if (checkoutId.startsWith("free_") || redirectStatus === "succeeded") {
-      if (storedItems.length > 0 && !localStorage.getItem(`purchase-tracked-${checkoutId}`)) {
-        const cart = storedItems.map(item => ({
+    if (checkoutId.startsWith("free_") || paymentSucceeded === "succeeded") {
+      if (
+        basketItems.length > 0 &&
+        !localStorage.getItem(`purchase-tracked-${checkoutId}`)
+      ) {
+        const cart = basketItems.map((item) => ({
           id: item.id,
           quantity: 1,
           item_price: item.discountedPriceInPence / 100,
-          content_type: item.product_type as ProductType
+          content_type: item.product_type as ProductType,
         }));
 
-        const contentType: MetaBasketProductType = cart.every(item =>
-            item.content_type === "webinar")
-            ? META_BASKET_PRODUCT_TYPE.WEBINARS
-            : cart.every(item => item.content_type === "course")
-                ? META_BASKET_PRODUCT_TYPE.COURSES
-                : META_BASKET_PRODUCT_TYPE.MIXED;
+        const contentType: MetaBasketProductType = cart.every(
+          (item) => item.content_type === "webinar",
+        )
+          ? META_BASKET_PRODUCT_TYPE.WEBINARS
+          : cart.every((item) => item.content_type === "course")
+            ? META_BASKET_PRODUCT_TYPE.COURSES
+            : META_BASKET_PRODUCT_TYPE.MIXED;
 
         const purchaseEvent = {
-          value: cart.reduce((sum, item) => sum + (item.item_price * item.quantity), 0),
-          currency: 'GBP',
+          value: cart.reduce(
+            (sum, item) => sum + item.item_price * item.quantity,
+            0,
+          ),
+          currency: "GBP",
           contents: cart,
           content_type: contentType,
-          transactionId: checkoutId
+          transactionId: checkoutId,
         };
 
         trackPurchaseEvent(purchaseEvent, {
-          eventID: `purchase-${checkoutId}`
+          eventID: `purchase-${checkoutId}`,
         });
 
         // Remove any previous purchase-tracked items
-        Object.keys(localStorage).forEach(key => {
-          if (key.startsWith('purchase-tracked-')) {
+        Object.keys(localStorage).forEach((key) => {
+          if (key.startsWith("purchase-tracked-")) {
             localStorage.removeItem(key);
           }
         });
-        localStorage.setItem(`purchase-tracked-${checkoutId}`, 'true');
+        localStorage.setItem(`purchase-tracked-${checkoutId}`, "true");
       }
 
       setStatus("succeeded");
@@ -133,6 +147,8 @@ const CheckoutCompleteComponent: React.FC = () => {
     );
   }
 
+  const purchasedItems = checkoutSessionValue?.basketItems || [];
+
   return (
     <div className={styles.paymentStatus}>
       <div
@@ -144,63 +160,61 @@ const CheckoutCompleteComponent: React.FC = () => {
       <h2 className={styles.heading}>{STATUS_CONTENT_MAP[status].text}</h2>
 
       {status === "succeeded" && purchasedItems.length > 0 && (
-          <div className={styles.detailsTable}>
-            <h3 className={styles.heading}>
-              Thank you for your order
-            </h3>
-            {purchasedItems.some(item => item.product_type === "course") && (
-                <p>Check your email for instructions on how to watch your course.</p>
-            )}
-            {purchasedItems.some(item => item.product_type === "webinar") && (
-                <p>Webinar Zoom links will be sent 2 hours before the start</p>
-            )}
-
+        <div className={styles.detailsTable}>
+          <h3 className={styles.heading}>Thank you for your order</h3>
+          {purchasedItems.some((item) => item.product_type === "course") && (
             <p>
-              If you have any questions, please email <a
-                href="mailto:support@naomifisher.co.uk">support@naomifisher.co.uk</a
-            >
+              Check your email for instructions on how to watch your course.
             </p>
+          )}
+          {purchasedItems.some((item) => item.product_type === "webinar") && (
+            <p>Webinar Zoom links will be sent 2 hours before the start</p>
+          )}
 
-            <h3>Order summary</h3>
+          <p>
+            If you have any questions, please email{" "}
+            <a href="mailto:support@naomifisher.co.uk">
+              support@naomifisher.co.uk
+            </a>
+          </p>
 
-            <table className={styles.table}>
+          <h3>Order summary</h3>
 
-              <tbody>
+          <table className={styles.table}>
+            <tbody>
               {purchasedItems.map((item) => (
-                  <tr key={item.id}>
-                    <td>
-                      <div className={styles.itemDetails}>
-
-                        <div>
-                          <div className={styles.webinarName}>
-                            {item.product_name}
-                          </div>
-                          <div className={styles.variantName}>
-                            {item.variant_name}
-                          </div>
+                <tr key={item.id}>
+                  <td>
+                    <div className={styles.itemDetails}>
+                      <div>
+                        <div className={styles.webinarName}>
+                          {item.product_name}
+                        </div>
+                        <div className={styles.variantName}>
+                          {item.variant_name}
                         </div>
                       </div>
-                    </td>
-                    <td>£{formatAmount(item.discountedPriceInPence)}</td>
-
-
-                  </tr>
+                    </div>
+                  </td>
+                  <td>£{formatAmount(item.discountedPriceInPence)}</td>
+                </tr>
               ))}
               <tr>
                 <td>Total</td>
                 <td>
                   £
                   {(
-                      purchasedItems.reduce(
-                          (acc, item) => acc + item.discountedPriceInPence * item.quantity,
-                          0,
-                      ) / 100
+                    purchasedItems.reduce(
+                      (acc, item) =>
+                        acc + item.discountedPriceInPence * item.quantity,
+                      0,
+                    ) / 100
                   ).toFixed(2)}
                 </td>
               </tr>
-              </tbody>
-            </table>
-          </div>
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );

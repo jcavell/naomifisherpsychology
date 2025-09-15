@@ -31,9 +31,10 @@ const Checkout: React.FC<{ setError: (error: string | null) => void }> = ({
 }) => {
   const $basketItems = useStore(getBasketItems);
   const $isEmpty = useStore(getIsEmpty);
-  const isClient = useClientOnly(); // Hook to check client-side
 
-  const [clientSecret, setClientSecret] = useState<string | null>(null); // Track clientSecret for Stripe initialization
+  const [clientSecret, setClientSecret] = useState<string | null>(null);
+  const [paymentIntentId, setPaymentIntentId] = useState<string>(""); // Passed to PaymentForm
+
   const [userDetails, setUserDetails] = useState<User | null>(null);
   const [stripePromise, setStripePromise] =
     useState<Promise<Stripe | null> | null>(null);
@@ -72,6 +73,7 @@ const Checkout: React.FC<{ setError: (error: string | null) => void }> = ({
         const data = await res.json();
         if (data.clientSecret) {
           setClientSecret(data.clientSecret);
+          setPaymentIntentId(data.clientSecret.split('_secret_')[0]);
         } else {
           throw new Error("No clientSecret in response");
         }
@@ -109,7 +111,7 @@ const Checkout: React.FC<{ setError: (error: string | null) => void }> = ({
     return (
       <div className={formStyles.checkoutFormWrapper}>
         <PaymentForm
-          clientSecret=""
+          paymentIntentId={paymentIntentId}
           userDetails={userDetails}
           basketItems={$basketItems}
         />
@@ -135,7 +137,7 @@ const Checkout: React.FC<{ setError: (error: string | null) => void }> = ({
     <div className={formStyles.checkoutFormWrapper}>
       <Elements options={{ clientSecret, appearance }} stripe={stripePromise}>
         <PaymentForm
-          clientSecret={clientSecret}
+          paymentIntentId={paymentIntentId}
           userDetails={userDetails}
           basketItems={$basketItems}
         />{" "}
