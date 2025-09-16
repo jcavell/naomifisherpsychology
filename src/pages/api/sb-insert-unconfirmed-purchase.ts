@@ -1,14 +1,18 @@
 import type { User } from "../../types/user";
 import type { StripePayment } from "../../types/stripe-payment";
-import type { BasketItem, BasketItemSummary } from "../../types/basket-item..ts";
+import type {
+  BasketItem,
+  BasketItemSummary,
+} from "../../types/basket-item..ts";
 import { upsertUser } from "../../scripts/checkout/sb-users.ts";
 import { createSbClient } from "../../scripts/checkout/create-sb-client.ts";
+import type { APIRoute } from "astro";
 
 export const prerender = false;
 
 const supabase = createSbClient;
 
-export async function POST({ request }: { request: Request }) {
+export const POST: APIRoute = async ({ request, cookies }) => {
   try {
     // Parse the incoming request body
     const body = await request.json();
@@ -54,6 +58,9 @@ export async function POST({ request }: { request: Request }) {
       );
     }
 
+    // Step 1: Create a unique session ID
+    const sessionId = crypto.randomUUID();
+
     // Step 1: Upsert the user data into Supabase
     const upsertedUser = await upsertUser(user);
 
@@ -78,6 +85,7 @@ export async function POST({ request }: { request: Request }) {
 
     const userId = upsertedUser.id;
     const stripePayment: StripePayment = {
+      session_id: sessionId,
       stripe_payment_id: payment_intent_id,
       payment_amount_pence: 0,
       items: basketItemsSummary,
@@ -92,14 +100,23 @@ export async function POST({ request }: { request: Request }) {
     const { error: purchaseError } = await supabase
       .from("Purchases")
       .upsert([stripePayment], {
-        onConflict: 'stripe_payment_id',
-        ignoreDuplicates: false
+        onConflict: "stripe_payment_id",
+        ignoreDuplicates: false,
       });
 
     if (purchaseError) {
       console.error("Failed to insert purchase into Supabase:", purchaseError);
       throw new Error(`Failed to record purchase: ${purchaseError.message}`);
     }
+
+    // Set an HTTP-only cookie
+    cookies.set("checkout_session_id", sessionId, {
+      httpOnly: true,
+      path: "/",
+      maxAge: 60 * 60, // 1 hour
+      sameSite: "lax", // optional, good default
+      secure: true, // set true if using HTTPS
+    });
 
     return new Response(
       JSON.stringify({ message: "User and purchase successfully saved." }),
@@ -114,4 +131,4 @@ export async function POST({ request }: { request: Request }) {
       },
     );
   }
-}
+};

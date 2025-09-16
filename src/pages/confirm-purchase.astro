@@ -9,12 +9,8 @@ const { searchParams } = Astro.url;
 const paymentIntentId = searchParams.get("payment_intent_id");
 
 if (!paymentIntentId) {
-  return Astro.redirect("/checkout");
+  return Astro.redirect("/checkout?payment_cancelled=true");
 }
-
-Logger.INFO("***** Retrieving payment intent for confirmation:", {
-  paymentIntentId,
-});
 
 const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
 
@@ -22,7 +18,7 @@ if (paymentIntent.status === "succeeded") {
   Logger.INFO("***** Payment succeeded, redirecting to complete:", {
     paymentIntentId,
   });
-  return Astro.redirect(`/checkout-complete?checkout_id=${paymentIntentId}&redirect_status=succeeded`);
+  return Astro.redirect('/checkout-complete');
 } else {
   Logger.INFO("***** Payment not successful:", {
     paymentIntentId,

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import formStyles from "../../styles/components/checkout/form.module.css";
 import cartStyles from "../../styles/components/cart/cart.module.css";
 import type { User } from "../../types/user";
-import { getCheckoutSession } from "../../scripts/checkout/checkout-session.ts";
+import type { PurchaseData } from "../../pages/api/sb-get-purchase-from-session-id.ts";
 
 interface UserDetailsFormProps {
   onComplete: (userDetails: User) => Promise<void>;
@@ -25,20 +25,38 @@ export const UserDetailsForm: React.FC<UserDetailsFormProps> = ({
     validateEmail,
   } = userDetailsFormStateAndValidation();
 
-  useEffect(() => {
-    // Check for existing payment_intent_id query string and associated session
-    // Will be the case e.g. if they cancelled a PayPal payment
-    const params = new URLSearchParams(window.location.search);
-    const paymentIntentId = params.get('payment_intent_id');
+  const [showCancelMessage, setShowCancelMessage] = useState(false);
 
-    if (paymentIntentId) {
-      const sessionData = getCheckoutSession(paymentIntentId)
-      if (sessionData) {
-        setFirstName(sessionData.firstName);
-        setSurname(sessionData.surname);
-        setEmail(sessionData.email);
+
+  useEffect(() => {
+    const fetchPurchaseData = async () => {
+      const params = new URLSearchParams(window.location.search);
+      // Only pre-fill form is the payment is cancelled
+      const paymentCancelled = params.get('payment_cancelled');
+
+      if (paymentCancelled) {
+        setShowCancelMessage(true);
+        try {
+          const response = await fetch("/api/sb-get-purchase-from-session-id", {
+            method: "GET",
+            credentials: "include",
+          });
+
+          if (response.ok) {
+            const data: PurchaseData = await response.json();
+            console.log("DATA", data);
+            setFirstName(data.Users.first_name);
+            setSurname(data.Users.surname);
+            setEmail(data.Users.email);
+          }
+        } catch (error) {
+          console.error('Error fetching purchase data:', error);
+        }
       }
-    }
+    };
+
+    // Call the async function
+    fetchPurchaseData();
   }, []);
 
   const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -83,6 +101,12 @@ export const UserDetailsForm: React.FC<UserDetailsFormProps> = ({
 
   return (
     <div className={cartStyles.cartContainer}>
+      {showCancelMessage && (
+        <div className={formStyles.errorMessage} style={{ marginBottom: '1rem', textAlign: 'center' }}>
+          Payment has been cancelled. Please try again.
+        </div>
+      )}
+
       <form onSubmit={handleSubmit} noValidate>
         <h2>Your details</h2>
 

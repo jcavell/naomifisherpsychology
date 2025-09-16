@@ -10,7 +10,6 @@ import type { BasketItem } from "../../types/basket-item..ts";
 import type { User } from "../../types/user";
 import { getTrackerFromStore } from "../../scripts/tracking/trackerRetrieverAndStorer.ts";
 import { getCouponCodeFromStore } from "../../scripts/coupon/couponRetrieverAndStorer.ts";
-import { type CheckoutSession, setCheckoutSession } from "../../scripts/checkout/checkout-session.ts";
 
 interface CheckoutFormProps {
   paymentIntentId: string;
@@ -91,15 +90,8 @@ export const PaymentForm: React.FC<CheckoutFormProps> = ({ paymentIntentId, user
       }
 
       const checkoutId = `free_${Date.now()}_${btoa(userDetails.email).substring(0, 8)}`;
-      sessionStorage.setItem(checkoutId, JSON.stringify(basketItems));
-      const checkoutSession: CheckoutSession = {
-        paymentIntentId: paymentIntentId, // "" for a free checkout
-        basketItems,
-        firstName: userDetails.first_name,
-        surname: userDetails.surname,
-        email: userDetails.email,
-      };
-      setCheckoutSession(checkoutId, checkoutSession);
+
+      // TODO insert purchases into unconfirmed purchase equivalent!
       window.location.href = `${window.location.origin}/checkout-complete?checkout_id=${checkoutId}`;
 
     } catch (error) {
@@ -144,17 +136,6 @@ export const PaymentForm: React.FC<CheckoutFormProps> = ({ paymentIntentId, user
       }
 
       // Step 2: Confirm payment using Stripe
-
-      // Store items in sessionStorage before payment confirmation
-      const checkoutSession: CheckoutSession = {
-        paymentIntentId: paymentIntentId,
-        basketItems,
-        firstName: userDetails.first_name,
-        surname: userDetails.surname,
-        email: userDetails.email,
-      };
-      setCheckoutSession(paymentIntentId, checkoutSession);
-
       const { error } = await stripe.confirmPayment({
         elements,
         confirmParams: {

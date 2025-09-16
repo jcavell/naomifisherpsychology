@@ -9,10 +9,7 @@ import {
   type MetaBasketProductType,
   trackPurchaseEvent,
 } from "../../scripts/tracking/metaPixel.ts";
-import {
-  type CheckoutSession,
-  getCheckoutSession,
-} from "../../scripts/checkout/checkout-session.ts";
+import type { PurchaseData } from "../../pages/api/sb-get-purchase-from-session-id.ts";
 
 const isDev = import.meta.env.DEV;
 
@@ -65,78 +62,113 @@ const STATUS_CONTENT_MAP: Record<
   },
 };
 
-const CheckoutCompleteComponent: React.FC = () => {
+interface Props {
+  checkoutSessionId: string | null;
+}
+
+const CheckoutCompleteComponent: React.FC<Props> = ({ checkoutSessionId }) => {
   const [status, setStatus] = useState<PaymentStatus>("default");
-  const [loading, setLoading] = useState(true); // Add loading state back
-  const [checkoutSessionValue, setCheckoutSessionValue] =
-    useState<CheckoutSession | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [purchaseData, setPurchaseData] = useState<PurchaseData | null>(null);
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const checkoutId = params.get("checkout_id");
-    const paymentSucceeded = params.get("redirect_status");
+    const fetchPurchaseData = async () => {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const checkoutId = params.get("checkout_id");
+        const paymentSucceeded = params.get("redirect_status");
 
-    if (!checkoutId) {
-      setStatus("default");
-      return;
-    }
-
-    const session = getCheckoutSession(checkoutId);
-    setCheckoutSessionValue(session);
-
-    const basketItems = checkoutSessionValue?.basketItems || [];
-
-    // Send meta pixel event
-    // If it's a paid transaction, check redirect_status
-    // If it's a free transaction (starts with 'free_') or paid with success, set succeeded
-    if (checkoutId.startsWith("free_") || paymentSucceeded === "succeeded") {
-      if (
-        basketItems.length > 0 &&
-        !localStorage.getItem(`purchase-tracked-${checkoutId}`)
-      ) {
-        const cart = basketItems.map((item) => ({
-          id: item.id,
-          quantity: 1,
-          item_price: item.discountedPriceInPence / 100,
-          content_type: item.product_type as ProductType,
-        }));
-
-        const contentType: MetaBasketProductType = cart.every(
-          (item) => item.content_type === "webinar",
-        )
-          ? META_BASKET_PRODUCT_TYPE.WEBINARS
-          : cart.every((item) => item.content_type === "course")
-            ? META_BASKET_PRODUCT_TYPE.COURSES
-            : META_BASKET_PRODUCT_TYPE.MIXED;
-
-        const purchaseEvent = {
-          value: cart.reduce(
-            (sum, item) => sum + item.item_price * item.quantity,
-            0,
-          ),
-          currency: "GBP",
-          contents: cart,
-          content_type: contentType,
-          transactionId: checkoutId,
-        };
-
-        trackPurchaseEvent(purchaseEvent, {
-          eventID: `purchase-${checkoutId}`,
+        // First try to get purchase data from Supabase
+        const response = await fetch("/api/sb-get-purchase-from-session-id", {
+          method: "GET",
+          credentials: "include", // Include cookies
         });
 
-        // Remove any previous purchase-tracked items
-        Object.keys(localStorage).forEach((key) => {
-          if (key.startsWith("purchase-tracked-")) {
-            localStorage.removeItem(key);
+        if (response.ok) {
+          const data: PurchaseData = await response.json();
+          setPurchaseData(data);
+
+          // Check if payment is confirmed or if it's a free transaction
+          const isPaymentConfirmed = data.payment_confirmed ||
+            (checkoutId && checkoutId.startsWith("free_")) ||
+            paymentSucceeded === "succeeded";
+
+          if (isPaymentConfirmed && data.items.length > 0) {
+            // Send meta pixel event if not already tracked
+            if (!localStorage.getItem(`purchase-tracked-${data.session_id}`)) {
+              const cart = data.items.map((item) => ({
+                id: item.id,
+                quantity: item.quantity,
+                item_price: item.discountedPriceInPence / 100,
+                content_type: item.product_type as ProductType,
+              }));
+
+              const contentType: MetaBasketProductType = cart.every(
+                (item) => item.content_type === "webinar",
+              )
+                ? META_BASKET_PRODUCT_TYPE.WEBINARS
+                : cart.every((item) => item.content_type === "course")
+                  ? META_BASKET_PRODUCT_TYPE.COURSES
+                  : META_BASKET_PRODUCT_TYPE.MIXED;
+
+              const purchaseEvent = {
+                value: cart.reduce(
+                  (sum, item) => sum + item.item_price * item.quantity,
+                  0,
+                ),
+                currency: "GBP",
+                contents: cart,
+                content_type: contentType,
+                transactionId: data.session_id,
+              };
+
+              trackPurchaseEvent(purchaseEvent, {
+                eventID: `purchase-${data.session_id}`,
+              });
+
+              // Remove any previous purchase-tracked items
+              Object.keys(localStorage).forEach((key) => {
+                if (key.startsWith("purchase-tracked-")) {
+                  localStorage.removeItem(key);
+                }
+              });
+              localStorage.setItem(`purchase-tracked-${data.session_id}`, "true");
+            }
+
+            setStatus("succeeded");
+            emptyBasket();
+          } else {
+            setStatus("default");
           }
-        });
-        localStorage.setItem(`purchase-tracked-${checkoutId}`, "true");
-      }
+        } else {
+          // Fallback to URL parameter logic if API fails
+          if (!checkoutId) {
+            setStatus("default");
+            return;
+          }
 
-      setStatus("succeeded");
-      emptyBasket();
-    }
-    setLoading(false);
+          if (checkoutId.startsWith("free_") || paymentSucceeded === "succeeded") {
+            setStatus("succeeded");
+            emptyBasket();
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching purchase data:", error);
+        // Fallback to URL parameter logic
+        const params = new URLSearchParams(window.location.search);
+        const checkoutId = params.get("checkout_id");
+        const paymentSucceeded = params.get("redirect_status");
+
+        if (checkoutId && (checkoutId.startsWith("free_") || paymentSucceeded === "succeeded")) {
+          setStatus("succeeded");
+          emptyBasket();
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPurchaseData();
   }, []);
 
   if (loading) {
@@ -147,7 +179,7 @@ const CheckoutCompleteComponent: React.FC = () => {
     );
   }
 
-  const purchasedItems = checkoutSessionValue?.basketItems || [];
+  const purchasedItems = purchaseData?.items || [];
 
   return (
     <div className={styles.paymentStatus}>
@@ -182,36 +214,36 @@ const CheckoutCompleteComponent: React.FC = () => {
 
           <table className={styles.table}>
             <tbody>
-              {purchasedItems.map((item) => (
-                <tr key={item.id}>
-                  <td>
-                    <div className={styles.itemDetails}>
-                      <div>
-                        <div className={styles.webinarName}>
-                          {item.product_name}
-                        </div>
-                        <div className={styles.variantName}>
-                          {item.variant_name}
-                        </div>
+            {purchasedItems.map((item) => (
+              <tr key={item.id}>
+                <td>
+                  <div className={styles.itemDetails}>
+                    <div>
+                      <div className={styles.webinarName}>
+                        {item.product_name}
+                      </div>
+                      <div className={styles.variantName}>
+                        {item.variant_name}
                       </div>
                     </div>
-                  </td>
-                  <td>£{formatAmount(item.discountedPriceInPence)}</td>
-                </tr>
-              ))}
-              <tr>
-                <td>Total</td>
-                <td>
-                  £
-                  {(
-                    purchasedItems.reduce(
-                      (acc, item) =>
-                        acc + item.discountedPriceInPence * item.quantity,
-                      0,
-                    ) / 100
-                  ).toFixed(2)}
+                  </div>
                 </td>
+                <td>£{formatAmount(item.discountedPriceInPence)}</td>
               </tr>
+            ))}
+            <tr>
+              <td>Total</td>
+              <td>
+                £
+                {(
+                  purchasedItems.reduce(
+                    (acc, item) =>
+                      acc + item.discountedPriceInPence * item.quantity,
+                    0,
+                  ) / 100
+                ).toFixed(2)}
+              </td>
+            </tr>
             </tbody>
           </table>
         </div>

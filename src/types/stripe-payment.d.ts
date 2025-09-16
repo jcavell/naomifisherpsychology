@@ -1,6 +1,7 @@
 import type { BasketItem, BasketItemSummary } from "./basket-item..ts";
 
 export type StripePayment = {
+  session_id: string;
   user_id: bigint;
   stripe_payment_id: string; // Matches the 'stripe_payment_id' column
   payment_authorised_timestamp?: string; // ISO time, matches 'payment_authorised_timestamp'
