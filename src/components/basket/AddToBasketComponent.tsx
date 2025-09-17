@@ -39,6 +39,9 @@ const Button: React.FC<AddToBasketProps> = ({
   }
 
   const handleAddToBasket = async () => {
+    // Prevent multiple rapid clicks
+    if (isProcessing) return;
+
     setIsProcessing(true);
     setButtonText("Adding...");
 
@@ -47,8 +50,11 @@ const Button: React.FC<AddToBasketProps> = ({
         const basketItem = await clientFetchItemFromAPI(id, type);
         if (basketItem !== undefined) {
           addItem(basketItem);
+          // Small delay to ensure state updates before showing overlay
+          setTimeout(() => {
+            setShowOverlay(true);
+          }, 100);
         }
-        setShowOverlay(true);
       } finally {
         setIsProcessing(false);
         setButtonText("Add to Basket");
@@ -97,11 +103,8 @@ const Button: React.FC<AddToBasketProps> = ({
               : `add-to-basket-from-summary ${overlayStyles.textButton}`
           }
           disabled={isProcessing}
-          onClick={(event) => {
-            event.preventDefault();
-            handleAddToBasket();
-          }}
-          onTouchStart={() => {}} // iOS Safari fix
+          onClick={handleAddToBasket}
+          onTouchEnd={handleAddToBasket}
           style={{
             touchAction: "manipulation",
             WebkitTapHighlightColor: "transparent",
