@@ -81,6 +81,7 @@ const Button: React.FC<AddToBasketProps> = ({
             event.preventDefault();
             window.location.href = "/basket";
           }}
+          onTouchStart={() => {}} // iOS Safari fix
           style={{
             touchAction: "manipulation",
             WebkitTapHighlightColor: "transparent",
@@ -100,6 +101,7 @@ const Button: React.FC<AddToBasketProps> = ({
             event.preventDefault();
             handleAddToBasket();
           }}
+          onTouchStart={() => {}} // iOS Safari fix
           style={{
             touchAction: "manipulation",
             WebkitTapHighlightColor: "transparent",
