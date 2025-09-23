@@ -343,6 +343,6 @@ export const courses: CourseData[] = [
   }
 ];
 
-export function getCourseByOfferId(offerId: string): CourseData | undefined {
-    return courses.find(course => course.offerId === offerId);
+export function getInternalIdFromOfferId(offerId: string): string | undefined {
+  return courses.find((course) => course.offerId === offerId)?.internalId;
 }
