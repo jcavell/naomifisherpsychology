@@ -177,19 +177,9 @@ export const courses: CourseData[] = [
     "internalId": "2149793175"
   },
   {
-    "title": "Do we need an EHCP? If we do, what do we do now?",
-    "offerId": "7boherxL",
-    "internalId": "2150009684"
-  },
-  {
     "title": "Taking Control of Your EHCP Annual Review",
     "offerId": "NzaULaoT",
     "internalId": "2149524840"
-  },
-  {
-    "title": "We don't have an EHCP - what can we expect from school?",
-    "offerId": "f5rVFA5f",
-    "internalId": "2150009686"
   },
   {
     "title": "Finding Your Way Through the EHCP Jungle",
