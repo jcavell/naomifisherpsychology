@@ -13,12 +13,6 @@ import { useStore } from "@nanostores/react";
 import { getBasketItems, getIsEmpty } from "../../scripts/basket/basket.ts";
 import type { User } from "../../types/user";
 import { getTrackerFromStore } from "../../scripts/tracking/trackerRetrieverAndStorer.ts";
-import {
-  META_BASKET_PRODUCT_TYPE,
-  type MetaBasketProductType,
-  trackCheckoutEvent,
-} from "../../scripts/tracking/metaPixel.ts";
-import { PRODUCT_TYPE, type ProductType } from "../../types/basket-item..ts";
 
 const Spinner: React.FC = () => (
   <div className={formStyles.spinnerContainer}>
@@ -149,58 +143,6 @@ const Checkout: React.FC<{ setError: (error: string | null) => void }> = ({
 const CheckoutComponent: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const isClient = useClientOnly(); // Also moved inside the component
-  const $basketItems = useStore(getBasketItems);
-  const [hasTracked, setHasTracked] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (hasTracked || !isClient || $basketItems.length === 0) return;
-
-    setHasTracked(true);
-
-    if (isClient && $basketItems.length > 0) {
-      const basketItemIds = $basketItems
-        .map((item) => item.id)
-        .sort()
-        .join("-");
-      const eventId = `checkout-${basketItemIds}`;
-      // console.log('Generated eventId:', eventId);
-
-      if (!sessionStorage.getItem(eventId)) {
-        const cart = $basketItems.map((item) => ({
-          id: item.id,
-          quantity: 1,
-          item_price: item.discountedPriceInPence / 100,
-          content_type: item.product_type as ProductType,
-        }));
-
-        // console.log('Cart data:', cart);
-
-        // Determine overall content_type based on cart contents
-        const contentType: MetaBasketProductType = cart.every(
-          (item) => item.content_type === PRODUCT_TYPE.WEBINAR,
-        )
-          ? META_BASKET_PRODUCT_TYPE.WEBINARS
-          : cart.every((item) => item.content_type === PRODUCT_TYPE.COURSE)
-            ? META_BASKET_PRODUCT_TYPE.COURSES
-            : META_BASKET_PRODUCT_TYPE.MIXED;
-
-        const eventData = {
-          value: cart.reduce(
-            (sum, item) => sum + item.item_price * item.quantity,
-            0,
-          ),
-          currency: "GBP",
-          contents: cart,
-          content_type: contentType,
-        };
-
-        // console.log('Meta Pixel available:', typeof (window as any).fbq === 'function');
-        trackCheckoutEvent(eventData, { eventID: eventId });
-
-        sessionStorage.setItem(eventId, "true");
-      }
-    }
-  }, [isClient, $basketItems]);
 
   if (!isClient) {
     return null; // Return nothing during SSR
@@ -208,7 +150,7 @@ const CheckoutComponent: React.FC = () => {
   return (
     <div className={cartStyles.cartAndCheckout}>
       {error && <div className={formStyles.error}>{error}</div>}
-      <Basket showCheckoutButton={false} basketTitle={"Order Summary"} />
+      <Basket isCheckoutPage={true} basketTitle={"Order Summary"} />
       <Checkout setError={setError} />
     </div>
   );

@@ -89,13 +89,17 @@ const CheckoutCompleteComponent: React.FC<Props> = ({ checkoutSessionId }) => {
           setPurchaseData(data);
 
           // Check if payment is confirmed or if it's a free transaction
-          const isPaymentConfirmed = data.payment_confirmed ||
+          const isPaymentConfirmed =
+            data.payment_confirmed ||
             (checkoutId && checkoutId.startsWith("free_")) ||
             paymentSucceeded === "succeeded";
 
           if (isPaymentConfirmed && data.items.length > 0) {
             // Send meta pixel event if not already tracked
-            if (!localStorage.getItem(`purchase-tracked-${data.session_id}`)) {
+            const storedEventId = sessionStorage.getItem("metaPixelEventId");
+            const eventId = storedEventId || `purchase-${data.session_id}`;
+
+            if (!sessionStorage.getItem(`purchase-tracked-${eventId}`)) {
               const cart = data.items.map((item) => ({
                 id: item.id,
                 quantity: item.quantity,
@@ -122,17 +126,37 @@ const CheckoutCompleteComponent: React.FC<Props> = ({ checkoutSessionId }) => {
                 transactionId: data.session_id,
               };
 
-              trackPurchaseEvent(purchaseEvent, {
-                eventID: `purchase-${data.session_id}`,
-              });
+              // Send pixel purchase event
+              trackPurchaseEvent(purchaseEvent, { eventID: eventId });
 
-              // Remove any previous purchase-tracked items
-              Object.keys(localStorage).forEach((key) => {
-                if (key.startsWith("purchase-tracked-")) {
-                  localStorage.removeItem(key);
-                }
+              // Mark this purchase event as having been tracked
+              sessionStorage.setItem(`purchase-tracked-${eventId}`, "true");
+
+              // Get IP first
+              const clientIp = await fetch("/api/get-ip").then((r) => r.text());
+
+              // Send using Conversions API
+              await fetch("/api/meta-capi", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  event_name: "Purchase",
+                  event_id: eventId,
+                  event_source_url: window.location.href,
+                  client_ip: clientIp,
+                  user_agent: navigator.userAgent,
+                  email: data.Users.email,
+                  custom_data: {
+                    currency: "GBP",
+                    value: purchaseEvent.value,
+                    contents: purchaseEvent.contents,
+                    content_type: purchaseEvent.content_type,
+                    transaction_id: purchaseEvent.transactionId,
+                  },
+                }),
+              }).catch((error) => {
+                console.error("Error sending CAPI purchase event:", error);
               });
-              localStorage.setItem(`purchase-tracked-${data.session_id}`, "true");
             }
 
             setStatus("succeeded");
@@ -147,7 +171,10 @@ const CheckoutCompleteComponent: React.FC<Props> = ({ checkoutSessionId }) => {
             return;
           }
 
-          if (checkoutId.startsWith("free_") || paymentSucceeded === "succeeded") {
+          if (
+            checkoutId.startsWith("free_") ||
+            paymentSucceeded === "succeeded"
+          ) {
             setStatus("succeeded");
             emptyBasket();
           }
@@ -159,7 +186,10 @@ const CheckoutCompleteComponent: React.FC<Props> = ({ checkoutSessionId }) => {
         const checkoutId = params.get("checkout_id");
         const paymentSucceeded = params.get("redirect_status");
 
-        if (checkoutId && (checkoutId.startsWith("free_") || paymentSucceeded === "succeeded")) {
+        if (
+          checkoutId &&
+          (checkoutId.startsWith("free_") || paymentSucceeded === "succeeded")
+        ) {
           setStatus("succeeded");
           emptyBasket();
         }
@@ -214,36 +244,36 @@ const CheckoutCompleteComponent: React.FC<Props> = ({ checkoutSessionId }) => {
 
           <table className={styles.table}>
             <tbody>
-            {purchasedItems.map((item) => (
-              <tr key={item.id}>
-                <td>
-                  <div className={styles.itemDetails}>
-                    <div>
-                      <div className={styles.webinarName}>
-                        {item.product_name}
-                      </div>
-                      <div className={styles.variantName}>
-                        {item.variant_name}
+              {purchasedItems.map((item) => (
+                <tr key={item.id}>
+                  <td>
+                    <div className={styles.itemDetails}>
+                      <div>
+                        <div className={styles.webinarName}>
+                          {item.product_name}
+                        </div>
+                        <div className={styles.variantName}>
+                          {item.variant_name}
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </td>
+                  <td>£{formatAmount(item.discountedPriceInPence)}</td>
+                </tr>
+              ))}
+              <tr>
+                <td>Total</td>
+                <td>
+                  £
+                  {(
+                    purchasedItems.reduce(
+                      (acc, item) =>
+                        acc + item.discountedPriceInPence * item.quantity,
+                      0,
+                    ) / 100
+                  ).toFixed(2)}
                 </td>
-                <td>£{formatAmount(item.discountedPriceInPence)}</td>
               </tr>
-            ))}
-            <tr>
-              <td>Total</td>
-              <td>
-                £
-                {(
-                  purchasedItems.reduce(
-                    (acc, item) =>
-                      acc + item.discountedPriceInPence * item.quantity,
-                    0,
-                  ) / 100
-                ).toFixed(2)}
-              </td>
-            </tr>
             </tbody>
           </table>
         </div>

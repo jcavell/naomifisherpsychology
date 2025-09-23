@@ -23,21 +23,21 @@ interface WindowWithPixel extends Window {
   fbq?: MetaPixel;
 }
 
-type PixelContents = {
+export type PixelContents = {
   id: string;
   quantity: number;
   item_price: number;
   content_type: ProductType // webinar or course
 };
 
-type PixelCheckoutEvent = {
+export type PixelCheckoutEvent = {
   value: number;
   currency: string;
   contents: PixelContents[];
   content_type: MetaBasketProductType; // webinars, courses or mixed
 };
 
-type PixelPurchaseEvent = PixelCheckoutEvent & {
+export type PixelPurchaseEvent = PixelCheckoutEvent & {
   transactionId: string;  // Additional field for purchase events
 };
 

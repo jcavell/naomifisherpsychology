@@ -3,6 +3,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import NaomiStyle from "../styles/naomiStyle.astro";
 import CookieConsent from "../components/CookieConsent.astro";
+import { env } from "../scripts/env";
 
 const { active, tagName, tagUrl, bodyClassName, metaDescription, hideNav } = Astro.props;
 
@@ -28,7 +29,8 @@ const bodyClass = bodyClassName
     </script>
 
     <!-- Meta Pixel Code -->
-    <script is:inline>
+    <script is:inline define:vars={{ META_PIXEL_ID: env.META_PIXEL_ID }}>
+
       !(function (f, b, e, v, n, t, s) {
         if (f.fbq) return;
         n = f.fbq = function () {
@@ -52,15 +54,16 @@ const bodyClass = bodyClassName
         "script",
         "https://connect.facebook.net/en_US/fbevents.js",
       );
-      fbq("init", "162835596799108");
+      fbq("init", META_PIXEL_ID);
       fbq("track", "PageView");
     </script>
+
     <noscript
     ><img
       height="1"
       width="1"
       style="display:none"
-      src="https://www.facebook.com/tr?id=162835596799108&ev=PageView&noscript=1"
+      src={`https://www.facebook.com/tr?id=${env.META_PIXEL_ID}&ev=PageView&noscript=1`}
     /></noscript
     >
     <!-- End Meta Pixel Code -->

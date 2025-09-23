@@ -44,4 +44,10 @@ export const env = {
   get DEV_USES_CACHED_WEBINARS() {
     return getEnvVar("DEV_USES_CACHED_WEBINARS") === "true";
   },
+  get META_PIXEL_ID() {
+    return getEnvVar("META_PIXEL_ID");
+  },
+  get META_CAPI_ACCESS_TOKEN() {
+    return getEnvVar("META_CAPI_ACCESS_TOKEN");
+  }
 } as const;
