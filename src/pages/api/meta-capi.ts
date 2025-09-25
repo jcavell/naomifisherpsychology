@@ -47,7 +47,7 @@ export const POST: APIRoute = async ({ request }) => {
     const fbp = getFacebookBrowserId(request);
 
     const jsonBody = JSON.stringify({
-      test_event_code: 'TEST19193',
+      test_event_code: env.META_TEST_EVENT_CODE,
       data: [
         {
           event_name: body.event_name,
@@ -84,15 +84,9 @@ export const POST: APIRoute = async ({ request }) => {
       ],
     });
 
-    console.log("Sending to Meta CAPI with body: ", jsonBody);
-    console.log("Trying to get PIXEL")
-    console.log("META_PIXEL_ID:", env.META_PIXEL_ID);
-    console.log("Token length:", env.META_CAPI_ACCESS_TOKEN?.length);
+    // console.log("Sending to Meta CAPI with body: ", jsonBody);
 
     const url = `https://graph.facebook.com/v21.0/${env.META_PIXEL_ID}/events?access_token=${env.META_CAPI_ACCESS_TOKEN}`;
-    const token = env.META_CAPI_ACCESS_TOKEN;
-    const redactedUrl = url.replace(token, `${'*'.repeat(token.length - 4)}${token.slice(-4)}`);
-    console.log("Calling URL:", redactedUrl);
 
     const response = await fetch(url,
       {
@@ -102,7 +96,7 @@ export const POST: APIRoute = async ({ request }) => {
       },
     );
 
-    console.log('Meta CAPI Response status:', response.status);
+    // console.log('Meta CAPI Response status:', response.status);
 
     const responseData = await response.json();
 

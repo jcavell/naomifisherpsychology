@@ -50,5 +50,8 @@ export const env = {
   },
   get META_CAPI_ACCESS_TOKEN() {
     return getEnvVar("META_CAPI_ACCESS_TOKEN");
+  },
+  get META_TEST_EVENT_CODE() {
+    return getEnvVar("META_TEST_EVENT_CODE");
   }
 } as const;
