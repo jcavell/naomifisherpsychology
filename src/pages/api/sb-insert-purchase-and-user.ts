@@ -3,7 +3,7 @@ import type { StripePayment } from "../../types/stripe-payment";
 import type {
   BasketItem,
   BasketItemSummary,
-} from "../../types/basket-item..ts";
+} from "../../types/basket-item.ts";
 import { upsertUser } from "../../scripts/checkout/sb-users.ts";
 import { createSbClient } from "../../scripts/checkout/create-sb-client.ts";
 import type { APIRoute } from "astro";
@@ -18,12 +18,14 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     const body = await request.json();
     const {
       payment_intent_id,
+      payment_confirmed,
       user,
       basket_items,
       coupon_code,
       t,
     }: {
-      payment_intent_id: string;
+      payment_intent_id: string; // free_ for free purchases
+      payment_confirmed: boolean; // true for free purchases
       user: User;
       basket_items: BasketItem[];
       coupon_code;
@@ -90,7 +92,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
       payment_amount_pence: 0,
       items: basketItemsSummary,
       user_id: userId,
-      payment_confirmed: false,
+      payment_confirmed: payment_confirmed,
       coupon_code: coupon_code,
       t: t,
     };
