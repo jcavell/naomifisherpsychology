@@ -8,6 +8,7 @@ export function getEnvVar(key: string): string {
   if (importMetaEnv) return importMetaEnv;
 
   // Throw error if variable is not found
+  console.error(`Environment variable ${key} is not defined`);
   throw new Error(`Environment variable ${key} is not defined`);
 }
 

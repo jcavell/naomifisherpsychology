@@ -85,6 +85,8 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
     console.log("Sending to Meta CAPI with body: ", jsonBody);
+    console.log("META_PIXEL_ID:", env.META_PIXEL_ID);
+    console.log("Token length:", env.META_CAPI_ACCESS_TOKEN?.length);
 
     const url = `https://graph.facebook.com/v21.0/${env.META_PIXEL_ID}/events?access_token=${env.META_CAPI_ACCESS_TOKEN}`;
     const token = env.META_CAPI_ACCESS_TOKEN;
