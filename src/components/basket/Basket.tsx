@@ -9,16 +9,11 @@ import {
   refreshBasketItems,
 } from "../../scripts/basket/basket.ts";
 import styles from "../../styles/components/cart/cart.module.css";
-import type { BasketItem } from "../../types/basket-item..ts";
+import type { BasketItem } from "../../types/basket-item.ts";
 import { removeCouponCodeFromStore } from "../../scripts/coupon/couponRetrieverAndStorer.ts";
 import { persistentCoupon } from "../../scripts/coupon/couponStore.ts";
 import { isCouponCodeValid } from "../../scripts/coupon/coupons.ts";
-import {
-  META_BASKET_PRODUCT_TYPE,
-  type MetaBasketProductType,
-  trackCheckoutEvent,
-} from "../../scripts/tracking/metaPixel.ts";
-import { PRODUCT_TYPE, type ProductType } from "../../types/basket-item..ts";
+import { trackAddToBasketEvent } from "../../scripts/tracking/track-events.ts";
 
 export interface BasketProps {
   showEmptyBasketMessage?: boolean;
@@ -67,86 +62,6 @@ export const Basket: React.FC<BasketProps> = ({
   const $total = useStore(getTotalPrice);
   const $count = useStore(getItemCount);
   const $couponCode = useStore(persistentCoupon);
-
-  // Generate event ID based on basket items and coupon
-  const generateEventId = () => {
-    const basketItemIds = $basketItems
-      .map((item) => item.id)
-      .sort()
-      .join("-");
-    const couponSuffix = $couponCode ? `-coupon-${$couponCode}` : '';
-    return `checkout-${basketItemIds}${couponSuffix}`;
-  };
-
-  // Meta pixel tracking effect
-  useEffect(() => {
-    if (!isCheckoutPage || !isClient || $basketItems.length === 0) return;
-
-    const eventId = generateEventId();
-
-    // Check if we've already tracked this exact combination
-    if (sessionStorage.getItem(eventId)) {
-      return;
-    }
-
-    sessionStorage.setItem(eventId, "true");
-
-    const cart = $basketItems.map((item) => ({
-      id: item.id,
-      quantity: 1,
-      item_price: item.discountedPriceInPence / 100,
-      content_type: item.product_type as ProductType,
-    }));
-
-    // Determine overall content_type based on cart contents
-    const contentType: MetaBasketProductType = cart.every(
-      (item) => item.content_type === PRODUCT_TYPE.WEBINAR,
-    )
-      ? META_BASKET_PRODUCT_TYPE.WEBINARS
-      : cart.every((item) => item.content_type === PRODUCT_TYPE.COURSE)
-        ? META_BASKET_PRODUCT_TYPE.COURSES
-        : META_BASKET_PRODUCT_TYPE.MIXED;
-
-    const eventData = {
-      value: cart.reduce(
-        (sum, item) => sum + item.item_price * item.quantity,
-        0,
-      ),
-      currency: "GBP",
-      contents: cart,
-      content_type: contentType,
-    };
-
-    // Send Pixel event
-    trackCheckoutEvent(eventData, { eventID: eventId });
-
-    // Send CAPI event
-    // Get IP then send CAPI event
-    fetch("/api/get-ip")
-      .then((r) => r.text())
-      .then((clientIp) => {
-        fetch("/api/meta-capi", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            event_name: "InitiateCheckout",
-            event_id: eventId,
-            event_source_url: window.location.href,
-            client_ip: clientIp,
-            user_agent: navigator.userAgent,
-            custom_data: {
-              currency: eventData.currency,
-              value: eventData.value,
-              contents: eventData.contents,
-              content_type: eventData.content_type,
-            },
-          }),
-        });
-      })
-      .catch((error) => {
-        console.error("Error sending CAPI event:", error);
-      });
-  }, [isClient, $basketItems, $couponCode, isCheckoutPage]);
 
   // ALSO ADD this useEffect to prevent the coupon value from going back into the input:
   useEffect(() => {

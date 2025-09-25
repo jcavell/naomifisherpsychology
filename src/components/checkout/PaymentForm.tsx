@@ -6,7 +6,7 @@ import {
 } from "@stripe/react-stripe-js";
 import formStyles from "../../styles/components/checkout/form.module.css";
 import paymentStyles from "../../styles/components/checkout/payment.module.css";
-import type { BasketItem } from "../../types/basket-item..ts";
+import type { BasketItem } from "../../types/basket-item.ts";
 import type { User } from "../../types/user";
 import { getTrackerFromStore } from "../../scripts/tracking/trackerRetrieverAndStorer.ts";
 import { getCouponCodeFromStore } from "../../scripts/coupon/couponRetrieverAndStorer.ts";
@@ -78,20 +78,38 @@ export const PaymentForm: React.FC<CheckoutFormProps> = ({ paymentIntentId, user
 
     setIsLoading(true);
     try {
-      const response = await fetch("/api/process-free-checkout", {
+
+      const checkoutId = `free_${Date.now()}_${btoa(userDetails.email).substring(0, 8)}`;
+
+      // Create checkout session cookie
+      // Insert into the Purchases table
+      // Also inserts into User table
+      const insertPurchaseResponse = await fetch("/api/sb-insert-purchase-and-user", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          payment_intent_id: checkoutId,
+          payment_confirmed: true, // free purchase auto confirmed
+          ...getInsertPurchaseBodyData(),
+        }),
+      });
+
+      if (!insertPurchaseResponse.ok) {
+        const data = await insertPurchaseResponse.json();
+        setMessage(data.message);
+      }
+
+      const processFreeCheckoutResponse = await fetch("/api/process-free-checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(getInsertPurchaseBodyData()),
       });
 
-      const data = await response.json();
-      if (!response.ok) {
+      const data = await processFreeCheckoutResponse.json();
+      if (!processFreeCheckoutResponse.ok) {
         throw new Error(data.message);
       }
 
-      const checkoutId = `free_${Date.now()}_${btoa(userDetails.email).substring(0, 8)}`;
-
-      // TODO insert purchases into unconfirmed purchase equivalent!
       window.location.href = `${window.location.origin}/checkout-complete?checkout_id=${checkoutId}`;
 
     } catch (error) {
@@ -121,11 +139,12 @@ export const PaymentForm: React.FC<CheckoutFormProps> = ({ paymentIntentId, user
     try {
       // Step 1: Store user and unconfirmed payment details in Supabase
       // Add payment_intent_id to body
-      const response = await fetch("/api/sb-insert-unconfirmed-purchase", {
+      const response = await fetch("/api/sb-insert-purchase-and-user", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           payment_intent_id: paymentIntentId,
+          payment_confirmed: false, // paid purchase not confirmed
           ...getInsertPurchaseBodyData(),
         }),
       });

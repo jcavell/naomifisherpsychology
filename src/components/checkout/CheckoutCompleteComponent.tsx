@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from "react";
 import type { JSX } from "react";
 import styles from "../../styles/components/checkout/complete.module.css";
-import type { BasketItem, ProductType } from "../../types/basket-item..ts";
-import { emptyBasket } from "../../scripts/basket/basket.ts";
+import { emptyBasket, getBasketItems } from "../../scripts/basket/basket.ts";
 import { formatAmount } from "../../scripts/basket/utils.ts";
-import {
-  META_BASKET_PRODUCT_TYPE,
-  type MetaBasketProductType,
-  trackPurchaseEvent,
-} from "../../scripts/tracking/metaPixel.ts";
 import type { PurchaseData } from "../../pages/api/sb-get-purchase-from-session-id.ts";
+import { trackPurchaseEvent } from "../../scripts/tracking/track-events.ts";
+import type { User } from "../../types/user";
 
 const isDev = import.meta.env.DEV;
 
@@ -62,23 +58,19 @@ const STATUS_CONTENT_MAP: Record<
   },
 };
 
-interface Props {
-  checkoutSessionId: string | null;
-}
+const RETRY_DELAYS = [2000, 3000, 5000];
 
-const CheckoutCompleteComponent: React.FC<Props> = ({ checkoutSessionId }) => {
+const CheckoutCompleteComponent: React.FC = () => {
   const [status, setStatus] = useState<PaymentStatus>("default");
   const [loading, setLoading] = useState(true);
   const [purchaseData, setPurchaseData] = useState<PurchaseData | null>(null);
+  const [retryCount, setRetryCount] = useState(0);
 
   useEffect(() => {
     const fetchPurchaseData = async () => {
-      try {
-        const params = new URLSearchParams(window.location.search);
-        const checkoutId = params.get("checkout_id");
-        const paymentSucceeded = params.get("redirect_status");
 
-        // First try to get purchase data from Supabase
+      try {
+        // Get purchase data (free or paid) from Supabase
         const response = await fetch("/api/sb-get-purchase-from-session-id", {
           method: "GET",
           credentials: "include", // Include cookies
@@ -88,118 +80,48 @@ const CheckoutCompleteComponent: React.FC<Props> = ({ checkoutSessionId }) => {
           const data: PurchaseData = await response.json();
           setPurchaseData(data);
 
-          // Check if payment is confirmed or if it's a free transaction
-          const isPaymentConfirmed =
-            data.payment_confirmed ||
-            (checkoutId && checkoutId.startsWith("free_")) ||
-            paymentSucceeded === "succeeded";
+          // Check if payment is confirmed (it is auto confirmed if free)
+          const isPaymentConfirmed = data.payment_confirmed;
 
           if (isPaymentConfirmed && data.items.length > 0) {
-            // Send meta pixel event if not already tracked
-            const storedEventId = sessionStorage.getItem("metaPixelEventId");
-            const eventId = storedEventId || `purchase-${data.session_id}`;
 
-            if (!sessionStorage.getItem(`purchase-tracked-${eventId}`)) {
-              const cart = data.items.map((item) => ({
-                id: item.id,
-                quantity: item.quantity,
-                item_price: item.discountedPriceInPence / 100,
-                content_type: item.product_type as ProductType,
-              }));
-
-              const contentType: MetaBasketProductType = cart.every(
-                (item) => item.content_type === "webinar",
-              )
-                ? META_BASKET_PRODUCT_TYPE.WEBINARS
-                : cart.every((item) => item.content_type === "course")
-                  ? META_BASKET_PRODUCT_TYPE.COURSES
-                  : META_BASKET_PRODUCT_TYPE.MIXED;
-
-              const purchaseEvent = {
-                value: cart.reduce(
-                  (sum, item) => sum + item.item_price * item.quantity,
-                  0,
-                ),
-                currency: "GBP",
-                contents: cart,
-                content_type: contentType,
-                transactionId: data.session_id,
-              };
-
-              // Send pixel purchase event
-              trackPurchaseEvent(purchaseEvent, { eventID: eventId });
-
-              // Mark this purchase event as having been tracked
-              sessionStorage.setItem(`purchase-tracked-${eventId}`, "true");
-
-              // Get IP first
-              const clientIp = await fetch("/api/get-ip").then((r) => r.text());
-
-              // Send using Conversions API
-              await fetch("/api/meta-capi", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  event_name: "Purchase",
-                  event_id: eventId,
-                  event_source_url: window.location.href,
-                  client_ip: clientIp,
-                  user_agent: navigator.userAgent,
-                  email: data.Users.email,
-                  custom_data: {
-                    currency: "GBP",
-                    value: purchaseEvent.value,
-                    contents: purchaseEvent.contents,
-                    content_type: purchaseEvent.content_type,
-                    transaction_id: purchaseEvent.transactionId,
-                  },
-                }),
-              }).catch((error) => {
-                console.error("Error sending CAPI purchase event:", error);
-              });
-            }
+            // Meta tracking
+            trackPurchaseEvent(
+              data.items,
+              data.stripe_payment_id, // could be free
+              data.Users as User,
+            );
 
             setStatus("succeeded");
             emptyBasket();
-          } else {
-            setStatus("default");
-          }
-        } else {
-          // Fallback to URL parameter logic if API fails
-          if (!checkoutId) {
-            setStatus("default");
+            setLoading(false);
             return;
           }
-
-          if (
-            checkoutId.startsWith("free_") ||
-            paymentSucceeded === "succeeded"
-          ) {
-            setStatus("succeeded");
-            emptyBasket();
-          }
         }
+        // If we get here, either response wasn't OK or payment isn't confirmed
+        if (retryCount < RETRY_DELAYS.length) {
+          // Schedule next retry
+          setTimeout(() => {
+            setRetryCount(prev => prev + 1);
+          }, RETRY_DELAYS[retryCount]);
+        } else {
+          // No more retries left
+          setStatus("default");
+          setLoading(false);
+        }
+
       } catch (error) {
         console.error("Error fetching purchase data:", error);
-        // Fallback to URL parameter logic
-        const params = new URLSearchParams(window.location.search);
-        const checkoutId = params.get("checkout_id");
-        const paymentSucceeded = params.get("redirect_status");
-
-        if (
-          checkoutId &&
-          (checkoutId.startsWith("free_") || paymentSucceeded === "succeeded")
-        ) {
-          setStatus("succeeded");
-          emptyBasket();
-        }
-      } finally {
-        setLoading(false);
+          setStatus("default");
+          setLoading(false);
       }
     };
 
-    fetchPurchaseData();
-  }, []);
+    // Only run if we're in the browser
+    if (typeof window !== "undefined") {
+      fetchPurchaseData();
+    }
+  }, [retryCount]);
 
   if (loading) {
     return (

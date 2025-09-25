@@ -1,4 +1,4 @@
-import type { BasketItem } from "../../types/basket-item..ts";
+import type { BasketItem } from "../../types/basket-item.ts";
 import type { User } from "../../types/user";
 import { getInternalIdFromOfferId } from "../course-get-internal-id.ts";
 import Logger from "../logger";

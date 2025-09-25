@@ -1,4 +1,4 @@
-import type { BasketItem } from "../../types/basket-item..ts";
+import type { BasketItem } from "../../types/basket-item.ts";
 import Logger from "../logger.ts";
 import { createClient } from "@supabase/supabase-js";
 import { createSbClient } from "./create-sb-client.ts";

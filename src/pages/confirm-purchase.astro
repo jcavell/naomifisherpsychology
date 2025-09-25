@@ -18,7 +18,7 @@ if (paymentIntent.status === "succeeded") {
   Logger.INFO("***** Payment succeeded, redirecting to complete:", {
     paymentIntentId,
   });
-  return Astro.redirect('/checkout-complete');
+  return Astro.redirect(`/checkout-complete?checkout_id=${paymentIntentId}`);
 } else {
   Logger.INFO("***** Payment not successful:", {
     paymentIntentId,

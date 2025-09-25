@@ -1,6 +1,6 @@
 import { persistentAtom } from '@nanostores/persistent';
 import { computed } from 'nanostores';
-import type { BasketItem } from "../../types/basket-item..ts";
+import type { BasketItem } from "../../types/basket-item.ts";
 import { clientFetchItemFromAPI } from "./getCourseOrWebinarFromAPI.ts";
 import debounce from 'lodash/debounce';
 

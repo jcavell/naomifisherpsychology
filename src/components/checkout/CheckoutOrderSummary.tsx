@@ -1,5 +1,5 @@
 import React from "react";
-import type { BasketItem } from "../../types/basket-item..ts";
+import type { BasketItem } from "../../types/basket-item.ts";
 import {formatAmount} from "../../scripts/basket/utils.ts";
 
 interface LineItemsSummaryProps {

@@ -33,7 +33,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     } = body;
 
     console.log(
-      "***sb-insert-unconfirmed-purchase POST:",
+      "***sb-insert-purchase-and-user POST:",
       JSON.stringify(body),
     );
 
@@ -112,6 +112,8 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     }
 
     // Set an HTTP-only cookie
+    // This is required because info is lost if e.g. PayPal cancels
+    // This keeps it persistent so it's available when redirected to enter the user details
     cookies.set("checkout_session_id", sessionId, {
       httpOnly: true,
       path: "/",

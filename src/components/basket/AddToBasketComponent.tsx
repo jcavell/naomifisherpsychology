@@ -9,6 +9,7 @@ import overlayStyles from "../../styles/components/cart/overlay.module.css";
 import cartStyles from "../../styles/components/cart/cart.module.css";
 import { useClientOnly } from "../../scripts/basket/use-client-only-hook.ts";
 import { clientFetchItemFromAPI } from "../../scripts/basket/getCourseOrWebinarFromAPI.ts";
+import { trackAddToBasketEvent } from "../../scripts/tracking/track-events.ts";
 
 export type BasketItemType = "webinar" | "course";
 
@@ -50,6 +51,11 @@ const Button: React.FC<AddToBasketProps> = ({
         const basketItem = await clientFetchItemFromAPI(id, type);
         if (basketItem !== undefined) {
           addItem(basketItem);
+
+          // Meta Track
+          // Track the add to basket event
+          await trackAddToBasketEvent(basketItem);
+
           // Small delay to ensure state updates before showing overlay
           setTimeout(() => {
             setShowOverlay(true);

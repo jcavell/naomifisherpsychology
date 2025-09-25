@@ -1,13 +1,13 @@
 import type { APIRoute } from "astro";
 import { createSbClient } from "../../scripts/checkout/create-sb-client.ts";
-import type { BasketItem } from "../../types/basket-item..ts";
+import type { BasketItem } from "../../types/basket-item.ts";
 
 export const prerender = false;
 
 const supabase = createSbClient;
 
 export interface PurchaseData {
-  id: string;
+  id: bigint;
   session_id: string;
   stripe_payment_id: string;
   payment_confirmed: boolean;
@@ -17,7 +17,7 @@ export interface PurchaseData {
   coupon_code?: string;
   t?: string;
   Users: {
-    id: string;
+    id: bigint;
     first_name: string;
     surname: string;
     email: string;
@@ -25,19 +25,12 @@ export interface PurchaseData {
 }
 
 export const GET: APIRoute = async ({ request, url, cookies }) => {
-  // Check raw cookie header
-  const cookieHeader = request.headers.get("Cookie");
-  console.log("Raw Cookie header:", cookieHeader);
-
-  // Try different cookie methods
-  console.log("cookies object type:", typeof cookies);
-  console.log("cookies.get result:", cookies.get("checkout_session_id"));
 
   const sessionId = cookies.get("checkout_session_id")?.value;
 
   if (!sessionId) {
     return new Response(
-      JSON.stringify({ error: "Missing session identifier" }),
+      JSON.stringify({ error: "Missing checkout session" }),
       {
         status: 400,
       },

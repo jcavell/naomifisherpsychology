@@ -1,4 +1,4 @@
-import type { BasketItem, BasketItemSummary } from "./basket-item..ts";
+import type { BasketItem, BasketItemSummary } from "./basket-item.ts";
 
 export type StripePayment = {
   session_id: string;

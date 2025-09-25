@@ -1,4 +1,4 @@
-import type { BasketItem } from "../../../types/basket-item..ts";
+import type { BasketItem } from "../../../types/basket-item.ts";
 import logger from "../../../scripts/logger.ts";
 import getWebinars, { getWebinar } from "../../../scripts/webinars.ts";
 

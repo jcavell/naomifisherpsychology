@@ -1,14 +1,12 @@
-// src/scripts/tracking/meta-pixel.ts
+import type { ProductType } from "../../types/basket-item.ts";
 
-import type { ProductType } from "../../types/basket-item..ts";
+export const PIXEL_EVENT_NAME = {
+  ADD_TO_CART: 'AddToCart',
+  INITIATE_CHECKOUT: 'InitiateCheckout',
+  PURCHASE: 'Purchase'
+}
 
-export const META_BASKET_PRODUCT_TYPE = {
-  WEBINARS: 'webinars',
-  COURSES: 'courses',
-  MIXED: 'mixed'
-} as const;
-
-export type MetaBasketProductType = typeof META_BASKET_PRODUCT_TYPE[keyof typeof META_BASKET_PRODUCT_TYPE];
+export type PixelEventName = typeof PIXEL_EVENT_NAME[keyof typeof PIXEL_EVENT_NAME];
 
 interface MetaPixel {
   (
@@ -23,69 +21,39 @@ interface WindowWithPixel extends Window {
   fbq?: MetaPixel;
 }
 
-export type PixelContents = {
+export type PixelContentItem = {
   id: string;
   quantity: number;
   item_price: number;
-  content_type: ProductType // webinar or course
+  category: ProductType // webinar or course
 };
 
-export type PixelCheckoutEvent = {
+export type PixelEvent = {
+  content_ids: string[];
+  content_type: string;
+  content_category: string;       // 'Online Course', 'Webinar', etc.
   value: number;
   currency: string;
-  contents: PixelContents[];
-  content_type: MetaBasketProductType; // webinars, courses or mixed
+  num_items: number;
+  contents: PixelContentItem[];
+  order_id?: string;
 };
-
-export type PixelPurchaseEvent = PixelCheckoutEvent & {
-  transactionId: string;  // Additional field for purchase events
-};
-
-
 
 type CustomData = {
-  eventID: string;
+  event_id: string;
 };
 
-export const trackCheckoutEvent = (event: PixelCheckoutEvent, customData: CustomData): void => {
+export const sendPixelEvent = (eventId: string, eventType: PixelEventName, event: PixelEvent): void => {
+
+  const customData: CustomData = {event_id: eventId};
+
   const windowWithPixel = window as WindowWithPixel;
-  console.log('Attempting to track checkout:', { event, customData });
-  console.log('fbq available:', typeof windowWithPixel.fbq === 'function');
 
   if (typeof windowWithPixel.fbq === 'function') {
     try {
-      windowWithPixel.fbq('track', 'InitiateCheckout', event, customData);
-      console.log('Checkout event tracked successfully');
+      windowWithPixel.fbq('track', eventType, event, customData);
     } catch (error) {
       console.error('Failed to track checkout:', error);
-    }
-  } else {
-    console.warn('Meta Pixel (fbq) not available');
-  }
-};
-
-export const trackPurchaseEvent = (event: PixelPurchaseEvent, customData: CustomData): void => {
-  const windowWithPixel = window as WindowWithPixel;
-  console.log('Attempting to track purchase:', {
-    transactionId: event.transactionId,
-    value: event.value,
-    currency: event.currency,
-    contentType: event.content_type,
-    items: event.contents.map(item => ({
-      id: item.id,
-      price: item.item_price,
-      type: item.content_type
-    })),
-    eventId: customData.eventID
-  });
-  console.log('fbq available:', typeof windowWithPixel.fbq === 'function');
-
-  if (typeof windowWithPixel.fbq === 'function') {
-    try {
-      windowWithPixel.fbq('track', 'Purchase', event, customData);
-      console.log('Purchase event tracked successfully');
-    } catch (error) {
-      console.warn('Failed to track purchase:', error);
     }
   } else {
     console.warn('Meta Pixel (fbq) not available');
