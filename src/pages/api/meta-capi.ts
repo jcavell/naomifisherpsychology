@@ -85,6 +85,7 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
     console.log("Sending to Meta CAPI with body: ", jsonBody);
+    console.log("Trying to get PIXEL")
     console.log("META_PIXEL_ID:", env.META_PIXEL_ID);
     console.log("Token length:", env.META_CAPI_ACCESS_TOKEN?.length);
 
