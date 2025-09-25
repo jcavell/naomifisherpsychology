@@ -83,9 +83,7 @@ export const POST: APIRoute = async ({ request }) => {
       ],
     });
 
-    console.log("Sending to Meta CAPI with body: ", jsonBody);
-    return new Response(JSON.stringify("OK"), { status: 200 });
-
+    // console.log("Sending to Meta CAPI with body: ", jsonBody);
 
     const response = await fetch(
       `https://graph.facebook.com/v21.0/${env.META_PIXEL_ID}/events?access_token=${env.META_CAPI_ACCESS_TOKEN}`,
