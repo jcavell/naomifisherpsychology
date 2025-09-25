@@ -95,10 +95,12 @@ export const POST: APIRoute = async ({ request }) => {
       },
     );
 
-    console.log("Meta CAPI response:", await response.text());
+    console.log('Meta CAPI Response status:', response.status);
+
+    const responseData = await response.json();
 
     if (!response.ok) {
-      console.error("Meta CAPI Error:", await response.text());
+      console.error("Meta CAPI Error:", responseData);
       return new Response(
         JSON.stringify({ error: "Meta CAPI request failed" }),
         {
@@ -107,8 +109,10 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    const result = await response.json();
-    return new Response(JSON.stringify(result), { status: 200 });
+    // All good
+    console.log("Meta CAPI Success:", responseData);
+    return new Response(JSON.stringify(responseData), { status: 200 });
+
   } catch (err: any) {
     return new Response(JSON.stringify({ error: err.message }), {
       status: 500,
