@@ -86,8 +86,12 @@ export const POST: APIRoute = async ({ request }) => {
 
     console.log("Sending to Meta CAPI with body: ", jsonBody);
 
-    const response = await fetch(
-      `https://graph.facebook.com/v21.0/${env.META_PIXEL_ID}/events?access_token=${env.META_CAPI_ACCESS_TOKEN}`,
+    const url = `https://graph.facebook.com/v21.0/${env.META_PIXEL_ID}/events?access_token=${env.META_CAPI_ACCESS_TOKEN}`;
+    const token = env.META_CAPI_ACCESS_TOKEN;
+    const redactedUrl = url.replace(token, `${'*'.repeat(token.length - 4)}${token.slice(-4)}`);
+    console.log("Calling URL:", redactedUrl);
+
+    const response = await fetch(url,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
