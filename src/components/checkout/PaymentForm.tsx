@@ -8,8 +8,9 @@ import formStyles from "../../styles/components/checkout/form.module.css";
 import paymentStyles from "../../styles/components/checkout/payment.module.css";
 import type { BasketItem } from "../../types/basket-item.ts";
 import type { User } from "../../types/user";
-import { getTrackerFromStore } from "../../scripts/tracking/trackerRetrieverAndStorer.ts";
+import { getTrackerDataFromStore } from "../../scripts/tracking/trackerRetrieverAndStorer.ts";
 import { getCouponCodeFromStore } from "../../scripts/coupon/couponRetrieverAndStorer.ts";
+import type { PurchaseRequestBody } from "../../pages/api/sb-insert-purchase-and-user.ts";
 
 interface CheckoutFormProps {
   paymentIntentId: string;
@@ -63,7 +64,7 @@ export const PaymentForm: React.FC<CheckoutFormProps> = ({ paymentIntentId, user
   // Body data used for both free and paid purchases
   // NOTE snake_case
   const getInsertPurchaseBodyData = () => ({
-    t:getTrackerFromStore(),
+    tracker_data: getTrackerDataFromStore(),
     coupon_code:getCouponCodeFromStore(),
     basket_items: basketItems,
     user: {
@@ -91,7 +92,7 @@ export const PaymentForm: React.FC<CheckoutFormProps> = ({ paymentIntentId, user
           payment_intent_id: checkoutId,
           payment_confirmed: true, // free purchase auto confirmed
           ...getInsertPurchaseBodyData(),
-        }),
+        } as PurchaseRequestBody),
       });
 
       if (!insertPurchaseResponse.ok) {
@@ -146,7 +147,7 @@ export const PaymentForm: React.FC<CheckoutFormProps> = ({ paymentIntentId, user
           payment_intent_id: paymentIntentId,
           payment_confirmed: false, // paid purchase not confirmed
           ...getInsertPurchaseBodyData(),
-        }),
+        } as PurchaseRequestBody),
       });
 
       if (!response.ok) {

@@ -21,10 +21,10 @@ import {
 import { naomi, abi, eliza, kate } from "./people";
 
 // EventbriteWebinar Images
-import myFaultImage from "../images/webinars/is-it-all-my-fault.jpg";
-import autisticTransitionsImage from "../images/webinars/helping-your-autistic-child-with-transitions.jpg";
-import autisticTeenAnxietyImage from "../images/webinars/demand_avoidant_child_anxiety.avif";
 import demandAvoidantChildImage from "../images/webinars/understanding-and-helping-your-demand-avoidand-child.avif";
+import ehcpImage from "../images/webinars/does-my-child-need-an-ehcp.jpg";
+import navigatingPhonesImage from "../images/webinars/navigating-phones-with-your-neurodiverse-child.jpg";
+import aldpFoodImage from "../images/webinars/aldp-food.jpg";
 
 type WebinarMeta = {
   id: string;
@@ -37,7 +37,7 @@ type WebinarMeta = {
 const example_webinar: WebinarMeta = {
   id: "1008493379847",
   tags: [tagALDP, age5To11, age11To19, forParents],
-  image: myFaultImage,
+  image: demandAvoidantChildImage,
   subsubtitle:
     "In an exclusive special offer, we are offering a free ticket to anyone who orders our new book before Oct 9th. Click Learn More for details.",
   contributers: [naomi, eliza],
@@ -50,23 +50,30 @@ const demandAvoidantChild: WebinarMeta = {
   contributers: [naomi],
 };
 
-const autisticTransitions: WebinarMeta = {
-  id: "1472461725659",
-  tags: [tagAutism, age5To11, age11To19, forParents],
-  image: autisticTransitionsImage,
+const doesMyChildNeedAnEHCP: WebinarMeta = {
+  id: "1634945679539",
+  tags: [tagEHCPs, tagSchool, age5To11, age11To19, forParents],
+  image: ehcpImage,
+  contributers: [abi],
+};
+
+const navigatingPhones: WebinarMeta = {
+  id: "1742168826859",
+  tags: [tagScreens, age5To11, age11To19, forParents],
+  image: navigatingPhonesImage,
   contributers: [naomi],
 };
 
-const autisticTeenAnxiety: WebinarMeta = {
-  id: "1472472718539",
-  tags: [tagDemandAvoidance, age5To11, age11To19, forParents],
-  image: autisticTeenAnxietyImage,
-  contributers: [naomi],
+const aldpFood: WebinarMeta = {
+  id: "1736300695119",
+  tags: [tagALDP, tagDemandAvoidance, age5To11, age11To19, forParents],
+  image: aldpFoodImage,
+  contributers: [naomi, eliza],
 };
 
 // !! ADD WEBINAR HERE !!
 export function getWebinarMeta(eventId: string): WebinarMeta | undefined {
-  return [demandAvoidantChild, autisticTransitions, autisticTeenAnxiety].find(
+  return [demandAvoidantChild, doesMyChildNeedAnEHCP, navigatingPhones, aldpFood].find(
     (webMeta) => eventId === webMeta.id,
   );
 }

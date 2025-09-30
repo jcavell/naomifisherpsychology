@@ -1,37 +1,53 @@
-import { persistentTracker } from "./trackerStore.ts";
+import {
+  persistentTracker,
+  TRACKER_KEYS,
+  type TrackerData,
+  type TrackerKey,
+} from "./trackerStore.ts";
 
 const TRACKER_EXPIRY_HOURS = 24;
 
-function getTrackerFromURL() {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get("t");
+function getTrackerFromURL(urlParams: URLSearchParams, key: TrackerKey) {
+  return urlParams.get(key);
 }
 
-export function persistTrackerFromURL() {
-  const trackerValue = getTrackerFromURL();
+export function persistTrackersFromURL() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const trackersFound: Record<TrackerKey, string> = {} as Record<TrackerKey, string>;
+  let hasTrackers = false;
 
-  if (trackerValue) {
+  TRACKER_KEYS.forEach((k: TrackerKey) => {
+    const trackerValue = getTrackerFromURL(urlParams, k);
+    if (trackerValue) {
+      trackersFound[k] = trackerValue;
+      hasTrackers = true;
+    }
+  });
+
+  if (hasTrackers) {
     persistentTracker.set({
-      value: trackerValue,
+      trackers: trackersFound,
       timestamp: Date.now(),
     });
   }
 }
 
 export function removeTrackerFromStore() {
-  persistentTracker.set({ value: "", timestamp: 0 });
+  persistentTracker.set(null);
 }
 
-export function getTrackerFromStore(): string {
+export function getTrackerDataFromStore(): TrackerData | null {
   const trackerData = persistentTracker.get();
+
+  if (!trackerData) return null;
 
   // Check if tracker has expired
   const ageInHours = (Date.now() - trackerData.timestamp) / (1000 * 60 * 60);
 
-  if (ageInHours > TRACKER_EXPIRY_HOURS || !trackerData.value) {
+  if (ageInHours > TRACKER_EXPIRY_HOURS) {
     removeTrackerFromStore();
-    return "";
+    return null;
   }
 
-  return trackerData.value;
+  return trackerData;
 }

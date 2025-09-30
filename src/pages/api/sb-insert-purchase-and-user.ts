@@ -1,5 +1,4 @@
 import type { User } from "../../types/user";
-import type { StripePayment } from "../../types/stripe-payment";
 import type {
   BasketItem,
   BasketItemSummary,
@@ -7,29 +6,41 @@ import type {
 import { upsertUser } from "../../scripts/checkout/sb-users.ts";
 import { createSbClient } from "../../scripts/checkout/create-sb-client.ts";
 import type { APIRoute } from "astro";
+import type { Purchase } from "../../types/purchase";
+import type { TrackerData } from "../../scripts/tracking/trackerStore.ts";
 
 export const prerender = false;
+
+export interface PurchaseRequestBody {
+  payment_intent_id: string;
+  payment_confirmed: boolean;
+  user: User;
+  basket_items: BasketItem[];
+  coupon_code?: string;
+  tracker_data?: TrackerData;
+}
+
 
 const supabase = createSbClient;
 
 export const POST: APIRoute = async ({ request, cookies }) => {
   try {
     // Parse the incoming request body
-    const body = await request.json();
+    const body = await request.json() as PurchaseRequestBody;
     const {
       payment_intent_id,
       payment_confirmed,
       user,
       basket_items,
       coupon_code,
-      t,
+      tracker_data
     }: {
       payment_intent_id: string; // free_ for free purchases
       payment_confirmed: boolean; // true for free purchases
       user: User;
       basket_items: BasketItem[];
-      coupon_code;
-      t;
+      coupon_code?: string;
+      tracker_data?: TrackerData;
     } = body;
 
     console.log(
@@ -86,7 +97,8 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     }));
 
     const userId = upsertedUser.id;
-    const stripePayment: StripePayment = {
+
+    const purchase: Purchase = {
       session_id: sessionId,
       stripe_payment_id: payment_intent_id,
       payment_amount_pence: 0,
@@ -94,14 +106,14 @@ export const POST: APIRoute = async ({ request, cookies }) => {
       user_id: userId,
       payment_confirmed: payment_confirmed,
       coupon_code: coupon_code,
-      t: t,
+      ...(tracker_data?.trackers || {})
     };
 
     // Upsert used to cater for scenario of the same Stripe payment_intent_id
     // Happens if their card is declined and they try with a different card
     const { error: purchaseError } = await supabase
       .from("Purchases")
-      .upsert([stripePayment], {
+      .upsert([purchase], {
         onConflict: "stripe_payment_id",
         ignoreDuplicates: false,
       });

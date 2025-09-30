@@ -12,7 +12,6 @@ import cartStyles from "../../styles/components/cart/cart.module.css";
 import { useStore } from "@nanostores/react";
 import { getBasketItems, getIsEmpty } from "../../scripts/basket/basket.ts";
 import type { User } from "../../types/user";
-import { getTrackerFromStore } from "../../scripts/tracking/trackerRetrieverAndStorer.ts";
 
 const Spinner: React.FC = () => (
   <div className={formStyles.spinnerContainer}>
@@ -52,8 +51,7 @@ const Checkout: React.FC<{ setError: (error: string | null) => void }> = ({
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            items: $basketItems,
-            t: getTrackerFromStore(),
+            items: $basketItems
           }),
         });
 

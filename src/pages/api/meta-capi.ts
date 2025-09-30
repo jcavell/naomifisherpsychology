@@ -47,7 +47,7 @@ export const POST: APIRoute = async ({ request }) => {
     const fbp = getFacebookBrowserId(request);
 
     const jsonBody = JSON.stringify({
-      test_event_code: env.META_TEST_EVENT_CODE,
+      // test_event_code: env.META_TEST_EVENT_CODE,
       data: [
         {
           event_name: body.event_name,

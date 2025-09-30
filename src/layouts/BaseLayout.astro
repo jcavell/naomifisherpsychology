@@ -20,11 +20,11 @@ const bodyClass = bodyClassName
 
     <script>
       import { persistCouponFromURL } from "../scripts/coupon/couponRetrieverAndStorer";
-      import { persistTrackerFromURL } from "../scripts/tracking/trackerRetrieverAndStorer";
+      import { persistTrackersFromURL } from "../scripts/tracking/trackerRetrieverAndStorer";
 
       document.addEventListener('DOMContentLoaded', () => {
         persistCouponFromURL();
-        persistTrackerFromURL();
+        persistTrackersFromURL();
       });
     </script>
 
