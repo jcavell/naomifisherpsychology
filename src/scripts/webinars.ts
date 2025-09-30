@@ -296,7 +296,7 @@ function transformTickets(ticketClasses: EventbriteTicket[]): WebinarTicket[] {
       hidden: ticket.hidden,
     }))
     .filter((ticket) => !ticket.hidden)
-    .sort((a, b) => b.costValue - a.costValue);
+    .sort((a, b) => a.costValue - b.costValue);
 }
 
 function formatDisplayDates(startUtc: string, endUtc: string) {
