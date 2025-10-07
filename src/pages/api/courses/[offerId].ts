@@ -31,7 +31,6 @@ export async function GET({params, request}: APIContext) {
     }
 
     const originalPriceInPence = course.data.priceInPence!;
-    const discountDisplayPrice = getDiscountedDisplayPrice(cocd, offerId, originalPriceInPence);
     const discountedPriceInPence = getDiscountedPriceInPence(cocd, offerId, originalPriceInPence);
 
     const checkoutItem: BasketItem = {

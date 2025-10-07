@@ -16,12 +16,17 @@ export const fetchItemFromAPI = async (id: string, type: ItemType, couponCode: s
 
         const requestUrl = origin ? `${origin}${endpointWithCouponCode}` : endpointWithCouponCode;
 
+        console.log("Requesting URL:", requestUrl);
+
         const response = await fetch(requestUrl);
         if (!response.ok) {
             throw new Error(`Error: ${response.status} - ${response.statusText}`);
         }
 
-        return await response.json();
+        const data = await response.json();
+        console.log("***fetchItemFromAPI. Response: ", data);
+        return data;
+
     } catch (err) {
         console.error("Error fetching item:", err);
     }
@@ -30,5 +35,6 @@ export const fetchItemFromAPI = async (id: string, type: ItemType, couponCode: s
 export const clientFetchItemFromAPI = async (id: string, type: ItemType,
 ): Promise<BasketItem | undefined> => {
     const couponCode= persistentCoupon.get();
+    console.log("***clientFetchItemFromAPI. couponCode: ", couponCode);
     return fetchItemFromAPI(id, type, couponCode, null);
 };

@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import AddToBasketComponent from "./AddToBasketComponent.tsx";
 import type { WebinarTicket } from "../../types/webinar";
+import { DiscountedPrice } from "./DiscountedPrice.tsx";
 
 interface AddWebinarTicketsToBasketProps {
   tickets: WebinarTicket[];
@@ -19,7 +20,12 @@ const AddWebinarTicketsToBasket: React.FC<AddWebinarTicketsToBasketProps> = ({
         .filter((ticket) => !ticket.hidden)
         .map((ticket) => (
           <div className="purchase" key={ticket.id}>
-            <div className="price">{ticket.costPlusFee}</div>
+            <div className="price">
+              <DiscountedPrice
+                offerId={webinarId}
+                priceInPence={ticket.costValue ? ticket.costValue : 0}
+              />
+            </div>
             <div>{ticket.name}</div>
 
             <div style={{ marginLeft: "auto" }}>

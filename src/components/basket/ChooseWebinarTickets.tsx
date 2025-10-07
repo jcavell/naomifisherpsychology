@@ -1,10 +1,12 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import styles from "../../styles/components/cart/overlay.module.css";
 import cartStyles from "../../styles/components/cart/cart.module.css";
 import type { WebinarTicket, Webinar } from "../../types/webinar";
 import type { BasketItem } from "../../types/basket-item.ts";
 import {useStore} from "@nanostores/react";
 import {addItem, isInBasket} from "../../scripts/basket/basket.ts";
+import { DiscountedPrice } from "./DiscountedPrice.tsx";
+import { clientFetchItemFromAPI } from "../../scripts/basket/getCourseOrWebinarFromAPI.ts";
 
 interface TicketSelectionOverlayProps {
   webinar: Webinar;
@@ -28,12 +30,13 @@ const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
 
       // Fetch ticket details and add to basket
       try {
-        const response = await fetch(`/api/webinar-tickets/${id}`);
-        const basketItem: BasketItem = await response.json(); // Parse the JSON response
-        if (!response.ok) {
-          throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        const basketItem = await clientFetchItemFromAPI(id, "webinar");
+        if(basketItem) {
+          addItem(basketItem);
         }
-        addItem(basketItem);
+        else{
+          console.error("Error adding ticket to basket - could not fetch ticket details from API for id", id);
+        }
       } catch (error) {
         console.error("Error adding ticket to basket:", error);
       } finally {
@@ -97,7 +100,10 @@ const TicketSelectionOverlay: React.FC<TicketSelectionOverlayProps> = ({
               .map((ticket) => (
                 <div className={styles.ticketRow} key={ticket.id}>
                   <span className={styles.ticketName}>{ticket.name}</span>
-                  <span className={styles.ticketCost}>{ticket.costPlusFee}</span>
+                  <span className={styles.ticketCost}>  <DiscountedPrice
+                    offerId={webinar.id}
+                    priceInPence={ticket.costValue ? ticket.costValue : 0}
+                  /></span>
                   <button
                     type="button"
                     className={styles.addToBasket}
@@ -127,10 +133,19 @@ const TicketSelectorButton: React.FC<TicketSelectorButtonProps> = ({
   webinar,
 }) => {
   const [showOverlay, setShowOverlay] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   const handleCloseWithoutModification = useCallback(() => {
     setShowOverlay(false); // Close overlay
   }, []);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null; // Don't render anything on the server
+  }
 
 
   const hasTicketInCart = webinar.tickets.some((ticket) =>
@@ -147,7 +162,8 @@ const TicketSelectorButton: React.FC<TicketSelectorButtonProps> = ({
         onTouchStart={(e) => e.currentTarget.classList.add('active')}
         onTouchEnd={(e) => e.currentTarget.classList.remove('active')}
       >
-        {hasTicketInCart ? <span>In Basket</span> : "Select Tickets"}
+        {hasTicketInCart ? <span>In Basket</span> : <span>Select Tickets</span>
+        }
       </button>
       {showOverlay && (
         <TicketSelectionOverlay

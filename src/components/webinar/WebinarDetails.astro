@@ -2,7 +2,7 @@
 import Tags from "../Tags.astro";
 import Contributers from "../Contributers.astro";
 import Vimeo from "../Vimeo.astro";
-
+import AddWebinarTicketsToBasket from "../basket/AddWebinarTicketsToBasket";
 import { getWebinarMeta } from "../../scripts/webinarMeta";
 
 import WebinarImage from "./WebinarImage.astro";
@@ -141,21 +141,7 @@ const detailsText = webinar.detailsText;
       <div class="purchase-wrapper">
         <div class="purchase-title"></div>
 
-        {
-          tickets.filter((t) => !t.hidden).map((ticket) => (
-            <a href={webinar.url} target="blank">
-              <div class="purchase">
-                <div class="price">
-                  £{((ticket.costValue + ticket.feeValue) / 100).toFixed(2)}
-                </div>
-                <div class="company eventbrite">{ticket.name}</div>
-                <div class="buy-now">
-                  <span> Buy Now </span>
-                </div>
-              </div>
-            </a>
-          ))
-        }
+        <AddWebinarTicketsToBasket tickets={tickets} webinarId={webinar.id} client:load/>
 
       </div>
       <div class="card-meta details-meta">

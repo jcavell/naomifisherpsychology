@@ -38,7 +38,7 @@ export const findValidCoupon = (couponCode: string | null, offerId: string) => {
       if (now < validFrom || now > validUntil) {
         result.status = CouponValidationStatus.COUPON_EXPIRED;
       } else {
-          // All good
+        // All good
         result.coupon = coupon;
       }
     }
@@ -46,21 +46,27 @@ export const findValidCoupon = (couponCode: string | null, offerId: string) => {
   return result;
 };
 
-const calculateDiscountedPriceInPence = (originalPriceInPence: number, coupon: Coupon | null) => {
+const calculateDiscountedPriceInPence = (
+  originalPriceInPence: number,
+  coupon: Coupon | null,
+) => {
   if (!coupon) {
-      return originalPriceInPence;
+    return originalPriceInPence;
   }
   const discountAmount = (originalPriceInPence * coupon.discountPercent) / 100;
   return originalPriceInPence - discountAmount;
 };
 
-export const getDiscountedDisplayPrice = (couponCode: string | null, offerId: string, originalPriceInPence: number) => {
-
+export const getDiscountedDisplayPrice = (
+  couponCode: string | null,
+  offerId: string,
+  originalPriceInPence: number,
+) => {
   const originalDisplayPrice = `£${(originalPriceInPence / 100).toFixed(2)}`;
   const result = findValidCoupon(couponCode, offerId);
 
   if (result.status != CouponValidationStatus.VALID) {
-      return originalDisplayPrice;
+    return originalDisplayPrice;
   }
 
   const coupon = result.coupon!;
@@ -73,11 +79,31 @@ export const getDiscountedDisplayPrice = (couponCode: string | null, offerId: st
   return `£${(discountedPriceInPence / 100).toFixed(2)} (${coupon.couponInfoText})`;
 };
 
-export const getDiscountedPriceInPence = (couponCode: string | null, offerId: string, originalPriceInPence: number) => {
-    const result = findValidCoupon(couponCode, offerId);
+export const getDiscountedPriceInPence = (
+  couponCode: string | null,
+  offerId: string,
+  originalPriceInPence: number,
+) => {
+  console.log(
+    "Getting discounted price for " +
+      offerId +
+      " with coupon " +
+      couponCode +
+      " and original price " +
+      originalPriceInPence +
+      "",
+  );
+  const result = findValidCoupon(couponCode, offerId);
 
-    if (result.status != CouponValidationStatus.VALID) {
-        return originalPriceInPence;
-    }
-    const coupon = result.coupon!;  return calculateDiscountedPriceInPence(originalPriceInPence, coupon);
+  if (result.status != CouponValidationStatus.VALID) {
+    console.log("Coupon not valid");
+    return originalPriceInPence;
+  }
+  const coupon = result.coupon!;
+  console.log(
+    "Coupon valid, discounted price is ",
+    calculateDiscountedPriceInPence(originalPriceInPence, coupon),
+  );
+
+  return calculateDiscountedPriceInPence(originalPriceInPence, coupon);
 };

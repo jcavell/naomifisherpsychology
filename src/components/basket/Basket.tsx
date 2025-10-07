@@ -12,7 +12,7 @@ import styles from "../../styles/components/cart/cart.module.css";
 import type { BasketItem } from "../../types/basket-item.ts";
 import { removeCouponCodeFromStore } from "../../scripts/coupon/couponRetrieverAndStorer.ts";
 import { persistentCoupon } from "../../scripts/coupon/couponStore.ts";
-import { isCouponCodeValid } from "../../scripts/coupon/coupons.ts";
+import { isCouponCodeExpired, isCouponCodeValid } from "../../scripts/coupon/coupons.ts";
 import { trackAddToBasketEvent } from "../../scripts/tracking/track-events.ts";
 
 export interface BasketProps {
@@ -45,16 +45,19 @@ function removeExpiredItemsFromCart(
 }
 
 export const Basket: React.FC<BasketProps> = ({
-  showEmptyBasketMessage = true,
-  onItemRemoved,
-  basketTitle = "Basket",
-  isCheckoutPage = false,
-}) => {
+                                                showEmptyBasketMessage = true,
+                                                onItemRemoved,
+                                                basketTitle = "Basket",
+                                                isCheckoutPage = false,
+                                              }) => {
   const [isClient, setIsClient] = useState(false);
   const [expiredBasketItems, setExpiredBasketItems] = useState<BasketItem[]>([]);
   const [hasJustExpired, setHasJustExpired] = useState(false);
   const [couponCode, setCouponCode] = useState("");
   const [couponError, setCouponError] = useState<string>('');
+  const [pendingCouponValidation, setPendingCouponValidation] = useState(false);
+  const [isApplyingCoupon, setIsApplyingCoupon] = useState(false);
+  const [isRemovingCoupon, setIsRemovingCoupon] = useState(false);
 
 
   const $basketItems = useStore(getBasketItems);
@@ -118,6 +121,36 @@ export const Basket: React.FC<BasketProps> = ({
     };
   }, [isClient]); // Only run when client-side
 
+  // Validate coupon after basket items update
+  useEffect(() => {
+    if (!pendingCouponValidation || !$couponCode) return;
+
+    // Check if any item has the coupon code applied (meaning refresh completed)
+    const couponAppliedToItems = $basketItems.some(item => item.couponCode === $couponCode);
+
+    if (couponAppliedToItems) {
+      // Now check if it actually resulted in a discount
+      const hasDiscount = $basketItems.some(item =>
+        item.originalPriceInPence !== item.discountedPriceInPence
+      );
+
+      if (!hasDiscount) {
+        setCouponError('This coupon is not valid for any of your items');
+        removeCouponCodeFromStore();
+      }
+
+      setPendingCouponValidation(false);
+      setIsApplyingCoupon(false);
+    }
+  }, [$basketItems, pendingCouponValidation, $couponCode]);
+
+  // Handle remove coupon completion
+  useEffect(() => {
+    if (isRemovingCoupon && !$couponCode && !hasAppliedCoupon()) {
+      setIsRemovingCoupon(false);
+    }
+  }, [$basketItems, isRemovingCoupon, $couponCode]);
+
   if (!isClient) {
     return null; // Return nothing during SSR to prevent mismatched HTML
   }
@@ -128,39 +161,45 @@ export const Basket: React.FC<BasketProps> = ({
     );
   };
 
-  // MINIMAL CHANGES - Replace these two functions in your existing code:
-
   const handleApplyCoupon = () => {
     const trimmedCode = couponCode.trim();
 
     // Clear any previous error
     setCouponError('');
 
-    // Validate input
     if (!trimmedCode) {
       setCouponError('Please enter a coupon code');
       return;
     }
 
     // Validate coupon code
+
     if (!isCouponCodeValid(trimmedCode)) {
       setCouponError('Coupon not valid');
       return;
     }
+    if(isCouponCodeExpired(trimmedCode)){
+      setCouponError('Coupon has expired');
+      return;
+    }
 
     try {
+      // Show loading state
+      setIsApplyingCoupon(true);
+
       // Apply the coupon
       persistentCoupon.set(trimmedCode);
 
-      // Clear the input immediately (don't wait for validation)
+      // Clear the input immediately
       setCouponCode('');
 
-      // The basket will refresh automatically via the useEffect listener
-      // Don't validate here - let the UI update naturally
+      // Set flag to validate after basket updates
+      setPendingCouponValidation(true);
 
     } catch (error) {
       console.error('Failed to apply coupon:', error);
       setCouponError('Failed to apply coupon. Please try again.');
+      setIsApplyingCoupon(false);
     }
   };
 
@@ -169,11 +208,17 @@ export const Basket: React.FC<BasketProps> = ({
     setCouponError('');
     setCouponCode('');
 
+    // Show loading state
+    setIsRemovingCoupon(true);
+
     // Cancel any pending refresh operations
     refreshBasketItems.cancel();
 
     // Then remove from store
     removeCouponCodeFromStore();
+
+    // Trigger a refresh to update prices
+    refreshBasketItems();
   };
 
   const handleRemoveItem = (id: string) => {
@@ -219,7 +264,12 @@ export const Basket: React.FC<BasketProps> = ({
       <h1 className={styles.cartTitle}>{basketTitle}</h1>
 
       <div className={styles.couponSection}>
-        {hasAppliedCoupon() ? (
+        {isApplyingCoupon || isRemovingCoupon ? (
+          <div className={styles.couponLoading}>
+            <div className={styles.spinner}></div>
+            <span>{isApplyingCoupon ? 'Applying coupon...' : 'Removing coupon...'}</span>
+          </div>
+        ) : hasAppliedCoupon() ? (
           <div className={styles.appliedCoupon}>
             <span>
               Coupon {$basketItems.find((item) => item.couponCode)?.couponCode}{" "}

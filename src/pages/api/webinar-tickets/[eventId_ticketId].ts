@@ -1,8 +1,9 @@
 import type { BasketItem } from "../../../types/basket-item.ts";
 import logger from "../../../scripts/logger.ts";
 import getWebinars, { getWebinar } from "../../../scripts/webinars.ts";
+import { getDiscountedPriceInPence } from "../../../scripts/coupon/couponApplier.ts";
 
-// export const prerender = false;
+export const prerender = false;
 
 const calculateExpiryIn30Days = (date: string) => {
   const expiryDate = new Date(date);
@@ -24,6 +25,11 @@ export async function getStaticPaths() {
 }
 
 export async function GET({ params, request }) {
+  const url = new URL(request.url);
+  const cocd = url.searchParams.get('cocd'); //  cocd may be present in query string
+
+  console.log("url.searchParams: ", url.searchParams);
+
   const eventIdTicketId = params.eventId_ticketId;
   const eventId = eventIdTicketId.split("_")[0];
   const ticketId = eventIdTicketId.split("_")[1];
@@ -56,6 +62,9 @@ export async function GET({ params, request }) {
     });
   }
 
+  const originalPriceInPence = ticket.costValue || 0;
+  const discountedPriceInPence = getDiscountedPriceInPence(cocd, eventId, originalPriceInPence);
+
   const basketItem: BasketItem = {
     id: eventId + "_" + ticket.id,
     product_type: "webinar",
@@ -68,11 +77,13 @@ export async function GET({ params, request }) {
     variant_id: ticket.id,
     variant_name: ticket.name,
     currency: "GBP",
-    discountedPriceInPence: ticket.costValue || 0,
+    originalPriceInPence: originalPriceInPence,
+    discountedPriceInPence: discountedPriceInPence,
     added_at: new Date().toISOString(),
     expires_at: ticket.salesEnd,
     quantity: 1, // Default quantity
     vatable: false, // default
+    couponCode: cocd,
   };
 
   return new Response(JSON.stringify(basketItem), {
