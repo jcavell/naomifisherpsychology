@@ -260,7 +260,7 @@ export const childWithSevereAnxiety: CourseMeta = {
 
 export const burntOutBySchool: CourseMeta = {
   title: "Burnt Out by School",
-  tags: [tagBurnout, tagSchool, tagMentalHealth, age11To19, forParents],
+  tags: [tagBurnout, tagSchool, age11To19, forParents],
   contributers: [naomi],
   image: burntOutBySchoolImage,
   runningTime: "1 hour 40 mins",
@@ -307,7 +307,7 @@ export const autisticChildrenWithSchool: CourseMeta = {
 
 export const myChildIsNotFineAtSchool: CourseMeta = {
   title: "My Child is not Fine at School",
-  tags: [tagSchool, tagMentalHealth, age5To11, age11To19, forParents],
+  tags: [tagSchool, age5To11, age11To19, forParents],
   contributers: [naomi],
   image: myChildIsNotFineAtSchoolImage,
   runningTime: "1 hour 46 mins",
@@ -412,7 +412,7 @@ export const ALDP3: CourseMeta = {
 
 export const ALDP4: CourseMeta = {
   title: "The Art of Low Demand Parenting: Emotions",
-  tags: [tagALDP, tagMentalHealth, age5To11, age11To19, forParents],
+  tags: [tagALDP, age5To11, age11To19, forParents],
   contributers: [naomi, eliza],
   image: ALDP4Image,
   runningTime: "1 hour 30 mins",
@@ -460,7 +460,7 @@ export const ALDP9: CourseMeta = {
 
 export const ALDP10: CourseMeta = {
   title: "The Art of Low Demand Parenting: What About Me?",
-  tags: [tagALDP, tagMentalHealth, age5To11, age11To19, forParents],
+  tags: [tagALDP, age5To11, age11To19, forParents],
   contributers: [naomi, eliza],
   image: ALDP10Image,
   runningTime: "1 hour 30 mins",
@@ -582,7 +582,6 @@ export const helpingYourAutisticChildWithTransitions: CourseMeta = {
   tags: [
     tagAutism,
     tagAnxiety,
-    tagMentalHealth,
     age5To11,
     age11To19,
     forParents,
@@ -598,7 +597,6 @@ export const eotasWhatToExpect: CourseMeta = {
     tagEHCPs,
     tagSEN,
     tagAnxiety,
-    tagMentalHealth,
     age5To11,
     age11To19,
     forParents,
@@ -682,8 +680,8 @@ export const allCourseMetas = [
 
 // For the featured list on the homepage
 export const featuredCourses = [
-  helpingYourAutisticChildWithTransitions,
-  burntOutByParenting,
+  helpingYourNDTeenRecoverFromSchool,
+  burntOutBySchool,
   helpingYourChildWithBurnout,
   helpingYourDemandAvoidantChildWithChange,
 ];

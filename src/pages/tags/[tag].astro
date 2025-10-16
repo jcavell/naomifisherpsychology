@@ -39,7 +39,7 @@ export async function getStaticPaths() {
     const taggedWebinars = getTaggedWebinars(webinars, tags);
     const taggedCourses = getTaggedCourses(courses, tags);
     const taggedBooks = getTaggedBooks(books, tags);
-    const taggedPosts = getTaggedPosts(posts, tags).slice(0, 2);
+    const taggedPosts = getTaggedPosts(posts, tags).slice(0, 4);
 
     return {
       taggedWebinars: taggedWebinars,
@@ -96,66 +96,59 @@ const metaDescription =
 ---
 
 <BaseLayout tagUrl={tagUrl} tagName={tagName} metaDescription={metaDescription}>
-  {
-    numberCategories > 1 && (
-      <div class="info-section-wrapper">
-        <div class="info-text">
-          <p>
-            Click on a button to jump to our webinars, courses, books or blog
-            posts
-            {aimedAtText}
-            <strong>{tagName}</strong>
-          </p>
-        </div>
-        <div class="info-links">
-          {hasWebinars && (
-            <a href="#webinars" class="filter-webinars">
-              Webinars
-            </a>
-          )}
-          {hasCourses && (
-            <a href="#courses" class="filter-courses">
-              Courses
-            </a>
-          )}
-          {hasBooks && (
-            <a href="#books" class="filter-books">
-              Books
-            </a>
-          )}
-          {hasPosts && (
-            <a href="#blog" class="filter-blog">
-              Blog
-            </a>
-          )}
-        </div>
-      </div>
-    )
-  }
+
+  <!--{-->
+  <!--  numberCategories > 1 && (-->
+  <!--    <div class="info-section-wrapper">-->
+  <!--      <div class="info-text">-->
+  <!--        <p>-->
+  <!--          Click on a button to jump to our webinars, courses, books or blog-->
+  <!--          posts-->
+  <!--          {aimedAtText}-->
+  <!--          <strong>{tagName}</strong>-->
+  <!--        </p>-->
+  <!--      </div>-->
+  <!--      <div class="info-links">-->
+  <!--        {hasPosts && (-->
+  <!--          <a href="#blog" class="filter-blog">-->
+  <!--            Articles-->
+  <!--          </a>-->
+  <!--        )}-->
+
+  <!--        {hasBooks && (-->
+  <!--          <a href="#books" class="filter-books">-->
+  <!--            Books-->
+  <!--          </a>-->
+  <!--        )}-->
+
+  <!--        {hasWebinars && (-->
+  <!--          <a href="#webinars" class="filter-webinars">-->
+  <!--            Webinars-->
+  <!--          </a>-->
+  <!--        )}-->
+  <!--        {hasCourses && (-->
+  <!--          <a href="#courses" class="filter-courses">-->
+  <!--            Courses-->
+  <!--          </a>-->
+  <!--        )}-->
+
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  )-->
+  <!--}-->
 
   <DisplayTagContent tagName={tagName} />
 
   {
-    webinars.length > 0 && (
-      <a name="webinars" class="anchor">
+    posts.length > 0 && (
+      <a name="blog" class="anchor">
         <h2 class="section-title">
-          <span class="webinars-section-title">Webinars</span>
+          <span class="blog-section-title">Latest articles</span>{" "}
         </h2>
       </a>
     )
   }
-  {webinars.map((webinar, index) => <WebinarSummary webinar={webinar} />)}
-
-  {
-    courses.length > 0 && (
-      <a name="courses" class="anchor">
-        <h2 class="section-title">
-          <span class="courses-section-title">Courses</span>
-        </h2>
-      </a>
-    )
-  }
-  {courses.map((course) => <CourseSummary course={course.data} />)}
+  {posts.map((post) => <BlogSummary post={post.data} />)}
 
   {
     books.length > 0 && (
@@ -168,14 +161,30 @@ const metaDescription =
   }
   {books.map((book) => <BookSummary book={book.data} />)}
 
+
   {
-    posts.length > 0 && (
-      <a name="blog" class="anchor">
+    webinars.length > 0 && (
+      <a name="webinars" class="anchor">
         <h2 class="section-title">
-          <span class="blog-section-title">Latest blog posts</span>{" "}
+          <span class="webinars-section-title">Webinars</span>
         </h2>
       </a>
     )
   }
-  {posts.map((post) => <BlogSummary post={post.data} />)}
+  {webinars.map((webinar, index) => <WebinarSummary webinar={webinar} />)}
+
+  <!--{-->
+  <!--  courses.length > 0 && (-->
+  <!--    <a name="courses" class="anchor">-->
+  <!--      <h2 class="section-title">-->
+  <!--        <span class="courses-section-title">Courses</span>-->
+  <!--      </h2>-->
+  <!--    </a>-->
+  <!--  )-->
+  <!--}-->
+  <!--{courses.slice(0,4).map((course) => <CourseSummary course={course.data} />)}-->
+
+  <!-- <a href={`/courses/categories/${tagUrl}`} class="load-more"> See {tagName} Courses </a> -->
+
+
 </BaseLayout>

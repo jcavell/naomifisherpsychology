@@ -16,10 +16,23 @@ const paragraphs = post.paragraphs;
 const tags = getTags(title, subtitle, paragraphs.join(" "));
 
 const courses = await getCourses();
-const relatedCourses = getTaggedCourses(courses, [tags[0]]);
+
+// Filter out nulls or elements with no data or title
+// This can happen if there is an entry in courseMeta but not from Kajabi
+const relatedCourses = getTaggedCourses(courses, [tags[0]]).filter((c) => c?.data?.title);
 
 // console.log("RELATED: " + JSON.stringify(relatedCourses));
+
 ---
+
+<style is:global>
+    /* Target the specific accordion in the related courses section */
+    .details-body-B .accordion-wrapper .accordion.no-title-accordion {
+        border-top: none !important;
+    }
+</style>
+
+
 
 <div class="details details-blog">
   <div class="live-date">
@@ -55,10 +68,9 @@ const relatedCourses = getTaggedCourses(courses, [tags[0]]);
                 RELATED COURSES
               </div>
             </div>
+
             {relatedCourses
-              // Filter out nulls or elements with no data or title
-              // This can happen if there is an entry in courseMeta but not from Kajabi
-              .filter((c) => c?.data?.title)
+              .slice(0, 2)
               .map((course) => (
                 <a href={`/courses/${makeUrl(course.data.title)}`}>
                   <div class="purchase">
@@ -69,6 +81,27 @@ const relatedCourses = getTaggedCourses(courses, [tags[0]]);
                   </div>
                 </a>
               ))}
+
+
+            <div class="accordion-wrapper">
+              <button class="accordion no-title-accordion">See More</button>
+              <div class="panel">
+            {relatedCourses
+              .slice(2, 6)
+              .map((course) => (
+                <a href={`/courses/${makeUrl(course.data.title)}`}>
+                  <div class="purchase">
+                    <div class="company">{course.data.title}</div>
+                    <div class="buy-now">
+                      <span> View </span>
+                    </div>
+                  </div>
+                </a>
+              ))}
+              </div></div>
+
+
+
           </div>
         </div>
       )
