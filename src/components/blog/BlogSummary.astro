@@ -3,7 +3,7 @@ import Tags from "../Tags.astro";
 import { makeUrl } from "../../scripts/url";
 import BlogImage from "./BlogImage.astro";
 
-const { post } = Astro.props;
+const { post, hideDate = false } = Astro.props;
 
 const title = post.title;
 const subtitle = post.subtitle;
@@ -19,10 +19,14 @@ const introText =
 ---
 
 <div class="card card-blog">
-  <div class="live-date">
-    <span class="live-day">{pubDate.day}</span>
-    <span class="live-month">{pubDate.month}</span>
-  </div>
+
+  {
+    !hideDate && (
+      <div class="live-date">
+        <span class="live-day">{pubDate.day}</span>
+        <span class="live-month">{pubDate.month}</span>
+      </div>
+    )}
 
   <h2>
     <a href=`/blog/${makeUrl(title)}`>{title}</a>
@@ -38,12 +42,19 @@ const introText =
   }
 
   <div class="card-details">
-    <a href="/blog/"> BLOG POST </a>
-    <span class="date">
-      {pubDate.day}
-      {pubDate.month}
-      {pubDate.year}
-    </span>
+
+    {
+      !hideDate && (
+        <a href="/blog/"> BLOG POST </a>
+
+        <span class="date">
+          {pubDate.day}
+          {pubDate.month}
+          {pubDate.year}
+        </span>
+      )
+    }
+
   </div>
 
   <p>

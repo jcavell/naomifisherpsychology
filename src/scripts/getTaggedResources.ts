@@ -34,3 +34,7 @@ export function getTaggedWebinars(webinars, tags: string[]) {
 export function getTaggedPosts(posts, tags: string[]) {
   return posts.filter((post) => post.data.tags?.some((e) => tags.includes(e)));
 }
+
+export function getCategoryPosts(posts, categories: string[]) {
+  return posts.filter((post) => categories.includes(post.data.url));
+}

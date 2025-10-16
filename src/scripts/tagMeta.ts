@@ -74,6 +74,123 @@ type TagMeta = {
   tag: string;
   description: string;
   image: ImageMetadata;
+  substackURLs?: string[];
+};
+
+const mentalHealthMeta: TagMeta = {
+  tag: tagMentalHealth,
+  image: tagMentalHealthImage,
+  description: mentalHealthContent(),
+  substackURLs: [
+    "https://naomicfisher.substack.com/p/depression-or-burnout",
+    "https://naomicfisher.substack.com/p/the-soft-bigotry-of-low-expectations",
+    "https://naomicfisher.substack.com/p/mental-health-awareness",
+    "https://naomicfisher.substack.com/p/getting-it-right",
+    "https://naomicfisher.substack.com/p/behaviour-is-part-of-a-complex-system",
+    "https://naomicfisher.substack.com/p/looking-for-a-way-to-improve-teenage",
+    "https://naomicfisher.substack.com/p/what-is-behaviour-anyway",
+    "https://naomicfisher.substack.com/p/no-excuses",
+    "https://naomicfisher.substack.com/p/mum-is-anxious",
+    "https://naomicfisher.substack.com/p/you-better-watch-out",
+    "https://naomicfisher.substack.com/p/my-house-is-burning-down",
+    "https://naomicfisher.substack.com/p/make-better-choices",
+  ],
+};
+
+const schoolMeta: TagMeta = {
+  tag: tagSchool,
+  image: tagSchoolImage,
+  description: schoolContent(),
+  substackURLs: [
+    "https://naomicfisher.substack.com/p/they-just-dont-care",
+    "https://naomicfisher.substack.com/p/less-than-90",
+    "https://naomicfisher.substack.com/p/is-he-behind",
+    "https://naomicfisher.substack.com/p/why-arent-they-in-school",
+    "https://naomicfisher.substack.com/p/why-do-we-do-what-we-do",
+    "https://naomicfisher.substack.com/p/under-pressure",
+    "https://naomicfisher.substack.com/p/what-about-english-and-maths",
+    "https://naomicfisher.substack.com/p/hope",
+    "https://naomicfisher.substack.com/p/if-your-behaviour-doesnt-improve",
+    "https://naomicfisher.substack.com/p/and-the-winner-is",
+    "https://naomicfisher.substack.com/p/the-gem-jar",
+    "https://naomicfisher.substack.com/p/five-things-all-young-people-and",
+    "https://naomicfisher.substack.com/p/wheres-the-balance",
+    "https://naomicfisher.substack.com/p/do-children-fail-school-or-do-schools",
+    "https://naomicfisher.substack.com/p/is-this-on-the-test",
+    "https://naomicfisher.substack.com/p/but-how-will-they-learn-social-skills",
+    "https://naomicfisher.substack.com/p/dont-you-worry-theyll-have-gaps",
+    "https://naomicfisher.substack.com/p/are-they-behind",
+    "https://naomicfisher.substack.com/p/the-special-unit",
+    "https://naomicfisher.substack.com/p/youre-making-it-worse",
+    "https://naomicfisher.substack.com/p/show-me-the-evidence",
+    "https://naomicfisher.substack.com/p/does-it-matter-how-young-people-feel",
+    "https://naomicfisher.substack.com/p/i-cant",
+  ],
+};
+
+const anxietyMeta: TagMeta = {
+  tag: tagAnxiety,
+  image: tagAnxietyImage,
+  description: anxietyContent(),
+  substackURLs: [
+    "https://naomicfisher.substack.com/p/mum-is-anxious",
+    "https://naomicfisher.substack.com/p/you-better-watch-out",
+    "https://naomicfisher.substack.com/p/hemmed-in-by-our-feelings",
+    "https://naomicfisher.substack.com/p/not-now-its-for-later",
+    "https://naomicfisher.substack.com/p/stepping-back-to-school",
+    "https://naomicfisher.substack.com/p/will-it-make-my-childs-separation",
+  ],
+};
+
+const demandAvoidanceMeta: TagMeta = {
+  tag: tagDemandAvoidance,
+  image: tagDemandAvoidanceImage,
+  description: demandAvoidanceContent(),
+  substackURLs: [
+    "https://naomicfisher.substack.com/p/its-not-what-you-say-its-the-way",
+    "https://naomicfisher.substack.com/p/being-able-to-say-no-allows-children",
+    "https://naomicfisher.substack.com/p/a-bit-strict",
+    "https://naomicfisher.substack.com/p/the-right-to-refuse",
+    "https://naomicfisher.substack.com/p/the-art-of-quitting",
+    "https://naomicfisher.substack.com/p/not-saying-no",
+    "https://naomicfisher.substack.com/p/too-much-for-me",
+    "https://naomicfisher.substack.com/p/why-wont-they-open-their-gifts",
+  ],
+};
+
+const autismMeta: TagMeta = {
+  tag: tagAutism,
+  image: tagAutismImage,
+  description: autismContent(),
+  substackURLs: [
+    "https://naomicfisher.substack.com/p/why-i-dont-tell-children-they-have",
+    "https://naomicfisher.substack.com/p/behind-the-mask",
+    "https://naomicfisher.substack.com/p/why-being-autistic-is-nothing-like",
+    "https://naomicfisher.substack.com/p/getting-it-right",
+    "https://naomicfisher.substack.com/p/why-i-dont-tell-children-that-the",
+    "https://naomicfisher.substack.com/p/creating-a-life",
+    "https://naomicfisher.substack.com/p/does-exposure-therapy-work-for-autistic",
+  ],
+};
+
+const burnoutMeta: TagMeta = {
+  tag: tagBurnout,
+  image: tagBurnoutImage,
+  description: burnoutContent(),
+};
+
+const screensMeta: TagMeta = {
+  tag: tagScreens,
+  image: tagScreensImage,
+  description: screensContent(),
+  substackURLs: ["https://naomicfisher.substack.com/p/screens-screens-screens"],
+};
+
+const traumaMeta: TagMeta = {
+  tag: tagTrauma,
+  image: tagTraumaImage,
+  description: traumaContent(),
+  substackURLs: ["https://naomicfisher.substack.com/p/learning-to-feel-safe"],
 };
 
 const age5To12Meta: TagMeta = {
@@ -86,30 +203,6 @@ const age13To18Meta: TagMeta = {
   tag: age11To19,
   image: age13To18Image,
   description: age13To18Content(),
-};
-
-const anxietyMeta: TagMeta = {
-  tag: tagAnxiety,
-  image: tagAnxietyImage,
-  description: anxietyContent(),
-};
-
-const autismMeta: TagMeta = {
-  tag: tagAutism,
-  image: tagAutismImage,
-  description: autismContent(),
-};
-
-const burnoutMeta: TagMeta = {
-  tag: tagBurnout,
-  image: tagBurnoutImage,
-  description: burnoutContent(),
-};
-
-const demandAvoidanceMeta: TagMeta = {
-  tag: tagDemandAvoidance,
-  image: tagDemandAvoidanceImage,
-  description: demandAvoidanceContent(),
 };
 
 const ehcpMeta: TagMeta = {
@@ -148,28 +241,10 @@ const aldpMeta: TagMeta = {
   description: aldpContent(),
 };
 
-const schoolMeta: TagMeta = {
-  tag: tagSchool,
-  image: tagSchoolImage,
-  description: schoolContent(),
-};
-
-const screensMeta: TagMeta = {
-  tag: tagScreens,
-  image: tagScreensImage,
-  description: screensContent(),
-};
-
 const senMeta: TagMeta = {
   tag: tagSEN,
   image: tagSenImage,
   description: senContent(),
-};
-
-const traumaMeta: TagMeta = {
-  tag: tagTrauma,
-  image: tagTraumaImage,
-  description: traumaContent(),
 };
 
 const aggressionMeta: TagMeta = {
@@ -188,12 +263,6 @@ const adhdMeta: TagMeta = {
   tag: tagADHD,
   image: tagMentalHealth,
   description: adhdContent(),
-};
-
-const mentalHealthMeta: TagMeta = {
-  tag: tagMentalHealth,
-  image: tagMentalHealthImage,
-  description: mentalHealthContent(),
 };
 
 // !! ADD TAGS HERE !!

@@ -3,6 +3,7 @@ import getWebinars from "../../scripts/webinars";
 import getCourses from "../../scripts/courses";
 
 import {
+  getCategoryPosts,
   getTaggedBooks,
   getTaggedCourses,
   getTaggedPosts,
@@ -25,6 +26,8 @@ import DisplayTagContent from "../../components/DisplayTagContent.astro";
 
 import Picture from "astro/components/Picture.astro";
 
+import { getTagMeta } from "../../scripts/tagMeta";
+
 export async function getStaticPaths() {
   // Get ALL content
   const webinars = await getWebinars();
@@ -35,23 +38,42 @@ export async function getStaticPaths() {
   const books = (await getCollection("books")).sort(
     (a, b) => b.data.id - a.data.id,
   );
+
   function getAllResources(tags: string[]) {
     const taggedWebinars = getTaggedWebinars(webinars, tags);
     const taggedCourses = getTaggedCourses(courses, tags);
     const taggedBooks = getTaggedBooks(books, tags);
-    const taggedPosts = getTaggedPosts(posts, tags).slice(0, 4);
+
+    // A bit hacky - see if there are curated (in tagMeta) category posts for the first tag
+    // if there are - use these instead of the automated tag ones
+    const tagMeta = getTagMeta(tags[0]);
+    let taggedPosts;
+    if (tagMeta?.substackURLs) {
+      taggedPosts = getCategoryPosts(posts, tagMeta.substackURLs);
+    } else {
+      taggedPosts = getTaggedPosts(posts, tags).slice(0, 4);
+    }
+
+    const first2Posts = taggedPosts.slice(0, 2);
+    const restOfPosts = taggedPosts.slice(2, 6);
 
     return {
       taggedWebinars: taggedWebinars,
       taggedBooks: taggedBooks,
       taggedCourses: taggedCourses,
-      taggedPosts: taggedPosts,
+      first2Posts: first2Posts,
+      restOfPosts: restOfPosts,
     };
   }
 
   return allTags.map((tag: string) => {
-    const { taggedWebinars, taggedCourses, taggedBooks, taggedPosts } =
-      getAllResources([tag]);
+    const {
+      taggedWebinars,
+      taggedCourses,
+      taggedBooks,
+      first2Posts,
+      restOfPosts,
+    } = getAllResources([tag]);
 
     //  console.log("**" + tag + "** " + taggedCourses.map((course) => course.data.title));
 
@@ -63,18 +85,27 @@ export async function getStaticPaths() {
         webinars: taggedWebinars,
         courses: taggedCourses,
         books: taggedBooks,
-        posts: taggedPosts,
+        firstTwoPosts: first2Posts,
+        restOfPosts: restOfPosts,
       },
     };
   });
 }
 
-const { tagName, tagUrl, webinars, courses, books, posts } = Astro.props;
+const {
+  tagName,
+  tagUrl,
+  webinars,
+  courses,
+  books,
+  firstTwoPosts,
+  restOfPosts,
+} = Astro.props;
 
 const hasWebinars = webinars.length > 0;
 const hasCourses = courses.length > 0;
 const hasBooks = books.length > 0;
-const hasPosts = posts.length > 0;
+const hasPosts = firstTwoPosts.length > 0;
 
 const numberCategories = [hasWebinars, hasCourses, hasBooks, hasPosts].filter(
   (r) => r,
@@ -95,8 +126,25 @@ const metaDescription =
   tagName;
 ---
 
-<BaseLayout tagUrl={tagUrl} tagName={tagName} metaDescription={metaDescription}>
+<style>
+    .accordion-wrapper .panel {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;              /* spacing between cards */
+        align-items: stretch;
+        /* optionally ensure padding / border don't reduce available space */
+        box-sizing: border-box;
+    }
 
+    .accordion-wrapper .panel > * { /* target each BlogSummary root */
+        flex: 0 1 calc(50% - 8px);   /* two per row, accounting for half of gap */
+        box-sizing: border-box;
+        min-width: 0;                /* allow shrinking inside flex containers */
+    }
+
+</style>
+
+<BaseLayout tagUrl={tagUrl} tagName={tagName} metaDescription={metaDescription}>
   <!--{-->
   <!--  numberCategories > 1 && (-->
   <!--    <div class="info-section-wrapper">-->
@@ -140,15 +188,28 @@ const metaDescription =
   <DisplayTagContent tagName={tagName} />
 
   {
-    posts.length > 0 && (
+    firstTwoPosts.length > 0 && (
       <a name="blog" class="anchor">
         <h2 class="section-title">
-          <span class="blog-section-title">Latest articles</span>{" "}
+          <span class="blog-section-title">Posts</span>{" "}
         </h2>
       </a>
     )
   }
-  {posts.map((post) => <BlogSummary post={post.data} />)}
+  {firstTwoPosts.map((post) => <BlogSummary post={post.data} hideDate={true} />)}
+
+  {
+    restOfPosts.length > 0 && (
+      <div class="accordion-wrapper">
+        <button class="accordion no-title-accordion">More Posts</button>
+        <div class="panel">
+          {restOfPosts.map((post) => (
+            <BlogSummary post={post.data} hideDate={true}/>
+          ))}
+        </div>
+      </div>
+    )
+  }
 
   {
     books.length > 0 && (
@@ -160,7 +221,6 @@ const metaDescription =
     )
   }
   {books.map((book) => <BookSummary book={book.data} />)}
-
 
   {
     webinars.length > 0 && (
@@ -185,6 +245,4 @@ const metaDescription =
   <!--{courses.slice(0,4).map((course) => <CourseSummary course={course.data} />)}-->
 
   <!-- <a href={`/courses/categories/${tagUrl}`} class="load-more"> See {tagName} Courses </a> -->
-
-
 </BaseLayout>
