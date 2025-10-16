@@ -40,7 +40,7 @@ const relatedCourses = getTaggedCourses(courses, [tags[0]]).filter((c) => c?.dat
   <!--  <span class="live-month">{pubDate.month}</span>-->
   <!--</div>-->
 
-  <div class="details-category">BLOG</div>
+  <div class="details-category">ARTICLE</div>
   <h1>
     {title}
     <span> {subtitle} </span>
@@ -65,12 +65,12 @@ const relatedCourses = getTaggedCourses(courses, [tags[0]]).filter((c) => c?.dat
           <div class="purchase-wrapper">
             <div class="purchase-title">
               <div class="purchase-title-primary purchase-title-courses">
-                RELATED COURSES
+                RELATED COURSE
               </div>
             </div>
 
             {relatedCourses
-              .slice(0, 2)
+              .slice(0, 1)
               .map((course) => (
                 <a href={`/courses/${makeUrl(course.data.title)}`}>
                   <div class="purchase">
@@ -87,7 +87,7 @@ const relatedCourses = getTaggedCourses(courses, [tags[0]]).filter((c) => c?.dat
               <button class="accordion no-title-accordion">See More</button>
               <div class="panel">
             {relatedCourses
-              .slice(2, 6)
+              .slice(1, 6)
               .map((course) => (
                 <a href={`/courses/${makeUrl(course.data.title)}`}>
                   <div class="purchase">
