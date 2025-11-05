@@ -22,9 +22,10 @@ import { naomi, abi, eliza, kate } from "./people";
 
 // EventbriteWebinar Images
 import demandAvoidantChildImage from "../images/webinars/understanding-and-helping-your-demand-avoidand-child.avif";
-import ehcpImage from "../images/webinars/does-my-child-need-an-ehcp.jpg";
-import navigatingPhonesImage from "../images/webinars/navigating-phones-with-your-neurodiverse-child.jpg";
+import schoolTraumaImage from "../images/webinars/school-trauma.jpg";
 import aldpFoodImage from "../images/webinars/aldp-food.jpg";
+import writingForWellbeingImage from "../images/webinars/writing-for-wellbeing.jpg";
+import dyslexiaImage from "../images/webinars/dyslexia.jpg";
 
 type WebinarMeta = {
   id: string;
@@ -43,26 +44,6 @@ const example_webinar: WebinarMeta = {
   contributers: [naomi, eliza],
 };
 
-const demandAvoidantChild: WebinarMeta = {
-  id: "1472494212829",
-  tags: [tagDemandAvoidance, age5To11, age11To19, forParents],
-  image: demandAvoidantChildImage,
-  contributers: [naomi],
-};
-
-const doesMyChildNeedAnEHCP: WebinarMeta = {
-  id: "1634945679539",
-  tags: [tagEHCPs, tagSchool, age5To11, age11To19, forParents],
-  image: ehcpImage,
-  contributers: [abi],
-};
-
-const navigatingPhones: WebinarMeta = {
-  id: "1742168826859",
-  tags: [tagScreens, age5To11, age11To19, forParents],
-  image: navigatingPhonesImage,
-  contributers: [naomi],
-};
 
 const aldpFood: WebinarMeta = {
   id: "1736300695119",
@@ -71,9 +52,31 @@ const aldpFood: WebinarMeta = {
   contributers: [naomi, eliza],
 };
 
+const schoolTrauma: WebinarMeta = {
+  id: "1828642532039",
+  tags: [tagTrauma, tagSchool, age5To11, age11To19, forParents],
+  image: schoolTraumaImage,
+  contributers: [naomi],
+};
+
+const writingForWellbeing: WebinarMeta = {
+  id: "1870305446939",
+  tags: [tagWellbeing, forParents],
+  image: writingForWellbeingImage,
+  contributers: [abi],
+};
+
+const dyslexia: WebinarMeta = {
+  id: "1837990482009",
+  tags: [tagSEN, tagSchool, age5To11, age11To19, forParents],
+  image: dyslexiaImage,
+  contributers: [abi],
+};
+
+
 // !! ADD WEBINAR HERE !!
 export function getWebinarMeta(eventId: string): WebinarMeta | undefined {
-  return [demandAvoidantChild, doesMyChildNeedAnEHCP, navigatingPhones, aldpFood].find(
+  return [schoolTrauma, writingForWellbeing, dyslexia, aldpFood].find(
     (webMeta) => eventId === webMeta.id,
   );
 }

@@ -8,7 +8,6 @@ import GenerateQuote from "../components/Quoter";
 import { getEntry } from "astro:content";
 import StaticImage from "../components/StaticImage.astro";
 import naomiAndElizaImage from "../images/static/naomi-and-eliza-looking-at-book.jpg";
-import Newsletter from "../components/Newsletter.astro";
 import { RemoveFinishedWebinars } from "../components/webinar/RemoveFinishedWebinars";
 
 const quotes = (await getEntry("webinar-quotes", "general-webinar-quotes"))
@@ -81,5 +80,4 @@ const metaDescription =
     )
   }
 
-  <Newsletter />
 </BaseLayout>

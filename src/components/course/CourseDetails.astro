@@ -5,7 +5,6 @@ import Tags from "../Tags.astro";
 import { getCourseFromTitle, parseDescriptions } from "../../scripts/courses";
 import CourseImage from "./CourseImage.astro";
 import Vimeo from "../Vimeo.astro";
-import Newsletter from "../Newsletter.astro";
 import CourseDetailsAddToBasket from "../basket/CourseDetailsAddToBasket";
 import type { CourseCard } from '../../content/config';
 
@@ -105,4 +104,3 @@ const relatedCourses = (
     relatedCourses.map((related) => <CourseSummary course={related!.data} />)
 }
 
-<Newsletter />
