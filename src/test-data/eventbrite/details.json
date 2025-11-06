@@ -302,11 +302,11 @@
         "type": "text",
         "layout": null,
         "data": {
-          "display_restrictions": [],
           "body": {
             "text": "<p>Finding time for yourself can be hard - but crucial - when the demands of family life take up every moment. This event will provide a safe space to explore your journey and connect with your feelings.</p><p>This session for parents will empower you to tap into the healing power of writing. In this relaxed, playful session, with gentle guidance from poet Kate Wakeling and educational psychologist Dr Abigail Fisher, you can come and explore writing activities to nurture your creativity and your soul.</p><p>Kate's workshops are particularly known for being playful and nurturing, and she is experienced at helping people explore and develop their own creative voice through writing and poetry. Abigail uses imagery and guided exercises to help parents find space for themselves in amongst family life.</p><p>Hosted by Abigail Fisher, educational psychologist and Kate Wakeling, poet and author (<a href=\"http://www.katewakeling.co.uk\" title=\"http://www.katewakeling.co.uk\" target=\"_blank\" data-msys-clicktrack=\"0\" rel=\"nofollow noopener noreferrer\">http://www.katewakeling.co.uk</a>).</p><p>Illustration credit: Elena Braslina</p><p><br><strong><strong>Who are</strong></strong><strong><strong> </strong></strong><strong><strong>we?</strong></strong></p><p><strong><strong>Kate Wakeling</strong></strong> is a poet and workshop facilitator who writes for both adults and children.</p><p>Kate regularly facilitates creative writing workshops for children and adults with a wide range of organisations, including the National Literacy Trust, the Poetry Society, the Sutton Women’s Network and Poetry By Heart. Her workshops are playful and nurturing, and she loves supporting individuals of any age or background to find and explore develop their own creative voice through poetry. (Photo credit: Tom Weller)</p><p><strong><strong>Abigail Fisher</strong></strong> is an educational psychologist and qualified teacher. She has a particular interest in supporting parents to look after themselves so they can better care for their families.</p><p><br></p><p><em><strong><strong>Feedback from our last webinar</strong></strong></em></p><p>That was an amazing session. I feel like I've had my cup properly filled up - a first in a very long time. Our family has been in crisis for a long time now and I feel like I have completely lost myself to it. Having the well defined container of the workshop was just the support and guidance I needed. I could do with this medicine on a regular basis!</p><p><em><em>I'm not sure what I expected, but I didn't expect so much impact in such a short period of time. It was genuinely amazing to have space and useful prompts to reflect on my current emotional life and different aspects of my parenting and personal journey. I really think everyone should try the workshop... as someone who has done a fair bit of 'talk therapy', it was refreshing to have a new approach to my feelings and experiences.</em></em></p>",
             "alignment": "left"
-          }
+          },
+          "display_restrictions": []
         },
         "semantic_purpose": "",
         "timed_display": null,
@@ -333,11 +333,11 @@
                 "image_id": "851024119",
                 "crop_mask": {
                   "width": 776,
-                  "height": 388,
                   "top_left": {
                     "y": 0,
                     "x": 0
-                  }
+                  },
+                  "height": 388
                 },
                 "aspect_ratio": "2",
                 "id": "851024119"
@@ -348,11 +348,7 @@
                 "edge_color_set": true,
                 "edge_color": "#646d54",
                 "url": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F1161544013%2F499288384627%2F1%2Foriginal.20251024-121015?h=740&w=1200&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C2500%2C1250&s=4a2dbfc443184c9808541924c0a37cb0",
-                "original": {
-                  "url": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F1161544013%2F499288384627%2F1%2Foriginal.20251024-121015?auto=format%2Ccompress&q=75&sharp=10&s=7c992a9565a2ca67fb28f0c1983295e7",
-                  "width": 2500,
-                  "height": 1668
-                },
+                "id": "1161544013",
                 "focal_point": null,
                 "image_id": "1161544013",
                 "crop_mask": {
@@ -364,7 +360,11 @@
                   }
                 },
                 "aspect_ratio": "2",
-                "id": "1161544013"
+                "original": {
+                  "url": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F1161544013%2F499288384627%2F1%2Foriginal.20251024-121015?auto=format%2Ccompress&q=75&sharp=10&s=7c992a9565a2ca67fb28f0c1983295e7",
+                  "width": 2500,
+                  "height": 1668
+                }
               }
             },
             {
@@ -372,11 +372,7 @@
                 "edge_color_set": true,
                 "edge_color": "#383233",
                 "url": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F1161549753%2F499288384627%2F1%2Foriginal.20251024-121814?h=740&w=1200&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C176%2C5000%2C2500&s=b78e23b65b3702cf28ddb6450b693e5f",
-                "original": {
-                  "url": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F1161549753%2F499288384627%2F1%2Foriginal.20251024-121814?auto=format%2Ccompress&q=75&sharp=10&s=c76a62c5e7b071b78b1d9e1c836578a6",
-                  "width": 5000,
-                  "height": 3333
-                },
+                "id": "1161549753",
                 "focal_point": null,
                 "image_id": "1161549753",
                 "crop_mask": {
@@ -388,7 +384,11 @@
                   "height": 2500
                 },
                 "aspect_ratio": "2",
-                "id": "1161549753"
+                "original": {
+                  "url": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F1161549753%2F499288384627%2F1%2Foriginal.20251024-121814?auto=format%2Ccompress&q=75&sharp=10&s=c76a62c5e7b071b78b1d9e1c836578a6",
+                  "width": 5000,
+                  "height": 3333
+                }
               }
             }
           ]
@@ -551,7 +551,11 @@
                 "edge_color_set": true,
                 "edge_color": "#4a3929",
                 "url": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F920339273%2F499288384627%2F1%2Foriginal.20241219-144447?h=740&w=1200&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C384%2C4672%2C2336&s=a5d53646916cf7888f890468640c78a6",
-                "id": "920339273",
+                "original": {
+                  "url": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F920339273%2F499288384627%2F1%2Foriginal.20241219-144447?auto=format%2Ccompress&q=75&sharp=10&s=92ec92aa0cf7306d8e97d110069aaf14",
+                  "width": 4672,
+                  "height": 3104
+                },
                 "focal_point": null,
                 "image_id": "920339273",
                 "crop_mask": {
@@ -563,11 +567,7 @@
                   "height": 2336
                 },
                 "aspect_ratio": "2",
-                "original": {
-                  "url": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F920339273%2F499288384627%2F1%2Foriginal.20241219-144447?auto=format%2Ccompress&q=75&sharp=10&s=92ec92aa0cf7306d8e97d110069aaf14",
-                  "width": 4672,
-                  "height": 3104
-                }
+                "id": "920339273"
               }
             }
           ]
@@ -631,6 +631,288 @@
         "resource_url": {
           "relative": "/e/understanding-dyslexia-and-reading-difficulties-introduction-for-parents-tickets-1837990482009/structured_content/widgets/faq/",
           "absolute": "https://www.eventbrite.co.uk/e/understanding-dyslexia-and-reading-difficulties-introduction-for-parents-tickets-1837990482009/structured_content/widgets/faq/"
+        }
+      }
+    ],
+    "pagination": {
+      "object_count": 100,
+      "page_number": 1,
+      "page_size": 100,
+      "page_count": 1
+    }
+  },
+  {
+    "resource_uris": {
+      "self": "https://www.eventbriteapi.com/v3/events/1964030267400/structured_content/3/",
+      "add_module": "https://www.eventbriteapi.com/v3/events/1964030267400/structured_content/3/module/",
+      "publish": "https://www.eventbriteapi.com/v3/events/1964030267400/structured_content/3/publish/",
+      "preview_module": "https://www.eventbriteapi.com/v3/events/structured_content/module/preview/"
+    },
+    "access_type": "not-apply",
+    "has_autogenerated_content": false,
+    "hide_virtual_venue_content": false,
+    "page_version_number": "3",
+    "purpose": "listing",
+    "modules": [
+      {
+        "resource_uris": {
+          "self": "module/2180340345/"
+        },
+        "id": "2180340345",
+        "type": "text",
+        "layout": null,
+        "data": {
+          "body": {
+            "text": "<p>Demand avoidant children have an anxiety-driven need to resist the demands of every day life. In practice this can mean that they say No a lot.</p><p>They may refuse all suggestion, or refuse to go out. They might refuse to contemplate any change to their routine, and they might also refuse to let you do things. This can make life really challenging for families.</p><p>Lots of families get stuck, unable to change things which really need to be done differently, becuase their child responds so intensely.</p><p>In this webinar for parents, Dr Naomi Fisher, clinical psychologist, will explain why demand avoidant children find change so hard, and will give you the tools to help them manage necessary changes. It will cover both intentional change (which you as the parent want to happen) and unexpected change (when something happens which is outside your control). You'll end the webinar with a better understanding of your child and what they find challenging, and some ideas to help them.</p><p><br></p><p><strong><strong>This webinar will be recorded. </strong></strong>Please choose that option at check out if you wish to watch a recording.</p><p><strong><strong>Dr Naomi Fisher</strong></strong> is a UK clinical psychologist registered with the HCPC. She has a doctorate in clinical psychology and a Phd in autism, both from Kings College London. She specialises in trauma, autism and alternative education. She is the author of several books, including <em><em>When the Naughty Step Makes Things Worse: Parenting for Children (and Adults) who need something Different</em></em> with Eliza Fricker. She has over 18 years clinical experience in the NHS, third sector and private practice.</p><p><strong><strong>Participants from previous webinars said:</strong></strong></p><p>\"Naomi's insight into children needs to be shared far and wide.That she can not only help children and families but also break down the information into easily digested bitesize nuggets illustrates her phenomenal level of understanding and skill.\"</p><p>\"This has been the most useful thing I have had since my Son was 4 and he is now 14. Thank you.\"</p><p>\"I think it’s probably one of the most interesting, insightful sessions on anxiety in autistic children that I’ve seen. Just the initial explanation of how the anxiety develops was a real eye opener. It really helps me understand my child better.\"</p><p>\"It felt hopeful because it pointed to a pathway out of the situation we’re in. Such a relief to have her feelings and my experience of her behaviour validated.\"</p><p><strong><strong>This webinar is not therapy nor a replacement for therapy.</strong></strong></p>",
+            "alignment": "left"
+          },
+          "display_restrictions": []
+        },
+        "semantic_purpose": "",
+        "timed_display": null,
+        "display_restrictions": []
+      }
+    ],
+    "widgets": [
+      {
+        "id": "",
+        "type": "herocarousel",
+        "data": {
+          "slides": [
+            {
+              "image": {
+                "edge_color_set": true,
+                "edge_color": "#517199",
+                "url": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F915538963%2F137448283838%2F1%2Foriginal.20241211-120503?h=740&w=1200&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C1064%2C2768%2C1384&s=4a21037de60de62fee15184cf2959ab4",
+                "id": "915538963",
+                "focal_point": null,
+                "image_id": "915538963",
+                "crop_mask": {
+                  "width": 2768,
+                  "top_left": {
+                    "y": 1064,
+                    "x": 0
+                  },
+                  "height": 1384
+                },
+                "aspect_ratio": "2",
+                "original": {
+                  "url": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F915538963%2F137448283838%2F1%2Foriginal.20241211-120503?auto=format%2Ccompress&q=75&sharp=10&s=8365d99346ec16bb5fae6832bac964e3",
+                  "width": 2768,
+                  "height": 3922
+                }
+              }
+            }
+          ]
+        },
+        "resource_url": {
+          "relative": "/e/helping-your-demand-avoidant-child-with-change-tickets-1964030267400/structured_content/widgets/herocarousel/",
+          "absolute": "https://www.eventbrite.co.uk/e/helping-your-demand-avoidant-child-with-change-tickets-1964030267400/structured_content/widgets/herocarousel/"
+        }
+      },
+      {
+        "id": "",
+        "type": "faqs",
+        "data": {
+          "faqs": [
+            {
+              "answer": "This webinar is hosted on Zoom. Please make sure you have Zoom installed before the event, and test the audio to make sure it's working. Eventbrite will send out a reminder 2 hours before the event and 10 minutes before the event you will be emailed the webinar link.",
+              "question": "How do I join the live webinar?"
+            },
+            {
+              "answer": "Yes, if you choose the webinar + recording option you can watch it in your own time",
+              "question": "Can I miss the webinar and watch it later?"
+            },
+            {
+              "answer": "We'll send a link by the morning after the webinar",
+              "question": "When will I be sent a link to the recording?"
+            },
+            {
+              "answer": "You can watch the recording for 30 days after the webinar",
+              "question": "How long can I watch the recording for?"
+            },
+            {
+              "answer": "Please visit the general Eventbrite FAQ about this: https://www.eventbrite.co.uk/help/en-gb/contact-us/ ",
+              "question": "Questions about logging in, where are my tickets, refunds, or duplicate card charges"
+            }
+          ]
+        },
+        "resource_url": {
+          "relative": "/e/helping-your-demand-avoidant-child-with-change-tickets-1964030267400/structured_content/widgets/faqs/",
+          "absolute": "https://www.eventbrite.co.uk/e/helping-your-demand-avoidant-child-with-change-tickets-1964030267400/structured_content/widgets/faqs/"
+        }
+      },
+      {
+        "id": "",
+        "type": "faq",
+        "data": {
+          "faqs": [
+            {
+              "answer": "This webinar is hosted on Zoom. Please make sure you have Zoom installed before the event, and test the audio to make sure it's working. Eventbrite will send out a reminder 2 hours before the event and 10 minutes before the event you will be emailed the webinar link.",
+              "question": "How do I join the live webinar?"
+            },
+            {
+              "answer": "Yes, if you choose the webinar + recording option you can watch it in your own time",
+              "question": "Can I miss the webinar and watch it later?"
+            },
+            {
+              "answer": "We'll send a link by the morning after the webinar",
+              "question": "When will I be sent a link to the recording?"
+            },
+            {
+              "answer": "You can watch the recording for 30 days after the webinar",
+              "question": "How long can I watch the recording for?"
+            },
+            {
+              "answer": "Please visit the general Eventbrite FAQ about this: https://www.eventbrite.co.uk/help/en-gb/contact-us/ ",
+              "question": "Questions about logging in, where are my tickets, refunds, or duplicate card charges"
+            }
+          ]
+        },
+        "resource_url": {
+          "relative": "/e/helping-your-demand-avoidant-child-with-change-tickets-1964030267400/structured_content/widgets/faq/",
+          "absolute": "https://www.eventbrite.co.uk/e/helping-your-demand-avoidant-child-with-change-tickets-1964030267400/structured_content/widgets/faq/"
+        }
+      }
+    ],
+    "pagination": {
+      "object_count": 100,
+      "page_number": 1,
+      "page_size": 100,
+      "page_count": 1
+    }
+  },
+  {
+    "resource_uris": {
+      "self": "https://www.eventbriteapi.com/v3/events/1964043054647/structured_content/3/",
+      "add_module": "https://www.eventbriteapi.com/v3/events/1964043054647/structured_content/3/module/",
+      "publish": "https://www.eventbriteapi.com/v3/events/1964043054647/structured_content/3/publish/",
+      "preview_module": "https://www.eventbriteapi.com/v3/events/structured_content/module/preview/"
+    },
+    "access_type": "not-apply",
+    "has_autogenerated_content": false,
+    "hide_virtual_venue_content": false,
+    "page_version_number": "3",
+    "purpose": "listing",
+    "modules": [
+      {
+        "resource_uris": {
+          "self": "module/2180341124/"
+        },
+        "id": "2180341124",
+        "type": "text",
+        "layout": null,
+        "data": {
+          "display_restrictions": [],
+          "body": {
+            "text": "<p>They are so angry - does it mean we've done something wrong?</p><p>Many autistic children express anger in ways which surprise their parents. It's so loud, so out-of-nowhere, so extreme. Parents say it can feel like they are walking on egg shells, never sure what might set their children off. They worry that perhaps their children are terribly unhappy and it's all coming out in anger - is it something they've done wrong?</p><p>They try to put their foot down and put boundaries in place, but it doesn't help. In fact, sometimes it seems like it's making things worse. What do you do?</p><p>In this webinar, Naomi Fisher, clinical psychologist will talk about why autistic children often have outbursts of anger (both external and internal), how it builds up and how to help them. She'll explain the different skills which children need to learn in order to manage their anger, and why this can be particularly hard for autistic children. She'll give you some practical tips and strategies to help your child and your family.</p><p>This webinar is suitable for children with and without a diagnosis.</p><p><br></p><p><strong><strong>This webinar will be recorded. </strong></strong>Please choose that option at check out if you wish to watch a recording.</p><p><strong><strong>Dr Naomi Fisher</strong></strong> is a UK clinical psychologist registered with the HCPC. She has a doctorate in clinical psychology and a Phd in autism, both from Kings College London. She specialises in trauma, autism and alternative education. She is the author of several books, including <em><em>When the Naughty Step Makes Things Worse </em></em>with Eliza Fricker. She has over 18 years clinical experience in the NHS, third sector and private practice.</p><p><strong><strong>Participants from previous webinars said:</strong></strong></p><p>\"Naomi's insight into children needs to be shared far and wide.That she can not only help children and families but also break down the information into easily digested bitesize nuggets illustrates her phenomenal level of understanding and skill.\"</p><p>\"This has been the most useful thing I have had since my Son was 4 and he is now 14. Thank you.\"</p><p>\"I think it’s probably one of the most interesting, insightful sessions on anxiety in autistic children that I’ve seen. Just the initial explanation of how the anxiety develops was a real eye opener. It really helps me understand my child better.\"</p><p>\"It felt hopeful because it pointed to a pathway out of the situation we’re in. Such a relief to have her feelings and my experience of her behaviour validated.\"</p><p><strong><strong>This webinar is not therapy nor a replacement for therapy.</strong></strong></p>",
+            "alignment": "left"
+          }
+        },
+        "semantic_purpose": "",
+        "timed_display": null,
+        "display_restrictions": []
+      }
+    ],
+    "widgets": [
+      {
+        "id": "",
+        "type": "herocarousel",
+        "data": {
+          "slides": [
+            {
+              "image": {
+                "edge_color_set": true,
+                "edge_color": "#535e88",
+                "url": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F940993453%2F137448283838%2F1%2Foriginal.20250121-155332?h=740&w=1200&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C128%2C640%2C320&s=b00844a00a0361b924f2566f831088c4",
+                "id": "940993453",
+                "focal_point": null,
+                "image_id": "940993453",
+                "crop_mask": {
+                  "width": 640,
+                  "top_left": {
+                    "y": 128,
+                    "x": 0
+                  },
+                  "height": 320
+                },
+                "aspect_ratio": "2",
+                "original": {
+                  "url": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F940993453%2F137448283838%2F1%2Foriginal.20250121-155332?auto=format%2Ccompress&q=75&sharp=10&s=192e41843af65b34c65309f346b57e57",
+                  "width": 640,
+                  "height": 512
+                }
+              }
+            }
+          ]
+        },
+        "resource_url": {
+          "relative": "/e/helping-your-autistic-child-with-anger-tickets-1964043054647/structured_content/widgets/herocarousel/",
+          "absolute": "https://www.eventbrite.co.uk/e/helping-your-autistic-child-with-anger-tickets-1964043054647/structured_content/widgets/herocarousel/"
+        }
+      },
+      {
+        "id": "",
+        "type": "faqs",
+        "data": {
+          "faqs": [
+            {
+              "answer": "This webinar is hosted on Zoom. Please make sure you have Zoom installed before the event, and test the audio to make sure it's working. Eventbrite will send out a reminder 2 hours before the event and 10 minutes before the event you will be emailed the webinar link.",
+              "question": "How do I join the live webinar?"
+            },
+            {
+              "answer": "Yes, if you choose the webinar + recording option you can watch it in your own time",
+              "question": "Can I miss the webinar and watch it later?"
+            },
+            {
+              "answer": "We'll send a link by the morning after the webinar",
+              "question": "When will I be sent a link to the recording?"
+            },
+            {
+              "answer": "You can watch the recording for 30 days after the webinar",
+              "question": "How long can I watch the recording for?"
+            },
+            {
+              "answer": "Please visit the general Eventbrite FAQ about this: https://www.eventbrite.co.uk/help/en-gb/contact-us/ ",
+              "question": "Questions about logging in, where are my tickets, refunds, or duplicate card charges"
+            }
+          ]
+        },
+        "resource_url": {
+          "relative": "/e/helping-your-autistic-child-with-anger-tickets-1964043054647/structured_content/widgets/faqs/",
+          "absolute": "https://www.eventbrite.co.uk/e/helping-your-autistic-child-with-anger-tickets-1964043054647/structured_content/widgets/faqs/"
+        }
+      },
+      {
+        "id": "",
+        "type": "faq",
+        "data": {
+          "faqs": [
+            {
+              "answer": "This webinar is hosted on Zoom. Please make sure you have Zoom installed before the event, and test the audio to make sure it's working. Eventbrite will send out a reminder 2 hours before the event and 10 minutes before the event you will be emailed the webinar link.",
+              "question": "How do I join the live webinar?"
+            },
+            {
+              "answer": "Yes, if you choose the webinar + recording option you can watch it in your own time",
+              "question": "Can I miss the webinar and watch it later?"
+            },
+            {
+              "answer": "We'll send a link by the morning after the webinar",
+              "question": "When will I be sent a link to the recording?"
+            },
+            {
+              "answer": "You can watch the recording for 30 days after the webinar",
+              "question": "How long can I watch the recording for?"
+            },
+            {
+              "answer": "Please visit the general Eventbrite FAQ about this: https://www.eventbrite.co.uk/help/en-gb/contact-us/ ",
+              "question": "Questions about logging in, where are my tickets, refunds, or duplicate card charges"
+            }
+          ]
+        },
+        "resource_url": {
+          "relative": "/e/helping-your-autistic-child-with-anger-tickets-1964043054647/structured_content/widgets/faq/",
+          "absolute": "https://www.eventbrite.co.uk/e/helping-your-autistic-child-with-anger-tickets-1964043054647/structured_content/widgets/faq/"
         }
       }
     ],
