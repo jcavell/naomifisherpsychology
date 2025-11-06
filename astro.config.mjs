@@ -29,5 +29,18 @@ export default defineConfig({
       process.env.NODE_ENV === "development" ? { https: true } : undefined,
   },
 
-  integrations: [sitemap(), react()],
+  integrations: [    sitemap({
+    filter: (page) =>
+      page !== 'https://www.naomifisher.co.uk/basket/' &&
+      page !== 'https://www.naomifisher.co.uk/checkout/' &&
+      page !== 'https://www.naomifisher.co.uk/media/' &&
+      page !== 'https://www.naomifisher.co.uk/privacy-policy/' &&
+      page !== 'https://www.naomifisher.co.uk/school-burnout-toolkit-signup/' &&
+      page !== 'https://www.naomifisher.co.uk/subscribed-low-demand-toolkit/' &&
+      page !== 'https://www.naomifisher.co.uk/subscribed-toolkit/' &&
+      page !== 'https://www.naomifisher.co.uk/subscribed/' &&
+      page !== 'https://www.naomifisher.co.uk/low-demand-toolkit-signup/' &&
+      page !== 'https://www.naomifisher.co.uk/terms-and-conditions/' &&
+      page !== 'https://www.naomifisher.co.uk/transitions-toolkit-signup/'
+  }), react()],
 });

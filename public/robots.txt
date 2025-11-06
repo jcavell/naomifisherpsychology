@@ -1,0 +1,18 @@
+User-agent: *
+Disallow: /api/
+Disallow: /basket/
+Disallow: /checkout/
+Disallow: /media/
+Disallow: /privacy-policy/
+Disallow: /school-burnout-toolkit-signup/
+Disallow: /subscribed-low-demand-toolkit/
+Disallow: /subscribed-toolkit/
+Disallow: /subscribed/
+Disallow: /low-demand-toolkit-signup/
+Disallow: /terms-and-conditions/
+Disallow: /transitions-toolkit-signup/
+
+# Everything else can be crawled
+Allow: /
+
+Sitemap: https://www.naomifisher.co.uk/sitemap.xml
