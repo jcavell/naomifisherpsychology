@@ -15,19 +15,19 @@ export default defineConfig({
     functionPerRoute: true,
   }),
 
-  vite: {
-    ssr: {
-      noExternal: [
-        '@nanostores/react',
-        '@nanostores/persistent'
-      ]
+    vite: {
+      ssr: {
+        noExternal: [
+          '@nanostores/react',
+          '@nanostores/persistent'
+        ]
+      },
+      plugins: [process.env.NODE_ENV === "development" && basicSsl()].filter(
+        Boolean,
+      ),
+      server:
+        process.env.NODE_ENV === "development" ? { https: true } : undefined,
     },
-    plugins: [process.env.NODE_ENV === "development" && basicSsl()].filter(
-      Boolean,
-    ),
-    server:
-      process.env.NODE_ENV === "development" ? { https: true } : undefined,
-  },
 
   integrations: [    sitemap({
     filter: (page) =>
