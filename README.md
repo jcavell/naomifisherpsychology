@@ -12,7 +12,7 @@
 ```bash
 git clone https://github.com/jcavell/naomifisherpsychology.git
 cd naomifisherpsychology
-git checkout basket
+git checkout main
 ```
 
 2. **Install dependencies**
