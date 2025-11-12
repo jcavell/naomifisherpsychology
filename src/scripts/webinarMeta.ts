@@ -23,7 +23,7 @@ import { naomi, abi, eliza, kate } from "./people";
 // EventbriteWebinar Images
 import demandAvoidantChildImage from "../images/webinars/understanding-and-helping-your-demand-avoidand-child.avif";
 import schoolTraumaImage from "../images/webinars/school-trauma.jpg";
-import aldpFoodImage from "../images/webinars/aldp-food.jpg";
+import aldpChristmasImage from "../images/webinars/aldp-christmas.jpg";
 import writingForWellbeingImage from "../images/webinars/writing-for-wellbeing.jpg";
 import dyslexiaImage from "../images/webinars/dyslexia.jpg";
 import demandAvoidantChangeImage from "../images/webinars/demand-avoidant-change.jpg";
@@ -47,13 +47,6 @@ const example_webinar: WebinarMeta = {
   contributers: [naomi, eliza],
 };
 
-
-const aldpFood: WebinarMeta = {
-  id: "1736300695119",
-  tags: [tagALDP, tagDemandAvoidance, age5To11, age11To19, forParents],
-  image: aldpFoodImage,
-  contributers: [naomi, eliza],
-};
 
 const schoolTrauma: WebinarMeta = {
   id: "1828642532039",
@@ -90,10 +83,17 @@ const autisticAnger: WebinarMeta = {
   contributers: [naomi],
 };
 
+const aldpChristmas: WebinarMeta = {
+  id: "1965441059116",
+  tags: [tagALDP, tagDemandAvoidance, age5To11, age11To19, forParents],
+  image: aldpChristmasImage,
+  contributers: [naomi, eliza],
+};
+
 
 // !! ADD WEBINAR HERE !!
 export function getWebinarMeta(eventId: string): WebinarMeta | undefined {
-  return [schoolTrauma, writingForWellbeing, dyslexia, aldpFood, demandAvoidantChange, autisticAnger].find(
+  return [schoolTrauma, writingForWellbeing, dyslexia, demandAvoidantChange, autisticAnger, aldpChristmas].find(
     (webMeta) => eventId === webMeta.id,
   );
 }
