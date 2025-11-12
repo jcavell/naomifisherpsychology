@@ -1,4 +1,5 @@
 import { defineConfig } from "astro/config";
+import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import react from "@astrojs/react";
 import netlify from "@astrojs/netlify";
@@ -15,21 +16,23 @@ export default defineConfig({
     functionPerRoute: true,
   }),
 
-    vite: {
-      ssr: {
-        noExternal: [
-          '@nanostores/react',
-          '@nanostores/persistent'
-        ]
-      },
-      plugins: [process.env.NODE_ENV === "development" && basicSsl()].filter(
+  vite: {
+    ssr: {
+      noExternal: [
+        '@nanostores/react',
+        '@nanostores/persistent'
+      ]
+    },
+    plugins: [
+      tailwindcss(),
+      process.env.NODE_ENV === "development" && basicSsl()].filter(
         Boolean,
       ),
-      server:
-        process.env.NODE_ENV === "development" ? { https: true } : undefined,
-    },
+    server:
+      process.env.NODE_ENV === "development" ? { https: true } : undefined,
+  },
 
-  integrations: [    sitemap({
+  integrations: [sitemap({
     filter: (page) =>
       page !== 'https://www.naomifisher.co.uk/basket/' &&
       page !== 'https://www.naomifisher.co.uk/checkout/' &&

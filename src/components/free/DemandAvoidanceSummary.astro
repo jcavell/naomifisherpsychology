@@ -1,20 +1,13 @@
-<style>
-    .card h2 {
-        min-height: 18px;
-        padding-bottom: 0;
-    }
-    .card-details ul li {
-        font-weight: normal; /* Makes bullet text less bold */
-    }
+---
+import CSS from './cards.module.scss';
+import '../../styles/components/card.scss';
+---
+<div class="cardBeta card-blog free-card">
 
-</style>
-
-<div class="card card-blog free-card">
-
-  <h2>
+  <h2 class={CSS.cardMod}>
     <a href="/tags/demand-avoidance">Demand Avoidance</a></h2>
 
-  <div class="card-details">
+  <div class="card-details bg-amber-600">
 
 
     <ul>
@@ -29,3 +22,13 @@
     <a href="/tags/demand-avoidance">Find Out More</a>
   </div>
 </div>
+<style>
+    .cardBeta h2 {
+        min-height: 18px;
+        padding-bottom: 0;
+    }
+    .card-details ul li {
+        font-weight: normal; /* Makes bullet text less bold */
+    }
+
+</style>
