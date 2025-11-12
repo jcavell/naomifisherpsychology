@@ -3,6 +3,7 @@ import Contributers from "../Contributers.astro";
 import { getWebinarMeta } from "../../scripts/webinarMeta";
 import WebinarImage from "./WebinarImage.astro";
 import type { Webinar } from "../../types/webinar";
+import '../../styles/components/card.scss';
 
 const { webinar } = Astro.props as { webinar: Webinar };
 
@@ -15,7 +16,7 @@ const tickets = webinar.tickets;
 ---
 
 <div
-  class="card card-webinars"
+  class="cardBeta card-webinars"
   data-webinar-end={webinar.endDateTime?.toISOString()}
 >
   <div class="live-date">
@@ -68,3 +69,9 @@ const tickets = webinar.tickets;
     <a href={`${webinar.url}?aff=web`}> Tickets </a>
   </div>
 </div>
+<style>
+    h2 {
+        border-color: #8ebaaa;
+    }
+
+</style>
