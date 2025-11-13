@@ -5,9 +5,10 @@ import BookImage from "./BookImage.astro";
 import Contributers from "../Contributers.astro";
 import Tags from "../Tags.astro";
 import { getFormats, getPubDate, getPubDateString } from "../../scripts/book";
+import '../../styles/components/card.scss';
 ---
 
-<div class="card card-books">
+<div class="cardBeta card-books">
   {
     getPubDate(book) > new Date() && (
       <div class="sale-badge preorder-badge">
@@ -22,11 +23,11 @@ import { getFormats, getPubDate, getPubDateString } from "../../scripts/book";
     <span>{book.subtitle} </span>
   </h2>
 
-  <div class="card-image">
+  <div class="card-imageBeta">
     <BookImage book={book} />
   </div>
 
-  <div class="card-details">
+  <div class="card-detailsBeta">
     <a href={book.uri}> BOOK </a>
     <span class="bookmark"> {getFormats(book).join(", ")} </span>
     <span class="date"> Published on {getPubDateString(book)} </span>
@@ -43,8 +44,13 @@ import { getFormats, getPubDate, getPubDateString } from "../../scripts/book";
     <Tags tags={book.tags} />
   </div>
 
-  <div class="card-buttons">
+  <div class="card-buttonsBeta">
     <a href={book.uri}> Learn More </a>
     <!--<a href={book.amazonUrl} class="amazon-link" target="_blank"> Purchase </a>-->
   </div>
 </div>
+<style>
+      .card-detailsBeta > a {
+        color: #dba940;
+      }
+</style>

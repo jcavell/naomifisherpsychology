@@ -2,6 +2,7 @@
 import Tags from "../Tags.astro";
 import { makeUrl } from "../../scripts/url";
 import BlogImage from "./BlogImage.astro";
+import '../../styles/components/card.scss';
 
 const { post, hideDate = false } = Astro.props;
 
@@ -18,7 +19,7 @@ const introText =
       : paragraphs[0] + " " + paragraphs[1] + " " + paragraphs[2];
 ---
 
-<div class="card card-blog">
+<div class="cardBeta card-blog">
 
   {
     !hideDate && (
@@ -35,13 +36,13 @@ const introText =
 
   {
     post.imagePrefix && (
-      <div class="card-image">
+      <div class="card-imageBeta">
         <BlogImage post={post} alt={`Image for ${title}`} />
       </div>
     )
   }
 
-  <div class="card-details">
+  <div class="card-detailsBeta">
 
     {
       !hideDate && (
@@ -61,11 +62,11 @@ const introText =
     {introText}
   </p>
 
-  <div class="card-meta">
+  <div class="card-metaBeta">
     <Tags tags={tags} />
   </div>
 
-  <div class="card-buttons">
+  <div class="card-buttonsBeta">
     <a href=`/blog/${makeUrl(title)}`> Read More</a>
   </div>
 </div>
