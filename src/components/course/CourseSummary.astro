@@ -5,7 +5,7 @@ import CourseImage from "./CourseImage.astro";
 import { DiscountedPrice } from "../basket/DiscountedPrice";
 import CourseSummaryAddToBasket from "../basket/CourseSummaryAddToBasket";
 import type { CourseCard } from "../../content/config";
-import '../../styles/components/card.scss';
+import "../../styles/components/card.scss";
 
 interface Props {
   course: CourseCard;
@@ -55,18 +55,22 @@ const priceInPence = course.priceInPence!;
   </div>
 </div>
 <style>
-      h2 {
-        border-color: #8ebaaa;
-        padding-right:60px
-    }
-    .card-buttonsBeta a:first-child {
+  h2 {
+    border-color: var(--courses-color);
+    padding-right: 60px;
+  }
+  .card-buttonsBeta a:first-child {
     border-radius: 0 0 0 16px;
     border-right: 1px solid #fff;
-}
-:global(.cardBeta .card-buttonsBeta button.add-to-basket-from-summary:first-of-type) {
-  border-radius: 0 0 0 16px;
-}
-:global(.cardBeta .card-buttonsBeta button.add-to-basket-from-summary:last-of-type) {
-  border-radius: 0 0 16px 0;
-}
+  }
+  :global(
+    .cardBeta .card-buttonsBeta button.add-to-basket-from-summary:first-of-type
+  ) {
+    border-radius: 0 0 0 16px;
+  }
+  :global(
+    .cardBeta .card-buttonsBeta button.add-to-basket-from-summary:last-of-type
+  ) {
+    border-radius: 0 0 16px 0;
+  }
 </style>

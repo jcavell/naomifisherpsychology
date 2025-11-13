@@ -1,10 +1,9 @@
 <style is:global>
-  
-/* @import "tailwindcss"; */
+  /* @import "tailwindcss"; */
   :root {
-      --error-red: #c41e1e;        /* Darkened main red */
-      --error-red-hover: #a11818;  /* Darkened hover state */
-      --error-red-light: #dc2626;  /* Darkened light state */
+    --error-red: #c41e1e; /* Darkened main red */
+    --error-red-hover: #a11818; /* Darkened hover state */
+    --error-red-light: #dc2626; /* Darkened light state */
     --error-red-bg: #fcecea; /* Very light red for backgrounds */
 
     /* Green variables */
@@ -12,6 +11,12 @@
     --success-green-hover: #2c5a4f; /* Darker for hover states */
     --success-green-light: #4a8e7d; /* Lighter for disabled states */
     --success-green-bg: #edf7f5; /* Very light green for backgrounds */
+
+    /* Branding Colors */
+    --free-color: #753d5c;
+    --webinar-color: #8ebaaa;
+    --courses-color: #45627e;
+    --books-color: #dba940;
   }
 
   * {
@@ -1495,10 +1500,10 @@
     border-bottom: 16px solid #8ebaaa;
   }
 
-  .card-webinars h2 {
+  /* .card-webinars h2 {
     border-top: 12px solid #8ebaaa;
     padding-right: 60px;
-  }
+  } */
 
   .card-webinars .card-details a {
     color: #8ebaaa;
@@ -3453,10 +3458,8 @@
       display: flex;
     }
 
-
-
     .promotion-badge {
-        z-index: 1000;
+      z-index: 1000;
       position: absolute;
       top: 7px;
       left: 160px;
@@ -3470,7 +3473,7 @@
       flex-direction: column;
       justify-content: center;
       color: #fff;
-        padding-top: 20px;
+      padding-top: 20px;
       box-sizing: border-box;
       margin: 0;
     }
@@ -3482,8 +3485,7 @@
     }
 
     .promotion-sub {
-        font-size: 1em;
-
+      font-size: 1em;
     }
 
     .promotion-details {
