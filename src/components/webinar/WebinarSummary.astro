@@ -28,11 +28,11 @@ const tickets = webinar.tickets;
     <a href={`/webinars/${eventId}`}>{title}</a>
   </h2>
 
-  <div class="card-image">
+  <div class="card-imageBeta">
     <WebinarImage webinar={webinar} />
   </div>
 
-  <div class="card-details">
+  <div class="card-detailsBeta">
     <span class="date">
       {`${webinar.day} ${webinar.month}`} at
       {`${webinar.startTime}`}
@@ -64,7 +64,7 @@ const tickets = webinar.tickets;
   <!--  <Tags tags={meta?.tags} />-->
   <!--</div>-->
 
-  <div class="card-buttons">
+  <div class="card-buttonsBeta">
     <a href={`/webinars/${eventId}`}> Learn More </a>
     <a href={`${webinar.url}?aff=web`}> Tickets </a>
   </div>
@@ -72,6 +72,13 @@ const tickets = webinar.tickets;
 <style>
     h2 {
         border-color: #8ebaaa;
+        padding-right:60px
     }
+    .card-buttonsBeta a:first-child {
+    border-radius: 0 0 0 16px;
+    border-right: 1px solid #fff;
+}.card-buttonsBeta a:last-child {
+    border-radius: 0 0 16px 0;
+}
 
 </style>

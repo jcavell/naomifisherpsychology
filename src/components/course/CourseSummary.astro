@@ -5,6 +5,7 @@ import CourseImage from "./CourseImage.astro";
 import { DiscountedPrice } from "../basket/DiscountedPrice";
 import CourseSummaryAddToBasket from "../basket/CourseSummaryAddToBasket";
 import type { CourseCard } from "../../content/config";
+import '../../styles/components/card.scss';
 
 interface Props {
   course: CourseCard;
@@ -18,16 +19,16 @@ const offerId = course.offerId!;
 const priceInPence = course.priceInPence!;
 ---
 
-<div class="card card-courses">
+<div class="cardBeta card-courses">
   <h2>
     <a href=`/courses/${makeUrl(title)}`>{title}</a>
   </h2>
 
-  <div class="card-image">
+  <div class="card-imageBeta">
     <CourseImage course={course} />
   </div>
 
-  <div class="card-details">
+  <div class="card-detailsBeta">
     <Contributers people={course.meta?.contributers} />
     <!--<span class="duration"> {course.meta?.runningTime} </span>-->
     <span class="cost">
@@ -48,8 +49,24 @@ const priceInPence = course.priceInPence!;
   <!--  <Tags tags={course.meta?.tags} />-->
   <!--</div>-->
 
-  <div class="card-buttons">
+  <div class="card-buttonsBeta">
     <a href=`/courses/${makeUrl(title)}`> Learn More </a>
     <CourseSummaryAddToBasket offerId={offerId} client:load />
   </div>
 </div>
+<style>
+      h2 {
+        border-color: #8ebaaa;
+        padding-right:60px
+    }
+    .card-buttonsBeta a:first-child {
+    border-radius: 0 0 0 16px;
+    border-right: 1px solid #fff;
+}
+:global(.cardBeta .card-buttonsBeta button.add-to-basket-from-summary:first-of-type) {
+  border-radius: 0 0 0 16px;
+}
+:global(.cardBeta .card-buttonsBeta button.add-to-basket-from-summary:last-of-type) {
+  border-radius: 0 0 16px 0;
+}
+</style>
