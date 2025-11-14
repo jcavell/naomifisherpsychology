@@ -223,6 +223,15 @@ const bookReviewsCollection = defineCollection({
   schema:  z.array(QuoteSchema),
 });
 
+const tagQuotesCollection = defineCollection({
+  loader: glob({
+    pattern: "**/*.json",
+    base: './src/content/tag-quotes'
+  }),
+  schema:  z.array(QuoteSchema),
+});
+
+
 export type { People, Quote, Book, CourseCheckout, CourseCard };
 
 // Export a single `collections` object to register your collection(s)
@@ -239,4 +248,5 @@ export const collections = {
   "book-excerpts": bookExcerptsCollection,
   "book-quotes": bookQuotesCollection,
   "book-reviews": bookReviewsCollection,
+  "tag-quotes": tagQuotesCollection,
 };
