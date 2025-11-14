@@ -1,30 +1,29 @@
 ---
 const { frontmatter: book } = Astro.props;
 import BookImage from "./BookImage.astro";
-import { getEntry } from "astro:content";
+import { getEntry, render } from "astro:content";
 import GenerateQuote from "../Quoter";
 import { getPubDate, getPubDateString } from "../../scripts/book";
 
 const entryName = book.uri.replace("/books/", "");
 
-const bookAgain = await getEntry("books", entryName);
 const moreInfo = await getEntry("books-more-info", entryName);
 const excerpt = await getEntry("book-excerpts", entryName);
 
 const quotes = await getEntry("book-quotes", entryName);
 const reviews = await getEntry("book-reviews", entryName);
-//console.log("REVIEWS: " + JSON.stringify(reviews));
+console.log("more info: " + JSON.stringify(moreInfo) + " for entryName " +entryName);
 
 // console.log("QUOTES: " + JSON.stringify(quotes));
 
 const { Content: BookContent, headings: bookHeadings } =
-  await bookAgain.render();
+  await render(book);
 
 const { Content: MoreInfoContent, headings: moreInfoHeadings } =
-  await moreInfo.render();
+  await render(moreInfo!);
 
 const { Content: ExcerptContent, headings: excerptHeadings } =
-  await excerpt?.render();
+  await render (excerpt);
 ---
 
 <div class="details details-books">
@@ -56,7 +55,7 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
       <Vimeo embedUrl={book.vimeoEmbedUrl} /> -->
 
       <div class="accordion-wrapper">
-          {moreInfo?.body.length > 1 && 
+          {moreInfo?.body?.length > 1 &&
       <button class="accordion no-title-accordion">Read More</button>
 					<div class="panel">
 						<p>
@@ -73,7 +72,7 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
         <button class="accordion">Reviews</button>
         <div class="panel reviews-accordion">
           {
-            reviews.data.map((review) => (
+            reviews?.data.map((review) => (
               <div>
               <p>{review.text}</p>
                 <span>{review.author}</span>

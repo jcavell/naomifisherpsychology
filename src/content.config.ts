@@ -1,7 +1,7 @@
 // Import utilities from `astro:content`
 import { z, defineCollection } from "astro:content";
-import type { CourseMeta } from "../scripts/courseMeta.ts";
-// Define a `type` and `schema` for each collection
+import type { CourseMeta } from "./scripts/courseMeta.ts";
+import { glob } from 'astro/loaders';
 
 // People Schema
 const PeopleSchema = z.object({
@@ -15,12 +15,14 @@ const PeopleSchema = z.object({
 type People = z.infer<typeof PeopleSchema>;
 
 // Course Quotes Schema
-const CourseQuoteSchema = z.object({
+const QuoteSchema = z.object({
   text: z.string(),
-  author: z.string().optional(),
-  title: z.string().optional(),
+  author: z.string().optional()
 });
-type CourseQuote = z.infer<typeof CourseQuoteSchema>;
+
+type Quote = z.infer<typeof QuoteSchema>;
+
+
 
 // Books Schema
 const BookSchema = z.object({
@@ -106,39 +108,135 @@ const CourseCardSchema = z.object({
 });
 type CourseCard = z.infer<typeof CourseCardSchema>;
 
-// Define collections using the schemas
-const peopleCollection = defineCollection({
-  type: "content",
-  schema: PeopleSchema,
+
+// Blog Schema
+const BlogSchema = z.object({
+  url: z.string(),
+  pubDate: z.object({
+    day: z.string(),
+    month: z.string(),
+    year: z.string()
+  }),
+  title: z.string(),
+  subtitle: z.string().optional(),
+  images: z.array(z.string()),
+  paragraphs: z.array(z.string()),
+  imageFileName: z.string().optional(),
+  imagePrefix: z.string().optional(),
+  imageExtension: z.string().optional(),
 });
 
+type Blog = z.infer<typeof BlogSchema>;
+
+const blogCollection = defineCollection({
+  schema: BlogSchema,
+  loader: glob({
+    pattern: "**/*.json",
+    base: './src/content/blog'
+  })
+});
+
+
+
+// Define collections using the schemas
+// const peopleCollection = defineCollection({
+//   type: "content",
+//   schema: PeopleSchema,
+// });
+
 const courseQuotesCollection = defineCollection({
-  type: "content",
-  schema: z.array(CourseQuoteSchema),
+  loader: glob({
+    pattern: "**/*.json",
+    base: './src/content/course-quotes'
+  }),
+  schema: z.array(QuoteSchema),
+});
+
+const webinarQuotesCollection = defineCollection({
+  loader: glob({
+    pattern: "**/*.json",
+    base: './src/content/webinar-quotes'
+  }),
+  schema: z.array(QuoteSchema),
+});
+
+const staticQuotesCollection = defineCollection({
+  loader: glob({
+    pattern: "**/*.json",
+    base: './src/content/static-pages-quotes'
+  }),
+  schema: z.array(QuoteSchema),
 });
 
 const booksCollection = defineCollection({
-  type: "content",
+  loader: glob({
+    pattern: "**/*.md",
+    base: './src/content/books'
+  }),
   schema: BookSchema,
 });
 
 const courseCardsCollection = defineCollection({
-  type: "data",
+  loader: glob({
+    pattern: "**/*.json",
+    base: './src/content/courseCards'
+  }),
   schema: CourseCardSchema,
 });
 
 const courseCheckoutsCollection = defineCollection({
-  type: "data",
+  loader: glob({
+    pattern: "**/*.json",
+    base: './src/content/courseCheckouts'
+  }),
   schema: CourseCheckoutSchema,
 });
 
-export type { People, CourseQuote, Book, CourseCheckout, CourseCard };
+// Markdown-only collections (no schema needed)
+const booksMoreInfoCollection = defineCollection({
+  loader: glob({
+    pattern: "**/*.md",
+    base: './src/content/books-more-info'
+  }),
+});
+
+const bookExcerptsCollection = defineCollection({
+  loader: glob({
+    pattern: "**/*.md",
+    base: './src/content/book-excerpts'
+  }),
+});
+
+const bookQuotesCollection = defineCollection({
+  loader: glob({
+    pattern: "**/*.json",
+    base: './src/content/book-quotes'
+  }),
+  schema: z.array(QuoteSchema),
+});
+
+const bookReviewsCollection = defineCollection({
+  loader: glob({
+    pattern: "**/*.json",
+    base: './src/content/book-reviews'
+  }),
+  schema:  z.array(QuoteSchema),
+});
+
+export type { People, Quote, Book, CourseCheckout, CourseCard };
 
 // Export a single `collections` object to register your collection(s)
 export const collections = {
-  people: peopleCollection,
+  // people: peopleCollection,
   courseCards: courseCardsCollection,
   courseCheckouts: courseCheckoutsCollection,
   books: booksCollection,
-  // coursequotes: courseQuotesCollection,
+  "course-quotes": courseQuotesCollection,
+  "webinar-quotes": webinarQuotesCollection,
+  "static-pages-quotes": staticQuotesCollection,
+  blog: blogCollection,
+  "books-more-info": booksMoreInfoCollection,
+  "book-excerpts": bookExcerptsCollection,
+  "book-quotes": bookQuotesCollection,
+  "book-reviews": bookReviewsCollection,
 };
