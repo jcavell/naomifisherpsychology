@@ -8,7 +8,7 @@ import { getFormats, getPubDate, getPubDateString } from "../../scripts/book";
 import "../../styles/components/card.scss";
 ---
 
-<div class="cardBeta card-books">
+<div class="card card-books">
   {
     getPubDate(book) > new Date() && (
       <div class="sale-badge preorder-badge">
@@ -23,11 +23,11 @@ import "../../styles/components/card.scss";
     <span>{book.subtitle} </span>
   </h2>
 
-  <div class="card-imageBeta">
+  <div class="card-image">
     <BookImage book={book} />
   </div>
 
-  <div class="card-detailsBeta">
+  <div class="card-details">
     <a href={book.uri}> BOOK </a>
     <span class="bookmark"> {getFormats(book).join(", ")} </span>
     <span class="date"> Published on {getPubDateString(book)} </span>
@@ -39,12 +39,12 @@ import "../../styles/components/card.scss";
     {book.summary}
   </p>
 
-  <div class="card-metaBeta">
+  <div class="card-meta">
     <Contributers people={book.people} />
     <Tags tags={book.tags} />
   </div>
 
-  <div class="card-buttonsBeta">
+  <div class="card-buttons">
     <a href={book.uri}> Learn More </a>
     <!--<a href={book.amazonUrl} class="amazon-link" target="_blank"> Purchase </a>-->
   </div>
@@ -54,7 +54,7 @@ import "../../styles/components/card.scss";
     border-color: var(--books-color);
     padding-right: 60px;
   }
-  .card-detailsBeta > a {
+  .card-details > a {
     color: #var(--books-color);
   }
   @media (min-width: 1200px) {

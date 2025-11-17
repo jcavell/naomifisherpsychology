@@ -19,16 +19,16 @@ const offerId = course.offerId!;
 const priceInPence = course.priceInPence!;
 ---
 
-<div class="cardBeta card-courses">
+<div class="card card-courses">
   <h2>
     <a href=`/courses/${makeUrl(title)}`>{title}</a>
   </h2>
 
-  <div class="card-imageBeta">
+  <div class="card-image">
     <CourseImage course={course} />
   </div>
 
-  <div class="card-detailsBeta">
+  <div class="card-details">
     <Contributers people={course.meta?.contributers} />
     <!--<span class="duration"> {course.meta?.runningTime} </span>-->
     <span class="cost">
@@ -49,7 +49,7 @@ const priceInPence = course.priceInPence!;
   <!--  <Tags tags={course.meta?.tags} />-->
   <!--</div>-->
 
-  <div class="card-buttonsBeta">
+  <div class="card-buttons">
     <a href=`/courses/${makeUrl(title)}`> Learn More </a>
     <CourseSummaryAddToBasket offerId={offerId} client:load />
   </div>
@@ -59,18 +59,14 @@ const priceInPence = course.priceInPence!;
     border-color: var(--courses-color);
     padding-right: 60px;
   }
-  .card-buttonsBeta a:first-child {
+  .card-buttons a:first-child {
     border-radius: 0 0 0 16px;
     border-right: 1px solid #fff;
   }
-  :global(
-    .cardBeta .card-buttonsBeta button.add-to-basket-from-summary:first-of-type
-  ) {
+  :global(.card .card-buttons button.add-to-basket-from-summary:first-of-type) {
     border-radius: 0 0 0 16px;
   }
-  :global(
-    .cardBeta .card-buttonsBeta button.add-to-basket-from-summary:last-of-type
-  ) {
+  :global(.card .card-buttons button.add-to-basket-from-summary:last-of-type) {
     border-radius: 0 0 16px 0;
   }
 </style>

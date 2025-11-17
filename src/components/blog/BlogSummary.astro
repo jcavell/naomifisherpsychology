@@ -19,7 +19,7 @@ const introText =
       : paragraphs[0] + " " + paragraphs[1] + " " + paragraphs[2];
 ---
 
-<div class="cardBeta card-blog">
+<div class="card card-blog">
 
   {
     !hideDate && (
@@ -36,13 +36,13 @@ const introText =
 
   {
     post.imagePrefix && (
-      <div class="card-imageBeta">
+      <div class="card-image">
         <BlogImage post={post} alt={`Image for ${title}`} />
       </div>
     )
   }
 
-  <div class="card-detailsBeta">
+  <div class="card-details">
 
     {
       !hideDate && (
@@ -62,11 +62,17 @@ const introText =
     {introText}
   </p>
 
-  <div class="card-metaBeta">
+  <div class="card-meta">
     <Tags tags={tags} />
   </div>
 
-  <div class="card-buttonsBeta">
+  <div class="card-buttons">
     <a href=`/blog/${makeUrl(title)}`> Read More</a>
   </div>
 </div>
+<style>
+   h2 {
+    border-color: var(--blog-color);
+    padding-right: 60px;
+  }
+</style>

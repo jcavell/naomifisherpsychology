@@ -1,4 +1,4 @@
-.cardBeta {
+.card {
   position: relative;
   width: 100%;
   background: #fff;
@@ -62,7 +62,7 @@
     }
   }
 
-  .card-imageBeta {
+  .card-image {
     width: calc(100% - 32px);
     margin-left: 16px;
     margin-right: 16px;
@@ -79,7 +79,7 @@
     display: block;
     object-fit: cover;
   }
-  .card-detailsBeta {
+  .card-details {
     position: relative;
     margin-left: 16px;
     margin-right: 16px;
@@ -112,7 +112,7 @@
     }
   }
 
-  .card-buttonsBeta {
+  .card-buttons {
     display: flex;
     letter-spacing: 0.03em;
     margin-top: auto;
@@ -137,49 +137,9 @@
       }
     }
   }
-
-  // .card-metaBeta {
-  //   margin-left: 16px;
-  //   margin-right: 16px;
-  //   border-top: 1px solid rgba(0, 0, 0, 0.5);
-  //   padding-top: 0.7em;
-  //   padding-bottom: calc(1em - 4px);
-  //   margin-top: auto;
-  //   position: relative;
-  //   font-family: Oswald, sans-serif;
-  //   font-optical-sizing: auto;
-  //   font-weight: 500;
-  //   font-style: normal;
-
-  //   &::after {
-  //     content: "";
-  //     position: absolute;
-  //     display: block;
-  //     width: calc(100% + 32px);
-  //     height: 8px;
-  //     background: white;
-  //     border-bottom-left-radius: 40px;
-  //     border-bottom-right-radius: 40px;
-  //     bottom: -4px;
-  //     left: -16px;
-  //   }
-  //   span {
-  //     display: block;
-  //     padding-left: 26px;
-  //     background-size: 16px 16px;
-  //     background-repeat: no-repeat;
-  //     background-position: left center;
-  //     margin-top: 0.1em;
-  //     margin-bottom: 0.1em;
-  //   }
-  //   a {
-  //     text-decoration: none;
-  //     color: #000;
-  //   }
-  // }
 }
 
-.card-metaBeta {
+.card-meta {
   margin-left: 16px;
   margin-right: 16px;
   border-top: 1px solid rgba(0, 0, 0, 0.5);

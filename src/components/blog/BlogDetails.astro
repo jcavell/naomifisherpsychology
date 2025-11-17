@@ -5,6 +5,7 @@ import { getTaggedCourses } from "../../scripts/getTaggedResources";
 import getCourses from "../../scripts/courses";
 import { makeUrl } from "../../scripts/url";
 import { getTags } from "../../scripts/tags";
+import "../../styles/components/card.scss";
 
 const { post } = Astro.props;
 
@@ -100,7 +101,7 @@ const relatedCourses = getTaggedCourses(courses, [tags[0]]).filter(
     }
   </div>
 
-  <div class="card-metaBeta">
+  <div class="card-meta">
     <Tags tags={tags} />
   </div>
 </div>
