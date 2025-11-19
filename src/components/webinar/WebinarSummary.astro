@@ -73,6 +73,12 @@ const tickets = webinar.tickets;
   h2 {
     border-color: var(--webinar-color);
     padding-right: 60px;
+    @media (min-width: 800px) {
+      min-height: 130px;
+    }
+    @media (min-width: 1200px) {
+      min-height: 72px;
+    }
   }
   .card-buttons a:first-child {
     border-radius: 0 0 0 16px;
@@ -80,10 +86,5 @@ const tickets = webinar.tickets;
   }
   .card-buttons a:last-child {
     border-radius: 0 0 16px 0;
-  }
-  @media (min-width: 1200px) {
-    h2 {
-      min-height: 72px;
-    }
   }
 </style>
