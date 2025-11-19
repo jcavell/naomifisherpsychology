@@ -5,6 +5,7 @@ import { getTaggedCourses } from "../../scripts/getTaggedResources";
 import getCourses from "../../scripts/courses";
 import { makeUrl } from "../../scripts/url";
 import { getTags } from "../../scripts/tags";
+import "../../styles/components/card.scss";
 
 const { post } = Astro.props;
 
@@ -19,20 +20,19 @@ const courses = await getCourses();
 
 // Filter out nulls or elements with no data or title
 // This can happen if there is an entry in courseMeta but not from Kajabi
-const relatedCourses = getTaggedCourses(courses, [tags[0]]).filter((c) => c?.data?.title);
+const relatedCourses = getTaggedCourses(courses, [tags[0]]).filter(
+  (c) => c?.data?.title,
+);
 
 // console.log("RELATED: " + JSON.stringify(relatedCourses));
-
 ---
 
 <style is:global>
-    /* Target the specific accordion in the related courses section */
-    .details-body-B .accordion-wrapper .accordion.no-title-accordion {
-        border-top: none !important;
-    }
+  /* Target the specific accordion in the related courses section */
+  .details-body-B .accordion-wrapper .accordion.no-title-accordion {
+    border-top: none !important;
+  }
 </style>
-
-
 
 <div class="details details-blog">
   <!--<div class="live-date">-->
@@ -69,39 +69,32 @@ const relatedCourses = getTaggedCourses(courses, [tags[0]]).filter((c) => c?.dat
               </div>
             </div>
 
-            {relatedCourses
-              .slice(0, 1)
-              .map((course) => (
-                <a href={`/courses/${makeUrl(course.data.title)}`}>
-                  <div class="purchase">
-                    <div class="company">{course.data.title}</div>
-                    <div class="buy-now">
-                      <span> View </span>
-                    </div>
+            {relatedCourses.slice(0, 1).map((course) => (
+              <a href={`/courses/${makeUrl(course.data.title)}`}>
+                <div class="purchase">
+                  <div class="company">{course.data.title}</div>
+                  <div class="buy-now">
+                    <span> View </span>
                   </div>
-                </a>
-              ))}
-
+                </div>
+              </a>
+            ))}
 
             <div class="accordion-wrapper">
               <button class="accordion no-title-accordion">See More</button>
               <div class="panel">
-            {relatedCourses
-              .slice(1, 6)
-              .map((course) => (
-                <a href={`/courses/${makeUrl(course.data.title)}`}>
-                  <div class="purchase">
-                    <div class="company">{course.data.title}</div>
-                    <div class="buy-now">
-                      <span> View </span>
+                {relatedCourses.slice(1, 6).map((course) => (
+                  <a href={`/courses/${makeUrl(course.data.title)}`}>
+                    <div class="purchase">
+                      <div class="company">{course.data.title}</div>
+                      <div class="buy-now">
+                        <span> View </span>
+                      </div>
                     </div>
-                  </div>
-                </a>
-              ))}
-              </div></div>
-
-
-
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       )

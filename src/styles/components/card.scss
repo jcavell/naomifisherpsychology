@@ -1,0 +1,182 @@
+.card {
+  position: relative;
+  width: 100%;
+  background: #fff;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  margin-bottom: 40px;
+  font-family: "Oswald", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+
+  @media (min-width: 800px) {
+    width: calc(50% - 10px);
+    margin-bottom: 30px;
+  }
+
+  @media (min-width: 1200px) {
+    min-width: 540px;
+    border-radius: 16px;
+    margin: 0;
+    width: calc(50% - 20px);
+  }
+
+  p {
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-bottom: 1.3em;
+    font-family: "Open Sans", sans-serif;
+  }
+
+  h2 {
+    font-family: "Yanone Kaffeesatz", sans-serif;
+    border-radius: 10px 10px 0 0;
+    padding: 20px 16px;
+    letter-spacing: 0.04em;
+    font-size: 32px;
+    line-height: 1;
+    min-height: 18px;
+    border-top: 12px solid;
+    padding-right: 60px;
+
+    a {
+      color: #000;
+      text-decoration: none;
+    }
+
+    span {
+      display: block;
+      text-transform: capitalize;
+      font-size: 16px;
+      letter-spacing: 0;
+      line-height: 1.2;
+      margin-bottom: -6px;
+      font-weight: 500;
+      font-family: Oswald, sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 500;
+      font-style: normal;
+    }
+  }
+
+  .card-image {
+    width: calc(100% - 32px);
+    margin-left: 16px;
+    margin-right: 16px;
+    display: block;
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    aspect-ratio: 5/3;
+    overflow: hidden;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+  .card-details {
+    position: relative;
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-top: 0.6em;
+    letter-spacing: 0.03em;
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+
+    a {
+      text-decoration: none;
+      margin-bottom: 0.4em;
+    }
+
+    span {
+      position: relative;
+      margin-top: 0.1em;
+      margin-bottom: 0.1em;
+      display: block;
+      padding-left: 26px;
+      background-size: 16px 16px;
+      background-repeat: no-repeat;
+      background-position: left center;
+    }
+
+    ul li {
+      font-weight: normal;
+    }
+  }
+
+  .card-buttons {
+    display: flex;
+    letter-spacing: 0.03em;
+    margin-top: auto;
+    padding-top: 0.8em;
+
+    a,
+    .add-to-basket-from-summary {
+      display: inline-block;
+      flex: 50%;
+      background: #000;
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+      padding-top: 14px;
+      padding-bottom: 12px;
+      text-transform: uppercase;
+      transition: 0.3s;
+      border-radius: 0 0 16px 16px;
+      font-weight: 500;
+      &:hover {
+        background: #387668;
+      }
+    }
+  }
+}
+
+.card-meta {
+  margin-left: 16px;
+  margin-right: 16px;
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  padding-top: 0.7em;
+  padding-bottom: calc(1em - 4px);
+  margin-top: auto;
+  position: relative;
+  font-family: Oswald, sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+
+  &::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: calc(100% + 32px);
+    height: 8px;
+    background: white;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    bottom: -4px;
+    left: -16px;
+  }
+  span {
+    display: block;
+    padding-left: 26px;
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    background-position: left center;
+    margin-top: 0.1em;
+    margin-bottom: 0.1em;
+  }
+  a {
+    text-decoration: none;
+    color: #000;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

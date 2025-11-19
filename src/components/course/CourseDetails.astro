@@ -6,7 +6,8 @@ import { getCourseFromTitle, parseDescriptions } from "../../scripts/courses";
 import CourseImage from "./CourseImage.astro";
 import Vimeo from "../Vimeo.astro";
 import CourseDetailsAddToBasket from "../basket/CourseDetailsAddToBasket";
-import type { CourseCard } from '../../content/config';
+import type { CourseCard } from "../../content/config";
+import "../../styles/components/card.scss";
 
 interface Props {
   course: CourseCard;
@@ -103,4 +104,3 @@ const relatedCourses = (
   relatedCourses &&
     relatedCourses.map((related) => <CourseSummary course={related!.data} />)
 }
-
