@@ -1,6 +1,9 @@
 /* src/styles/main.css */
 @import './base/reset.css';
 @import './layouts/header.css';
+@import "tailwindcss";
+
+
 
 
 
