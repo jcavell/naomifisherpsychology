@@ -57,12 +57,15 @@ const priceInPence = course.priceInPence!;
 <style lang="scss">
   h2 {
     border-color: var(--courses-color);
-    padding-right: 60px;
+    padding-right: 16px;
     @media (min-width: 800px) {
-      min-height: 100px;
-    }
-    @media (min-width: 1200px) {
-      min-height: 72px;
+      min-height: 65px;
+      a {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
     }
   }
   .card-buttons a:first-child {
