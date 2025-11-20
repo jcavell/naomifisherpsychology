@@ -69,10 +69,24 @@ const tickets = webinar.tickets;
     <a href={`${webinar.url}?aff=web`}> Tickets </a>
   </div>
 </div>
-<style>
+<style lang="scss">
   h2 {
     border-color: var(--webinar-color);
-    padding-right: 60px;
+    padding-right: 45px;
+    @media (min-width: 800px) {
+      min-height: 65px;
+    }
+    @media (min-width: 1200px) {
+      min-height: 65px;
+    }
+    @media (min-width: 800px) {
+      a {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    }
   }
   .card-buttons a:first-child {
     border-radius: 0 0 0 16px;
@@ -80,10 +94,5 @@ const tickets = webinar.tickets;
   }
   .card-buttons a:last-child {
     border-radius: 0 0 16px 0;
-  }
-  @media (min-width: 1200px) {
-    h2 {
-      min-height: 72px;
-    }
   }
 </style>

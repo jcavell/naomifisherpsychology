@@ -24,7 +24,6 @@ export default defineConfig({
       ]
     },
     plugins: [
-      tailwindcss(),
       process.env.NODE_ENV === "development" && basicSsl()].filter(
         Boolean,
       ),
