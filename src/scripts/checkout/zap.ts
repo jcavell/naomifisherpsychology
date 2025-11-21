@@ -21,7 +21,7 @@ async function postCoursesToZapier(
   courseBasketItems: BasketItem[],
 ) {
   if (courseBasketItems.length === 0) {
-    Logger.INFO("No courses found in purchase, skipping Zapier webhook");
+    Logger.ERROR("No courses found in purchase, skipping Zapier webhook");
     return;
   }
 
@@ -31,7 +31,7 @@ async function postCoursesToZapier(
   );
 
   if (internalIds.length === 0) {
-    Logger.INFO("No matching course IDs found, skipping Zapier webhook");
+    Logger.ERROR("No matching course IDs found, skipping Zapier webhook");
     return;
   }
 
