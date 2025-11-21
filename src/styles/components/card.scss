@@ -11,6 +11,7 @@
   font-optical-sizing: auto;
   font-weight: normal;
   font-style: normal;
+  z-index: unset;
 
   @media (min-width: 800px) {
     width: calc(50% - 10px);
@@ -179,4 +180,8 @@
       text-decoration: underline;
     }
   }
+}
+
+.details .card {
+  z-index: -1;
 }
