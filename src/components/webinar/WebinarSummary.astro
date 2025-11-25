@@ -70,24 +70,26 @@ const tickets = webinar.tickets;
   </div>
 </div>
 <style lang="scss">
-  h2 {
-    border-color: var(--webinar-color);
-    padding-right: 45px;
-    @media (min-width: 800px) {
-      min-height: 65px;
-      a {
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
+  .card {
+    h2 {
+      border-color: var(--webinar-color);
+      padding-right: 45px;
+      @media (min-width: 800px) {
+        min-height: 65px;
+        a {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
       }
     }
-  }
-  .card-buttons a:first-child {
-    border-radius: 0 0 0 16px;
-    border-right: 1px solid #fff;
-  }
-  .card-buttons a:last-child {
-    border-radius: 0 0 16px 0;
+    .card-buttons a:first-child {
+      border-radius: 0 0 0 16px;
+      border-right: 1px solid #fff;
+    }
+    .card-buttons a:last-child {
+      border-radius: 0 0 16px 0;
+    }
   }
 </style>
