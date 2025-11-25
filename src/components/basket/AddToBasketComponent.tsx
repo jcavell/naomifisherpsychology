@@ -93,7 +93,7 @@ const Button: React.FC<AddToBasketProps> = ({
             event.preventDefault();
             window.location.href = "/basket";
           }}
-          onTouchStart={() => {}} // iOS Safari fix
+          onTouchStart={() => { }} // iOS Safari fix
           style={{
             touchAction: "manipulation",
             WebkitTapHighlightColor: "transparent",
@@ -122,7 +122,7 @@ const Button: React.FC<AddToBasketProps> = ({
 
       {showOverlay && (
         <div
-          className={overlayStyles.overlay}
+          className={`basket_overlay ${overlayStyles.overlay}`}
           onClick={(e) => {
             if (e.target === e.currentTarget) {
               closeOverlay(); // Invoked when clicking outside overlay-content
