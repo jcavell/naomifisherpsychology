@@ -7,12 +7,15 @@ import basicSsl from "@vitejs/plugin-basic-ssl";
 export default defineConfig({
   site: "https://www.naomifisher.co.uk",
 
-  output: "hybrid",
+  output: "static",
 
-  adapter: netlify({
-    edge: false,
-    serverLogging: true,
-    functionPerRoute: true,
+  // Only use adapter in production
+  ...(process.env.NODE_ENV !== "development" && {
+    adapter: netlify({
+      edge: false,
+      serverLogging: true,
+      functionPerRoute: true,
+    })
   }),
 
   vite: {
