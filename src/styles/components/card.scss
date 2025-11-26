@@ -44,6 +44,9 @@
     padding-right: 60px;
     @media (min-width: 800px) {
       min-height: 65px;
+      &.free-card {
+        min-height: 0;
+      }
     }
 
     a {
@@ -151,6 +154,14 @@
       &:hover {
         background: #387668;
       }
+    }
+  }
+  &.free-card {
+    h2 {
+      min-height: 0;
+    }
+    .card-details {
+      margin-top: 0;
     }
   }
 }
