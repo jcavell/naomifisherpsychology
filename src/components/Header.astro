@@ -1,4 +1,5 @@
 ---
+import "../styles/layouts/header.scss";
 import IconLinks from "./IconLinks.astro";
 import Navigation from "./Navigation.astro";
 import FilterMenu from "./FilterMenu.astro";
@@ -28,7 +29,7 @@ const { active, hideNav } = Astro.props;
   <!--  )-->
   <!--}-->
 
-  <a href="#newsletter" >
+  <a href="#newsletter">
     <div class="promotion-badge">
       <span class="promotion-main"> KEEP IN </span>
       <span class="promotion-sub"> TOUCH </span>
@@ -36,12 +37,6 @@ const { active, hideNav } = Astro.props;
     </div>
   </a>
 
-
-  {
-    !hideNav && <Navigation active={active} />
-  }
-  {
-    !hideNav && <FilterMenu />
-  }
-
+  {!hideNav && <Navigation active={active} />}
+  {!hideNav && <FilterMenu />}
 </header>
