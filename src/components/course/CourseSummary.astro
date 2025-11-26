@@ -54,10 +54,10 @@ const priceInPence = course.priceInPence!;
     <CourseSummaryAddToBasket offerId={offerId} client:load />
   </div>
 </div>
-<style>
+<style lang="scss">
   h2 {
     border-color: var(--courses-color);
-    padding-right: 60px;
+    padding-right: 16px;
   }
   .card-buttons a:first-child {
     border-radius: 0 0 0 16px;
@@ -69,8 +69,4 @@ const priceInPence = course.priceInPence!;
   :global(.card .card-buttons button.add-to-basket-from-summary:last-of-type) {
     border-radius: 0 0 16px 0;
   }
-    @media (min-width: 1200px) {
-     h2 {
-      min-height: 72px;
-    }
 </style>

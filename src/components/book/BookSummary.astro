@@ -49,18 +49,19 @@ import "../../styles/components/card.scss";
     <!--<a href={book.amazonUrl} class="amazon-link" target="_blank"> Purchase </a>-->
   </div>
 </div>
-<style>
+<style lang="scss">
   h2 {
     border-color: var(--books-color);
-    padding-right: 60px;
+    padding-right: 16px;
+    @media (min-width: 800px) {
+      min-height: 88px;
+      a {
+        margin-bottom: 8px;
+      }
+    }
   }
   .card-details > a {
-    color: #var(--books-color);
-  }
-  @media (min-width: 1200px) {
-    .card-books h2 {
-      min-height: 88px;
-    }
+    color: var(--books-color);
   }
   a {
     color: var(--books-color);

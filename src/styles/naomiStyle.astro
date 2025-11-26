@@ -47,6 +47,7 @@
     margin-left: auto;
     margin-right: auto;
     position: relative;
+    z-index: 1;
   }
 
   header img {
@@ -196,6 +197,7 @@
     text-indent: 0px;
     width: auto;
     background-color: #387668;
+    z-index: 0;
   }
 
   .filter-menu-open .filter-menu-button {
@@ -516,6 +518,7 @@
     margin-bottom: 80px;
     padding-left: 20px;
     padding-right: 20px;
+    z-index: 0;
   }
 
   .wrapper ul,
@@ -814,6 +817,7 @@
   footer {
     position: relative;
     margin-top: 140px;
+    z-index: 0;
   }
 
   .footer-primary {
@@ -1495,6 +1499,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    /* z-index: -1; */
     padding: 20px;
     margin-top: 20px;
     margin-bottom: 30px;
@@ -1769,6 +1774,7 @@
     overflow: hidden;
     margin-top: 40px;
     margin-bottom: 40px;
+    z-index: -1;
   }
 
   .form-title {
@@ -2474,6 +2480,9 @@
   }
 
   @media (min-width: 1200px) {
+    header {
+      z-index: 1;
+    }
     header img {
       height: 60px;
       padding-top: 40px;
@@ -2764,6 +2773,7 @@
       margin-top: 70px;
       margin-bottom: 180px;
       max-width: 1120px;
+      z-index: 1;
     }
 
     .card {
@@ -3271,6 +3281,14 @@
       padding-bottom: 10px;
       margin-top: 6px;
       padding-top: 6px;
+    }
+  }
+  body:has(.basket_overlay) {
+    overflow-y: hidden;
+    position: fixed;
+    header,
+    .hamburger {
+      z-index: -1;
     }
   }
 </style>
