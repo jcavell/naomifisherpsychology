@@ -21,26 +21,51 @@ import {
   tagMentalHealth,
 } from "./tags";
 
-import { compiledContent as age5To12Content } from "../content/tags/age-5-12.md";
-import { compiledContent as age13To18Content } from "../content/tags/age-13-18.md";
-import { compiledContent as anxietyContent } from "../content/tags/anxiety.md";
-import { compiledContent as autismContent } from "../content/tags/autism.md";
-import { compiledContent as burnoutContent } from "../content/tags/burnout.md";
-import { compiledContent as demandAvoidanceContent } from "../content/tags/demand-avoidance.md";
-import { compiledContent as ehcpContent } from "../content/tags/ehcps.md";
-import { compiledContent as emdrContent } from "../content/tags/emdr.md";
-import { compiledContent as forParentsContent } from "../content/tags/for-parents.md";
-import { compiledContent as forTeensContent } from "../content/tags/for-teenagers.md";
-import { compiledContent as forProfessionalsContent } from "../content/tags/for-professionals.md";
-import { compiledContent as aldpContent } from "../content/tags/aldp.md";
-import { compiledContent as schoolContent } from "../content/tags/school.md";
-import { compiledContent as screensContent } from "../content/tags/screens.md";
-import { compiledContent as senContent } from "../content/tags/sen.md";
-import { compiledContent as adhdContent } from "../content/tags/adhd.md";
-import { compiledContent as aggressionContent } from "../content/tags/aggression.md";
-import { compiledContent as neurodiversityContent } from "../content/tags/neurodiversity.md";
-import { compiledContent as traumaContent } from "../content/tags/trauma.md";
-import { compiledContent as mentalHealthContent } from "../content/tags/mental-health.md";
+import { marked } from 'marked';
+
+// Import raw markdown files
+import age5To12Md from '../content/tags/age-5-12.md?raw';
+import age13To18Md from '../content/tags/age-13-18.md?raw';
+import anxietyMd from '../content/tags/anxiety.md?raw';
+import autismMd from '../content/tags/mental-health.md?raw';
+import burnoutMd from '../content/tags/burnout.md?raw';
+import demandAvoidanceMd from '../content/tags/demand-avoidance.md?raw';
+import ehcpMd from '../content/tags/ehcps.md?raw';
+import emdrMd from '../content/tags/emdr.md?raw';
+import forParentsMd from '../content/tags/for-parents.md?raw';
+import forTeensMd from '../content/tags/for-teenagers.md?raw';
+import forProfessionalsMd from '../content/tags/for-professionals.md?raw';
+import aldpMd from '../content/tags/aldp.md?raw';
+import schoolMd from '../content/tags/school.md?raw';
+import screensMd from '../content/tags/screens.md?raw';
+import senMd from '../content/tags/sen.md?raw';
+import adhdMd from '../content/tags/adhd.md?raw';
+import aggressionMd from '../content/tags/aggression.md?raw';
+import neurodiversityMd from '../content/tags/neurodiversity.md?raw';
+import traumaMd from '../content/tags/trauma.md?raw';
+import mentalHealthMd from '../content/tags/mental-health.md?raw';
+
+// Parse markdown content
+const age5To12Content = marked.parse(age5To12Md) as string;
+const age13To18Content = marked.parse(age13To18Md) as string;
+const anxietyContent = marked.parse(anxietyMd) as string;
+const autismContent = marked.parse(autismMd) as string;
+const burnoutContent = marked.parse(burnoutMd) as string;
+const demandAvoidanceContent = marked.parse(demandAvoidanceMd) as string;
+const ehcpContent = marked.parse(ehcpMd) as string;
+const emdrContent = marked.parse(emdrMd) as string;
+const forParentsContent = marked.parse(forParentsMd) as string;
+const forTeensContent = marked.parse(forTeensMd) as string;
+const forProfessionalsContent = marked.parse(forProfessionalsMd) as string;
+const aldpContent = marked.parse(aldpMd) as string;
+const schoolContent = marked.parse(schoolMd) as string;
+const screensContent = marked.parse(screensMd) as string;
+const senContent = marked.parse(senMd) as string;
+const adhdContent = marked.parse(adhdMd) as string;
+const aggressionContent = marked.parse(aggressionMd) as string;
+const neurodiversityContent = marked.parse(neurodiversityMd) as string;
+const traumaContent = marked.parse(traumaMd) as string;
+const mentalHealthContent = marked.parse(mentalHealthMd) as string;
 
 // Tag Images
 import age5To12Image from "../images/tags/age-5-12.png";
@@ -80,7 +105,7 @@ type TagMeta = {
 const mentalHealthMeta: TagMeta = {
   tag: tagMentalHealth,
   image: tagMentalHealthImage,
-  description: mentalHealthContent(),
+  description: mentalHealthContent,
   substackURLs: [
     "https://naomicfisher.substack.com/p/depression-or-burnout",
     "https://naomicfisher.substack.com/p/the-soft-bigotry-of-low-expectations",
@@ -100,7 +125,7 @@ const mentalHealthMeta: TagMeta = {
 const schoolMeta: TagMeta = {
   tag: tagSchool,
   image: tagSchoolImage,
-  description: schoolContent(),
+  description: schoolContent,
   substackURLs: [
     "https://naomicfisher.substack.com/p/they-just-dont-care",
     "https://naomicfisher.substack.com/p/less-than-90",
@@ -131,7 +156,7 @@ const schoolMeta: TagMeta = {
 const anxietyMeta: TagMeta = {
   tag: tagAnxiety,
   image: tagAnxietyImage,
-  description: anxietyContent(),
+  description: anxietyContent,
   substackURLs: [
     "https://naomicfisher.substack.com/p/mum-is-anxious",
     "https://naomicfisher.substack.com/p/you-better-watch-out",
@@ -145,7 +170,7 @@ const anxietyMeta: TagMeta = {
 const demandAvoidanceMeta: TagMeta = {
   tag: tagDemandAvoidance,
   image: tagDemandAvoidanceImage,
-  description: demandAvoidanceContent(),
+  description: demandAvoidanceContent,
   substackURLs: [
     "https://naomicfisher.substack.com/p/its-not-what-you-say-its-the-way",
     "https://naomicfisher.substack.com/p/being-able-to-say-no-allows-children",
@@ -161,7 +186,7 @@ const demandAvoidanceMeta: TagMeta = {
 const autismMeta: TagMeta = {
   tag: tagAutism,
   image: tagAutismImage,
-  description: autismContent(),
+  description: autismContent,
   substackURLs: [
     "https://naomicfisher.substack.com/p/why-i-dont-tell-children-they-have",
     "https://naomicfisher.substack.com/p/behind-the-mask",
@@ -176,93 +201,93 @@ const autismMeta: TagMeta = {
 const burnoutMeta: TagMeta = {
   tag: tagBurnout,
   image: tagBurnoutImage,
-  description: burnoutContent(),
+  description: burnoutContent,
 };
 
 const screensMeta: TagMeta = {
   tag: tagScreens,
   image: tagScreensImage,
-  description: screensContent(),
+  description: screensContent,
   substackURLs: ["https://naomicfisher.substack.com/p/screens-screens-screens"],
 };
 
 const traumaMeta: TagMeta = {
   tag: tagTrauma,
   image: tagTraumaImage,
-  description: traumaContent(),
+  description: traumaContent,
   substackURLs: ["https://naomicfisher.substack.com/p/learning-to-feel-safe"],
 };
 
 const age5To12Meta: TagMeta = {
   tag: age5To11,
   image: age5To12Image,
-  description: age5To12Content(),
+  description: age5To12Content,
 };
 
 const age13To18Meta: TagMeta = {
   tag: age11To19,
   image: age13To18Image,
-  description: age13To18Content(),
+  description: age13To18Content,
 };
 
 const ehcpMeta: TagMeta = {
   tag: tagEHCPs,
   image: tagEHCPImage,
-  description: ehcpContent(),
+  description: ehcpContent,
 };
 
 const emdrMeta: TagMeta = {
   tag: tagEMDR,
   image: tagEMDRImage,
-  description: emdrContent(),
+  description: emdrContent,
 };
 
 const forParentsMeta: TagMeta = {
   tag: forParents,
   image: forParentsImage,
-  description: forParentsContent(),
+  description: forParentsContent,
 };
 
 const forProfessionalsMeta: TagMeta = {
   tag: forProfessionals,
   image: forProfessionalsImage,
-  description: forProfessionalsContent(),
+  description: forProfessionalsContent,
 };
 
 const forTeensMeta: TagMeta = {
   tag: forTeens,
   image: forTeensImage,
-  description: forTeensContent(),
+  description: forTeensContent,
 };
 
 const aldpMeta: TagMeta = {
   tag: tagALDP,
   image: tagALDPImage,
-  description: aldpContent(),
+  description: aldpContent,
 };
 
 const senMeta: TagMeta = {
   tag: tagSEN,
   image: tagSenImage,
-  description: senContent(),
+  description: senContent,
 };
 
 const aggressionMeta: TagMeta = {
   tag: tagAggression,
   image: tagMentalHealth,
-  description: aggressionContent(),
+  description: aggressionContent,
 };
 
 const neurodiversityMeta: TagMeta = {
   tag: tagNeurodiversity,
   image: tagNeurodiversityImage,
-  description: neurodiversityContent(),
+  description: neurodiversityContent,
 };
 
 const adhdMeta: TagMeta = {
   tag: tagADHD,
   image: tagMentalHealth,
-  description: adhdContent(),
+  description: adhdContent,
 };
 
 // !! ADD TAGS HERE !!

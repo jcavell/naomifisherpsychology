@@ -6,7 +6,7 @@ import BookDetails from "../../components/book/BookDetails.astro";
 export async function getStaticPaths() {
   const books = await getCollection("books");
   return books.map((book) => ({
-    params: { slug: book.slug },
+    params: { slug: book.id},
     props: { book },
   }));
 }

@@ -7,22 +7,21 @@ import { withRetry } from "./retry.ts";
 
 const ZAPIER_WEBHOOK_URL = env.ZAPIER_WEBHOOK_URL;
 
-export async function postCoursesToZapierWithRetry(userId: any, user: User, courseBasketItems: BasketItem[]) {
+export async function postCoursesToZapierWithRetry(user: User, courseBasketItems: BasketItem[]) {
   return withRetry(
     async () => {
-     return postCoursesToZapier(userId, user, courseBasketItems);
+     return postCoursesToZapier(user, courseBasketItems);
     },
     'Post courses to Zapier'
   );
 }
 
 async function postCoursesToZapier(
-  userId: any,
   user: User,
   courseBasketItems: BasketItem[],
 ) {
   if (courseBasketItems.length === 0) {
-    Logger.INFO("No courses found in purchase, skipping Zapier webhook");
+    Logger.ERROR("No courses found in purchase, skipping Zapier webhook");
     return;
   }
 
@@ -32,7 +31,7 @@ async function postCoursesToZapier(
   );
 
   if (internalIds.length === 0) {
-    Logger.INFO("No matching course IDs found, skipping Zapier webhook");
+    Logger.ERROR("No matching course IDs found, skipping Zapier webhook");
     return;
   }
 
@@ -42,7 +41,7 @@ async function postCoursesToZapier(
       firstName: user.first_name,
       lastName: user.surname,
       offerIds: internalIds,
-      userId: userId,
+      userId: user.email,
     },
   };
 

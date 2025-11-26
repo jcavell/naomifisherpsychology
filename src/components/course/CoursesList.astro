@@ -5,7 +5,8 @@ import { getEntry } from "astro:content";
 
 const { categoryId, categoryName, courses } = Astro.props;
 
-const quotes = (await getEntry("course-quotes", "general-course-quotes")).data;
+const quotesEntry = await getEntry("course-quotes", "general-course-quotes");
+const quotes = quotesEntry!.data;
 ---
 
 {

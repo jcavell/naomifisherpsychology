@@ -114,7 +114,7 @@ export async function POST({ request }: { request: Request }) {
 
     // Step 6
     // Add Zapier webhook call for courses
-    await postCoursesToZapierWithRetry(userId, user, courseBasketItems);
+    await postCoursesToZapierWithRetry(user, courseBasketItems);
 
     // Return 200 to indicate successful purchase
     return success;

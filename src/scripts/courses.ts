@@ -1,5 +1,5 @@
 import { getCollection, type CollectionEntry } from "astro:content";
-import type { CourseCard, CourseCheckout } from "../content/config.ts";
+import type { CourseCard, CourseCheckout } from "../content.config.ts";
 
 import {
   lowerCaseAndRemoveWhitespace,
