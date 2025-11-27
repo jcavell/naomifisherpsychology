@@ -207,7 +207,7 @@ footer .filter-menu-button {
   margin-right: auto;
   border-right: 0px;
   color: white;
-  background-image: url(icon-search-white.svg);
+  background-image: url(../icon-search-white.svg);
   border: 3px solid white;
   border-radius: 10px;
   padding-left: 36px;
@@ -218,6 +218,9 @@ footer .filter-menu-button {
   width: auto;
   background-color: #387668;
   z-index: 0;
+  @media (min-width: 1200px) {
+    display: block;
+  }
   .filter-menu-open & {
     background-image: url(../icon-search-close.svg);
   }

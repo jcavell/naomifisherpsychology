@@ -146,5 +146,111 @@ nav {
       box-sizing: border-box;
       background: #f7f6f5;
     }
+
+    /* Category Colour Variations */
+
+    .category-courses & {
+      border-color: #45627e;
+      border-width: 0 0 4px 0;
+      ul::before {
+        border-width: 4px 0 4px 4px;
+        border-color: #45627e;
+      }
+      ul::after {
+        border-width: 4px 4px 0 0;
+        border-color: #45627e;
+      }
+      .active,
+      .page-title a {
+        border-width: 4px 4px 0 4px;
+        border-color: #45627e;
+        &::before {
+          border-width: 0 4px 4px 0;
+          border-color: #45627e;
+        }
+        &::after {
+          border-width: 0 0 4px 4px;
+          border-color: #45627e;
+        }
+      }
+    }
+
+    .category-books & {
+      border-color: #dba940;
+      border-width: 0 0 4px 0;
+      ul::before {
+        border-width: 4px 0 4px 4px;
+        border-color: #dba940;
+      }
+      ul::after {
+        border-width: 4px 4px 0 0;
+        border-color: #dba940;
+      }
+      .active,
+      .page-title a {
+        border-width: 4px 4px 0 4px;
+        border-color: #dba940;
+        &::before {
+          border-width: 0 4px 4px 0;
+          border-color: #dba940;
+        }
+        &::after {
+          border-width: 0 0 4px 4px;
+          border-color: #dba940;
+        }
+      }
+    }
+
+    .category-blog & {
+      border-color: #753d5c;
+      border-width: 0 0 4px 0;
+      ul::before {
+        border-width: 4px 0 4px 4px;
+        border-color: #753d5c;
+      }
+      ul::after {
+        border-width: 4px 4px 0 0;
+        border-color: #753d5c;
+      }
+      .active,
+      .page-title a {
+        border-width: 4px 4px 0 4px;
+        border-color: #753d5c;
+        &::before {
+          border-width: 0 4px 4px 0;
+          border-color: #753d5c;
+        }
+        &::after {
+          border-width: 0 0 4px 4px;
+          border-color: #753d5c;
+        }
+      }
+    }
+
+    .category-webinars & {
+      border-color: #8ebaaa;
+      border-width: 0 0 4px 0;
+      ul::before {
+        border-width: 4px 0 4px 4px;
+        border-color: #8ebaaa;
+      }
+      ul::after {
+        border-width: 4px 4px 0 0;
+        border-color: #8ebaaa;
+      }
+      .active,
+      .page-title a {
+        border-width: 4px 4px 0 4px;
+        border-color: #8ebaaa;
+        &::before {
+          border-width: 0 4px 4px 0;
+          border-color: #8ebaaa;
+        }
+        &::after {
+          border-width: 0 0 4px 4px;
+          border-color: #8ebaaa;
+        }
+      }
+    }
   }
 }
