@@ -19,6 +19,8 @@ import DemandAvoidanceSummary from "../components/free/DemandAvoidanceSummary.as
 import SchoolAndEducationSummary from "../components/free/SchoolAndEducationSummary.astro";
 import MentalHealthSummary from "../components/free/MentalHealthSummary.astro";
 
+import Newsletter from "../components/Newsletter.astro";
+
 const webinars = await getWebinars();
 
 const featuredCourses1 = await getFeaturedCourses(0, 2);
@@ -146,5 +148,9 @@ const metaDescription =
   <!-- <BlogList length="2" />
 
   <a href="/blog" class="load-more"> See All Blog Posts </a> -->
+
+  <!--6662296 is the normal newsletter form -->
+  <!-- 7379328 is low demand toolkit form -->
+  <Newsletter formId="6662296"/>
 
 </BaseLayout>

@@ -28,20 +28,18 @@ const { active, hideNav } = Astro.props;
   <!--  )-->
   <!--}-->
 
-  <a href="#newsletter" >
-    <div class="promotion-badge">
-      <span class="promotion-main"> KEEP IN </span>
-      <span class="promotion-sub"> TOUCH </span>
-      <span class="promotion-details"> Sign up</span>
-    </div>
-  </a>
-
-
   {
-    !hideNav && <Navigation active={active} />
-  }
-  {
-    !hideNav && <FilterMenu />
+    active === "home" && (
+      <a href="#newsletter">
+        <div class="promotion-badge">
+          <span class="promotion-main"> KEEP IN </span>
+          <span class="promotion-sub"> TOUCH </span>
+          <span class="promotion-details"> Sign up</span>
+        </div>
+      </a>
+    )
   }
 
+  {!hideNav && <Navigation active={active} />}
+  {!hideNav && <FilterMenu />}
 </header>
