@@ -1,0 +1,123 @@
+#filter-menu {
+  @media (max-width: 1200px) {
+    overflow: auto;
+    background: #f7f6f5;
+  }
+  @media (min-width: 1200px) {
+    background-color: rgba(247, 246, 245, 0.8);
+    backdrop-filter: blur(8px);
+    top: 0px;
+    z-index: 150;
+    height: 100vh;
+  }
+}
+.filter-menu {
+  display: flex;
+  padding: 20px;
+  padding-bottom: 30px;
+  text-align: center;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 67px);
+  top: 67px;
+  z-index: 50;
+  box-sizing: border-box;
+  h3 {
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+    border-bottom: rgba(0, 0, 0, 0.2) solid 1px;
+    padding-bottom: 0.3em;
+    @media (max-width: 1200px) {
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+    }
+  }
+
+  .filter-wrapper {
+    margin: auto;
+    @media (min-width: 1200px) {
+      margin: auto;
+      padding-top: 0px;
+      padding-bottom: 60px;
+      max-width: 800px;
+    }
+  }
+  a {
+    display: inline-flex;
+    color: #fff;
+    background-color: #121212;
+    text-decoration: none;
+    padding-left: 34px;
+    background-position: 10px center;
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    padding-right: 16px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border-radius: 10px;
+    margin-left: 3px;
+    margin-right: 3px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    transition: 0.3s;
+
+    &:hover {
+      background-color: #387668;
+    }
+  }
+}
+
+// TODO - look at moving thse to a shared info-link and filter link scss file
+.filter-tags {
+  background-image: url(../../icon-tags-white.svg);
+}
+.filter-age {
+  background-image: url(../../icon-child-white.svg);
+  background-size: 18px 18px;
+}
+
+.filter-audience {
+  background-image: url(../../icon-eye-white.svg);
+}
+
+.filter-courses,
+.info-links a.filter-courses {
+  background-image: url(../../icon-courses-white.svg) !important;
+  background-size: 21px 21px !important;
+  background-position: 10px 7px !important;
+  padding-left: 38px !important;
+  background-color: #45627e;
+}
+
+.filter-pro-courses {
+  background-image: url(../../icon-pro-courses-white.svg) !important;
+  background-size: auto 16px !important;
+  background-position: 11px 10px !important;
+  padding-left: 74px !important;
+  background-color: #45627e !important;
+}
+
+.filter-webinars {
+  background-image: url(../../icon-speech-white.svg) !important;
+  background-size: 18px 18px !important;
+  padding-left: 36px !important;
+  background-color: #8ebaaa !important;
+}
+
+.filter-books {
+  background-image: url(../../icon-paperback-white.svg) !important;
+  background-size: 18px 18px !important;
+  padding-left: 36px !important;
+  background-color: #dba940 !important;
+}
+
+.filter-blog {
+  background-image: url(../../icon-blog-white.svg) !important;
+  background-size: 14px 14px !important;
+  padding-left: 34px !important;
+  background-position: 12px center !important;
+  background-color: #753d5c !important;
+}

@@ -152,6 +152,9 @@
         background: #387668;
       }
     }
+    a + * .add-to-basket-from-summary {
+      border-radius: 0 0 16px 0;
+    }
   }
   &.free-card {
     h2 {
