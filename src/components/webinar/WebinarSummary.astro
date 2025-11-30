@@ -3,6 +3,7 @@ import Contributers from "../Contributers.astro";
 import { getWebinarMeta } from "../../scripts/webinarMeta";
 import WebinarImage from "./WebinarImage.astro";
 import type { Webinar } from "../../types/webinar";
+import "../../styles/components/card.scss";
 
 const { webinar } = Astro.props as { webinar: Webinar };
 
