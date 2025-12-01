@@ -45,13 +45,13 @@ const metaDescription =
 >
   <div class="page-intro-wrapper">
     <div class="page-intro-image">
-      <StaticImage image={homeImage} alt="Naomi and Abigail on a swing" />
+      <StaticImage image={homeImage} alt="Naomi by a stable" />
     </div>
 
     <div class="page-intro-text">
 
-      <h2 class="feature-headline">MENTAL HEALTH COURSE SALE</h2>
-      <p>Our <a href = "https://courses.naomifisher.co.uk">mental health courses</a> are half price until Sunday. </p>
+      <!--<h2 class="feature-headline">MENTAL HEALTH COURSE SALE</h2>-->
+      <!--<p>Our <a href = "https://courses.naomifisher.co.uk">mental health courses</a> are half price until Sunday. </p>-->
 
 
       <h1>WELCOME</h1>
@@ -96,6 +96,28 @@ const metaDescription =
 
   <GenerateQuote client:load quotes={webinarQuotes} />
 
+  <a name="webinars" class="anchor">
+    <h2 class="section-title">
+      <span class="courses-section-title">On-demand courses</span>
+    </h2>
+  </a>
+
+  <CoursesList
+    courses={featuredCourses1}
+    categoryId="featured"
+    categoryName="Featured Courses"
+  />
+
+  <div class="page-full-width-text">
+    <p>
+      Our mini-courses cover topics including <a href="/courses/categories/anxiety">anxiety</a>, <a
+      href="/courses/categories/autism">autism</a>, <a href="/courses/categories/demand-avoidance">demand avoidance</a>,
+      <a href="/courses/categories/burnout">burnout</a> and <a href="/courses/categories/school">school</a>.</p>
+    <p>They are available to watch for 12 months after purchase.</p>
+  </div>
+
+  <a href="/courses" class="load-more"> See All Courses </a>
+
   <a name="free-resources" class="anchor">
     <h2 class="section-title">
       <span class="blog-section-title">Free Resources</span>
@@ -107,27 +129,7 @@ const metaDescription =
   <SchoolAndEducationSummary/>
   <MentalHealthSummary/>
 
-  <!--<a name="webinars" class="anchor">-->
-  <!--  <h2 class="section-title">-->
-  <!--    <span class="courses-section-title">On-demand courses</span>-->
-  <!--  </h2>-->
-  <!--</a>-->
 
-  <!--<div class="page-full-width-text">-->
-  <!--  <p>-->
-  <!--    Our mini-courses cover topics including <a href="/courses/categories/anxiety">anxiety</a>, <a-->
-  <!--    href="/courses/categories/autism">autism</a>, <a href="/courses/categories/demand-avoidance">demand avoidance</a>,-->
-  <!--    <a href="/courses/categories/burnout">burnout</a> and <a href="/courses/categories/school">school</a>.</p>-->
-  <!--  <p>They are available to watch for 12 months after purchase.</p>-->
-  <!--</div>-->
-
-  <!--<CoursesList-->
-  <!--  courses={featuredCourses1}-->
-  <!--  categoryId="featured"-->
-  <!--  categoryName="Featured Courses"-->
-  <!--/>-->
-
-  <!--<a href="/courses" class="load-more"> See All Courses </a>-->
 
   <!--<a name="books" class="anchor">-->
   <!--  <h2 class="section-title">-->

@@ -10,12 +10,12 @@ const { active } = Astro.props;
         <li>Home</li>
       </a>
 
-      <a href="https://courses.naomifisher.co.uk/" class={active === "courses" ? "active" : "inactive"}>
-        <li>Courses Sale</li>
-      </a>
-
       <a href="/webinars" class={active === "webinars" ? "active" : "inactive"}>
         <li>Webinars</li>
+      </a>
+
+      <a href="/courses" class={active === "courses" ? "active" : "inactive"}>
+        <li>Courses</li>
       </a>
 
       <a href="/books" class={active === "books" ? "active" : "inactive"}>
@@ -39,7 +39,7 @@ const { active } = Astro.props;
       </a>
 
       <a href="/blog" class={active === "blog" ? "active" : "inactive"}>
-        <li>Blog</li>
+        <li>Substack</li>
       </a>
 
       <a href="/contact" class={active === "contact" ? "active" : "inactive"}>
