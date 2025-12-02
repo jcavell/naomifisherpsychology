@@ -1,0 +1,241 @@
+.details {
+  background: #fff;
+  border-radius: 16px;
+  @media (min-width: 1200px) {
+    margin: 0;
+  }
+  h1 {
+    font-family: "Yanone Kaffeesatz", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    text-transform: uppercase;
+    color: #000;
+    line-height: 1.1;
+    font-size: 40px;
+    margin-left: 16px;
+    margin-right: 16px;
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+    padding-bottom: 20px;
+    padding-top: 20px;
+    line-height: 0.9;
+    @media (min-width: 1200px) {
+      font-size: 60px;
+    }
+    span {
+      font-family: "Oswald", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 500;
+      font-style: normal;
+      font-size: 16px;
+      text-transform: none;
+      display: block;
+      position: relative;
+      line-height: 1;
+      margin-top: 0.1em;
+      @media (min-width: 1200px) {
+        font-size: 30px;
+        font-family: "Yanone Kaffeesatz", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+      }
+    }
+  }
+  .details-category {
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    letter-spacing: 0.03em;
+  }
+  .details-image {
+    position: relative;
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    aspect-ratio: 5/3;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      box-sizing: border-box;
+    }
+  }
+  .details-body {
+    position: relative;
+    margin-left: 16px;
+    margin-right: 16px;
+    display: flex;
+    padding-bottom: 16px;
+    flex-direction: column;
+    @media (min-width: 1200px) {
+      flex-direction: row;
+      padding-top: 16px;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      display: block;
+      width: calc(100% + 32px);
+      height: 8px;
+      background: white;
+      border-bottom-left-radius: 40px;
+      border-bottom-right-radius: 40px;
+      bottom: -4px;
+      left: -16px;
+    }
+    .details-body-A,
+    .details-body-B {
+      box-sizing: border-box;
+      @media (min-width: 1200px) {
+        width: 50%;
+      }
+    }
+
+    .details-body-A {
+      order: 2;
+      @media (min-width: 1200px) {
+        border-right: 1px solid rgba(0, 0, 0, 0.2);
+        padding-right: 20px;
+        padding-left: 4px;
+        order: 1;
+      }
+    }
+
+    .details-body-B {
+      order: 1;
+      @media (min-width: 1200px) {
+        padding-left: 20px;
+        padding-right: 4px;
+        position: sticky;
+        align-self: flex-start;
+        top: 0px;
+        order: 2;
+      }
+    }
+
+    .details-body-A:not(.details-blog .details-body-A) {
+      order: 2;
+    }
+  }
+}
+
+.details-books .details-category {
+  border-top: 12px solid #dba940;
+  color: #dba940;
+}
+
+.details-books {
+  border-bottom: 16px solid #dba940;
+}
+
+// .card-books h2 {
+//   border-top: 12px solid #dba940;
+//   min-height: 88px;
+// }
+
+.details-webinars .details-category {
+  border-top: 12px solid #8ebaaa;
+  color: #8ebaaa;
+}
+
+.details-webinars {
+  border-bottom: 16px solid #8ebaaa;
+}
+
+.details-courses .details-category {
+  border-top: 12px solid #45627e;
+  color: #45627e;
+}
+
+.details-courses {
+  border-bottom: 16px solid #45627e;
+}
+
+.card-courses h2 {
+  border-top: 12px solid #45627e;
+}
+
+.card-courses .card-details a {
+  color: #45627e;
+}
+
+.details-blog {
+  border-bottom: 16px solid #753d5c;
+  .details-category {
+    border-top: 12px solid #753d5c;
+    color: #753d5c;
+  }
+  .purchase-wrapper {
+    .purchase {
+      height: auto;
+      .company {
+        padding-top: 1em;
+        padding-bottom: 1em;
+      }
+      .buy-now span {
+        background: #45627e;
+      }
+    }
+  }
+}
+
+.details-media .details-category {
+  border-top: 12px solid #000;
+  color: #000;
+}
+
+.details-media {
+  border-bottom: 16px solid #000;
+}
+
+.card-media h2 {
+  border-top: 12px solid #000;
+  min-height: 88px;
+}
+
+@media (min-width: 1200px) {
+  .preview-quote {
+    margin-top: 85px;
+    margin-bottom: 50px;
+    font-size: 46px;
+    margin-top: 55px;
+    margin-bottom: 20px;
+  }
+
+  .details .preview-quote-wrapper {
+    margin-top: 60px;
+    margin-bottom: 0px;
+  }
+
+  .details .preview-quote {
+    font-size: 32px;
+    margin-top: 60px;
+    margin-bottom: 30px;
+    text-align: left;
+  }
+
+  .details .preview-quote span::before {
+    left: 0px;
+    margin-left: 0px;
+  }
+
+  .details .preview-quote span {
+    text-align: left;
+  }
+
+  .eventbrite {
+    background-image: url(logo-eventbrite.svg);
+    background-size: auto 70%;
+    padding-left: 104px;
+  }
+
+  .details .live-date,
+  .details .sale-badge {
+    right: -14px;
+  }
+}
