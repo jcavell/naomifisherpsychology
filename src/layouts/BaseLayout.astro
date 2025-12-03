@@ -1,11 +1,14 @@
 ---
+import NaomiStyle from "../styles/naomiStyle.astro";
+import "../styles/components/header-navigation/hamburger.scss";
+import "../styles/components/header-navigation/menu.scss";
+import CookieConsent from "../components/CookieConsent.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import NaomiStyle from "../styles/naomiStyle.astro";
-import CookieConsent from "../components/CookieConsent.astro";
 import { env } from "../scripts/env";
 
-const { active, tagName, tagUrl, bodyClassName, metaDescription, hideNav } = Astro.props;
+const { active, tagName, tagUrl, bodyClassName, metaDescription, hideNav } =
+  Astro.props;
 
 const bodyClass = bodyClassName
   ? bodyClassName
@@ -17,14 +20,13 @@ const bodyClass = bodyClassName
 <!doctype html>
 <html lang="en">
   <head>
-
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <script>
       import { persistCouponFromURL } from "../scripts/coupon/couponRetrieverAndStorer";
       import { persistTrackersFromURL } from "../scripts/tracking/trackerRetrieverAndStorer";
 
-      document.addEventListener('DOMContentLoaded', () => {
+      document.addEventListener("DOMContentLoaded", () => {
         persistCouponFromURL();
         persistTrackersFromURL();
       });
@@ -32,7 +34,6 @@ const bodyClass = bodyClassName
 
     <!-- Meta Pixel Code -->
     <script is:inline define:vars={{ META_PIXEL_ID: env.META_PIXEL_ID }}>
-
       !(function (f, b, e, v, n, t, s) {
         if (f.fbq) return;
         n = f.fbq = function () {
@@ -61,12 +62,12 @@ const bodyClass = bodyClassName
     </script>
 
     <noscript
-    ><img
-      height="1"
-      width="1"
-      style="display:none"
-      src={`https://www.facebook.com/tr?id=${env.META_PIXEL_ID}&ev=PageView&noscript=1`}
-    /></noscript
+      ><img
+        height="1"
+        width="1"
+        style="display:none"
+        src={`https://www.facebook.com/tr?id=${env.META_PIXEL_ID}&ev=PageView&noscript=1`}
+      /></noscript
     >
     <!-- End Meta Pixel Code -->
 
@@ -77,14 +78,13 @@ const bodyClass = bodyClassName
       src="https://www.googletagmanager.com/gtag/js?id=G-12YTPF8CY7"></script>
 
     <script is:inline>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-    dataLayer.push(arguments);
-  }
-    gtag("js", new Date());
-    gtag("config", "G-12YTPF8CY7");
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-12YTPF8CY7");
     </script>
-
 
     <script src="../scripts/accordion.js"></script>
 
@@ -105,14 +105,19 @@ const bodyClass = bodyClassName
   </head>
 
   <body class={bodyClass}>
-
-    {!hideNav && (
-      <button class="hamburger hamburger--squeeze" id="menu-toggle" type="button">
-      <span class="hamburger-box">
-      <span class="hamburger-inner"></span>
-      </span>
-      </button>
-      )}
+    {
+      !hideNav && (
+        <button
+          class="hamburger hamburger--squeeze"
+          id="menu-toggle"
+          type="button"
+        >
+          <span class="hamburger-box">
+            <span class="hamburger-inner" />
+          </span>
+        </button>
+      )
+    }
 
     <Header active={active} hideNav={hideNav} />
 
@@ -129,7 +134,7 @@ const bodyClass = bodyClassName
     <div class="wrapper">
       <slot />
     </div>
-    <Footer hideNav={hideNav}/>
+    <Footer hideNav={hideNav} />
 
     <div class="top-trigger">
       <a href="#"> Top </a>

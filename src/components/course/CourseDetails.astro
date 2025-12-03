@@ -7,6 +7,7 @@ import CourseImage from "./CourseImage.astro";
 import Vimeo from "../Vimeo.astro";
 import CourseDetailsAddToBasket from "../basket/CourseDetailsAddToBasket";
 import type { CourseCard } from "../../content/config";
+import "../../styles/components/details.scss";
 import "../../styles/components/card.scss";
 
 interface Props {
@@ -107,10 +108,5 @@ const relatedCourses = (
 <style lang="scss">
   .card {
     z-index: -1;
-  }
-  .details-courses {
-    background-color: 16px solid #45627e;
-    position: relative;
-    z-index: 1;
   }
 </style>

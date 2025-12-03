@@ -152,6 +152,9 @@
         background: #387668;
       }
     }
+    a + * .add-to-basket-from-summary {
+      border-radius: 0 0 16px 0;
+    }
   }
   &.free-card {
     h2 {
@@ -160,6 +163,13 @@
       min-height: 0;
     }
     .card-details {
+      margin-top: 0;
+    }
+  }
+
+  &.card-blog .card-buttons,
+  &.card-books .card-buttons {
+    @media (min-width: 800px) {
       margin-top: 0;
     }
   }
@@ -204,6 +214,15 @@
     color: #000;
     &:hover {
       text-decoration: underline;
+    }
+  }
+}
+
+.details {
+  &.details-webinars,
+  &.details-courses {
+    .card-meta {
+      border-top: 0;
     }
   }
 }

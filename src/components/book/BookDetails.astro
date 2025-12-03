@@ -4,6 +4,7 @@ import BookImage from "./BookImage.astro";
 import { getEntry, render } from "astro:content";
 import GenerateQuote from "../Quoter";
 import { getPubDate, getPubDateString } from "../../scripts/book";
+import "../../styles/components/details.scss";
 
 const entryName = book.uri.replace("/books/", "");
 
