@@ -218,6 +218,15 @@
   }
 }
 
+.details {
+  &.details-webinars,
+  &.details-courses {
+    .card-meta {
+      border-top: 0;
+    }
+  }
+}
+
 .details .card {
   z-index: -1;
 }

@@ -122,6 +122,60 @@
       order: 2;
     }
   }
+  .company {
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: auto 100%;
+    flex: 1;
+    position: relative;
+    min-height: 24px;
+
+    &.amazon {
+      background-image: url(../logo-amazon.svg);
+      background-size: auto 80%;
+    }
+
+    &.blackwells {
+      background-image: url(../logo-blackwells.svg);
+      background-size: auto 70%;
+    }
+
+    &.waterstones {
+      background-image: url(logo-waterstones.svg);
+      background-size: auto 70%;
+    }
+
+    &.kindle {
+      background-image: url(../logo-kindle.svg);
+    }
+
+    &.google-books {
+      background-image: url(../logo-google-books.png);
+      background-size: auto 80%;
+    }
+
+    &.kobo {
+      background-image: url(../logo-kobo.svg);
+    }
+
+    &.apple-books {
+      background-image: url(../logo-apple-books.png);
+      background-size: auto 70%;
+    }
+
+    &.audible {
+      background-image: url(../logo-audible.svg);
+    }
+
+    &.xigxag {
+      background-image: url(../logo-xigxag.svg);
+    }
+
+    &.kajabi {
+      background-image: url(../logo-kajabi.svg);
+      background-size: auto 70%;
+    }
+  }
 }
 
 .details-books .details-category {
@@ -228,8 +282,8 @@
     text-align: left;
   }
 
-  .eventbrite {
-    background-image: url(logo-eventbrite.svg);
+  .details .eventbrite {
+    background-image: url(../logo-eventbrite.svg);
     background-size: auto 70%;
     padding-left: 104px;
   }
