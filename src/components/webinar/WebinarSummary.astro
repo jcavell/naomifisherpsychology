@@ -2,7 +2,6 @@
 import Contributers from "../Contributers.astro";
 import { getWebinarMeta } from "../../scripts/webinarMeta";
 import WebinarImage from "./WebinarImage.astro";
-import ChooseWebinarTickets from "../basket/ChooseWebinarTickets";
 import type { Webinar } from "../../types/webinar";
 import "../../styles/components/card.scss";
 
@@ -14,8 +13,6 @@ const meta = getWebinarMeta(eventId);
 const title = webinar.title;
 const subtitle = webinar.description;
 const tickets = webinar.tickets;
-
-// console.log(webinar.ticket_classes);
 ---
 
 <div
@@ -69,7 +66,7 @@ const tickets = webinar.tickets;
 
   <div class="card-buttons">
     <a href={`/webinars/${eventId}`}> Learn More </a>
-    <ChooseWebinarTickets webinar={webinar} client:load />
+    <a href={`${webinar.url}?aff=web`}> Tickets </a>
   </div>
 </div>
 <style lang="scss">
