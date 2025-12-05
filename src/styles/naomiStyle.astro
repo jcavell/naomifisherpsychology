@@ -1,5 +1,7 @@
 <style is:global>
   /* @import "tailwindcss"; */
+  @import "./components/accordion.scss";
+  @import "./components/footer.scss";
   :root {
     --error-red: #c41e1e; /* Darkened main red */
     --error-red-hover: #a11818; /* Darkened hover state */
@@ -811,7 +813,7 @@
   }
 
   /* Footer */
-
+  /* 
   footer {
     position: relative;
     margin-top: 140px;
@@ -899,7 +901,7 @@
   .smallprint p a {
     color: #fff;
     font-weight: normal;
-  }
+  } */
 
   /* Details Pages */
   /* 
@@ -1196,12 +1198,12 @@
   /* Accordion */
 
   .accordion-wrapper {
-    position: relative;
+    /* position: relative;
     margin-bottom: 1.5em;
-    margin-top: -1em;
+    margin-top: -1em; */
   }
 
-  .accordion {
+  /* .accordion {
     cursor: pointer;
     padding-top: 1em;
     padding-bottom: 1em;
@@ -1222,9 +1224,9 @@
     background-position: right 20px;
     background-image: url(icon-plus.svg);
     color: black !important;
-  }
+  } */
 
-  .accordion.active {
+  /* .accordion.active {
     background-image: url(icon-close.svg);
   }
 
@@ -1248,21 +1250,16 @@
   .accordion.no-title-accordion:first-child {
     border-top: rgba(0, 0, 0, 0.3) 1px dashed;
     margin-top: 1.2em;
-  }
-
-  .active,
-  .accordion:hover {
-    /*background-color: #ccc;*/
-  }
+  } */
 
   .panel {
-    max-height: 0;
-    overflow: hidden;
+    /* max-height: 0;
+    overflow: hidden; */
     /*transition: max-height 0.4s ease-out;*/
-    border-bottom: rgba(0, 0, 0, 0.3) 1px dashed;
+    /* border-bottom: rgba(0, 0, 0, 0.3) 1px dashed; */
   }
 
-  .panel p:first-child,
+  /* .panel p:first-child,
   .panel ul:first-child {
     margin-top: 0 !important;
   }
@@ -1270,7 +1267,7 @@
   .panel p:last-child,
   .panel ul:last-child {
     margin-bottom: 2.2em !important;
-  }
+  } */
 
   audio {
     width: 100%;
@@ -2631,9 +2628,9 @@
       position: relative;
     } */
 
-    footer .filter-menu-button {
+    /* footer .filter-menu-button {
       display: block;
-    }
+    } */
 
     header .filter-menu-button:hover {
       background-size: auto 24px;
@@ -2917,9 +2914,9 @@
       border-left: 4px solid #8ebaaa;
     } */
 
-    footer {
+    /* footer {
       margin-top: 0;
-    }
+    } */
 
     .page-base {
       max-width: 1140px;
@@ -3111,11 +3108,11 @@
       right: 20px;
     }
 
-    .smallprint {
+    /* .smallprint {
       padding-left: 100px;
       text-align: center;
       margin-top: 20px;
-    }
+    } */
 
     .anchor {
       padding-top: 50px;
