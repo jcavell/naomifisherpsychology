@@ -1,0 +1,125 @@
+.wrapper {
+  position: relative;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 16px;
+  margin-bottom: 80px;
+  padding-left: 20px;
+  padding-right: 20px;
+  z-index: 0;
+  @media (min-width: 800px) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0px 20px;
+    margin-bottom: 180px;
+    max-width: 1120px;
+  }
+  @media (min-width: 1200px) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px 40px;
+    margin-top: 70px;
+    margin-bottom: 180px;
+    max-width: 1120px;
+  }
+  ul,
+  ol {
+    margin-left: 1.6em;
+    li {
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+    }
+  }
+}
+
+.page-intro-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  @media (min-width: 1200px) {
+    column-gap: 40px;
+    flex-direction: row;
+    margin: 0;
+    width: 100%;
+    .tag-page &,
+    .category-courses & {
+      order: -1;
+    }
+  }
+}
+
+.page-intro-text {
+  position: relative;
+  width: 100%;
+  @media (min-width: 1200px) {
+    margin-top: 10px;
+    width: 50%;
+    margin: 0 !important;
+  }
+  p:first-child {
+    margin-top: 0;
+  }
+  &:nth-child(1) {
+    margin-bottom: 1.5em;
+  }
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.page-intro-image {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  aspect-ratio: 3/2;
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  margin-bottom: 2em;
+  @media (min-width: 1200px) {
+    aspect-ratio: auto;
+    width: 50%;
+    display: block !important;
+    margin-bottom: 0;
+  }
+  &:not(.home .page-intro-image) {
+    display: none;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+  }
+}
+
+.page-intro-static-image {
+  position: relative;
+  width: 100%;
+  margin-bottom: 1.5em;
+  @media (min-width: 1200px) {
+    width: 50%;
+    margin-bottom: 0;
+  }
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  }
+}
+
+.page-full-width-text {
+  @media (min-width: 1200px) {
+    position: relative;
+    margin-top: -30px;
+  }
+  p:last-child {
+    @media (min-width: 1200px) {
+      margin-bottom: 0px;
+    }
+  }
+}

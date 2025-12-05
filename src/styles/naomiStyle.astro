@@ -1,7 +1,10 @@
 <style is:global>
   /* @import "tailwindcss"; */
   @import "./components/accordion.scss";
-  @import "./components/footer.scss";
+  @import "./layouts/page.scss";
+  @import "./layouts/footer.scss";
+  @import "./components/forms.scss";
+
   :root {
     --error-red: #c41e1e; /* Darkened main red */
     --error-red-hover: #a11818; /* Darkened hover state */
@@ -214,7 +217,8 @@
     transform: translateY(-4px);
   } */
 
-  .tag-link {
+  /* ???????????? LEGACY ???????????????? */
+  /* .tag-link {
     background-image: url(icon-tags.svg);
   }
 
@@ -239,7 +243,9 @@
 
   .linkedin-link {
     background-image: url(icon-linkedin.svg);
-  }
+  } */
+
+  /* ?????????????????? LEGACY ENDS ??????????????? */
 
   /* #menu {
     display: none;
@@ -509,7 +515,7 @@
     padding-bottom: 0.3em;
   } */
 
-  .wrapper {
+  /* .wrapper {
     position: relative;
     max-width: 800px;
     margin-left: auto;
@@ -530,9 +536,9 @@
   .wrapper ol li {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
-  }
+  } */
 
-  .form-title h2 {
+  /* .form-title h2 {
     color: #fff;
     letter-spacing: 0.04em;
     font-size: 60px;
@@ -547,11 +553,11 @@
     font-size: 50px;
     line-height: 1.2;
     margin: 0;
-    padding: 0 40px; /* Added horizontal padding for desktop */
+    padding: 0 40px; 
     border: none;
     font-weight: 600;
     text-align: left;
-  }
+  } */
 
   /* Tablet breakpoint */
   @media (max-width: 1200px) {
@@ -1339,7 +1345,7 @@
     min-height: 88px;
   } */
 
-  .page-intro-wrapper {
+  /* .page-intro-wrapper {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -1401,7 +1407,7 @@
     display: block;
     border-top: 1px solid rgba(0, 0, 0, 0.5);
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-  }
+  } */
 
   .section-title {
     text-align: center;
@@ -1643,7 +1649,7 @@
   }
   /* form */
 
-  .form-wrapper {
+  /* .form-wrapper {
     display: flex;
     padding-top: 1em;
     padding-bottom: 1em;
@@ -1692,7 +1698,7 @@
 
   /* formkit */
 
-  .formkit-form[data-uid="a4bc346f2b"] * {
+  /* .formkit-form[data-uid="a4bc346f2b"] * {
     box-sizing: border-box;
   }
 
@@ -2248,7 +2254,7 @@
   }
 
   .formkit-form[data-uid="a4bc346f2b"] {
-    /*max-width: 700px;*/
+
   }
 
   .formkit-form[data-uid="a4bc346f2b"] [data-style="clean"] {
@@ -2334,20 +2340,20 @@
 
   .formkit-submit {
     margin: 0 !important;
-  }
+  } */
 
   @media (min-width: 800px) {
     /* .card-blog h2 {
       min-height: 134px;
     } */
 
-    .wrapper {
+    /* .wrapper {
       display: flex;
       flex-wrap: wrap;
       gap: 0px 20px;
       margin-bottom: 180px;
       max-width: 1120px;
-    }
+    } */
 
     /* .card {
       width: calc(50% - 10px);
@@ -2661,14 +2667,14 @@
       display: inline-block !important;
     }
 
-    .wrapper {
+    /* .wrapper {
       display: flex;
       flex-wrap: wrap;
       gap: 50px 40px;
       margin-top: 70px;
       margin-bottom: 180px;
       max-width: 1120px;
-    }
+    } */
 
     .card {
       /* min-width: 540px;
@@ -2917,7 +2923,7 @@
     /* footer {
       margin-top: 0;
     } */
-
+    /* ????????????????????? LEGACY ?????????????????????? */
     .page-base {
       max-width: 1140px;
       margin-left: auto;
@@ -3007,7 +3013,9 @@
       box-sizing: border-box;
     }
 
-    .form-wrapper {
+    /* ???????????????????? LEGACY ENDS ????????????????????  */
+
+    /* .form-wrapper {
       padding-top: 3em;
       padding-bottom: 2.5em;
       flex-direction: row;
@@ -3040,9 +3048,9 @@
       padding-left: 30px;
       padding-right: 40px;
       border-left: 1px rgba(255, 255, 255, 0.5) solid;
-    }
+    } */
 
-    .page-intro-wrapper {
+    /* .page-intro-wrapper {
       column-gap: 40px;
       flex-direction: row;
       margin: 0;
@@ -3078,7 +3086,7 @@
 
     .page-full-width-text p:last-child {
       margin-bottom: 0px;
-    }
+    } */
 
     .section-title {
       margin: 0px;
@@ -3132,9 +3140,9 @@
       margin-top: -20px;
     }
 
-    .page-intro-text {
+    /* .page-intro-text {
       margin-top: 10px;
-    }
+    } */
 
     .login-badge {
       display: flex;
