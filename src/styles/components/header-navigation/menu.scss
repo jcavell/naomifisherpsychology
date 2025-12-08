@@ -1,3 +1,4 @@
+@use "../../mixins.scss" as mix;
 #menu {
   display: none;
   position: fixed;
@@ -51,6 +52,7 @@
 nav {
   position: relative;
   display: flex;
+  @include mix.special-text;
   @media (max-width: 1200px) {
     box-sizing: border-box;
     width: 100%;
@@ -253,4 +255,48 @@ nav {
       }
     }
   }
+  ul {
+    .active {
+      @media (min-width: 1200px) {
+        border-top: 4px solid black;
+        border-left: 4px solid black;
+        border-right: 4px solid black;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        &::before {
+          content: "";
+          display: block;
+          position: absolute;
+          bottom: -26px;
+          left: -26px;
+          height: 26px;
+          width: 26px;
+          z-index: 10;
+          border-bottom: 4px solid black;
+          border-right: 4px solid black;
+          border-bottom-right-radius: 26px;
+          box-sizing: border-box;
+          z-index: 101;
+        }
+        &::after {
+          content: "";
+          display: block;
+          position: absolute;
+          bottom: -26px;
+          right: -26px;
+          height: 26px;
+          width: 26px;
+          border-bottom: 4px solid black;
+          border-left: 4px solid black;
+          border-bottom-left-radius: 26px;
+          box-sizing: border-box;
+          z-index: 101;
+        }
+      }
+    }
+  }
+}
+
+.page-title {
+  @include mix.special-text;
 }

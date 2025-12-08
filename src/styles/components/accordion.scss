@@ -1,5 +1,5 @@
 /* Accordion */
-
+@use "../mixins.scss" as mix;
 .accordion-wrapper {
   position: relative;
   margin-bottom: 1.5em;
@@ -25,28 +25,13 @@
     background-position: right 20px;
     background-image: url(icon-plus.svg);
     color: black !important;
+    @include mix.special-text;
     &.active {
       background-image: url(icon-close.svg);
     }
     &.no-title-accordion:first-child {
       border-top: rgba(0, 0, 0, 0.3) 1px dashed;
       margin-top: 1.2em;
-    }
-    .mock-accordion {
-      display: block;
-      text-decoration: none;
-      color: #000;
-      border-bottom: rgba(0, 0, 0, 0.2) 1px dashed;
-      padding-bottom: 1px;
-      position: relative;
-      font-size: 16px;
-      text-transform: uppercase;
-      padding-top: 1em;
-      padding-bottom: 1em;
-      background-size: 14px 14px;
-      background-repeat: no-repeat;
-      background-position: right center;
-      background-image: url(icon-external-link.svg);
     }
   }
   .panel {
@@ -62,5 +47,22 @@
     ul:last-child {
       margin-bottom: 2.2em !important;
     }
+  }
+  .mock-accordion {
+    display: block;
+    text-decoration: none;
+    color: #000;
+    border-bottom: rgba(0, 0, 0, 0.2) 1px dashed;
+    padding-bottom: 1px;
+    position: relative;
+    font-size: 16px;
+    text-transform: uppercase;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-size: 14px 14px;
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-image: url(icon-external-link.svg);
+    @include mix.special-text;
   }
 }

@@ -1,3 +1,4 @@
+@use "../mixins.scss" as mix;
 .details {
   background: #fff;
   border-radius: 16px;
@@ -50,6 +51,7 @@
     padding-top: 10px;
     padding-bottom: 10px;
     letter-spacing: 0.03em;
+    @include mix.special-text;
   }
   .details-image {
     position: relative;
@@ -122,6 +124,113 @@
       order: 2;
     }
   }
+
+  .purchase-wrapper {
+    position: relative;
+    margin-bottom: 1em;
+    @include mix.special-text;
+    .category-books & {
+      margin-bottom: 0;
+    }
+    a {
+      color: #000;
+      text-decoration: none !important;
+    }
+    &:last-child {
+      margin-bottom: 1.5em;
+    }
+    .purchase {
+      position: relative;
+      display: flex;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      height: 56px;
+      align-items: center;
+
+      // .company {
+      //   padding-top: 1em;
+      //   padding-bottom: 1em;
+      // }
+      .buy-now {
+        margin-left: auto;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        span {
+          display: block;
+          text-decoration: none;
+          text-transform: uppercase;
+          color: #fff;
+          background: #387668;
+          text-decoration: none;
+          padding-left: 16px;
+          padding-right: 16px;
+          padding-top: 6px;
+          padding-bottom: 6px;
+          border-radius: 10px;
+        }
+        .details-blog span & {
+          background: #45627e;
+        }
+      }
+      .category-books & {
+        background-size: 14px 14px;
+        background-repeat: no-repeat;
+        background-position: right center;
+        background-image: url(../icon-external-link.svg);
+      }
+    }
+    .purchase-title {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      padding-top: 1em;
+      padding-bottom: 1em;
+    }
+
+    .purchase-title-primary {
+      background-repeat: no-repeat;
+      background-position: left center;
+      background-size: 16px 16px;
+      padding-left: 26px;
+      position: relative;
+      margin-bottom: 0.1em;
+    }
+
+    .purchase-title-secondary {
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+    }
+
+    .purchase-title-paperback {
+      background-image: url(../icon-paperback.svg);
+      background-size: 18px 18px;
+    }
+
+    .purchase-title-eBook {
+      background-image: url(../icon-tablet.svg);
+      background-position: 2px center;
+    }
+
+    .purchase-title-audiobook {
+      background-image: url(../icon-audio.svg);
+      background-size: 18px 18px;
+    }
+
+    .purchase-title-courses {
+      background-image: url(../icon-courses.svg);
+      background-size: 22px 22px;
+      padding-left: 28px;
+    }
+
+    .price {
+      border-right: 1px solid rgba(0, 0, 0, 0.2);
+      padding-right: 12px;
+      margin-right: 10px;
+      align-items: center;
+      display: flex;
+      max-height: 30px;
+    }
+  }
+
   .company {
     background-repeat: no-repeat;
     background-position: left center;
@@ -225,15 +334,100 @@
     color: #753d5c;
   }
   .purchase-wrapper {
+    position: relative;
+    margin-bottom: 1em;
+    @include mix.special-text;
+    a {
+      color: #000;
+      text-decoration: none !important;
+    }
+    &:last-child {
+      margin-bottom: 1.5em;
+    }
     .purchase {
       height: auto;
-      .company {
-        padding-top: 1em;
-        padding-bottom: 1em;
+      // .company {
+      //   padding-top: 1em;
+      //   padding-bottom: 1em;
+      // }
+      .buy-now {
+        margin-left: auto;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        span {
+          display: block;
+          text-decoration: none;
+          text-transform: uppercase;
+          color: #fff;
+          background: #387668;
+          text-decoration: none;
+          padding-left: 16px;
+          padding-right: 16px;
+          padding-top: 6px;
+          padding-bottom: 6px;
+          border-radius: 10px;
+        }
+        .details-blog span & {
+          background: #45627e;
+        }
       }
-      .buy-now span {
-        background: #45627e;
+      .category-books & {
+        background-size: 14px 14px;
+        background-repeat: no-repeat;
+        background-position: right center;
+        background-image: url(../icon-external-link.svg);
       }
+    }
+    .purchase-title {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      padding-top: 1em;
+      padding-bottom: 1em;
+    }
+
+    .purchase-title-primary {
+      background-repeat: no-repeat;
+      background-position: left center;
+      background-size: 16px 16px;
+      padding-left: 26px;
+      position: relative;
+      margin-bottom: 0.1em;
+    }
+
+    .purchase-title-secondary {
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+    }
+
+    .purchase-title-paperback {
+      background-image: url(../icon-paperback.svg);
+      background-size: 18px 18px;
+    }
+
+    .purchase-title-eBook {
+      background-image: url(../icon-tablet.svg);
+      background-position: 2px center;
+    }
+
+    .purchase-title-audiobook {
+      background-image: url(../icon-audio.svg);
+      background-size: 18px 18px;
+    }
+
+    .purchase-title-courses {
+      background-image: url(../icon-courses.svg);
+      background-size: 22px 22px;
+      padding-left: 28px;
+    }
+
+    .price {
+      border-right: 1px solid rgba(0, 0, 0, 0.2);
+      padding-right: 12px;
+      margin-right: 10px;
+      align-items: center;
+      display: flex;
+      max-height: 30px;
     }
   }
 }
@@ -291,5 +485,6 @@
   .details .live-date,
   .details .sale-badge {
     right: -14px;
+    @include mix.special-text;
   }
 }

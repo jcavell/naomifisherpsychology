@@ -1,3 +1,4 @@
+@use "../mixins.scss" as mix;
 header {
   max-width: 1140px;
   margin-left: auto;
@@ -31,6 +32,8 @@ header {
     margin-right: 20px;
     margin-top: 17px;
     margin-bottom: -1px;
+    @include mix.special-text;
+
     @media (min-width: 1200px) {
       z-index: 1000;
       position: absolute;
@@ -121,6 +124,9 @@ header {
   }
   .secondary-icon {
     display: none !important;
+    @media (min-width: 1200px) {
+      display: inline-block !important;
+    }
   }
 
   .basket-button {
@@ -171,6 +177,11 @@ header {
   letter-spacing: 0.03em;
   text-transform: uppercase;
   font-size: 1em;
+  @include mix.special-text;
+  &:hover {
+    background-size: auto 24px;
+    background-position: 0px center;
+  }
   @media (min-width: 1200px) {
     padding-right: 20px;
     margin-right: 6px;

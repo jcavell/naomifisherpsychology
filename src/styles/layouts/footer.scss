@@ -1,3 +1,4 @@
+@use "../mixins.scss" as mix;
 footer {
   position: relative;
   margin-top: 140px;
@@ -48,6 +49,7 @@ footer {
         margin-top: 6px;
         margin-bottom: 6px;
         display: block;
+        @include mix.special-text;
       }
       &.footer-menu-B {
         text-align: left;

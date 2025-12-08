@@ -1,3 +1,4 @@
+@use "../../mixins.scss" as mix;
 #filter-menu {
   @media (max-width: 1200px) {
     overflow: auto;
@@ -25,6 +26,7 @@
   top: 67px;
   z-index: 50;
   box-sizing: border-box;
+  @include mix.special-text;
   h3 {
     margin-top: 2em;
     margin-bottom: 0.5em;
