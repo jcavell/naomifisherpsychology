@@ -206,14 +206,6 @@ header {
   }
 }
 
-// .filter-menu-open .filter-menu-button {
-//   background-image: url(../icon-search-close.svg);
-// }
-
-.filter-menu-open footer .filter-menu-button {
-  background-image: url(icon-search-white-close.svg);
-}
-
 footer .filter-menu-button {
   display: none;
   margin-left: auto;
@@ -233,8 +225,14 @@ footer .filter-menu-button {
   z-index: 0;
   @media (min-width: 1200px) {
     display: block;
+    z-index: 1;
+  }
+  &:hover {
+    @media (min-width: 1200px) {
+      background-position: 10px center;
+    }
   }
   .filter-menu-open & {
-    background-image: url(../icon-search-close.svg);
+    background-image: url(../icon-search-white-close.svg);
   }
 }
