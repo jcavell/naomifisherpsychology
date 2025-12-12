@@ -1,0 +1,146 @@
+.category-primary .page-title {
+  display: none;
+}
+
+.sales-cost em,
+.sales-price em {
+  text-decoration: line-through;
+  text-decoration-color: #cc3333;
+  color: #b1b1b1;
+  font-style: normal;
+}
+
+.sales-cost strong,
+.sales-price strong {
+  color: #cc3333;
+  font-weight: 500;
+  margin-left: 0.25em;
+}
+
+.sales-cost strong,
+.sales-price strong {
+  margin-left: 0.5em;
+}
+
+.resource-button {
+  border-radius: 16px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bold;
+  background: #387668;
+  padding: 0.8em;
+  color: white;
+  display: block;
+  width: 200px;
+  box-sizing: border-box;
+  border: 3px white solid;
+  margin-left: 20px;
+  margin-right: 20px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.newsletter-bottom-image {
+  display: flex;
+  background: #387668;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 40px 0;
+}
+
+.newsletter-bottom-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.page-base {
+  max-width: 1140px;
+  margin-left: auto;
+  margin-right: auto;
+  border-top: 4px solid black;
+  position: relative;
+  display: block;
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+.page-base span:first-child {
+  display: block;
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  margin-left: -20px;
+  height: 20px;
+  width: 40px;
+  background: #f7f6f5;
+}
+
+.page-base::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -16px;
+  left: -20px;
+  height: 16px;
+  width: 20px;
+  border-bottom: 4px solid black;
+  border-left: 4px solid black;
+  border-bottom-left-radius: 26px;
+  box-sizing: border-box;
+}
+
+.page-base::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -16px;
+  right: -20px;
+  height: 16px;
+  width: 20px;
+  border-bottom: 4px solid black;
+  border-right: 4px solid black;
+  border-bottom-right-radius: 20px;
+  box-sizing: border-box;
+}
+
+.page-base span:last-child {
+  position: relative;
+  display: block;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 60px;
+}
+
+.page-base span:last-child::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  margin-left: -20px;
+  height: 20px;
+  width: 20px;
+  border-top: 4px solid black;
+  border-right: 4px solid black;
+  border-top-right-radius: 26px;
+  box-sizing: border-box;
+}
+
+.page-base span:last-child::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -4px;
+  right: 50%;
+  margin-right: -20px;
+  height: 20px;
+  width: 20px;
+  border-top: 4px solid black;
+  border-left: 4px solid black;
+  border-top-left-radius: 26px;
+  box-sizing: border-box;
+}
