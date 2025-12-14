@@ -37,4 +37,7 @@
     border-color: #9fbeb6;
     color: #ffffff;
   }
+  @media (min-width: 1200px) {
+    display: none;
+  }
 }
