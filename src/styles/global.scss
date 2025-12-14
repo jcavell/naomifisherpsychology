@@ -1,0 +1,307 @@
+@use "mixins.scss" as mix;
+@use "./components/buttons.scss";
+@use "./components/accordion.scss";
+@use "./layouts/page.scss";
+@use "./layouts/footer.scss";
+@use "./components/forms.scss";
+@use "./components/preview-quote.scss";
+@use "./components/top-trigger.scss";
+@use "./legacy.scss";
+
+:root {
+  --error-red: #c41e1e; /* Darkened main red */
+  --error-red-hover: #a11818; /* Darkened hover state */
+  --error-red-light: #dc2626; /* Darkened light state */
+  --error-red-bg: #fcecea; /* Very light red for backgrounds */
+
+  /* Green variables */
+  --success-green: #387668; /* Main green color */
+  --success-green-hover: #2c5a4f; /* Darker for hover states */
+  --success-green-light: #4a8e7d; /* Lighter for disabled states */
+  --success-green-bg: #edf7f5; /* Very light green for backgrounds */
+
+  /* Branding Colors */
+  --free-color: #753d5c;
+  --blog-color: #753d5c;
+  --webinar-color: #8ebaaa;
+  --courses-color: #45627e;
+  --books-color: #dba940;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  outline-style: none;
+  outline-width: 0;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #f7f6f5;
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+  &.filter-menu-open #filter-menu {
+    display: flex;
+  }
+  &.menu-open,
+  &.filter-menu-open {
+    overflow: hidden;
+  }
+}
+
+p {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+p a {
+  color: #387668;
+  font-weight: 700;
+}
+
+h2 {
+  font-family: "Yanone Kaffeesatz", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  /*font-size: 20px;*/
+  text-transform: uppercase;
+  color: #000;
+  line-height: 1.1;
+}
+
+h3,
+.home .page-intro-text h1,
+.home .page-intro-text h2 {
+  letter-spacing: 0.03em;
+  font-size: 1em;
+  margin-top: 2.5em;
+  margin-bottom: 1em;
+  border-bottom: rgba(0, 0, 0, 0.2) solid 1px;
+  padding-bottom: 0.5em;
+  @include mix.special-text;
+}
+
+h3:first-child,
+.home .page-intro-text h1:first-child,
+.home .page-intro-text h2:first-child {
+  margin-top: 0em;
+}
+h3 {
+  @include mix.special-text;
+}
+
+.feature-headline {
+  color: #d56c8d;
+  border-bottom: #d56c8d solid 1px !important;
+}
+
+.load-more {
+  border-radius: 16px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-align: center;
+  background: #387668;
+  padding: 0.8em;
+  color: white;
+  display: block;
+  width: calc(100% - 40px);
+  box-sizing: border-box;
+  border: 3px white solid;
+  margin-left: 20px;
+  margin-right: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  @include mix.special-text;
+  @media (min-width: 1200px) {
+    width: 100%;
+    max-width: 570px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -20px;
+  }
+}
+
+.reviews-accordion div {
+  display: block;
+  position: relative;
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+
+.reviews-accordion div {
+  &::before {
+    content: "\201C";
+    display: block;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    font-family: serif;
+    font-size: 2.5em;
+    margin-top: -0.5em;
+  }
+  span {
+    font-size: 16px;
+    margin-top: -0.8em;
+    display: block;
+    position: relative;
+    @include mix.special-text;
+  }
+}
+
+.live-date,
+.sale-badge {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background: #000;
+  border: 3px solid #fff;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.sale-badge {
+  background: #cc3333;
+}
+
+.preorder-badge {
+  background: #387668;
+}
+
+.login-badge {
+  background: #45627e;
+  display: none;
+  top: -8px;
+  right: -10px;
+  @include mix.special-text;
+  @media (min-width: 1200px) {
+    display: flex;
+  }
+}
+
+.details .live-date,
+.details .sale-badge {
+  right: 6px;
+}
+
+.live-day,
+.sale-amount {
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+.live-month,
+.sale-text {
+  line-height: 22px;
+}
+
+.preorder-badge .sale-amount {
+  margin-right: -4px;
+}
+
+.sale-amount i {
+  font-style: normal;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+  margin-right: -5px;
+}
+
+.quote {
+  font-family: "Yanone Kaffeesatz", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  /*font-size: 20px;*/
+  text-transform: uppercase;
+  color: #000;
+  line-height: 1.1;
+}
+
+.date {
+  background-image: url(icon-date.svg);
+}
+
+.time {
+  background-image: url(icon-time.svg);
+}
+
+.cost {
+  background-image: url(icon-pound.svg);
+}
+
+.duration {
+  background-image: url(icon-duration.svg);
+}
+
+.bookmark {
+  background-image: url(icon-bookmark.svg);
+}
+
+.globe {
+  background-image: url(icon-globe.svg);
+}
+
+.contributors {
+  background-image: url(icon-contributors.svg);
+}
+
+.tags {
+  background-image: url(icon-tags.svg);
+  background-position: left 6px !important;
+}
+
+.ages {
+  background-image: url(icon-child.svg);
+  background-size: 18px 18px !important;
+}
+
+.audience {
+  background-image: url(icon-eye.svg);
+}
+
+.article {
+  background-image: url(icon-article.svg);
+}
+
+.podcast {
+  background-image: url(icon-podcast.svg);
+  background-size: 18px 18px !important;
+}
+
+audio {
+  width: 100%;
+  display: block;
+}
+
+body:has(.basket_overlay) {
+  overflow-y: hidden;
+  position: fixed;
+  top: 0%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  header,
+  .hamburger {
+    z-index: -1;
+  }
+}
