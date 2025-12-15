@@ -29,9 +29,12 @@
   width: 130px;
   margin: 0 auto;
   margin-bottom: 5px;
-  padding: 8px 16px;
-  border-bottom: 2px solid #387569;
+  padding: 4px 8px;
+  border: 2px solid #387569;
   color: #387569;
+  margin-top: 20px;
+  font-size: 0.75rem;
+  font-weight: normal;
   &:hover {
     background-color: #9fbeb6;
     border-color: #9fbeb6;
