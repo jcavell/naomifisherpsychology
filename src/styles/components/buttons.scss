@@ -1,0 +1,46 @@
+@use "../mixins.scss" as mix;
+
+.button-link {
+  text-decoration: none;
+  display: inline-block;
+  padding: 4px 16px;
+  border-radius: 5px;
+  border: 2px solid #ffffff;
+  font-size: 1em;
+  vertical-align: middle;
+  padding-top: 0.3em;
+  padding-bottom: 0.3em;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  @include mix.special-text;
+
+  &.primary {
+    background-color: #ffffff;
+    border-color: #387569;
+    color: #387569;
+    &:hover {
+      background-color: #9fbeb6;
+      border-color: #9fbeb6;
+      color: #ffffff;
+    }
+  }
+}
+#menu ul .button-link {
+  width: 130px;
+  margin: 0 auto;
+  margin-bottom: 5px;
+  padding: 4px 8px;
+  border: 2px solid #387569;
+  color: #387569;
+  margin-top: 20px;
+  font-size: 0.75rem;
+  font-weight: normal;
+  &:hover {
+    background-color: #9fbeb6;
+    border-color: #9fbeb6;
+    color: #ffffff;
+  }
+  @media (min-width: 1200px) {
+    display: none;
+  }
+}

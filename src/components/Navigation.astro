@@ -5,7 +5,6 @@ const { active } = Astro.props;
 <div id="menu">
   <nav>
     <ul>
-
       <a href="/" class={active === "home" ? "active" : "inactive"}>
         <li>Home</li>
       </a>
@@ -45,17 +44,11 @@ const { active } = Astro.props;
       <a href="/contact" class={active === "contact" ? "active" : "inactive"}>
         <li>Contact</li>
       </a>
+
+      <a
+        class="button-link primary"
+        href="https://courses.naomifisher.co.uk/login"><li>Course login</li></a
+      >
     </ul>
   </nav>
-
-  {active === "courses" &&(
-    <a href="https://courses.naomifisher.co.uk/login">
-    <div class="sale-badge login-badge">
-      <!--<span class="sale-amount">LOGIN</span>-->
-      <span class="sale-text">Course</span>
-      <span class="sale-text">Login</span>
-    </div>
-  </a>
-  )}
-
 </div>

@@ -8,6 +8,7 @@
   margin-bottom: 80px;
   padding-left: 20px;
   padding-right: 20px;
+  padding-top: 60px;
   z-index: 0;
   @media (min-width: 800px) {
     display: flex;
@@ -23,6 +24,7 @@
     margin-top: 70px;
     margin-bottom: 180px;
     max-width: 1120px;
+    padding-top: 0;
   }
   ul,
   ol {

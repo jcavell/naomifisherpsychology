@@ -7,13 +7,19 @@ header {
   z-index: 1;
   img {
     display: block;
-    height: 60px;
-    padding-top: 85px;
-    padding-left: 20px;
-    padding-right: 20px;
+    height: 25px;
+    padding-top: 0;
+    padding-left: 66px;
+    padding-right: 0;
+    position: fixed;
+    top: 20px;
     @media (min-width: 1200px) {
-      padding-top: 40px;
+      padding-top: 24px;
       padding-bottom: 15px;
+      position: relative;
+      padding-left: 0;
+      top: 0;
+      height: 36px;
     }
   }
   a {
@@ -80,6 +86,18 @@ header {
       }
     }
   }
+
+  .category-checkout & {
+    @media (max-width: 1200px) {
+      height: 64px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      background-color: #f7f6f5;
+      border-bottom: 3px solid #000000;
+    }
+  }
 }
 .icon-links {
   position: fixed;
@@ -94,11 +112,11 @@ header {
   z-index: 10;
   background: #f7f6f5;
   text-align: right;
-  z-index: 200;
+  z-index: -1;
   @media (min-width: 1200px) {
     position: absolute;
     right: 0px;
-    top: 32px;
+    top: 10px;
     border: none;
     backdrop-filter: none;
     background: none;
@@ -153,6 +171,13 @@ header {
 
   .basket-button:hover {
     transform: scale(1.1);
+  }
+}
+
+.course-login-wrapper {
+  display: none;
+  @media (min-width: 1200px) {
+    display: inline-block;
   }
 }
 
