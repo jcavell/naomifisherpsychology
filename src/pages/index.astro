@@ -19,12 +19,12 @@ import DemandAvoidanceSummary from "../components/free/DemandAvoidanceSummary.as
 import SchoolAndEducationSummary from "../components/free/SchoolAndEducationSummary.astro";
 import MentalHealthSummary from "../components/free/MentalHealthSummary.astro";
 
-import Newsletter from "../components/Newsletter.astro";
+import Newsletter from "../components/NewsletterConcise.astro";
 
 const webinars = await getWebinars();
 
 const featuredCourses1 = await getFeaturedCourses(0, 2);
-const featuredCourses2 = await getFeaturedCourses(2, 4);
+const featuredCourses2 = await getFeaturedCourses(0, 4);
 
 const featuredBooks = await getFeaturedBooks();
 
@@ -86,6 +86,10 @@ const metaDescription =
     )
   }
 
+  <!--6662296 is the normal newsletter form -->
+  <!-- 7379328 is low demand toolkit form -->
+  <Newsletter formId="6662296"/>
+
   <RemoveFinishedWebinars client:load />
 
   {webinars.map((webinar, index) =>
@@ -94,19 +98,13 @@ const metaDescription =
   <!-- {console.log(webinars.length)}
   {webinars.length % 2 !== 0 && <Newsletter />} -->
 
-  <GenerateQuote client:load quotes={webinarQuotes} />
+  <!--<GenerateQuote client:load quotes={webinarQuotes} />-->
 
-  <a name="webinars" class="anchor">
+  <a name="courses" class="anchor">
     <h2 class="section-title">
       <span class="courses-section-title">On-demand courses</span>
     </h2>
   </a>
-
-  <CoursesList
-    courses={featuredCourses1}
-    categoryId="featured"
-    categoryName="Featured Courses"
-  />
 
   <div class="page-full-width-text">
     <p>
@@ -116,18 +114,24 @@ const metaDescription =
     <p>They are available to watch for 12 months after purchase.</p>
   </div>
 
+  <CoursesList
+    courses={featuredCourses2}
+    categoryId="featured"
+    categoryName="Featured Courses"
+  />
+
   <a href="/courses" class="load-more"> See All Courses </a>
 
-  <a name="free-resources" class="anchor">
-    <h2 class="section-title">
-      <span class="blog-section-title">Free Resources</span>
-    </h2>
-  </a>
+  <!--<a name="free-resources" class="anchor">-->
+  <!--  <h2 class="section-title">-->
+  <!--    <span class="blog-section-title">Free Resources</span>-->
+  <!--  </h2>-->
+  <!--</a>-->
 
-  <AutismSummary/>
-  <DemandAvoidanceSummary/>
-  <SchoolAndEducationSummary/>
-  <MentalHealthSummary/>
+  <!--<AutismSummary/>-->
+  <!--<DemandAvoidanceSummary/>-->
+  <!--<SchoolAndEducationSummary/>-->
+  <!--<MentalHealthSummary/>-->
 
 
 
@@ -151,8 +155,5 @@ const metaDescription =
 
   <a href="/blog" class="load-more"> See All Blog Posts </a> -->
 
-  <!--6662296 is the normal newsletter form -->
-  <!-- 7379328 is low demand toolkit form -->
-  <Newsletter formId="6662296"/>
 
 </BaseLayout>
