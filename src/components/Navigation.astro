@@ -4,51 +4,162 @@ const { active } = Astro.props;
 
 <div id="menu">
   <nav>
-    <ul>
-      <a href="/" class={active === "home" ? "active" : "inactive"}>
-        <li>Home</li>
-      </a>
+    <div class="nav-wrapper">
+      <input type="radio" name="slider" id="menu-btn" />
+      <input type="radio" name="slider" id="close-btn" />
+      <ul class="nav-links">
+        <li>
+          <a href="/" class={active === "home" ? "active" : "inactive"}>
+            Home
+          </a>
+        </li>
+        <li>
+          <a
+            href="/webinars"
+            class={active === "webinars" ? "active" : "inactive"}
+          >
+            Webinars
+          </a>
+        </li>
+        <li>
+          <a
+            href="/courses"
+            class={`desktop-item ${active === "courses" ? "active" : "inactive"}`}
+          >
+            Courses
+          </a>
+          <input type="checkbox" id="showDrop" />
+          <label for="showDrop" class="nav-dropdown mobile-item">
+            <img src="src/styles/icon-chev-right.svg" alt="Expand Courses" />
+            Courses
+          </label>
+          <ul class="drop-menu">
+            <li><h5>Courses Available</h5></li>
+            <li><a href="#">Course Link 1</a></li>
+            <li><a href="#">Course Link 2</a></li>
+            <li><a href="#">Course Link 3</a></li>
+            <li><a href="#">Course Link 4</a></li>
+            <li>
+              <a href="#" class="free-courses">View all free courses</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="/books" class={active === "books" ? "active" : "inactive"}>
+            Books
+          </a>
+        </li>
+        <!--<a href="/media" class={active === "media" ? "active" : "inactive"}>-->
+        <!--  <li>Media</li>-->
+        <!--</a>-->
+        <li>
+          <a
+            href="https://www.emdrtraininguk.co.uk/"
+            target="_blank"
+            class={active === "training" ? "active" : "inactive"}
+          >
+            EMDR Training
+          </a>
+        </li>
+        <li>
+          <a href="/about" class={active === "about" ? "active" : "inactive"}>
+            About Us
+          </a>
+        </li>
+        <li>
+          <a
+            href="/blog"
+            class={`desktop-item ${active === "blog" ? "active" : "inactive"}`}
+          >
+            Substack</a
+          >
+          <input type="checkbox" id="showMega" />
+          <label for="showMega" class="mobile-item">Courses</label>
 
-      <a href="/webinars" class={active === "webinars" ? "active" : "inactive"}>
-        <li>Webinars</li>
-      </a>
+          <div class="mega-box">
+            <div class="content">
+              <h1>COURSE TOPICS</h1>
 
-      <a href="/courses" class={active === "courses" ? "active" : "inactive"}>
-        <li>Courses</li>
-      </a>
+              <div class="row">
+                <header>Autism</header>
+              </div>
+              <div class="row">
+                <header>Demand Avoidance</header>
+              </div>
+              <div class="row">
+                <header>School and Education</header>
+                <ul class="mega-links">
+                  <li><a href="#">At School</a></li>
+                  <li><a href="#">Not at School</a></li>
+                  <li><a href="#">SEN</a></li>
+                  <li><a href="#">EHCPs</a></li>
+                </ul>
+              </div>
+              <div class="row">
+                <header>Mental Health and Behaviour</header>
+                <ul class="mega-links">
+                  <li><a href="#">Anxiety</a></li>
+                  <li><a href="#">Burnout</a></li>
+                  <li><a href="#">Trauma</a></li>
+                  <li><a href="#">OCD</a></li>
+                  <li><a href="#">Screens</a></li>
+                </ul>
+              </div>
+              <div class="row">
+                <header>For Teens</header>
+              </div>
+            </div>
+          </div>
+        </li>
+        <div class="mega-box">
+          <div class="content">
+            <h1>COURSE TOPICS</h1>
 
-      <a href="/books" class={active === "books" ? "active" : "inactive"}>
-        <li>Books</li>
-      </a>
-
-      <!--<a href="/media" class={active === "media" ? "active" : "inactive"}>-->
-      <!--  <li>Media</li>-->
-      <!--</a>-->
-
-      <a
-        href="https://www.emdrtraininguk.co.uk/"
-        target="_blank"
-        class={active === "training" ? "active" : "inactive"}
-      >
-        <li>EMDR Training</li>
-      </a>
-
-      <a href="/about" class={active === "about" ? "active" : "inactive"}>
-        <li>About Us</li>
-      </a>
-
-      <a href="/blog" class={active === "blog" ? "active" : "inactive"}>
-        <li>Substack</li>
-      </a>
-
-      <a href="/contact" class={active === "contact" ? "active" : "inactive"}>
-        <li>Contact</li>
-      </a>
-
-      <a
-        class="button-link primary"
-        href="https://courses.naomifisher.co.uk/login"><li>Course login</li></a
-      >
-    </ul>
+            <div class="row">
+              <header>Autism</header>
+            </div>
+            <div class="row">
+              <header>Demand Avoidance</header>
+            </div>
+            <div class="row">
+              <header>School and Education</header>
+              <ul class="mega-links">
+                <li><a href="#">At School</a></li>
+                <li><a href="#">Not at School</a></li>
+                <li><a href="#">SEN</a></li>
+                <li><a href="#">EHCPs</a></li>
+              </ul>
+            </div>
+            <div class="row">
+              <header>Mental Health and Behaviour</header>
+              <ul class="mega-links">
+                <li><a href="#">Anxiety</a></li>
+                <li><a href="#">Burnout</a></li>
+                <li><a href="#">Trauma</a></li>
+                <li><a href="#">OCD</a></li>
+                <li><a href="#">Screens</a></li>
+              </ul>
+            </div>
+            <div class="row">
+              <header>For Teens</header>
+            </div>
+          </div>
+        </div>
+        <li>
+          <a
+            href="/contact"
+            class={active === "contact" ? "active" : "inactive"}
+          >
+            Contact
+          </a>
+        </li>
+        <li class="mobile-item">
+          <a
+            class="button-link primary"
+            href="https://courses.naomifisher.co.uk/login">Course login</a
+          >
+        </li>
+      </ul>
+    </div>
   </nav>
 </div>

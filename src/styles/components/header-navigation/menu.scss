@@ -11,31 +11,55 @@
   background: #f7f6f5;
 
   @media (max-width: 1200px) {
+    background-color: #ffffff;
     ul {
       list-style: none;
-      text-align: center;
+      text-align: left;
       margin-top: auto;
       margin-bottom: auto;
       width: 100%;
-      a {
-        letter-spacing: 0.03em;
-        text-transform: uppercase;
-        text-decoration: none;
-        color: #000;
-        padding-bottom: 0.7em;
-        padding-top: 0.7em;
-        display: block;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-        &:nth-last-child(1 of :not(.button-link)) {
-          border-bottom: none;
+      li {
+        margin-left: 0;
+        margin: 0;
+        a,
+        label {
+          letter-spacing: 0.03em;
+          text-transform: uppercase;
+          text-decoration: none;
+          color: #000;
+          padding: 0.7em 0 0.7em 32px;
+          display: block;
+          border-top: 1px solid #4d4d4d;
+          border-left: 16px solid #ffffff;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
+          &:nth-last-child(1 of :not(.button-link)) {
+            border-bottom: none;
+          }
+          &.active {
+            border-left: 16px solid #387569;
+          }
         }
-        &.active {
-          color: #d56c8d;
+
+        label {
+          border-bottom: 0;
+          background-position: left 8px;
+          background-size: auto 28px;
+          background-repeat: no-repeat;
+          background-image: url(../../icon-chev-right.svg);
+        }
+        .drop-menu li a {
+          padding: 0.7em 0 0.7em 0;
+          border-left: none;
+          border-top: none;
+          color: #387569;
+          font-size: 1rem;
         }
       }
     }
     .menu-open & {
       display: flex;
+      overflow: auto;
     }
   }
   @media (min-width: 1200px) {
@@ -58,7 +82,7 @@ nav {
   @media (max-width: 1200px) {
     box-sizing: border-box;
     width: 100%;
-    padding-left: 20px;
+    padding-left: 0;
     padding-right: 20px;
   }
   @media (min-width: 1200px) {
@@ -71,14 +95,14 @@ nav {
 
     ul {
       padding-left: 20px;
+      text-align: center;
     }
 
     li {
-      display: flex;
+      display: inline-flex;
       position: relative;
       transition: transform 0.3s;
       box-sizing: border-box;
-      height: 50px;
       align-items: center;
     }
 
@@ -87,7 +111,8 @@ nav {
       color: black;
       padding-left: 16px;
       padding-right: 16px;
-      display: inline-block;
+      display: flex;
+      align-items: center;
       position: relative;
       transition: transform ease-in 0.3s;
       height: 50px;
@@ -249,4 +274,276 @@ nav {
 
 .page-title {
   @include mix.special-text;
+}
+
+.drop-menu {
+  position: absolute;
+  background: #ffffff;
+  width: 180px;
+  line-height: 40px;
+  top: 57px;
+  opacity: 0;
+  visibility: hidden;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  text-align: left;
+  @media (min-width: 1200px) {
+    padding-bottom: 16px;
+    padding-top: 8px;
+  }
+}
+li:hover .drop-menu,
+li:hover + .mega-box,
+.mega-box:hover {
+  transition: all 0.3s ease;
+  top: 50px;
+  opacity: 1;
+  visibility: visible;
+}
+.drop-menu li {
+  h5 {
+    text-transform: uppercase;
+    @include mix.special-text;
+    font-weight: 500;
+    font-size: 1rem;
+    border-bottom: 2px solid #387569;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+  }
+  a {
+    width: 100%;
+    display: block;
+    padding: 0;
+    border-radius: 0px;
+    color: #387569;
+    font-weight: 400;
+    font-size: 1rem;
+    height: 24px;
+    line-height: 24px;
+    @media (max-width: 1200px) {
+      padding: 0.7em 0 0.7em 0;
+      border-left: none;
+    }
+    &.free-courses {
+      text-transform: none;
+      text-decoration: underline;
+      color: #000000;
+    }
+  }
+}
+
+.mega-box {
+  position: absolute;
+  left: 0;
+  width: calc(100% - 40px);
+  padding: 0 0 15px 0;
+  top: 85px;
+  opacity: 0;
+  visibility: hidden;
+}
+.mega-box .content {
+  background: #ffffff;
+  padding: 25px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  h1 {
+    flex: 0 0 100%;
+    font-size: 16px;
+    text-align: left;
+    @include mix.special-text;
+    font-weight: 400;
+    padding-bottom: 12px;
+    border-bottom: 3px solid #387569;
+  }
+  > *:not(:first-child) {
+    flex-basis: 10%; /* The 'ideal' width before it wraps */
+    flex-grow: 1;
+  }
+}
+.mega-box .content .row {
+  width: calc(25% - 30px);
+  font-size: 16px;
+  text-align: left;
+  @include mix.special-text;
+  font-weight: 400;
+}
+.content .row header {
+  color: #387569;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 12px 0;
+  text-transform: uppercase;
+}
+.content .row .mega-links {
+  border-left: 1px solid rgba(255, 255, 255, 0.09);
+  padding-left: 0;
+}
+.row .mega-links li {
+  padding: 0;
+  display: flex;
+}
+#menu .row ul.mega-links {
+  padding-left: 0;
+}
+
+#menu .row .mega-links li a {
+  padding: 0px;
+  color: #387569;
+  font-size: 16px;
+  font-weight: 400;
+  display: block;
+  height: 40px;
+  @media (max-width: 1200px) {
+    padding: 0;
+    padding-left: 8px;
+    border: 0;
+    color: #000000;
+  }
+}
+.row .mega-links li a:hover {
+  color: #387569;
+  text-decoration: underline;
+}
+
+.mobile-item {
+  display: none;
+}
+
+@media screen and (max-width: 1200px) {
+  nav {
+    width: 100%;
+    display: block;
+  }
+  .wrapper .btn {
+    display: block;
+  }
+  .-nav-wrapper {
+    width: 100%;
+    .nav-links {
+      position: fixed;
+      height: 100vh;
+      width: 100%;
+      max-width: 350px;
+      top: 0;
+      left: -100%;
+      background: #242526;
+      display: block;
+      padding: 50px 10px;
+      line-height: 50px;
+      overflow-y: auto;
+      box-shadow: 0px 15px 15px rgba(0, 0, 0, 0.18);
+      transition: all 0.3s ease;
+    }
+  }
+  /* custom scroll bar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #242526;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #3a3b3c;
+  }
+  #menu-btn:checked ~ .nav-links {
+    left: 0%;
+  }
+  #menu-btn:checked ~ .btn.menu-btn {
+    display: none;
+  }
+  #close-btn:checked ~ .btn.menu-btn {
+    display: block;
+  }
+  .nav-links li {
+    margin: 15px 10px;
+  }
+  .nav-links li a {
+    // padding: 0 20px;
+    // display: block;
+    // font-size: 20px;
+  }
+  .nav-links .drop-menu {
+    position: static;
+    opacity: 1;
+    top: 65px;
+    visibility: visible; // width: fit-content;
+    margin: 0 auto;
+    max-height: 0px;
+    overflow: hidden;
+    box-shadow: none;
+    transition: all 0.6s ease;
+    padding: 0 50px;
+    box-sizing: border-box;
+  }
+  #showDrop:checked ~ .drop-menu {
+    max-height: 100%;
+  }
+  #showDrop:checked ~ label {
+    background-image: url(../../icon-chev-down.svg);
+  }
+
+  #showMega:checked ~ .mega-box {
+    max-height: 100%;
+  }
+
+  #showMega:checked ~ label {
+    background-image: url(../../icon-chev-down.svg);
+  }
+
+  #menu .nav-wrapper .nav-links .desktop-item {
+    display: none;
+  }
+  .nav-links .mobile-item {
+    display: block;
+  }
+  .nav-links .mobile-item:hover {
+    // background: #3a3b3c;
+  }
+  .drop-menu li {
+    margin: 0;
+  }
+  .drop-menu li a {
+    border-radius: 5px;
+    font-size: 18px;
+  }
+  .mega-box {
+    position: static;
+    top: 65px;
+    opacity: 1;
+    visibility: visible;
+    padding: 0 20px 0 0;
+    max-height: 0px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+  .mega-box .content {
+    box-shadow: none;
+    flex-direction: column;
+    padding: 0 20px 0 45px;
+  }
+  .mega-box .content .row {
+    width: 100%;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .mega-box .content .row:nth-child(1),
+  .mega-box .content .row:nth-child(2) {
+    border-top: 0px;
+  }
+  .content .row .mega-links {
+    border-left: 0px;
+    padding-left: 15px;
+  }
+  .row .mega-links li {
+    margin: 0;
+  }
+  .content .row header {
+    font-size: 1rem;
+  }
+}
+nav input {
+  display: none;
 }

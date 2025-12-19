@@ -1,0 +1,29 @@
+@use "../mixins.scss" as mix;
+.category-badges-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-bottom: 2px solid #387569;
+  flex-grow: 1;
+  ul {
+    list-style: none;
+    > li {
+      @include mix.special-text;
+      margin: 5px;
+      padding: 4px 16px;
+      font-size: 16px;
+      line-height: 26px;
+      gap: 8px;
+      font-weight: 500;
+      color: #1b302b;
+      text-align: center;
+      background-color: #d3e4e0;
+      border-radius: 6px;
+      border: 1px solid #d3e4e0;
+      display: inline-flex;
+    }
+  }
+}
+.wrapper:has(.category-badges-wrapper) {
+  margin-top: 0;
+}
