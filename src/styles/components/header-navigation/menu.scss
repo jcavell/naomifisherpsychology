@@ -89,7 +89,9 @@ nav {
     margin-left: auto;
     margin-right: auto;
     position: relative;
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 54px;
     z-index: 10;
 
@@ -106,7 +108,7 @@ nav {
       align-items: center;
     }
 
-    ul a {
+    ul.nav-links > li > a {
       text-decoration: none;
       color: black;
       padding-left: 16px;
@@ -115,10 +117,34 @@ nav {
       align-items: center;
       position: relative;
       transition: transform ease-in 0.3s;
-      height: 50px;
+      height: 32px;
       letter-spacing: 0.03em;
       text-transform: uppercase;
       @include mix.special-text;
+      &:hover {
+        border-bottom: 5px solid #9fbeb6;
+      }
+      &.active {
+        border-bottom: 5px solid #387569;
+      }
+      &.add-dropdown {
+        &::after {
+          width: 18px;
+          height: 24px;
+          content: "";
+          background-position: left 2px;
+          background-size: auto 22px;
+          background-repeat: no-repeat;
+          background-image: url(../../icon-chev-right.svg);
+          //transform: translate(0 -50%) rotate(90deg);
+        }
+        &:hover,
+        &:has(+ .drop-menu:hover) {
+          &::after {
+            background-image: url(../../icon-chev-down.svg);
+          }
+        }
+      }
     }
     .page-title h1 {
       text-decoration: none;
@@ -295,38 +321,71 @@ li:hover .drop-menu,
 li:hover + .mega-box,
 .mega-box:hover {
   transition: all 0.3s ease;
-  top: 50px;
+  top: 36px;
   opacity: 1;
   visibility: visible;
 }
-.drop-menu li {
-  h5 {
-    text-transform: uppercase;
-    @include mix.special-text;
-    font-weight: 500;
-    font-size: 1rem;
-    border-bottom: 2px solid #387569;
-    padding-bottom: 8px;
-    margin-bottom: 8px;
-  }
-  a {
-    width: 100%;
-    display: block;
-    padding: 0;
-    border-radius: 0px;
-    color: #387569;
-    font-weight: 400;
-    font-size: 1rem;
-    height: 24px;
-    line-height: 24px;
-    @media (max-width: 1200px) {
-      padding: 0.7em 0 0.7em 0;
-      border-left: none;
+
+li:hover + .mega-box,
+.mega-box:hover {
+  top: 45px;
+}
+.drop-menu {
+  li {
+    h5 {
+      text-transform: uppercase;
+      @include mix.special-text;
+      font-weight: 500;
+      font-size: 1rem;
+      border-bottom: 3px solid #387569;
+      padding-bottom: 8px;
+      margin-bottom: 8px;
     }
-    &.free-courses {
-      text-transform: none;
-      text-decoration: underline;
-      color: #000000;
+    a {
+      width: 100%;
+      display: block;
+      padding: 0;
+      border-radius: 0px;
+      color: #387569;
+      font-weight: 400;
+      font-size: 1rem;
+      height: 24px;
+      line-height: 24px;
+      @media (max-width: 1200px) {
+        padding: 0.7em 0 0.7em 0;
+        border-left: none;
+      }
+      &.free-courses {
+        text-transform: none;
+        text-decoration: underline;
+        color: #000000;
+      }
+    }
+  }
+  &.external-dropdown {
+    li {
+      a {
+        &:after {
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          content: "";
+          background-position: 5px 8px;
+          background-size: auto 12px;
+          background-repeat: no-repeat;
+          background-image: url(../../icon-external-link-green.svg);
+        }
+      }
+      p {
+        margin: 0 8px 0 0;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        color: #333333;
+        @media (max-width: 1200px) {
+          margin-bottom: 16px;
+        }
+      }
     }
   }
 }
@@ -339,6 +398,11 @@ li:hover + .mega-box,
   top: 85px;
   opacity: 0;
   visibility: hidden;
+  @media (min-width: 1220px) {
+    width: fit-content;
+    right: auto;
+    left: auto;
+  }
 }
 .mega-box .content {
   background: #ffffff;
@@ -477,10 +541,12 @@ li:hover + .mega-box,
     padding: 0 50px;
     box-sizing: border-box;
   }
-  #showDrop:checked ~ .drop-menu {
+  #showDrop:checked ~ .drop-menu,
+  #showDrop-external:checked ~ .drop-menu {
     max-height: 100%;
   }
-  #showDrop:checked ~ label {
+  #showDrop:checked ~ label,
+  #showDrop-external:checked ~ label {
     background-image: url(../../icon-chev-down.svg);
   }
 

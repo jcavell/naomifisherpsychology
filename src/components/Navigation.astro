@@ -24,13 +24,12 @@ const { active } = Astro.props;
         <li>
           <a
             href="/courses"
-            class={`desktop-item ${active === "courses" ? "active" : "inactive"}`}
+            class={`desktop-item add-dropdown ${active === "courses" ? "active" : "inactive"}`}
           >
             Courses
           </a>
           <input type="checkbox" id="showDrop" />
           <label for="showDrop" class="nav-dropdown mobile-item">
-            <img src="src/styles/icon-chev-right.svg" alt="Expand Courses" />
             Courses
           </label>
           <ul class="drop-menu">
@@ -52,6 +51,7 @@ const { active } = Astro.props;
         <!--<a href="/media" class={active === "media" ? "active" : "inactive"}>-->
         <!--  <li>Media</li>-->
         <!--</a>-->
+
         <li>
           <a
             href="https://www.emdrtraininguk.co.uk/"
@@ -60,7 +60,26 @@ const { active } = Astro.props;
           >
             EMDR Training
           </a>
+          <input type="checkbox" id="showDrop-external" />
+          <label for="showDrop-external" class="nav-dropdown mobile-item">
+            EMDR Training
+          </label>
+          <ul class="drop-menu external-dropdown">
+            <li><h5>Professional Training</h5></li>
+            <li><a href="#">EMDR Training</a></li>
+            <li><p>Opens in our professional training website.</p></li>
+          </ul>
         </li>
+
+        <!-- <li>
+          <a
+            href="https://www.emdrtraininguk.co.uk/"
+            target="_blank"
+            class={active === "training" ? "active" : "inactive"}
+          >
+            EMDR Training
+          </a>
+        </li> -->
         <li>
           <a href="/about" class={active === "about" ? "active" : "inactive"}>
             About Us
@@ -69,7 +88,7 @@ const { active } = Astro.props;
         <li>
           <a
             href="/blog"
-            class={`desktop-item ${active === "blog" ? "active" : "inactive"}`}
+            class={`desktop-item add-dropdown not-[]:${active === "blog" ? "active" : "inactive"}`}
           >
             Substack</a
           >
