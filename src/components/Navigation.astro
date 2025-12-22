@@ -1,6 +1,8 @@
 ---
 import WebinarsDropDown from "./navigation/WebinarsDropDown.astro";
-
+import ExternalDropdown from "./navigation/ExternalDropdown.astro";
+import ResourcesDropdown from "./navigation/ResourcesDropdown.astro";
+import CoursesDropdown from "./navigation/CoursesDropdown.astro";
 const { active } = Astro.props;
 ---
 
@@ -15,151 +17,20 @@ const { active } = Astro.props;
             Home
           </a>
         </li>
-
-        <li>
-          <a
-            href="/courses"
-            class={`desktop-item add-dropdown ${active === "courses" ? "active" : "inactive"}`}
-          >
-            Free Resources
-          </a>
-          <input type="checkbox" id="showDrop" />
-          <label for="showDrop" class="nav-dropdown mobile-item">
-            Free Resources
-          </label>
-          <ul class="drop-menu">
-            <li><h5>Courses Available</h5></li>
-            <li>
-              <a
-                href="/courses"
-                class={`add-dropdown ${active === "courses" ? "active" : "inactive"}`}
-              >
-                Courses
-              </a>
-            </li>
-            <li><a href="#">Course Link 1</a></li>
-            <li><a href="#">Course Link 2</a></li>
-            <li><a href="#">Course Link 3</a></li>
-            <li><a href="#">Course Link 4</a></li>
-            <li>
-              <a href="#" class="free-courses">View all free courses</a>
-            </li>
-          </ul>
-        </li>
-
+        <ResourcesDropdown />
         <WebinarsDropDown />
-
+        <CoursesDropdown />
+        <ExternalDropdown />
         <li>
           <a href="/books" class={active === "books" ? "active" : "inactive"}>
             Books
           </a>
         </li>
-
         <li>
           <a href="/about" class={active === "about" ? "active" : "inactive"}>
-            About Us
+            About
           </a>
         </li>
-
-        <li>
-          <a
-            href="https://www.emdrtraininguk.co.uk/"
-            target="_blank"
-            class={`desktop-item add-dropdown ${active === "training" ? "active" : "inactive"}`}
-          >
-            EMDR Training
-          </a>
-          <input type="checkbox" id="showDrop-external" />
-          <label for="showDrop-external" class="nav-dropdown mobile-item">
-            EMDR Training
-          </label>
-          <ul class="drop-menu external-dropdown">
-            <li><h5>Professional Training</h5></li>
-            <li><a href="#">EMDR Training</a></li>
-            <li><p>Opens in our professional training website.</p></li>
-          </ul>
-        </li>
-
-        <li>
-          <a
-            href="/blog"
-            class={`desktop-item add-dropdown not-[]:${active === "courses" ? "active" : "inactive"}`}
-          >
-            Recorded Courses</a
-          >
-          <input type="checkbox" id="showMega" />
-          <label for="showMega" class="mobile-item">Recorded Courses</label>
-
-          <div class="mega-box">
-            <div class="content">
-              <h1>COURSE TOPICS</h1>
-
-              <div class="row">
-                <header>Autism</header>
-              </div>
-              <div class="row">
-                <header>Demand Avoidance</header>
-              </div>
-              <div class="row">
-                <header>School and Education</header>
-                <ul class="mega-links">
-                  <li><a href="#">At School</a></li>
-                  <li><a href="#">Not at School</a></li>
-                  <li><a href="#">SEN</a></li>
-                  <li><a href="#">EHCPs</a></li>
-                </ul>
-              </div>
-              <div class="row">
-                <header>Mental Health and Behaviour</header>
-                <ul class="mega-links">
-                  <li><a href="#">Anxiety</a></li>
-                  <li><a href="#">Burnout</a></li>
-                  <li><a href="#">Trauma</a></li>
-                  <li><a href="#">OCD</a></li>
-                  <li><a href="#">Screens</a></li>
-                </ul>
-              </div>
-              <div class="row">
-                <header>For Teens</header>
-              </div>
-            </div>
-          </div>
-        </li>
-        <div class="mega-box">
-          <div class="content">
-            <h1>COURSE TOPICS</h1>
-
-            <div class="row">
-              <header>Autism</header>
-            </div>
-            <div class="row">
-              <header>Demand Avoidance</header>
-            </div>
-            <div class="row">
-              <header>School and Education</header>
-              <ul class="mega-links">
-                <li><a href="#">At School</a></li>
-                <li><a href="#">Not at School</a></li>
-                <li><a href="#">SEN</a></li>
-                <li><a href="#">EHCPs</a></li>
-              </ul>
-            </div>
-            <div class="row">
-              <header>Mental Health and Behaviour</header>
-              <ul class="mega-links">
-                <li><a href="#">Anxiety</a></li>
-                <li><a href="#">Burnout</a></li>
-                <li><a href="#">Trauma</a></li>
-                <li><a href="#">OCD</a></li>
-                <li><a href="#">Screens</a></li>
-              </ul>
-            </div>
-            <div class="row">
-              <header>For Teens</header>
-            </div>
-          </div>
-        </div>
-
         <li class="mobile-item">
           <a
             class="button-link primary"

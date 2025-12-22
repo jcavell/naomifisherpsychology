@@ -3,10 +3,10 @@ const { active } = Astro.props;
 ---
 
 <!-- Awaiting prop assignment ahead of full-component rendering -->
-<li>
+<li class="has-dropdown">
   <a
     href="/webinars"
-    class={`desktop-item add-dropdown ${active === "webinars" ? "active" : "inactive"}`}
+    class={`desktop-item  ${active === "webinars" ? "active" : "inactive"}`}
   >
     Live Webinars
   </a>

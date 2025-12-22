@@ -1,0 +1,50 @@
+---
+const { active } = Astro.props;
+---
+
+<!-- Awaiting prop assignment ahead of full-component rendering -->
+<li class="has-dropdown">
+  <a
+    href="/blog"
+    class={`desktop-item  ${active === "courses" ? "active" : "inactive"}`}
+  >
+    Recorded Courses</a
+  >
+  <input type="checkbox" id="showMega" />
+  <label for="showMega" class="mobile-item">Recorded Courses</label>
+
+  <div class="mega-box">
+    <div class="content">
+      <h1>COURSE TOPICS</h1>
+
+      <div class="row">
+        <header>Autism</header>
+      </div>
+      <div class="row">
+        <header>Demand Avoidance</header>
+      </div>
+      <div class="row">
+        <header>School and Education</header>
+        <ul class="mega-links">
+          <li><a href="#">At School</a></li>
+          <li><a href="#">Not at School</a></li>
+          <li><a href="#">SEN</a></li>
+          <li><a href="#">EHCPs</a></li>
+        </ul>
+      </div>
+      <div class="row">
+        <header>Mental Health and Behaviour</header>
+        <ul class="mega-links">
+          <li><a href="#">Anxiety</a></li>
+          <li><a href="#">Burnout</a></li>
+          <li><a href="#">Trauma</a></li>
+          <li><a href="#">OCD</a></li>
+          <li><a href="#">Screens</a></li>
+        </ul>
+      </div>
+      <div class="row">
+        <header>For Teens</header>
+      </div>
+    </div>
+  </div>
+</li>

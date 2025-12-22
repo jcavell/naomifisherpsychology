@@ -1,12 +1,26 @@
-.drop-menu.webinar-dropdown {
+#menu ul.drop-menu.webinar-dropdown {
   min-width: 415px;
-  padding: 16px;
+  padding: 8px 16px;
   text-align: left;
+  @media (max-width: 1200px) {
+    padding: 0 0 0 20px;
+    min-width: unset;
+    width: 100%;
+  }
   > li {
     padding: 0;
     width: 100%;
+    @media (min-width: 1200px) {
+      line-height: unset;
+    }
     h5 {
       width: 100%;
+      @media (max-width: 1200px) {
+        box-sizing: border-box;
+        margin-left: 28px;
+        margin-bottom: 16px;
+        padding-bottom: 8px;
+      }
     }
   }
   .webinars-list {
@@ -48,7 +62,7 @@
           display: flex;
           flex-direction: column;
           flex: 1; /* Fills remaining space */
-          padding: 6px;
+          padding: 6px 6px 6px 16px;
           align-items: flex-start;
           justify-content: center;
           h5 {
@@ -75,6 +89,11 @@
             bottom: 0;
             transition: transform 0.2s;
             right: 0;
+            @media (max-width: 1200px) {
+              position: relative;
+              bottom: unset;
+              right: unset;
+            }
             &:hover {
               transform: scale(1.025);
             }
@@ -84,6 +103,7 @@
               width: 16px;
               height: 16px;
               margin-left: auto;
+              position: relative;
             }
           }
         }

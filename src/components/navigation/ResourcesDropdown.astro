@@ -1,0 +1,35 @@
+---
+const { active } = Astro.props;
+---
+
+<!-- Awaiting prop assignment ahead of full-component rendering -->
+<li class="has-dropdown">
+  <a
+    href="/courses"
+    class={`desktop-item ${active === "courses" ? "active" : "inactive"}`}
+  >
+    Free Resources
+  </a>
+  <input type="checkbox" id="showDrop" />
+  <label for="showDrop" class="nav-dropdown mobile-item">
+    Free Resources
+  </label>
+  <ul class="drop-menu">
+    <li><h5>Courses Available</h5></li>
+    <li>
+      <a
+        href="/courses"
+        class={`add-dropdown ${active === "courses" ? "active" : "inactive"}`}
+      >
+        Courses
+      </a>
+    </li>
+    <li><a href="#">Course Link 1</a></li>
+    <li><a href="#">Course Link 2</a></li>
+    <li><a href="#">Course Link 3</a></li>
+    <li><a href="#">Course Link 4</a></li>
+    <li>
+      <a href="#" class="free-courses">View all free courses</a>
+    </li>
+  </ul>
+</li>

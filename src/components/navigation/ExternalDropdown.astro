@@ -3,11 +3,11 @@ const { active } = Astro.props;
 ---
 
 <!-- Awaiting prop assignment ahead of full-component rendering -->
-<li>
+<li class="has-dropdown">
   <a
     href="https://www.emdrtraininguk.co.uk/"
     target="_blank"
-    class={`desktop-item add-dropdown ${active === "training" ? "active" : "inactive"}`}
+    class={`desktop-item ${active === "training" ? "active" : "inactive"}`}
   >
     EMDR Training
   </a>
