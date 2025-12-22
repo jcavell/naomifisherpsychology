@@ -1,4 +1,6 @@
 ---
+import WebinarsDropDown from "./navigation/WebinarsDropDown.astro";
+
 const { active } = Astro.props;
 ---
 
@@ -13,27 +15,28 @@ const { active } = Astro.props;
             Home
           </a>
         </li>
-        <li>
-          <a
-            href="/webinars"
-            class={active === "webinars" ? "active" : "inactive"}
-          >
-            Webinars
-          </a>
-        </li>
+
         <li>
           <a
             href="/courses"
             class={`desktop-item add-dropdown ${active === "courses" ? "active" : "inactive"}`}
           >
-            Courses
+            Free Resources
           </a>
           <input type="checkbox" id="showDrop" />
           <label for="showDrop" class="nav-dropdown mobile-item">
-            Courses
+            Free Resources
           </label>
           <ul class="drop-menu">
             <li><h5>Courses Available</h5></li>
+            <li>
+              <a
+                href="/courses"
+                class={`add-dropdown ${active === "courses" ? "active" : "inactive"}`}
+              >
+                Courses
+              </a>
+            </li>
             <li><a href="#">Course Link 1</a></li>
             <li><a href="#">Course Link 2</a></li>
             <li><a href="#">Course Link 3</a></li>
@@ -43,20 +46,26 @@ const { active } = Astro.props;
             </li>
           </ul>
         </li>
+
+        <WebinarsDropDown />
+
         <li>
           <a href="/books" class={active === "books" ? "active" : "inactive"}>
             Books
           </a>
         </li>
-        <!--<a href="/media" class={active === "media" ? "active" : "inactive"}>-->
-        <!--  <li>Media</li>-->
-        <!--</a>-->
+
+        <li>
+          <a href="/about" class={active === "about" ? "active" : "inactive"}>
+            About Us
+          </a>
+        </li>
 
         <li>
           <a
             href="https://www.emdrtraininguk.co.uk/"
             target="_blank"
-            class={active === "training" ? "active" : "inactive"}
+            class={`desktop-item add-dropdown ${active === "training" ? "active" : "inactive"}`}
           >
             EMDR Training
           </a>
@@ -71,29 +80,15 @@ const { active } = Astro.props;
           </ul>
         </li>
 
-        <!-- <li>
-          <a
-            href="https://www.emdrtraininguk.co.uk/"
-            target="_blank"
-            class={active === "training" ? "active" : "inactive"}
-          >
-            EMDR Training
-          </a>
-        </li> -->
-        <li>
-          <a href="/about" class={active === "about" ? "active" : "inactive"}>
-            About Us
-          </a>
-        </li>
         <li>
           <a
             href="/blog"
-            class={`desktop-item add-dropdown not-[]:${active === "blog" ? "active" : "inactive"}`}
+            class={`desktop-item add-dropdown not-[]:${active === "courses" ? "active" : "inactive"}`}
           >
-            Substack</a
+            Recorded Courses</a
           >
           <input type="checkbox" id="showMega" />
-          <label for="showMega" class="mobile-item">Courses</label>
+          <label for="showMega" class="mobile-item">Recorded Courses</label>
 
           <div class="mega-box">
             <div class="content">
@@ -164,14 +159,7 @@ const { active } = Astro.props;
             </div>
           </div>
         </div>
-        <li>
-          <a
-            href="/contact"
-            class={active === "contact" ? "active" : "inactive"}
-          >
-            Contact
-          </a>
-        </li>
+
         <li class="mobile-item">
           <a
             class="button-link primary"

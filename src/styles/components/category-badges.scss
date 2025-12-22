@@ -7,6 +7,9 @@
   flex-grow: 1;
   ul {
     list-style: none;
+    @media (max-width: 1200px) {
+      margin-left: 0;
+    }
     > li {
       @include mix.special-text;
       margin: 5px;
@@ -26,4 +29,7 @@
 }
 .wrapper:has(.category-badges-wrapper) {
   margin-top: 0;
+  @media (max-width: 1200px) {
+    margin-top: 8px;
+  }
 }

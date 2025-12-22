@@ -315,6 +315,8 @@ nav {
   @media (min-width: 1200px) {
     padding-bottom: 16px;
     padding-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
   }
 }
 li:hover .drop-menu,
@@ -332,6 +334,9 @@ li:hover + .mega-box,
 }
 .drop-menu {
   li {
+    @media (min-width: 1200px) {
+      flex: 1 1 100%;
+    }
     h5 {
       text-transform: uppercase;
       @include mix.special-text;
@@ -542,11 +547,13 @@ li:hover + .mega-box,
     box-sizing: border-box;
   }
   #showDrop:checked ~ .drop-menu,
-  #showDrop-external:checked ~ .drop-menu {
+  #showDrop-external:checked ~ .drop-menu,
+  #showDrop-webinars:checked ~ .drop-menu {
     max-height: 100%;
   }
   #showDrop:checked ~ label,
-  #showDrop-external:checked ~ label {
+  #showDrop-external:checked ~ label,
+  #showDrop-webinars:checked ~ label {
     background-image: url(../../icon-chev-down.svg);
   }
 

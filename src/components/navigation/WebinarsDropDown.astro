@@ -1,0 +1,85 @@
+---
+const { active } = Astro.props;
+---
+
+<!-- Awaiting prop assignment ahead of full-component rendering -->
+<li>
+  <a
+    href="/webinars"
+    class={`desktop-item add-dropdown ${active === "webinars" ? "active" : "inactive"}`}
+  >
+    Live Webinars
+  </a>
+  <input type="checkbox" id="showDrop-webinars" />
+  <label for="showDrop-webinars" class="nav-dropdown mobile-item">
+    Live Webinars
+  </label>
+  <ul class="drop-menu webinar-dropdown">
+    <li><h5>Webinars Happening Soon</h5></li>
+    <li>
+      <ul class="webinars-list">
+        <li>
+          <div class="webinar-card">
+            <div class="webinar-img-wrapper desktop-item">
+              <img
+                src="public/images/webinars/autistic_teen_transitions_webinar.png"
+                alt="Webinar Thumbnail"
+              />
+            </div>
+            <div class="webinar-content">
+              <h5>Helping Your Autistic Child with Transition</h5>
+              <p>Wed, 8 Oct 2025 12:00 - 13:30 BST</p>
+              <a href="#"
+                ><img src="src/styles/icon-chev-right.svg" alt="Read more" /></a
+              >
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="webinar-card">
+            <div class="webinar-img-wrapper desktop-item">
+              <img
+                src="public/images/webinars/demand_avoidance_webinar.png"
+                alt="Webinar Thumbnail"
+              />
+            </div>
+            <div class="webinar-content">
+              <h5>Helping Your Autistic Child with Anxiety</h5>
+              <p>Wed, 8 Oct 2025 12:00 - 13:30 BST</p>
+              <a href="#"
+                ><img src="src/styles/icon-chev-right.svg" alt="Read more" /></a
+              >
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="webinar-card">
+            <div class="webinar-img-wrapper desktop-item">
+              <img
+                src="public/images/webinars/transistions_webinar.png"
+                alt="Webinar Thumbnail"
+              />
+            </div>
+            <div class="webinar-content">
+              <h5>Understanding and Helping Your Demand Avoidant Child</h5>
+              <p>Wed, 8 Oct 2025 12:00 - 13:30 BST</p>
+              <a href="#"
+                ><img src="src/styles/icon-chev-right.svg" alt="Read more" /></a
+              >
+            </div>
+          </div>
+        </li>
+      </ul>
+      <li>
+        <a
+          href="/webinars"
+          class={active === "webinars" ? "active" : "inactive"}
+        >
+          View all Webinars
+        </a>
+      </li>
+    </li>
+  </ul>
+</li>
