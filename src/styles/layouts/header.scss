@@ -150,11 +150,11 @@ header {
   .basket-button {
     display: inline-block;
     text-indent: -9999px;
-    width: 70px;
+    width: 50px;
     height: 40px;
     transition: transform ease-in 0.2s;
     text-align: left;
-    padding-right: 10px;
+    padding: 0 10px;
     margin-right: 6px;
     border: none;
     background: none;
@@ -167,6 +167,9 @@ header {
     letter-spacing: 0.03em;
     text-transform: uppercase;
     font-size: 1em;
+    @media (max-width: 1200px) {
+      border-left: 1px solid var(--function-dark-9);
+    }
   }
 
   .basket-button:hover {

@@ -11,7 +11,10 @@ const { active } = Astro.props;
     Live Webinars
   </a>
   <input type="checkbox" id="showDrop-webinars" />
-  <label for="showDrop-webinars" class="nav-dropdown mobile-item">
+  <label
+    for="showDrop-webinars"
+    class={`nav-dropdown mobile-item ${active === "webinars" ? "active" : "inactive"}`}
+  >
     Live Webinars
   </label>
   <ul class="drop-menu webinar-dropdown">

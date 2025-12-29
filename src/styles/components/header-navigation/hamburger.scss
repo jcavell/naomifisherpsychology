@@ -37,8 +37,8 @@
 .hamburger-box {
   display: inline-block;
   position: relative;
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
 }
 
 .hamburger-inner {
@@ -50,7 +50,7 @@
 .hamburger-inner,
 .hamburger-inner::before,
 .hamburger-inner::after {
-  width: 30px;
+  width: 20px;
   height: 3px;
   background-color: black;
   border-radius: 0px;

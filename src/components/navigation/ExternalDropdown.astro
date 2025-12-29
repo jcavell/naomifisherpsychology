@@ -12,7 +12,10 @@ const { active } = Astro.props;
     EMDR Training
   </a>
   <input type="checkbox" id="showDrop-external" />
-  <label for="showDrop-external" class="nav-dropdown mobile-item">
+  <label
+    for="showDrop-external"
+    class={`nav-dropdown mobile-item ${active === "training" ? "active" : "inactive"}`}
+  >
     EMDR Training
   </label>
   <ul class="drop-menu external-dropdown">

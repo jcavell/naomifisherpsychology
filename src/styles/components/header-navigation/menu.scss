@@ -37,7 +37,7 @@
             border-bottom: none;
           }
           &.active {
-            border-left: 16px solid #387569;
+            border-left: 16px solid var(--brand-primary);
           }
         }
 
@@ -52,7 +52,7 @@
           padding: 0.7em 0 0.7em 0;
           border-left: none;
           border-top: none;
-          color: #387569;
+          color: var(--brand-primary);
           font-size: 1rem;
         }
       }
@@ -70,7 +70,7 @@
     top: auto;
     left: auto;
     backdrop-filter: none;
-    border: 2px solid #387569;
+    border: 2px solid var(--brand-primary);
     border-width: 2px 0;
   }
 }
@@ -146,7 +146,7 @@ nav {
         border-bottom: 5px solid #9fbeb6;
       }
       &.active {
-        border-bottom: 5px solid #387569;
+        border-bottom: 5px solid var(--brand-primary);
       }
       &.add-dropdown {
         &::after {
@@ -365,7 +365,7 @@ li:hover + .mega-box,
       @include mix.special-text;
       font-weight: 500;
       font-size: 1rem;
-      border-bottom: 3px solid #387569;
+      border-bottom: 3px solid var(--brand-primary);
       padding-bottom: 8px;
       margin-bottom: 8px;
       @media (min-width: 1200px) {
@@ -378,7 +378,7 @@ li:hover + .mega-box,
       display: block;
       padding: 0 0 0.7em 0;
       border-radius: 0px;
-      color: #387569;
+      color: var(--brand-primary);
       font-weight: 400;
       font-size: 1rem;
       height: 24px;
@@ -456,7 +456,7 @@ li:hover + .mega-box,
     @include mix.special-text;
     font-weight: 400;
     padding-bottom: 12px;
-    border-bottom: 3px solid #387569;
+    border-bottom: 3px solid var(--brand-primary);
   }
   > *:not(:first-child) {
     flex-basis: 10%; /* The 'ideal' width before it wraps */
@@ -471,7 +471,7 @@ li:hover + .mega-box,
   font-weight: 400;
 }
 .content .row header {
-  color: #387569;
+  color: var(--brand-primary);
   font-size: 16px;
   font-weight: 500;
   padding: 12px 0;
@@ -491,7 +491,7 @@ li:hover + .mega-box,
 
 #menu .row .mega-links li a {
   padding: 0px;
-  color: #387569;
+  color: var(--brand-primary);
   font-size: 16px;
   font-weight: 400;
   display: block;
@@ -504,7 +504,7 @@ li:hover + .mega-box,
   }
 }
 .row .mega-links li a:hover {
-  color: #387569;
+  color: var(--brand-primary);
   text-decoration: underline;
 }
 
@@ -602,6 +602,12 @@ li:hover + .mega-box,
   }
   .nav-links .mobile-item {
     display: block;
+    &.course-login {
+      margin-left: 45px;
+      .button-link {
+        text-align: center;
+      }
+    }
   }
   .nav-links .mobile-item:hover {
     // background: #3a3b3c;

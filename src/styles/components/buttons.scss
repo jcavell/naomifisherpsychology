@@ -16,8 +16,8 @@
 
   &.primary {
     background-color: #ffffff;
-    border-color: #387569;
-    color: #387569;
+    border-color: var(--brand-primary);
+    color: var(--brand-primary);
     &:hover {
       background-color: #9fbeb6;
       border-color: #9fbeb6;
@@ -30,8 +30,8 @@
   margin: 0 auto;
   margin-bottom: 5px;
   padding: 4px 8px;
-  border: 2px solid #387569;
-  color: #387569;
+  border: 2px solid var(--brand-primary);
+  color: var(--brand-primary);
   margin-top: 20px;
   font-size: 0.75rem;
   font-weight: normal;

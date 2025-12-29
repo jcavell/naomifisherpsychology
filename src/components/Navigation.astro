@@ -17,10 +17,10 @@ const { active } = Astro.props;
             Home
           </a>
         </li>
-        <ResourcesDropdown />
-        <WebinarsDropDown />
-        <CoursesDropdown />
-        <ExternalDropdown />
+        <ResourcesDropdown active={active} />
+        <WebinarsDropDown active={active} />
+        <CoursesDropdown active={active} />
+        <ExternalDropdown active={active} />
         <li>
           <a href="/books" class={active === "books" ? "active" : "inactive"}>
             Books
@@ -31,7 +31,7 @@ const { active } = Astro.props;
             About
           </a>
         </li>
-        <li class="mobile-item">
+        <li class="mobile-item course-login">
           <a
             class="button-link primary"
             href="https://courses.naomifisher.co.uk/login">Course login</a
