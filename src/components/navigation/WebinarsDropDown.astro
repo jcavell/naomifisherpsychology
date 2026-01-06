@@ -18,7 +18,7 @@ const { active } = Astro.props;
     Live Webinars
   </label>
   <ul class="drop-menu webinar-dropdown">
-    <li><h5>Webinars Happening Soon</h5></li>
+    <li class="desktop-item"><h5>Webinars Happening Soon</h5></li>
     <li>
       <ul class="webinars-list">
         <li>
@@ -32,6 +32,11 @@ const { active } = Astro.props;
             <div class="webinar-content">
               <h5>Helping Your Autistic Child with Transition</h5>
               <p>Wed, 8 Oct 2025 12:00 - 13:30 BST</p>
+              <a href="#"
+                ><img src="src/styles/icon-chev-right.svg" alt="Read more" /></a
+              >
+            </div>
+            <div class="webinar-link mobile-item">
               <a href="#"
                 ><img src="src/styles/icon-chev-right.svg" alt="Read more" /></a
               >
@@ -54,6 +59,11 @@ const { active } = Astro.props;
                 ><img src="src/styles/icon-chev-right.svg" alt="Read more" /></a
               >
             </div>
+            <div class="webinar-link mobile-item">
+              <a href="#"
+                ><img src="src/styles/icon-chev-right.svg" alt="Read more" /></a
+              >
+            </div>
           </div>
         </li>
 
@@ -72,13 +82,18 @@ const { active } = Astro.props;
                 ><img src="src/styles/icon-chev-right.svg" alt="Read more" /></a
               >
             </div>
+            <div class="webinar-link mobile-item">
+              <a href="#"
+                ><img src="src/styles/icon-chev-right.svg" alt="Read more" /></a
+              >
+            </div>
           </div>
         </li>
       </ul>
       <li>
         <a
           href="/webinars"
-          class={active === "webinars" ? "active" : "inactive"}
+          class={`category-home-link ${active === "webinars" ? "active" : "inactive"}`}
         >
           View all Webinars
         </a>

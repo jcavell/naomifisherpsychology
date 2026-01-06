@@ -5,30 +5,30 @@ const { active } = Astro.props;
 <!-- Awaiting prop assignment ahead of full-component rendering -->
 <li class="has-dropdown">
   <a
-    href="/blog"
+    href="/courses"
     class={`desktop-item  ${active === "courses" ? "active" : "inactive"}`}
   >
-    Recorded Courses</a
+    On-demand Courses</a
   >
   <input type="checkbox" id="showMega" />
   <label
     for="showMega"
     class={`nav-dropdown mobile-item ${active === "courses" ? "active" : "inactive"}`}
-    >Recorded Courses</label
+    >On-demand Courses</label
   >
 
   <div class="mega-box">
     <div class="content">
-      <h1>COURSE TOPICS</h1>
+      <h1 class="desktop-item">COURSE TOPICS</h1>
 
       <div class="row">
-        <header>Autism</header>
+        <header><a href="#">Autism</a></header>
       </div>
       <div class="row">
-        <header>Demand Avoidance</header>
+        <header><a href="#">Demand Avoidance</a></header>
       </div>
       <div class="row">
-        <header>School and Education</header>
+        <header><a href="#">School and Education</a></header>
         <ul class="mega-links">
           <li><a href="#">At School</a></li>
           <li><a href="#">Not at School</a></li>
@@ -37,7 +37,7 @@ const { active } = Astro.props;
         </ul>
       </div>
       <div class="row">
-        <header>Mental Health and Behaviour</header>
+        <header><a href="#">Mental Health and Behaviour</a></header>
         <ul class="mega-links">
           <li><a href="#">Anxiety</a></li>
           <li><a href="#">Burnout</a></li>
@@ -46,8 +46,13 @@ const { active } = Astro.props;
           <li><a href="#">Screens</a></li>
         </ul>
       </div>
-      <div class="row">
-        <header>For Teens</header>
+      <div class="home-link-row">
+        <a
+          href="/courses"
+          class={`category-home-link ${active === "courses" ? "active" : "inactive"}`}
+        >
+          View all Courses
+        </a>
       </div>
     </div>
   </div>

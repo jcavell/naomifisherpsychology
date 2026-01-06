@@ -5,7 +5,7 @@ header {
   margin-right: auto;
   position: relative;
   z-index: 1;
-  img {
+  > img {
     display: block;
     height: 25px;
     padding-top: 0;
@@ -264,5 +264,29 @@ footer .filter-menu-button {
   }
   .filter-menu-open & {
     background-image: url(../icon-search-white-close.svg);
+  }
+}
+
+#menu ul li .drop-menu li a.category-home-link,
+a.category-home-link {
+  text-decoration: underline;
+  color: var(--function-dark-9);
+  font-weight: 400;
+  font-size: 16px;
+  text-transform: none;
+  font-family: "Oswald", sans-serif;
+  text-align: left;
+}
+.mega-box .content > .home-link-row {
+  flex-basis: 100%;
+  text-align: left;
+  margin: 0;
+  a.category-home-link {
+    margin-bottom: 20px;
+    display: inline-block;
+    margin-top: 20px;
+    @media (min-width: 1200px) {
+      margin: 0;
+    }
   }
 }
