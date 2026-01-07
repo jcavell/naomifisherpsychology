@@ -659,3 +659,19 @@ li:hover + .mega-box,
 nav input {
   display: none;
 }
+
+li.external-link {
+  a:after {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    content: "";
+    background-position: 0 6px;
+    background-size: auto 12px;
+    background-repeat: no-repeat;
+    background-image: url(../../icon-external-link-green.svg);
+    @media (min-width: 1200px) {
+      background-position: 5px 3px;
+    }
+  }
+}
