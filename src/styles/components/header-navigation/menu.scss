@@ -55,6 +55,9 @@
           color: var(--brand-primary);
           font-size: 1rem;
         }
+        &:first-of-type a {
+          border-top-width: 0;
+        }
       }
     }
     .menu-open & {
@@ -83,7 +86,7 @@ nav {
     box-sizing: border-box;
     width: 100%;
     padding-left: 0;
-    padding-right: 20px;
+    padding-right: 0;
   }
   @media (min-width: 1200px) {
     margin-left: auto;
@@ -495,12 +498,14 @@ li:hover + .mega-box,
   font-size: 16px;
   font-weight: 400;
   display: block;
-  height: 40px;
+  text-align: left;
+  margin-bottom: 16px;
   @media (max-width: 1200px) {
+    margin-bottom: 0;
+    height: 40px;
     padding: 0;
     padding-left: 8px;
     border: 0;
-    color: #000000;
   }
 }
 .row .mega-links li a:hover {

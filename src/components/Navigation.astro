@@ -17,18 +17,17 @@ const { active } = Astro.props;
             Home
           </a>
         </li>
-        <ResourcesDropdown active={active} />
+        <!-- <ResourcesDropdown active={active} /> -->
         <WebinarsDropDown active={active} />
         <CoursesDropdown active={active} />
-        <ExternalDropdown active={active} />
         <li>
           <a href="/books" class={active === "books" ? "active" : "inactive"}>
             Books
           </a>
         </li>
 
-        <li class="external-link">
-          <a href="https://naomicfisher.substack.com/" target="_blank">
+        <li>
+          <a href="/blog" class={active === "blog" ? "active" : "inactive"}>
             Substack
           </a>
         </li>
@@ -38,6 +37,8 @@ const { active } = Astro.props;
             About
           </a>
         </li>
+
+        <ExternalDropdown active={active} />
         <li class="mobile-item course-login">
           <a
             class="button-link primary"
