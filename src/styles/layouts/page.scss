@@ -46,8 +46,7 @@
     flex-direction: row;
     margin: 0;
     width: 100%;
-    .tag-page &,
-    .category-courses & {
+    .tag-page & {
       order: -1;
     }
   }

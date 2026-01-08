@@ -8,8 +8,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import CoursesList from "../components/course/CoursesList.astro";
 
 import StaticImage from "../components/StaticImage.astro";
-import image from "../images/static/naomi-in-stables.jpg";
 
+import homeImage from "../images/static/courses-home.png";
 const featuredCourses1 = await getFeaturedCourses(0, 4);
 const featuredCourses2 = await getFeaturedCourses(2, 4);
 
@@ -22,66 +22,81 @@ const metaDescription =
   pageTitle="Courses"
   metaDescription={metaDescription}
 >
-  <div class="category-badges-wrapper">
-    <ul>
-      <li>Autism</li>
-      <li>Demand Avoidance</li>
-      <li>School and Education</li>
-    </ul>
+  <div class="breadcrumb-container">
+    <!-- Breadcrumb Navigation -->
+    <div aria-label="Breadcrumb" class="breadcrumb">
+      <ol>
+        <li><a href="/">Courses</a></li>
+        <li><a href="/blog">Course Sub</a></li>
+        <li aria-current="page">Page Name</li>
+      </ol>
+    </div>
+
+    <div class="category-badges-wrapper">
+      <ul>
+        <li><a href="#">Autism</a></li>
+        <li><a href="#">Demand Avoidance</a></li>
+        <li><a href="#">School and Education</a></li>
+      </ul>
+    </div>
   </div>
-  <div class="info-section-wrapper">
-    <div class="info-text">
-      <!--<h3>🔥 HALF PRICE SALE 🔥</h3>-->
-      <!--<p>Apply coupon <strong>WINTERANXIETY</strong></p>-->
-      <!--<p>Available to watch for 12 months after purchase</p>-->
-      <!--<h4>Sale ends midnight Sunday 🕛</h4>-->
+  <h1>Courses</h1>
+
+  <div class="page-intro-wrapper">
+    <div class="page-intro-static-image">
+      <StaticImage
+        image={homeImage}
+        alt="Digital Tablet, notebooks, headphones and a hand-written checklist on a desk"
+      />
+    </div>
+
+    <div class="page-intro-text">
       <p>
         We created our pre-recorded video courses when we discovered families
         were finding it hard to access high quality, affordable psychological
-        information which addressed their children’s needs.
-      </p>
-      <p>They are divided into manageable modules.</p>
-      <p>
+        information which addressed their children's needs.
+      </p><p>They are divided into manageable modules.</p><p>
         You or your child can watch them in your own time for 12 months after
         purchase.
       </p>
-    </div>
 
-    <div class="info-links">
-      <h3>CATEGORIES</h3>
-      <a href="/courses/categories/anxiety" class="filter-courses"> Anxiety </a>
-      <a href="/courses/categories/autism" class="filter-courses"> Autism </a>
-      <a href="/courses/categories/burnout" class="filter-courses"> Burnout </a>
-      <a href="/courses/categories/demand-avoidance" class="filter-courses">
-        Demand Avoidance
-      </a>
+      <!-- <div class="accordion-wrapper">
+        <button class="accordion no-title-accordion">Read More</button>
+        <div class="panel">
+          <p>
+            I then took a side step into academia and mental health for my next
+            book
+            <a href="/books/psychology-of-mental-health"
+              >Psychology of Mental Health</a
+            >. This is an undergraduate text book and encourages students to
+            take a step back from the dominant paradigms of mental health and
+            think critically.
+          </p>
 
-      <a href="/courses/categories/ehcps" class="filter-courses"> EHCPs </a>
+          <p>
+            Most recently, <a
+              href="/books/when-the-naughty-step-makes-things-worse"
+              >When the Naughty Step Makes Things Worse</a
+            > (with Eliza Fricker) addresses something which had bothered me for
+            a while – what happens when conventional parenting strategies result
+            in parent and child being locked into battles? Often parents are told
+            to just keep trying, and this book offers something different.
+          </p>
 
-      <a href="/courses/categories/low-demand-parenting" class="filter-courses">
-        Low Demand Parenting
-      </a>
-
-      <a href="/courses/categories/professionals" class="filter-courses">
-        for Professionals
-      </a>
-
-      <a href="/courses/categories/school" class="filter-courses"> School </a>
-      <a href="/courses/categories/sen" class="filter-courses"> SEN </a>
-
-      <a href="/courses/categories/teens" class="filter-courses">for Teens </a>
+          <p>
+            Parents would often ask me whether there was anything for their
+            teenagers when they had stopped going to school which didn’t assume
+            that going back to school was the only answer. I couldn’t find
+            anything, and so Eliza Fricker and I wrote one. <a
+              href="/books/the-teenagers-guide-to-burnout"
+              >The Teenager’s Guide to Burnout</a
+            > is an illustrated guide for teens on finding their way back to the
+            life they want to lead.
+          </p>
+        </div>
+      </div> -->
     </div>
   </div>
-
-  <!--<div class="page-intro-wrapper">-->
-  <!--  <div class="page-intro-static-image">-->
-  <!--    <StaticImage image={image} alt="Collage of all courses" />-->
-  <!--  </div>-->
-  <!--  <h2 class="feature-headline">-->
-  <!--    FEATURE HEADLINE-->
-  <!--  </h2>-->
-  <!--  <div class="page-intro-text"></div>-->
-  <!--</div>-->
 
   <h2 class="section-title">
     <span class="courses-section-title">Featured Courses</span>
@@ -92,3 +107,57 @@ const metaDescription =
     categoryName="Featured Courses"
   />
 </BaseLayout>
+<style lang="scss">
+  /*Styles to be moved into component files  */
+  /* Courses h1 */
+  h1 {
+    font-family: Oswald;
+    font-weight: 400;
+    font-size: 46px;
+    line-height: 56px;
+  }
+
+  .breadcrumb-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: sans-serif;
+    width: 100%;
+    .ol {
+      width: 100%;
+      align-items: flex-start;
+      text-align: left;
+    }
+  }
+
+  .breadcrumb ol {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 32px 0 0 0;
+    font-size: 14px;
+  }
+
+  .breadcrumb li {
+    font-family: Oswald;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    text-decoration: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    a,
+    a:visited,
+    a:active,
+    a:hover {
+      color: var(--brand-primary);
+      text-decoration: none;
+    }
+  }
+
+  .breadcrumb li + li::before {
+    content: "/";
+    padding: 0 8px;
+    color: #6c757d;
+  }
+</style>
