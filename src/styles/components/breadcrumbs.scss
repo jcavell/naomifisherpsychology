@@ -1,0 +1,42 @@
+.breadcrumb-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: sans-serif;
+  width: 100%;
+  padding-top: 32px;
+  .ol {
+    width: 100%;
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+.breadcrumb ol {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  li {
+    font-family: Oswald;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    text-decoration: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    a,
+    a:visited,
+    a:active,
+    a:hover {
+      color: var(--brand-primary);
+      text-decoration: none;
+    }
+    + li::before {
+      content: "/";
+      padding: 0 8px;
+      color: #6c757d;
+    }
+  }
+}

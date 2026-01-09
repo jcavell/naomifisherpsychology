@@ -12,7 +12,7 @@
     }
     > li {
       @include mix.special-text;
-      margin: 5px 0;
+      margin: 0;
       gap: 8px;
       display: inline-flex;
       a {
@@ -34,13 +34,18 @@
         color: var(--badge-link-dark);
         transition: background-color 0.2s;
         &:hover {
-          background-color: #e9ecef;
+          background-color: #9fbeb6;
+          color: #ffffff;
+        }
+        @media (max-width: 1200px) {
+          margin-top: 12px;
         }
       }
     }
   }
 }
-.wrapper:has(.category-badges-wrapper) {
+.wrapper:has(.category-badges-wrapper),
+.wrapper:has(.breadcrumb-container) {
   margin-top: 0;
   @media (max-width: 1200px) {
     margin-top: 8px;

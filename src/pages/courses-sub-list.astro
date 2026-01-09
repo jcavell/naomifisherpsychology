@@ -1,0 +1,66 @@
+---
+import {
+  getCoursesWithTagWithoutOtherTags,
+  getFeaturedCourses,
+  getLatestCourses,
+} from "../scripts/courses";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CoursesList from "../components/course/CoursesList.astro";
+
+import StaticImage from "../components/StaticImage.astro";
+
+import homeImage from "../images/static/courses-home.png";
+const featuredCourses1 = await getFeaturedCourses(0, 4);
+const featuredCourses2 = await getFeaturedCourses(2, 4);
+
+const metaDescription =
+  "Dr Naomi Fisher and Dr Abigail Fisher's courses on helping autistic children with anxiety, screen time, PDA and Demand Avoidance, burnout, What Neurodiversity is, problems at school and EHCP and professional courses on EMDR";
+---
+
+<BaseLayout
+  active="courses"
+  pageTitle="Courses"
+  metaDescription={metaDescription}
+>
+  <div class="breadcrumb-container">
+    <!-- Breadcrumb Navigation -->
+    <div aria-label="Breadcrumb" class="breadcrumb">
+      <ol>
+        <li><a href="/courses">Courses</a></li>
+        <li><a href="/courses-sub">Mental Health and Behavior</a></li>
+        <li aria-current="page">Burnout</li>
+      </ol>
+    </div>
+  </div>
+  <div>
+    <h1 class="course-page-titles">Burnout</h1>
+
+    <div class="page-intro-wrapper">
+      <div class="page-intro-static-image">
+        <StaticImage
+          image={homeImage}
+          alt="Digital Tablet, notebooks, headphones and a hand-written checklist on a desk"
+        />
+      </div>
+
+      <div class="page-intro-text">
+        <p>
+          We created our pre-recorded video courses when we discovered families
+          were finding it hard to access high quality, affordable psychological
+          information which addressed their children's needs.
+        </p><p>They are divided into manageable modules.</p><p>
+          You or your child can watch them in your own time for 12 months after
+          purchase.
+        </p>
+      </div>
+    </div>
+  </div>
+  <h2 class="section-title">
+    <span class="courses-section-title">Featured Courses</span>
+  </h2>
+  <CoursesList
+    courses={featuredCourses1}
+    categoryId="featured"
+    categoryName="Featured Courses"
+  />
+</BaseLayout>

@@ -372,3 +372,14 @@ h3:first-child,
 body.filter-menu-open .page-title {
   display: none;
 }
+
+h1.course-page-titles {
+  font-family: Oswald;
+  font-weight: 400;
+  font-size: 46px;
+  line-height: 56px;
+  margin-bottom: 24px;
+  @media (max-width: 1200px) {
+    margin-top: 24px;
+  }
+}
