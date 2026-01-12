@@ -287,6 +287,11 @@ a.category-home-link {
   text-transform: none;
   font-family: "Oswald", sans-serif;
   text-align: left;
+  &:hover,
+  &:visited,
+  &:active {
+    color: var(--function-dark-9);
+  }
 }
 .mega-box .content > .home-link-row {
   flex-basis: 100%;

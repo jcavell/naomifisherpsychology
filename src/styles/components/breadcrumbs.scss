@@ -5,6 +5,9 @@
   font-family: sans-serif;
   width: 100%;
   padding-top: 32px;
+  @media (max-width: 1200px) {
+    padding-top: 16px;
+  }
   .ol {
     width: 100%;
     align-items: flex-start;
