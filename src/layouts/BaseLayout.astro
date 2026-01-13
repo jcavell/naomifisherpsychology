@@ -105,6 +105,21 @@ const bodyClass = bodyClassName
   </head>
 
   <body class={bodyClass}>
+    <section class="sales-banner" role="region" aria-label="Limited time offer">
+      <div class="banner-content">
+        <span class="sales-banner-badge">Limited Offer</span>
+        <p class="banner-text">
+          Save <strong>40% OFF</strong> site-wide! Sale ends soon.
+        </p>
+        <a href="/shop" class="banner-cta">Shop Now</a>
+      </div>
+      <button
+        class="banner-close"
+        aria-label="Close banner"
+        onclick="this.parentElement.style.display='none'">&times;</button
+      >
+    </section>
+
     {
       !hideNav && (
         <button

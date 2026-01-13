@@ -43,6 +43,9 @@ const metaDescription =
   bodyClassName="home"
   metaDescription={metaDescription}
 >
+<div class="stacked-page-intro-wrapper">
+        <h1 class="">Welcome</h1>
+
   <div class="page-intro-wrapper">
     <div class="page-intro-image">
       <StaticImage image={homeImage} alt="Naomi by a stable" />
@@ -54,7 +57,6 @@ const metaDescription =
       <!--<p>Our <a href = "https://courses.naomifisher.co.uk">mental health courses</a> are half price until Sunday. </p>-->
 
 
-      <h1>WELCOME</h1>
       <p>Dr Naomi Fisher is a clinical psychologist, EMDR-Europe Accredited trainer and author.</p>  <p>Since she was a small child, she
         has asked the world why. Why do things have to be this way – and what would it be like if it were different?</p>
 
@@ -68,7 +70,7 @@ const metaDescription =
 
     </div>
   </div>
-
+</div>
   {
     webinars.length > 0 && (
       <a name="webinars" class="anchor">
@@ -96,7 +98,7 @@ const metaDescription =
   <!-- {console.log(webinars.length)}
   {webinars.length % 2 !== 0 && <Newsletter />} -->
 
-  <GenerateQuote client:load quotes={webinarQuotes} />
+  
 
   <a name="webinars" class="anchor">
     <h2 class="section-title">
@@ -109,7 +111,7 @@ const metaDescription =
     categoryId="featured"
     categoryName="Featured Courses"
   />
-
+<GenerateQuote client:load quotes={webinarQuotes} />
   <div class="page-full-width-text">
     <p>
       Our mini-courses cover topics including <a href="/courses/categories/anxiety">anxiety</a>, <a

@@ -35,10 +35,18 @@
   --brand-webinars: #8ebaaa;
   --brand-books: #dba941;
   --brand-primary: #387569;
+  --brand-light-bg: #d3e4e0;
 
   /* New functional colours */
   --function-dark-9: #161616;
   --badge-link-dark: #1b302b;
+
+  /* Sale Banner Colors */
+
+  --banner-bg: linear-gradient(90deg, #387569 25%, #d3e4e0 100%);
+  --banner-text: #ffffff;
+  --cta-bg: #000000;
+  --cta-text: #ffffff;
 }
 
 * {
@@ -317,4 +325,84 @@ body:has(.basket_overlay) {
   .hamburger {
     z-index: -1;
   }
+}
+
+.sales-banner {
+  position: fixed; /* Pins to top during scroll */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: var(--banner-bg);
+  color: var(--banner-text);
+  padding: 12px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Inter", sans-serif;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px); /* Modern 2026 aesthetic */
+}
+
+.banner-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  max-width: 1200px;
+}
+
+.sales-banner-badge {
+  background: #387569;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 1px solid #d3e4e0;
+}
+
+.banner-text {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.banner-cta {
+  background: var(--brand-primary);
+  color: #ffffff;
+  padding: 8px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: transform 0.2s ease;
+}
+
+.banner-cta:hover {
+  transform: scale(1.05); /* Interactive micro-animation */
+}
+
+.banner-close {
+  position: absolute;
+  right: 20px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .banner-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+  .sales-banner-badge {
+    display: none;
+  } /* Simplify for mobile screens */
+}
+.home:has(.sales-banner) {
+  padding-top: 60px; /* Adjust body padding when banner is present */
 }
