@@ -6,7 +6,7 @@
   width: 100%;
   padding-top: 32px;
   @media (max-width: 1200px) {
-    padding-top: 16px;
+    padding-top: 16px; //see exception for pages with sales banner
   }
   .ol {
     width: 100%;
@@ -40,6 +40,14 @@
       content: "/";
       padding: 0 8px;
       color: #6c757d;
+    }
+  }
+}
+
+body:has(.sales-banner) {
+  .breadcrumb-container {
+    @media (max-width: 1200px) {
+      padding-top: 32px;
     }
   }
 }

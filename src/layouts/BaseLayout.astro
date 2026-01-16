@@ -3,6 +3,7 @@ import "../styles/layouts/tags-and-topics.scss";
 import "../styles/global.scss";
 import "../styles/components/header-navigation/hamburger.scss";
 import "../styles/components/header-navigation/menu.scss";
+import SalesBanner from "../components/SalesBanner.astro";
 import CookieConsent from "../components/CookieConsent.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -105,20 +106,11 @@ const bodyClass = bodyClassName
   </head>
 
   <body class={bodyClass}>
-    <section class="sales-banner" role="region" aria-label="Limited time offer">
-      <div class="banner-content">
-        <span class="sales-banner-badge">Limited Offer</span>
-        <p class="banner-text">
-          Save <strong>40% OFF</strong> site-wide! Sale ends soon.
-        </p>
-        <a href="/shop" class="banner-cta">Shop Now</a>
-      </div>
-      <button
-        class="banner-close"
-        aria-label="Close banner"
-        onclick="this.parentElement.style.display='none'">&times;</button
-      >
-    </section>
+    {
+      (active === "home" || active === "courses") && (
+        <SalesBanner useClass="course-bg" />
+      )
+    }
 
     {
       !hideNav && (

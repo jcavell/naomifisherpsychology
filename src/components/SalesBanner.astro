@@ -1,0 +1,23 @@
+---
+const { useClass = "" } = Astro.props;
+---
+
+<section
+  class={`sales-banner ${useClass}`}
+  role="region"
+  aria-label="Limited time offer"
+>
+  <div class="banner-content">
+    <span class="sales-banner-badge">50% OFF UNTIL SUNDAY</span>
+    <p class="banner-text">
+      <strong>SALE</strong> ON AUTISM COURSES
+    </p>
+    <a href="/courses" class="banner-cta">Shop Now</a>
+  </div>
+  <!-- optional close buttton for banner -->
+  <!-- <button
+                class="banner-close"
+                aria-label="Close banner"
+                onclick="this.parentElement.classList.add('hide-sale-banner')">&times;</button
+            > -->
+</section>

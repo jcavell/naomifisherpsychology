@@ -4,6 +4,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import BookSummary from "../components/book/BookSummary.astro";
 import StaticImage from "../components/StaticImage.astro";
 import homeImage from "../images/static/1080w/different-way-to learn-thorn.webp";
+import SalesBanner from "../components/SalesBanner.astro";
 const pageTitle = "Books";
 
 // Sort newest first
@@ -20,6 +21,7 @@ const metaDescription =
   pageTitle={pageTitle}
   metaDescription={metaDescription}
 >
+  <SalesBanner useClass="books-bg" />
   <div class="page-intro-wrapper">
     <div class="page-intro-static-image">
       <StaticImage

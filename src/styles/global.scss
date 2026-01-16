@@ -339,26 +339,43 @@ body:has(.basket_overlay) {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Inter", sans-serif;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px); /* Modern 2026 aesthetic */
-}
+  backdrop-filter: blur(5px);
+  @media (max-width: 1200px) {
+    padding: 12px 0;
+  }
+  &.course-bg {
+    background: var(--brand-courses);
+    .banner-cta {
+      background: var(--brand-books);
+    }
+  }
+  &.books-bg {
+    background: var(--brand-books);
+    .banner-cta {
+      background: var(--brand-primary);
+    }
+  }
 
-.banner-content {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  max-width: 1200px;
-}
+  .banner-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    max-width: 1200px;
+  }
 
-.sales-banner-badge {
-  background: #387569;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  border: 1px solid #d3e4e0;
+  .sales-banner-badge {
+    background: #387569;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 1px solid #d3e4e0;
+    @media (max-width: 1200px) {
+      display: none;
+    }
+  }
 }
 
 .banner-text {
@@ -378,7 +395,7 @@ body:has(.basket_overlay) {
 }
 
 .banner-cta:hover {
-  transform: scale(1.05); /* Interactive micro-animation */
+  transform: scale(1.05);
 }
 
 .banner-close {
@@ -392,17 +409,27 @@ body:has(.basket_overlay) {
   opacity: 0.7;
 }
 
-/* Mobile Adjustments */
-@media (max-width: 768px) {
-  .banner-content {
-    flex-direction: column;
-    text-align: center;
-    gap: 8px;
-  }
-  .sales-banner-badge {
-    display: none;
-  } /* Simplify for mobile screens */
-}
-.home:has(.sales-banner) {
+body:has(.sales-banner) {
   padding-top: 60px; /* Adjust body padding when banner is present */
+  .icon-links {
+    @media (max-width: 1200px) {
+      top: 54px;
+    }
+  }
+  .hamburger {
+    @media (max-width: 1200px) {
+      top: 62px;
+    }
+  }
+  header > img {
+    @media (max-width: 1200px) {
+      top: 76px;
+    }
+  }
+
+  #menu {
+    @media (max-width: 1200px) {
+      top: 121px;
+    }
+  }
 }
