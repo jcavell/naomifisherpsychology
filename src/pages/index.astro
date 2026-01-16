@@ -20,6 +20,7 @@ import SchoolAndEducationSummary from "../components/free/SchoolAndEducationSumm
 import MentalHealthSummary from "../components/free/MentalHealthSummary.astro";
 
 import Newsletter from "../components/Newsletter.astro";
+import NewsletterNew from "../components/NewsletterNew.astro";
 
 const webinars = await getWebinars();
 
@@ -157,6 +158,7 @@ const metaDescription =
 
   <!--6662296 is the normal newsletter form -->
   <!-- 7379328 is low demand toolkit form -->
-  <Newsletter formId="6662296"/>
+  <!-- <Newsletter formId="6662296"/> -->
+  <NewsletterNew formId="6662296"/>
 
 </BaseLayout>

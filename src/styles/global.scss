@@ -40,6 +40,7 @@
   /* New functional colours */
   --function-dark-9: #161616;
   --badge-link-dark: #1b302b;
+  --cta-highlight: #d56c8d;
 
   /* Sale Banner Colors */
 
@@ -347,7 +348,7 @@ body:has(.basket_overlay) {
   &.course-bg {
     background: var(--brand-courses);
     .banner-cta {
-      background: var(--brand-books);
+      background: var(--cta-highlight);
     }
   }
   &.books-bg {
