@@ -234,6 +234,41 @@ a#newsletter {
   }
 }
 
+#newsletter-modal {
+}
+
+#newsletter-modal {
+  .modal-content {
+    max-width: 750px;
+    @media (max-width: 1200px) {
+      margin-top: 60px;
+    }
+  }
+  .form-wrapper-v2 {
+    z-index: 0;
+    background: none;
+    .form-title {
+      padding-bottom: 32px;
+      img {
+        width: 230px;
+        display: inline-block;
+        margin-bottom: 20px;
+        opacity: 1;
+      }
+    }
+    .form {
+      border-left: none;
+      .formkit-form[data-uid="a4bc346f2b"] .formkit-submit {
+        @media (min-width: 1200px) {
+          position: absolute;
+          top: 148px;
+          left: calc(50% + 32px);
+        }
+      }
+    }
+  }
+}
+
 /* formkit */
 
 .formkit-form[data-uid="a4bc346f2b"] * {

@@ -333,7 +333,7 @@ body:has(.basket_overlay) {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 99999;
   background: var(--banner-bg);
   color: var(--banner-text);
   padding: 12px 20px;

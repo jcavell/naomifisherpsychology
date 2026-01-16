@@ -8,6 +8,7 @@ import CookieConsent from "../components/CookieConsent.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { env } from "../scripts/env";
+import PopUpPanel from "../components/PopUpPanel.astro";
 
 const { active, tagName, tagUrl, bodyClassName, metaDescription, hideNav } =
   Astro.props;
@@ -106,6 +107,8 @@ const bodyClass = bodyClassName
   </head>
 
   <body class={bodyClass}>
+    {active === "home" && <PopUpPanel />}
+
     {
       (active === "home" || active === "courses") && (
         <SalesBanner useClass="course-bg" />
