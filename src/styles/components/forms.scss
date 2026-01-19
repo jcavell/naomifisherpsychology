@@ -170,6 +170,7 @@ a#newsletter {
         // margin-bottom: 6px;
       }
       @media (min-width: 1200px) {
+        margin-bottom: 16px;
         // font-size: 100px;
         // text-align: right;
       }
@@ -200,7 +201,10 @@ a#newsletter {
       display: inline-block;
       opacity: 0.5;
       margin-bottom: 4px;
+
+      display: none;
       @media (min-width: 1200px) {
+        display: none;
         width: 220px;
         margin-left: auto;
         margin-bottom: 10px;
@@ -242,13 +246,30 @@ a#newsletter {
     max-width: 750px;
     @media (max-width: 1200px) {
       margin-top: 60px;
+      padding: 40px 8px;
+    }
+    @media (min-width: 1200px) {
+      padding: 0;
     }
   }
   .form-wrapper-v2 {
     z-index: 0;
     background: none;
+    @media (min-width: 1200px) {
+      max-width: calc(100% - 50px);
+      margin-left: 0;
+    }
     .form-title {
       padding-bottom: 32px;
+      h2 {
+        @media (min-width: 1200px) {
+          margin-bottom: 6px;
+        }
+      }
+      @media (min-width: 1200px) {
+        padding-bottom: 16px;
+        text-align: left;
+      }
       img {
         width: 230px;
         display: inline-block;
@@ -261,7 +282,7 @@ a#newsletter {
       .formkit-form[data-uid="a4bc346f2b"] .formkit-submit {
         @media (min-width: 1200px) {
           position: absolute;
-          top: 148px;
+          top: 132px;
           left: calc(50% + 32px);
         }
       }
