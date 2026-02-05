@@ -20,14 +20,12 @@ const priceInPence = course.priceInPence!;
 ---
 
 <div class="card card-courses">
-  <h2>
-    <a href=`/courses/${makeUrl(title)}`>{title}</a>
-  </h2>
-
   <div class="card-image">
     <CourseImage course={course} />
   </div>
-
+  <h2>
+    <a href=`/courses/${makeUrl(title)}`>{title}</a>
+  </h2>
   <div class="card-details">
     <Contributers people={course.meta?.contributers} />
     <!--<span class="duration"> {course.meta?.runningTime} </span>-->
@@ -50,7 +48,7 @@ const priceInPence = course.priceInPence!;
   <!--</div>-->
 
   <div class="card-actions">
-    <a href=`/courses/${makeUrl(title)}`> Learn More </a>
+    <a class="btn" href=`/courses/${makeUrl(title)}`> Learn More </a>
     <CourseSummaryAddToBasket offerId={offerId} client:load />
   </div>
 </div>
@@ -68,5 +66,53 @@ const priceInPence = course.priceInPence!;
   }
   :global(.card .card-buttons button.add-to-basket-from-summary:last-of-type) {
     border-radius: 0 0 16px 0;
+  }
+  .card-courses {
+    overflow: hidden;
+    h2 {
+      border-top: none;
+      border-radius: 0;
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+      font-family: Oswald;
+      text-transform: none;
+      padding-right: 16px;
+      padding-bottom: 0;
+      min-height: unset;
+      a {
+        color: var(--brand-primary);
+        text-decoration: none;
+        line-height: 1.25;
+      }
+    }
+  }
+  .card-image {
+    width: 100%;
+    margin: 0;
+  }
+  .card-actions {
+    padding: 16px;
+    a.btn {
+      text-align: center;
+      text-decoration: none;
+      font-size: 16px;
+      padding: 16px 32px;
+      color: white;
+      background-color: var(--function-dark-9);
+      &:hover {
+        background-color: var(--brand-primary);
+      }
+    }
+  }
+  :global(
+    .card-actions button.add-to-basket-from-summary._textButton_1efyz_355.inBask
+  ) {
+    background-color: var(--cta-highlight);
+  }
+  :global(
+    .card-actions button.add-to-basket-from-summary._textButton_1efyz_355:hover
+  ) {
+    background-color: var(--cta-highlight);
   }
 </style>

@@ -13,25 +13,17 @@ const { active } = Astro.props;
   <input type="checkbox" id="showDrop" />
   <label
     for="showDrop"
-    class={`nav-dropdown mobile-item ${active === "coresourcesurses" ? "active" : "inactive"}`}
+    class={`nav-dropdown mobile-item ${active === "resources" ? "active" : "inactive"}`}
   >
     Free Resources
   </label>
   <ul class="drop-menu">
+    <li><a href="#">Autism</a></li>
+    <li><a href="#">Demand Avoidance</a></li>
+    <li><a href="#">School and Education</a></li>
+    <li><a href="#">Mental Health and Behaviour</a></li>
     <li>
-      <a
-        href="/courses"
-        class={`add-dropdown ${active === "courses" ? "active" : "inactive"}`}
-      >
-        Courses
-      </a>
-    </li>
-    <li><a href="#">Course Link 1</a></li>
-    <li><a href="#">Course Link 2</a></li>
-    <li><a href="#">Course Link 3</a></li>
-    <li><a href="#">Course Link 4</a></li>
-    <li>
-      <a href="#" class="free-courses">View all free courses</a>
+      <a href="#" class="free-courses">View all free resources</a>
     </li>
   </ul>
 </li>

@@ -1,3 +1,4 @@
+@use "../mixins.scss" as mix;
 .card {
   position: relative;
   width: 100%;
@@ -40,7 +41,6 @@
     font-size: 32px;
     line-height: 1;
     min-height: 18px;
-    border-top: 12px solid;
     padding-right: 60px;
     @media (min-width: 800px) {
       min-height: 65px;
@@ -121,6 +121,9 @@
       background-size: 16px 16px;
       background-repeat: no-repeat;
       background-position: left center;
+      @media (max-width: 1200px) {
+        background-position: 0 6px;
+      }
     }
 
     ul li {
@@ -229,4 +232,297 @@
 
 .details .card {
   z-index: -1;
+}
+
+$primary-color: #0056b3; // A clean blue for CTAs
+$text-color: #333;
+$background-color: #f9f9f9;
+$card-bg: #fff;
+$shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.08); // Subtle depth
+$border-radius: 12px;
+$spacing-unit: 16px; // Use a spacing system
+
+.course-card-grid {
+  display: grid;
+  grid-template-columns: 1fr; // Stack on mobile first
+  gap: $spacing-unit * 2;
+
+  @media (min-width: 800px) {
+    // Use media queries for responsive layouts
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.course-card {
+  background: $card-bg;
+  border-radius: $border-radius;
+  box-shadow: $shadow-soft;
+  overflow: hidden; // Ensures image corners are rounded
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: translateY(-5px); // Subtle hover effect
+  }
+
+  img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover; // Prevents image distortion
+    border-bottom: 2px solid var(--brand-primary);
+  }
+  .card-actions {
+  }
+}
+
+.card-content {
+  padding: $spacing-unit;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: $spacing-unit / 2;
+  font-family: Oswald;
+  a {
+    color: var(--brand-primary);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.card-author {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  font-weight: 500;
+  font-family: Oswald;
+  .contributors {
+    background-image: none;
+  }
+}
+
+.card-price {
+  font-weight: 500;
+  margin: 0;
+  font-family: Oswald;
+}
+
+.card-description {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: $spacing-unit * 1.5;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto; // Pushes buttons to the bottom
+
+  button.add-to-basket-from-summary._textButton_1efyz_355 {
+    all: revert;
+    flex: none;
+    display: inline-block;
+    appearance: unset;
+    border-radius: 6px;
+    background-color: var(--brand-primary);
+    color: #ffffff;
+    padding: 16px 32px;
+    border: 0;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    cursor: pointer;
+  }
+}
+
+.btn {
+  padding: 16px 32px;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s;
+  text-transform: uppercase;
+
+  @include mix.special-text;
+
+  &-learn {
+    color: white;
+    background-color: var(--function-dark-9);
+
+    &:hover {
+      background-color: var(--brand-primary);
+    }
+  }
+
+  &-basket {
+    background-color: var(--brand-primary);
+    color: #ffffff;
+
+    &:hover {
+      background-color: var(--cta-highlight);
+      color: white;
+    }
+  }
+}
+
+.card.card-blog {
+  padding: 0;
+  border-radius: 8px;
+  .live-date {
+    background-color: var(--cta-highlight);
+  }
+  .card-image {
+    margin: 0;
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+    overflow: hidden;
+    img {
+      border-bottom: 2px solid var(--brand-primary);
+    }
+  }
+  h2 {
+    border-top: none;
+    border-radius: 0;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 8px;
+    font-family: Oswald;
+    text-transform: none;
+    padding-right: 16px;
+    padding-bottom: 0;
+    min-height: unset;
+    @media (min-width: 800px) {
+    }
+    a {
+      color: var(--brand-primary);
+      text-decoration: none;
+      line-height: 1.25;
+      &:hover {
+        text-decoration: underline;
+      }
+      &:after {
+        content: "[BLOG]";
+        font-size: 16px;
+        color: var(--badge-link-dark);
+        font-weight: normal;
+        position: relative;
+        top: -1px;
+        margin-left: 6px;
+      }
+    }
+    span {
+      padding-top: 16px;
+    }
+  }
+  .card-meta {
+    a {
+      color: var(--badge-link-dark);
+    }
+    &:after {
+      display: none;
+    }
+  }
+  .card-actions {
+    margin-top: unset;
+    padding: 16px;
+    a.btn {
+      text-align: center;
+      text-decoration: none;
+      font-size: 16px;
+      padding: 16px 32px;
+    }
+  }
+}
+
+// page specific card styles
+
+//books
+.card.card-books {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 8px;
+    font-family: Oswald;
+    a {
+      min-height: 52px;
+      color: var(--brand-primary);
+      text-decoration: none;
+      text-transform: none;
+    }
+    span {
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+  }
+  .card-book-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 2px solid var(--brand-light-bg);
+    border-top: 2px solid var(--brand-light-bg);
+    @media (max-width: 1200px) {
+      grid-template-columns: 1fr;
+      padding-top: 0;
+    }
+    border-bottom: 1px solid var(--brand-primary);
+    border-top: 1px solid var(--brand-primary);
+
+    .card-image {
+      width: calc(100% - 8px);
+      border-width: 0;
+      @media (max-width: 1200px) {
+        margin: 0;
+        width: 100%;
+        border-bottom: 1px solid var(--brand-primary);
+      }
+    }
+
+    .card-details {
+      margin: 0;
+      span {
+        font-weight: 300;
+        background-color: rgba(255, 255, 255, 0.8);
+        background-blend-mode: overlay;
+        @media (max-width: 1200px) {
+          padding-right: 8px;
+          margin-left: 8px;
+        }
+        a,
+        a:hover,
+        a:visited {
+          color: var(--cta-highlight);
+        }
+      }
+    }
+  }
+  .card-meta {
+    border-top: 2px solid var(--brand-light-bg);
+    @media (max-width: 1200px) {
+      border-top: 1px solid var(--brand-primary);
+    }
+    a {
+      color: var(--badge-link-dark);
+    }
+  }
+  .card-actions {
+    padding: 16px;
+    margin-top: unset;
+    a {
+      text-decoration: none;
+    }
+  }
 }

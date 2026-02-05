@@ -1,0 +1,27 @@
+---
+import GenerateQuote from "../Quoter";
+import CourseSummary from "./CourseSummary.astro";
+import CourseSummaryV2 from "./CourseSummaryV2.astro";
+import CourseSummaryV3 from "./CourseSummaryV3.astro";
+import { getEntry } from "astro:content";
+
+const { categoryId, categoryName, courses } = Astro.props;
+
+const quotesEntry = await getEntry("course-quotes", "general-course-quotes");
+const quotes = quotesEntry!.data;
+---
+
+<div class="course-card-grid">
+  {
+    courses.map((course, index) =>
+      index != 0 && (index + 1) % 4 == 0 ? (
+        <>
+          <CourseSummaryV3 course={course.data} />
+          {/* <GenerateQuote client:load quotes={quotes} /> */}
+        </>
+      ) : (
+        <CourseSummaryV3 course={course.data} />
+      ),
+    )
+  }
+</div>

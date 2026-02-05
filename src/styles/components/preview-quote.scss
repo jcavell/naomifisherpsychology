@@ -3,52 +3,85 @@
   box-sizing: border-box;
   padding-left: 20px;
   padding-right: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  @media (max-width: 1200px) {
+    padding: 16px;
+  }
+
   .details & {
     padding-left: 0px;
     padding-right: 0px;
   }
   .preview-quote {
-    max-width: 800px;
-    font-size: 28px;
+    //max-width: 800px;
+    font-size: 20px;
     margin-left: auto;
     margin-right: auto;
     line-height: 1;
     text-align: center;
-    margin-top: 70px;
-    margin-bottom: 40px;
+    margin-top: 24px;
+    margin-bottom: 16px;
     position: relative;
-    &::before {
-      content: "\201C";
-      display: block;
-      position: absolute;
-      width: 100%;
-      top: 0;
-      left: 0;
-      font-family: serif;
-      font-size: 2em;
-      margin-top: -0.5em;
+    font-family: Oswald;
+
+    p {
+      // display: inline-block;
+      font-style: italic;
+      text-transform: none;
+      color: var(--brand-primary);
+      margin-bottom: 16px;
+      line-height: 1.4;
+      &::before {
+        content: "\201C";
+        display: inline-block;
+        position: relative;
+        // width: 100%;
+        top: 8px;
+        left: -4px;
+        font-family: serif;
+        font-size: 2em;
+        margin-top: -0.5em;
+        font-style: normal;
+        color: var(--brand-light-bg);
+        height: 0;
+      }
+      &::after {
+        content: "\201D";
+        display: inline-block;
+        position: relative;
+        // width: 100%;
+        top: 12px;
+        left: 8px;
+        font-family: serif;
+        font-size: 2em;
+        margin-top: -0.5em;
+        font-style: normal;
+        color: var(--brand-light-bg);
+        height: 0;
+      }
     }
     span {
-      display: block;
       font-size: 16px;
-      text-transform: capitalize;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-      margin-top: 20px;
-      position: relative;
-      &::before {
-        content: "";
-        display: block;
-        position: absolute;
-        width: 140px;
-        height: 1px;
-        background: #000;
-        top: 0;
-        left: 50%;
-        margin-left: -70px;
-        margin-top: -10px;
-      }
+      display: block;
+      margin-top: 8px;
+      font-weight: 400;
+      // color: var(--cta-highlight);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      // &::before {
+      //   content: "";
+      //   display: block;
+      //   position: absolute;
+      //   width: 140px;
+      //   height: 1px;
+      //   background: #000;
+      //   top: 0;
+      //   left: 50%;
+      //   margin-left: -70px;
+      //   margin-top: -10px;
+      // }
     }
   }
 }

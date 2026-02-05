@@ -86,8 +86,8 @@ const Button: React.FC<AddToBasketProps> = ({
         <button
           className={
             buttonType === "detail"
-              ? `${overlayStyles.addToBasket} ${overlayStyles.inBasket}`
-              : `add-to-basket-from-summary ${overlayStyles.textButton}`
+              ? `${overlayStyles.addToBasket} ${overlayStyles.inBasket} `
+              : `add-to-basket-from-summary ${overlayStyles.textButton} inBask`
           }
           onClick={(event) => {
             event.preventDefault();

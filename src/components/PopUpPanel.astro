@@ -26,16 +26,21 @@ import NewsletterNew from "./NewsletterNew.astro";
     const modal = document.querySelector<HTMLElement>(".modal-overlay");
     const closeBtn = document.getElementById("close-modal");
     const form = document.getElementById("newsletter-form");
+    const formEl = modal ? modal.querySelector("form") : null;
 
     if (!modal) {
       console.warn("Modal overlay element not found.");
       return;
     }
 
-    // Trigger display after 5000ms (5 seconds)
-    setTimeout(() => {
-      modal.style.display = "flex";
-    }, 5000);
+    if (
+      !document.cookie.includes("newsletter_shown") ||
+      document.cookie.includes("newsletter_shown!=true")
+    ) {
+      setTimeout(() => {
+        modal.style.display = "flex";
+      }, 1000);
+    }
 
     if (closeBtn) {
       closeBtn.addEventListener("click", () => {
@@ -44,12 +49,12 @@ import NewsletterNew from "./NewsletterNew.astro";
       });
     }
 
-    if (form) {
-      form.addEventListener("submit", (e) => {
+    if (formEl) {
+      formEl.addEventListener("submit", (e) => {
         e.preventDefault();
-        alert("Thank you for subscribing!");
         modal.style.display = "none";
-        setCookie("newsletter_shown", "true", 30);
+        setCookie("newsletter_shown", "true", 365);
+        formEl.submit();
       });
     }
   };

@@ -1,0 +1,50 @@
+---
+const { book } = Astro.props;
+
+import BookImage from "./BookImage.astro";
+import Contributers from "../Contributers.astro";
+import Tags from "../Tags.astro";
+import { getFormats, getPubDate, getPubDateString } from "../../scripts/book";
+import "../../styles/components/card.scss";
+---
+
+<div class="card card-books">
+  {
+    getPubDate(book) > new Date() && (
+      <div class="sale-badge preorder-badge">
+        <span class="sale-amount">PRE-</span>
+        <span class="sale-text">order</span>
+      </div>
+    )
+  }
+  <h2>
+    <a href={book.uri}>{book.title}</a>
+    <span>{book.subtitle} </span>
+  </h2>
+  <div class="card-book-top">
+    <div class="card-image">
+      <BookImage book={book} />
+    </div>
+    <div class="card-details">
+      <!-- <a href={book.uri}> BOOK </a> -->
+      <Contributers people={book.people} />
+      <!-- <Tags tags={book.tags} /> -->
+      <span class="bookmark"> {getFormats(book).join(", ")} </span>
+      <span class="date"> Published {getPubDateString(book)} </span>
+    </div>
+  </div>
+
+  {book.description && <p>{book.description}</p>}
+
+  <p>
+    {book.summary}
+  </p>
+
+  <div class="card-meta">
+    <!-- <Contributers people={book.people} /> -->
+    <Tags tags={book.tags} />
+  </div>
+  <div class="card-actions">
+    <a class="btn btn-learn" href={book.uri}> Read More</a>
+  </div>
+</div>
