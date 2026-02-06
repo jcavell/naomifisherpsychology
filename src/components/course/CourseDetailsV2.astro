@@ -40,35 +40,18 @@ const relatedCourses = (
 <div class="details details-courses">
   <div class="details-category">RECORDED COURSE</div>
   <h1>{title}</h1>
-  <div class="details-image">
-    <CourseImage course={course} />
-  </div>
 
   <div class="details-body">
-    <div class="details-body-A" set:html={parseDescriptions(descriptions!)}>
-      <Vimeo embedUrl={course.meta?.videoUrl} />
-
-      <!-- <div class="preview-quote-wrapper">
-        <div class="preview-quote quote">
-          I really appreciated your messages of hope- this is a journey and we
-          will come out the end
-          <span>Viewer of Naomi Fisher Course</span>
-        </div>
-      </div>
-      <div class="preview-quote-wrapper">
-        <div class="preview-quote quote">
-          It sounds a massive cliche but I felt someone finally understood what
-          our life has been like.
-          <span>Viewer of Naomi Fisher Course</span>
-        </div>
-      </div>
-      <p>
-        <em>
-          This course is not therapy and should not be used as a replacement for
-          therapy.
-        </em>
-      </p>-->
+    <div class="details-intro">
+      <div
+        class="details-copy"
+        set:html={parseDescriptions(descriptions!)}
+      /><Vimeo embedUrl={course.meta?.videoUrl} />
     </div>
+    <!-- <div class="details-body-A" set:html={parseDescriptions(descriptions!)}> -->
+    <!-- <div class="details-body-A">
+     
+    </div> -->
 
     <div class="details-body-B">
       <div class="purchase-wrapper">
@@ -88,6 +71,9 @@ const relatedCourses = (
       <div class="card-meta details-meta">
         <Contributers people={course.meta?.contributers} />
         <Tags tags={course.meta?.tags} />
+      </div>
+      <div class="details-image">
+        <CourseImage course={course} />
       </div>
     </div>
   </div>

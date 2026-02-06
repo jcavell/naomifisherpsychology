@@ -14,10 +14,10 @@
   font-style: normal;
   z-index: unset;
 
-  @media (min-width: 800px) {
-    width: calc(50% - 10px);
-    margin-bottom: 30px;
-  }
+  // @media (min-width: 800px) {
+  //   width: calc(50% - 10px);
+  //   margin-bottom: 30px;
+  // }
 
   @media (min-width: 1200px) {
     min-width: 540px;
@@ -247,7 +247,7 @@ $spacing-unit: 16px; // Use a spacing system
   grid-template-columns: 1fr; // Stack on mobile first
   gap: $spacing-unit * 2;
 
-  @media (min-width: 800px) {
+  @media (min-width: 1200px) {
     // Use media queries for responsive layouts
     grid-template-columns: repeat(2, 1fr);
   }
@@ -504,7 +504,8 @@ $spacing-unit: 16px; // Use a spacing system
         a,
         a:hover,
         a:visited {
-          color: var(--cta-highlight);
+          background-color: var(--brand-light-bg);
+          color: var(--brand-primary);
         }
       }
     }

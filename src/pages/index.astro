@@ -41,6 +41,12 @@ const generalQuotes = (await getEntry("static-pages-quotes", "homepage"))!.data;
 
 const metaDescription =
   "Dr Naomi Fisher is a clinical psychologist, author and speaker specialising in parenting, mental health issues in children, autism and trauma. She runs EMDR Basic Training and Refresher Day courses. Dr Abigail Fisher is an education psychologist specialising in Special Educational Needs (SEN), EHCPs, EOTAS. We create courses and webinars for parents and professionals.";
+
+
+
+
+
+
 ---
 
 
@@ -50,6 +56,52 @@ const metaDescription =
   bodyClassName="home"
   metaDescription={metaDescription}
 >
+
+
+<div class="carousel-container">
+    <button class="carousel-btn prev" data-carousel-btn="prev">&#10094;</button>
+    <div class="carousel-track-container">
+        <div class="carousel-track">
+            <!-- Slide 1: Sale Promotion -->
+            <div class="carousel-slide slide-sale">
+                <div class="slide-content">
+                    <h1>New Course Launched</h1>
+                    <p>Helping and Understanding Your Demand Avoidant adolescent</p>
+                    <a href="#" class="btn">View Course</a>
+                </div>
+            </div>
+
+            <!-- Slide 2: New Courses -->
+            <div class="carousel-slide slide-new-courses">
+                <div class="slide-content">
+                    <h1>Book Sale Now On</h1>
+                    <p>Explore Dr Naomi Fisher's range of books...</p>
+                    <a href="#" class="btn">View Books</a>
+                </div>
+            </div>
+
+            <!-- Slide 3: Live Seminars -->
+            <div class="carousel-slide slide-seminars">
+                <div class="slide-content">
+                    <h1>Upcoming Live Webinars</h1>
+                    <p>Join live events with Dr. Naomi Fisher</p>
+                    <a href="#" class="btn">See All Events</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-btn next" data-carousel-btn="next">&#10095;</button>
+
+    <div class="carousel-nav-dots">
+        <button class="nav-dot active" data-slide-index="0"></button>
+        <button class="nav-dot" data-slide-index="1"></button>
+        <button class="nav-dot" data-slide-index="2"></button>
+    </div>
+</div>
+
+
+<script src="../scripts/carousel.ts" />
+
 <!-- OLD INTRODUCTION -->
 <div class="stacked-page-intro-wrapper" style="display:none">
         <h1 class="">Welcome</h1>
@@ -234,3 +286,149 @@ const metaDescription =
   <!-- <NewsletterNew formId="6662296"/> -->
  
 </BaseLayout>
+<style lang="scss">
+
+
+@use "../styles/mixins.scss" as mix;
+
+.carousel-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 20px 0;
+    overflow: hidden;
+    border-radius: 8px;
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    width:100%;
+}
+
+.carousel-track-container {
+    width: 100%;
+    overflow: hidden;
+    scroll-snap-type: x mandatory; // Enables smooth snapping
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    box-sizing: border-box;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    scroll-snap-align: start;
+    
+  @include mix.special-text;
+
+    .slide-content {
+        text-align: center;
+        color: white;
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight:normal;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight:normal;
+        }
+    }
+}
+
+.slide-sale {
+    background-color: var(--brand-primary);
+    background: linear-gradient(to right, rgba(74, 124, 89, 0) 200px, rgba(55, 117, 104, 1)400px),
+                url('src/images/courses/understanding-and-helping-your-demand-avoidant-adolescent.webp') no-repeat left center;
+                background-size:contain;
+                text-align:right;
+                .slide-content {
+                  text-align:right;
+                }
+
+}
+.slide-new-courses {
+     background-color: var(--brand-primary);
+    background: linear-gradient(to right, rgba(218, 169, 66, 0) 370px, rgba(218, 169, 66, 1)430px),
+                url('src/images/books/when-the-naughty-step-makes-things-worse.jpg') no-repeat left center;
+                background-size:contain;
+                text-align:right;
+                .slide-content {
+                  text-align:right;
+                }
+}
+
+.slide-seminars {
+     background-color: var(--brand-primary);
+    background: linear-gradient(to right, rgba(68, 98, 124, 0) 200px, rgba(68, 98, 124, 1)400px),
+                url('src/images/courses/how-can-your-learn-if-you-dont-go-to-school.jpg') no-repeat left center;
+                background-size:contain;
+                text-align:right;
+                .slide-content {
+                  text-align:right;
+                }
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: var(--function-dark-9);
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+
+    &:hover {
+    background-color: var(--brand-light-bg);
+    color: var(--brand-primary);
+    }
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+
+    &.prev {
+        left: 10px;
+    }
+
+    &.next {
+        right: 10px;
+    }
+}
+
+.carousel-nav-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5px;
+
+    .nav-dot {
+        width: 10px;
+        height: 10px;
+        background-color: rgba(255, 255, 255, 0.5);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+
+        &.active {
+            background-color: white;
+        }
+    }
+}
+</style>

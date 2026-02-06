@@ -520,6 +520,8 @@ body:has(.sales-banner) {
   position: absolute;
   font-size: 14px;
   color: var(--badge-link-dark);
+  text-decoration: none;
+  font-weight: normal;
   .desktop-only {
     @media (max-width: 1200px) {
       display: none;

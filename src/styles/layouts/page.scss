@@ -360,7 +360,6 @@ h3:first-child,
   margin-bottom: 40px;
   color: var(--brand-primary);
   @include mix.special-text;
-  font-weight: normal;
   @media (min-width: 1200px) {
     margin: 0px;
     width: 100%;
