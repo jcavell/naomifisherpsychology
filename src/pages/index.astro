@@ -66,7 +66,7 @@ const metaDescription =
             <div class="carousel-slide slide-sale">
                 <div class="slide-content">
                     <h1>New Course Launched</h1>
-                    <p>Helping and Understanding Your Demand Avoidant adolescent</p>
+                    <p class="desktop-item">Helping and Understanding Your Demand Avoidant adolescent</p>
                     <a href="#" class="btn">View Course</a>
                 </div>
             </div>
@@ -75,7 +75,7 @@ const metaDescription =
             <div class="carousel-slide slide-new-courses">
                 <div class="slide-content">
                     <h1>Book Sale Now On</h1>
-                    <p>Explore Dr Naomi Fisher's range of books...</p>
+                    <p class="desktop-item">Explore Dr Naomi Fisher's range of books...</p>
                     <a href="#" class="btn">View Books</a>
                 </div>
             </div>
@@ -84,7 +84,7 @@ const metaDescription =
             <div class="carousel-slide slide-seminars">
                 <div class="slide-content">
                     <h1>Upcoming Live Webinars</h1>
-                    <p>Join live events with Dr. Naomi Fisher</p>
+                    <p class="desktop-item"></>Join live events with Dr. Naomi Fisher</p>
                     <a href="#" class="btn">See All Events</a>
                 </div>
             </div>
@@ -133,10 +133,13 @@ const metaDescription =
 </div>
 
 <!-- NEW INTRODUCTION -->
+  <a name="welcome" class="anchor">
+    <h1 class="section-title">
+      <span class="courses-section-title">Welcome</span>
+    </h1>
+  </a>
 <section class="welcome-redesign">
-  <div class="welcome-header">
-    <h1>WELCOME</h1>
-  </div>
+ 
   <div class="welcome-content">
     <div class="text-block">
       <p><strong>Dr Naomi Fisher</strong> is a clinical psychologist, EMDR-Europe Accredited trainer and author.</p>
@@ -294,11 +297,14 @@ const metaDescription =
 .carousel-container {
     position: relative;
     max-width: 1200px;
-    margin: 20px 0;
+    margin: 0;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 16px;
    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     width:100%;
+    @media(max-width:1200px){
+      margin-top:8px;
+    }
 }
 
 .carousel-track-container {
@@ -322,31 +328,54 @@ const metaDescription =
     scroll-snap-align: start;
     
   @include mix.special-text;
+  @media(max-width:1200px){
+    align-items: end;
+    padding-bottom: 2rem;
+  }
 
     .slide-content {
         text-align: center;
         color: white;
+        @media(max-width:1200px){
+          max-width:calc(100% - 100px);
+        }
 
         h1 {
             font-size: 2.5rem;
             margin-bottom: 10px;
             font-weight:normal;
+        @media(max-width:1200px){
+          background: rgba(55, 117, 104, 0.75);
+          padding:8px;
+          font-size:1.75rem;
+        }
         }
 
         p {
             font-size: 1.2rem;
             margin-bottom: 20px;
             font-weight:normal;
+            @media(max-width:1200px){
+          background: rgba(55, 117, 104, 0.75);
+          padding:8px;
+        }
         }
     }
 }
 
 .slide-sale {
     background-color: var(--brand-primary);
-    background: linear-gradient(to right, rgba(74, 124, 89, 0) 200px, rgba(55, 117, 104, 1)400px),
+    background: 
+                url('src/images/courses/understanding-and-helping-your-demand-avoidant-adolescent.webp') no-repeat left center / cover;
+                // background-size:cover;
+                text-align:right;
+                background-color:var(--brand-primary);
+                @media(min-width:1200px){
+                  background:linear-gradient(to right, rgba(74, 124, 89, 0) 200px, rgba(55, 117, 104, 1)400px),
                 url('src/images/courses/understanding-and-helping-your-demand-avoidant-adolescent.webp') no-repeat left center;
                 background-size:contain;
                 text-align:right;
+                }
                 .slide-content {
                   text-align:right;
                 }
@@ -354,10 +383,15 @@ const metaDescription =
 }
 .slide-new-courses {
      background-color: var(--brand-primary);
-    background: linear-gradient(to right, rgba(218, 169, 66, 0) 370px, rgba(218, 169, 66, 1)430px),
+    background: 
+                url('src/images/books/when-the-naughty-step-makes-things-worse.jpg') no-repeat left center / cover;
+                text-align:right;
+                @media(min-width:1200px){
+                background:  linear-gradient(to right, rgba(218, 169, 66, 0) 370px, rgba(218, 169, 66, 1)430px),
                 url('src/images/books/when-the-naughty-step-makes-things-worse.jpg') no-repeat left center;
                 background-size:contain;
                 text-align:right;
+                }
                 .slide-content {
                   text-align:right;
                 }
@@ -365,10 +399,14 @@ const metaDescription =
 
 .slide-seminars {
      background-color: var(--brand-primary);
-    background: linear-gradient(to right, rgba(68, 98, 124, 0) 200px, rgba(68, 98, 124, 1)400px),
+    background: url('src/images/courses/how-can-your-learn-if-you-dont-go-to-school.jpg') no-repeat left center / cover;
+                text-align:right;
+                @media(min-width:1200px){
+                  background:linear-gradient(to right, rgba(68, 98, 124, 0) 200px, rgba(68, 98, 124, 1)400px),
                 url('src/images/courses/how-can-your-learn-if-you-dont-go-to-school.jpg') no-repeat left center;
                 background-size:contain;
                 text-align:right;
+                }
                 .slide-content {
                   text-align:right;
                 }

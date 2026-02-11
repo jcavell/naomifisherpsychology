@@ -18,6 +18,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const setSlidePosition = (slide: HTMLElement, index: number) => {
         slide.style.left = slideWidth * index + 'px';
     };
+
+    // Fixes size on resize
+    window.addEventListener('resize', () => {
+        const newSlideWidth = slides[0].getBoundingClientRect().width;
+        slides.forEach((slide, index) => {
+            slide.style.left = newSlideWidth * index + 'px';
+        });
+
+        const currentSlide = track.querySelector<HTMLElement>('.current-slide') || slides[0];
+        track.style.transform = `translateX(-${currentSlide.style.left})`;
+    });
     slides.forEach(setSlidePosition);
 
     const moveToSlide = (trackEl: HTMLElement, currentSlide: HTMLElement, targetSlide: HTMLElement) => {

@@ -440,47 +440,32 @@ body:has(.sales-banner) {
 }
 
 .welcome-redesign {
-  margin: 16px auto;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   @media (min-width: 1200px) {
     margin: 0 auto;
-  }
-}
-
-.welcome-header {
-  background-color: var(--brand-primary);
-  padding: 15px 30px;
-  h1 {
-    color: white;
-    margin: 0;
-    font-size: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-
-    font-family: Oswald;
-    font-weight: 400;
   }
 }
 
 .welcome-content {
   display: flex;
   flex-direction: column-reverse;
-  padding: 12px;
+  padding: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  background-color: #ffffff;
+  border-radius: 16px;
 
   @media (min-width: 1200px) {
     flex-direction: row;
     align-items: flex-start;
-    gap: 30px;
-    padding: 30px;
+    gap: 8px;
   }
 }
 
 .text-block {
-  flex: 2;
+  flex: 1.65;
   color: var(--function-dark-9);
+  padding: 16px;
 
   p {
     margin-bottom: 15px;
@@ -495,15 +480,15 @@ body:has(.sales-banner) {
 .image-placeholder {
   flex: 1;
   background-color: #ffffff;
-  min-height: 250px;
-  margin-bottom: 20px;
   background-image: url("../images/static/naomi-in-stables.jpg");
   background-size: cover;
   background-position: 50%;
+  min-height: -moz-available;
+  min-height: -webkit-fill-available;
   @media (min-width: 1200px) {
     background-position: 0px -56px;
     margin-bottom: 0;
-    border-radius: 8px;
+    border-radius: 0 16px 16px 0;
   }
 
   img {
@@ -526,5 +511,16 @@ body:has(.sales-banner) {
     @media (max-width: 1200px) {
       display: none;
     }
+  }
+}
+
+.desktop-item {
+  @media (max-width: 1200px) {
+    display: none;
+  }
+}
+.mobile-item {
+  @media (min-width: 1200px) {
+    display: none;
   }
 }
