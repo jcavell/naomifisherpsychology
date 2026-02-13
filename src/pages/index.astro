@@ -7,6 +7,7 @@ import GenerateQuote from "../components/Quoter";
 import { getEntry } from "astro:content";
 
 import { getFeaturedCourses } from "../scripts/courses";
+import Carousel from "../components/Carousel.astro";
 import CoursesList from "../components/course/CoursesList.astro";
 import CoursesListV2 from "../components/course/CoursesListV2.astro";
 import BookSummary from "../components/book/BookSummaryV2.astro";
@@ -24,7 +25,7 @@ import Newsletter from "../components/Newsletter.astro";
 import NewsletterNew from "../components/NewsletterNew.astro";
 
 import PopUpPanel from "../components/PopUpPanel.astro";
-
+import ProfileCard from "../components/ProfileCard.astro";
 import ResourceCard from "../components/ResourceCard.astro";
 
 const webinars = await getWebinars();
@@ -58,49 +59,18 @@ const metaDescription =
 >
 
 
-<div class="carousel-container">
-    <button class="carousel-btn prev" data-carousel-btn="prev">&#10094;</button>
-    <div class="carousel-track-container">
-        <div class="carousel-track">
-            <!-- Slide 1: Sale Promotion -->
-            <div class="carousel-slide slide-sale">
-                <div class="slide-content">
-                    <h1>New Course Launched</h1>
-                    <p class="desktop-item">Helping and Understanding Your Demand Avoidant adolescent</p>
-                    <a href="#" class="btn">View Course</a>
-                </div>
-            </div>
+<Carousel />
 
-            <!-- Slide 2: New Courses -->
-            <div class="carousel-slide slide-new-courses">
-                <div class="slide-content">
-                    <h1>Book Sale Now On</h1>
-                    <p class="desktop-item">Explore Dr Naomi Fisher's range of books...</p>
-                    <a href="#" class="btn">View Books</a>
-                </div>
-            </div>
+<!-- 
+<script src="../scripts/carousel.ts" /> -->
+<!-- NEW INTRODUCTION -->
+  <a name="welcome" class="anchor">
+    <h1 class="section-title">
+      <span class="courses-section-title">Welcome</span>
+    </h1>
+  </a>
+<ProfileCard />
 
-            <!-- Slide 3: Live Seminars -->
-            <div class="carousel-slide slide-seminars">
-                <div class="slide-content">
-                    <h1>Upcoming Live Webinars</h1>
-                    <p class="desktop-item"></>Join live events with Dr. Naomi Fisher</p>
-                    <a href="#" class="btn">See All Events</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <button class="carousel-btn next" data-carousel-btn="next">&#10095;</button>
-
-    <div class="carousel-nav-dots">
-        <button class="nav-dot active" data-slide-index="0"></button>
-        <button class="nav-dot" data-slide-index="1"></button>
-        <button class="nav-dot" data-slide-index="2"></button>
-    </div>
-</div>
-
-
-<script src="../scripts/carousel.ts" />
 
 <!-- OLD INTRODUCTION -->
 <div class="stacked-page-intro-wrapper" style="display:none">
@@ -132,26 +102,6 @@ const metaDescription =
   </div>
 </div>
 
-<!-- NEW INTRODUCTION -->
-  <a name="welcome" class="anchor">
-    <h1 class="section-title">
-      <span class="courses-section-title">Welcome</span>
-    </h1>
-  </a>
-<section class="welcome-redesign">
- 
-  <div class="welcome-content">
-    <div class="text-block">
-      <p><strong>Dr Naomi Fisher</strong> is a clinical psychologist, EMDR-Europe Accredited trainer and author.</p>
-      <p>Since she was a small child, she has asked the world why. Why do things have to be this way - and what would it be like if it were different?</p>
-      <p>She applies this to education, parenting and clinical psychology. She asks whether school is always the best way for children to learn, and whether the things 'we all know' to be true about parenting are in fact the case.</p>
-      <p>Her work brings psychological theory and evidence-based practice together with real life clinical experience and open curiosity.</p>
-    </div>
-    <div class="image-placeholder">
-    </div>
-  </div>
-</section>
-
 <!-- WEBINARS ----------------------------------------------  -->
   <a name="webinars" class="anchor">
     <h2 class="section-title">
@@ -169,18 +119,18 @@ const metaDescription =
 <GenerateQuote client:load quotes={webinarQuotes} />
 
 <!-- HEADER - free -->
-    <a name="webinars" class="anchor">
+    <!-- <a name="resources" class="anchor">
     <h2 class="section-title">
       <span class="courses-section-title">Free Resources</span>      
       <a href="/resources" class="section-title-all-link"> See All <span class="desktop-only">Free Resources</span></a>
     </h2>
-  </a>
+  </a> -->
 
-<ResourceCard title="New Course: Understanding and Supporting Neurodiverse Children" description="A new course for parents and professionals on understanding and supporting neurodiverse children, including autism, ADHD, dyslexia and more." imageSrc="/images/static/neurodiversity-course.png" imageAlt="Illustration of diverse children" linkUrl="/courses/understanding-and-supporting-neurodiverse-children" linkText="Learn More" />
+<!-- <ResourceCard title="New Course: Understanding and Supporting Neurodiverse Children" description="A new course for parents and professionals on understanding and supporting neurodiverse children, including autism, ADHD, dyslexia and more." imageSrc="/images/static/neurodiversity-course.png" imageAlt="Illustration of diverse children" linkUrl="/courses/understanding-and-supporting-neurodiverse-children" linkText="Learn More" /> -->
    
 
 <!-- HEADER on-demand courses -->
-<a name="webinars" class="anchor">
+<a name="courses" class="anchor">
     <h2 class="section-title">
       <span class="">On-demand courses</span>
       <a href="/courses" class="section-title-all-link"> See All <span class="desktop-only">Courses</span></a>
@@ -249,13 +199,13 @@ const metaDescription =
 
   <!-- <Newsletter formId="7379328"/> -->
 
-  <RemoveFinishedWebinars client:load />
+  <!-- <RemoveFinishedWebinars client:load /> -->
 
   {webinars.map((webinar, index) =>
     <WebinarSummary webinar={webinar} />)}
 
-  <!-- {console.log(webinars.length)}
-  {webinars.length % 2 !== 0 && <Newsletter />} -->
+  {console.log('webinars.length:', webinars.length)}
+  {webinars.length % 2 !== 0 && <Newsletter />}
 
 
  
@@ -289,184 +239,3 @@ const metaDescription =
   <!-- <NewsletterNew formId="6662296"/> -->
  
 </BaseLayout>
-<style lang="scss">
-
-
-@use "../styles/mixins.scss" as mix;
-
-.carousel-container {
-    position: relative;
-    max-width: 1200px;
-    margin: 0;
-    overflow: hidden;
-    border-radius: 16px;
-   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    width:100%;
-    @media(max-width:1200px){
-      margin-top:8px;
-    }
-}
-
-.carousel-track-container {
-    width: 100%;
-    overflow: hidden;
-    scroll-snap-type: x mandatory; // Enables smooth snapping
-}
-
-.carousel-track {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
-
-.carousel-slide {
-    min-width: 100%;
-    box-sizing: border-box;
-    height: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    scroll-snap-align: start;
-    
-  @include mix.special-text;
-  @media(max-width:1200px){
-    align-items: end;
-    padding-bottom: 2rem;
-  }
-
-    .slide-content {
-        text-align: center;
-        color: white;
-        @media(max-width:1200px){
-          max-width:calc(100% - 100px);
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            font-weight:normal;
-        @media(max-width:1200px){
-          background: rgba(55, 117, 104, 0.75);
-          padding:8px;
-          font-size:1.75rem;
-        }
-        }
-
-        p {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            font-weight:normal;
-            @media(max-width:1200px){
-          background: rgba(55, 117, 104, 0.75);
-          padding:8px;
-        }
-        }
-    }
-}
-
-.slide-sale {
-    background-color: var(--brand-primary);
-    background: 
-                url('src/images/courses/understanding-and-helping-your-demand-avoidant-adolescent.webp') no-repeat left center / cover;
-                // background-size:cover;
-                text-align:right;
-                background-color:var(--brand-primary);
-                @media(min-width:1200px){
-                  background:linear-gradient(to right, rgba(74, 124, 89, 0) 200px, rgba(55, 117, 104, 1)400px),
-                url('src/images/courses/understanding-and-helping-your-demand-avoidant-adolescent.webp') no-repeat left center;
-                background-size:contain;
-                text-align:right;
-                }
-                .slide-content {
-                  text-align:right;
-                }
-
-}
-.slide-new-courses {
-     background-color: var(--brand-primary);
-    background: 
-                url('src/images/books/when-the-naughty-step-makes-things-worse.jpg') no-repeat left center / cover;
-                text-align:right;
-                @media(min-width:1200px){
-                background:  linear-gradient(to right, rgba(218, 169, 66, 0) 370px, rgba(218, 169, 66, 1)430px),
-                url('src/images/books/when-the-naughty-step-makes-things-worse.jpg') no-repeat left center;
-                background-size:contain;
-                text-align:right;
-                }
-                .slide-content {
-                  text-align:right;
-                }
-}
-
-.slide-seminars {
-     background-color: var(--brand-primary);
-    background: url('src/images/courses/how-can-your-learn-if-you-dont-go-to-school.jpg') no-repeat left center / cover;
-                text-align:right;
-                @media(min-width:1200px){
-                  background:linear-gradient(to right, rgba(68, 98, 124, 0) 200px, rgba(68, 98, 124, 1)400px),
-                url('src/images/courses/how-can-your-learn-if-you-dont-go-to-school.jpg') no-repeat left center;
-                background-size:contain;
-                text-align:right;
-                }
-                .slide-content {
-                  text-align:right;
-                }
-}
-
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #ffffff;
-    color: var(--function-dark-9);
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s;
-
-    &:hover {
-    background-color: var(--brand-light-bg);
-    color: var(--brand-primary);
-    }
-}
-
-.carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 10;
-
-    &.prev {
-        left: 10px;
-    }
-
-    &.next {
-        right: 10px;
-    }
-}
-
-.carousel-nav-dots {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 5px;
-
-    .nav-dot {
-        width: 10px;
-        height: 10px;
-        background-color: rgba(255, 255, 255, 0.5);
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-
-        &.active {
-            background-color: white;
-        }
-    }
-}
-</style>

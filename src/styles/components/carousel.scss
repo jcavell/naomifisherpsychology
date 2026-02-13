@@ -1,0 +1,191 @@
+@use "../mixins.scss" as mix;
+
+.carousel-container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  @media (max-width: 1200px) {
+    margin-top: 8px;
+  }
+  .carousel-track-container {
+    width: 100%;
+    overflow: hidden;
+    scroll-snap-type: x mandatory; // Enables smooth snapping
+  }
+
+  .carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  .carousel-slide {
+    min-width: 100%;
+    box-sizing: border-box;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    scroll-snap-align: start;
+
+    @include mix.special-text;
+    @media (max-width: 1200px) {
+      align-items: end;
+      padding-bottom: 2rem;
+    }
+    .slide-content {
+      text-align: center;
+      color: white;
+      @media (max-width: 1200px) {
+        max-width: calc(100% - 100px);
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        font-weight: normal;
+        @media (max-width: 1200px) {
+          background: rgba(55, 117, 104, 0.75);
+          padding: 8px;
+          font-size: 1.75rem;
+        }
+      }
+
+      p {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        font-weight: normal;
+        @media (max-width: 1200px) {
+          background: rgba(55, 117, 104, 0.75);
+          padding: 8px;
+        }
+      }
+    }
+    &.slide-sale {
+      background-color: var(--brand-primary);
+      background: url("images/courses/understanding-and-helping-your-demand-avoidant-adolescent.webp")
+        no-repeat left center / cover;
+      // background-size:cover;
+      text-align: right;
+      background-color: var(--brand-primary);
+      @media (min-width: 1200px) {
+        background:
+          linear-gradient(
+            to right,
+            rgba(74, 124, 89, 0) 200px,
+            rgba(55, 117, 104, 1) 400px
+          ),
+          url("images/courses/understanding-and-helping-your-demand-avoidant-adolescent.webp")
+            no-repeat left center;
+        background-size: contain;
+        text-align: right;
+      }
+      .slide-content {
+        text-align: right;
+      }
+    }
+    &.slide-new-courses {
+      background-color: var(--brand-primary);
+      background: url("images/books/when-the-naughty-step-makes-things-worse.jpg")
+        no-repeat left center / cover;
+      text-align: right;
+      @media (min-width: 1200px) {
+        background:
+          linear-gradient(
+            to right,
+            rgba(218, 169, 66, 0) 370px,
+            rgba(218, 169, 66, 1) 430px
+          ),
+          url("images/books/when-the-naughty-step-makes-things-worse.jpg")
+            no-repeat left center;
+        background-size: contain;
+        text-align: right;
+      }
+      .slide-content {
+        text-align: right;
+      }
+    }
+
+    &.slide-seminars {
+      background-color: var(--brand-primary);
+      background: url("images/courses/how-can-your-learn-if-you-dont-go-to-school.jpg")
+        no-repeat left center / cover;
+      text-align: right;
+      @media (min-width: 1200px) {
+        background:
+          linear-gradient(
+            to right,
+            rgba(68, 98, 124, 0) 200px,
+            rgba(68, 98, 124, 1) 400px
+          ),
+          url("images/courses/how-can-your-learn-if-you-dont-go-to-school.jpg")
+            no-repeat left center;
+        background-size: contain;
+        text-align: right;
+      }
+      .slide-content {
+        text-align: right;
+      }
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #ffffff;
+      color: var(--function-dark-9);
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: var(--brand-light-bg);
+        color: var(--brand-primary);
+      }
+    }
+  }
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+
+  &.prev {
+    left: 10px;
+  }
+
+  &.next {
+    right: 10px;
+  }
+}
+
+.carousel-nav-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+
+  .nav-dot {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &.active {
+      background-color: white;
+    }
+  }
+}

@@ -1,6 +1,7 @@
 @use "mixins.scss" as mix;
 @use "./components/buttons.scss";
 @use "./components/accordion.scss";
+@use "./components/carousel.scss";
 @use "./layouts/page.scss";
 @use "./layouts/footer.scss";
 @use "./components/forms.scss";
@@ -9,6 +10,7 @@
 @use "./components/category-badges.scss";
 @use "./components/webinar-card.scss";
 @use "./components/breadcrumbs.scss";
+@use "./components/profile-card.scss";
 @use "./legacy.scss";
 
 :root {
