@@ -21,7 +21,11 @@ const metaDescription =
   pageTitle={pageTitle}
   metaDescription={metaDescription}
 >
-  <SalesBanner useClass="books-bg" />
+  <a name="books" class="anchor">
+    <h1 class="section-title">
+      <span class="courses-section-title">Books</span>
+    </h1>
+  </a>
   <div class="page-intro-wrapper">
     <div class="page-intro-static-image">
       <StaticImage
@@ -80,10 +84,10 @@ const metaDescription =
       </div>
     </div>
   </div>
-
-  <h2 class="section-title">
-    <span class="books-section-title">Books</span>
-  </h2>
-
+  <a name="browse-books" class="anchor">
+    <h2 class="section-title">
+      <span class="person-section-title">Browse Books</span>
+    </h2>
+  </a>
   {books.map((book) => <BookSummary book={book.data} />)}
 </BaseLayout>
