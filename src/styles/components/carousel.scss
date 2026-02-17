@@ -24,7 +24,7 @@
   .carousel-slide {
     min-width: 100%;
     box-sizing: border-box;
-    height: 300px;
+    height: 240px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -68,22 +68,19 @@
       background: url("/images/courses/understanding-and-helping-your-demand-avoidant-adolescent.webp")
         no-repeat left center / cover;
       // background-size:cover;
-      text-align: right;
       background-color: var(--brand-primary);
       @media (min-width: 1200px) {
         background:
           linear-gradient(
             to right,
             rgba(74, 124, 89, 0) 200px,
-            rgba(55, 117, 104, 1) 400px
+            rgba(55, 117, 104, 1) 380px
           ),
           url("/images/courses/understanding-and-helping-your-demand-avoidant-adolescent.webp")
             no-repeat left center;
         background-size: contain;
-        text-align: right;
       }
       .slide-content {
-        text-align: right;
       }
     }
     &.slide-new-courses {
@@ -95,16 +92,14 @@
         background:
           linear-gradient(
             to right,
-            rgba(218, 169, 66, 0) 370px,
-            rgba(218, 169, 66, 1) 430px
+            rgba(218, 169, 66, 0) 260px,
+            rgba(218, 169, 66, 1) 380px
           ),
           url("/images/books/when-the-naughty-step-makes-things-worse.jpg")
             no-repeat left center;
         background-size: contain;
-        text-align: right;
       }
       .slide-content {
-        text-align: right;
       }
     }
 
@@ -112,21 +107,16 @@
       background-color: var(--brand-primary);
       background: url("/images/courses/how-can-your-learn-if-you-dont-go-to-school.jpg")
         no-repeat left center / cover;
-      text-align: right;
       @media (min-width: 1200px) {
         background:
           linear-gradient(
             to right,
-            rgba(68, 98, 124, 0) 200px,
-            rgba(68, 98, 124, 1) 400px
+            rgba(68, 98, 124, 0) 207px,
+            rgb(68, 98, 124) 412px
           ),
           url("/images/courses/how-can-your-learn-if-you-dont-go-to-school.jpg")
             no-repeat left center;
         background-size: contain;
-        text-align: right;
-      }
-      .slide-content {
-        text-align: right;
       }
     }
 

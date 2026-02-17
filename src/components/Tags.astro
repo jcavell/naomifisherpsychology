@@ -17,7 +17,7 @@ const includedForTags = tags.filter((t) => forTags.includes(t));
       {includedTopicTags.map((tag: string, index: number) => (
         <>
           <a href={`/${uri}/${makeUrl(tag)}`}>{tag}</a>
-          {includedTopicTags.length > index + 1 && <>, </>}
+          {/* {includedTopicTags.length > index + 1 && <>, </>} */}
         </>
       ))}
     </span>

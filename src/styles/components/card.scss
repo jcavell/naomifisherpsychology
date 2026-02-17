@@ -440,8 +440,8 @@ $spacing-unit: 16px; // Use a spacing system
     a.btn {
       text-align: center;
       text-decoration: none;
-      font-size: 16px;
-      padding: 16px 32px;
+      font-size: 20px;
+      padding: 12px 24px;
     }
   }
 }
@@ -524,6 +524,198 @@ $spacing-unit: 16px; // Use a spacing system
     margin-top: unset;
     a {
       text-decoration: none;
+    }
+  }
+}
+
+.book-card {
+  display: flex;
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden; // Ensures image/content don't spill out
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  margin: 2rem auto;
+  transition: transform 0.3s ease;
+  min-width: 540px;
+  border-radius: 16px;
+  margin: 0;
+  width: calc(50% - 20px);
+
+  &:hover {
+    transform: translateY(-5px); // Subtle lift on hover
+  }
+
+  // Portrait Image Section (40% width)
+  &__image-container {
+    flex: 0 0 40%;
+    position: relative;
+    background: #ffffff;
+  }
+
+  &__image,
+  img {
+    width: 100%;
+    object-fit: cover; // Ensures portrait aspect ratio stays sharp
+    display: block;
+    height: auto !important;
+    border-bottom: 1px solid var(--brand-primary);
+  }
+
+  // Content Section (60% width)
+  &__content {
+    flex: 1;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__metadata {
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 16px;
+
+    span {
+      display: inline-block;
+      margin-bottom: 8px;
+      @media (max-width: 1200px) {
+        margin-bottom: 0;
+      }
+      &.contributors {
+        background-image: none;
+        font-weight: 600;
+      }
+      &.tags {
+        background-image: none;
+        @media (max-width: 1200px) {
+          display: none;
+        }
+        a {
+          display: inline-block;
+          background-color: #d3e4e0;
+          padding: 8px;
+          border-radius: 8px;
+          width: auto;
+          font-size: 10px;
+          text-decoration: none;
+          color: var(--brand-primary);
+          margin: 4px 4px 0 0;
+          &:hover {
+            background-color: #9fbeb6;
+            color: #ffffff;
+          }
+        }
+      }
+    }
+  }
+  &__date,
+  &__format {
+    @media (max-width: 1200px) {
+      display: none !important;
+    }
+  }
+
+  &__title {
+    border-top: none;
+    border-radius: 0;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 8px;
+    font-family: Oswald;
+    text-transform: none;
+    padding-right: 16px;
+    padding-bottom: 0;
+    min-height: unset;
+    a {
+      color: var(--brand-primary);
+      text-decoration: none;
+      line-height: 1.25;
+    }
+    span {
+      display: block;
+      text-transform: capitalize;
+      font-size: 16px;
+      letter-spacing: 0;
+      line-height: 1.2;
+      margin-bottom: -6px;
+      font-weight: 500;
+      font-family: Oswald, sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 500;
+      font-style: normal;
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+  }
+
+  &__description {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-top: auto;
+    a {
+      text-decoration: none;
+    }
+  }
+
+  &__tag {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  &__cta {
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+
+    &:hover {
+    }
+  }
+}
+
+// Mobile Responsiveness
+@media (max-width: 1200px) {
+  .book-card {
+    flex-direction: column; // Stack vertically on small screens
+    width: 100%;
+    min-width: unset;
+    margin-bottom: 16px;
+
+    &__image-container {
+      height: 300px; // Fixed height for image when stacked
+    }
+    &__metadata {
+      margin: 0;
+      padding-bottom: 0;
+    }
+    .mobile-meta {
+      .tags {
+        background-image: none;
+        a {
+          display: inline-block;
+          background-color: #d3e4e0;
+          padding: 8px;
+          border-radius: 8px;
+          width: auto;
+          font-size: 14px;
+          text-decoration: none;
+          color: var(--brand-primary);
+          margin: 4px 4px 0 0;
+          font-weight: normal;
+        }
+      }
     }
   }
 }

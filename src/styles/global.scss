@@ -518,11 +518,11 @@ body:has(.sales-banner) {
 
 .desktop-item {
   @media (max-width: 1200px) {
-    display: none;
+    display: none !important;
   }
 }
 .mobile-item {
   @media (min-width: 1200px) {
-    display: none;
+    display: none !important;
   }
 }

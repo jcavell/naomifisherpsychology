@@ -515,7 +515,9 @@ li:hover + .mega-box,
 }
 
 .mobile-item {
-  display: none;
+  @media (min-width: 1200px) {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 1200px) {

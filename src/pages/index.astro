@@ -160,13 +160,13 @@ const metaDescription =
 <!-- QUOTE -------------------------------------------------- -->
 <!-- <GenerateQuote client:load quotes={generalQuotes} /> -->
 <!-- HEADER / CONTENT - BOOKS ------ -->
-    <!-- <a name="books" class="anchor">
+    <a name="books" class="anchor">
    <h2 class="section-title">
      <span class="">Featured Books</span>
       <a href="/books" class="section-title-all-link"> See All Books </a>
    </h2>
   </a>
-  {featuredBooks.map((book) => book && book.data ? <BookSummary book={book.data} /> : null)} -->
+  {featuredBooks.map((book) => book && book.data ? <BookSummary book={book.data} /> : null)}
 
 
 <!-- HEADER stay informed -->
@@ -238,4 +238,7 @@ const metaDescription =
   <!-- <Newsletter formId="6662296"/> -->
   <!-- <NewsletterNew formId="6662296"/> -->
  
+
+
 </BaseLayout>
+

@@ -8,43 +8,54 @@ import { getFormats, getPubDate, getPubDateString } from "../../scripts/book";
 import "../../styles/components/card.scss";
 ---
 
-<div class="card card-books">
-  {
-    getPubDate(book) > new Date() && (
-      <div class="sale-badge preorder-badge">
-        <span class="sale-amount">PRE-</span>
-        <span class="sale-text">order</span>
+<article class="book-card">
+  <!-- Left Side: Portrait Image -->
+  <div class="book-card__image-container">
+    <BookImage book={book} />
+    <div class="book-card__metadata">
+      <span class="book-card__contributors">
+        <Contributers people={book.people} /></span
+      >
+      <span class="book-card__date">Published {getPubDateString(book)} </span>
+      <span class="book-card__format">
+        {getFormats(book).join(", ")}
+      </span>
+      <Tags tags={book.tags} />
+    </div>
+  </div>
+
+  <!-- Right Side: Content -->
+  <div class="book-card__content">
+    <h2 class="book-card__title">
+      <a href={book.uri}>{book.title}</a>
+      <span>{book.subtitle} </span>
+    </h2>
+
+    {book.description && <p>{book.description}</p>}
+    <p>
+      {book.summary}
+    </p>
+    <p class="mobile-meta mobile-item">
+      <span class="book-card__date desktop-item"
+        >Published {getPubDateString(book)}
+      </span>
+      <span class="book-card__format"> {getFormats(book).join(", ")} </span>
+      <Tags tags={book.tags} />
+    </p>
+    <div class="book-card__footer">
+      <div class="card-actions">
+        <a class="btn btn-learn" href={book.uri}> Read More</a>
       </div>
-    )
-  }
-  <h2>
-    <a href={book.uri}>{book.title}</a>
-    <span>{book.subtitle} </span>
-  </h2>
-  <div class="card-book-top">
-    <div class="card-image">
-      <BookImage book={book} />
-    </div>
-    <div class="card-details">
-      <!-- <a href={book.uri}> BOOK </a> -->
-      <Contributers people={book.people} />
-      <!-- <Tags tags={book.tags} /> -->
-      <span class="bookmark"> {getFormats(book).join(", ")} </span>
-      <span class="date"> Published {getPubDateString(book)} </span>
     </div>
   </div>
+</article>
+<!-- This is a summary card for a book, used on the books page and the homepage. It includes the title, subtitle, image, contributers, tags, formats and publication date. It also includes a short summary of the book. -->
 
-  {book.description && <p>{book.description}</p>}
-
-  <p>
-    {book.summary}
-  </p>
-
-  <div class="card-meta">
-    <!-- <Contributers people={book.people} /> -->
-    <Tags tags={book.tags} />
-  </div>
-  <div class="card-actions">
-    <a class="btn btn-learn" href={book.uri}> Read More</a>
-  </div>
-</div>
+<style lang="scss">
+  $card-bg: #ffffff;
+  $text-main: #2d3436;
+  $text-muted: #636e72;
+  $accent-color: #0984e3;
+  $border-radius: 16px;
+  $shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
+</style>
