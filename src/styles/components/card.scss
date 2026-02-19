@@ -685,6 +685,67 @@ $spacing-unit: 16px; // Use a spacing system
   }
 }
 
+.category-books {
+  .book-card {
+    width: 100%;
+    .book-card__image-container {
+      flex: 0 0 20%;
+    }
+
+    .purchase {
+      position: relative;
+      display: flex;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      height: 56px;
+      align-items: center;
+      background-size: 14px 14px;
+      background-repeat: no-repeat;
+      background-position: right center;
+      background-image: url(../icon-external-link.svg);
+
+      // .company {
+      //   padding-top: 1em;
+      //   padding-bottom: 1em;
+      // }
+      .buy-now {
+        margin-left: auto;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        span {
+          display: block;
+          text-decoration: none;
+          text-transform: uppercase;
+          color: #fff;
+          background: #387668;
+          text-decoration: none;
+          padding-left: 16px;
+          padding-right: 16px;
+          padding-top: 6px;
+          padding-bottom: 6px;
+          border-radius: 10px;
+        }
+        .details-blog span & {
+          background: #45627e;
+        }
+      }
+
+      .company {
+        background-repeat: no-repeat;
+        background-position: left center;
+        background-size: auto 100%;
+        flex: 1;
+        position: relative;
+        min-height: 24px;
+      }
+      .company.blackwells {
+        background-image: url(/src/styles/logo-blackwells.svg);
+        background-size: auto 70%;
+      }
+    }
+  }
+}
+
 // Mobile Responsiveness
 @media (max-width: 1200px) {
   .book-card {

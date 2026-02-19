@@ -5,6 +5,7 @@ import { getEntry, render } from "astro:content";
 import GenerateQuote from "../Quoter";
 import { getPubDate, getPubDateString } from "../../scripts/book";
 import "../../styles/components/details.scss";
+import "../../styles/components/card.scss";
 
 const entryName = book.uri.replace("/books/", "");
 
@@ -27,8 +28,195 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
   await render (excerpt);
 ---
 
+<article class="book-card">
+  <!-- Left Side: Portrait Image -->
+  <div class="book-card__image-container">
+    <BookImage book={book} />
+    <div class="book-card__metadata">
+      <span class="book-card__contributors">
+       contributers here</span
+      >
+      <span class="book-card__date">Published {getPubDateString(book)} </span>
+      <span class="book-card__format">
+        formats here
+      </span>
+      tags here
+    </div>
+  </div>
+
+  <!-- Right Side: Content -->
+  <div class="book-card__content">
+    <h2 class="book-card__title">
+      <a href={book.uri}>{book.title}</a>
+      <span>{book.subtitle} </span>
+    </h2>
+
+    {book.description && <p>{book.description}</p>}
+    <p>
+      <p>
+        {book.summary}
+      </p>
+      <BookContent />
+    </p>      <div class="accordion-wrapper">
+          {moreInfo?.body && moreInfo.body.length > 1 &&
+      <button class="accordion no-title-accordion">Read More</button>
+          <div class="panel">
+            <p>
+                <MoreInfoContent/>
+            </p>
+          </div>
+      }
+        <button class="accordion">Table of Contents</button>
+        <div class="panel">
+          <ol>
+            {book.toc.map((item, index) => <li key={index}>{item}</li>)}
+          </ol>
+        </div>
+        <button class="accordion">Reviews</button>
+        <div class="panel reviews-accordion">
+          {
+            reviews?.data.map((review) => (
+              <div>
+              <p>{review.text}</p>
+                <span>{review.author}</span>
+              </div>
+            ))
+          }
+        </div>
+
+        {
+          book.hasAudiobookSample && (
+            <>
+              <button class="accordion">Audiobook Sample</button>
+              <div class="panel">
+                <audio
+                  id="audio"
+                  src={`/audio/books/${entryName}.mp3`}
+                  controls
+                />
+              </div>
+            </>
+          )
+        }
+
+         {
+          book.excerptUrl && (
+            <>
+              <a
+                class="mock-accordion"
+                href={book.excerptUrl}
+                target="_blank"
+              >
+                Read Sample
+              </a>
+            </>
+          )
+        }
+
+        {
+          excerpt?.body && (
+            <>
+              <button class="accordion">Read Excerpt</button>
+              <div class="panel">
+                <ExcerptContent />
+                {book.excerptUrl && (
+                  <iframe
+                    id="theFrame"
+                    src={book.excerptUrl}
+                    style="height: 500px; width:100%;"
+                    frameborder="0"
+                  />
+                )}
+              </div>
+            </>
+          )
+        }
+      </div>
+
+<div class="book-card__purchase">
+  <div class="purchase-wrapper">
+        <div class="purchase-title">
+          <div class="purchase-title-primary purchase-title-paperback">
+            PAPERBACK
+          </div>
+          <div class="purchase-title-secondary">
+            Published on {getPubDateString(book)} by {book.publisher}, {
+              book.pages
+            } pages
+          </div>
+        </div>
+
+        {
+          book.psychologicalTherapiesUrl && (
+            <a
+              href={book.psychologicalTherapiesUrl}
+              target="blank"
+              class="test"
+            >
+              <div class="purchase">
+                <!--<div class="price">{book.psychologicalTherapiesPrice}</div>-->
+                <div class="company">Psychological Therapy Books</div>
+              </div>
+            </a>
+          )
+        }
+
+        {
+          ! book.psychologicalTherapiesUrl && book.amazonUrl && (
+            <a href={book.amazonUrl} target="blank" class="test">
+              <div class="purchase">
+                <!-- <div class="price">{book.amazonPrice}</div> -->
+                <div class="company amazon" />
+              </div>
+            </a>
+          )
+        }
+
+        {
+          book.blackwellUrl && (
+            <a href={book.blackwellUrl} target="blank" class="test">
+              <div class="purchase">
+                <!--<div class="price">{book.blackwellPrice}</div>-->
+                <div class="company blackwells" />{" "}
+              </div>
+            </a>
+          )
+        }
+
+        <!--{-->
+        <!--  book.waterstonesUrl && (-->
+        <!--    <a href={book.waterstonesUrl} target="blank" class="test">-->
+        <!--      <div class="purchase">-->
+        <!--        <div class="price">{book.waterstonesPrice}</div>-->
+        <!--        <div class="company waterstones" />{" "}-->
+        <!--      </div>-->
+        <!--    </a>-->
+        <!--  )-->
+        <!--}-->
+      </div>
+</div>
+
+
+    <p class="mobile-meta mobile-item">
+      <span class="book-card__date desktop-item"
+        >Published {getPubDateString(book)}
+      </span>
+      <span class="book-card__format"> formats</span>
+      
+    </p>
+    <div class="book-card__footer">
+      <div class="card-actions">
+        <a class="btn btn-learn" href={book.uri}> Read More</a>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+
 <div class="details details-books">
-  <div class="details-category">BOOK</div>
+  <div class="details-category">BOOKie</div>
   {
     getPubDate(book) > new Date() && (
       <div class="sale-badge preorder-badge">
@@ -56,13 +244,13 @@ const { Content: ExcerptContent, headings: excerptHeadings } =
       <Vimeo embedUrl={book.vimeoEmbedUrl} /> -->
 
       <div class="accordion-wrapper">
-          {moreInfo?.body?.length > 1 &&
+          {moreInfo?.body && moreInfo.body.length > 1 &&
       <button class="accordion no-title-accordion">Read More</button>
-					<div class="panel">
-						<p>
-							  <MoreInfoContent/>
-						</p>
-					</div>
+          <div class="panel">
+            <p>
+                <MoreInfoContent/>
+            </p>
+          </div>
       }
         <button class="accordion">Table of Contents</button>
         <div class="panel">

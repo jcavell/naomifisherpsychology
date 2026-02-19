@@ -7,12 +7,18 @@ import {
 import BaseLayout from "../layouts/BaseLayout.astro";
 import CoursesList from "../components/course/CoursesListV2.astro";
 
+import GenerateQuote from "../components/Quoter";
+import { getEntry } from "astro:content";
 import StaticImage from "../components/StaticImage.astro";
 
 import homeImage from "../images/static/courses-home.png";
 const featuredCourses1 = await getFeaturedCourses(0, 4);
 const featuredCourses2 = await getFeaturedCourses(2, 4);
 
+const coursesQuotes = (await getEntry(
+  "course-quotes",
+  "general-course-quotes",
+))!.data;
 const metaDescription =
   "Dr Naomi Fisher and Dr Abigail Fisher's courses on helping autistic children with anxiety, screen time, PDA and Demand Avoidance, burnout, What Neurodiversity is, problems at school and EHCP and professional courses on EMDR";
 ---
@@ -33,44 +39,32 @@ const metaDescription =
       </ul>
     </div>
   </div>
-  <div>
-    <a name="courses" class="anchor">
-      <h1 class="section-title">
-        <span class="courses-section-title">Courses</span>
-      </h1>
-    </a>
-    <p>
-      We created our pre-recorded video courses when we discovered families were
-      finding it hard to access high quality, affordable psychological
-      information which addressed their children's needs.
-    </p><p>They are divided into manageable modules.</p><p>
-      You or your child can watch them in your own time for 12 months after
-      purchase.
-    </p>
+  <a name="courses" class="anchor">
+    <h1 class="section-title">
+      <span class="courses-section-title">Courses</span>
+    </h1>
+  </a>
 
-    <!-- <div class="page-intro-wrapper">
-      <div class="page-intro-static-image">
-        <StaticImage
-          image={homeImage}
-          alt="Digital Tablet, notebooks, headphones and a hand-written checklist on a desk"
-        />
-      </div>
+  <div class="page-intro-wrapper">
+    <div class="page-intro-static-image">
+      <StaticImage
+        image={homeImage}
+        alt="Naomi and Child reading A Different Way To Learn"
+      />
+    </div>
 
-      <div class="page-intro-text">
-        <h1 class="course-page-titles">Courses</h1>
-        <p>
-          We created our pre-recorded video courses when we discovered families
-          were finding it hard to access high quality, affordable psychological
-          information which addressed their children's needs.
-        </p><p>They are divided into manageable modules.</p><p>
-          You or your child can watch them in your own time for 12 months after
-          purchase.
-        </p>
-
-       
-      </div>
-    </div> -->
+    <div class="page-intro-text">
+      <p>
+        We created our pre-recorded video courses when we discovered families
+        were finding it hard to access high quality, affordable psychological
+        information which addressed their children's needs.
+      </p><p>They are divided into manageable modules.</p><p>
+        You or your child can watch them in your own time for 12 months after
+        purchase.
+      </p>
+    </div>
   </div>
+
   <h2 class="section-title">
     <span class="courses-section-title">Featured Courses</span>
   </h2>
@@ -79,4 +73,43 @@ const metaDescription =
     categoryId="featured"
     categoryName="Featured Courses"
   />
+
+  <GenerateQuote client:load quotes={coursesQuotes} />
+  <div class="faq-wrapper">
+    <h2 class="section-title">
+      <span class="courses-section-title">Courses FAQ</span>
+    </h2>
+    <div class="accordion-wrapper">
+      <button class="accordion">What is a course?</button>
+      <div class="panel">
+        <p>
+          Our courses are a series of pre-recorded videos that you watch in your
+          own time. They are available to watch for 12 months after purchase.
+        </p>
+      </div>
+
+      <button class="accordion">How do I find a course?</button>
+      <div class="panel">
+        <p>
+          <a href="/courses">Browse our courses</a> to see which ones are of interest.
+        </p>
+      </div>
+
+      <button class="accordion">How do I watch courses I've purchased?</button>
+
+      <div class="panel">
+        <p>
+          <a href="https://courses.naomifisher.co.uk/login"
+            >Login to our courses website</a
+          > to watch your courses.
+        </p>
+      </div>
+      <button class="accordion"
+        >How long are courses available to watch for?</button
+      >
+      <div class="panel">
+        <p>They are now available to watch for 12 months after purchase.</p>
+      </div>
+    </div>
+  </div>
 </BaseLayout>
