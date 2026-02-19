@@ -574,7 +574,7 @@ $spacing-unit: 16px; // Use a spacing system
     font-size: 0.85rem;
     margin-bottom: 1rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: normal;
     padding: 16px;
 
     span {
@@ -686,61 +686,144 @@ $spacing-unit: 16px; // Use a spacing system
 }
 
 .category-books {
-  .book-card {
+  .book-card.book-details-page {
     width: 100%;
     .book-card__image-container {
       flex: 0 0 20%;
     }
 
-    .purchase {
-      position: relative;
-      display: flex;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-      height: 56px;
-      align-items: center;
-      background-size: 14px 14px;
-      background-repeat: no-repeat;
-      background-position: right center;
-      background-image: url(../icon-external-link.svg);
-
-      // .company {
-      //   padding-top: 1em;
-      //   padding-bottom: 1em;
-      // }
-      .buy-now {
-        margin-left: auto;
-        height: 56px;
-        display: flex;
-        align-items: center;
-        span {
-          display: block;
-          text-decoration: none;
-          text-transform: uppercase;
-          color: #fff;
-          background: #387668;
-          text-decoration: none;
-          padding-left: 16px;
-          padding-right: 16px;
-          padding-top: 6px;
-          padding-bottom: 6px;
-          border-radius: 10px;
-        }
-        .details-blog span & {
-          background: #45627e;
-        }
+    .section-title {
+      font-size: 16px;
+      font-weight: normal;
+      border-bottom: 1px solid var(--brand-primary);
+      margin-bottom: 16px;
+      @media (max-width: 1200px) {
+        margin-top: 0;
+      }
+    }
+    .purchase-wrapper {
+      margin-bottom: 16px;
+      font-family: "Oswald", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 500;
+      font-style: normal;
+      a {
+        color: #000;
+        text-decoration: none !important;
       }
 
-      .company {
-        background-repeat: no-repeat;
-        background-position: left center;
-        background-size: auto 100%;
-        flex: 1;
+      .purchase-title-primary {
+        font-size: 14px;
+        font-weight: 500;
+        margin: 8px 0 0 0;
+        background-color: black;
+        border-radius: 12px 12px 0 0;
+        color: #ffffff;
+        padding: 16px;
+      }
+      .purchase-title-secondary {
+        font-size: 14px;
+        font-weight: 500;
+        padding: 16px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+      }
+      .purchase {
         position: relative;
-        min-height: 24px;
-      }
-      .company.blackwells {
-        background-image: url(/src/styles/logo-blackwells.svg);
-        background-size: auto 70%;
+        display: flex;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-width: 0 1px 1px 1px;
+        height: 56px;
+        align-items: center;
+        background-size: 14px 14px;
+        background-repeat: no-repeat;
+        background-position: right 16px center;
+        background-image: url(../icon-external-link.svg);
+        padding: 0 16px;
+
+        // .company {
+        //   padding-top: 1em;
+        //   padding-bottom: 1em;
+        // }
+        .buy-now {
+          margin-left: auto;
+          height: 56px;
+          display: flex;
+          align-items: center;
+          span {
+            display: block;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: #fff;
+            background: #387668;
+            text-decoration: none;
+            padding-left: 16px;
+            padding-right: 16px;
+            padding-top: 6px;
+            padding-bottom: 6px;
+            border-radius: 10px;
+          }
+          .details-blog span & {
+            background: #45627e;
+          }
+        }
+
+        .company {
+          background-repeat: no-repeat;
+          background-position: left center;
+          background-size: auto 100%;
+          flex: 1;
+          position: relative;
+          min-height: 24px;
+          &.amazon {
+            background-image: url(../logo-amazon.svg);
+            background-size: auto 80%;
+          }
+
+          &.blackwells {
+            background-image: url(../logo-blackwells.svg);
+            background-size: auto 70%;
+          }
+
+          &.waterstones {
+            background-image: url(logo-waterstones.svg);
+            background-size: auto 70%;
+          }
+
+          &.kindle {
+            background-image: url(../logo-kindle.svg);
+          }
+
+          &.google-books {
+            background-image: url(../logo-google-books.png);
+            background-size: auto 80%;
+          }
+
+          &.kobo {
+            background-image: url(../logo-kobo.svg);
+          }
+
+          &.apple-books {
+            background-image: url(../logo-apple-books.png);
+            background-size: auto 70%;
+          }
+
+          &.audible {
+            background-image: url(../logo-audible.svg);
+          }
+
+          &.xigxag {
+            background-image: url(../logo-xigxag.svg);
+          }
+
+          &.kajabi {
+            background-image: url(../logo-kajabi.svg);
+            background-size: auto 70%;
+          }
+        }
+        .company.blackwells {
+          background-image: url(/src/styles/logo-blackwells.svg);
+          background-size: auto 70%;
+        }
       }
     }
   }

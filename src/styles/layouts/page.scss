@@ -4,7 +4,7 @@
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 16px;
+  margin-top: 50px;
   margin-bottom: 80px;
   padding-left: 16px;
   padding-right: 16px;
@@ -371,8 +371,10 @@ h3:first-child,
     text-transform: uppercase;
     font-weight: normal;
     margin-top: 1rem;
+    margin-bottom: 16px;
     @media (min-width: 1200px) {
       margin-top: 0;
+      margin-bottom: 0;
     }
   }
 }
@@ -456,6 +458,7 @@ h3:first-child,
   display: none;
 }
 .page-title h1 {
+  display: none;
   text-decoration: none;
   color: black;
   padding-left: 16px;
@@ -466,6 +469,7 @@ h3:first-child,
   height: 50px;
   letter-spacing: 0.03em;
   text-transform: uppercase;
+  background-color: blue;
 }
 
 .page-title a {
