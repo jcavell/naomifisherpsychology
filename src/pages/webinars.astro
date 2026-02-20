@@ -85,7 +85,7 @@ const metaDescription =
 
   <!--       --------------------------------------------------- -->
   <div
-    class="card card-webinars"
+    class="card card-courses"
     data-webinar-end="2026-03-11T13:30:00.000Z"
     data-astro-cid-36t3u3hc=""
   >
@@ -93,11 +93,6 @@ const metaDescription =
       <span class="live-day" data-astro-cid-36t3u3hc="">11</span>
       <span class="live-month" data-astro-cid-36t3u3hc="">Mar</span>
     </div>
-    <h2 data-astro-cid-36t3u3hc="">
-      <a href="/webinars/1982284000808" data-astro-cid-36t3u3hc=""
-        >Helping Your Autistic Child with Anxiety</a
-      >
-    </h2>
     <div class="card-image" data-astro-cid-36t3u3hc="">
       <img
         loading="lazy"
@@ -105,12 +100,15 @@ const metaDescription =
         alt="Image for Helping Your Autistic Child with Anxiety"
       />
     </div>
+    <h2 data-astro-cid-36t3u3hc="">
+      <a href="/webinars/1982284000808" data-astro-cid-36t3u3hc=""
+        >Helping Your Autistic Child with Anxiety</a
+      >
+    </h2>
     <div class="card-details" data-astro-cid-36t3u3hc="">
       <span class="date" data-astro-cid-36t3u3hc=""> 11 Mar at 12:00 PM </span>
       <span class="contributors"> </span>
-      <!--<span class="time">-->
-      <!--  {`${webinar.startTime} - ${webinar.endTime}`}-->
-      <!--</span>-->
+      <!--<span class="duration"> {course.meta?.runningTime} </span>-->
       <span class="cost" data-astro-cid-36t3u3hc=""> from £12.99 </span>
     </div>
     <p data-astro-cid-36t3u3hc="">
@@ -118,14 +116,15 @@ const metaDescription =
       Naomi Fisher will help you understand and support your child.
     </p>
     <!--<div class="card-meta">-->
-    <!--  <Contributers people={meta?.contributers} />-->
-    <!--  <Tags tags={meta?.tags} />-->
+    <!--  <Contributers people={course.meta?.contributers} />-->
+    <!--  <Tags tags={course.meta?.tags} />-->
     <!--</div>-->
-    <div class="card-buttons" data-astro-cid-36t3u3hc="">
-      <a href="/webinars/1982284000808" data-astro-cid-36t3u3hc="">
+    <div class="card-actions" data-astro-cid-36t3u3hc="">
+      <a class="btn" href="/webinars/1982284000808" data-astro-cid-36t3u3hc="">
         Learn More
       </a>
       <a
+        class="btn"
         href="https://www.eventbrite.co.uk/e/helping-your-autistic-child-with-anxiety-tickets-1982284000808?aff=web?aff=web"
         data-astro-cid-36t3u3hc=""
       >
@@ -154,12 +153,13 @@ const metaDescription =
     webinars.length > 0 && (
       <>
         <h2 class="section-title">Upcoming</h2>
+        <div class="course-card-grid">
+          <RemoveFinishedWebinars client:load />
 
-        <RemoveFinishedWebinars client:load />
-
-        {webinars.map((webinar, index) => (
-          <WebinarSummary webinar={webinar} />
-        ))}
+          {webinars.map((webinar, index) => (
+            <WebinarSummary webinar={webinar} />
+          ))}
+        </div>
         <GenerateQuote client:load quotes={quotes} />
       </>
     )

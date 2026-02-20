@@ -80,13 +80,18 @@
   }
 
   .card-image {
-    width: calc(100% - 32px);
-    margin-left: 16px;
-    margin-right: 16px;
+    // width: calc(100% - 32px);
+    // margin-left: 16px;
+    // margin-right: 16px;
+    // display: block;
+    // border-top: 1px solid rgba(0, 0, 0, 0.5);
+    // border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    // aspect-ratio: 5/3;
+    // overflow: hidden;
     display: block;
     border-top: 1px solid rgba(0, 0, 0, 0.5);
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-    aspect-ratio: 5/3;
+    aspect-ratio: 5 / 3;
     overflow: hidden;
   }
 
