@@ -93,6 +93,7 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
     aspect-ratio: 5 / 3;
     overflow: hidden;
+    border-radius: 16px 16px 0 0;
   }
 
   img {
@@ -889,7 +890,7 @@ $spacing-unit: 16px; // Use a spacing system
 }
 
 .card-courses {
-  overflow: hidden;
+  //overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   h2 {
     border-top: none;
@@ -924,6 +925,29 @@ $spacing-unit: 16px; // Use a spacing system
     background-color: var(--function-dark-9);
     &:hover {
       background-color: var(--brand-primary);
+    }
+    &.add-tickets {
+      all: revert;
+      flex: none;
+      display: inline-block;
+      appearance: unset;
+      border-radius: 6px;
+      background-color: var(--brand-primary);
+      color: #ffffff;
+      padding: 16px 32px;
+      border: 0;
+      font-size: 16px;
+      text-transform: uppercase;
+      font-family: "Oswald", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 500;
+      font-style: normal;
+      cursor: pointer;
+      text-decoration: none;
+      &:hover {
+        background-color: var(--brand-light-bg);
+        color: var(--brand-primary);
+      }
     }
   }
 }
