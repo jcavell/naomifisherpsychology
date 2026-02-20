@@ -882,3 +882,55 @@ $spacing-unit: 16px; // Use a spacing system
     }
   }
 }
+
+.card-courses {
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  h2 {
+    border-top: none;
+    border-radius: 0;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 8px;
+    font-family: Oswald;
+    text-transform: none;
+    padding-right: 16px;
+    padding-bottom: 0;
+    min-height: unset;
+    a {
+      color: var(--brand-primary);
+      text-decoration: none;
+      line-height: 1.25;
+    }
+  }
+}
+.card-image {
+  width: 100%;
+  margin: 0;
+}
+.card-actions {
+  padding: 16px;
+  a.btn {
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 16px 32px;
+    color: white;
+    background-color: var(--function-dark-9);
+    &:hover {
+      background-color: var(--brand-primary);
+    }
+  }
+}
+:global(
+  .card-actions button.add-to-basket-from-summary._textButton_1efyz_355.inBask
+) {
+  background-color: var(--brand-light-bg);
+  color: var(--brand-primary);
+}
+:global(
+  .card-actions button.add-to-basket-from-summary._textButton_1efyz_355:hover
+) {
+  background-color: var(--brand-light-bg);
+  color: var(--brand-primary);
+}
