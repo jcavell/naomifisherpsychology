@@ -433,6 +433,25 @@ $spacing-unit: 16px; // Use a spacing system
     &:after {
       display: none;
     }
+    .tags {
+      display: inline-block;
+      margin-bottom: 8px;
+      background-image: none;
+      padding-left: 0;
+      a {
+        display: inline-block;
+        background-color: #d3e4e0;
+        padding: 8px;
+        border-radius: 8px;
+        width: auto;
+        font-size: 10px;
+        text-decoration: none;
+        color: var(--brand-primary);
+        margin: 4px 4px 0 0;
+        text-transform: uppercase;
+        font-family: "Open Sans", sans-serif;
+      }
+    }
   }
   .card-actions {
     margin-top: unset;

@@ -54,7 +54,7 @@
     width: 100%;
     margin-bottom: 32px;
     .tag-page & {
-      order: -1;
+      // order: -1;
     }
   }
 }
@@ -387,46 +387,46 @@ h3:first-child,
   // padding-left: 29px;
 }
 
-.pro-courses-section-title {
-  background-image: url(icon-pro-courses.svg);
-  background-repeat: no-repeat;
-  background-position: left center;
-  background-size: auto 17px;
-  padding-left: 66px;
-}
+// .pro-courses-section-title {
+//   background-image: url(icon-pro-courses.svg);
+//   background-repeat: no-repeat;
+//   background-position: left center;
+//   background-size: auto 17px;
+//   padding-left: 66px;
+// }
 
-.webinars-section-title {
-  background-image: url(icon-speech.svg);
-  background-repeat: no-repeat;
-  background-position: left center;
-  background-size: 18px 18px;
-  padding-left: 26px;
-}
+// .webinars-section-title {
+//   background-image: url(icon-speech.svg);
+//   background-repeat: no-repeat;
+//   background-position: left center;
+//   background-size: 18px 18px;
+//   padding-left: 26px;
+// }
 
-.books-section-title {
-  background-image: url(icon-paperback.svg);
-  background-repeat: no-repeat;
-  background-position: left center;
-  background-size: 18px 18px;
-  padding-left: 26px;
-}
+// .books-section-title {
+//   background-image: url(icon-paperback.svg);
+//   background-repeat: no-repeat;
+//   background-position: left center;
+//   background-size: 18px 18px;
+//   padding-left: 26px;
+// }
 
-.blog-section-title {
-  background-image: url(icon-blog.svg);
-  background-repeat: no-repeat;
-  background-position: left center;
-  background-size: 18px 18px;
-  padding-left: 26px;
-}
+// .blog-section-title {
+//   background-image: url(icon-blog.svg);
+//   background-repeat: no-repeat;
+//   background-position: left center;
+//   background-size: 18px 18px;
+//   padding-left: 26px;
+// }
 
-.tag-section-title {
-  background-image: url(icon-tags.svg);
-  background-repeat: no-repeat;
-  background-position: left center;
-  background-size: 16px 16px;
-  padding-left: 20px;
-  margin-left: 4px;
-}
+// .tag-section-title {
+//   background-image: url(icon-tags.svg);
+//   background-repeat: no-repeat;
+//   background-position: left center;
+//   background-size: 16px 16px;
+//   padding-left: 20px;
+//   margin-left: 4px;
+// }
 
 // .person-section-title {
 //   background-image: url(icon-contributors.svg);

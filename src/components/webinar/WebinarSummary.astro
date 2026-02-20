@@ -16,6 +16,56 @@ const tickets = webinar.tickets;
 ---
 
 <div
+  class="card card-courses"
+  data-webinar-end={webinar.endDateTime?.toISOString()}
+>
+  <div class="live-date">
+    <span class="live-day">{webinar.day}</span>
+    <span class="live-month">{webinar.month}</span>
+  </div>
+  <div class="card-image">
+    <WebinarImage webinar={webinar} />
+  </div>
+  <h2>
+    <a href={`/webinars/${eventId}`}>{title}</a>
+  </h2>
+  <div class="card-details">
+    <span class="date">
+      {`${webinar.day} ${webinar.month}`} at
+      {`${webinar.startTime}`}
+    </span>
+    <Contributers people={meta?.contributers} />
+
+    <!--<span class="duration"> {course.meta?.runningTime} </span>-->
+    <span class="cost">
+      {
+        tickets.length === 1
+          ? tickets[0].costValue === 0
+            ? "Free"
+            : tickets[0].costPlusFee
+          : `from ${tickets[0].costPlusFee}`
+      }
+    </span>
+  </div>
+
+  <p>
+    {subtitle}
+  </p>
+
+  {meta?.subsubtitle && <p>{meta.subsubtitle}</p>}
+
+  <!--<div class="card-meta">-->
+  <!--  <Contributers people={course.meta?.contributers} />-->
+  <!--  <Tags tags={course.meta?.tags} />-->
+  <!--</div>-->
+
+  <div class="card-actions">
+    <a class="btn" href={`/webinars/${eventId}`}> Learn More </a>
+    <a class="btn" href={`${webinar.url}?aff=web`}> Tickets </a>
+  </div>
+</div>
+
+<div
   class="card card-webinars"
   data-webinar-end={webinar.endDateTime?.toISOString()}
 >
