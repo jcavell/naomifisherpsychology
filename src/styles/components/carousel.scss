@@ -29,6 +29,16 @@
     align-items: center;
     justify-content: center;
     scroll-snap-align: start;
+    background:
+      linear-gradient(
+        to right,
+        rgba(68, 98, 124, 0) 207px,
+        rgb(68, 98, 124) 412px
+      ),
+      url(/images/courses/how-can-your-learn-if-you-dont-go-to-school.jpg)
+        no-repeat left center;
+    background-repeat: no-repeat;
+    background-size: contain;
 
     @include mix.special-text;
     @media (max-width: 1200px) {

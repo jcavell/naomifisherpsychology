@@ -1,0 +1,31 @@
+
+[
+  {
+    "title": "New Course Launched",
+    "body": "Helping and Understanding Your Demand Avoidant adolescent",
+    "cta": "View Course",
+    "ctaLink": "/courses/understanding-and-helping-your-demand-avoidant-adolescent",
+    "bgImage": "/images/courses/understanding-and-helping-your-demand-avoidant-adolescent.webp",
+    "class": "course-slide"
+
+  },
+  {
+    "title": "Book Sale - Now On",
+    "body": "Explore Dr Naomi Fisher's range of books...",
+    "cta": "View Books",
+    "ctaLink": "/books",
+    "bgImage": "/images/books/when-the-naughty-step-makes-things-worse.jpg",
+    "bgColor": "rgba(218, 169, 66, 1)",
+    "class": "book-slide"
+
+  },
+  {
+    "title": "Upcoming Live Webinars",
+    "body": "Join live events with Dr. Naomi Fisher",
+    "cta": "See All Events",
+    "ctaLink": "/webinars",
+    "bgImage": "images/courses/how-can-your-learn-if-you-dont-go-to-school.jpg",
+    "class": "book-slide"
+
+  }
+]

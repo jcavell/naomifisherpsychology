@@ -1,5 +1,8 @@
 ---
-
+import CarouselSlides from "../content/carousel/carousel-slides.json";
+// blue - rgb(68, 98, 124, 1)
+// green - rgba(55, 117, 104, 1)
+// yellow - rgba(218, 169, 66, 1)
 ---
 
 <script src="../scripts/carousel.ts"></script>
@@ -8,42 +11,45 @@
   <div class="carousel-track-container">
     <div class="carousel-track">
       <!-- Slide 1: Sale Promotion -->
-      <div class="carousel-slide slide-sale">
-        <div class="slide-content">
-          <h1>New Course Launched</h1>
-          <p class="desktop-item">
-            Helping and Understanding Your Demand Avoidant adolescent
-          </p>
-          <a href="#" class="btn">View Course</a>
-        </div>
-      </div>
-
-      <!-- Slide 2: New Courses -->
-      <div class="carousel-slide slide-new-courses">
-        <div class="slide-content">
-          <h1>Book Sale Now On</h1>
-          <p class="desktop-item">
-            Explore Dr Naomi Fisher's range of books...
-          </p>
-          <a href="#" class="btn">View Books</a>
-        </div>
-      </div>
-
-      <!-- Slide 3: Live Seminars -->
-      <div class="carousel-slide slide-seminars">
-        <div class="slide-content">
-          <h1>Upcoming Live Webinars</h1>
-          <p class="desktop-item">Join live events with Dr. Naomi Fisher</p>
-          <a href="#" class="btn">See All Events</a>
-        </div>
-      </div>
+      {
+        CarouselSlides.map((slide, idx) => (
+          // <div class={`carousel-slide ${slide.class || ""}`}>
+          <div
+            class={`carousel-slide ${slide.class || ""}`}
+            style={
+              slide.bgImage
+                ? `background:    linear-gradient(        to right,
+        rgba(68, 98, 124, 0) 207px,
+         ${slide.bgColor || "rgb(68, 98, 124)"} 412px
+      ),
+      url('${slide.bgImage}') no-repeat left center / contain`
+                : ""
+            }
+          >
+            <div class="slide-content">
+              <h1>{slide.title}</h1>
+              <p class="desktop-item">{slide.body}</p>
+              {slide.cta && slide.ctaLink && (
+                <a href={slide.ctaLink} class="btn">
+                  {slide.cta}
+                </a>
+              )}
+            </div>
+          </div>
+        ))
+      }
     </div>
   </div>
   <button class="carousel-btn next" data-carousel-btn="next">&#10095;</button>
 
   <div class="carousel-nav-dots">
-    <button class="nav-dot active" data-slide-index="0"></button>
-    <button class="nav-dot" data-slide-index="1"></button>
-    <button class="nav-dot" data-slide-index="2"></button>
+    {
+      [...Array(CarouselSlides.length)].map((_, idx) => (
+        <button
+          class={`nav-dot${idx === 0 ? " active" : ""}`}
+          data-slide-index={idx}
+        />
+      ))
+    }
   </div>
 </div>
