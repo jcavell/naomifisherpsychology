@@ -9,10 +9,24 @@ const { useClass = "", bannerItems } = Astro.props;
   aria-label="Limited time offer"
 >
   <div class="banner-content">
-    <span class="sales-banner-badge">{bannerItems.badge}</span>
-    <p class="banner-text">
-      <Fragment set:html={bannerItems.title} />
-    </p>
-    <a href="/courses" class="banner-cta">{bannerItems.cta}</a>
+    {
+      bannerItems.badge && (
+        <span class="sales-banner-badge">{bannerItems.badge}</span>
+      )
+    }
+    {
+      bannerItems.title && (
+        <p class="banner-text">
+          <Fragment set:html={bannerItems.title} />
+        </p>
+      )
+    }
+    {
+      bannerItems.cta && (
+        <a href={bannerItems.ctaTarget} class="banner-cta">
+          {bannerItems.cta}
+        </a>
+      )
+    }
   </div>
 </section>

@@ -3,5 +3,6 @@
     "badge": "50% Off until Sunday",
     "title": "<strong>SALE</strong> ON AUTISM COURSES",
     "cta": "Shop Now",
+    "ctaTarget": "/courses",
     "bgColor": "#45627d"
 }
