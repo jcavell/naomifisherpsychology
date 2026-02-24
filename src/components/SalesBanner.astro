@@ -1,5 +1,6 @@
 ---
-const { useClass = "" } = Astro.props;
+import BannerContent from "../content/top-banner/top-banner.json";
+const { useClass = "", bannerItems } = Astro.props;
 ---
 
 <section
@@ -8,16 +9,10 @@ const { useClass = "" } = Astro.props;
   aria-label="Limited time offer"
 >
   <div class="banner-content">
-    <span class="sales-banner-badge">50% OFF UNTIL SUNDAY</span>
+    <span class="sales-banner-badge">{bannerItems.badge}</span>
     <p class="banner-text">
-      <strong>SALE</strong> ON AUTISM COURSES
+      <Fragment set:html={bannerItems.title} />
     </p>
-    <a href="/courses" class="banner-cta">Shop Now</a>
+    <a href="/courses" class="banner-cta">{bannerItems.cta}</a>
   </div>
-  <!-- optional close buttton for banner -->
-  <!-- <button
-                class="banner-close"
-                aria-label="Close banner"
-                onclick="this.parentElement.classList.add('hide-sale-banner')">&times;</button
-            > -->
 </section>
