@@ -48,52 +48,21 @@ const example_webinar: WebinarMeta = {
 };
 
 
-const schoolTrauma: WebinarMeta = {
-  id: "1828642532039",
-  tags: [tagTrauma, tagSchool, age5To11, age11To19, forParents],
-  image: schoolTraumaImage,
+const rejectionSensitivity: WebinarMeta = {
+  id: "1982283058991",
+  tags: [tagNeurodiversity, age5To11, age11To19, forParents],
   contributers: [naomi],
 };
 
-const writingForWellbeing: WebinarMeta = {
-  id: "1870305446939",
-  tags: [tagWellbeing, forParents],
-  image: writingForWellbeingImage,
-  contributers: [abi],
-};
-
-const dyslexia: WebinarMeta = {
-  id: "1837990482009",
-  tags: [tagSEN, tagSchool, age5To11, age11To19, forParents],
-  image: dyslexiaImage,
-  contributers: [abi],
-};
-
-const demandAvoidantChange: WebinarMeta = {
-  id: "1964030267400",
-  tags: [tagDemandAvoidance, age5To11, age11To19, forParents],
-  image: demandAvoidantChangeImage,
+const autisticAnxiety: WebinarMeta = {
+  id: "1982284000808",
+  tags: [tagAutism, tagAnxiety, age5To11, age11To19, forParents],
   contributers: [naomi],
 };
-
-const autisticAnger: WebinarMeta = {
-  id: "1964043054647",
-  tags: [tagAutism, age5To11, age11To19, forParents],
-  image: autisticAngerImage,
-  contributers: [naomi],
-};
-
-const aldpChristmas: WebinarMeta = {
-  id: "1965441059116",
-  tags: [tagALDP, tagDemandAvoidance, age5To11, age11To19, forParents],
-  image: aldpChristmasImage,
-  contributers: [naomi, eliza],
-};
-
 
 // !! ADD WEBINAR HERE !!
 export function getWebinarMeta(eventId: string): WebinarMeta | undefined {
-  return [schoolTrauma, writingForWellbeing, dyslexia, demandAvoidantChange, autisticAnger, aldpChristmas].find(
+  return [rejectionSensitivity, autisticAnxiety].find(
     (webMeta) => eventId === webMeta.id,
   );
 }
