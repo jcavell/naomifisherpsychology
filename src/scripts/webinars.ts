@@ -175,7 +175,11 @@ export default async function getWebinars(): Promise<Webinar[]> {
   // 4. FILTER webinars that have tickets and haven't ended
   const filteredWebinars = processedWebinars.filter((w) => {
     const now = new Date();
-    return w.tickets?.length && w.endDateTime > now;
+    return (
+      w.tickets?.length &&
+      w.tickets.some((t) => t.status === "AVAILABLE") &&
+      w.endDateTime > now
+    );
   });
 
   // Cache the results if we are using the cache
