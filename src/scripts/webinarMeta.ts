@@ -22,12 +22,8 @@ import { naomi, abi, eliza, kate } from "./people";
 
 // EventbriteWebinar Images
 import demandAvoidantChildImage from "../images/webinars/understanding-and-helping-your-demand-avoidand-child.avif";
-import schoolTraumaImage from "../images/webinars/school-trauma.jpg";
-import aldpChristmasImage from "../images/webinars/aldp-christmas.jpg";
-import writingForWellbeingImage from "../images/webinars/writing-for-wellbeing.jpg";
-import dyslexiaImage from "../images/webinars/dyslexia.jpg";
-import demandAvoidantChangeImage from "../images/webinars/demand-avoidant-change.jpg";
-import autisticAngerImage from "../images/webinars/autistic-anger.jpg";
+import rejectionSensitivityImage from "../images/webinars/helping-your-child-with-rejection-sensitivity.jpg";
+import autisticChildAnxietyImage from "../images/webinars/helping-your-autistic-child-with-anxiety.png";
 
 
 type WebinarMeta = {
@@ -51,12 +47,14 @@ const example_webinar: WebinarMeta = {
 const rejectionSensitivity: WebinarMeta = {
   id: "1982283058991",
   tags: [tagNeurodiversity, age5To11, age11To19, forParents],
+  image: rejectionSensitivityImage,
   contributers: [naomi],
 };
 
 const autisticAnxiety: WebinarMeta = {
   id: "1982284000808",
   tags: [tagAutism, tagAnxiety, age5To11, age11To19, forParents],
+  image:autisticChildAnxietyImage,
   contributers: [naomi],
 };
 
