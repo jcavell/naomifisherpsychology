@@ -1,0 +1,348 @@
+---
+import Contributers from "../Contributers.astro";
+import CourseSummary from "./CourseSummaryV3.astro";
+import Tags from "../Tags.astro";
+import { getCourseFromTitle, parseDescriptions } from "../../scripts/courses";
+import CourseImage from "./CourseImage.astro";
+import Vimeo from "../Vimeo.astro";
+import CourseDetailsAddToBasket from "../basket/CourseDetailsAddToBasket";
+import type { CourseCard } from "../../content/config";
+import "../../styles/components/details.scss";
+import "../../styles/components/card.scss";
+
+interface Props {
+  course: CourseCard;
+}
+
+const { course } = Astro.props;
+
+const priceInPence = course.priceInPence!;
+const checkoutURL = course.checkoutUrl;
+const title = course.title;
+const descriptions = course.checkout?.descriptions;
+const testimonials = course.checkout?.testimonials;
+
+const relatedTitles = course.meta?.relatedTitles || [];
+
+// console.log("COURSE: " + JSON.stringify(course));
+
+// Get related courses
+// Filter out possible undefined courses after promises are resolved.
+// This happens if the course title in courseMeta is not found in the course cards content
+// Cause: the course hasn't been published on Kajabi or hasn't been crawled
+const relatedCourses = (
+  await Promise.all(relatedTitles.map((title) => getCourseFromTitle(title)))
+).filter((c) => c);
+
+// console.log("RELATED COURSES: " + JSON.stringify(relatedCourses));
+---
+
+<h1 class="section-title">
+  <span class="courses-section-title">Recorded Course</span>
+</h1>
+<article class="course-card course-details-page">
+  <!-- Left Side: Portrait Image -->
+  <div class="course-card__image-container">
+    <!-- <BookImage book={book} /> -->
+    <CourseImage course={course} />
+    <div class="course-card__metadata">
+      <CourseDetailsAddToBasket
+        offerId={course.offerId!}
+        priceInPence={priceInPence}
+        client:load
+      />
+
+      <Contributers people={course.meta?.contributers} />
+      <Tags tags={course.meta?.tags} />
+      <!-- <Tags tags={book.tags} /> -->
+    </div>
+  </div>
+
+  <!-- Right Side: Content -->
+  <div class="course-card__content">
+    <h2 class="course-card__title">
+      {title}
+      <span>course.subtitle </span>
+    </h2>
+
+    <Vimeo embedUrl={course.meta?.videoUrl} />
+    <div class="details-copy" set:html={parseDescriptions(descriptions!)} />
+
+    <CourseDetailsAddToBasket
+      offerId={course.offerId!}
+      priceInPence={priceInPence}
+      client:load
+    />
+  </div>
+</article>
+
+<div class="details details-courses">
+  <div class="details-category">RECORDED COURSE</div>
+  <h1>{title}</h1>
+  <div class="details-image">
+    <CourseImage course={course} />
+  </div>
+
+  <div class="details-body">
+    <div class="details-body-A" set:html={parseDescriptions(descriptions!)}>
+      <Vimeo embedUrl={course.meta?.videoUrl} />
+
+      <!-- <div class="preview-quote-wrapper">
+        <div class="preview-quote quote">
+          I really appreciated your messages of hope- this is a journey and we
+          will come out the end
+          <span>Viewer of Naomi Fisher Course</span>
+        </div>
+      </div>
+      <div class="preview-quote-wrapper">
+        <div class="preview-quote quote">
+          It sounds a massive cliche but I felt someone finally understood what
+          our life has been like.
+          <span>Viewer of Naomi Fisher Course</span>
+        </div>
+      </div>
+      <p>
+        <em>
+          This course is not therapy and should not be used as a replacement for
+          therapy.
+        </em>
+      </p>-->
+    </div>
+
+    <div class="details-body-B">
+      <div class="purchase-wrapper">
+        <div class="purchase-title">
+          <!--<div class="card-details">-->
+          <!--  <span class="duration"> {course.meta?.runningTime} </span>-->
+          <!--  <span class="globe"> Watch Online </span>-->
+          <!--</div>-->
+        </div>
+
+        <CourseDetailsAddToBasket
+          offerId={course.offerId!}
+          priceInPence={priceInPence}
+          client:load
+        />
+      </div>
+      <div class="card-meta details-meta">
+        <Contributers people={course.meta?.contributers} />
+        <Tags tags={course.meta?.tags} />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="details details-courses">
+  <div class="details-category">RECORDED COURSExx</div>
+  <h1>{title}</h1>
+
+  <div class="details-body">
+    <div class="details-intro">
+      <div
+        class="details-copy"
+        set:html={parseDescriptions(descriptions!)}
+      /><Vimeo embedUrl={course.meta?.videoUrl} />
+    </div>
+    <!-- <div class="details-body-A" set:html={parseDescriptions(descriptions!)}> -->
+    <!-- <div class="details-body-A">
+     
+    </div> -->
+
+    <div class="details-body-B">
+      <div class="purchase-wrapper">
+        <div class="purchase-title">
+          <!--<div class="card-details">-->
+          <!--  <span class="duration"> {course.meta?.runningTime} </span>-->
+          <!--  <span class="globe"> Watch Online </span>-->
+          <!--</div>-->
+        </div>
+
+        <CourseDetailsAddToBasket
+          offerId={course.offerId!}
+          priceInPence={priceInPence}
+          client:load
+        />
+      </div>
+      <div class="card-meta details-meta">
+        <Contributers people={course.meta?.contributers} />
+        <Tags tags={course.meta?.tags} />
+      </div>
+      <div class="details-image">
+        <CourseImage course={course} />
+      </div>
+    </div>
+  </div>
+</div>
+
+{
+  relatedCourses && (
+    <h2 class="section-title">
+      <span class="courses-section-title">Related Courses</span>
+    </h2>
+  )
+}
+
+{
+  relatedCourses &&
+    relatedCourses.map((related) => <CourseSummary course={related!.data} />)
+}
+<style lang="scss">
+  .card {
+    z-index: -1;
+  }
+
+  // Variables
+  $brand-dark: #1a1a1a;
+  $brand-accent: #2563eb;
+  $success: #059669;
+  $gray-light: #f8fafc;
+  $radius-lg: 16px;
+
+  .course-card2 {
+    display: grid;
+    grid-template-columns: 280px 1fr; // Fixed sidebar, fluid content
+    background: #ffffff;
+    border-radius: $radius-lg;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    max-width: 950px;
+    margin: 2rem auto;
+    border: 1px solid #e2e8f0;
+
+    // Left Column
+    &__sidebar {
+      background: $gray-light;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      border-right: 1px solid #e2e8f0;
+    }
+
+    &__image-container {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 1/1; // Keep image small and square
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .type-tag {
+        position: absolute;
+        bottom: 8px;
+        left: 8px;
+        background: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        padding: 4px 8px;
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        border-radius: 4px;
+      }
+    }
+
+    &__purchase-zone {
+      text-align: center;
+
+      .price-display {
+        font-size: 2rem;
+        font-weight: 800;
+        color: $brand-dark;
+        margin-bottom: 4px;
+
+        .currency {
+          font-size: 1.2rem;
+          vertical-align: top;
+          margin-top: 4px;
+          display: inline-block;
+        }
+      }
+
+      .status-indicator {
+        color: $success;
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+
+        .dot {
+          width: 8px;
+          height: 8px;
+          background: $success;
+          border-radius: 50%;
+        }
+      }
+    }
+
+    // Right Column
+    &__main {
+      padding: 40px;
+    }
+
+    &__title {
+      font-size: 1.75rem;
+      line-height: 1.2;
+      color: $brand-dark;
+      margin-bottom: 16px;
+    }
+
+    &__metadata {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 30px;
+
+      .meta-pill {
+        background: #eff6ff;
+        color: $brand-accent;
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-size: 0.85rem;
+      }
+    }
+
+    &__body {
+      h3 {
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #94a3b8;
+        margin-bottom: 12px;
+      }
+      p {
+        color: #475569;
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+      }
+
+      .quote {
+        border-left: 4px solid $brand-accent;
+        padding-left: 20px;
+        font-style: italic;
+        color: $brand-dark;
+      }
+    }
+  }
+
+  .btn-primary {
+    width: 100%;
+    background: $brand-accent;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+
+    &:hover {
+      transform: scale(1.02);
+      background: darken($brand-accent, 10%);
+    }
+  }
+</style>
