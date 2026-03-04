@@ -4,7 +4,6 @@ const { active } = Astro.props;
 const webinars = await getWebinars();
 ---
 
-<!-- Awaiting prop assignment ahead of full-component rendering -->
 <li class="has-dropdown">
   <a
     href="/webinars"
@@ -24,8 +23,6 @@ const webinars = await getWebinars();
     <li>
       <ul class="webinars-list">
 
-
-
         {webinars.map((webinar, index) => (
           <li>
             <div class="webinar-card">
@@ -43,15 +40,15 @@ const webinars = await getWebinars();
                 <a href={`/webinars/${webinar.id}`}
                 ><img
                   src="/images/icons/icon-chev-right.svg"
-                  alt="Read more"
+                  alt="See details"
                 /></a
                 >
               </div>
               <div class="webinar-link mobile-item">
-                <a href="#"
+                <a href={`/webinars/${webinar.id}`}
                 ><img
                   src="/images/icons/icon-chev-right.svg"
-                  alt="Read more"
+                  alt="See details"
                 /></a
                 >
               </div>
@@ -69,6 +66,5 @@ const webinars = await getWebinars();
           View all Webinars
         </a>
       </li>
-    </li>
   </ul>
-</li>
+
