@@ -46,10 +46,10 @@ if (excerpt) {
       <span class="book-card__contributors">
         <Contributers people={book.people} /></span
       >
-      <span class="book-card__date">Published {getPubDateString(book)} </span>
-      <span class="book-card__format">
+      <!-- <span class="book-card__date">Published {getPubDateString(book)} </span> -->
+      <!-- <span class="book-card__format">
         {getFormats(book).join(", ")}
-      </span>
+      </span> -->
       <Tags tags={book.tags} />
     </div>
   </div>
@@ -65,7 +65,8 @@ if (excerpt) {
     <p>
         {book.summary}
       <BookContent />
-    </p>      <div class="accordion-wrapper">
+    </p>      
+    <div class="accordion-wrapper book-details">
           {moreInfo?.body && moreInfo.body.length > 1 &&
       <button class="accordion no-title-accordion">Read More</button>
           <div class="panel">
@@ -141,43 +142,24 @@ if (excerpt) {
         }
       </div>
 
-<div class="book-card__purchase">
-   <a name="purchase-options" class="anchor">
-    <h2 class="section-title">
-      <span class="">Purchase Options:</span>
-    </h2>
-  </a>
-  <div class="purchase-wrapper">
-   
-        <div class="purchase-title">
-          <div class="purchase-title-primary purchase-title-paperback">
-            PAPERBACK:
-          </div>
-          <div class="purchase-title-secondary">
-            Published on {getPubDateString(book)} by {book.publisher}, {
+
+
+
+<section class="purchase-options">
+  <h3 class="section-title">Purchase Options</h3>
+
+  <div class="purchase-card">
+    <div class="card-header">
+      <!-- <span class="format-tag">Paperback</span> -->
+      <p class="meta-info">Paperback •  Published {getPubDateString(book)} by {book.publisher} •  {
               book.pages
-            } pages
-          </div>
-        </div>
+            } pages</p>
+    </div>
+    <div class="button-group">
 
-        {
-          book.psychologicalTherapiesUrl && (
-            <a
-              href={book.psychologicalTherapiesUrl}
-              target="blank"
-              class="test"
-            >
-              <div class="purchase">
-                <!--<div class="price">{book.psychologicalTherapiesPrice}</div>-->
-                <div class="company">Psychological Therapy Books</div>
-              </div>
-            </a>
-          )
-        }
-
-        {
+ {
           ! book.psychologicalTherapiesUrl && book.amazonUrl && (
-            <a href={book.amazonUrl} target="blank" class="test">
+            <a href={book.amazonUrl} target="blank" class="store-link amazon">
               <div class="purchase">
                 <!-- <div class="price">{book.amazonPrice}</div> -->
                 <div class="company amazon" />
@@ -186,90 +168,75 @@ if (excerpt) {
           )
         }
 
-        {
+              {
           book.blackwellUrl && (
-            <a href={book.blackwellUrl} target="blank" class="test">
+      <a href={book.blackwellUrl} target="blank" class="store-link blackwells">
               <div class="purchase">
                 <!--<div class="price">{book.blackwellPrice}</div>-->
                 <div class="company blackwells" />{" "}
               </div>
             </a>
           )
-        }
+         }
 
-        <!--{-->
-        <!--  book.waterstonesUrl && (-->
-        <!--    <a href={book.waterstonesUrl} target="blank" class="test">-->
-        <!--      <div class="purchase">-->
-        <!--        <div class="price">{book.waterstonesPrice}</div>-->
-        <!--        <div class="company waterstones" />{" "}-->
-        <!--      </div>-->
-        <!--    </a>-->
-        <!--  )-->
-        <!--}-->
-      </div>
-
-      {
-        (book.kindleUrl) && (
-          <>
-            <div class="purchase-wrapper">
-              <div class="purchase-title">
-                <div class="purchase-title-primary purchase-title-eBook">
-                  E-BOOK:
-                </div>
+ <a href={book.blackwellUrl} target="blank" class="store-link waterstones">
+              <div class="purchase">
+                <!--<div class="price">{book.blackwellPrice}</div>-->
+                <div class="company blackwells" />{" "}
               </div>
+            </a>
 
-              {book.kindleUrl && (
-                <a href={book.kindleUrl} target="blank">
+              <a
+              href={book.psychologicalTherapiesUrl}
+              target="blank"
+              class="store-link psychological-therapy-books"
+            >
+              <div class="purchase">
+                <!--<div class="price">{book.psychologicalTherapiesPrice}</div>-->
+                <div class="company">Psychological Therapy Books</div>
+              </div>
+            </a>
+
+
+
+    </div>
+  </div>
+
+  <div class="purchase-card">
+    <div class="card-header">
+      <p class="meta-info">E-book </p>
+    </div>
+    <div class="button-group">
+       {book.kindleUrl && (
+                <a href={book.kindleUrl} target="blank" class="store-link kindle">
                   <div class="purchase">
                     <!--<div class="price">{book.kindlePrice}</div>-->
                     <div class="company kindle" />
                   </div>
                 </a>
               )}
+    </div>
+  </div>
 
-              <!--{book.googleUrl && (-->
-              <!--  <a href={book.googleUrl} target="blank">-->
-              <!--    <div class="purchase">-->
-              <!--      <div class="price">{book.googlePrice}</div>-->
-              <!--      <div class="company google-books" />-->
-              <!--    </div>-->
-              <!--  </a>-->
-              <!--)}-->
-
-              <!--{book.appleBooksUrl && (-->
-              <!--  <a href={book.appleBooksUrl} target="blank">-->
-              <!--    <div class="purchase">-->
-              <!--      <div class="price">{book.appleBooksPrice}</div>-->
-              <!--      <div class="company apple-books" />-->
-              <!--    </div>-->
-              <!--  </a>-->
-              <!--)}-->
-
-            </div>
-          </>
-        )
-      }
-
-            {
-        book.audiobookLength && (
-          <div class="purchase-wrapper">
-            <div class="purchase-title">
-              <div class="purchase-title-primary purchase-title-audiobook">
-                AUDIOBOOK
-              </div>
-              <div class="purchase-title-secondary">
-                Running Time: {book.audiobookLength}
-              </div>
-            </div>
+  
+  
+        {
+        book.audiobookLength && (<div class="purchase-card">
+    <div class="card-header">
+      <p class="meta-info">Audiobook  •   Running Time: {book.audiobookLength}</p>
+    </div>
+    <div class="button-group">
+           
 
             {book.audibleUrl && (
-              <a href={book.audibleUrl} target="blank">
-                <div class="purchase">
-                  <!--<div class="price">{book.audiblePrice}</div>-->
-                  <div class="company audible" />
-                </div>
-              </a>
+ <a href={book.audibleUrl} target="blank" class="store-link audible">
+                  <div class="purchase">
+                    <!--<div class="price">{book.kindlePrice}</div>-->
+                    <div class="company audible" />
+                  </div>
+                </a>
+
+
             )}
 
             <!--{book.koboAudiobookUrl && (-->
@@ -289,10 +256,13 @@ if (excerpt) {
                 </div>
               </a>
             )} */}
-          </div>
-        )
+       
+    </div>
+  </div> 
+)
       }
 
+</section>
 
 
 
@@ -300,7 +270,7 @@ if (excerpt) {
 
 
 
-</div>
+
 
 
     <!-- <p class="mobile-meta mobile-item">
@@ -314,6 +284,133 @@ if (excerpt) {
   </div>
 </article>
 
+<style lang="scss">
 
+  $primary-orange: #e69d3c;
+$bg-light: #f9f9f9;
+$border-color: #eee;
+$text-main: #333;
+$text-muted: #777;
+
+.purchase-options {
+  //display:none;
+
+  h3.section-title {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+ display: inline-block;
+    margin-bottom: 1.5rem;
+    border-bottom: rgba(0, 0, 0, 0.3) 1px dashed;
+  }
+}
+
+.purchase-card {
+  //display:none;
+  // background: #fff;
+  // border: 1px solid $border-color;
+  // border-radius: 12px;
+  // padding: 1.5rem;
+  margin-bottom: 1rem;
+  // transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    // transform: translateY(-2px);
+    // box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  }
+.card-header {
+  margin-bottom:1rem;
+}
+  .format-tag {
+    font-weight: 700;
+    color: $text-main;
+    font-size: 1.1rem;
+  }
+
+  .meta-info {
+    font-size: 0.85rem;
+    color: $text-muted;
+    margin: 0.5rem 0 1rem;
+  }
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+
+  .store-link {
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid var(--brand-primary);
+    color: $text-main;
+    min-height: 24px;
+    background-repeat: no-repeat;
+    background-position: center; 
+    // transition: all 0.2s;
+    
+
+    &.amazon {
+      background-image: url(/src/styles/logo-amazon.svg);
+    background-size: 50%;
+    width: 71px;
+    }
+
+     &.blackwells {
+    background-image: url(/src/styles/logo-blackwells.svg);
+    background-size: 74%;
+    width: 92px;
+    }
+    &.kindle {
+    background-image: url(/src/styles/logo-kindle.svg);
+    background-size: 80%;
+    width: 84px;
+    }
+    &.waterstones {
+    background-image: url(/src/styles/logo-waterstones.svg);
+    background-size: 80%;
+    width:92px;
+    }
+    &.google-books {
+    background-image: url(/src/styles/logo-google-books.png);
+    background-size: 80%;
+    width:92px;
+    }
+
+    &.kobo {
+    background-image: url(/src/styles/logo-kobo.svg);
+    background-size: 55%;
+    width: 50px;
+    }
+
+    &.apple-books {
+    background-image: url(/src/styles/logo-apple-books.png);
+    background-size: 65%;
+    width:92px;
+    }
+
+    &.audible {
+    background-image: url(/src/styles/logo-audible.svg);
+    background-size: 70%;
+    width:56px;
+    }
+
+    &.xigxag {
+    background-image: url(../logo-xigxag.svg);
+    }
+
+    &.kajabi {
+    background-image: url(../logo-kajabi.svg);
+    background-size: auto 70%;
+    }
+    
+    &:hover {
+      background-color:#d3e4e0;
+      border-color: var(--brand-primary);
+    }
+  }
+}
+  </style>
 
 

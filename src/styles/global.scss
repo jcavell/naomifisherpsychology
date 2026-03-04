@@ -90,6 +90,9 @@ p a {
   color: #387668;
   font-weight: 700;
 }
+a.anchor + p {
+  margin-top: 0;
+}
 
 h2 {
   font-family: "Yanone Kaffeesatz", sans-serif;
