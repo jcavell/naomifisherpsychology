@@ -17,11 +17,11 @@ const tickets = webinar.tickets;
 
 <div
   class="card card-courses"
-  data-webinar-end={webinar.endDateTime?.toISOString()}
+  data-webinar-end={webinar.endDate?.toISOString()}
 >
   <div class="live-date">
-    <span class="live-day">{webinar.day}</span>
-    <span class="live-month">{webinar.month}</span>
+    <span class="live-day">{webinar.displayDate.day}</span>
+    <span class="live-month">{webinar.displayDate.month}</span>
   </div>
   <div class="card-image">
     <WebinarImage webinar={webinar} />
@@ -31,8 +31,8 @@ const tickets = webinar.tickets;
   </h2>
   <div class="card-details">
     <span class="date">
-      {`${webinar.day} ${webinar.month}`} at
-      {`${webinar.startTime}`}
+      {`${webinar.displayDate.day} ${webinar.displayDate.month}`} at
+      {`${webinar.displayDate.startTime}`}
     </span>
     <Contributers people={meta?.contributers} />
 

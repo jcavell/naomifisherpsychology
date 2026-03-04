@@ -27,6 +27,7 @@ import NewsletterNew from "../components/NewsletterNew.astro";
 import PopUpPanel from "../components/PopUpPanel.astro";
 import ProfileCard from "../components/ProfileCard.astro";
 import ResourceCard from "../components/ResourceCard.astro";
+import UpcomingWebinars from "../components/webinar/UpcomingWebinars.astro";
 
 const webinars = await getWebinars();
 
@@ -39,15 +40,8 @@ const webinarQuotes = (await getEntry("webinar-quotes", "general-webinar-quotes"
 const coursesQuotes = (await getEntry("course-quotes", "general-course-quotes"))!.data;
 const generalQuotes = (await getEntry("static-pages-quotes", "homepage"))!.data;
 
-
 const metaDescription =
   "Dr Naomi Fisher is a clinical psychologist, author and speaker specialising in parenting, mental health issues in children, autism and trauma. She runs EMDR Basic Training and Refresher Day courses. Dr Abigail Fisher is an education psychologist specialising in Special Educational Needs (SEN), EHCPs, EOTAS. We create courses and webinars for parents and professionals.";
-
-
-
-
-
-
 ---
 
 
@@ -102,34 +96,10 @@ const metaDescription =
   </div>
 </div>
 
-<!-- WEBINARS ----------------------------------------------  -->
-  <a name="webinars" class="anchor">
-    <h2 class="section-title">
-      <span class="courses-section-title">Live Online Events</span>
-      <a href="/webinars" class="section-title-all-link"> See All <span class="desktop-only">Live Online Events</span></a>
-    </h2>
-  </a>
- <CoursesListV2
-    courses={featuredCourses1}
-    categoryId="featured"
-    categoryName="Featured Courses"
-  />
-
-<!-- QUOTE -------------------------------------------------- -->
-<GenerateQuote client:load quotes={webinarQuotes} />
-
-<!-- HEADER - free -->
-    <!-- <a name="resources" class="anchor">
-    <h2 class="section-title">
-      <span class="courses-section-title">Free Resources</span>
-      <a href="/resources" class="section-title-all-link"> See All <span class="desktop-only">Free Resources</span></a>
-    </h2>
-  </a> -->
-
-<!-- <ResourceCard title="New Course: Understanding and Supporting Neurodiverse Children" description="A new course for parents and professionals on understanding and supporting neurodiverse children, including autism, ADHD, dyslexia and more." imageSrc="/images/static/neurodiversity-course.png" imageAlt="Illustration of diverse children" linkUrl="/courses/understanding-and-supporting-neurodiverse-children" linkText="Learn More" /> -->
+<UpcomingWebinars/>
 
 
-<!-- HEADER on-demand courses -->
+
 <a name="courses" class="anchor">
     <h2 class="section-title">
       <span class="">On-demand courses</span>
@@ -176,40 +146,9 @@ const metaDescription =
     </h2>
   </a>
   <NewsletterNew formId="6662296"/>
-
-
-
-
-  {
-    webinars.length > 0 && (
-      <a name="webinars" class="anchor">
-        <h2 class="section-title">
-          <span class="webinars-section-title">Live Online Events</span>
-        </h2>
-      </a>
-
-      <div class="page-full-width-text">
-        <p>
-          Naomi runs live webinars for parents and professionals.
-     They are recorded and available to watch for 30 days.</p>
-
-      </div>
-    )
-  }
-
   <!-- <Newsletter formId="7379328"/> -->
 
-  <!-- <RemoveFinishedWebinars client:load /> -->
 
-  {webinars.map((webinar, index) =>
-    <WebinarSummary webinar={webinar} />)}
-
-  {console.log('webinars.length:', webinars.length)}
-  {webinars.length % 2 !== 0 && <Newsletter />}
-
-
-
-<GenerateQuote client:load quotes={webinarQuotes} />
   <!-- <div class="page-full-width-text">
     <p>
       Our mini-courses cover topics including <a href="/courses/categories/anxiety">anxiety</a>, <a

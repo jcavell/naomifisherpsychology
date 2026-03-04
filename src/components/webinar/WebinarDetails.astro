@@ -28,8 +28,8 @@ const detailsText = webinar.detailsText;
   <div class="details-category">LIVE WEBINAR ON ZOOM</div>
 
   <div class="live-date">
-    <span class="live-day">{webinar.day}</span>
-    <span class="live-month">{webinar.month}</span>
+    <span class="live-day">{webinar.displayDate.day}</span>
+    <span class="live-month">{webinar.displayDate.month}</span>
   </div>
 
   <h1>{webinar.title}</h1>
@@ -163,7 +163,7 @@ const detailsText = webinar.detailsText;
       </div>
       <div class="card-meta details-meta">
 
-        <span class="date">{webinar.day} {webinar.month}, {`${webinar.startTime} - ${webinar.endTime}`}</span>
+        <span class="date">{webinar.displayDate.day} {webinar.displayDate.month}, {`${webinar.displayDate.startTime} - ${webinar.displayDate.endTime}`}</span>
         <Contributers people={meta?.contributers} />
         <p></p>
 

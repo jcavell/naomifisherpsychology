@@ -178,7 +178,7 @@ export default async function getWebinars(): Promise<Webinar[]> {
     return (
       w.tickets?.length &&
       w.tickets.some((t) => t.status === "AVAILABLE") &&
-      w.endDateTime > now
+      w.endDate > now
     );
   });
 
@@ -251,15 +251,6 @@ function transformEventbriteToWebinar(
       eventbriteWebinar.description.text,
       detailsText,
     ),
-    // Legacy date fields - to be removed later
-    startDateTime: startDate,
-    endDateTime: endDate,
-    day: displayDate.day,
-    month: displayDate.month,
-    monthLong: displayDate.monthLong,
-    year: displayDate.year,
-    startTime: displayDate.startTime,
-    endTime: displayDate.endTime,
   };
 }
 
@@ -307,6 +298,7 @@ function formatDisplayDates(startUtc: string, endUtc: string) {
   const startDateTime = new Date(Date.parse(startUtc));
   const endDateTime = new Date(Date.parse(endUtc));
 
+  const displayWeekday: Intl.DateTimeFormatOptions = {weekday: "short"}
   const displayDay: Intl.DateTimeFormatOptions = { day: "numeric" };
   const displayMonth: Intl.DateTimeFormatOptions = { month: "short" };
   const displayMonthLong: Intl.DateTimeFormatOptions = { month: "long" };
@@ -318,6 +310,7 @@ function formatDisplayDates(startUtc: string, endUtc: string) {
   };
 
   return {
+    weekday: startDateTime.toLocaleString(undefined, displayWeekday),
     day: startDateTime.toLocaleString(undefined, displayDay),
     month: startDateTime.toLocaleString(undefined, displayMonth),
     monthLong: startDateTime.toLocaleString(undefined, displayMonthLong),

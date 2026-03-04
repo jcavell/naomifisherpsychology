@@ -1,5 +1,7 @@
 ---
+import getWebinars from "../../scripts/webinars";
 const { active } = Astro.props;
+const webinars = await getWebinars();
 ---
 
 <!-- Awaiting prop assignment ahead of full-component rendering -->
@@ -18,95 +20,46 @@ const { active } = Astro.props;
     Live Webinars
   </label>
   <ul class="drop-menu webinar-dropdown">
-    <li class="desktop-item"><h5>Webinars Happening Soon</h5></li>
+    <li class="desktop-item"><h5>Coming Up Soon</h5></li>
     <li>
       <ul class="webinars-list">
-        <li>
-          <div class="webinar-card">
-            <div class="webinar-img-wrapper desktop-item">
-              <img
-                src="/images/webinars/autistic_teen_transitions_webinar.png"
-                alt="Webinar Thumbnail"
-              />
-            </div>
-            <div class="webinar-content">
-              <h5>Helping Your Autistic Child with Transition</h5>
-              <p>Wed, 8 Oct 2025 12:00 - 13:30 BST</p>
-              <a href="#"
-                ><img
-                  src="/images/icons/icon-chev-right.svg"
-                  alt="Read more"
-                /></a
-              >
-            </div>
-            <div class="webinar-link mobile-item">
-              <a href="#"
-                ><img
-                  src="/images/icons/icon-chev-right.svg"
-                  alt="Read more"
-                /></a
-              >
-            </div>
-          </div>
-        </li>
 
-        <li>
-          <div class="webinar-card">
-            <div class="webinar-img-wrapper desktop-item">
-              <img
-                src="/images/webinars/demand_avoidance_webinar.png"
-                alt="Webinar Thumbnail"
-              />
-            </div>
-            <div class="webinar-content">
-              <h5>Helping Your Autistic Child with Anxiety</h5>
-              <p>Wed, 8 Oct 2025 12:00 - 13:30 BST</p>
-              <a href="#"
-                ><img
-                  src="/images/icons/icon-chev-right.svg"
-                  alt="Read more"
-                /></a
-              >
-            </div>
-            <div class="webinar-link mobile-item">
-              <a href="#"
-                ><img
-                  src="/images/icons/icon-chev-right.svg"
-                  alt="Read more"
-                /></a
-              >
-            </div>
-          </div>
-        </li>
 
-        <li>
-          <div class="webinar-card">
-            <div class="webinar-img-wrapper desktop-item">
-              <img
-                src="/images/webinars/transistions_webinar.png"
-                alt="Webinar Thumbnail"
-              />
-            </div>
-            <div class="webinar-content">
-              <h5>Understanding and Helping Your Demand Avoidant Child</h5>
-              <p>Wed, 8 Oct 2025 12:00 - 13:30 BST</p>
-              <a href="#"
+
+        {webinars.map((webinar, index) => (
+          <li>
+            <div class="webinar-card">
+              <div class="webinar-img-wrapper desktop-item">
+                <img
+                  loading="lazy"
+                  src={webinar.logoUrl}
+                  alt={`Webinar ${webinar.title}`}
+                />
+              </div>
+              <div class="webinar-content">
+                <h5>{webinar.title}</h5>
+                <p> {`${webinar.displayDate.weekday} ${webinar.displayDate.day} ${webinar.displayDate.month}`}
+                  {`${webinar.displayDate.startTime}`} - {`${webinar.displayDate.endTime}`}</p>
+                <a href={`/webinars/${webinar.id}`}
                 ><img
                   src="/images/icons/icon-chev-right.svg"
                   alt="Read more"
                 /></a
-              >
-            </div>
-            <div class="webinar-link mobile-item">
-              <a href="#"
+                >
+              </div>
+              <div class="webinar-link mobile-item">
+                <a href="#"
                 ><img
                   src="/images/icons/icon-chev-right.svg"
                   alt="Read more"
                 /></a
-              >
+                >
+              </div>
             </div>
-          </div>
-        </li>
+          </li>
+        ))}
+
+
       </ul>
       <li>
         <a

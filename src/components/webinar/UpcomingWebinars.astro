@@ -1,0 +1,44 @@
+---
+import getWebinars from "../../scripts/webinars";
+import { RemoveFinishedWebinars } from "./RemoveFinishedWebinars";
+import WebinarSummary from "./WebinarSummary.astro";
+const entry = await getEntry("webinar-quotes", "general-webinar-quotes");
+const quotes = entry?.data ?? [];
+import GenerateQuote from "../Quoter";
+import { getEntry } from "astro:content";
+const webinars = await getWebinars();
+---
+
+{
+  webinars.length === 0 && (
+  <>
+    <h2 class="section-title">No upcoming Webinars</h2>
+    <p>
+      We don't have any upcoming webinars at the moment, but new sessions
+      are always being added to our calendar. Please check back soon, or
+      <a href="#newsletter">subscribe to our newsletter</a> to be notified
+      of upcoming and newly added webinars.
+    </p>
+  </>
+    )
+  }
+
+{
+  webinars.length > 0 && (
+  <>
+    <h2 class="section-title">Upcoming Webinars</h2>
+    <p>
+      Naomi runs live webinars for parents and professionals.
+      They are recorded and available to watch for 30 days.</p>
+    <div class="course-card-grid">
+      <RemoveFinishedWebinars client:load />
+
+      {webinars.map((webinar, index) => (
+        <WebinarSummary webinar={webinar} />
+      ))}
+    </div>
+  </>
+    )
+  }
+
+<GenerateQuote client:load quotes={quotes} />

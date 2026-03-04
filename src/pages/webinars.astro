@@ -5,14 +5,11 @@ import getWebinars from "../scripts/webinars.js";
 // import testWebinars1 from "../test-data/eventbrite/1event.json";
 // import testWebinars3 from "../test-data/eventbrite/3events.json";
 import GenerateQuote from "../components/Quoter";
-import { getEntry } from "astro:content";
 import StaticImage from "../components/StaticImage.astro";
 import naomiAndElizaImage from "../images/static/naomi-and-eliza-looking-at-book.jpg";
 import { RemoveFinishedWebinars } from "../components/webinar/RemoveFinishedWebinars";
 import NewsletterNew from "../components/NewsletterNew.astro";
-
-const entry = await getEntry("webinar-quotes", "general-webinar-quotes");
-const quotes = entry?.data ?? [];
+import UpcomingWebinars from "../components/webinar/UpcomingWebinars.astro";
 
 const pageTitle = "Webinars";
 const webinars = await getWebinars();
@@ -83,37 +80,8 @@ const metaDescription =
     </div>
   </div>
 
-  {
-    webinars.length === 0 && (
-      <>
-        <h2 class="section-title">No upcoming Webinars</h2>
-        <p>
-          We don't have any upcoming webinars at the moment, but new sessions
-          are always being added to our calendar. Please check back soon, or
-          <a href="#newsletter">subscribe to our newsletter</a> to be notified
-          of upcoming and newly added webinars.
-        </p>
-      </>
-    )
-  }
+<UpcomingWebinars/>
 
-  {
-    webinars.length > 0 && (
-      <>
-        <h2 class="section-title">Upcoming Webinars</h2>
-        <div class="course-card-grid">
-          <RemoveFinishedWebinars client:load />
-
-          {webinars.map((webinar, index) => (
-            <WebinarSummary webinar={webinar} />
-          ))}
-        </div>
-        {/* <GenerateQuote client:load quotes={quotes} /> */}
-      </>
-    )
-  }
-
-  <GenerateQuote client:load quotes={quotes} />
   <div class="faq-wrapper">
     <h2 class="section-title">Webinars FAQ</h2>
     <div class="accordion-wrapper">
