@@ -1,18 +1,13 @@
 ---
-import WebinarSummary from "../components/webinar/WebinarSummary.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import getWebinars from "../scripts/webinars.js";
 // import testWebinars1 from "../test-data/eventbrite/1event.json";
 // import testWebinars3 from "../test-data/eventbrite/3events.json";
-import GenerateQuote from "../components/Quoter";
 import StaticImage from "../components/StaticImage.astro";
 import naomiAndElizaImage from "../images/static/naomi-and-eliza-looking-at-book.jpg";
-import { RemoveFinishedWebinars } from "../components/webinar/RemoveFinishedWebinars";
 import NewsletterNew from "../components/NewsletterNew.astro";
 import UpcomingWebinars from "../components/webinar/UpcomingWebinars.astro";
 
 const pageTitle = "Webinars";
-const webinars = await getWebinars();
 
 const metaDescription =
   "Dr Naomi Fisher and Dr Abigail Fisher's upcoming live webinars on helping your autistic teenagers and children, for parents worried about their child's anxiety, demand avoidance and burnout. For helping families with problems at school, SEN, EHCPs. With Elia Fricker, the Art of Low Demand Parenting";

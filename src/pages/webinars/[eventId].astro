@@ -1,5 +1,5 @@
 ---
-import getWebinars from "../../scripts/webinars";
+import { getCachedWebinars } from "../../scripts/webinarsCache";
 
 import { makeUrl } from "../../scripts/url";
 import WebinarDetails from "../../components/webinar/WebinarDetails.astro";
@@ -8,7 +8,7 @@ import { getWebinarMeta } from "../../scripts/webinarMeta";
 import type { Webinar } from "../../types/webinar";
 
 export async function getStaticPaths() {
-  const webinars = await getWebinars();
+  const webinars = await getCachedWebinars();
 
   return webinars.map((webinar: Webinar) => {
     return {

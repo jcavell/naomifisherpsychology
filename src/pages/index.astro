@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import getWebinars from "../scripts/webinars.js";
-import WebinarSummary from "../components/webinar/WebinarSummary.astro";
+import { getCachedWebinars } from "../scripts/webinarsCache.js";
 
 import GenerateQuote from "../components/Quoter";
 import { getEntry } from "astro:content";
@@ -15,21 +14,13 @@ import { getFeaturedBooks } from "../scripts/book";
 import BlogList from "../components/blog/BlogList.astro";
 import StaticImage from "../components/StaticImage.astro";
 import homeImage from "../images/static/naomi-in-stables.jpg";
-import { RemoveFinishedWebinars } from "../components/webinar/RemoveFinishedWebinars";
-import AutismSummary from "../components/free/AutismSummary.astro";
-import DemandAvoidanceSummary from "../components/free/DemandAvoidanceSummary.astro";
-import SchoolAndEducationSummary from "../components/free/SchoolAndEducationSummary.astro";
-import MentalHealthSummary from "../components/free/MentalHealthSummary.astro";
 
 import Newsletter from "../components/Newsletter.astro";
 import NewsletterNew from "../components/NewsletterNew.astro";
 
 import PopUpPanel from "../components/PopUpPanel.astro";
 import ProfileCard from "../components/ProfileCard.astro";
-import ResourceCard from "../components/ResourceCard.astro";
 import UpcomingWebinars from "../components/webinar/UpcomingWebinars.astro";
-
-const webinars = await getWebinars();
 
 const featuredCourses1 = await getFeaturedCourses(0, 2);
 const featuredCourses2 = await getFeaturedCourses(2, 4);

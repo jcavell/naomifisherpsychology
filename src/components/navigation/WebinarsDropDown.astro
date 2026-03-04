@@ -1,7 +1,7 @@
 ---
-import getWebinars from "../../scripts/webinars";
+import { getCachedWebinars } from "../../scripts/webinarsCache";
 const { active } = Astro.props;
-const webinars = await getWebinars();
+const webinars = await getCachedWebinars();
 ---
 
 <li class="has-dropdown">

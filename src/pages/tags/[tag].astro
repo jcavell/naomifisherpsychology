@@ -1,5 +1,5 @@
 ---
-import getWebinars from "../../scripts/webinars";
+import { getCachedWebinars } from "../../scripts/webinarsCache";
 import getCourses from "../../scripts/courses";
 
 import {
@@ -30,7 +30,7 @@ import { getTagMeta } from "../../scripts/tagMeta";
 
 export async function getStaticPaths() {
   // Get ALL content
-  const webinars = await getWebinars();
+  const webinars = await getCachedWebinars();
   const courses = await getCourses();
   const posts = await getOrderedPosts();
 

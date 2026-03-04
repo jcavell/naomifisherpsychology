@@ -1,6 +1,6 @@
 // webinarsToCsv.ts
 import * as fs from "node:fs";
-import getWebinars from "./webinars";
+import { getCachedWebinars } from "./webinarsCache";
 import type { EventbriteWebinar } from "../types/webinar";
 import * as dotenv from "dotenv";
 import { fileURLToPath } from "url";
@@ -58,7 +58,7 @@ function generateWebinarEntries(webinar: EventbriteWebinar) {
 async function generateWebinarsCsv(): Promise<void> {
   try {
     // Get webinars data
-    const webinars = await getWebinars();
+    const webinars = await getCachedWebinars();
 
     // Facebook catalog header
     const header = [

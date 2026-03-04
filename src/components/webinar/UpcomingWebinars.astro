@@ -1,12 +1,13 @@
 ---
-import getWebinars from "../../scripts/webinars";
+import { getCachedWebinars } from "../../scripts/webinarsCache";
 import { RemoveFinishedWebinars } from "./RemoveFinishedWebinars";
 import WebinarSummary from "./WebinarSummary.astro";
 const entry = await getEntry("webinar-quotes", "general-webinar-quotes");
 const quotes = entry?.data ?? [];
 import GenerateQuote from "../Quoter";
 import { getEntry } from "astro:content";
-const webinars = await getWebinars();
+
+const webinars = await getCachedWebinars();
 ---
 
 {
