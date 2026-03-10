@@ -1,0 +1,36 @@
+---
+import CourseCategory, { CourseSubcategory } from "../../components/course/CourseCategory.astro";
+import AutismImage from "../../images/tags/tag-autism.png";
+
+import {
+  helpingYourAutisticChildWithAnger,
+  helpingYourAutisticChildWithOCD,
+  helpingYourAutisticChildWithTransitions,
+  helpingYourAutisticChildMoveOnFromSchoolTrauma,
+  autisticChildWithAnxiety,
+  autisticTeenWithAnxiety,
+  autisticChildWithTrauma,
+  demandAvoidance101,
+  helpingYourDemandAvoidantChildWithChange,
+  demandAvoidantAdolescent,
+  demandAvoidanceGuideForTeenagers, ALDP1To10, ALDP1To5, ALDP6To10
+} from "../../scripts/courseMeta";
+
+const essentials = {title: "Essentials", courses: [demandAvoidance101, helpingYourDemandAvoidantChildWithChange]}
+const teenagers = {title: "Teenagers", courses: [demandAvoidantAdolescent, demandAvoidanceGuideForTeenagers]}
+const aldp = {title: "The Art of Low Demand Parenting", courses: [ALDP1To10, ALDP1To5, ALDP6To10]}
+const subcategories = [essentials, teenagers, aldp];
+---
+
+<CourseCategory
+  subcategories={subcategories}
+  pageTitle="Demand Avoidance Courses"
+  metaDescription="Browse our demand avoidance courses"
+  whitePanelTitle=""
+  whitePanelDescriptions={[
+    "Being on a different developmental trajectory can make life challenging. It can mean that too much is expected of autistic children and teenagers without enough support being provided. Anxiety is very common among autistic people, as are difficulties with school and friendships.",
+    "That’s what we talk about in our webinars and courses. They focus on practical and useful tips which will help you to understand your autistic child and see a way ahead. We do not do autism diagnoses. Autism should be diagnosed by a multi-disciplinary team. This is because autism is a lifelong diagnosis and so it should be given with great care.",
+  ]}
+  whitePanelImg={AutismImage}
+  whitePanelImgAlt="Purple flowers"
+/>

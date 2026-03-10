@@ -1,0 +1,33 @@
+---
+import CourseCategory, { CourseSubcategory } from "../../components/course/CourseCategory.astro";
+import AutismImage from "../../images/tags/tag-autism.png";
+
+import {
+  helpingYourAutisticChildMoveOnFromSchoolTrauma,
+  myChildIsNotFineAtSchool,
+  autisticChildrenWithSchool,
+  burntOutBySchool,
+  helpingYourNDTeenRecoverFromSchool,
+  howCanYouLearnIfYouDontGoToSchool,
+  doWeNeedAnEhcp,
+  weDontHaveAnEhcpWhatToExpectFromSchool, takingControlOfYourEhcpAnnualReview, navigatingTheSenTribunalProcess
+} from "../../scripts/courseMeta";
+
+const inSchool = {title: "At School", courses: [myChildIsNotFineAtSchool, autisticChildrenWithSchool]}
+const outOfSchool = {title: "Out of School", courses: [burntOutBySchool, helpingYourAutisticChildMoveOnFromSchoolTrauma, helpingYourNDTeenRecoverFromSchool, howCanYouLearnIfYouDontGoToSchool]}
+const ehcp = {title: "EHCPs", courses: [doWeNeedAnEhcp, weDontHaveAnEhcpWhatToExpectFromSchool, takingControlOfYourEhcpAnnualReview, navigatingTheSenTribunalProcess]}
+const subcategories = [inSchool, outOfSchool, ehcp];
+---
+
+<CourseCategory
+  subcategories={subcategories}
+  pageTitle="School and Education Courses"
+  metaDescription="Browse our school and education courses"
+  whitePanelTitle=""
+  whitePanelDescriptions={[
+    "Being on a different developmental trajectory can make life challenging. It can mean that too much is expected of autistic children and teenagers without enough support being provided. Anxiety is very common among autistic people, as are difficulties with school and friendships.",
+    "That’s what we talk about in our webinars and courses. They focus on practical and useful tips which will help you to understand your autistic child and see a way ahead. We do not do autism diagnoses. Autism should be diagnosed by a multi-disciplinary team. This is because autism is a lifelong diagnosis and so it should be given with great care.",
+  ]}
+  whitePanelImg={AutismImage}
+  whitePanelImgAlt="Purple flowers"
+/>

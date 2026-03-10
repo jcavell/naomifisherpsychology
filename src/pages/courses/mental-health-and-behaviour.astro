@@ -1,0 +1,42 @@
+---
+import CourseCategory, { CourseSubcategory } from "../../components/course/CourseCategory.astro";
+import AutismImage from "../../images/tags/tag-autism.png";
+
+import {
+  helpingYourAutisticChildWithAnger,
+  helpingYourAutisticChildWithOCD,
+  helpingYourAutisticChildWithTransitions,
+  helpingYourAutisticChildMoveOnFromSchoolTrauma,
+  autisticChildWithAnxiety,
+  autisticTeenWithAnxiety,
+  autisticChildWithTrauma,
+  childWithAnxietyUnder8s,
+  childWithAnxiety6To13,
+  helpingYourTeenWithAnxiety,
+  helpingYourChildWithBurnout,
+  burntOutByParenting,
+  burnoutAGuideForTeenagers,
+  burntOutBySchool,
+  traumaAndLoss,
+  childWithSevereAnxiety
+} from "../../scripts/courseMeta";
+
+const anxiety = {title: "Anxiety", courses: [childWithSevereAnxiety, childWithAnxietyUnder8s, childWithAnxiety6To13, helpingYourTeenWithAnxiety, helpingYourAutisticChildWithOCD, autisticChildWithAnxiety, autisticTeenWithAnxiety]}
+const burnout = {title: "Burnout", courses: [helpingYourChildWithBurnout, burntOutByParenting, burnoutAGuideForTeenagers, burntOutBySchool]}
+const behaviour = {title: "Behaviour", courses: [helpingYourAutisticChildWithAnger, helpingYourAutisticChildWithTransitions]}
+const trauma = {title: "Trauma", courses: [traumaAndLoss, autisticChildWithTrauma, helpingYourAutisticChildMoveOnFromSchoolTrauma]}
+const subcategories = [anxiety, burnout, behaviour, trauma];
+---
+
+<CourseCategory
+  subcategories={subcategories}
+  pageTitle="Mental health and behaviour Courses"
+  metaDescription="Browse our mental health and behaviour courses"
+  whitePanelTitle=""
+  whitePanelDescriptions={[
+    "Being on a different developmental trajectory can make life challenging. It can mean that too much is expected of autistic children and teenagers without enough support being provided. Anxiety is very common among autistic people, as are difficulties with school and friendships.",
+    "That’s what we talk about in our webinars and courses. They focus on practical and useful tips which will help you to understand your autistic child and see a way ahead. We do not do autism diagnoses. Autism should be diagnosed by a multi-disciplinary team. This is because autism is a lifelong diagnosis and so it should be given with great care.",
+  ]}
+  whitePanelImg={AutismImage}
+  whitePanelImgAlt="Purple flowers"
+/>
