@@ -3,26 +3,26 @@ import CourseCategory, { CourseSubcategory } from "../../components/course/Cours
 import AutismImage from "../../images/tags/tag-autism.png";
 
 import {
-  helpingYourAutisticChildWithAnger,
-  helpingYourAutisticChildWithOCD,
-  helpingYourAutisticChildWithTransitions,
   helpingYourAutisticChildMoveOnFromSchoolTrauma,
-  autisticChildWithAnxiety,
-  autisticTeenWithAnxiety,
-  autisticChildWithTrauma,
+  myChildIsNotFineAtSchool,
+  autisticChildrenWithSchool,
+  burntOutBySchool,
+  helpingYourNDTeenRecoverFromSchool,
+  howCanYouLearnIfYouDontGoToSchool,
+  doWeNeedAnEhcp,
+  weDontHaveAnEhcpWhatToExpectFromSchool, takingControlOfYourEhcpAnnualReview, navigatingTheSenTribunalProcess
 } from "../../scripts/courseMeta";
 
-const anxiety = {title: "Anxiety", courses: [autisticChildWithAnxiety, autisticTeenWithAnxiety]}
-const ocd = {title: "OCD", courses: [helpingYourAutisticChildWithOCD]}
-const behaviour = {title: "Behaviour", courses: [helpingYourAutisticChildWithAnger, helpingYourAutisticChildWithTransitions]}
-const trauma = {title: "Trauma", courses: [autisticChildWithTrauma, helpingYourAutisticChildMoveOnFromSchoolTrauma]}
-const subcategories = [anxiety, behaviour, trauma, ocd];
+const inSchool = {title: "At School", courses: [myChildIsNotFineAtSchool, autisticChildrenWithSchool]}
+const outOfSchool = {title: "Out of School", courses: [burntOutBySchool, helpingYourAutisticChildMoveOnFromSchoolTrauma, helpingYourNDTeenRecoverFromSchool, howCanYouLearnIfYouDontGoToSchool]}
+const ehcp = {title: "EHCPs", courses: [doWeNeedAnEhcp, weDontHaveAnEhcpWhatToExpectFromSchool, takingControlOfYourEhcpAnnualReview, navigatingTheSenTribunalProcess]}
+const subcategories = [inSchool, outOfSchool, ehcp];
 ---
 
 <CourseCategory
   subcategories={subcategories}
-  pageTitle="Autism Courses"
-  metaDescription="Browse our autism courses"
+  pageTitle="School and Education Courses"
+  metaDescription="Browse our school and education courses"
   whitePanelTitle=""
   whitePanelDescriptions={[
     "Being on a different developmental trajectory can make life challenging. It can mean that too much is expected of autistic children and teenagers without enough support being provided. Anxiety is very common among autistic people, as are difficulties with school and friendships.",

@@ -14,9 +14,11 @@ const {title, descriptions, img, imgAlt} = Astro.props;
 
 <section class="white-panel-card">
   <div class="white-panel-content">
+
+    {title && (
     <h2 class="white-panel-title">
       <strong>{title}</strong>
-    </h2>
+    </h2>)}
 
     <div class="white-panel-description">
       {descriptions.map((item) => (<p>{item}</p>))}
