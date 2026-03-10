@@ -40,7 +40,8 @@
 .home .wrapper {
   margin-top: 32px;
 }
-.page-intro-wrapper {
+.page-intro-wrapper,
+.page-intro-wrapper-about-profile {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -56,6 +57,41 @@
     .tag-page & {
       // order: -1;
     }
+  }
+  @media (max-width: 1200px) {
+    margin-top: 0;
+
+    .accordion-wrapper:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+  &-no-image {
+    + a > h2 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+    }
+    p {
+      &:first-of-type {
+        margin-top: 0;
+      }
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+  &-about-profile {
+    margin-bottom: 8px;
+  }
+  + a > h2 {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+}
+
+.page-intro-wrapper-no-image {
+  margin-bottom: 0;
+  @media (max-width: 1200px) {
+    margin-bottom: 16px;
   }
 }
 
@@ -367,14 +403,21 @@ h3:first-child,
     width: 100%;
   }
   @at-root h1#{&} {
-    font-size: 36px;
+    font-size: 28px;
     text-transform: uppercase;
     font-weight: normal;
     margin-top: 1rem;
     margin-bottom: 16px;
     @media (min-width: 1200px) {
+      font-size: 36px;
       margin-top: 0;
       margin-bottom: 0;
+    }
+  }
+  @at-root h2#{&} {
+    @media (max-width: 1200px) {
+      font-size: 22px;
+      font-weight: normal;
     }
   }
 }

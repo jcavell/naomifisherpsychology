@@ -10,7 +10,7 @@ import type { Webinar } from "../../types/webinar";
 export async function getStaticPaths() {
   const webinars = await getCachedWebinars();
 
-  return webinars.map((webinar: Webinar) => {
+  return webinars?.map((webinar: Webinar) => {
     return {
       params: { eventId: makeUrl(webinar.id) },
       props: {

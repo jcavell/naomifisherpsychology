@@ -340,7 +340,7 @@ $spacing-unit: 16px; // Use a spacing system
     border-radius: 6px;
     background-color: var(--brand-primary);
     color: #ffffff;
-    padding: 16px 32px;
+    padding: 12px 16px;
     border: 0;
     font-size: 16px;
     text-transform: uppercase;
@@ -353,7 +353,7 @@ $spacing-unit: 16px; // Use a spacing system
 }
 
 .btn {
-  padding: 16px 32px;
+  padding: 12px 16px;
   border: 0;
   border-radius: 6px;
   cursor: pointer;
@@ -565,16 +565,50 @@ $spacing-unit: 16px; // Use a spacing system
   border-radius: 16px;
   margin: 0;
   width: calc(50% - 20px);
+  flex-direction: column;
 
   &:hover {
     // transform: translateY(-5px);
   }
 
+  &__wrapper {
+    display: flex;
+  }
+
+  &__footerv2 {
+    display: flex;
+    justify-content: space-between;
+    margin: auto 16px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+    @media (max-width: 1200px) {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+    }
+    .card-actions {
+      margin: 0;
+      padding-left: 0;
+      a.btn {
+        white-space: nowrap;
+        align-self: flex-start;
+      }
+    }
+    .book-card__metadata {
+      margin: 0;
+      padding-right: 0;
+      @media (max-width: 1200px) {
+        padding-left: 0;
+      }
+      span.tags {
+        display: flex;
+      }
+    }
+  }
   // Portrait Image Section (40% width)
   &__image-container {
     flex: 0 0 40%;
     position: relative;
     background: #ffffff;
+    padding: 16px;
   }
 
   &__image,
@@ -589,7 +623,7 @@ $spacing-unit: 16px; // Use a spacing system
   // Content Section (60% width)
   &__content {
     flex: 1;
-    padding: 16px;
+    padding: 16px 16px 16px 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -600,7 +634,7 @@ $spacing-unit: 16px; // Use a spacing system
     margin-bottom: 1rem;
     text-transform: uppercase;
     letter-spacing: normal;
-    padding: 16px;
+    padding: 16px 16px 16px 0;
 
     span {
       display: inline-block;
@@ -663,7 +697,7 @@ $spacing-unit: 16px; // Use a spacing system
       display: block;
       text-transform: capitalize;
       font-size: 16px;
-      letter-spacing: 0;
+      letter-spacing: 0.5px;
       line-height: 1.2;
       margin-bottom: -6px;
       font-weight: 500;
@@ -673,6 +707,12 @@ $spacing-unit: 16px; // Use a spacing system
       font-style: normal;
       margin-top: 8px;
       line-height: 1.5;
+    }
+    span.book-card__date {
+      font-family: "Open Sans", sans-serif;
+      font-size: 12px;
+      color: #777;
+      margin: 0.5rem 0 0;
     }
   }
 
@@ -698,6 +738,9 @@ $spacing-unit: 16px; // Use a spacing system
     }
   }
 
+  &__footerv2 {
+  }
+
   &__tag {
     padding: 4px 12px;
     border-radius: 20px;
@@ -720,35 +763,52 @@ $spacing-unit: 16px; // Use a spacing system
 .category-books {
   .book-card.book-details-page {
     width: 100%;
+    flex-direction: row;
+    @media (max-width: 800px) {
+      flex-direction: column;
+    }
     .book-card__image-container {
       flex: 0 0 20%;
     }
 
-    .section-title {
-      // font-size: 16px;
-      // font-weight: normal;
-      // border-bottom: 1px solid var(--brand-primary);
-      // margin-bottom: 16px;
-      display: block;
-      text-decoration: none;
-      color: #000;
-      border-bottom: rgba(0, 0, 0, 0.2) 0 dashed;
-      padding-bottom: 1px;
-      position: relative;
-      font-size: 16px;
-      text-transform: uppercase;
-      padding-top: 1em;
-      padding-bottom: 1em;
-      background-size: 14px 14px;
-      background-repeat: no-repeat;
-      background-position: right center;
+    .book-card__content {
+      padding: 16px;
+    }
 
-      font-family: "Oswald", sans-serif;
-      font-optical-sizing: auto;
-      font-weight: 500;
-      font-style: normal;
-      @media (max-width: 1200px) {
-        margin-top: 0;
+    .purchase-options {
+      .section-title {
+        font-size: 16px;
+        font-weight: normal;
+        border-bottom: 1px solid var(--brand-primary);
+        margin-bottom: 16px;
+        // display: block;
+        // text-decoration: none;
+        // color: #000;
+        // border-bottom: rgba(0, 0, 0, 0.2) 0 dashed;
+        // padding-bottom: 1px;
+        // position: relative;
+        // font-size: 16px;
+        // text-transform: uppercase;
+        padding-top: 1em;
+        padding-bottom: 1em;
+        // background-size: 14px 14px;
+        // background-repeat: no-repeat;
+        // background-position: right center;
+        text-transform: uppercase;
+        font-family: "Oswald", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+        @media (max-width: 1200px) {
+          margin-top: 0;
+        }
+      }
+      .purchase-card {
+        .card-header {
+          .meta-info {
+            font-weight: bold;
+          }
+        }
       }
     }
     .purchase-wrapper {
@@ -878,6 +938,10 @@ $spacing-unit: 16px; // Use a spacing system
         }
       }
     }
+    .accordion-wrapper .accordion,
+    .accordion-wrapper .mock-accordion {
+      font-weight: 400;
+    }
   }
 }
 
@@ -947,7 +1011,7 @@ $spacing-unit: 16px; // Use a spacing system
     text-align: center;
     text-decoration: none;
     font-size: 16px;
-    padding: 16px 32px;
+    padding: 8px 16px;
     color: white;
     background-color: var(--function-dark-9);
     &:hover {
@@ -961,7 +1025,7 @@ $spacing-unit: 16px; // Use a spacing system
       border-radius: 6px;
       background-color: var(--brand-primary);
       color: #ffffff;
-      padding: 16px 32px;
+      padding: 12px 16px;
       border: 0;
       font-size: 16px;
       text-transform: uppercase;

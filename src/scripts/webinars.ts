@@ -101,7 +101,7 @@ export default async function getWebinars(): Promise<Webinar[]> {
 
     if (webinars && details) {
       logger.INFO("GET WEBINARS: Found and will use cached webinars and details data");
-      const processedWebinars = webinars.map((webinar: EventbriteWebinar, index: number) =>
+      const processedWebinars = webinars?.map((webinar: EventbriteWebinar, index: number) =>
         transformEventbriteToWebinar(webinar, details[index])
       );
 
@@ -114,7 +114,7 @@ export default async function getWebinars(): Promise<Webinar[]> {
 
   logger.INFO("GET WEBINARS: Calling the Eventbrite API for basic data");
 
-// 1. Get the BASIC webinars info
+  // 1. Get the BASIC webinars info
   const eventsResponse = await fetch(
     "https://www.eventbriteapi.com/v3/organizations/495447088469/events/?expand=category,subcategory,ticket_availability,ticket_classes&status=live",
     {
@@ -128,7 +128,7 @@ export default async function getWebinars(): Promise<Webinar[]> {
     throw new Error(`Server error: ${eventsResponse.status}`);
   }
 
-  const eventsJson: { events: EventbriteWebinar[] }  = await eventsResponse.json();
+  const eventsJson: { events: EventbriteWebinar[] } = await eventsResponse.json();
   const eventbriteWebinars: EventbriteWebinar[] = eventsJson.events;
 
   // Store webinars json if debugging is needed
@@ -194,7 +194,7 @@ export default async function getWebinars(): Promise<Webinar[]> {
 const getAllWebinarsDetails = async (webinars: EventbriteWebinar[]): Promise<Response[]> => {
   logger.INFO("GET ALL WEBINARS DETAILS: Calling getWebinar details in for each webinar");
   const responses = await Promise.all(
-    webinars.map(async (webinar) => {
+    webinars?.map(async (webinar) => {
       const response = await getWebinarDetails(webinar.id);
       if (!response.ok) {
         throw new Error(`Failed to fetch webinar details: ${response.status}`);
@@ -298,7 +298,7 @@ function formatDisplayDates(startUtc: string, endUtc: string) {
   const startDateTime = new Date(Date.parse(startUtc));
   const endDateTime = new Date(Date.parse(endUtc));
 
-  const displayWeekday: Intl.DateTimeFormatOptions = {weekday: "short"}
+  const displayWeekday: Intl.DateTimeFormatOptions = { weekday: "short" }
   const displayDay: Intl.DateTimeFormatOptions = { day: "numeric" };
   const displayMonth: Intl.DateTimeFormatOptions = { month: "short" };
   const displayMonthLong: Intl.DateTimeFormatOptions = { month: "long" };

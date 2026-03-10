@@ -22,41 +22,44 @@ const webinars = await getCachedWebinars();
     <li class="desktop-item"><h5>Coming Up Soon</h5></li>
     <li>
       <ul class="webinars-list">
-
-        {webinars.map((webinar, index) => (
-          <li>
-            <div class="webinar-card">
-              <div class="webinar-img-wrapper desktop-item">
-                <img
-                  loading="lazy"
-                  src={webinar.logoUrl}
-                  alt={`Webinar ${webinar.title}`}
-                />
-              </div>
-              <div class="webinar-content">
-                <h5>{webinar.title}</h5>
-                <p> {`${webinar.displayDate.weekday} ${webinar.displayDate.day} ${webinar.displayDate.month}`}
-                  {`${webinar.displayDate.startTime}`} - {`${webinar.displayDate.endTime}`}</p>
-                <a href={`/webinars/${webinar.id}`}
-                ><img
-                  src="/images/icons/icon-chev-right.svg"
-                  alt="See details"
-                /></a
-                >
-              </div>
-              <div class="webinar-link mobile-item">
-                <a href={`/webinars/${webinar.id}`}
-                ><img
-                  src="/images/icons/icon-chev-right.svg"
-                  alt="See details"
-                /></a
-                >
-              </div>
-            </div>
-          </li>
-        ))}
-
-
+        {
+          webinars?.map((webinar, index) => (
+            <li>
+              <a href={`/webinars/${webinar.id}`}>
+                <div class="webinar-card">
+                  <div class="webinar-img-wrapper desktop-item">
+                    <img
+                      loading="lazy"
+                      src={webinar.logoUrl}
+                      alt={`Webinar ${webinar.title}`}
+                    />
+                  </div>
+                  <div class="webinar-content">
+                    <h5>{webinar.title}</h5>
+                    <p>
+                      {" "}
+                      {`${webinar.displayDate.weekday} ${webinar.displayDate.day} ${webinar.displayDate.month}`}
+                      {`${webinar.displayDate.startTime}`} -{" "}
+                      {`${webinar.displayDate.endTime}`}
+                    </p>
+                    <a href={`/webinars/${webinar.id}`}>
+                      <img
+                        src="/images/icons/icon-chev-right.svg"
+                        alt="See details"
+                      />
+                    </a>
+                  </div>
+                  <div class="webinar-link mobile-item">
+                    <img
+                      src="/images/icons/icon-chev-right.svg"
+                      alt="See details"
+                    />
+                  </div>
+                </div>
+              </a>
+            </li>
+          ))
+        }
       </ul>
       <li>
         <a
@@ -66,5 +69,6 @@ const webinars = await getCachedWebinars();
           View all Webinars
         </a>
       </li>
+    </li>
   </ul>
-
+</li>

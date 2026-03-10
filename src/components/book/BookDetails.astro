@@ -59,6 +59,7 @@ if (excerpt) {
     <h2 class="book-card__title">
       <a href={book.uri}>{book.title}</a>
       <span>{book.subtitle} </span>
+      <span class="book-card__date">Published {getPubDateString(book)} • {book.publisher}</span>
     </h2>
 
     {book.description && <p>{book.description}</p>}
@@ -151,7 +152,7 @@ if (excerpt) {
   <div class="purchase-card">
     <div class="card-header">
       <!-- <span class="format-tag">Paperback</span> -->
-      <p class="meta-info">Paperback •  Published {getPubDateString(book)} by {book.publisher} •  {
+      <p class="meta-info">Paperback •   {
               book.pages
             } pages</p>
     </div>

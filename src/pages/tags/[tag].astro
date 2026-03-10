@@ -102,7 +102,7 @@ const {
   restOfPosts,
 } = Astro.props;
 
-const hasWebinars = webinars.length > 0;
+const hasWebinars = webinars?.length > 0;
 const hasCourses = courses.length > 0;
 const hasBooks = books.length > 0;
 const hasPosts = firstTwoPosts.length > 0;
@@ -227,7 +227,7 @@ const metaDescription =
   {books.map((book) => <BookSummary book={book.data} />)}
 
   {
-    webinars.length > 0 && (
+    webinars?.length > 0 && (
       <a name="webinars" class="anchor">
         <h2 class="section-title">
           <span class="webinars-section-title">Webinars</span>
@@ -235,7 +235,7 @@ const metaDescription =
       </a>
     )
   }
-  {webinars.map((webinar, index) => <WebinarSummary webinar={webinar} />)}
+  {webinars?.map((webinar, index) => <WebinarSummary webinar={webinar} />)}
 
   <!--{-->
   <!--  courses.length > 0 && (-->
