@@ -1,0 +1,43 @@
+---
+import CourseCategory from "../../components/course/CourseCategory.astro";
+import AutismImage from "../../images/tags/tag-autism.png";
+
+import {
+  autism101,
+  helpingYourAutisticChildWithAnger,
+  helpingYourNDTeenRecoverFromSchool,
+  helpingYourAutisticChildWithOCD,
+  helpingYourAutisticChildWithTransitions,
+  helpingYourAutisticChildMoveOnFromSchoolTrauma,
+  autisticChildrenWithSchool,
+  autisticChildWithAnxiety,
+  autisticTeenWithAnxiety,
+  autisticChildWithTrauma,
+  neurodiversity101,
+} from "../../scripts/courseMeta";
+---
+
+<CourseCategory
+  courseMeta={[
+    autism101,
+    helpingYourAutisticChildWithAnger,
+    helpingYourNDTeenRecoverFromSchool,
+    helpingYourAutisticChildWithOCD,
+    helpingYourAutisticChildWithTransitions,
+    helpingYourAutisticChildMoveOnFromSchoolTrauma,
+    autisticChildrenWithSchool,
+    autisticChildWithAnxiety,
+    autisticTeenWithAnxiety,
+    autisticChildWithTrauma,
+    neurodiversity101,
+  ]}
+  pageTitle="Autism Courses"
+  metaDescription="Browse our autism courses"
+  whitePanelTitle="Autism Courses"
+  whitePanelDescriptions={[
+    "Being on a different developmental trajectory can make life challenging. It can mean that too much is expected of autistic children and teenagers without enough support being provided. Anxiety is very common among autistic people, as are difficulties with school and friendships.",
+    "That’s what we talk about in our webinars and courses. They focus on practical and useful tips which will help you to understand your autistic child and see a way ahead. We do not do autism diagnoses. Autism should be diagnosed by a multi-disciplinary team. This is because autism is a lifelong diagnosis and so it should be given with great care.",
+  ]}
+  whitePanelImg={AutismImage}
+  whitePanelImgAlt="Purple flowers"
+/>

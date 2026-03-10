@@ -1,24 +1,24 @@
 import {
   age11To19,
   age5To11,
-  tagDemandAvoidance,
   forParents,
-  tagAutism,
-  tagScreens,
-  tagAnxiety,
-  tagTrauma,
-  tagBurnout,
-  tagSchool,
-  tagEHCPs,
-  forTeens,
   forProfessionals,
+  forTeens,
   tagALDP,
+  tagAnxiety,
+  tagAutism,
+  tagBurnout,
+  tagDemandAvoidance,
+  tagEHCPs,
   tagEMDR,
-  tagNeurodiversity,
-  tagSEN,
   tagMentalHealth,
+  tagNeurodiversity,
+  tagSchool,
+  tagScreens,
+  tagSEN,
+  tagTrauma,
 } from "./tags";
-import { naomi, abi, eliza } from "./people";
+import { abi, eliza, naomi } from "./people";
 
 import { getWebinarMeta } from "./webinarMeta";
 
@@ -84,19 +84,16 @@ import EMDR5Image from "../images/courses/EMDR-5.webp";
 import EMDR6Image from "../images/courses/EMDR-6.webp";
 import EMDR1To6Image from "../images/courses/EMDR-1-6.webp";
 
+import { Category, Subcategory } from "./courseCategoriesNew.ts";
+
 const makeVideoURL = (id: string) =>
   new URL("https://player.vimeo.com/video/" + id);
-
-// const CourseMeta = z.object({
-//   title: z.string(),
-//   tags: z.string().array(),
-//   contributers: z.string().array(),
-//   runningTime: z.string(),
-// });
 
 export type CourseMeta = {
   title: string;
   tags: string[];
+  categories: Category[];
+  subcategories: Subcategory[];
   contributers: string[];
   runningTime: string;
   image?: ImageMetadata;
@@ -107,6 +104,8 @@ export type CourseMeta = {
 export const demandAvoidantAdolescent: CourseMeta = {
   title: "Understanding and Helping your Demand Avoidant Adolescent",
   tags: [tagDemandAvoidance, age11To19, forParents],
+  categories: [Category.DemandAvoidance],
+  subcategories: [Subcategory.DA_Essentials],
   contributers: [naomi],
   runningTime: "1 hour 17 mins",
   image: demandAvoidantAdolescentImage,
@@ -116,6 +115,8 @@ export const demandAvoidantAdolescent: CourseMeta = {
 export const helpingYourDemandAvoidantChildWithChange: CourseMeta = {
   title: "Helping Your Demand Avoidant Child With Change",
   tags: [tagDemandAvoidance, age5To11, age11To19, forParents],
+  categories: [Category.DemandAvoidance],
+  subcategories: [Subcategory.DA_AnxietyAndChange],
   contributers: [naomi],
   runningTime: "1 hour 22 mins",
   image: helpingYourDemandAvoidantChildWithChangeImage,
@@ -125,6 +126,8 @@ export const helpingYourDemandAvoidantChildWithChange: CourseMeta = {
 export const autism101: CourseMeta = {
   title: "Autism 101",
   tags: [tagAutism, age5To11, age11To19, forParents],
+  categories: [Category.Autism],
+  subcategories: [Subcategory.Autism_Essentials],
   contributers: [naomi],
   runningTime: "1 hour 34 mins",
   image: autism101Image,
@@ -133,6 +136,8 @@ export const autism101: CourseMeta = {
 export const helpingYourAutisticChildWithAnger: CourseMeta = {
   title: "Helping your Autistic Child with Anger",
   tags: [tagAutism, age5To11, age11To19, forParents],
+  categories: [Category.Autism],
+  subcategories: [Subcategory.Autism_Anger],
   contributers: [naomi],
   runningTime: "1 hour 31 mins",
   image: helpingYourAutisticChildWithAngerImage,
@@ -141,6 +146,8 @@ export const helpingYourAutisticChildWithAnger: CourseMeta = {
 export const helpingYourChildWithBurnout: CourseMeta = {
   title: "Helping your Child with Burnout",
   tags: [tagBurnout, age5To11, age11To19, forParents],
+  categories: [Category.MentalHealthAndBehaviour],
+  subcategories: [Subcategory.MHB_Burnout],
   contributers: [naomi],
   runningTime: "1 hour 34 mins",
   image: helpingYourChildWithBurnoutImage,
@@ -150,6 +157,8 @@ export const helpingYourChildWithBurnout: CourseMeta = {
 export const burntOutByParenting: CourseMeta = {
   title: "Burnt out by Parenting?",
   tags: [tagBurnout, age5To11, age11To19, forParents],
+  categories: [Category.MentalHealthAndBehaviour],
+  subcategories: [Subcategory.MHB_Burnout],
   contributers: [naomi],
   runningTime: "1 hour 31 mins",
   image: burntOutByParentingImage,
@@ -159,6 +168,8 @@ export const burntOutByParenting: CourseMeta = {
 export const howCanYouLearnIfYouDontGoToSchool: CourseMeta = {
   title: "How Can You Learn if You Don't Go to School? A Guide for Teenagers",
   tags: [age11To19, forTeens],
+  categories: [Category.SchoolAndEducation],
+  subcategories: [Subcategory.School_OutOfSchool],
   contributers: [naomi],
   runningTime: "1 hour 18 mins",
   image: howCanYouLearnIfYouDontGoToSchoolImage,
@@ -167,6 +178,11 @@ export const howCanYouLearnIfYouDontGoToSchool: CourseMeta = {
 export const helpingYourNDTeenRecoverFromSchool: CourseMeta = {
   title: "Helping your Neurodivergent Teen Recover from School",
   tags: [tagNeurodiversity, tagSchool, age11To19, forParents],
+  categories: [Category.Autism, Category.SchoolAndEducation],
+  subcategories: [
+    Subcategory.Autism_Essentials,
+    Subcategory.School_OutOfSchool,
+  ],
   contributers: [naomi],
   runningTime: "1 hour 31 mins",
   image: helpingYourNDTeenRecoverFromSchoolImage,
@@ -177,6 +193,8 @@ export const demandAvoidance101: CourseMeta = {
   title: "Demand Avoidance 101",
   contributers: [naomi],
   tags: [tagDemandAvoidance, age5To11, age11To19, forParents],
+  categories: [Category.DemandAvoidance],
+  subcategories: [Subcategory.DA_Essentials],
   runningTime: "1 hour 15 mins",
   image: demandAvoidance101Image,
   videoUrl: makeVideoURL("953498420"),
@@ -185,6 +203,8 @@ export const demandAvoidance101: CourseMeta = {
 export const neurodiversity101: CourseMeta = {
   title: "Neurodiversity 101",
   tags: [tagNeurodiversity, age5To11, age11To19, forParents],
+  categories: [Category.Autism],
+  subcategories: [Subcategory.Autism_Essentials],
   contributers: [naomi],
   image: neurodiversity101Image,
   runningTime: "1 hour 19 mins",
@@ -205,6 +225,8 @@ export const neurodiversity101: CourseMeta = {
 export const autisticTeenWithAnxiety: CourseMeta = {
   title: "Helping Your Autistic Teen with Anxiety",
   tags: [tagAutism, tagAnxiety, tagMentalHealth, age11To19, forParents],
+  categories: [Category.Autism],
+  subcategories: [Subcategory.Autism_Anxiety],
   contributers: [naomi],
   image: autisticTeenWithAnxietyImage,
   runningTime: "1 hour 22 mins",
@@ -213,6 +235,8 @@ export const autisticTeenWithAnxiety: CourseMeta = {
 export const autisticChildWithAnxiety: CourseMeta = {
   title: "Helping Your Autistic Child With Anxiety",
   tags: [tagAutism, tagAnxiety, tagMentalHealth, age5To11, forParents],
+  categories: [Category.Autism],
+  subcategories: [Subcategory.Autism_Anxiety],
   contributers: [naomi],
   image: autisticChildWithAnxietyImage,
   runningTime: "1 hour 7 mins",
@@ -229,6 +253,8 @@ export const autisticChildWithAnxiety: CourseMeta = {
 export const childWithAnxietyUnder8s: CourseMeta = {
   title: "Helping Your Child With Anxiety (Under 8s)",
   tags: [tagAnxiety, tagMentalHealth, age5To11, forParents],
+  categories: [Category.MentalHealthAndBehaviour],
+  subcategories: [Subcategory.MHB_AnxietyAndOCD],
   contributers: [naomi],
   image: childWithAnxietyUnder8sImage,
   runningTime: "1 hour 30 mins",
@@ -237,6 +263,8 @@ export const childWithAnxietyUnder8s: CourseMeta = {
 export const autisticChildWithTrauma: CourseMeta = {
   title: "Helping Your Autistic Child With Trauma",
   tags: [tagAutism, tagTrauma, tagMentalHealth, age5To11, forParents],
+  categories: [Category.Autism, Category.MentalHealthAndBehaviour],
+  subcategories: [Subcategory.MHB_Trauma],
   contributers: [naomi],
   image: autisticChildWithTraumaImage,
   runningTime: "1 hour 33 mins",
@@ -245,6 +273,8 @@ export const autisticChildWithTrauma: CourseMeta = {
 export const childWithAnxiety6To13: CourseMeta = {
   title: "Helping Your Child With Anxiety (Ages 6 - 13)",
   tags: [tagAnxiety, age5To11, forParents],
+  categories: [Category.MentalHealthAndBehaviour],
+  subcategories: [Subcategory.MHB_AnxietyAndOCD],
   contributers: [naomi],
   image: childWithAnxiety6To13Image,
   runningTime: "1 hour 17 mins",
@@ -253,6 +283,8 @@ export const childWithAnxiety6To13: CourseMeta = {
 export const childWithSevereAnxiety: CourseMeta = {
   title: "Helping Your Child With Severe Anxiety",
   tags: [tagAnxiety, tagMentalHealth, age5To11, age11To19, forParents],
+  categories: [Category.MentalHealthAndBehaviour],
+  subcategories: [Subcategory.MHB_AnxietyAndOCD],
   contributers: [naomi],
   image: childWithSevereAnxietyImage,
   runningTime: "1 hour 5 mins",
@@ -261,6 +293,8 @@ export const childWithSevereAnxiety: CourseMeta = {
 export const burntOutBySchool: CourseMeta = {
   title: "Burnt Out by School",
   tags: [tagBurnout, tagSchool, age11To19, forParents],
+  categories: [Category.SchoolAndEducation, Category.MentalHealthAndBehaviour],
+  subcategories: [Subcategory.MHB_Burnout, Subcategory.School_School],
   contributers: [naomi],
   image: burntOutBySchoolImage,
   runningTime: "1 hour 40 mins",
@@ -269,6 +303,8 @@ export const burntOutBySchool: CourseMeta = {
 export const helpingYourTeenWithAnxiety: CourseMeta = {
   title: "Helping Your Teen with Anxiety",
   tags: [tagAnxiety, tagMentalHealth, age11To19, forParents],
+  categories: [Category.MentalHealthAndBehaviour],
+  subcategories: [Subcategory.MHB_AnxietyAndOCD],
   contributers: [naomi],
   image: helpingYourTeenWithAnxietyImage,
   runningTime: "1 hour 28 mins",
@@ -277,6 +313,8 @@ export const helpingYourTeenWithAnxiety: CourseMeta = {
 export const anxietyAGuideForTeenagers: CourseMeta = {
   title: "Anxiety - A Guide for Teenagers",
   tags: [tagAnxiety, tagMentalHealth, age11To19, forTeens],
+  categories: [Category.MentalHealthAndBehaviour],
+  subcategories: [Subcategory.MHB_AnxietyAndOCD],
   contributers: [naomi],
   image: anxietyAGuideForTeenagersImage,
   runningTime: "1 hour 8 mins",
@@ -292,6 +330,8 @@ export const helpingYourAutisticChildMoveOnFromSchoolTrauma: CourseMeta = {
     age11To19,
     forParents,
   ],
+  categories: [Category.Autism, Category.SchoolAndEducation],
+  subcategories: [Subcategory.MHB_Trauma, Subcategory.School_OutOfSchool],
   contributers: [naomi],
   image: afterSchoolMovingOnFromSchoolTraumaImage,
   runningTime: "2 hours 8 mins",
@@ -300,6 +340,8 @@ export const helpingYourAutisticChildMoveOnFromSchoolTrauma: CourseMeta = {
 export const autisticChildrenWithSchool: CourseMeta = {
   title: "Helping Autistic Children with School",
   tags: [tagAutism, tagSchool, age5To11, age11To19, forParents],
+  categories: [Category.Autism, Category.SchoolAndEducation],
+  subcategories: [Subcategory.School_School],
   contributers: [naomi],
   image: autisticChildrenWithSchoolImage,
   runningTime: "1 hour 29 mins",
@@ -308,6 +350,8 @@ export const autisticChildrenWithSchool: CourseMeta = {
 export const myChildIsNotFineAtSchool: CourseMeta = {
   title: "My Child is not Fine at School",
   tags: [tagSchool, age5To11, age11To19, forParents],
+  categories: [Category.SchoolAndEducation],
+  subcategories: [Subcategory.School_School],
   contributers: [naomi],
   image: myChildIsNotFineAtSchoolImage,
   runningTime: "1 hour 46 mins",
@@ -316,6 +360,8 @@ export const myChildIsNotFineAtSchool: CourseMeta = {
 export const doWeNeedAnEhcp: CourseMeta = {
   title: "Do we need an EHCP? If we do, what do we do now?",
   tags: [tagEHCPs, tagSchool, age5To11, age11To19, forParents],
+  categories: [Category.SchoolAndEducation],
+  subcategories: [Subcategory.School_EHCPs],
   contributers: [abi],
   image: doWeNeedAnEhcpImage,
   runningTime: "57 mins",
@@ -324,6 +370,8 @@ export const doWeNeedAnEhcp: CourseMeta = {
 export const takingControlOfYourEhcpAnnualReview: CourseMeta = {
   title: "Taking control of your EHCP Annual Review",
   tags: [tagEHCPs, tagSchool, age5To11, age11To19, forParents],
+  categories: [Category.SchoolAndEducation],
+  subcategories: [Subcategory.School_EHCPs],
   contributers: [abi],
   image: takingControlOfYourEhcpAnnualReviewImage,
   runningTime: "60 mins",
@@ -332,6 +380,8 @@ export const takingControlOfYourEhcpAnnualReview: CourseMeta = {
 export const weDontHaveAnEhcpWhatToExpectFromSchool: CourseMeta = {
   title: "We don't have an EHCP - what can we Expect from School?",
   tags: [tagEHCPs, tagSchool, age5To11, age11To19, forParents],
+  categories: [Category.SchoolAndEducation],
+  subcategories: [Subcategory.School_EHCPs],
   contributers: [abi],
   image: weDontHaveAnEhcpWhatToExpectFromSchoolImage,
   runningTime: "1 hour 7 mins",
@@ -348,6 +398,8 @@ export const weDontHaveAnEhcpWhatToExpectFromSchool: CourseMeta = {
 export const navigatingTheSenTribunalProcess: CourseMeta = {
   title: "Navigating the SEN Tribunal process",
   tags: [tagSEN, tagSchool, age5To11, age11To19, forParents],
+  categories: [Category.SchoolAndEducation],
+  subcategories: [Subcategory.School_EHCPs],
   contributers: [abi],
   image: navigatingTheSenTribunalProcessImage,
   runningTime: "1 hour 23 mins",
@@ -364,6 +416,8 @@ export const navigatingTheSenTribunalProcess: CourseMeta = {
 export const burnoutAGuideForTeenagers: CourseMeta = {
   title: "Burnout - A Guide for Teenagers",
   tags: [tagBurnout, tagMentalHealth, age11To19, forTeens],
+  categories: [Category.MentalHealthAndBehaviour],
+  subcategories: [Subcategory.MHB_Burnout],
   contributers: [naomi],
   image: teenagerBurnout101Image,
   runningTime: "1 hour 10 mins",
@@ -372,6 +426,8 @@ export const burnoutAGuideForTeenagers: CourseMeta = {
 export const demandAvoidanceGuideForTeenagers: CourseMeta = {
   title: "Demand Avoidance - A Guide for Teenagers",
   tags: [tagDemandAvoidance, age11To19, forTeens],
+  categories: [Category.DemandAvoidance],
+  subcategories: [Subcategory.DA_Essentials],
   contributers: [naomi],
   image: demandAvoidanceGuideForTeenagersImage,
   runningTime: "1 hour 12 mins",
@@ -381,6 +437,8 @@ export const workingWithDemandAvoidantChildrenTherapy: CourseMeta = {
   title:
     "Working with Demand Avoidant Children: The Art and Science of Low Demand Therapy",
   tags: [tagDemandAvoidance, age5To11, age11To19, forProfessionals],
+  categories: [],
+  subcategories: [],
   contributers: [naomi],
   image: workingWithDemandAvoidantChildrenTherapyImage,
   runningTime: "1 hour 5 minutes",
@@ -389,6 +447,8 @@ export const workingWithDemandAvoidantChildrenTherapy: CourseMeta = {
 export const ALDP1: CourseMeta = {
   title: "The Art of Low Demand Parenting: Activate Your Parenting",
   tags: [tagALDP, age5To11, age11To19, forParents],
+  categories: [],
+  subcategories: [Subcategory.DA_LowDemandParenting],
   contributers: [naomi, eliza],
   image: ALDP1Image,
   runningTime: "1 hour 30 mins",
@@ -397,6 +457,8 @@ export const ALDP1: CourseMeta = {
 export const ALDP2: CourseMeta = {
   title: "The Art of Low Demand Parenting: Communication",
   tags: [tagALDP, age5To11, age11To19, forParents],
+  categories: [],
+  subcategories: [Subcategory.DA_LowDemandParenting],
   contributers: [naomi, eliza],
   image: ALDP2Image,
   runningTime: "1 hour 30 mins",
@@ -405,6 +467,8 @@ export const ALDP2: CourseMeta = {
 export const ALDP3: CourseMeta = {
   title: "The Art of Low Demand Parenting: Behaviour",
   tags: [tagALDP, age5To11, age11To19, forParents],
+  categories: [],
+  subcategories: [Subcategory.DA_LowDemandParenting],
   contributers: [naomi, eliza],
   image: ALDP3Image,
   runningTime: "1 hour 30 mins",
@@ -413,6 +477,8 @@ export const ALDP3: CourseMeta = {
 export const ALDP4: CourseMeta = {
   title: "The Art of Low Demand Parenting: Emotions",
   tags: [tagALDP, age5To11, age11To19, forParents],
+  categories: [],
+  subcategories: [Subcategory.DA_LowDemandParenting],
   contributers: [naomi, eliza],
   image: ALDP4Image,
   runningTime: "1 hour 30 mins",
@@ -421,6 +487,8 @@ export const ALDP4: CourseMeta = {
 export const ALDP5: CourseMeta = {
   title: "The Art of Low Demand Parenting: The Real World",
   tags: [tagALDP, age5To11, age11To19, forParents],
+  categories: [],
+  subcategories: [Subcategory.DA_LowDemandParenting],
   contributers: [naomi, eliza],
   image: ALDP5Image,
   runningTime: "1 hour 30 mins",
@@ -429,6 +497,8 @@ export const ALDP5: CourseMeta = {
 export const ALDP6: CourseMeta = {
   title: "The Art of Low Demand Parenting: Other People",
   tags: [tagALDP, age5To11, age11To19, forParents],
+  categories: [],
+  subcategories: [Subcategory.DA_LowDemandParenting],
   contributers: [naomi, eliza],
   image: ALDP6Image,
   runningTime: "1 hour 30 mins",
@@ -437,6 +507,8 @@ export const ALDP6: CourseMeta = {
 export const ALDP7: CourseMeta = {
   title: "The Art of Low Demand Parenting: Screens",
   tags: [tagALDP, tagScreens, age5To11, age11To19, forParents],
+  categories: [],
+  subcategories: [Subcategory.DA_LowDemandParenting],
   contributers: [naomi, eliza],
   image: ALDP7Image,
   runningTime: "1 hour 30 mins",
@@ -445,6 +517,8 @@ export const ALDP7: CourseMeta = {
 export const ALDP8: CourseMeta = {
   title: "The Art of Low Demand Parenting: School",
   tags: [tagALDP, tagSchool, age5To11, age11To19, forParents],
+  categories: [],
+  subcategories: [Subcategory.DA_LowDemandParenting],
   contributers: [naomi, eliza],
   image: ALDP8Image,
   runningTime: "1 hour 30 mins",
@@ -453,6 +527,8 @@ export const ALDP8: CourseMeta = {
 export const ALDP9: CourseMeta = {
   title: "The Art of Low Demand Parenting: What About The Future?",
   tags: [tagALDP, age5To11, age11To19, forParents],
+  categories: [],
+  subcategories: [Subcategory.DA_LowDemandParenting],
   contributers: [naomi, eliza],
   image: ALDP9Image,
   runningTime: "1 hour 30 mins",
@@ -461,6 +537,8 @@ export const ALDP9: CourseMeta = {
 export const ALDP10: CourseMeta = {
   title: "The Art of Low Demand Parenting: What About Me?",
   tags: [tagALDP, age5To11, age11To19, forParents],
+  categories: [],
+  subcategories: [Subcategory.DA_LowDemandParenting],
   contributers: [naomi, eliza],
   image: ALDP10Image,
   runningTime: "1 hour 30 mins",
@@ -469,6 +547,8 @@ export const ALDP10: CourseMeta = {
 export const ALDP1To10: CourseMeta = {
   title: "All 10 in the Art of Low Demand Parenting series",
   tags: [tagALDP, tagSchool, tagScreens, age5To11, age11To19, forParents],
+  subcategories: [Subcategory.DA_LowDemandParenting],
+  categories: [],
   contributers: [naomi, eliza],
   image: ALDP1To10Image,
   runningTime: "22 hours 30 mins (approx)",
@@ -477,6 +557,8 @@ export const ALDP1To10: CourseMeta = {
 export const ALDP1To5: CourseMeta = {
   title: "First 5 in The Art of Low Demand Parenting series",
   tags: [tagALDP, age5To11, age11To19, forParents],
+  categories: [],
+  subcategories: [Subcategory.DA_LowDemandParenting],
   contributers: [naomi, eliza],
   image: ALDP1To5Image,
   runningTime: "7 hours 30 mins",
@@ -485,6 +567,8 @@ export const ALDP1To5: CourseMeta = {
 export const ALDP6To10: CourseMeta = {
   title: "6-10 in The Art of Low Demand Parenting series",
   tags: [tagALDP, tagSchool, tagScreens, age5To11, age11To19, forParents],
+  categories: [],
+  subcategories: [Subcategory.DA_LowDemandParenting],
   contributers: [naomi, eliza],
   image: ALDP6To10Image,
   runningTime: "7 hours 30 mins",
@@ -493,6 +577,8 @@ export const ALDP6To10: CourseMeta = {
 export const EMDR1: CourseMeta = {
   title: "EMDR Refresher Training - Assessment Phase",
   tags: [tagEMDR, forProfessionals],
+  categories: [],
+  subcategories: [],
   contributers: [naomi],
   image: EMDR1Image,
   runningTime: "41 mins",
@@ -501,6 +587,8 @@ export const EMDR1: CourseMeta = {
 export const EMDR2: CourseMeta = {
   title: "EMDR Refresher Training - Blocked Processing",
   tags: [tagEMDR, forProfessionals],
+  categories: [],
+  subcategories: [],
   contributers: [naomi],
   image: EMDR2Image,
   runningTime: "48 mins",
@@ -509,6 +597,8 @@ export const EMDR2: CourseMeta = {
 export const EMDR3: CourseMeta = {
   title: "EMDR Refresher Training - Cognitive Interweaves",
   tags: [tagEMDR, forProfessionals],
+  categories: [],
+  subcategories: [],
   contributers: [naomi],
   image: EMDR3Image,
   runningTime: "52 mins",
@@ -517,6 +607,8 @@ export const EMDR3: CourseMeta = {
 export const EMDR4: CourseMeta = {
   title: "EMDR Refresher Training - Preparation Phase",
   tags: [tagEMDR, forProfessionals],
+  categories: [],
+  subcategories: [],
   contributers: [naomi],
   image: EMDR4Image,
   runningTime: "47 mins",
@@ -525,6 +617,8 @@ export const EMDR4: CourseMeta = {
 export const EMDR5: CourseMeta = {
   title: "EMDR Refresher Training - Desensitisation Phase",
   tags: [tagEMDR, forProfessionals],
+  categories: [],
+  subcategories: [],
   contributers: [naomi],
   image: EMDR5Image,
   runningTime: "44 mins",
@@ -533,6 +627,8 @@ export const EMDR5: CourseMeta = {
 export const EMDR6: CourseMeta = {
   title: "EMDR Refresher Training - Phases 5-8",
   tags: [tagEMDR, forProfessionals],
+  categories: [],
+  subcategories: [],
   contributers: [naomi],
   image: EMDR6Image,
   runningTime: "24 mins",
@@ -541,6 +637,8 @@ export const EMDR6: CourseMeta = {
 export const EMDR1To6: CourseMeta = {
   title: "EMDR Refresher Training Bundle - All 6 mini courses",
   tags: [tagEMDR, forProfessionals],
+  categories: [],
+  subcategories: [],
   contributers: [naomi],
   image: EMDR1To6Image,
   runningTime: "4 hours 16 mins",
@@ -549,6 +647,8 @@ export const EMDR1To6: CourseMeta = {
 export const traumaAndLoss: CourseMeta = {
   title: "Helping your Child Recover from Trauma and Loss",
   tags: [tagTrauma, tagMentalHealth, age5To11, age11To19],
+  categories: [Category.MentalHealthAndBehaviour],
+  subcategories: [Subcategory.MHB_Trauma],
   contributers: [naomi],
   image: traumaAndLossImage,
   runningTime: "1 hour 49 mins",
@@ -572,6 +672,8 @@ export const helpingYourAutisticChildWithOCD: CourseMeta = {
     age11To19,
     forParents,
   ],
+  categories: [Category.Autism, Category.MentalHealthAndBehaviour],
+  subcategories: [Subcategory.MHB_AnxietyAndOCD],
   contributers: [naomi],
   image: helpingYourAutisticChildWithOCDImage,
   runningTime: "1 hour 16 mins",
@@ -579,13 +681,9 @@ export const helpingYourAutisticChildWithOCD: CourseMeta = {
 
 export const helpingYourAutisticChildWithTransitions: CourseMeta = {
   title: "Helping Your Autistic Child with Transitions",
-  tags: [
-    tagAutism,
-    tagAnxiety,
-    age5To11,
-    age11To19,
-    forParents,
-  ],
+  tags: [tagAutism, tagAnxiety, age5To11, age11To19, forParents],
+  categories: [Category.Autism],
+  subcategories: [Subcategory.Autism_Transitions],
   contributers: [naomi],
   image: helpingYourAutisticChildWithTransitionsImage,
   runningTime: "1 hour 23 mins",
@@ -593,14 +691,9 @@ export const helpingYourAutisticChildWithTransitions: CourseMeta = {
 
 export const eotasWhatToExpect: CourseMeta = {
   title: "EOTAS: What to Expect",
-  tags: [
-    tagEHCPs,
-    tagSEN,
-    tagAnxiety,
-    age5To11,
-    age11To19,
-    forParents,
-  ],
+  tags: [tagEHCPs, tagSEN, tagAnxiety, age5To11, age11To19, forParents],
+  categories: [Category.SchoolAndEducation],
+  subcategories: [Subcategory.School_OutOfSchool],
   contributers: [abi],
   image: eotasWhatToExpectImage,
   runningTime: "58 mins",
@@ -880,12 +973,6 @@ helpingYourChildWithBurnout.relatedTitles = [
 ];
 
 burntOutByParenting.relatedTitles = [ALDP1To10.title];
-
-workingWithDemandAvoidantChildrenTherapy.relatedTitles = [
-  demandAvoidantAdolescent.title,
-  demandAvoidance101.title,
-  demandAvoidanceGuideForTeenagers.title,
-];
 
 traumaAndLoss.relatedTitles = [
   autisticChildWithTrauma.title,

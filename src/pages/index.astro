@@ -12,14 +12,13 @@ import CoursesListV2 from "../components/course/CoursesListV2.astro";
 import BookSummary from "../components/book/BookSummaryV2.astro";
 import { getFeaturedBooks } from "../scripts/book";
 import BlogList from "../components/blog/BlogList.astro";
-import StaticImage from "../components/StaticImage.astro";
 import homeImage from "../images/static/naomi-in-stables.jpg";
 
 import Newsletter from "../components/Newsletter.astro";
 import NewsletterNew from "../components/NewsletterNew.astro";
 
 import PopUpPanel from "../components/PopUpPanel.astro";
-import ProfileCard from "../components/ProfileCard.astro";
+import WhitePanel from "../components/WhitePanel.astro";
 import UpcomingWebinars from "../components/webinar/UpcomingWebinars.astro";
 
 const featuredCourses1 = await getFeaturedCourses(0, 2);
@@ -27,14 +26,19 @@ const featuredCourses2 = await getFeaturedCourses(2, 4);
 
 const featuredBooks = await getFeaturedBooks();
 
-const webinarQuotes = (await getEntry("webinar-quotes", "general-webinar-quotes"))!.data;
-const coursesQuotes = (await getEntry("course-quotes", "general-course-quotes"))!.data;
+const webinarQuotes = (await getEntry(
+  "webinar-quotes",
+  "general-webinar-quotes",
+))!.data;
+const coursesQuotes = (await getEntry(
+  "course-quotes",
+  "general-course-quotes",
+))!.data;
 const generalQuotes = (await getEntry("static-pages-quotes", "homepage"))!.data;
 
 const metaDescription =
   "Dr Naomi Fisher is a clinical psychologist, author and speaker specialising in parenting, mental health issues in children, autism and trauma. She runs EMDR Basic Training and Refresher Day courses. Dr Abigail Fisher is an education psychologist specialising in Special Educational Needs (SEN), EHCPs, EOTAS. We create courses and webinars for parents and professionals.";
 ---
-
 
 <BaseLayout
   active="home"
@@ -42,64 +46,40 @@ const metaDescription =
   bodyClassName="home"
   metaDescription={metaDescription}
 >
+  <Carousel />
 
+  <!--
+  <script src="../scripts/carousel.ts" /> -->
 
-<Carousel />
-
-<!--
-<script src="../scripts/carousel.ts" /> -->
-<!-- NEW INTRODUCTION -->
   <a name="welcome" class="anchor">
     <h1 class="section-title">
       <span class="courses-section-title">Welcome</span>
     </h1>
   </a>
-<ProfileCard />
+  <WhitePanel
+    title="Dr Naomi Fisher is a clinical psychologist, EMDR-Europe Accredited trainer and author."
+    descriptions={[
+      "Since she was a small child, she has asked the world why. Why do things have to be this way - and what would it be like if it were different?",
+      "She applies this to education, parenting and clinical psychology. She asks whether school is always the best way for children to learn, and whether the things 'we all know' to be true about parenting are in fact the case.",
+      "Her work brings psychological theory and evidence-based practice together with real life clinical experience and open curiosity.",
+    ]}
+    img={homeImage}
+    imgAlt="Dr. Naomi Fisher"
+  />
 
+  <UpcomingWebinars />
 
-<!-- OLD INTRODUCTION -->
-<div class="stacked-page-intro-wrapper" style="display:none">
-        <h1 class="">Welcome</h1>
-
-  <div class="page-intro-wrapper">
-    <div class="page-intro-image">
-      <StaticImage image={homeImage} alt="Naomi by a stable" />
-    </div>
-
-    <div class="page-intro-text">
-
-      <!--<h2 class="feature-headline">MENTAL HEALTH COURSE SALE</h2>-->
-      <!--<p>Our <a href = "https://courses.naomifisher.co.uk">mental health courses</a> are half price until Sunday. </p>-->
-
-
-      <p>Dr Naomi Fisher is a clinical psychologist, EMDR-Europe Accredited trainer and author.</p>  <p>Since she was a small child, she
-        has asked the world why. Why do things have to be this way – and what would it be like if it were different?</p>
-
-      <p>She applies this to education, parenting and clinical psychology. She asks whether school is always the best
-        way for children to learn, and whether the things ‘we all know’ to be true about parenting are in fact the case.
-
-      </p>
-      <p>Her work brings
-        psychological theory and evidence-based practice together with real life clinical experience and open
-        curiosity.</p>
-
-    </div>
-  </div>
-</div>
-
-<UpcomingWebinars/>
-
-
-
-<a name="courses" class="anchor">
+  <a name="courses" class="anchor">
     <h2 class="section-title">
       <span class="">On-demand courses</span>
-      <a href="/courses" class="section-title-all-link"> See All <span class="desktop-only">Courses</span></a>
+      <a href="/courses" class="section-title-all-link">
+        See All <span class="desktop-only">Courses</span></a
+      >
     </h2>
   </a>
 
   <!-- ON_DEMAND COURSES -->
- <CoursesListV2
+  <CoursesListV2
     courses={featuredCourses1}
     categoryId="featured"
     categoryName="Featured Courses"
@@ -107,8 +87,8 @@ const metaDescription =
 
   <GenerateQuote client:load quotes={coursesQuotes} />
 
-<!-- BLOG content -->
- <a name="blog" class="anchor">
+  <!-- BLOG content -->
+  <a name="blog" class="anchor">
     <h2 class="section-title">
       <span class="courses-section-title">Latest Blog Posts</span>
       <a href="/blog" class="section-title-all-link"> See All Blog Posts </a>
@@ -118,27 +98,29 @@ const metaDescription =
   <BlogList length="2" />
 
   <!-- <a href="/blog" class="load-more"> See All Blog Posts </a> -->
-<!-- QUOTE -------------------------------------------------- -->
-<!-- <GenerateQuote client:load quotes={generalQuotes} /> -->
-<!-- HEADER / CONTENT - BOOKS ------ -->
-    <a name="books" class="anchor">
-   <h2 class="section-title">
-     <span class="">Featured Books</span>
+  <!-- QUOTE -------------------------------------------------- -->
+  <!-- <GenerateQuote client:load quotes={generalQuotes} /> -->
+  <!-- HEADER / CONTENT - BOOKS ------ -->
+  <a name="books" class="anchor">
+    <h2 class="section-title">
+      <span class="">Featured Books</span>
       <a href="/books" class="section-title-all-link"> See All Books </a>
-   </h2>
+    </h2>
   </a>
-  {featuredBooks.map((book) => book && book.data ? <BookSummary book={book.data} /> : null)}
+  {
+    featuredBooks.map((book) =>
+      book && book.data ? <BookSummary book={book.data} /> : null,
+    )
+  }
 
-
-<!-- HEADER stay informed -->
-<a name="newsletter" class="anchor">
+  <!-- HEADER stay informed -->
+  <a name="newsletter" class="anchor">
     <h2 class="section-title">
       <span class="courses-section-title">Stay informed</span>
     </h2>
   </a>
-  <NewsletterNew formId="6662296"/>
+  <NewsletterNew formId="6662296" />
   <!-- <Newsletter formId="7379328"/> -->
-
 
   <!-- <div class="page-full-width-text">
     <p>
@@ -165,8 +147,6 @@ const metaDescription =
   <!--<SchoolAndEducationSummary/>-->
   <!--<MentalHealthSummary/>-->
 
-
-
   <!--<a name="books" class="anchor">-->
   <!--  <h2 class="section-title">-->
   <!--    <span class="books-section-title">Featured Books</span>-->
@@ -180,14 +160,8 @@ const metaDescription =
     </h2>
   </a> -->
 
-
-
   <!--6662296 is the normal newsletter form -->
   <!-- 7379328 is low demand toolkit form -->
   <!-- <Newsletter formId="6662296"/> -->
   <!-- <NewsletterNew formId="6662296"/> -->
-
-
-
 </BaseLayout>
-

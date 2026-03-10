@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  title: string;
+  descriptions: string[];
+  img: ImageMetadata;
+  imgAlt: string;
+}
+
+const {title, descriptions, img, imgAlt} = Astro.props;
+---
+
+<section class="white-panel-card">
+  <div class="white-panel-content">
+    <h2 class="white-panel-title">
+      <strong>{title}</strong>
+    </h2>
+
+    <div class="white-panel-description">
+      {descriptions.map((item) => (<p>{item}</p>))}
+    </div>
+  </div>
+
+  <div class="white-panel-image-container">
+    <Image
+      src={img}
+      alt={imgAlt}
+      class="white-panel-image"
+    />
+  </div>
+</section>
