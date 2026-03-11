@@ -2,6 +2,8 @@
 import { getCachedWebinars } from "../../scripts/webinarsCache";
 const { active } = Astro.props;
 const webinars = await getCachedWebinars();
+import { getWebinarMeta } from "../../scripts/webinarMeta";
+import { Image } from "astro:assets";
 ---
 
 <li class="has-dropdown">
@@ -23,42 +25,54 @@ const webinars = await getCachedWebinars();
     <li>
       <ul class="webinars-list">
         {
-          webinars?.map((webinar, index) => (
-            <li>
-              <a href={`/webinars/${webinar.id}`}>
-                <div class="webinar-card">
-                  <div class="webinar-img-wrapper desktop-item">
-                    <img
-                      loading="lazy"
-                      src={webinar.logoUrl}
-                      alt={`Webinar ${webinar.title}`}
-                    />
-                  </div>
-                  <div class="webinar-content">
-                    <h5>{webinar.title}</h5>
-                    <p>
-                      {" "}
-                      {`${webinar.displayDate.weekday} ${webinar.displayDate.day} ${webinar.displayDate.month}`}
-                      {`${webinar.displayDate.startTime}`} -{" "}
-                      {`${webinar.displayDate.endTime}`}
-                    </p>
-                    <a href={`/webinars/${webinar.id}`}>
+          webinars?.map((webinar, index) => {
+            const webinarMeta = getWebinarMeta(webinar.id);
+            return (
+              <li>
+                <a href={`/webinars/${webinar.id}`}>
+                  <div class="webinar-card">
+                    <div class="webinar-img-wrapper desktop-item">
+                      {webinarMeta ? (
+                        <Image
+                          src={webinarMeta.thumbnail}
+                          alt={`Webinar ${webinar.title}`}
+                          class="white-panel-image"
+                        />
+                      ) : (
+                        <Image
+                          src={webinar.logoUrl}
+                          alt={`Webinar ${webinar.title}`}
+                          class="white-panel-image"
+                          inferSize={true}
+                        />
+                      )}
+                    </div>
+                    <div class="webinar-content">
+                      <h5>{webinar.title}</h5>
+                      <p>
+                        {" "}
+                        {`${webinar.displayDate.weekday} ${webinar.displayDate.day} ${webinar.displayDate.month}`}
+                        {`${webinar.displayDate.startTime}`} -{" "}
+                        {`${webinar.displayDate.endTime}`}
+                      </p>
+                      <a href={`/webinars/${webinar.id}`}>
+                        <img
+                          src="/images/icons/icon-chev-right.svg"
+                          alt="See details"
+                        />
+                      </a>
+                    </div>
+                    <div class="webinar-link mobile-item">
                       <img
                         src="/images/icons/icon-chev-right.svg"
                         alt="See details"
                       />
-                    </a>
+                    </div>
                   </div>
-                  <div class="webinar-link mobile-item">
-                    <img
-                      src="/images/icons/icon-chev-right.svg"
-                      alt="See details"
-                    />
-                  </div>
-                </div>
-              </a>
-            </li>
-          ))
+                </a>
+              </li>
+            );
+          })
         }
       </ul>
       <li>
