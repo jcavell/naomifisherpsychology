@@ -24,6 +24,70 @@ import { Image } from "astro:assets";
     <li class="desktop-item"><h5>Coming Up Soon</h5></li>
     <li>
       <ul class="webinars-list">
+        <!-- <li>
+          <a href="/webinars/1982284000808">
+            <div class="webinar-card">
+              <div class="webinar-img-wrapper desktop-item">
+                <img
+                  src="src/images/webinars/thumbnails/autistic-child-with-anxiety.png"
+                  alt="Webinar Helping Your Autistic Child with Anxiety"
+                  loading="lazy"
+                  decoding="async"
+                  fetchpriority="auto"
+                  width="1000"
+                  height="1000"
+                  class="white-panel-image"
+                />
+              </div>
+              <div class="webinar-content">
+                <h5>Helping Your Autistic Child with Transition</h5>
+                <p>Wed, 8 Oct 2025 12:00 - 13:30 BST</p>
+                <div class="webinar-chevron">
+                  <img
+                    src="/images/icons/icon-chev-right.svg"
+                    alt="Read more"
+                  />
+                </div>
+              </div>
+              <div class="webinar-link mobile-item">
+                <img src="/images/icons/icon-chev-right.svg" alt="Read more" />
+              </div>
+            </div></a>
+        </li>
+
+        <li>
+          <a href="/webinars/1982284000808">
+            <div class="webinar-card">
+              <div class="webinar-img-wrapper desktop-item">
+                <img
+                  src="src/images/webinars/thumbnails/autistic-child-with-anxiety.png"
+                  alt="Webinar Helping Your Autistic Child with Anxiety"
+                  loading="lazy"
+                  decoding="async"
+                  fetchpriority="auto"
+                  width="1000"
+                  height="1000"
+                  class="white-panel-image"
+                />
+              </div>
+              <div class="webinar-content">
+                <h5>Helping Your Autistic Child with Anxiety</h5>
+                <p>Wed 11 Mar 12:00 PM - 1:30 PM</p>
+
+                <img
+                  src="/images/icons/icon-chev-right.svg"
+                  alt="See details"
+                />
+              </div>
+              <div class="webinar-link mobile-item">
+                <img
+                  src="/images/icons/icon-chev-right.svg"
+                  alt="See details"
+                />
+              </div>
+            </div>
+            </a
+        </li> -->
         {
           webinars?.map((webinar, index) => {
             const webinarMeta = getWebinarMeta(webinar.id);
@@ -55,17 +119,17 @@ import { Image } from "astro:assets";
                         {`${webinar.displayDate.startTime}`} -{" "}
                         {`${webinar.displayDate.endTime}`}
                       </p>
-                      <a href={`/webinars/${webinar.id}`}>
+                      <div class="webinar-chevron">
                         <img
                           src="/images/icons/icon-chev-right.svg"
-                          alt="See details"
+                          alt="Read more"
                         />
-                      </a>
+                      </div>
                     </div>
                     <div class="webinar-link mobile-item">
                       <img
                         src="/images/icons/icon-chev-right.svg"
-                        alt="See details"
+                        alt="Read more"
                       />
                     </div>
                   </div>
