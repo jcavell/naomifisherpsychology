@@ -40,139 +40,62 @@ const relatedCourses = (
 <h1 class="section-title">
   <span class="courses-section-title">Recorded Course</span>
 </h1>
-<article class="course-card course-details-page">
-  <!-- Left Side: Portrait Image -->
-  <div class="course-card__image-container">
-    <!-- <BookImage book={book} /> -->
-    <CourseImage course={course} />
-    <div class="course-card__metadata">
+
+<article class="course-card-12">
+  <!-- Header Section -->
+  <header class="card-header">
+    <div class="top-meta">
+      <CourseImage course={course} />
+      <div class="title-area">
+        <h1>Helping your Neurodivergent Teen Recover from School</h1>
+        <Contributers people={course.meta?.contributers} />
+        <!-- <Tags tags={course.meta?.tags} /> -->
+      </div>
+    </div>
+
+    <div class="action-bar">
+      <!-- <div class="price-info">
+        <span class="price">£40.00</span>
+        <span class="label">RECORDED COURSE</span>
+      </div> -->
       <CourseDetailsAddToBasket
         offerId={course.offerId!}
         priceInPence={priceInPence}
         client:load
       />
-
-      <Contributers people={course.meta?.contributers} />
-      <Tags tags={course.meta?.tags} />
-      <!-- <Tags tags={book.tags} /> -->
     </div>
-  </div>
+  </header>
 
-  <!-- Right Side: Content -->
-  <div class="course-card__content">
-    <h2 class="course-card__title">
-      {title}
-      <span>course.subtitle </span>
-    </h2>
+  <!-- Main Content Body -->
+  <section class="content">
+    <div class="description-wrap">
+      <!-- The Inline Media: Scaled down and floated -->
+      <figure class="inline-media">
+        <Vimeo embedUrl={course.meta?.videoUrl} />
+        <div class="play-overlay">▶</div>
+      </figure>
 
-    <Vimeo embedUrl={course.meta?.videoUrl} />
-    <div class="details-copy" set:html={parseDescriptions(descriptions!)} />
+      <div class="details-body-A" set:html={parseDescriptions(descriptions!)} />
+    </div>
+  </section>
 
-    <CourseDetailsAddToBasket
-      offerId={course.offerId!}
-      priceInPence={priceInPence}
-      client:load
-    />
+  <hr class="divider" />
+
+  <div class="footer-cta">
+    <Tags tags={course.meta?.tags} />
+    <div class="action-bar">
+      <!-- <div class="price-info">
+        <span class="price">£40.00</span>
+        <span class="label">RECORDED COURSE</span>
+      </div> -->
+      <CourseDetailsAddToBasket
+        offerId={course.offerId!}
+        priceInPence={priceInPence}
+        client:load
+      />
+    </div>
   </div>
 </article>
-
-<div class="details details-courses">
-  <div class="details-category">RECORDED COURSE</div>
-  <h1>{title}</h1>
-  <div class="details-image">
-    <CourseImage course={course} />
-  </div>
-
-  <div class="details-body">
-    <div class="details-body-A" set:html={parseDescriptions(descriptions!)}>
-      <Vimeo embedUrl={course.meta?.videoUrl} />
-
-      <!-- <div class="preview-quote-wrapper">
-        <div class="preview-quote quote">
-          I really appreciated your messages of hope- this is a journey and we
-          will come out the end
-          <span>Viewer of Naomi Fisher Course</span>
-        </div>
-      </div>
-      <div class="preview-quote-wrapper">
-        <div class="preview-quote quote">
-          It sounds a massive cliche but I felt someone finally understood what
-          our life has been like.
-          <span>Viewer of Naomi Fisher Course</span>
-        </div>
-      </div>
-      <p>
-        <em>
-          This course is not therapy and should not be used as a replacement for
-          therapy.
-        </em>
-      </p>-->
-    </div>
-
-    <div class="details-body-B">
-      <div class="purchase-wrapper">
-        <div class="purchase-title">
-          <!--<div class="card-details">-->
-          <!--  <span class="duration"> {course.meta?.runningTime} </span>-->
-          <!--  <span class="globe"> Watch Online </span>-->
-          <!--</div>-->
-        </div>
-
-        <CourseDetailsAddToBasket
-          offerId={course.offerId!}
-          priceInPence={priceInPence}
-          client:load
-        />
-      </div>
-      <div class="card-meta details-meta">
-        <Contributers people={course.meta?.contributers} />
-        <Tags tags={course.meta?.tags} />
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="details details-courses">
-  <div class="details-category">RECORDED COURSExx</div>
-  <h1>{title}</h1>
-
-  <div class="details-body">
-    <div class="details-intro">
-      <div
-        class="details-copy"
-        set:html={parseDescriptions(descriptions!)}
-      /><Vimeo embedUrl={course.meta?.videoUrl} />
-    </div>
-    <!-- <div class="details-body-A" set:html={parseDescriptions(descriptions!)}> -->
-    <!-- <div class="details-body-A">
-     
-    </div> -->
-
-    <div class="details-body-B">
-      <div class="purchase-wrapper">
-        <div class="purchase-title">
-          <!--<div class="card-details">-->
-          <!--  <span class="duration"> {course.meta?.runningTime} </span>-->
-          <!--  <span class="globe"> Watch Online </span>-->
-          <!--</div>-->
-        </div>
-
-        <CourseDetailsAddToBasket
-          offerId={course.offerId!}
-          priceInPence={priceInPence}
-          client:load
-        />
-      </div>
-      <div class="card-meta details-meta">
-        <Contributers people={course.meta?.contributers} />
-        <Tags tags={course.meta?.tags} />
-      </div>
-      <div class="details-image">
-        <CourseImage course={course} />
-      </div>
-    </div>
-  </div>
-</div>
 
 {
   relatedCourses && (
@@ -187,162 +110,224 @@ const relatedCourses = (
     relatedCourses.map((related) => <CourseSummary course={related!.data} />)
 }
 <style lang="scss">
-  .card {
-    z-index: -1;
-  }
+  $text-main: #333;
+  $accent-green: #d1e5e0;
+  $btn-black: #000;
+  $border-light: #eee;
 
-  // Variables
-  $brand-dark: #1a1a1a;
-  $brand-accent: #2563eb;
-  $success: #059669;
-  $gray-light: #f8fafc;
-  $radius-lg: 16px;
-
-  .course-card2 {
-    display: grid;
-    grid-template-columns: 280px 1fr; // Fixed sidebar, fluid content
-    background: #ffffff;
-    border-radius: $radius-lg;
+  .course-card-12 {
+    //max-width: 700px; // Standard reading width
+    margin: 0 auto 2rem auto;
+    padding: 1rem;
+    background: #fff;
+    border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
-    max-width: 950px;
-    margin: 2rem auto;
-    border: 1px solid #e2e8f0;
+    color: $text-main;
 
-    // Left Column
-    &__sidebar {
-      background: $gray-light;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      border-right: 1px solid #e2e8f0;
-    }
-
-    &__image-container {
-      position: relative;
-      border-radius: 12px;
-      overflow: hidden;
-      aspect-ratio: 1/1; // Keep image small and square
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .type-tag {
-        position: absolute;
-        bottom: 8px;
-        left: 8px;
-        background: rgba(0, 0, 0, 0.7);
-        color: #fff;
-        padding: 4px 8px;
-        font-size: 0.65rem;
-        text-transform: uppercase;
-        border-radius: 4px;
-      }
-    }
-
-    &__purchase-zone {
-      text-align: center;
-
-      .price-display {
-        font-size: 2rem;
-        font-weight: 800;
-        color: $brand-dark;
-        margin-bottom: 4px;
-
-        .currency {
-          font-size: 1.2rem;
-          vertical-align: top;
-          margin-top: 4px;
-          display: inline-block;
-        }
-      }
-
-      .status-indicator {
-        color: $success;
-        font-size: 0.85rem;
-        font-weight: 600;
-        margin-bottom: 20px;
+    .card-header {
+      .top-meta {
         display: flex;
         align-items: center;
-        justify-content: center;
-        gap: 6px;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+        img,
+        picture {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: none;
+        }
+        .mini-thumb {
+          width: 80px;
+          height: 80px;
+          border-radius: 8px;
+          object-fit: cover;
+        }
 
-        .dot {
-          width: 8px;
-          height: 8px;
-          background: $success;
-          border-radius: 50%;
+        h1 {
+          font-family: "Yanone Kaffeesatz", sans-serif;
+          font-optical-sizing: auto;
+          font-weight: 400;
+          font-style: normal;
+          text-transform: uppercase;
+          color: #000;
+          line-height: 1.1;
+          font-size: 40px;
+          padding-bottom: 20px;
+          padding-top: 20px;
+          line-height: 0.9;
+        }
+        .subtitle {
+          display: block;
+          text-transform: capitalize;
+          font-size: 16px;
+          letter-spacing: 0;
+          line-height: 1.2;
+          margin-bottom: -6px;
+          font-weight: 500;
+          font-family: Oswald, sans-serif;
+          font-optical-sizing: auto;
+          font-weight: normal;
+          font-style: normal;
+          margin-top: 8px;
+          line-height: 1.5;
+        }
+
+        .contributors {
+          background-image: none;
+        }
+
+        @media (max-width: 600px) {
+          gap: 0;
+        }
+      }
+      @media (max-width: 600px) {
+        margin-bottom: 16px;
+        gap: 0;
+      }
+    }
+
+    .divider {
+      border: 0;
+      border-top: 1px solid $border-light;
+      margin: 1.5rem 0;
+    }
+
+    .content {
+      .description-wrap {
+        line-height: 1.6;
+
+        @media (max-width: 600px) {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .inline-media {
+          float: right; // Makes text flow around it
+          width: 45%; // Smaller size
+          margin: 4rem 0 1.5rem 1.5rem;
+          position: relative;
+          border-radius: 8px;
+          overflow: hidden;
+          @media (max-width: 600px) {
+            margin: 0;
+            width: 100%;
+          }
+
+          img {
+            width: 100%;
+            display: block;
+          }
+
+          .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50%;
+          }
         }
       }
     }
 
-    // Right Column
-    &__main {
-      padding: 40px;
+    .btn-basket {
+      background: $btn-black;
+      color: #fff;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 4px;
+      text-transform: uppercase;
+      font-size: 0.8rem;
     }
 
-    &__title {
-      font-size: 1.75rem;
-      line-height: 1.2;
-      color: $brand-dark;
-      margin-bottom: 16px;
+    .price {
+      font-size: 1.2rem;
+      font-weight: 800;
+      display: block;
+    }
+    .label {
+      font-size: 0.7rem;
+      color: #777;
+      letter-spacing: 0.5px;
     }
 
-    &__metadata {
+    .agenda-list {
+      padding-left: 1.2rem;
+      li {
+        margin-bottom: 0.5rem;
+        color: #444;
+      }
+    }
+    .action-bar {
       display: flex;
-      gap: 12px;
-      margin-bottom: 30px;
-
-      .meta-pill {
-        background: #eff6ff;
-        color: $brand-accent;
-        padding: 6px 12px;
-        border-radius: 6px;
-        font-size: 0.85rem;
+      justify-content: space-between;
+      align-items: center;
+      background: #f9f9f9;
+      padding: 1rem;
+      border-left: 2px solid var(--brand-primary);
+      margin-bottom: 2rem;
+      align-items: center;
+      @media (max-width: 600px) {
+        margin-top: 1rem;
       }
     }
 
-    &__body {
-      h3 {
-        font-size: 1rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        color: #94a3b8;
-        margin-bottom: 12px;
-      }
-      p {
-        color: #475569;
-        line-height: 1.7;
-        margin-bottom: 1.5rem;
-      }
-
-      .quote {
-        border-left: 4px solid $brand-accent;
-        padding-left: 20px;
-        font-style: italic;
-        color: $brand-dark;
-      }
+    span.tags a,
+    span.ages a {
+      display: inline-block;
+      background-color: #d3e4e0;
+      padding: 8px;
+      border-radius: 8px;
+      width: auto;
+      font-size: 10px;
+      text-decoration: none;
+      color: var(--brand-primary);
+      margin: 4px 4px 0 0;
     }
   }
 
-  .btn-primary {
-    width: 100%;
-    background: $brand-accent;
-    color: white;
-    border: none;
-    padding: 14px;
-    border-radius: 8px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: transform 0.1s ease;
+  // Responsive: Stack image on very small screens
+  @media (max-width: 600px) {
+    .course-card-12 {
+      padding: 0 0 8px 0;
+      font-optical-sizing: auto;
+      font-weight: normal;
+      font-style: normal;
+      > *:not(.card-header) {
+        padding: 0 8px;
+      }
+      .card-header {
+        .title-area {
+          padding: 0 8px;
+        }
+        .action-bar {
+          margin: 0 8px 8px 8px;
+        }
+      }
+      .top-meta {
+        flex-direction: column;
+        img {
+          max-width: 100%;
+          border-radius: 16px 16px 0 0;
+        }
+      }
+      .content {
+        .inline-media {
+          float: none;
+          width: 100%;
+          margin: 0 0 1.5rem 0;
 
-    &:hover {
-      transform: scale(1.02);
-      background: darken($brand-accent, 10%);
+          @media (max-width: 600px) {
+            margin: 0;
+            width: 100%;
+          }
+        }
+      }
     }
   }
 </style>
