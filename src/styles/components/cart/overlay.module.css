@@ -185,8 +185,8 @@
 
     /* Improved touch target */
     min-width: 44px;
-    min-height: 44px;
-    padding: 12px 24px; /* Increased from 4px */
+    /* min-height: 44px; */
+    padding: 8px 24px; /* Increased from 4px */
     display: inline-flex;
     align-items: center;
     justify-content: center;
