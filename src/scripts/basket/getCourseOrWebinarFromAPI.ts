@@ -3,7 +3,7 @@ import { persistentCoupon } from "../coupon/couponStore";
 
 export type ItemType = "webinar" | "course";
 
-export const fetchItemFromAPI = async (id: string, type: ItemType, couponCode: string | null, origin: string | null
+export const fetchItemFromAPI = async (id: string, type: ItemType, couponCode: string | null | undefined, origin: string | null
 ): Promise<BasketItem | undefined> => {
     try {
         const endpoint = type === "course"
@@ -30,5 +30,5 @@ export const fetchItemFromAPI = async (id: string, type: ItemType, couponCode: s
 export const clientFetchItemFromAPI = async (id: string, type: ItemType,
 ): Promise<BasketItem | undefined> => {
     const couponCode= persistentCoupon.get();
-    return fetchItemFromAPI(id, type, couponCode, null);
+    return fetchItemFromAPI(id, type, couponCode?.code, null);
 };

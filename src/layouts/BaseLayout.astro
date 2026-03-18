@@ -30,11 +30,11 @@ const bannerItems = BannerData;
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <script>
-      import { persistCouponFromURL } from "../scripts/coupon/couponRetrieverAndStorer";
+      import { persistCouponFromURLOrAuto } from "../scripts/coupon/couponRetrieverAndStorer";
       import { persistTrackersFromURL } from "../scripts/tracking/trackerRetrieverAndStorer";
 
       document.addEventListener("DOMContentLoaded", () => {
-        persistCouponFromURL();
+        persistCouponFromURLOrAuto();
         persistTrackersFromURL();
       });
     </script>
