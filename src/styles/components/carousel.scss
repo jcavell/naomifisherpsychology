@@ -41,7 +41,7 @@
     background-size: contain;
 
     @include mix.special-text;
-    @media (max-width: 1200px) {
+    @media (max-width: 768px) {
       align-items: end;
       padding-bottom: 2rem;
       height: 216px;
@@ -49,7 +49,7 @@
     .slide-content {
       text-align: center;
       color: white;
-      @media (max-width: 1200px) {
+      @media (max-width: 768px) {
         max-width: calc(100% - 100px);
       }
 
@@ -57,7 +57,7 @@
         font-size: 2.5rem;
         margin-bottom: 10px;
         font-weight: normal;
-        @media (max-width: 1200px) {
+        @media (max-width: 768px) {
           background: rgba(55, 117, 104, 0.75);
           padding: 8px;
           font-size: 1.75rem;
@@ -68,7 +68,7 @@
         font-size: 1.2rem;
         margin-bottom: 20px;
         font-weight: normal;
-        @media (max-width: 1200px) {
+        @media (max-width: 768px) {
           background: rgba(55, 117, 104, 0.75);
           padding: 8px;
         }
@@ -80,7 +80,7 @@
         no-repeat left center / cover;
       // background-size:cover;
       background-color: var(--brand-primary);
-      @media (min-width: 1200px) {
+      @media (min-width: 768px) {
         background:
           linear-gradient(
             to right,
@@ -99,7 +99,7 @@
       background: url("/images/books/when-the-naughty-step-makes-things-worse.jpg")
         no-repeat left center / cover;
       text-align: right;
-      @media (min-width: 1200px) {
+      @media (min-width: 768px) {
         background:
           linear-gradient(
             to right,
@@ -118,7 +118,7 @@
       background-color: var(--brand-primary);
       background: url("/images/courses/how-can-your-learn-if-you-dont-go-to-school.jpg")
         no-repeat left center / cover;
-      @media (min-width: 1200px) {
+      @media (min-width: 768px) {
         background:
           linear-gradient(
             to right,

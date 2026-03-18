@@ -5,7 +5,7 @@
   font-family: sans-serif;
   width: 100%;
   padding-top: 32px;
-  @media (max-width: 1200px) {
+  @media (max-width: 768px) {
     padding-top: 16px; //see exception for pages with sales banner
   }
   .ol {
@@ -29,7 +29,7 @@
     text-decoration: none;
     margin-top: 0;
     margin-bottom: 0;
-    @media (min-width: 1200px) {
+    @media (min-width: 768px) {
       font-weight: 400;
       font-size: 20px;
     }
@@ -50,7 +50,7 @@
 
 body:has(.sales-banner) {
   .breadcrumb-container {
-    @media (max-width: 1200px) {
+    @media (max-width: 768px) {
       padding-top: 32px;
     }
   }

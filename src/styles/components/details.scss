@@ -2,7 +2,7 @@
 .details {
   background: #fff;
   border-radius: 16px;
-  @media (min-width: 1200px) {
+  @media (min-width: 768px) {
     margin: 0;
   }
   h1 {
@@ -20,7 +20,7 @@
     padding-bottom: 20px;
     padding-top: 20px;
     line-height: 0.9;
-    @media (min-width: 1200px) {
+    @media (min-width: 768px) {
       font-size: 60px;
     }
     span {
@@ -34,7 +34,7 @@
       position: relative;
       line-height: 1;
       margin-top: 0.1em;
-      @media (min-width: 1200px) {
+      @media (min-width: 768px) {
         font-size: 30px;
         font-family: "Yanone Kaffeesatz", sans-serif;
         font-optical-sizing: auto;
@@ -74,7 +74,7 @@
     display: flex;
     padding-bottom: 16px;
     flex-direction: column;
-    @media (min-width: 1200px) {
+    @media (min-width: 768px) {
       flex-direction: row;
       padding-top: 16px;
     }
@@ -93,14 +93,14 @@
     .details-body-A,
     .details-body-B {
       box-sizing: border-box;
-      @media (min-width: 1200px) {
+      @media (min-width: 768px) {
         width: 50%;
       }
     }
 
     .details-body-A {
       order: 2;
-      @media (min-width: 1200px) {
+      @media (min-width: 768px) {
         border-right: 1px solid rgba(0, 0, 0, 0.2);
         padding-right: 20px;
         padding-left: 4px;
@@ -110,7 +110,7 @@
 
     .details-body-B {
       order: 1;
-      @media (min-width: 1200px) {
+      @media (min-width: 768px) {
         padding-left: 20px;
         padding-right: 4px;
         position: sticky;

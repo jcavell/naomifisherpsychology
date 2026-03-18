@@ -3,7 +3,7 @@ footer {
   position: relative;
   margin-top: 140px;
 
-  @media (min-width: 1200px) {
+  @media (min-width: 768px) {
     margin-top: 0;
   }
   .footer-primary {
@@ -78,7 +78,7 @@ footer {
           font-weight: normal;
         }
       }
-      @media (min-width: 1200px) {
+      @media (min-width: 768px) {
         padding-left: 100px;
         padding-right: 100px;
         margin-top: 20px;
@@ -102,12 +102,12 @@ footer {
     width: auto;
     background-color: #387668;
     z-index: 0;
-    @media (min-width: 1200px) {
+    @media (min-width: 768px) {
       display: block;
       z-index: 1;
     }
     &:hover {
-      @media (min-width: 1200px) {
+      @media (min-width: 768px) {
         background-position: 10px center;
       }
     }

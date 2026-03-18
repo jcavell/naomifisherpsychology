@@ -10,7 +10,7 @@
   ul {
     list-style: none;
     margin-left: 0;
-    @media (max-width: 1200px) {
+    @media (max-width: 768px) {
       margin-left: 0;
     }
     > li {
@@ -40,7 +40,7 @@
         &:hover {
           color: var(--brand-primary);
         }
-        @media (max-width: 1200px) {
+        @media (max-width: 768px) {
           //margin-top: 12px;
         }
       }
@@ -59,7 +59,7 @@
   ul {
     list-style: none;
     margin-left: 0;
-    @media (max-width: 1200px) {
+    @media (max-width: 768px) {
       margin-left: 0;
     }
     > li {
@@ -89,7 +89,7 @@
           background-color: #9fbeb6;
           color: #ffffff;
         }
-        @media (max-width: 1200px) {
+        @media (max-width: 768px) {
           margin-top: 12px;
         }
       }
@@ -99,7 +99,7 @@
 // .wrapper:has(.category-badges-wrapper),
 .wrapper:has(.breadcrumb-container) {
   margin-top: 0;
-  @media (max-width: 1200px) {
+  @media (max-width: 768px) {
     margin-top: 8px;
   }
 }

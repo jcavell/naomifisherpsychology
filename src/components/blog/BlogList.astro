@@ -8,30 +8,39 @@ interface Props {
   featured: boolean;
 }
 
-const featuredTitles = ["Anxiety is not the enemy", "Depression or burnout?", "Learning doesn't have to look like school", "Paper Time"];
+const featuredTitles = [
+  "Anxiety is not the enemy",
+  "Depression or burnout?",
+  "Learning doesn't have to look like school",
+  "Paper Time",
+];
 
 const posts = await getOrderedPosts();
 const { start = 0, length = 4, featured = false } = Astro.props;
 
-const filteredPosts = featured ? posts.filter((p) => featuredTitles.includes(p.data.title.trim())) : posts;
+const filteredPosts = featured
+  ? posts.filter((p) => featuredTitles.includes(p.data.title.trim()))
+  : posts;
 ---
 
-{
-  filteredPosts.slice(start, length).map((post, index) =>
-    index != 0 && (index + 1) % 4 == 0 ? (
-      <>
+<div class="course-card-grid">
+  {
+    filteredPosts.slice(start, length).map((post, index) =>
+      index != 0 && (index + 1) % 4 == 0 ? (
+        <>
+          <BlogSummary post={post.data} />
+          <iframe
+            src="https://naomicfisher.substack.com/embed"
+            width="100%"
+            height="320"
+            style="border:1px solid #EEE; background:white;"
+            frameborder="0"
+            scrolling="no"
+          />
+        </>
+      ) : (
         <BlogSummary post={post.data} />
-        <iframe
-          src="https://naomicfisher.substack.com/embed"
-          width="100%"
-          height="320"
-          style="border:1px solid #EEE; background:white;"
-          frameborder="0"
-          scrolling="no"
-        />
-      </>
-    ) : (
-      <BlogSummary post={post.data} />
-    ),
-  )
-}
+      ),
+    )
+  }
+</div>

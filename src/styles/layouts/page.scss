@@ -10,12 +10,13 @@
   padding-right: 16px;
   padding-top: 38px;
   z-index: 0;
-  @media (min-width: 800px) {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0px 20px;
-    margin-bottom: 180px;
-    max-width: 1120px;
+  @media (min-width: 768px) {
+    // display: flex;
+    // flex-wrap: wrap;
+    // gap: 0px 20px;
+    // margin-bottom: 180px;
+    // max-width: 1120px;
+    max-width: 100%;
   }
   @media (min-width: 1200px) {
     display: flex;
@@ -47,7 +48,7 @@
   flex-direction: column;
   box-sizing: border-box;
   margin-top: 22px;
-  @media (min-width: 1200px) {
+  @media (min-width: 768px) {
     column-gap: 40px;
     flex-direction: row;
     margin-top: 0;
@@ -58,7 +59,7 @@
       // order: -1;
     }
   }
-  @media (max-width: 1200px) {
+  @media (max-width: 768px) {
     margin-top: 0;
 
     .accordion-wrapper:last-of-type {
@@ -90,7 +91,7 @@
 
 .page-intro-wrapper-no-image {
   margin-bottom: 0;
-  @media (max-width: 1200px) {
+  @media (max-width: 768px) {
     margin-bottom: 16px;
   }
 }
@@ -98,7 +99,7 @@
 .page-intro-text {
   position: relative;
   width: 100%;
-  @media (min-width: 1200px) {
+  @media (min-width: 768px) {
     margin-top: 10px;
     width: 70%;
     margin: 0 !important;
@@ -132,27 +133,27 @@
     line-height: 46px;
     text-transform: uppercase;
 
-    @media (max-width: 1200px) {
+    @media (max-width: 768px) {
       margin-top: 0;
     }
   }
   .page-intro-wrapper {
     padding: 24px;
-    @media (max-width: 1200px) {
+    @media (max-width: 768px) {
       margin-top: 0;
       padding: 12px;
     }
 
     .page-intro-image {
       width: 20%;
-      @media (max-width: 1200px) {
+      @media (max-width: 768px) {
         width: 100%;
         margin-bottom: 1rem;
       }
     }
     .page-intro-text {
       width: 50%;
-      @media (max-width: 1200px) {
+      @media (max-width: 768px) {
         width: 100%;
       }
       p {
@@ -180,7 +181,7 @@
     line-height: 46px;
     text-transform: uppercase;
 
-    @media (max-width: 1200px) {
+    @media (max-width: 768px) {
       margin-top: 24px;
     }
   }
@@ -231,7 +232,7 @@ h3:first-child,
   border-top: 1px solid rgba(0, 0, 0, 0.5);
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
   margin-bottom: 2em;
-  @media (min-width: 1200px) {
+  @media (min-width: 768px) {
     aspect-ratio: auto;
     width: 50%;
     display: block !important;
@@ -253,7 +254,7 @@ h3:first-child,
   position: relative;
   width: 100%;
   margin-bottom: 1.5em;
-  @media (min-width: 1200px) {
+  @media (min-width: 768px) {
     width: 30%;
     margin-bottom: 0;
   }
@@ -268,7 +269,7 @@ h3:first-child,
 }
 
 .page-full-width-text {
-  @media (min-width: 1200px) {
+  @media (min-width: 768px) {
     position: relative;
     margin-top: -30px;
     // &:not(.page-intro .page-full-width-text) {
@@ -277,7 +278,7 @@ h3:first-child,
     // }
   }
   p:last-child {
-    @media (min-width: 1200px) {
+    @media (min-width: 768px) {
       margin-bottom: 0px;
     }
   }
@@ -298,7 +299,7 @@ h3:first-child,
   margin-top: 20px;
   margin-bottom: 30px;
   box-sizing: border-box;
-  @media (min-width: 1200px) {
+  @media (min-width: 768px) {
     width: 100%;
     margin-top: 20px;
     margin-bottom: 0px;
@@ -331,7 +332,7 @@ h3:first-child,
   .info-text {
     font-style: italic;
     margin-bottom: 14px;
-    @media (min-width: 1200px) {
+    @media (min-width: 768px) {
       padding-right: 20px;
       border-right: 1px solid rgba(0, 0, 0, 0.2);
       margin-right: 20px;
@@ -353,7 +354,7 @@ h3:first-child,
   margin-top: -100px;
   position: relative;
   pointer-events: none;
-  @media (min-width: 1200px) {
+  @media (min-width: 768px) {
     padding-top: 50px;
     margin-top: -50px;
     position: relative;
@@ -398,7 +399,7 @@ h3:first-child,
   margin-bottom: 40px;
   color: var(--brand-primary);
   @include mix.special-text;
-  @media (min-width: 1200px) {
+  @media (min-width: 768px) {
     margin: 0px;
     width: 100%;
   }
@@ -408,16 +409,18 @@ h3:first-child,
     font-weight: normal;
     margin-top: 1rem;
     margin-bottom: 16px;
-    @media (min-width: 1200px) {
+    @media (min-width: 768px) {
       font-size: 36px;
       margin-top: 0;
       margin-bottom: 0;
     }
   }
   @at-root h2#{&} {
-    @media (max-width: 1200px) {
+    margin-bottom: 16px;
+    @media (max-width: 768px) {
       font-size: 22px;
       font-weight: normal;
+      margin-top: 30px;
     }
   }
 }
@@ -531,7 +534,7 @@ h1.course-page-titles,
   line-height: 56px;
   margin-bottom: 24px;
   text-transform: uppercase;
-  @media (max-width: 1200px) {
+  @media (max-width: 768px) {
     margin-top: 0;
   }
 }

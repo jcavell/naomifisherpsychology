@@ -20,7 +20,7 @@
   // }
 
   @media (min-width: 1200px) {
-    min-width: 540px;
+    min-width: 100%;
     border-radius: 16px;
     margin: 0;
     width: calc(50% - 20px);
@@ -128,7 +128,7 @@
       background-size: 16px 16px;
       background-repeat: no-repeat;
       background-position: left center;
-      @media (max-width: 1200px) {
+      @media (max-width: 768px) {
         background-position: 0 6px;
       }
     }
@@ -254,7 +254,7 @@ $spacing-unit: 16px; // Use a spacing system
   grid-template-columns: 1fr; // Stack on mobile first
   gap: $spacing-unit * 2;
 
-  @media (min-width: 1200px) {
+  @media (min-width: 768px) {
     // Use media queries for responsive layouts
     grid-template-columns: repeat(2, 1fr);
   }
@@ -504,7 +504,7 @@ $spacing-unit: 16px; // Use a spacing system
     padding: 16px 0;
     border-bottom: 2px solid var(--brand-light-bg);
     border-top: 2px solid var(--brand-light-bg);
-    @media (max-width: 1200px) {
+    @media (max-width: 768px) {
       grid-template-columns: 1fr;
       padding-top: 0;
     }
@@ -514,7 +514,7 @@ $spacing-unit: 16px; // Use a spacing system
     .card-image {
       width: calc(100% - 8px);
       border-width: 0;
-      @media (max-width: 1200px) {
+      @media (max-width: 768px) {
         margin: 0;
         width: 100%;
         border-bottom: 1px solid var(--brand-primary);
@@ -527,7 +527,7 @@ $spacing-unit: 16px; // Use a spacing system
         font-weight: 300;
         background-color: rgba(255, 255, 255, 0.8);
         background-blend-mode: overlay;
-        @media (max-width: 1200px) {
+        @media (max-width: 768px) {
           padding-right: 8px;
           margin-left: 8px;
         }
@@ -542,7 +542,7 @@ $spacing-unit: 16px; // Use a spacing system
   }
   .card-meta {
     border-top: 2px solid var(--brand-light-bg);
-    @media (max-width: 1200px) {
+    @media (max-width: 768px) {
       border-top: 1px solid var(--brand-primary);
     }
     a {
@@ -585,7 +585,7 @@ $spacing-unit: 16px; // Use a spacing system
     justify-content: space-between;
     margin: auto 16px 0;
     border-top: 1px solid rgba(0, 0, 0, 0.5);
-    @media (max-width: 1200px) {
+    @media (max-width: 768px) {
       flex-direction: column-reverse;
       align-items: flex-start;
     }
@@ -600,7 +600,7 @@ $spacing-unit: 16px; // Use a spacing system
     .book-card__metadata {
       margin: 0;
       padding-right: 0;
-      @media (max-width: 1200px) {
+      @media (max-width: 768px) {
         padding-left: 0;
       }
       span.tags {
@@ -644,7 +644,7 @@ $spacing-unit: 16px; // Use a spacing system
     span {
       display: inline-block;
       margin-bottom: 8px;
-      @media (max-width: 1200px) {
+      @media (max-width: 768px) {
         margin-bottom: 0;
       }
       &.contributors {
@@ -654,7 +654,7 @@ $spacing-unit: 16px; // Use a spacing system
       &.tags,
       &.ages {
         background-image: none;
-        @media (max-width: 1200px) {
+        @media (max-width: 768px) {
           display: none;
         }
         a {
@@ -677,7 +677,7 @@ $spacing-unit: 16px; // Use a spacing system
   }
   &__date,
   &__format {
-    @media (max-width: 1200px) {
+    @media (max-width: 768px) {
       display: none !important;
     }
   }
@@ -742,7 +742,7 @@ $spacing-unit: 16px; // Use a spacing system
     .card-actions {
       padding-left: 0;
     }
-    @media (min-width: 1200px) {
+    @media (min-width: 768px) {
       justify-content: start;
     }
   }
@@ -808,7 +808,7 @@ $spacing-unit: 16px; // Use a spacing system
         font-optical-sizing: auto;
         font-weight: 500;
         font-style: normal;
-        @media (max-width: 1200px) {
+        @media (max-width: 768px) {
           margin-top: 0;
         }
       }
@@ -1123,7 +1123,7 @@ $spacing-unit: 16px; // Use a spacing system
     span {
       display: inline-block;
       margin-bottom: 8px;
-      @media (max-width: 1200px) {
+      @media (max-width: 768px) {
         margin-bottom: 0;
       }
       &.contributors {
@@ -1133,7 +1133,7 @@ $spacing-unit: 16px; // Use a spacing system
       &.tags,
       &.ages {
         background-image: none;
-        @media (max-width: 1200px) {
+        @media (max-width: 768px) {
           display: none;
         }
         a {
@@ -1156,7 +1156,7 @@ $spacing-unit: 16px; // Use a spacing system
   }
   &__date,
   &__format {
-    @media (max-width: 1200px) {
+    @media (max-width: 768px) {
       display: none !important;
     }
   }
@@ -1246,7 +1246,7 @@ $spacing-unit: 16px; // Use a spacing system
       font-weight: normal;
       border-bottom: 1px solid var(--brand-primary);
       margin-bottom: 16px;
-      @media (max-width: 1200px) {
+      @media (max-width: 768px) {
         margin-top: 0;
       }
     }

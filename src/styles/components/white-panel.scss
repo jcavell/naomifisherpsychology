@@ -42,7 +42,7 @@
   .white-panel-image-container {
     flex: 1;
     display: flex;
-    @media (max-width: 1200px) {
+    @media (max-width: 768px) {
       display: none;
     }
 

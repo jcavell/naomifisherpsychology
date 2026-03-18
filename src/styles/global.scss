@@ -148,7 +148,7 @@ h3 {
   cursor: pointer;
   text-decoration: none;
   @include mix.special-text;
-  @media (min-width: 1200px) {
+  @media (min-width: 768px) {
     width: 100%;
     max-width: 570px;
     margin-left: auto;
@@ -219,7 +219,7 @@ h3 {
   top: -8px;
   right: -10px;
   @include mix.special-text;
-  @media (min-width: 1200px) {
+  @media (min-width: 768px) {
     display: flex;
   }
 }
@@ -347,7 +347,7 @@ body:has(.basket_overlay) {
   align-items: center;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
-  @media (max-width: 1200px) {
+  @media (max-width: 768px) {
     padding: 12px 0;
   }
   &.course-bg {
@@ -378,7 +378,7 @@ body:has(.basket_overlay) {
     font-weight: 700;
     text-transform: uppercase;
     border: 1px solid #d3e4e0;
-    @media (max-width: 1200px) {
+    @media (max-width: 768px) {
       display: none;
     }
   }
@@ -420,8 +420,13 @@ body:has(.sales-banner) {
   a.anchor {
     padding-top: 75px;
     margin-top: -50px;
-    @media (max-width: 1200px) {
-      padding-top: 100px;
+    @media (max-width: 768px) {
+      padding-top: 50px;
+    }
+    &:has(h1) {
+      @media (max-width: 1200px) {
+        padding-top: 75px;
+      }
     }
   }
 
@@ -455,7 +460,7 @@ body:has(.sales-banner) {
 .welcome-redesign {
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  @media (min-width: 1200px) {
+  @media (min-width: 768px) {
     margin: 0 auto;
   }
 }
@@ -468,7 +473,7 @@ body:has(.sales-banner) {
   background-color: #ffffff;
   border-radius: 16px;
 
-  @media (min-width: 1200px) {
+  @media (min-width: 768px) {
     flex-direction: row;
     align-items: flex-start;
     gap: 8px;
@@ -498,7 +503,7 @@ body:has(.sales-banner) {
   background-position: 50%;
   min-height: -moz-available;
   min-height: -webkit-fill-available;
-  @media (min-width: 1200px) {
+  @media (min-width: 768px) {
     background-position: 0px -56px;
     margin-bottom: 0;
     border-radius: 0 16px 16px 0;
@@ -521,20 +526,28 @@ body:has(.sales-banner) {
   text-decoration: none;
   font-weight: normal;
   .desktop-only {
-    @media (max-width: 1200px) {
+    @media (max-width: 768px) {
       display: none;
     }
   }
 }
 
 .desktop-item {
-  @media (max-width: 1200px) {
+  @media (max-width: 768px) {
     display: none !important;
   }
 }
 .mobile-item {
-  @media (min-width: 1200px) {
+  @media (min-width: 768px) {
     display: none !important;
+  }
+  &.nav-dropdown {
+    @media (min-width: 768px) {
+      display: block !important;
+    }
+    @media (min-width: 1200px) {
+      display: none !important;
+    }
   }
 }
 

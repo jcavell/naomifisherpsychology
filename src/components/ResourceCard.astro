@@ -93,7 +93,7 @@
     margin: 0 auto 16px 0; // Center the grid container
 
     // Media query for screens 1200px wide or greater (desktop layout)
-    @media (min-width: 1200px) {
+    @media (min-width: 768px) {
       grid-template-columns: repeat(2, 1fr); // Two columns of equal width
       margin: 0 auto; // Center the grid container
     }
@@ -106,7 +106,7 @@
     // box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 0 0;
     align-items: center;
-    @media (max-width: 1200px) {
+    @media (max-width: 768px) {
       border-radius: 8px;
       padding: 0;
     }
@@ -121,7 +121,7 @@
   .logo-container {
     flex-shrink: 0;
     margin-right: 20px;
-    @media (max-width: 1200px) {
+    @media (max-width: 768px) {
       margin-right: 12px;
       height: 100%;
       background-color: #53877c;
@@ -146,7 +146,7 @@
       transition: transform 0.2s ease-in-out; // Controls animation speed and smoothness
     }
 
-    @media (max-width: 1200px) {
+    @media (max-width: 768px) {
       width: 64px;
       height: 64px;
       border-width: 4px;
@@ -159,7 +159,7 @@
   .content-container {
     display: flex;
     flex-direction: column;
-    @media (max-width: 1200px) {
+    @media (max-width: 768px) {
       padding: 16px 16px 16px 8px;
     }
   }
