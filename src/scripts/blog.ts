@@ -22,6 +22,8 @@ const months = {
   Dec: "12",
 };
 
+const exclude = ["Are you near Barnstaple, North Devon?"];
+
 const comparePubDate = (a: PubDate, b: PubDate) => {
   const aString = "" + a.year + months[a.month] + a.day;
   const bString = "" + b.year + months[b.month] + b.day;
@@ -29,7 +31,9 @@ const comparePubDate = (a: PubDate, b: PubDate) => {
 };
 
 export async function getOrderedPosts() {
-  const posts = await getCollection("blog");
+  const posts = (await getCollection("blog")).filter(
+    (p) => !exclude.includes(p.data.title.trim()),
+  );
 
   // Add tags
   posts.map((p) => {
@@ -38,7 +42,7 @@ export async function getOrderedPosts() {
     const paragraphs = p.data.paragraphs;
 
     const body = paragraphs.reduce(
-      (acc: string, curr: string) => acc + " " + curr
+      (acc: string, curr: string) => acc + " " + curr,
     );
     p.data.tags = getTags(title, subtitle, body);
   });

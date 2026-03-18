@@ -20,5 +20,5 @@ export const DiscountedPrice: React.FC<DiscountedPriceProps> = ({
     return `£${(priceInPence / 100).toFixed(2)}`;
   }
 
-  return getDiscountedDisplayPrice(couponCode, offerId, priceInPence);
+  return getDiscountedDisplayPrice(couponCode?.code, offerId, priceInPence);
 };

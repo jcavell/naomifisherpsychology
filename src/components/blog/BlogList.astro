@@ -2,12 +2,22 @@
 import BlogSummary from "./BlogSummaryV2.astro";
 import { getOrderedPosts } from "../../scripts/blog";
 
+interface Props {
+  start: number;
+  length: number;
+  featured: boolean;
+}
+
+const featuredTitles = ["Anxiety is not the enemy", "Depression or burnout?", "Learning doesn't have to look like school", "Paper Time"];
+
 const posts = await getOrderedPosts();
-const { start = 0, length = 8 } = Astro.props;
+const { start = 0, length = 4, featured = false } = Astro.props;
+
+const filteredPosts = featured ? posts.filter((p) => featuredTitles.includes(p.data.title.trim())) : posts;
 ---
 
 {
-  posts.slice(start, length).map((post, index) =>
+  filteredPosts.slice(start, length).map((post, index) =>
     index != 0 && (index + 1) % 4 == 0 ? (
       <>
         <BlogSummary post={post.data} />

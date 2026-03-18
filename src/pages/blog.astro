@@ -6,20 +6,28 @@ const metaDescription = "Dr Naomi Fisher's Substack blog";
 ---
 
 <BaseLayout active="blog" pageTitle="Blog" metaDescription={metaDescription}>
-  <a name="blog" class="anchor">
+  <a id="blog" class="anchor">
     <h1 class="section-title">
-      <span class="courses-section-title">Substack</span>
+      <span class="courses-section-title">Naomi on Substack</span>
     </h1>
   </a>
-  <div class="page-intro-wrapper-no-image">
-    <p>
-      Explore insights on neurodiversity, alternative education, and mental
-      health from Dr. Naomi Fisher, clinical psychologist and author of Changing
-      Our Minds. This blog provides a psychological perspective on the
-      challenges families face today—from school refusal and anxiety to the
-      benefits of self-directed learning. Join the conversation as we explore
-      evidence-based ways to support children who need something different.
-    </p>
-  </div>
+  <!--<div class="page-intro-wrapper-no-image">-->
+  <!--  <p>-->
+  <!--    Explore insights on neurodiversity, alternative education, and mental-->
+  <!--    health from Dr. Naomi Fisher, clinical psychologist and author of Changing-->
+  <!--    Our Minds. This blog provides a psychological perspective on the-->
+  <!--    challenges families face today—from school refusal and anxiety to the-->
+  <!--    benefits of self-directed learning. Join the conversation as we explore-->
+  <!--    evidence-based ways to support children who need something different.-->
+  <!--  </p>-->
+  <!--</div>-->
+  <h2 class="section-title">
+    <span class="courses-section-title">Featured posts</span>
+  </h2>
+  <BlogList featured={true}/>
+
+  <h2 class="section-title">
+    <span class="courses-section-title">Latest posts</span>
+  </h2>
   <BlogList />
 </BaseLayout>

@@ -14,7 +14,7 @@ type CouponResult = {
   coupon: Coupon | null;
 };
 
-export const findValidCoupon = (couponCode: string | null, offerId: string) => {
+export const findValidCoupon = (couponCode: string | undefined | null, offerId: string) => {
   const result: CouponResult = {
     status: CouponValidationStatus.VALID,
     coupon: null,
@@ -46,7 +46,7 @@ export const findValidCoupon = (couponCode: string | null, offerId: string) => {
   return result;
 };
 
-const calculateDiscountedPriceInPence = (originalPriceInPence: number, coupon: Coupon | null) => {
+const calculateDiscountedPriceInPence = (originalPriceInPence: number, coupon: Coupon | undefined) => {
   if (!coupon) {
       return originalPriceInPence;
   }
@@ -54,7 +54,7 @@ const calculateDiscountedPriceInPence = (originalPriceInPence: number, coupon: C
   return originalPriceInPence - discountAmount;
 };
 
-export const getDiscountedDisplayPrice = (couponCode: string | null, offerId: string, originalPriceInPence: number) => {
+export const getDiscountedDisplayPrice = (couponCode: string | undefined | null, offerId: string, originalPriceInPence: number) => {
 
   const originalDisplayPrice = `£${(originalPriceInPence / 100).toFixed(2)}`;
   const result = findValidCoupon(couponCode, offerId);
