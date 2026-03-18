@@ -417,6 +417,14 @@ body:has(.basket_overlay) {
 
 body:has(.sales-banner) {
   padding-top: 60px; /* Adjust body padding when banner is present */
+  a.anchor {
+    padding-top: 75px;
+    margin-top: -50px;
+    @media (max-width: 1200px) {
+      padding-top: 100px;
+    }
+  }
+
   .icon-links {
     @media (max-width: 1200px) {
       top: 54px;
@@ -588,5 +596,26 @@ body:has(.sales-banner) {
   }
   button {
     margin-left: auto;
+  }
+}
+
+.card-actions button.add-to-basket-from-summary._textButton_1efyz_355.inBask,
+.card-actions button.add-to-basket-from-summary._textButton_gso2l_355.inBask {
+  background-color: var(--brand-light-bg);
+  color: var(--brand-primary);
+}
+
+astro-island button._textButton_gso2l_355 {
+  background-color: var(--brand-primary);
+  color: #ffffff;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border-radius: 8px;
+  max-width: fit-content;
+  &:hover {
+    background-color: var(--brand-light-bg);
+    color: var(--brand-primary);
+  }
+  &.inBask {
   }
 }

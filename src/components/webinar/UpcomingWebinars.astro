@@ -11,23 +11,36 @@ const webinars = await getCachedWebinars();
 ---
 
 {
-  webinars?.length === 0 && (
-    <>
-      <h2 class="section-title">No upcoming Webinars</h2>
-      <p>
-        We don't have any upcoming webinars at the moment, but new sessions are
-        always being added to our calendar. Please check back soon, or
-        <a href="#newsletter">subscribe to our newsletter</a> to be notified of
-        upcoming and newly added webinars.
-      </p>
-    </>
-  )
+  webinars?.length === 0 ||
+    (!webinars && (
+      <>
+        <a name="webinars" class="anchor">
+          <h2 class="section-title">
+            <span class="courses-section-title">No Upcoming Webinars</span>
+          </h2>
+        </a>
+        <p>
+          We don't have any upcoming webinars at the moment, but new sessions
+          are always being added to our calendar. Please check back soon, or
+          <a href="#newsletter">subscribe to our newsletter</a> to be notified
+          of upcoming and newly added webinars.
+        </p>
+      </>
+    ))
 }
 
 {
   webinars?.length > 0 && (
     <>
-      <h2 class="section-title">Upcoming Webinars</h2>
+      <a name="webinars" class="anchor">
+        <h2 class="section-title">
+          <span class="courses-section-title">Upcoming Webinars</span>
+          <a href="/webinars" class="section-title-all-link">
+            {" "}
+            See All Webinars{" "}
+          </a>
+        </h2>
+      </a>
       <p>
         Naomi runs live webinars for parents and professionals. They are
         recorded and available to watch for 30 days.

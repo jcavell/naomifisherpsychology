@@ -33,7 +33,8 @@
     font-family: "Open Sans", sans-serif;
   }
 
-  h2 {
+  h2,
+  h3 {
     font-family: "Yanone Kaffeesatz", sans-serif;
     border-radius: 10px 10px 0 0;
     padding: 20px 16px;
@@ -398,7 +399,8 @@ $spacing-unit: 16px; // Use a spacing system
       border-bottom: 2px solid var(--brand-primary);
     }
   }
-  h2 {
+  h2,
+  h3 {
     border-top: none;
     border-radius: 0;
     font-size: 1.5rem;
@@ -409,6 +411,9 @@ $spacing-unit: 16px; // Use a spacing system
     padding-right: 16px;
     padding-bottom: 0;
     min-height: unset;
+
+    margin-top: 0;
+    border-bottom-width: 0;
     @media (min-width: 800px) {
     }
     a {
@@ -688,6 +693,10 @@ $spacing-unit: 16px; // Use a spacing system
     padding-right: 16px;
     padding-bottom: 0;
     min-height: unset;
+    font-optical-sizing: auto;
+    font-style: normal;
+    line-height: 1.1;
+    border-bottom: 0;
     a {
       color: var(--brand-primary);
       text-decoration: none;
@@ -983,7 +992,8 @@ $spacing-unit: 16px; // Use a spacing system
 .card-courses {
   //overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  h2 {
+  h2,
+  h3 {
     border-top: none;
     border-radius: 0;
     font-size: 1.5rem;
@@ -994,6 +1004,9 @@ $spacing-unit: 16px; // Use a spacing system
     padding-right: 16px;
     padding-bottom: 0;
     min-height: unset;
+
+    margin-top: 0;
+    border-bottom-width: 0;
     a {
       color: var(--brand-primary);
       text-decoration: none;
@@ -1043,7 +1056,8 @@ $spacing-unit: 16px; // Use a spacing system
   }
 }
 :global(
-  .card-actions button.add-to-basket-from-summary._textButton_1efyz_355.inBask
+  .card-actions button.add-to-basket-from-summary._textButton_1efyz_355.inBask,
+  .card-actions button.add-to-basket-from-summary._textButton_gso2l_355.inBask
 ) {
   background-color: var(--brand-light-bg);
   color: var(--brand-primary);

@@ -33,7 +33,9 @@ const {
 } = Astro.props;
 
 const courses = await getCourses();
-const allDescriptions = whitePanelDescriptions.concat("All courses are available to watch for 12 months");
+const allDescriptions = whitePanelDescriptions.concat(
+  "All courses are available to watch for 12 months",
+);
 ---
 
 <BaseLayout
@@ -54,25 +56,35 @@ const allDescriptions = whitePanelDescriptions.concat("All courses are available
     imgAlt={whitePanelImgAlt}
   />
 
-  <div class="category-badges-wrapper">
+  <div class="category-badges-wrapperV2">
     <ul>
-      {subcategories.map((subcategory) => (
-          <li><a href={'#' + makeUrl(subcategory.title)}>{subcategory.title}</a></li>
-      ))}
+      {
+        subcategories.map((subcategory) => (
+          <li>
+            <a href={"#" + makeUrl(subcategory.title)}>{subcategory.title}</a>
+          </li>
+        ))
+      }
     </ul>
   </div>
 
-  {subcategories.map((subcategory) => (
-    <>
-      <h2><a id = {makeUrl(subcategory.title)}>{subcategory.title}</a></h2>
-      <CoursesList
-        courses={courses.filter((course) =>
-          subcategory.courses.includes(course.data.meta!)
-        )}
-        categoryId=""
-        categoryName=""
-      />
-    </>
-  ))}
+  {
+    subcategories.map((subcategory) => (
+      <>
+        <a name={makeUrl(subcategory.title)} class="anchor">
+          <h2 class="section-title">
+            <span class="">{subcategory.title}</span>
+          </h2>
+        </a>
 
+        <CoursesList
+          courses={courses.filter((course) =>
+            subcategory.courses.includes(course.data.meta!),
+          )}
+          categoryId=""
+          categoryName=""
+        />
+      </>
+    ))
+  }
 </BaseLayout>

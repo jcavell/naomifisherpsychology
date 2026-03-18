@@ -23,9 +23,9 @@ const priceInPence = course.priceInPence!;
   <div class="card-image">
     <CourseImage course={course} />
   </div>
-  <h2>
+  <h3>
     <a href=`/courses/${makeUrl(title)}`>{title}</a>
-  </h2>
+  </h3>
   <div class="card-details">
     <Contributers people={course.meta?.contributers} />
     <!--<span class="duration"> {course.meta?.runningTime} </span>-->
@@ -70,7 +70,8 @@ const priceInPence = course.priceInPence!;
   .card-courses {
     //overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    h2 {
+    h2,
+    h3 {
       border-top: none;
       border-radius: 0;
       font-size: 1.5rem;
@@ -81,6 +82,8 @@ const priceInPence = course.priceInPence!;
       padding-right: 16px;
       padding-bottom: 0;
       min-height: unset;
+      margin-top: 0;
+      border-bottom-width: 0;
       a {
         color: var(--brand-primary);
         text-decoration: none;
@@ -98,16 +101,23 @@ const priceInPence = course.priceInPence!;
       text-align: center;
       text-decoration: none;
       font-size: 16px;
-      padding: 8px 12px;
+      padding: 8px16px;
       color: white;
       background-color: var(--function-dark-9);
       &:hover {
         background-color: var(--brand-primary);
       }
     }
+    button,
+    button._textButton_gso2l_355 {
+      background-color: var(--brand-light-bg);
+      color: var(--brand-primary);
+    }
   }
   :global(
-    .card-actions button.add-to-basket-from-summary._textButton_1efyz_355.inBask
+    .card-actions
+      button.add-to-basket-from-summary._textButton_1efyz_355.inBask,
+    .card-actions button.add-to-basket-from-summary.._textButton_gso2l_355
   ) {
     background-color: var(--brand-light-bg);
     color: var(--brand-primary);
