@@ -23,8 +23,11 @@
       margin-bottom: 25px;
 
       strong {
-        font-weight: bold;
-        letter-spacing: 1.05px;
+        color: var(--brand-primary);
+        font-family: "Oswald", sans-serif;
+        font-weight: normal;
+        text-transform: none;
+        font-size: 1.2rem;
       }
     }
 

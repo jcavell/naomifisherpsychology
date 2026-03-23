@@ -18,6 +18,9 @@
   //   width: calc(50% - 10px);
   //   margin-bottom: 30px;
   // }
+  @media (max-width: 768px) {
+    margin-bottom: 8px;
+  }
 
   @media (min-width: 1200px) {
     min-width: 100%;
@@ -252,11 +255,12 @@ $spacing-unit: 16px; // Use a spacing system
 .course-card-grid {
   display: grid;
   grid-template-columns: 1fr; // Stack on mobile first
-  gap: $spacing-unit * 2;
+  gap: 12px;
 
   @media (min-width: 768px) {
     // Use media queries for responsive layouts
     grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-unit * 2;
   }
 }
 
@@ -388,7 +392,8 @@ $spacing-unit: 16px; // Use a spacing system
   padding: 0;
   border-radius: 8px;
   .live-date {
-    background-color: var(--cta-highlight);
+    //background-color: var(--cta-highlight);
+    background-color: #000000;
   }
   .card-image {
     margin: 0;
@@ -578,6 +583,12 @@ $spacing-unit: 16px; // Use a spacing system
 
   &__wrapper {
     display: flex;
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+    @media (min-width: 768px) {
+      align-items: start;
+    }
   }
 
   &__footerv2 {
@@ -614,6 +625,13 @@ $spacing-unit: 16px; // Use a spacing system
     position: relative;
     background: #ffffff;
     padding: 16px;
+    @media (min-width: 768px) {
+      max-width: 25%;
+      height: unset;
+    }
+    @media (min-width: 1200px) {
+      max-width: unset;
+    }
   }
 
   &__image,
@@ -632,6 +650,9 @@ $spacing-unit: 16px; // Use a spacing system
     display: flex;
     flex-direction: column;
     justify-content: center;
+    @media (max-width: 768px) {
+      padding-left: 16px;
+    }
   }
 
   &__metadata {
@@ -963,7 +984,7 @@ $spacing-unit: 16px; // Use a spacing system
     margin-bottom: 16px;
 
     &__image-container {
-      height: 300px; // Fixed height for image when stacked
+      //height: 300px; // Fixed height for image when stacked
     }
     &__metadata {
       margin: 0;
