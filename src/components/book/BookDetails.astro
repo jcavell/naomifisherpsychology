@@ -35,7 +35,7 @@ if (excerpt) {
 ---
 <a name="books" class="anchor">
     <h1 class="section-title">
-      <span class="courses-section-title">Book Details</span>
+      <span class="courses-section-title">{book.title}</span>
     </h1>
   </a>
 <article class="book-card book-details-page">
@@ -57,8 +57,8 @@ if (excerpt) {
   <!-- Right Side: Content -->
   <div class="book-card__content">
     <h2 class="book-card__title">
-      <a href={book.uri}>{book.title}</a>
-      <span>{book.subtitle} </span>
+      {book.subtitle}
+      <!-- <span>Published {getPubDateString(book)} • {book.publisher}</span> -->
       <span class="book-card__date">Published {getPubDateString(book)} • {book.publisher}</span>
     </h2>
 

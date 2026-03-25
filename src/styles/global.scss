@@ -590,6 +590,7 @@ body:has(.sales-banner) {
   .purchase {
     width: 100%;
     display: flex;
+    align-items: center;
     @media (max-width: 600px) {
       align-items: center;
     }
@@ -598,10 +599,11 @@ body:has(.sales-banner) {
       font-weight: bold;
     }
     .company {
-      position: relative;
-      top: 20px;
-      left: -52px;
-      font-size: 0.875rem;
+      // position: relative;
+      // top: 20px;
+      // left: -52px;
+      // font-size: 0.875rem;
+      margin-left: 0.5rem;
       @media (max-width: 600px) {
         display: none;
       }
@@ -657,5 +659,20 @@ body:has(.sales-banner) {
       background-color: var(--brand-light-bg);
       color: var(--brand-primary);
     }
+  }
+}
+
+.basket_overlay {
+  > [class*="_overlayContent_"] {
+    position: relative;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px #0000001a;
+    margin: 25% auto;
+    max-height: 90vh;
+    overflow-y: auto;
+    width: calc(100% - 40px);
+    max-width: 600px;
   }
 }

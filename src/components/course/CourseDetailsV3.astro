@@ -2,7 +2,11 @@
 import Contributers from "../Contributers.astro";
 import CourseSummary from "./CourseSummaryV3.astro";
 import Tags from "../Tags.astro";
-import { getCourseFromTitle, parseDescriptions } from "../../scripts/courses";
+import {
+  getCourseFromTitle,
+  parseDescriptions,
+  getTotalRunningTimeFromDescriptions,
+} from "../../scripts/courses";
 import CourseImage from "./CourseImage.astro";
 import Vimeo from "../Vimeo.astro";
 import CourseDetailsAddToBasket from "../basket/CourseDetailsAddToBasket";
@@ -38,7 +42,7 @@ const relatedCourses = (
 ---
 
 <h1 class="section-title">
-  <span class="courses-section-title">Recorded Course</span>
+  <span class="courses-section-title">{course.title}</span>
 </h1>
 
 <article class="course-card-12">
@@ -47,23 +51,37 @@ const relatedCourses = (
     <div class="top-meta">
       <CourseImage course={course} />
       <div class="title-area">
-        <h1>Helping your Neurodivergent Teen Recover from School</h1>
-        <Contributers people={course.meta?.contributers} />
+        <!-- <h3>
+          Presented by: <Contributers people={course.meta?.contributers} />
+        </h3> -->
+        <p>
+          Presented by: <Contributers people={course.meta?.contributers} /><br
+          />Recorded course.<br />
+          Running time: {course.meta.runningTime}
+        </p>
         <!-- <Tags tags={course.meta?.tags} /> -->
-      </div>
-    </div>
-
-    <div class="action-bar">
-      <!-- <div class="price-info">
+        <div class="action-bar">
+          <!-- <div class="price-info">
         <span class="price">£40.00</span>
         <span class="label">RECORDED COURSE</span>
       </div> -->
+          <CourseDetailsAddToBasket
+            offerId={course.offerId!}
+            priceInPence={priceInPence}
+            client:load
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="action-bar">
+      
       <CourseDetailsAddToBasket
         offerId={course.offerId!}
         priceInPence={priceInPence}
         client:load
       />
-    </div>
+    </div> -->
   </header>
 
   <!-- Main Content Body -->
@@ -104,11 +122,12 @@ const relatedCourses = (
     </h2>
   )
 }
-
-{
-  relatedCourses &&
-    relatedCourses.map((related) => <CourseSummary course={related!.data} />)
-}
+<div class="course-card-grid">
+  {
+    relatedCourses &&
+      relatedCourses.map((related) => <CourseSummary course={related!.data} />)
+  }
+</div>
 <style lang="scss">
   $text-main: #333;
   $accent-green: #d1e5e0;
@@ -270,7 +289,7 @@ const relatedCourses = (
       background: #f9f9f9;
       padding: 1rem;
       border-left: 2px solid var(--brand-primary);
-      margin-bottom: 2rem;
+      margin-top: auto;
       align-items: center;
       @media (max-width: 600px) {
         margin-top: 1rem;
@@ -290,6 +309,14 @@ const relatedCourses = (
       margin: 4px 4px 0 0;
     }
   }
+  .title-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: stretch;
+    width: stretch;
+  }
 
   // Responsive: Stack image on very small screens
   @media (max-width: 600px) {
@@ -306,7 +333,7 @@ const relatedCourses = (
           padding: 0 8px;
         }
         .action-bar {
-          margin: 0 8px 8px 8px;
+          margin: 0;
         }
       }
       .top-meta {
