@@ -515,6 +515,42 @@ h3:first-child,
     grid-column: span 2;
   }
 }
+.category-blog {
+  .details-body-A {
+    img {
+      max-width: 250px;
+      float: right;
+      margin: 16px 0 16px 16px;
+      border-radius: 8px;
+    }
+  }
+  .card-meta {
+    border-top-width: 0;
+    margin: 0;
+    padding: 0;
+    span.tags {
+      margin: 0;
+      padding-left: 0;
+      a {
+        font-weight: normal;
+        font-family: "Open Sans", sans-serif;
+        display: inline-block;
+        background-color: #d3e4e0;
+        padding: 8px;
+        border-radius: 8px;
+        width: auto;
+        font-size: 10px;
+        text-decoration: none;
+        text-transform: uppercase;
+        color: var(--brand-primary);
+        &:hover {
+          background-color: #9fbeb6;
+          color: #ffffff;
+        }
+      }
+    }
+  }
+}
 .page-title {
   display: none;
 }
