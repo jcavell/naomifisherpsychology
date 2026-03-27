@@ -16,6 +16,10 @@ const { post, alt } = Astro.props;
       max-width: 250px;
       float: left;
       margin: 0 16px 16px 0;
+      @media (max-width: 768px) {
+        float: none;
+        width: stretch;
+      }
     }
   }
 </style>

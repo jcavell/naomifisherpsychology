@@ -391,6 +391,9 @@ $spacing-unit: 16px; // Use a spacing system
 .card.card-blog {
   padding: 0;
   border-radius: 8px;
+  .card-meta {
+    margin-left: 16px;
+  }
   .live-date {
     //background-color: var(--cta-highlight);
     background-color: #000000;
