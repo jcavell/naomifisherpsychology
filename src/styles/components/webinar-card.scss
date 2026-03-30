@@ -208,8 +208,12 @@
   background-size: auto 70%;
   padding-left: 104px;
   background-repeat: no-repeat;
+  background-position: 0 2px;
+  font-size: 14px;
 
   @media (max-width: 600px) {
     order: 1;
+    width: stretch;
+    margin-bottom: 4px;
   }
 }
