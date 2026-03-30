@@ -605,7 +605,8 @@ body:has(.sales-banner) {
       // font-size: 0.875rem;
       margin-left: 0.5rem;
       @media (max-width: 600px) {
-        display: none;
+        margin-left: 0;
+        // display: none;
       }
     }
   }
