@@ -322,6 +322,10 @@ const detailsText = webinar.detailsText;
 
     .price {
       display: block;
+      
+     @media(max-width:600px){
+            order:3;
+          }
     }
     .label {
       font-size: 0.7rem;
@@ -360,12 +364,18 @@ const detailsText = webinar.detailsText;
           align-items:center;
           border-bottom:1px solid var(--brand-primary);
           padding:4px 0;
+          @media(max-width:600px){
+            flex-wrap:wrap;
+          }
 
           .buy-now {
-            margin-left: auto;
+    margin-left: auto;
     display: flex;
     align-items: center;
     width:auto;
+     @media(max-width:600px){
+            order:2;
+          }
     span {
       display:inline-block;
     color: #fff;
@@ -403,6 +413,10 @@ const detailsText = webinar.detailsText;
     justify-self: start;
     width: 120px;
     }
+    
+     @media(max-width:600px){
+            order:3;
+          }
   }
     }
 

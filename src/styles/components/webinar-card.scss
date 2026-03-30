@@ -208,4 +208,8 @@
   background-size: auto 70%;
   padding-left: 104px;
   background-repeat: no-repeat;
+
+  @media (max-width: 600px) {
+    order: 1;
+  }
 }
