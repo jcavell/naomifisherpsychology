@@ -511,10 +511,8 @@ const detailsText = webinar.detailsText;
           display:flex;
           justify-content:space-between;
           align-items:center;
-          border-bottom:1px solid $border-light;
- &:last-child {
-            border-bottom-width: 0;
-          }
+          border-bottom:1px solid var(--brand-primary);
+
           .buy-now {
             margin-left: auto;
     display: flex;
@@ -537,6 +535,9 @@ const detailsText = webinar.detailsText;
           }
 
         }
+         &:last-child .purchase {
+            border-bottom-width: 0;
+          }
       }
 
   .buy-now {
