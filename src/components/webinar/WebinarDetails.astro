@@ -70,11 +70,12 @@ const detailsText = webinar.detailsText;
   <!-- Main Content Body -->
   <section class="content">
     <div class="description-wrap">
-      <!-- The Inline Media: Scaled down and floated -->
-      <figure class="inline-media">
-        <Vimeo embedUrl={webinar.videoData?.embed_url} />
-        <div class="play-overlay">▶</div>
-      </figure>
+      {webinar.videoData?.embed_url && (
+        <figure class="inline-media">
+          <Vimeo embedUrl={webinar.videoData.embed_url} />
+          <div class="play-overlay">▶</div>
+        </figure>
+      )}
 
       <div class="details-body-A" >
       <p set:html={detailsText} />
@@ -497,9 +498,56 @@ const detailsText = webinar.detailsText;
       border-left: 2px solid var(--brand-primary);
       margin-top: auto;
       align-items: center;
+      flex-direction: column;
       @media (max-width: 600px) {
         margin-top: 1rem;
       }
+      > a {
+        color:var(--brand-primary);
+        text-decoration: none;
+        width:stretch;
+        .purchase {
+          display:flex;
+          justify-content:space-between;
+          align-items:center;
+          .buy-now {
+            margin-left: auto;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    span {
+      display: block;
+    text-transform: uppercase;
+    color: #fff;
+    background: #387668;
+    text-decoration: none;
+    padding: 6px 16px;
+    border-radius: 10px;
+    }
+          }
+
+        }
+      }
+      .eventbrite {
+    background-image: url(../logo-eventbrite.svg);
+    background-size: auto 70%;
+    padding-left: 104px;
+  }
+  .buy-now {
+    span {
+          color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0;
+    outline: none;
+    background: var(--success-green);
+    justify-self: start;
+    width: 120px;
+    }
+  }
     }
 
     span.tags a,
