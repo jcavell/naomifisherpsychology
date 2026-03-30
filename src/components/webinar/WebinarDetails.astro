@@ -507,32 +507,38 @@ const detailsText = webinar.detailsText;
         text-decoration: none;
         width:stretch;
         .purchase {
+         
           display:flex;
           justify-content:space-between;
           align-items:center;
+          border-bottom:1px solid $border-light;
+ &:last-child {
+            border-bottom-width: 0;
+          }
           .buy-now {
             margin-left: auto;
-    height: 56px;
     display: flex;
     align-items: center;
+    width:auto;
     span {
-      display: block;
-    text-transform: uppercase;
+      display:inline-block;
     color: #fff;
-    background: #387668;
-    text-decoration: none;
-    padding: 6px 16px;
-    border-radius: 10px;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all .3s ease;
+    margin: 0;
+    outline: none;
+    background: var(--success-green);
+    justify-self: start;
+    width:auto;
     }
           }
 
         }
       }
-      .eventbrite {
-    background-image: url(../logo-eventbrite.svg);
-    background-size: auto 70%;
-    padding-left: 104px;
-  }
+
   .buy-now {
     span {
           color: white;
