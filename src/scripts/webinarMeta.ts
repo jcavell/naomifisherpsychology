@@ -22,10 +22,9 @@ import { naomi, abi, eliza, kate } from "./people";
 
 // EventbriteWebinar Images
 import demandAvoidantChildImage from "../images/webinars/understanding-and-helping-your-demand-avoidand-child.avif";
-import rejectionSensitivityImage from "../images/webinars/helping-your-child-with-rejection-sensitivity.jpg";
-import autisticChildAnxietyImage from "../images/webinars/helping-your-autistic-child-with-anxiety.png";
-import autisticChildAnxietyThumbnail from "../images/webinars/thumbnails/autistic-child-with-anxiety.png";
 import rejectionSensitivityThumbnail from "../images/webinars/thumbnails/rejection-sensitivity.png";
+import autisticPTSDImage from "../images/webinars/autistic-ptsd.webp";
+import demanndAvoidantChildAnxietyImage from "../images/webinars/demand-avoidant-child-anxiety.webp";
 
 
 type WebinarMeta = {
@@ -48,25 +47,23 @@ const example_webinar: WebinarMeta = {
 };
 
 
-const rejectionSensitivity: WebinarMeta = {
-  id: "1982283058991",
-  tags: [tagNeurodiversity, age5To11, age11To19, forParents],
-  image: rejectionSensitivityImage,
-  thumbnail: rejectionSensitivityThumbnail,
+const autisticPTSD: WebinarMeta = {
+  id: "1985569311260",
+  tags: [tagAutism, tagNeurodiversity, tagTrauma, age5To11, age11To19, forParents],
+  image: autisticPTSDImage,
   contributers: [naomi],
 };
 
-const autisticAnxiety: WebinarMeta = {
-  id: "1982284000808",
-  tags: [tagAutism, tagAnxiety, age5To11, age11To19, forParents],
-  image:autisticChildAnxietyImage,
-  thumbnail:autisticChildAnxietyThumbnail,
+const demandAvoidantChildAnxiety: WebinarMeta = {
+  id: "1985570059498",
+  tags: [tagDemandAvoidance, tagAnxiety, tagMentalHealth, age5To11, age11To19, forParents],
+  image: demanndAvoidantChildAnxietyImage,
   contributers: [naomi],
 };
 
 // !! ADD WEBINAR HERE !!
 export function getWebinarMeta(eventId: string): WebinarMeta | undefined {
-  return [rejectionSensitivity, autisticAnxiety].find(
+  return [autisticPTSD, demandAvoidantChildAnxiety].find(
     (webMeta) => eventId === webMeta.id,
   );
 }
