@@ -39,7 +39,7 @@ const filteredPosts = featured
           />
         </>
       ) : (
-        <BlogSummary post={post.data} />
+        <BlogSummary post={post.data} hideDate={featured} />
       ),
     )
   }
