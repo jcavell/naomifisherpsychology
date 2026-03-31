@@ -31,6 +31,7 @@ const BookSchema = z.object({
   title: z.string(),
   subtitle: z.string(),
   description: z.string(),
+  summaryShort: z.string(),
   summary: z.string(),
   publisher: z.string(),
   pubDate: z.string(),
