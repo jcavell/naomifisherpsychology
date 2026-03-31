@@ -50,7 +50,9 @@ const relatedCourses = getTaggedCourses(courses, [tags[0]]).filter(
       </figure> -->
 
       <div class="details-body-A">
+        {post.imagePrefix &&
         <BlogImage post={post} alt={`Image for ${title}`} />
+        }
         <h2>{subtitle}</h2>
         {paragraphs.map((p, i) => <p>{paragraphs[i]}</p>)}
       </div>

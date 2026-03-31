@@ -3,6 +3,8 @@ import Tags from "../Tags.astro";
 import { makeUrl } from "../../scripts/url";
 import BlogImage from "./BlogImage.astro";
 import "../../styles/components/card.scss";
+import { Image } from "astro:assets";
+import defaultImage from "../../images/static/courses-home.png";
 
 const { post, hideDate = false } = Astro.props;
 
@@ -32,6 +34,18 @@ const introText =
     post.imagePrefix && (
       <div class="card-image">
         <BlogImage post={post} alt={`Image for ${title}`} />
+      </div>
+    )
+  }
+  {
+    !post.imagePrefix && (
+      <div class="card-image">
+        <Image
+          src={defaultImage}
+          alt={"Course"}
+          class="white-panel-image"
+          inferSize={true}
+        />
       </div>
     )
   }
