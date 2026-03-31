@@ -13,7 +13,7 @@
   @media (min-width: 768px) {
     display: flex;
     flex-wrap: wrap;
-    gap: 24px 40px;
+    gap: 12px 40px;
     margin-top: 60px;
     margin-bottom: 180px;
     max-width: 1120px;
@@ -23,6 +23,7 @@
   }
   @media (min-width: 1200px) {
     margin-top: 24px;
+    gap: 12px 40px;
     // display: flex;
     // flex-wrap: wrap;
     // gap: 0px 20px;
@@ -438,11 +439,7 @@ h3:first-child,
 }
 
 .courses-section-title {
-  // background-image: url(icon-courses.svg);
-  // background-repeat: no-repeat;
-  // background-position: left center;
-  // background-size: 22px 22px;
-  // padding-left: 29px;
+  text-transform: capitalize;
 }
 
 // .pro-courses-section-title {

@@ -54,9 +54,10 @@ const relatedCourses = (
         <!-- <h3>
           Presented by: <Contributers people={course.meta?.contributers} />
         </h3> -->
-        <p>
+        <p class="subtitle">Recorded course</p>
+        <p class="meta">
           Presented by: <Contributers people={course.meta?.contributers} /><br
-          />Recorded course.<br />
+          />
           Running time: {course.meta.runningTime}
         </p>
         <!-- <Tags tags={course.meta?.tags} /> -->
@@ -315,6 +316,17 @@ const relatedCourses = (
     align-items: stretch;
     height: stretch;
     width: stretch;
+    p.meta {
+      font-size: 14px;
+    }
+    .action-bar {
+      .company {
+        display: none;
+      }
+    }
+  }
+  .footer-cta .action-bar {
+    margin-top: 1.5rem;
   }
 
   // Responsive: Stack image on very small screens

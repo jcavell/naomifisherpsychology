@@ -84,6 +84,10 @@ body {
 p {
   margin-top: 1em;
   margin-bottom: 1em;
+  @media (min-width: 1200px) {
+    letter-spacing: 0.25px;
+    font-size: 17px;
+  }
 }
 
 p a {
@@ -418,14 +422,14 @@ body:has(.basket_overlay) {
 body:has(.sales-banner) {
   padding-top: 60px; /* Adjust body padding when banner is present */
   a.anchor {
-    padding-top: 75px;
+    padding-top: 50px;
     margin-top: -50px;
-    @media (max-width: 768px) {
-      //padding-top: 50px;
+    @media (max-width: 600px) {
+      padding-top: 50px;
     }
     &:has(h1) {
-      @media (max-width: 1200px) {
-        padding-top: 75px;
+      @media (max-width: 768px) {
+        padding-top: 50px;
       }
     }
   }
@@ -568,6 +572,12 @@ body:has(.sales-banner) {
     }
     .contributors {
       background-image: none;
+    }
+
+    .action-bar {
+      .company {
+        display: none;
+      }
     }
   }
   span.tags,

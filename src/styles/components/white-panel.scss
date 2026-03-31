@@ -12,6 +12,9 @@
   font-size: 1rem;
   line-height: 1.6;
   color: var(--function-dark-9);
+  @media (max-width: 600px) {
+    margin: 0 auto;
+  }
 
   .white-panel-content {
     flex: 1.75;
