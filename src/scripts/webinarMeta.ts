@@ -22,8 +22,8 @@ import { naomi, abi, eliza, kate } from "./people";
 
 // EventbriteWebinar Images
 import demandAvoidantChildImage from "../images/webinars/understanding-and-helping-your-demand-avoidand-child.avif";
-import rejectionSensitivityImage from "../images/webinars/helping-your-child-with-rejection-sensitivity.jpg";
 import autisticPTSDImage from "../images/webinars/autistic-ptsd.webp";
+import demanndAvoidantChildAnxietyImage from "../images/webinars/demand-avoidant-child-anxiety.webp";
 
 
 type WebinarMeta = {
@@ -51,9 +51,16 @@ const autisticPTSD: WebinarMeta = {
   contributers: [naomi],
 };
 
+const demandAvoidantChildAnxiety: WebinarMeta = {
+  id: "1985570059498",
+  tags: [tagDemandAvoidance, tagAnxiety, tagMentalHealth, age5To11, age11To19, forParents],
+  image: demanndAvoidantChildAnxietyImage,
+  contributers: [naomi],
+};
+
 // !! ADD WEBINAR HERE !!
 export function getWebinarMeta(eventId: string): WebinarMeta | undefined {
-  return [autisticPTSD].find(
+  return [autisticPTSD, demandAvoidantChildAnxiety].find(
     (webMeta) => eventId === webMeta.id,
   );
 }
