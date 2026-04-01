@@ -32,6 +32,12 @@ const detailsText = webinar.detailsText;
     <div class="top-meta">
        <WebinarImage webinar={webinar} />
       <div class="title-area">
+         <p class="subtitle">Live Webinar on Zoom</p>
+        <p class="meta">
+          Presented by:  <Contributers people={meta?.contributers} /><br
+          />
+          Date:  {webinar.displayDate.day} {webinar.displayDate.month}, {`${webinar.displayDate.startTime} - ${webinar.displayDate.endTime}`}
+        </p>
         <p>
           {webinar.displayDate.day} {webinar.displayDate.month}, {`${webinar.displayDate.startTime} - ${webinar.displayDate.endTime}`}</span>
         <Contributers people={meta?.contributers} /> <br
