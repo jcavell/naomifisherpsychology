@@ -38,11 +38,7 @@ const detailsText = webinar.detailsText;
           />
           Date:  {webinar.displayDate.day} {webinar.displayDate.month}, {`${webinar.displayDate.startTime} - ${webinar.displayDate.endTime}`}
         </p>
-        <p>
-          {webinar.displayDate.day} {webinar.displayDate.month}, {`${webinar.displayDate.startTime} - ${webinar.displayDate.endTime}`}</span>
-        <Contributers people={meta?.contributers} /> <br
-          />Live Webinar on Zoom<br />         
-        </p>
+       
         <div class="action-bar">
            {
           tickets.filter((t) => !t.hidden).map((ticket) => (
@@ -453,6 +449,9 @@ const detailsText = webinar.detailsText;
     align-items: stretch;
     height: stretch;
     width: stretch;
+  }
+    .footer-cta .action-bar {
+    margin-top: 1.5rem;
   }
 
   // Responsive: Stack image on very small screens
