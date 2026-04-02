@@ -53,9 +53,7 @@ const metaDescription =
 
   <a id="welcome" class="anchor">
     <h1 class="section-title">
-      <span class="courses-section-title"
-        >WELCOME</span
-      >
+      <span class="courses-section-title">WELCOME</span>
     </h1>
   </a>
   <WhitePanel
@@ -80,9 +78,7 @@ const metaDescription =
     </h2>
   </a>
 
-  <p>
-    Our pre-recorded courses are available to watch for 12 months.
-  </p>
+  <p>Our pre-recorded courses are available to watch for 12 months.</p>
   <!-- ON_DEMAND COURSES -->
   <CoursesListV2
     courses={featuredCourses1}
@@ -113,12 +109,14 @@ const metaDescription =
     </h2>
   </a>
 
-  <p>I write the books I would have liked to read. </p>
-  {
-    featuredBooks.map((book) =>
-      book && book.data ? <BookSummary book={book.data} /> : null,
-    )
-  }
+  <p>I write the books I would have liked to read.</p>
+  <div class="course-card-grid">
+    {
+      featuredBooks.map((book) =>
+        book && book.data ? <BookSummary book={book.data} /> : null,
+      )
+    }
+  </div>
 
   <!-- HEADER stay informed -->
   <a id="newsletter" class="anchor">

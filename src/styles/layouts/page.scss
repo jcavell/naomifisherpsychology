@@ -429,11 +429,12 @@ h3:first-child,
     }
   }
   @at-root h2#{&} {
-    margin-bottom: 16px;
+    margin-bottom: 0;
     @media (max-width: 768px) {
       font-size: 22px;
       font-weight: normal;
       margin-top: 30px;
+      margin-bottom: 16px;
     }
   }
 }
