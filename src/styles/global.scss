@@ -438,10 +438,15 @@ body:has(.basket_overlay) {
 body:has(.sales-banner) {
   padding-top: 60px; /* Adjust body padding when banner is present */
   a.anchor {
-    padding-top: 50px;
-    margin-top: -50px;
-    @media (max-width: 600px) {
-      padding-top: 50px;
+    padding-top: 75px;
+    margin-top: -75px;
+    @media (max-width: 1200px) {
+      padding-top: 130px;
+      margin-top: -130px;
+    }
+    @media (max-width: 780px) {
+      padding-top: 110px;
+      margin-top: -110px;
     }
     &:has(h1) {
       @media (max-width: 768px) {
