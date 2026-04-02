@@ -54,7 +54,7 @@ const metaDescription =
   <a id="welcome" class="anchor">
     <h1 class="section-title">
       <span class="courses-section-title"
-        >Psychology Resources, Courses and Webinars</span
+        >WELCOME</span
       >
     </h1>
   </a>
@@ -73,13 +73,16 @@ const metaDescription =
 
   <a id="courses" class="anchor">
     <h2 class="section-title">
-      <span class="">On-demand courses</span>
+      <span class="">FEATURED COURSES</span>
       <a href="/courses" class="section-title-all-link">
         See All <span class="desktop-only">Courses</span></a
       >
     </h2>
   </a>
 
+  <p>
+    Our pre-recorded courses are available to watch for 12 months.
+  </p>
   <!-- ON_DEMAND COURSES -->
   <CoursesListV2
     courses={featuredCourses1}
@@ -90,14 +93,14 @@ const metaDescription =
   <GenerateQuote client:load quotes={coursesQuotes} />
 
   <!-- BLOG content -->
-  <a id="blog" class="anchor">
-    <h2 class="section-title">
-      <span class="courses-section-title">Latest Blog Posts</span>
-      <a href="/blog" class="section-title-all-link"> See All Blog Posts </a>
-    </h2>
-  </a>
+  <!--<a id="blog" class="anchor">-->
+  <!--  <h2 class="section-title">-->
+  <!--    <span class="courses-section-title">Latest Blog Posts</span>-->
+  <!--    <a href="/blog" class="section-title-all-link"> See All Blog Posts </a>-->
+  <!--  </h2>-->
+  <!--</a>-->
 
-  <BlogList length="2" />
+  <!--<BlogList length="2" />-->
 
   <!-- <a href="/blog" class="load-more"> See All Blog Posts </a> -->
   <!-- QUOTE -------------------------------------------------- -->
@@ -109,6 +112,8 @@ const metaDescription =
       <a href="/books" class="section-title-all-link"> See All Books </a>
     </h2>
   </a>
+
+  <p>I write the books I would have liked to read. </p>
   {
     featuredBooks.map((book) =>
       book && book.data ? <BookSummary book={book.data} /> : null,

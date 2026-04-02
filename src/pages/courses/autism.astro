@@ -1,5 +1,7 @@
 ---
-import CourseCategory, { CourseSubcategory } from "../../components/course/CourseCategory.astro";
+import CourseCategory, {
+  CourseSubcategory,
+} from "../../components/course/CourseCategory.astro";
 import AutismImage from "../../images/tags/tag-autism.png";
 
 import {
@@ -12,21 +14,38 @@ import {
   autisticChildWithTrauma,
 } from "../../scripts/courseMeta";
 
-const anxiety = {title: "Anxiety", courses: [autisticChildWithAnxiety, autisticTeenWithAnxiety]}
-const ocd = {title: "OCD", courses: [helpingYourAutisticChildWithOCD]}
-const behaviour = {title: "Behaviour", courses: [helpingYourAutisticChildWithAnger, helpingYourAutisticChildWithTransitions]}
-const trauma = {title: "Trauma", courses: [autisticChildWithTrauma, helpingYourAutisticChildMoveOnFromSchoolTrauma]}
+const anxiety = {
+  title: "Anxiety",
+  courses: [autisticChildWithAnxiety, autisticTeenWithAnxiety],
+};
+const ocd = { title: "OCD", courses: [helpingYourAutisticChildWithOCD] };
+const behaviour = {
+  title: "Behaviour",
+  courses: [
+    helpingYourAutisticChildWithAnger,
+    helpingYourAutisticChildWithTransitions,
+  ],
+};
+const trauma = {
+  title: "Trauma",
+  courses: [
+    autisticChildWithTrauma,
+    helpingYourAutisticChildMoveOnFromSchoolTrauma,
+  ],
+};
 const subcategories = [anxiety, behaviour, trauma, ocd];
 ---
 
 <CourseCategory
   subcategories={subcategories}
-  pageTitle="Autism Courses"
+  pageTitle="AUTISM COURSES"
   metaDescription="Browse our autism courses"
-  whitePanelTitle=""
+  whitePanelTitle="On-demand courses for parents and carers"
   whitePanelDescriptions={[
-    "Being on a different developmental trajectory can make life challenging. It can mean that too much is expected of autistic children and teenagers without enough support being provided. Anxiety is very common among autistic people, as are difficulties with school and friendships.",
-    "That’s what we talk about in our webinars and courses. They focus on practical and useful tips which will help you to understand your autistic child and see a way ahead. We do not do autism diagnoses. Autism should be diagnosed by a multi-disciplinary team. This is because autism is a lifelong diagnosis and so it should be given with great care.",
+    "Anxiety is very common among autistic people, as are difficulties with school and friendships.",
+    "Our courses for parents and carers of autistic children provide psychological information and advice about topics including <a href = '#anxiety'>anxiety</a>, <a href = '#ocd'>OCD</a>, <a href = '#trauma'>trauma</a> and <a href = '#behaviour'>anger</a>.",
+    "We also have courses about how to help <a href = '/courses/school-and-education/#at-school'>autistic children with school</a> and how to help when your  <a href = '/courses/school-and-education/#out-of-school'>child is no longer at school</a>.",
+    "",
   ]}
   whitePanelImg={AutismImage}
   whitePanelImgAlt="Purple flowers"
