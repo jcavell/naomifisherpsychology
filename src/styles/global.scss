@@ -332,8 +332,21 @@ body:has(.basket_overlay) {
   transform: translateX(-50%);
   width: 100%;
   header,
+  .course-card-12,
+  .content > *,
+  h1,
+  .description-wrap,
+  .details-body-A,
+  .inline-media > *,
   .hamburger {
     z-index: -1;
+    position: relative;
+  }
+}
+body:has(.basket_overlay) {
+  section.content {
+    position: relative;
+    z-index: -9;
   }
 }
 

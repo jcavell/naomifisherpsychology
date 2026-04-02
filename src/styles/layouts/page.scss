@@ -522,7 +522,7 @@ h3:first-child,
       @media (max-width: 768px) {
         float: none;
         margin: 0 0 16px 0;
-        width: stretch;
+        align-self: stretch;
         max-width: unset;
         border-radius: 0;
       }
