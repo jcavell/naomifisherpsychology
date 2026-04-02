@@ -112,6 +112,8 @@ const metaDescription =
       <a href="/books" class="section-title-all-link"> See All Books </a>
     </h2>
   </a>
+
+  <p>I write the books I would have liked to read. </p>
   {
     featuredBooks.map((book) =>
       book && book.data ? <BookSummary book={book.data} /> : null,
