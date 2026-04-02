@@ -4,9 +4,9 @@ import getWebinars from "./webinars";
 let cachedWebinars: Awaited<ReturnType<typeof getWebinars>> | null = null;
 
 export async function getCachedWebinars() {
-  if (!cachedWebinars) {
-    console.log("Fetching webinars from Eventbrite...");
-    cachedWebinars = await getWebinars();
-  }
+  // if (!cachedWebinars) {
+  //   console.log("Fetching webinars from Eventbrite...");
+  //   cachedWebinars = await getWebinars();
+  // }
   return cachedWebinars;
 }

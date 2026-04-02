@@ -213,7 +213,8 @@
 
   @media (max-width: 600px) {
     order: 1;
-    width: stretch;
+    align-self: stretch;
     margin-bottom: 4px;
+    width: 100%;
   }
 }

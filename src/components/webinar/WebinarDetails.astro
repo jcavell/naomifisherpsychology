@@ -236,7 +236,7 @@ const detailsText = webinar.detailsText;
         }
         .subtitle {
           display: block;
-          text-transform: capitalize;
+          text-transform: uppercase;
           font-size: 16px;
           letter-spacing: 0;
           line-height: 1.2;
@@ -352,7 +352,8 @@ const detailsText = webinar.detailsText;
       background: #f9f9f9;
       padding: 1rem;
       border-left: 2px solid var(--brand-primary);
-      margin-top: auto;
+      // margin-top:auto forces the action bar to the bottom of the card, even if the content is short
+      // margin-top: auto;
       align-items: center;
       flex-direction: column;
       @media (max-width: 600px) {
@@ -361,7 +362,10 @@ const detailsText = webinar.detailsText;
       > a {
         color:var(--brand-primary);
         text-decoration: none;
-        align-self:stretch;
+        align-self: stretch;
+        &:last-child {
+          margin-top:12px;
+        }
         .purchase {
          
           display:flex;

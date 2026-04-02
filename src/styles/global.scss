@@ -620,6 +620,55 @@ body:has(.sales-banner) {
       }
     }
   }
+  .purchase {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 0;
+    @media (max-width: 600px) {
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-bottom: 12px;
+    }
+
+    .buy-now {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      width: auto;
+      @media (max-width: 600px) {
+        order: 2;
+        margin-left: 0;
+      }
+      span {
+        display: inline-block;
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin: 0;
+        outline: none;
+        background: var(--success-green);
+        justify-self: start;
+        width: auto;
+        font-size: 14px;
+      }
+    }
+    @media (max-width: 600px) {
+      .price {
+        order: 2;
+      }
+      .company {
+        order: 1;
+        width: 100%;
+      }
+      button {
+        order: 3;
+      }
+    }
+  }
   button {
     margin-left: auto;
   }

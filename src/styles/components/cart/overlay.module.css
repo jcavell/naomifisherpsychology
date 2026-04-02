@@ -128,7 +128,7 @@
 }
 
 .addToBasket {
-    color: white;
+    /* color: red;
     border: none;
     padding: 8px 16px;
     border-radius: 4px;
@@ -138,15 +138,28 @@
     outline: none;
     background: var(--success-green);
     justify-self: start;
-    width: 120px;
+    width: 120px; */
+    background-color: var(--brand-primary);
+    
+    border-color: var(--brand-primary);
+    border-style:solid;
+    color: #ffffff;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border-radius: 8px;
+    max-width: fit-content;
+    font-family:'Oswald', sans-serif;
+    font-size:16px;
 }
 
 .addToBasket:focus {
     box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.4);
 }
 
-.addToBasket.inBasket {
-    background-color: black;
+.addToBasket.inBasket, .addToBasket.inBasket:hover {
+    border-color: var(--brand-light-bg);
+    background-color: var(--brand-light-bg);
+    color: var(--brand-primary);
 }
 
 .addToBasket:disabled {
@@ -157,6 +170,10 @@
 
 .addToBasket:not(:disabled):hover {
     background-color: var(--success-green-hover)
+}
+.addToBasket.inBasket:hover {
+    background-color: var(--brand-light-bg);
+    color: var(--brand-primary);
 }
 
 

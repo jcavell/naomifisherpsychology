@@ -89,10 +89,14 @@ const relatedCourses = (
   <section class="content">
     <div class="description-wrap">
       <!-- The Inline Media: Scaled down and floated -->
-      <figure class="inline-media">
-        <Vimeo embedUrl={course.meta?.videoUrl} />
-        <div class="play-overlay">▶</div>
-      </figure>
+      {
+        course.meta?.videoUrl && (
+          <figure class="inline-media">
+            <Vimeo embedUrl={course.meta?.videoUrl} />
+            <div class="play-overlay">▶</div>
+          </figure>
+        )
+      }
 
       <div class="details-body-A" set:html={parseDescriptions(descriptions!)} />
     </div>
@@ -178,7 +182,7 @@ const relatedCourses = (
         }
         .subtitle {
           display: block;
-          text-transform: capitalize;
+          text-transform: uppercase;
           font-size: 16px;
           letter-spacing: 0;
           line-height: 1.2;
@@ -224,7 +228,7 @@ const relatedCourses = (
         .inline-media {
           float: right; // Makes text flow around it
           width: 45%; // Smaller size
-          margin: 4rem 0 1.5rem 1.5rem;
+          margin: 0 0 1.5rem 1.5rem;
           position: relative;
           border-radius: 8px;
           overflow: hidden;
@@ -247,6 +251,12 @@ const relatedCourses = (
             color: white;
             padding: 10px 15px;
             border-radius: 50%;
+          }
+        }
+        figure.inline-media:has(+ .details-body-A > h3:first-child) {
+          margin-top: 4rem;
+          @media (max-width: 600px) {
+            margin-top: 0;
           }
         }
       }
@@ -294,6 +304,45 @@ const relatedCourses = (
       @media (max-width: 600px) {
         margin-top: 1rem;
       }
+
+      .purchase {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--brand-primary);
+        padding: 4px 0;
+        @media (max-width: 600px) {
+          flex-wrap: wrap;
+          gap: 12px;
+          padding-bottom: 12px;
+        }
+
+        .buy-now {
+          margin-left: auto;
+          display: flex;
+          align-items: center;
+          width: auto;
+          @media (max-width: 600px) {
+            order: 2;
+            margin-left: 0;
+          }
+          span {
+            display: inline-block;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0;
+            outline: none;
+            background: var(--success-green);
+            justify-self: start;
+            width: auto;
+            font-size: 14px;
+          }
+        }
+      }
     }
 
     span.tags a,
@@ -315,7 +364,7 @@ const relatedCourses = (
     flex-direction: column;
     align-items: stretch;
     height: stretch;
-    width: stretch;
+    align-self: stretch;
     p.meta {
       font-size: 14px;
     }
