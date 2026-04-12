@@ -24,6 +24,8 @@ import { naomi, abi, eliza, kate } from "./people";
 import demandAvoidantChildImage from "../images/webinars/understanding-and-helping-your-demand-avoidand-child.avif";
 import autisticPTSDImage from "../images/webinars/autistic-ptsd.webp";
 import demanndAvoidantChildAnxietyImage from "../images/webinars/demand-avoidant-child-anxiety.webp";
+import eotasImage from "../images/courses/eotas-what-to-expect.webp";
+import ocdImage from "../images/courses/helping-your-autistic-child-with-ocd.webp";
 
 
 type WebinarMeta = {
@@ -58,9 +60,23 @@ const demandAvoidantChildAnxiety: WebinarMeta = {
   contributers: [naomi],
 };
 
+const eotas: WebinarMeta = {
+  id: "1986945650929",
+  tags: [tagSEN, age5To11, age11To19, forParents],
+  image: eotasImage,
+  contributers: [abi],
+};
+
+const autisticOCD: WebinarMeta = {
+  id: "1985570305233",
+  tags: [tagAutism, tagNeurodiversity, tagAnxiety, tagTrauma, age5To11, age11To19, forParents],
+  image: ocdImage,
+  contributers: [naomi],
+};
+
 // !! ADD WEBINAR HERE !!
 export function getWebinarMeta(eventId: string): WebinarMeta | undefined {
-  return [autisticPTSD, demandAvoidantChildAnxiety].find(
+  return [autisticPTSD, demandAvoidantChildAnxiety, autisticOCD, eotas].find(
     (webMeta) => eventId === webMeta.id,
   );
 }
