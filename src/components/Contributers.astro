@@ -3,11 +3,12 @@ const { people = [] } = Astro.props;
 ---
 
 <span class="contributors">
+  By
   {
     people.map((person: string, index: number) => (
       <>
         {person}
-        {index + 1 === people.length ? "" : ","}&nbsp;
+        {index + 1 === people.length ? "" : " and "}&nbsp;
       </>
     ))
   }

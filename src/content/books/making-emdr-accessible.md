@@ -14,7 +14,7 @@ ebookIsbn: ""
 audiobookIsbn: ""
 pages: 224
 people: ["Dr Naomi Fisher"]
-tags: ["Trauma"]
+tags: ["Neurodiversity", "Trauma"]
 toc: []
 audiobookLength: ""
 hasAudiobookSample: false
