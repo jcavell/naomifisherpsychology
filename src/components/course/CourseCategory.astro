@@ -71,7 +71,7 @@ const allDescriptions = whitePanelDescriptions.concat(
   {
     subcategories.map((subcategory) => (
       <>
-        <a name={makeUrl(subcategory.title)} class="anchor">
+        <a id={makeUrl(subcategory.title)} class="anchor">
           <h2 class="section-title">
             <span class="">{subcategory.title}</span>
           </h2>

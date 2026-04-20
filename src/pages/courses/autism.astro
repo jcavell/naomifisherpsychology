@@ -1,7 +1,5 @@
 ---
-import CourseCategory, {
-  CourseSubcategory,
-} from "../../components/course/CourseCategory.astro";
+import CourseCategory from "../../components/course/CourseCategory.astro";
 import AutismImage from "../../images/tags/tag-autism.png";
 
 import {
@@ -15,19 +13,19 @@ import {
 } from "../../scripts/courseMeta";
 
 const anxiety = {
-  title: "Anxiety",
+  title: "Autism and Anxiety",
   courses: [autisticChildWithAnxiety, autisticTeenWithAnxiety],
 };
-const ocd = { title: "OCD", courses: [helpingYourAutisticChildWithOCD] };
+const ocd = { title: "Autism and OCD", courses: [helpingYourAutisticChildWithOCD] };
 const behaviour = {
-  title: "Behaviour",
+  title: "Autism and Behaviour",
   courses: [
     helpingYourAutisticChildWithAnger,
     helpingYourAutisticChildWithTransitions,
   ],
 };
 const trauma = {
-  title: "Trauma",
+  title: "Autism and Trauma",
   courses: [
     autisticChildWithTrauma,
     helpingYourAutisticChildMoveOnFromSchoolTrauma,
