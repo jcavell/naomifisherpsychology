@@ -16,15 +16,15 @@ import {
   demandAvoidanceGuideForTeenagers, ALDP1To10, ALDP1To5, ALDP6To10
 } from "../../scripts/courseMeta";
 
-const essentials = {title: "Essentials", courses: [demandAvoidance101, helpingYourDemandAvoidantChildWithChange]}
-const teenagers = {title: "Teenagers", courses: [demandAvoidantAdolescent, demandAvoidanceGuideForTeenagers]}
-const aldp = {title: "The Art of Low Demand Parenting", courses: [ALDP1To10, ALDP1To5, ALDP6To10]}
+const essentials = {navName: "Essentials", title: "Demand Avoidance Essentials", courses: [demandAvoidance101, helpingYourDemandAvoidantChildWithChange]}
+const teenagers = {navName: "Teenagers", title: "Demand Avoidance - Teenagers", courses: [demandAvoidantAdolescent, demandAvoidanceGuideForTeenagers]}
+const aldp = {navName: "Low Demand Parenting", title: "The Art of Low Demand Parenting", courses: [ALDP1To10, ALDP1To5, ALDP6To10]}
 const subcategories = [essentials, teenagers, aldp];
 ---
 
 <CourseCategory
   subcategories={subcategories}
-  pageTitle="Demand Avoidance Courses"
+  pageTitle="DEMAND AVOIDANCE COURSES"
   metaDescription="Browse our demand avoidance courses"
   whitePanelTitle=""
   whitePanelDescriptions={[

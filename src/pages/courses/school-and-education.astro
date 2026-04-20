@@ -13,15 +13,15 @@ import {
   weDontHaveAnEhcpWhatToExpectFromSchool, takingControlOfYourEhcpAnnualReview, navigatingTheSenTribunalProcess
 } from "../../scripts/courseMeta";
 
-const inSchool = {title: "At School", courses: [myChildIsNotFineAtSchool, autisticChildrenWithSchool]}
-const outOfSchool = {title: "Out of School", courses: [burntOutBySchool, helpingYourAutisticChildMoveOnFromSchoolTrauma, helpingYourNDTeenRecoverFromSchool, howCanYouLearnIfYouDontGoToSchool]}
-const ehcp = {title: "EHCPs", courses: [doWeNeedAnEhcp, weDontHaveAnEhcpWhatToExpectFromSchool, takingControlOfYourEhcpAnnualReview, navigatingTheSenTribunalProcess]}
+const inSchool = {navName: "At School", title: "At School", courses: [myChildIsNotFineAtSchool, autisticChildrenWithSchool]}
+const outOfSchool = {navName: "Out of school", title: "Out of School", courses: [burntOutBySchool, helpingYourAutisticChildMoveOnFromSchoolTrauma, helpingYourNDTeenRecoverFromSchool, howCanYouLearnIfYouDontGoToSchool]}
+const ehcp = {navName: "EHCPs", title: "EHCPs", courses: [doWeNeedAnEhcp, weDontHaveAnEhcpWhatToExpectFromSchool, takingControlOfYourEhcpAnnualReview, navigatingTheSenTribunalProcess]}
 const subcategories = [inSchool, outOfSchool, ehcp];
 ---
 
 <CourseCategory
   subcategories={subcategories}
-  pageTitle="School and Education Courses"
+  pageTitle="SCHOOL AND EDUCATION COURSES"
   metaDescription="Browse our school and education courses"
   whitePanelTitle=""
   whitePanelDescriptions={[

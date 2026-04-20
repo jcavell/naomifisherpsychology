@@ -21,16 +21,16 @@ import {
   childWithSevereAnxiety
 } from "../../scripts/courseMeta";
 
-const anxiety = {title: "Anxiety", courses: [childWithSevereAnxiety, childWithAnxietyUnder8s, childWithAnxiety6To13, helpingYourTeenWithAnxiety, helpingYourAutisticChildWithOCD, autisticChildWithAnxiety, autisticTeenWithAnxiety]}
-const burnout = {title: "Burnout", courses: [helpingYourChildWithBurnout, burntOutByParenting, burnoutAGuideForTeenagers, burntOutBySchool]}
-const behaviour = {title: "Behaviour", courses: [helpingYourAutisticChildWithAnger, helpingYourAutisticChildWithTransitions]}
-const trauma = {title: "Trauma", courses: [traumaAndLoss, autisticChildWithTrauma, helpingYourAutisticChildMoveOnFromSchoolTrauma]}
+const anxiety = {navName: "Anxiety", title: "Anxiety", courses: [childWithSevereAnxiety, childWithAnxietyUnder8s, childWithAnxiety6To13, helpingYourTeenWithAnxiety, helpingYourAutisticChildWithOCD, autisticChildWithAnxiety, autisticTeenWithAnxiety]}
+const burnout = {navName: "Burnout", title: "Burnout", courses: [helpingYourChildWithBurnout, burntOutByParenting, burnoutAGuideForTeenagers, burntOutBySchool]}
+const behaviour = {navName: "Behaviour", title: "Behaviour", courses: [helpingYourAutisticChildWithAnger, helpingYourAutisticChildWithTransitions]}
+const trauma = {navName: "Trauma", title: "Trauma", courses: [traumaAndLoss, autisticChildWithTrauma, helpingYourAutisticChildMoveOnFromSchoolTrauma]}
 const subcategories = [anxiety, burnout, behaviour, trauma];
 ---
 
 <CourseCategory
   subcategories={subcategories}
-  pageTitle="Mental health and behaviour Courses"
+  pageTitle="MENTAL HEALTH AND BEHAVIOUR COURSES"
   metaDescription="Browse our mental health and behaviour courses"
   whitePanelTitle=""
   whitePanelDescriptions={[

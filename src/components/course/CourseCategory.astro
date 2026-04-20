@@ -8,6 +8,7 @@ import type { ImageMetadata } from "astro";
 import { makeUrl } from "../../scripts/url";
 
 export type CourseSubcategory = {
+  navName: string;
   title: string;
   courses: CourseMeta[];
 };
@@ -61,7 +62,7 @@ const allDescriptions = whitePanelDescriptions.concat(
       {
         subcategories.map((subcategory) => (
           <li>
-            <a href={"#" + makeUrl(subcategory.title)}>{subcategory.title}</a>
+            <a href={"#" + makeUrl(subcategory.title)}>{subcategory.navName}</a>
           </li>
         ))
       }
