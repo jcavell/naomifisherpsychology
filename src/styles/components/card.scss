@@ -706,6 +706,20 @@ $spacing-unit: 16px; // Use a spacing system
     }
   }
 
+  &__date {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.72rem;
+    color: #aaa;
+    letter-spacing: 0.02em;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400;
+    line-height: 1.4;
+    @media (max-width: 768px) {
+      display: none !important;
+    }
+  }
+
   &__title {
     border-top: none;
     border-radius: 0;

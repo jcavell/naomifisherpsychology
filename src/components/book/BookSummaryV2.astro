@@ -13,7 +13,7 @@ import "../../styles/components/card.scss";
     <!-- Left Side: Portrait Image -->
     <div class="book-card__image-container">
       <a href={book.uri}> <BookImage book={book} /></a>
-
+      <span class="book-card__date">Published {getPubDateString(book)} </span>
     </div>
 
     <!-- Right Side: Content -->
@@ -38,6 +38,7 @@ import "../../styles/components/card.scss";
     <div class="card-actions">
       <a class="btn btn-learn" href={book.uri}> Read More</a>
     </div>
+
     <!--<div class="book-card__metadata">-->
     <!--  <Tags tags={book.tags} />-->
     <!--</div>-->

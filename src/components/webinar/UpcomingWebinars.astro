@@ -7,7 +7,11 @@ const quotes = entry?.data ?? [];
 import GenerateQuote from "../Quoter";
 import { getEntry } from "astro:content";
 
-const webinars = await getCachedWebinars();
+const cachedWebinars = await getCachedWebinars();
+const { limitTo } = Astro.props;
+
+const heading = limitTo ? "NEXT WEBINARS" : "UPCOMING WEBINARS";
+const webinars = limitTo ? cachedWebinars.slice(0, limitTo) : cachedWebinars;
 ---
 
 {
@@ -32,13 +36,15 @@ const webinars = await getCachedWebinars();
 {
   webinars?.length > 0 && (
     <>
-      <a name="webinars" class="anchor">
+      <a id="webinars" class="anchor">
         <h2 class="section-title">
-          <span class="courses-section-title">UPCOMING WEBINARS</span>
-          <a href="/webinars" class="section-title-all-link">
-            {" "}
-            See All Webinars{" "}
-          </a>
+          <span class="courses-section-title">{heading}</span>
+          {limitTo && (
+            <a href="/webinars" class="section-title-all-link">
+              {" "}
+              See All Webinars{" "}
+            </a>
+          )}
         </h2>
       </a>
       <p>
