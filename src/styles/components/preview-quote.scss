@@ -3,11 +3,11 @@
   box-sizing: border-box;
   padding-left: 20px;
   padding-right: 20px;
-  background-color: #ffffff;
+  background-color: #edf1f5;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   border-radius: 16px;
   @media (max-width: 1200px) {
-    padding: 16px;
+    padding: 8px;
   }
 
   .details & {
@@ -16,13 +16,13 @@
   }
   .preview-quote {
     //max-width: 800px;
-    font-size: 20px;
+    font-size: 17px;
     margin-left: auto;
     margin-right: auto;
     line-height: 1;
     text-align: center;
-    margin-top: 24px;
-    margin-bottom: 16px;
+    margin-top: 6px;
+    margin-bottom: 8px;
     position: relative;
     font-family: Oswald;
 
@@ -31,7 +31,7 @@
       font-style: italic;
       text-transform: none;
       color: var(--brand-primary);
-      margin-bottom: 16px;
+      margin-bottom: 8px;
       line-height: 1.4;
       &::before {
         content: "\201C";
@@ -63,7 +63,7 @@
       }
     }
     span {
-      font-size: 16px;
+      font-size: 14px;
       display: block;
       margin-top: 8px;
       font-weight: 400;
