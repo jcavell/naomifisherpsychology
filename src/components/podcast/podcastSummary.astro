@@ -1,0 +1,59 @@
+---
+import { Image } from "astro:assets";
+import defaultImage from "../../images/static/courses-home.png";
+import "../../styles/components/card.scss";
+
+const { episode, hideDate = false } = Astro.props;
+const { title, subtitle, pubDate, description, audioUrl, imageUrl, duration, url } = episode;
+---
+
+<div class="card card-podcast">
+  {
+    !hideDate && (
+      <div class="live-date">
+        <span class="live-day">{pubDate.day}</span>
+        <span class="live-month">{pubDate.month}</span>
+      </div>
+    )
+  }
+
+  <div class="card-image">
+    <Image
+      src={imageUrl}
+      alt={title}
+      class="white-panel-image"
+      inferSize={true}
+    />
+  </div>
+
+  <h3>
+    {title}
+    {subtitle && <span>{subtitle}</span>}
+  </h3>
+
+  <div class="podcast-description" set:html={episode.description} />
+
+  {duration && <p class="podcast-duration">⏱ {duration}</p>}
+
+  <div class="card-actions">
+    <a class="btn btn-learn" href={url} target="_blank" rel="noopener">
+      Listen on Substack
+    </a>
+  </div>
+</div>
+
+<style>
+    .podcast-description :global(p:empty) {
+        display: none;
+    }
+</style>
+
+<style is:global>
+    .card.card-podcast h3 {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding-top: 10px !important;
+        min-height: 0 !important;
+        font-size: 26px !important;
+    }
+</style>

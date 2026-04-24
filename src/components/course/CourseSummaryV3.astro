@@ -84,6 +84,12 @@ const priceInPence = course.priceInPence!;
       min-height: unset;
       margin-top: 0;
       border-bottom-width: 0;
+      // Reserve space for two lines of title so contributors/price
+      // align consistently across cards in the same row on desktop.
+      // 1.5rem font × 1.25 line-height = ~1.875rem per line × 2 lines
+      @media (min-width: 768px) {
+        min-height: 3.75rem;
+      }
       a {
         color: var(--brand-primary);
         text-decoration: none;

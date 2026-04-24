@@ -21,7 +21,7 @@ const metaDescription =
   pageTitle={pageTitle}
   metaDescription={metaDescription}
 >
-  <a name="books" class="anchor">
+  <a id="books" class="anchor">
     <h1 class="section-title">
       <span class="">Books</span>
     </h1>
@@ -84,9 +84,9 @@ const metaDescription =
       </div>
     </div>
   </div>
-  <a name="browse-books" class="anchor">
+  <a id="browse-books" class="anchor">
     <h2 class="section-title">
-      <span class="person-section-title">Browse Books</span>
+      <span class="person-section-title">All Books</span>
     </h2>
   </a>
   {books.map((book) => <BookSummary book={book.data} />)}

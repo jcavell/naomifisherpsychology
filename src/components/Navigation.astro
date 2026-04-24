@@ -27,14 +27,14 @@ const { active } = Astro.props;
         </li>
 
         <li>
-          <a href="/blog" class={active === "blog" ? "active" : "inactive"}>
-            Substack
+          <a href="/podcast" class={active === "podcast" ? "active" : "inactive"}>
+            Podcast
           </a>
         </li>
 
         <li>
-          <a href="/about" class={active === "about" ? "active" : "inactive"}>
-            About Us
+          <a href="/blog" class={active === "blog" ? "active" : "inactive"}>
+            Substack
           </a>
         </li>
 
@@ -45,6 +45,13 @@ const { active } = Astro.props;
             href="https://courses.naomifisher.co.uk/login">Course login</a
           >
         </li>
+
+        <li>
+          <a href="/about" class={active === "about" ? "active" : "inactive"}>
+            About Us
+          </a>
+        </li>
+
       </ul>
     </div>
   </nav>

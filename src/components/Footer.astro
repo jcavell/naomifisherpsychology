@@ -5,16 +5,16 @@ const { active, hideNav } = Astro.props;
 
 <footer id="tag-menu">
   <div class="footer-primary">
-    <img
-      src="/images/footer/circle-logo.png"
-      alt="Children looking through the grass"
-    />
-    <a href="/">
-      <img
-        src="/images/footer/dr-naomi-fisher-logo-white.svg"
-        alt="Dr. Naomi Fisher white logo"
-      />
-    </a>
+    <!--<img-->
+    <!--  src="/images/footer/circle-logo.png"-->
+    <!--  alt="Children looking through the grass"-->
+    <!--/>-->
+    <!--<a href="/">-->
+    <!--  <img-->
+    <!--    src="/images/footer/dr-naomi-fisher-logo-white.svg"-->
+    <!--    alt="Dr. Naomi Fisher white logo"-->
+    <!--  />-->
+    <!--</a>-->
 
     {!hideNav &&(
     <ul class="footer-menu footer-menu-A">
@@ -22,10 +22,10 @@ const { active, hideNav } = Astro.props;
         <a href="/">Home</a>
       </li>
       <li>
-        <a href="/webinars/"> Live Webinars</a>
+        <a href="/webinars/">Webinars</a>
       </li>
       <li>
-        <a href="/courses/">On-demand Courses</a>
+        <a href="/courses/">Courses</a>
       </li>
       <li>
         <a href="/books">Books</a>
@@ -33,15 +33,17 @@ const { active, hideNav } = Astro.props;
     </ul>
 
     <ul class="footer-menu footer-menu-B">
-
- <li>
+      <li>
+        <a href="/podcast/">Podcast</a>
+      </li>
+      <li>
         <a href="/blog/">Substack</a>
       </li>
       <li>
-        <a href="/about">About Us</a>
+        <a href="https://www.emdrtraininguk.co.uk/" target="_blank">EMDR Training</a>
       </li>
       <li>
-        <a href="https://www.emdrtraininguk.co.uk/" target="_blank">EMDR Training</a>
+        <a href="/about">About Us</a>
       </li>
     </ul>
 
@@ -51,9 +53,6 @@ const { active, hideNav } = Astro.props;
       <p>
         &copy; {new Date().getFullYear()} Naomi Fisher Psychology Ltd, all rights
         reserved.
-      </p>
-      <p>
-         Illustrations by <a href="https://missingthemark.co.uk">Eliza Fricker</a> & Kate Robson
       </p>
       <p>
         <a href="/privacy-policy">Privacy Policy</a> |

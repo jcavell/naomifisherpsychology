@@ -9,17 +9,20 @@ interface Props {
 }
 
 const featuredTitles = [
-  "Anxiety is not the enemy",
-  "Depression or burnout?",
-  "Learning doesn't have to look like school",
-  "Paper Time",
+  "Slow Learners",
+  "Why I don't tell children they have differently wired brains",
+  "How much stress could be avoided...",
+  "How Do Children Learn When They Don't Go to School?",
+  "Why we need to do better than neuro-affirmation"
 ];
 
 const posts = await getOrderedPosts();
 const { start = 0, length = 4, featured = false } = Astro.props;
 
 const filteredPosts = featured
-  ? posts.filter((p) => featuredTitles.includes(p.data.title.trim()))
+  ? featuredTitles
+    .map((title) => posts.find((p) => p.data.title.trim() === title))
+    .filter(Boolean) // remove any titles not found in posts
   : posts;
 ---
 

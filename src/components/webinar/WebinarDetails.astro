@@ -47,7 +47,7 @@ const detailsText = webinar.detailsText;
                 <div class="price">
                   £{((ticket.costValue + ticket.feeValue) / 100).toFixed(2)}
                 </div>
-                <div class="company eventbrite">{ticket.name}</div>
+                <div class="">{ticket.name}</div>
                 <div class="buy-now">
                   <span> Buy Now </span>
                 </div>
@@ -101,7 +101,7 @@ const detailsText = webinar.detailsText;
   <hr class="divider" />
 
   <div class="footer-cta">
-      <Tags tags={meta?.tags} />
+      <!--<Tags tags={meta?.tags} />-->
     <div class="action-bar">
        {
           tickets.filter((t) => !t.hidden).map((ticket) => (
@@ -110,7 +110,7 @@ const detailsText = webinar.detailsText;
                 <div class="price">
                   £{((ticket.costValue + ticket.feeValue) / 100).toFixed(2)}
                 </div>
-                <div class="company eventbrite">{ticket.name}</div>
+                <div class="">{ticket.name}</div>
                 <div class="buy-now">
                   <span> Buy Now </span>
                 </div>
@@ -159,26 +159,6 @@ const detailsText = webinar.detailsText;
         <div class="panel">
           <p>You can watch the recording for 30 days after the webinar</p>
         </div>
-        <!--<button class="accordion"-->
-        <!--&gt;Why is Eventbrite is asking for further information?</button-->
-        <!--&gt;-->
-        <!--<div class="panel">-->
-        <!--  <p>-->
-        <!--    You do not need to add any further information to access the webinar-->
-        <!--  </p>-->
-        <!--</div>-->
-        <!--<button class="accordion"-->
-        <!--  >Questions about logging in, where are my tickets, refunds, or-->
-        <!--  duplicate card charges</button-->
-        <!--&gt;-->
-        <!--<div class="panel">-->
-        <!--  <p>-->
-        <!--    Please visit the general Eventbrite FAQ about this: <a-->
-        <!--      href="https://www.eventbrite.co.uk/help/en-gb/contact-us/"-->
-        <!--      target="_blank">www.eventbrite.co.uk/help/en-gb/contact-us/</a-->
-        <!--    >-->
-        <!--  </p>-->
-        <!--</div>-->
       </div>
 
 
