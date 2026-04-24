@@ -1,6 +1,4 @@
 ---
-import { Image } from "astro:assets";
-import defaultImage from "../../images/static/courses-home.png";
 import "../../styles/components/card.scss";
 
 const { episode, hideDate = false } = Astro.props;
@@ -18,12 +16,14 @@ const { title, subtitle, pubDate, description, audioUrl, imageUrl, duration, url
   }
 
   <div class="card-image">
-    <Image
+    <img
       src={imageUrl}
       alt={title}
       class="white-panel-image"
-      inferSize={true}
+      loading="lazy"
+      decoding="async"
     />
+
   </div>
 
   <h3>
