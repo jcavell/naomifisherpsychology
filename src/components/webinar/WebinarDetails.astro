@@ -47,7 +47,7 @@ const detailsText = webinar.detailsText;
                 <div class="price">
                   £{((ticket.costValue + ticket.feeValue) / 100).toFixed(2)}
                 </div>
-                <div class="">{ticket.name}</div>
+                <div class="ticket-name">{ticket.name}</div>
                 <div class="buy-now">
                   <span> Buy Now </span>
                 </div>
@@ -307,10 +307,7 @@ const detailsText = webinar.detailsText;
 
     .price {
       display: block;
-      
-     @media(max-width:600px){
-            order:3;
-          }
+
     }
     .label {
       font-size: 0.7rem;
@@ -347,27 +344,45 @@ const detailsText = webinar.detailsText;
           margin-top:4px;
         }
         .purchase {
-         
-          display:flex;
-          justify-content:space-between;
-          align-items:center;
-          border-bottom:1px solid var(--brand-primary);
-          padding:4px 0 8px;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          border-bottom: 1px solid var(--brand-primary);
+          padding: 4px 0 8px;
+
           @media(max-width:600px){
-            flex-wrap:wrap;
-            gap:12px;
-            padding-bottom:12px;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) max-content 120px;
+            grid-template-areas: "ticket price button";
+            gap: 12px;
+            padding-bottom: 12px;
+          }
+
+          .ticket-name {
+            @media(max-width:600px){
+              grid-area: ticket;
+              min-width: 0;
+            }
+          }
+
+          .price {
+            @media(max-width:600px){
+              grid-area: price;
+              white-space: nowrap;
+              justify-self: end;
+            }
           }
 
           .buy-now {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    width:auto;
-     @media(max-width:600px){
-            order:2;
-            margin-left:0;
-          }
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            width: 120px;
+            flex: 0 0 120px;
+
+            @media(max-width:600px){
+              margin-left: auto;
+            }
     span {
       display:inline-block;
     color: #fff;
@@ -380,7 +395,9 @@ const detailsText = webinar.detailsText;
     outline: none;
     background: var(--success-green);
     justify-self: start;
-    width:auto;
+      width: 100%;
+      text-align: center;
+      box-sizing: border-box;
     font-size:14px;
     }
           }
@@ -484,4 +501,5 @@ const detailsText = webinar.detailsText;
       }
     }
   }
+
 </style>
