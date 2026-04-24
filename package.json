@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "astro build && tsx src/scripts/get-podcasts.ts",
     "preview": "astro preview",
     "astro": "astro",
     "test": "vitest",
