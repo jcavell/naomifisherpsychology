@@ -1,5 +1,15 @@
 @use "../../mixins.scss" as mix;
 #filter-menu {
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+
+  @media (max-width: 768px) {
+    overflow: auto;
+    background: #f7f6f5;
+  }
+}
+
+#filter-menu {
   @media (max-width: 768px) {
     overflow: auto;
     background: #f7f6f5;

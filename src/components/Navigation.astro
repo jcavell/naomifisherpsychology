@@ -39,6 +39,14 @@ const { active } = Astro.props;
         </li>
 
         <ExternalDropdown active={active} />
+
+
+        <li>
+          <a href="/about" class={active === "about" ? "active" : "inactive"}>
+            About Us
+          </a>
+        </li>
+
         <li class="mobile-item course-login">
           <a
             class="button-link primary"
@@ -46,11 +54,6 @@ const { active } = Astro.props;
           >
         </li>
 
-        <li>
-          <a href="/about" class={active === "about" ? "active" : "inactive"}>
-            About Us
-          </a>
-        </li>
 
       </ul>
     </div>

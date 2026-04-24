@@ -78,6 +78,8 @@ body {
   &.menu-open,
   &.filter-menu-open {
     overflow: hidden;
+    position: fixed;
+    width: 100%;
   }
 }
 
