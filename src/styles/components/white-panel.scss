@@ -12,18 +12,20 @@
   font-size: 1rem;
   line-height: 1.6;
   color: var(--function-dark-9);
+
   @media (max-width: 600px) {
     margin: 0 auto 20px;
   }
 
   .white-panel-content {
     flex: 1.75;
-    padding: 32px 16px;
+    padding: 16px;
+    min-width: 0;
 
     .white-panel-title {
       font-size: 1.1rem;
       font-weight: normal;
-      margin-bottom: 25px;
+      margin: 0 0 25px;
 
       strong {
         color: var(--brand-primary);
@@ -36,7 +38,7 @@
 
     .white-panel-description {
       p {
-        margin-bottom: 20px;
+        margin: 0 0 20px;
 
         &:last-child {
           margin-bottom: 0;
@@ -47,24 +49,25 @@
 
   .white-panel-image-container {
     flex: 1;
-    display: flex;
+    position: relative;
+    overflow: hidden;
+    min-width: 0;
+
     @media (max-width: 768px) {
       display: none;
     }
 
     .white-panel-image {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
       display: block;
+      object-fit: cover;
     }
   }
 
   @media (max-width: 768px) {
     flex-direction: column-reverse;
-
-    .white-panel-image-container {
-      height: 300px;
-    }
   }
 }
