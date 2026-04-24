@@ -6,11 +6,16 @@ import StaticImage from "../components/StaticImage.astro";
 import naomiAndElizaImage from "../images/static/naomi-and-eliza-looking-at-book.jpg";
 import NewsletterNew from "../components/NewsletterNew.astro";
 import UpcomingWebinars from "../components/webinar/UpcomingWebinars.astro";
+import GenerateQuote from "../components/Quoter";
+import { getEntry } from "astro:content";
 
 const pageTitle = "Webinars";
 
 const metaDescription =
   "Dr Naomi Fisher and Dr Abigail Fisher's upcoming live webinars on helping your autistic teenagers and children, for parents worried about their child's anxiety, demand avoidance and burnout. For helping families with problems at school, SEN, EHCPs. With Elia Fricker, the Art of Low Demand Parenting";
+
+const entry = await getEntry("webinar-quotes", "general-webinar-quotes");
+const quotes = entry?.data ?? [];
 ---
 
 <BaseLayout
@@ -52,28 +57,12 @@ const metaDescription =
         see covered, then please do get in touch.
       </p>
 
-      <!-- <div class="accordion-wrapper">
-        <button class="accordion no-title-accordion">Read More</button>
-        <div class="panel">
-          <p>
-            We started these webinars because so many parents were getting in
-            touch with Naomi asking for consultations or therapy and it was
-            impossible for her to see them all. When she did see parents, she
-            often ended up saying similar things and she thought that if we
-            could put this into a webinar, then we could reach many more
-            parents, whilst also being much more affordable and accessible.
-          </p>
-          <p>
-            Our aim is to communicate useful psychological concepts and ideas in
-            a way which empowers parents to help their children. Each webinar
-            combines theory with practical ideas and examples. We are always
-            writing new webinars and if you have something which you would
-            particularly like to see covered, then please do get in touch.
-          </p>
-        </div>
-      </div> -->
     </div>
   </div>
+
+  <GenerateQuote client:load quotes={quotes} />
+
+  <p></p>
 
   <UpcomingWebinars />
 

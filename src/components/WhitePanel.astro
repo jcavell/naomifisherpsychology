@@ -27,7 +27,9 @@ const { title, descriptions, img, imgAlt } = Astro.props;
     </div>
   </div>
 
+  {img && (
   <div class="white-panel-image-container">
     <Image src={img} alt={imgAlt} class="white-panel-image" />
   </div>
+  )}
 </section>

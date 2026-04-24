@@ -6,6 +6,7 @@ import getCourses from "../../scripts/courses";
 import WhitePanel from "../WhitePanel.astro";
 import type { ImageMetadata } from "astro";
 import { makeUrl } from "../../scripts/url";
+import CourseQuote from "./CourseQuote.astro";
 
 export type CourseSubcategory = {
   navName: string;
@@ -19,7 +20,7 @@ interface Props {
   metaDescription: string;
   whitePanelTitle: string;
   whitePanelDescriptions: string[];
-  whitePanelImg: ImageMetadata;
+  whitePanelImg?: ImageMetadata;
   whitePanelImgAlt: string;
 }
 
@@ -35,6 +36,7 @@ const {
 
 const courses = await getCourses();
 const allDescriptions = whitePanelDescriptions.concat(
+  "Our courses take a child-centred perspective and are suitable for children with and without diagnoses.",
   "All courses are available to watch for 12 months",
 );
 ---
@@ -57,6 +59,8 @@ const allDescriptions = whitePanelDescriptions.concat(
     imgAlt={whitePanelImgAlt}
   />
 
+  <CourseQuote/>
+
   <div class="category-badges-wrapper">
     <ul>
       {
@@ -68,6 +72,7 @@ const allDescriptions = whitePanelDescriptions.concat(
       }
     </ul>
   </div>
+
 
   {
     subcategories.map((subcategory) => (
