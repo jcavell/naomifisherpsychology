@@ -1,0 +1,50 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  title: string;
+  descriptions: string[];
+  img?: ImageMetadata;
+  imgAlt: string;
+  readMore?: boolean;
+}
+
+const { title, descriptions, img, imgAlt, readMore } = Astro.props;
+---
+
+<section class="white-panel-card">
+  <div class="white-panel-content">
+    {
+      title && (
+        <h2 class="white-panel-title">
+          <strong>{title}</strong>
+        </h2>
+      )
+    }
+
+    <div class="white-panel-description">
+      {readMore && (
+        <p set:html={descriptions[0]}></p>
+        <div class="accordion-wrapper">
+          <button class="accordion no-title-accordion">Read More</button>
+          <div class="panel">
+            {descriptions.slice(1, descriptions.length).map((item) => <p set:html={item} />)}
+          </div>
+        </div>
+      )}
+
+      {!readMore && (
+        <>
+      {descriptions.map((item) => <p set:html={item} />)}
+          </>
+      )}
+    </div>
+  </div>
+
+  {img && (
+  <div class="white-panel-image-container">
+    <Image src={img} alt={imgAlt} class="white-panel-image" />
+  </div>
+  )}
+</section>

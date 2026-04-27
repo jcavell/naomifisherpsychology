@@ -1,23 +1,21 @@
 ---
-import WebinarSummary from "../components/webinar/WebinarSummary.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import getWebinars from "../scripts/webinars.js";
-import testWebinars1 from "../test-data/eventbrite/1event.json";
-import testWebinars3 from "../test-data/eventbrite/3events.json";
-import GenerateQuote from "../components/Quoter";
-import { getEntry } from "astro:content";
+// import testWebinars1 from "../test-data/eventbrite/1event.json";
+// import testWebinars3 from "../test-data/eventbrite/3events.json";
 import StaticImage from "../components/StaticImage.astro";
 import naomiAndElizaImage from "../images/static/naomi-and-eliza-looking-at-book.jpg";
-import { RemoveFinishedWebinars } from "../components/webinar/RemoveFinishedWebinars";
-
-const quotes = (await getEntry("webinar-quotes", "general-webinar-quotes"))
-  .data;
+import NewsletterNew from "../components/NewsletterNew.astro";
+import UpcomingWebinars from "../components/webinar/UpcomingWebinars.astro";
+import GenerateQuote from "../components/Quoter";
+import { getEntry } from "astro:content";
 
 const pageTitle = "Webinars";
-const webinars = await getWebinars();
 
 const metaDescription =
   "Dr Naomi Fisher and Dr Abigail Fisher's upcoming live webinars on helping your autistic teenagers and children, for parents worried about their child's anxiety, demand avoidance and burnout. For helping families with problems at school, SEN, EHCPs. With Elia Fricker, the Art of Low Demand Parenting";
+
+const entry = await getEntry("webinar-quotes", "general-webinar-quotes");
+const quotes = entry?.data ?? [];
 ---
 
 <BaseLayout
@@ -25,6 +23,11 @@ const metaDescription =
   pageTitle={pageTitle}
   metaDescription={metaDescription}
 >
+  <a name="about" class="anchor">
+    <h1 class="section-title">
+      <span class="">Webinars</span>
+    </h1>
+  </a>
   <div class="page-intro-wrapper">
     <div class="page-intro-static-image">
       <StaticImage
@@ -33,51 +36,71 @@ const metaDescription =
       />
     </div>
     <div class="page-intro-text">
-      <h3>WEBINARS</h3>
       <p>
         Our live webinars for parents and professionals are hosted on Zoom. They
         combine psychological theory with practical ideas to help. They are
         recorded and available for 30 days.
       </p>
-
       <div class="accordion-wrapper">
         <button class="accordion no-title-accordion">Read More</button>
         <div class="panel">
-          <p>
-            We started these webinars because so many parents were getting in
-            touch with Naomi asking for consultations or therapy and it was
-            impossible for her to see them all. When she did see parents, she
-            often ended up saying similar things and she thought that if we
-            could put this into a webinar, then we could reach many more
-            parents, whilst also being much more affordable and accessible.
-          </p>
-          <p>
-            Our aim is to communicate useful psychological concepts and ideas in
-            a way which empowers parents to help their children. Each webinar
-            combines theory with practical ideas and examples. We are always
-            writing new webinars and if you have something which you would
-            particularly like to see covered, then please do get in touch.
-          </p>
-        </div>
-      </div>
+      <p>
+        We started these webinars because so many parents were getting in touch
+        with Naomi asking for consultations or therapy and it was impossible for
+        her to see them all. When she did see parents, she often ended up saying
+        similar things and she thought that if we could put this into a webinar,
+        then we could reach many more parents, whilst also being much more
+        affordable and accessible.
+      </p>
+      <p>
+        Our aim is to communicate useful psychological concepts and ideas in a
+        way which empowers parents to help their children. Each webinar combines
+        theory with practical ideas and examples. We are always writing new
+        webinars and if you have something which you would particularly like to
+        see covered, then please do get in touch.
+      </p>
+        </div></div>
+
     </div>
   </div>
 
-  {webinars.length === 0 && <h2 class="section-title">No upcoming Webinars</h2>}
+  <GenerateQuote client:load quotes={quotes} />
 
-  {
-    webinars.length > 0 && (
-      <>
-        <h2 class="section-title">Upcoming</h2>
+  <p></p>
 
-        <RemoveFinishedWebinars client:load />
+  <UpcomingWebinars />
 
-        {webinars.map((webinar, index) => (
-          <WebinarSummary webinar={webinar} />
-        ))}
-        <GenerateQuote client:load quotes={quotes} />
-      </>
-    )
-  }
-
+  <div class="faq-wrapper">
+    <h2 class="section-title">Webinars FAQ</h2>
+    <div class="accordion-wrapper">
+      <button class="accordion">What is a webinar?</button>
+      <div class="panel">
+        <p>
+          Webinar are live online events. We host them on Zoom and they are
+          recorded if you can't make the time.
+        </p>
+      </div>
+      <button class="accordion">Are webinars recorded?</button>
+      <div class="panel">
+        <p>
+          Yes, if you choose the webinar + recording ticket, you will get sent a
+          link to the recording. You can watch the recording for 30 days after
+          the webinar.
+        </p>
+      </div>
+      <button class="accordion"
+        >How long are webinar recordings available for?</button
+      >
+      <div class="panel">
+        <p>They are available for 30 days after the webinar.</p>
+      </div>
+    </div>
+  </div>
+  <!-- HEADER stay informed -->
+  <a id="newsletter" class="anchor">
+    <h2 class="section-title">
+      <span class="courses-section-title">Stay informed</span>
+    </h2>
+  </a>
+  <NewsletterNew formId="6662296" />
 </BaseLayout>

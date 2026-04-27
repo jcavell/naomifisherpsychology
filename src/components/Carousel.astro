@@ -1,0 +1,55 @@
+---
+import CarouselSlides from "../content/carousel/carousel-slides.json";
+// blue - rgb(68, 98, 124, 1)
+// green - rgba(55, 117, 104, 1)
+// yellow - rgba(218, 169, 66, 1)
+---
+
+<script src="../scripts/carousel.ts"></script>
+<div class="carousel-container">
+  <button class="carousel-btn prev" data-carousel-btn="prev">&#10094;</button>
+  <div class="carousel-track-container">
+    <div class="carousel-track">
+      <!-- Slide 1: Sale Promotion -->
+      {
+        CarouselSlides.map((slide, idx) => (
+          // <div class={`carousel-slide ${slide.class || ""}`}>
+          <div
+            class={`carousel-slide ${slide.class || ""}`}
+            style={
+              slide.bgImage
+                ? `background:    linear-gradient(        to right,
+        rgba(68, 98, 124, 0) 207px,
+         ${slide.bgColor || "rgb(68, 98, 124)"} 412px
+      ),
+      url('${slide.bgImage}') no-repeat left center / contain`
+                : ""
+            }
+          >
+            <div class="slide-content">
+              <h1>{slide.title}</h1>
+              <p class="desktop-item">{slide.body}</p>
+              {slide.cta && slide.ctaLink && (
+                <a href={slide.ctaLink} class="btn">
+                  {slide.cta}
+                </a>
+              )}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+  <button class="carousel-btn next" data-carousel-btn="next">&#10095;</button>
+
+  <div class="carousel-nav-dots">
+    {
+      [...Array(CarouselSlides.length)].map((_, idx) => (
+        <button
+          class={`nav-dot${idx === 0 ? " active" : ""}`}
+          data-slide-index={idx}
+        />
+      ))
+    }
+  </div>
+</div>

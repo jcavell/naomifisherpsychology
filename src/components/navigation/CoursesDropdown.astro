@@ -1,0 +1,92 @@
+---
+const { active } = Astro.props;
+---
+
+<!-- Awaiting prop assignment ahead of full-component rendering -->
+<li class="has-dropdown">
+  <a
+    href="/courses"
+    class={`desktop-item  ${active === "courses" ? "active" : "inactive"}`}
+  >
+    Courses</a
+  >
+  <input type="checkbox" id="showMega" />
+  <label
+    for="showMega"
+    class={`nav-dropdown mobile-item ${active === "courses" ? "active" : "inactive"}`}
+    >Courses</label
+  >
+
+  <div class="mega-box">
+    <div class="content">
+      <h1 class="desktop-item">COURSE TOPICS</h1>
+
+      <div class="row">
+        <header><a href="/courses/autism">Autism</a></header>
+        <ul class="mega-links">
+          <li><a href="/courses/autism#autism-and-anxiety">Anxiety</a></li>
+          <li><a href="/courses/autism#autism-and-behaviour">Behaviour</a></li>
+          <li><a href="/courses/autism#autism-and-trauma">Trauma</a></li>
+          <li><a href="/courses/autism#autism-and-ocd">OCD</a></li>
+        </ul>
+      </div>
+      <div class="row">
+        <header>
+          <a href="/courses/demand-avoidance">Demand Avoidance</a>
+        </header>
+        <ul class="mega-links">
+          <li><a href="/courses/demand-avoidance#demand-avoidance-essentials">Essentials</a></li>
+          <li><a href="/courses/demand-avoidance#demand-avoidance---teenagers">Teenagers</a></li>
+          <li>
+            <a href="/courses/demand-avoidance#the-art-of-low-demand-parenting"
+              >Art of Low Demand Parenting</a>
+          </li>
+        </ul>
+      </div>
+      <div class="row">
+        <header>
+          <a href="/courses/school-and-education/">School and Education</a>
+        </header>
+        <ul class="mega-links">
+          <li>
+            <a href="/courses/school-and-education#at-school">At School</a>
+          </li>
+          <li>
+            <a href="/courses/school-and-education#out-of-school"
+              >Out of School</a>
+          </li>
+          <li><a href="/courses/school-and-education#ehcps">EHCPs</a></li>
+        </ul>
+      </div>
+      <div class="row">
+        <header>
+          <a href="/courses/mental-health-and-behaviour"
+            >Mental Health and Behaviour</a>
+        </header>
+        <ul class="mega-links">
+          <li>
+            <a href="/courses/mental-health-and-behaviour#anxiety">Anxiety</a>
+          </li>
+          <li>
+            <a href="/courses/mental-health-and-behaviour#burnout">Burnout</a>
+          </li>
+          <li>
+            <a href="/courses/mental-health-and-behaviour#trauma">Trauma</a>
+          </li>
+          <li>
+            <a href="/courses/mental-health-and-behaviour#behaviour"
+              >Behaviour</a>
+          </li>
+        </ul>
+      </div>
+      <div class="home-link-row">
+        <a
+          href="/courses"
+          class={`category-home-link ${active === "courses" ? "active" : "inactive"}`}
+        >
+          View all Courses
+        </a>
+      </div>
+    </div>
+  </div>
+</li>

@@ -23,14 +23,13 @@ const QuoteSchema = z.object({
 type Quote = z.infer<typeof QuoteSchema>;
 
 
-
-// Books Schema
 const BookSchema = z.object({
   id: z.number(),
   uri: z.string(),
   title: z.string(),
   subtitle: z.string(),
   description: z.string(),
+  summaryShort: z.string(),
   summary: z.string(),
   publisher: z.string(),
   pubDate: z.string(),
@@ -71,6 +70,24 @@ const BookSchema = z.object({
   xigxagAudiobookPrice: z.string(),
   vimeoEmbedUrl: z.string(),
   excerptUrl: z.string(),
+});
+
+const PubDateSchema = z.object({
+  day: z.string(),
+  month: z.string(),
+  year: z.number(),
+});
+
+const PodcastSchema = z.object({
+    url: z.string(),
+    pubDate: PubDateSchema,
+    title: z.string(),
+    subtitle: z.string(),
+    description: z.string(),
+    audioUrl: z.string(),
+    duration: z.string(),
+    imageUrl: z.string(),
+    imageFileName: z.string()
 });
 
 type Book = z.infer<typeof BookSchema>;
@@ -134,6 +151,14 @@ const blogCollection = defineCollection({
     pattern: "**/*.json",
     base: './src/content/blog'
   })
+});
+
+const podcastsCollection = defineCollection({
+  schema: PodcastSchema,
+  loader: glob({
+    pattern: "**/*.json",
+    base: "./src/content/podcasts",
+  }),
 });
 
 
@@ -244,6 +269,7 @@ export const collections = {
   "webinar-quotes": webinarQuotesCollection,
   "static-pages-quotes": staticQuotesCollection,
   blog: blogCollection,
+  podcasts: podcastsCollection,
   "books-more-info": booksMoreInfoCollection,
   "book-excerpts": bookExcerptsCollection,
   "book-quotes": bookQuotesCollection,

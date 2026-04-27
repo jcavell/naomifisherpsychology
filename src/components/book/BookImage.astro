@@ -1,12 +1,14 @@
 ---
 import { Picture } from "astro:assets";
 
-import aDifferentWayToLearnImage from "../../images/books/a-different-way-to-learn.jpg";
-import changingOurMindsImage from "../../images/books/changing-our-minds.jpg";
-import whenTheNaughtyStepsImage from "../../images/books/when-the-naughty-step-makes-things-worse.jpg";
-import psychologyOfMentalHealthImage from "../../images/books/psychology-of-mental-health.jpg";
-import teenagersGuideToBurnoutImage from "../../images/books/the-teenagers-guide-to-burnout.jpg";
-import whatCanWeDoWhenSchoolsNotWorkingImage from "../../images/books/what-can-we-do-when-schools-not-working.png";
+import aDifferentWayToLearnImage from "../../images/books/a-different-way-to-learn-square.png";
+import changingOurMindsImage from "../../images/books/changing-our-minds-square.png";
+import whenTheNaughtyStepsImage from "../../images/books/when-the-naughty-step-makes-things-worse-square.png";
+import psychologyOfMentalHealthImage from "../../images/books/the-psychology-of-mental-health-square.png";
+import teenagersGuideToBurnoutImage from "../../images/books/the-teenagers-guide-to-burnout-square.png";
+import whatCanWeDoWhenSchoolsNotWorkingImage from "../../images/books/what-can-we-do-when-schools-not-working-square.png";
+import teenGuideToTakingControl from "../../images/books/the-teenagers-guide-to-taking-control-of-your-education-square.png";
+import emdrAccessible from "../../images/books/making-emdr-accessible-square.png";
 
 const { book } = Astro.props;
 
@@ -17,6 +19,8 @@ const id2Image = {
   4: whenTheNaughtyStepsImage,
   5: teenagersGuideToBurnoutImage,
   6: whatCanWeDoWhenSchoolsNotWorkingImage,
+  7: teenGuideToTakingControl,
+  8: emdrAccessible
 };
 
 const image = id2Image[book.id];
@@ -29,3 +33,12 @@ const image = id2Image[book.id];
   alt={`${book.title}`}
   pictureAttributes={{}}
 />
+
+<style lang="scss">
+  img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+</style>

@@ -1,0 +1,96 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CoursesList from "../../components/course/CoursesListV2.astro";
+import type { CourseMeta } from "../../scripts/courseMeta";
+import getCourses from "../../scripts/courses";
+import WhitePanel from "../WhitePanel.astro";
+import type { ImageMetadata } from "astro";
+import { makeUrl } from "../../scripts/url";
+import CourseQuote from "./CourseQuote.astro";
+
+export type CourseSubcategory = {
+  navName: string;
+  title: string;
+  courses: CourseMeta[];
+};
+
+interface Props {
+  subcategories: CourseSubcategory[];
+  pageTitle: string;
+  metaDescription: string;
+  whitePanelTitle: string;
+  whitePanelDescriptions: string[];
+  whitePanelImg?: ImageMetadata;
+  whitePanelImgAlt: string;
+}
+
+const {
+  subcategories,
+  pageTitle,
+  metaDescription,
+  whitePanelTitle,
+  whitePanelDescriptions,
+  whitePanelImg,
+  whitePanelImgAlt,
+} = Astro.props;
+
+const courses = await getCourses();
+const allDescriptions = whitePanelDescriptions.concat(
+  "Our courses take a child-centred perspective and are suitable for children with and without diagnoses.",
+  "All courses are available to watch for 12 months",
+);
+---
+
+<BaseLayout
+  active="courses"
+  pageTitle={pageTitle}
+  metaDescription={metaDescription}
+>
+  <a id="welcome" class="anchor">
+    <h1 class="section-title">
+      <span class="courses-section-title">{pageTitle}</span>
+    </h1>
+  </a>
+
+  <WhitePanel
+    title={whitePanelTitle}
+    descriptions={allDescriptions}
+    img={whitePanelImg}
+    imgAlt={whitePanelImgAlt}
+    readMore={true}
+  />
+
+  <div class="category-badges-wrapper">
+    <ul>
+      {
+        subcategories.map((subcategory) => (
+          <li>
+            <a href={"#" + makeUrl(subcategory.title)}>{subcategory.navName}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+
+  {
+    subcategories.map((subcategory) => (
+      <>
+        <a id={makeUrl(subcategory.title)} class="anchor">
+          <h2 class="section-title">
+            <span class="">{subcategory.title}</span>
+          </h2>
+        </a>
+
+        <CoursesList
+          courses={courses.filter((course) =>
+            subcategory.courses.includes(course.data.meta!),
+          )}
+          categoryId=""
+          categoryName=""
+        />
+        <CourseQuote/>
+      </>
+    ))
+  }
+</BaseLayout>

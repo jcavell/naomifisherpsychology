@@ -31,7 +31,7 @@
     background-image: url(icon-top.svg);
     z-index: 11;
     @include mix.special-text;
-    @media (min-width: 1200px) {
+    @media (min-width: 768px) {
       bottom: 20px;
       right: 20px;
     }

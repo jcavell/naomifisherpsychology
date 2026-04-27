@@ -4,6 +4,7 @@ uri: "/books/when-the-naughty-step-makes-things-worse"
 title: "When the Naughty Step Makes Things Worse"
 subtitle: "Parenting for Children (and Adults) Who Need Something Different"
 description: "A down-to-earth illustrated guide for parents of children who just haven't read the parenting books."
+summaryShort: "Some children just haven't read the parenting books. The harder you try, the worse it gets. There's a hidden contract at the heart of parenting. It's the idea that if parents just get it right, their children can be made to do what they want."
 summary: "Some children just haven't read the parenting books. The harder you try, the worse it gets. There's a hidden contract at the heart of parenting. It's the idea that if parents just get it right, their children can be made to do what they want. Manuals explain how to make it very clear to your children what you want them to do - and how to respond when they don't cooperate."
 publisher: "Little, Brown Book Group"
 pubDate: "2024-10-03"
@@ -14,7 +15,9 @@ audiobookIsbn: "9781405559461"
 pages: 448
 people: ["Dr Naomi Fisher", "Eliza Fricker"]
 tags: ["Low Demand Parenting", "Screens", "Parents"]
-toc: ["My Child Hasn’t Read the Parenting Books",
+toc:
+  [
+    "My Child Hasn’t Read the Parenting Books",
     "Parenting",
     "The Principles of Low Demand Parenting",
     "Communication",
@@ -25,7 +28,8 @@ toc: ["My Child Hasn’t Read the Parenting Books",
     "What About Other People?",
     " Will It Be Like This Forever?",
     "What About Me?",
-    "Low Demand Parenting in Action"]
+    "Low Demand Parenting in Action",
+  ]
 audiobookLength: "10 hours"
 hasAudiobookSample: false
 dimensions: "15.3 x 2.2 x 23.4 cm"

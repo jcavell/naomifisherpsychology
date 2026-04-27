@@ -1,0 +1,65 @@
+---
+import { getCachedWebinars } from "../../scripts/webinarsCache";
+import { RemoveFinishedWebinars } from "./RemoveFinishedWebinars";
+import WebinarSummary from "./WebinarSummary.astro";
+const entry = await getEntry("webinar-quotes", "general-webinar-quotes");
+const quotes = entry?.data ?? [];
+import GenerateQuote from "../Quoter";
+import { getEntry } from "astro:content";
+
+const cachedWebinars = await getCachedWebinars();
+const { limitTo } = Astro.props;
+
+const heading = limitTo ? "NEXT WEBINARS" : "UPCOMING WEBINARS";
+const webinars = limitTo ? cachedWebinars.slice(0, limitTo) : cachedWebinars;
+---
+
+{
+  webinars?.length === 0 ||
+    (!webinars && (
+      <>
+        <a name="webinars" class="anchor">
+          <h2 class="section-title">
+            <span>No Upcoming Webinars</span>
+          </h2>
+        </a>
+        <p>
+          We don't have any upcoming webinars at the moment, but new sessions
+          are always being added to our calendar. Please check back soon, or
+          <a href="#newsletter">subscribe to our newsletter</a> to be notified
+          of upcoming and newly added webinars.
+        </p>
+      </>
+    ))
+}
+
+{
+  webinars?.length > 0 && (
+    <>
+      <a id="webinars" class="anchor">
+        <h2 class="section-title">
+          <span class="courses-section-title">{heading}</span>
+          {limitTo && (
+            <a href="/webinars" class="section-title-all-link">
+              {" "}
+              See All Webinars{" "}
+            </a>
+          )}
+        </h2>
+      </a>
+      <p>
+        Naomi runs live webinars for parents and professionals. They are
+        recorded and available to watch for 30 days.
+      </p>
+      <div class="course-card-grid">
+        <RemoveFinishedWebinars client:load />
+
+        {webinars?.map((webinar, index) => (
+          <WebinarSummary webinar={webinar} />
+        ))}
+      </div>
+    </>
+  )
+}
+
+<GenerateQuote client:load quotes={quotes} />

@@ -1,5 +1,5 @@
 ---
-import getWebinars from "../../scripts/webinars";
+import { getCachedWebinars } from "../../scripts/webinarsCache";
 import getCourses from "../../scripts/courses";
 
 import {
@@ -14,9 +14,9 @@ import { makeUrl } from "../../scripts/url";
 import { allTags, ageTags, forTags, topicTags } from "../../scripts/tags";
 
 import WebinarSummary from "../../components/webinar/WebinarSummary.astro";
-import CourseSummary from "../../components/course/CourseSummary.astro";
-import BlogSummary from "../../components/blog/BlogSummary.astro";
-import BookSummary from "../../components/book/BookSummary.astro";
+import CourseSummary from "../../components/course/CourseSummaryV2.astro";
+import BlogSummary from "../../components/blog/BlogSummaryV2.astro";
+import BookSummary from "../../components/book/BookSummaryV2.astro";
 
 import { getOrderedPosts } from "../../scripts/blog";
 
@@ -30,7 +30,7 @@ import { getTagMeta } from "../../scripts/tagMeta";
 
 export async function getStaticPaths() {
   // Get ALL content
-  const webinars = await getWebinars();
+  const webinars = await getCachedWebinars();
   const courses = await getCourses();
   const posts = await getOrderedPosts();
 
@@ -102,7 +102,7 @@ const {
   restOfPosts,
 } = Astro.props;
 
-const hasWebinars = webinars.length > 0;
+const hasWebinars = webinars?.length > 0;
 const hasCourses = courses.length > 0;
 const hasBooks = books.length > 0;
 const hasPosts = firstTwoPosts.length > 0;
@@ -127,21 +127,21 @@ const metaDescription =
 ---
 
 <style>
-    .accordion-wrapper .panel {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 16px;              /* spacing between cards */
-        align-items: stretch;
-        /* optionally ensure padding / border don't reduce available space */
-        box-sizing: border-box;
-    }
+  .accordion-wrapper .panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px; /* spacing between cards */
+    align-items: stretch;
+    /* optionally ensure padding / border don't reduce available space */
+    box-sizing: border-box;
+  }
 
-    .accordion-wrapper .panel > * { /* target each BlogSummary root */
-        flex: 0 1 calc(50% - 8px);   /* two per row, accounting for half of gap */
-        box-sizing: border-box;
-        min-width: 0;                /* allow shrinking inside flex containers */
-    }
-
+  .accordion-wrapper .panel > * {
+    /* target each BlogSummary root */
+    flex: 0 1 calc(50% - 8px); /* two per row, accounting for half of gap */
+    box-sizing: border-box;
+    min-width: 0; /* allow shrinking inside flex containers */
+  }
 </style>
 
 <BaseLayout tagUrl={tagUrl} tagName={tagName} metaDescription={metaDescription}>
@@ -196,7 +196,11 @@ const metaDescription =
       </a>
     )
   }
-  {firstTwoPosts.map((post) => <BlogSummary post={post.data} hideDate={true} />)}
+  {
+    firstTwoPosts.map((post) => (
+      <BlogSummary post={post.data} hideDate={true} />
+    ))
+  }
 
   {
     restOfPosts.length > 0 && (
@@ -204,7 +208,7 @@ const metaDescription =
         <button class="accordion no-title-accordion">More Posts</button>
         <div class="panel">
           {restOfPosts.map((post) => (
-            <BlogSummary post={post.data} hideDate={true}/>
+            <BlogSummary post={post.data} hideDate={true} />
           ))}
         </div>
       </div>
@@ -223,7 +227,7 @@ const metaDescription =
   {books.map((book) => <BookSummary book={book.data} />)}
 
   {
-    webinars.length > 0 && (
+    webinars?.length > 0 && (
       <a name="webinars" class="anchor">
         <h2 class="section-title">
           <span class="webinars-section-title">Webinars</span>
@@ -231,7 +235,7 @@ const metaDescription =
       </a>
     )
   }
-  {webinars.map((webinar, index) => <WebinarSummary webinar={webinar} />)}
+  {webinars?.map((webinar, index) => <WebinarSummary webinar={webinar} />)}
 
   <!--{-->
   <!--  courses.length > 0 && (-->

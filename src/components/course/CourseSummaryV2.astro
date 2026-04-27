@@ -1,0 +1,120 @@
+---
+import { makeUrl } from "../../scripts/url";
+import Contributers from "../Contributers.astro";
+import CourseImage from "./CourseImage.astro";
+import { DiscountedPrice } from "../basket/DiscountedPrice";
+import CourseSummaryAddToBasket from "../basket/CourseSummaryAddToBasket";
+import type { CourseCard } from "../../content/config";
+import "../../styles/components/card.scss";
+
+interface Props {
+  course: CourseCard;
+}
+
+const { course } = Astro.props;
+
+const title = course.title;
+const summary = course.description;
+const offerId = course.offerId!;
+const priceInPence = course.priceInPence!;
+---
+
+<article class="course-card">
+  <CourseImage course={course} />
+  <div class="card-content">
+    <h1 class="card-title">
+      <a href=`/courses/${makeUrl(title)}`>{title}</a>
+    </h1>
+    <p class="card-author">
+      <Contributers people={course.meta?.contributers} />
+    </p>
+    <p class="card-price">
+      <DiscountedPrice
+        offerId={offerId}
+        priceInPence={course.priceInPence!}
+        client:load
+      />
+    </p>
+    <p class="card-description">
+      {summary}
+    </p>
+    <div class="card-buttons">
+      <a href=`/courses/${makeUrl(title)}`> Learn More </a>
+      <CourseSummaryAddToBasket offerId={offerId} client:load />
+    </div>
+
+    <div class="card-actions">
+      <!-- <button class="btn btn-learn">Learn More</button>
+      <button class="btn btn-basket">Add to Basket</button> -->
+      <a class="btn btn-learn" href=`/courses/${makeUrl(title)}`>
+        Learn More
+      </a>
+      <CourseSummaryAddToBasket offerId={offerId} client:load />
+    </div>
+  </div>
+</article>
+<!-- TEST -->
+
+<!-- <div class="card-grid"> -->
+<!-- Card 1: Helping Your Teen -->
+<!-- <article class="course-card">
+    <img
+      src="src/images/courses/helping-your-nd-teen-recover-from-school.jpg"
+      alt="Group of teens walking outdoors"
+    />
+    <div class="card-content">
+      <h1 class="card-title">
+        xxxHelping Your Neurodivergent Teen Recover from School
+      </h1>
+      <p class="card-author">Dr Naomi Fisher</p>
+      <p class="card-price">£40.00</p>
+      <p class="card-description">
+        Many neurodivergent teens are struggling to attend school, and lots of
+        them become completely unable to attend. But what happens next?
+        Teenagers often believe they must be at school to learn, and that their
+        future is over. This isn't true. We don't talk much about education
+        outside school, but it's happening all around us. In this new course,
+        Naomi will give you some ideas to help your teenager re-engage with
+        learning and see a life beyond school. This course focuses on the
+        learning and educational journey, rather than mental health.
+      </p>
+      <div class="card-actions">
+        <button class="btn btn-learn">Learn More</button>
+        <button class="btn btn-basket">In Basket</button>
+      </div>
+    </div>
+  </article> -->
+
+<!-- Card 2: Burnt Out by School -->
+<!-- <article class="course-card">
+    <img
+      src="src/images/courses/helping-your-nd-teen-recover-from-school.jpg"
+      alt="A burnt out car"
+    />
+    <div class="card-content">
+      <h1 class="card-title">Burnt Out By School?</h1>
+      <p class="card-author">Dr Naomi Fisher</p>
+      <p class="card-price">£40.00</p>
+      <p class="card-description">
+        Things have gone wrong at school for your teenager... Naomi will explain
+        how burnout happens and what the process of recovery looks like.
+      </p>
+      <div class="card-actions">
+        <button class="btn btn-learn">Learn More</button>
+        <button class="btn btn-basket">In Basket</button>
+      </div>
+    </div>
+  </article> -->
+<!-- </div> -->
+<!--  END TEST -->
+
+<style lang="scss">
+  h2 {
+    border-color: var(--courses-color);
+    padding-right: 16px;
+  }
+  .card-buttons a:first-child {
+    border-radius: 0 0 0 16px;
+    border-right: 1px solid #fff;
+  }
+</style>

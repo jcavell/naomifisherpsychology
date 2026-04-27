@@ -3,10 +3,13 @@ import "../styles/layouts/tags-and-topics.scss";
 import "../styles/global.scss";
 import "../styles/components/header-navigation/hamburger.scss";
 import "../styles/components/header-navigation/menu.scss";
+import SalesBanner from "../components/SalesBanner.astro";
+import BannerData from "../content/top-banner/top-banner.json";
 import CookieConsent from "../components/CookieConsent.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { env } from "../scripts/env";
+import PopUpPanel from "../components/PopUpPanel.astro";
 
 const { active, tagName, tagUrl, bodyClassName, metaDescription, hideNav } =
   Astro.props;
@@ -16,19 +19,22 @@ const bodyClass = bodyClassName
   : tagName
     ? "tag-page topic-page tag-" + tagUrl
     : "category-" + active;
+
+const bannerItems = BannerData;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
+    <meta charset="utf-8" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <script>
-      import { persistCouponFromURL } from "../scripts/coupon/couponRetrieverAndStorer";
+      import { persistCouponFromURLOrAuto } from "../scripts/coupon/couponRetrieverAndStorer";
       import { persistTrackersFromURL } from "../scripts/tracking/trackerRetrieverAndStorer";
 
       document.addEventListener("DOMContentLoaded", () => {
-        persistCouponFromURL();
+        persistCouponFromURLOrAuto();
         persistTrackersFromURL();
       });
     </script>
@@ -105,6 +111,17 @@ const bodyClass = bodyClassName
   </head>
 
   <body class={bodyClass}>
+    {active === "home" && <PopUpPanel />}
+
+    {
+      // (active === "home" || active === "courses") && (
+      //   <SalesBanner useClass="course-bg" />
+      // )
+      bannerItems.bannerActive && (
+        <SalesBanner useClass="course-bg" {bannerItems} />
+      )
+    }
+
     {
       !hideNav && (
         <button

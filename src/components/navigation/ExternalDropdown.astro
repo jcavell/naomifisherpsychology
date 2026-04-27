@@ -1,0 +1,37 @@
+---
+const { active } = Astro.props;
+---
+
+<!-- Awaiting prop assignment ahead of full-component rendering -->
+<li class="has-dropdown">
+  <a
+    href="https://www.emdrtraininguk.co.uk/"
+    target="_blank"
+    class={`desktop-item ${active === "training" ? "active" : "inactive"}`}
+  >
+    EMDR Training
+  </a>
+  <input type="checkbox" id="showDrop-external" />
+  <label
+    for="showDrop-external"
+    class={`nav-dropdown mobile-item ${active === "training" ? "active" : "inactive"}`}
+  >
+    EMDR Training
+  </label>
+  <ul class="drop-menu external-dropdown">
+    <li class="desktop-item"><h5>Professional Training</h5></li>
+    <li>
+      <a
+        href="https://www.emdrtraininguk.co.uk/emdr-standard-training"
+        target="_blank">Standard Training</a
+      >
+    </li>
+    <li>
+      <a
+        href="https://www.emdrtraininguk.co.uk/emdr-refresher-day"
+        target="_blank">Refresher Training</a
+      >
+    </li>
+    <li><p>These links open in our professional training website.</p></li>
+  </ul>
+</li>

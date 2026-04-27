@@ -14,7 +14,7 @@ export function getFormats(book): string[] {
 }
 
 export async function getFeaturedBooks() {
-  const featuredIds = [4, 2];
+  const featuredIds = [8, 7];
   const books = await getCollection("books");
   return featuredIds.map((id) => books.find((b) => b.data.id === id));
 }

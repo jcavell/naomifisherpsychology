@@ -1,0 +1,50 @@
+---
+import CourseCategory from "../../components/course/CourseCategory.astro";
+
+import {
+  helpingYourAutisticChildWithAnger,
+  helpingYourAutisticChildWithOCD,
+  helpingYourAutisticChildWithTransitions,
+  helpingYourAutisticChildMoveOnFromSchoolTrauma,
+  autisticChildWithAnxiety,
+  autisticTeenWithAnxiety,
+  autisticChildWithTrauma,
+} from "../../scripts/courseMeta";
+
+const anxiety = {
+  navName: "Anxiety",
+  title: "Autism and Anxiety",
+  courses: [autisticChildWithAnxiety, autisticTeenWithAnxiety],
+};
+const ocd = { navName: "OCD", title: "Autism and OCD", courses: [helpingYourAutisticChildWithOCD] };
+const behaviour = {
+  navName: "Behaviour",
+  title: "Autism and Behaviour",
+  courses: [
+    helpingYourAutisticChildWithAnger,
+    helpingYourAutisticChildWithTransitions,
+  ],
+};
+const trauma = {
+  title: "Autism and Trauma",
+  navName: "Trauma",
+  courses: [
+    autisticChildWithTrauma,
+    helpingYourAutisticChildMoveOnFromSchoolTrauma,
+  ],
+};
+const subcategories = [anxiety, behaviour, trauma, ocd];
+---
+
+<CourseCategory
+  subcategories={subcategories}
+  pageTitle="AUTISM COURSES"
+  metaDescription="Browse our autism courses"
+  whitePanelTitle="On-demand courses for parents and carers"
+  whitePanelDescriptions={[
+    "Anxiety is very common among autistic people, as are difficulties with school and friendships.",
+    "Our courses for parents and carers of autistic children provide psychological information and advice about topics including <a href = '#anxiety'>anxiety</a>, <a href = '#ocd'>OCD</a>, <a href = '#trauma'>trauma</a> and <a href = '#behaviour'>anger</a>.",
+    "We also have courses about how to help <a href = '/courses/school-and-education/#at-school'>autistic children with school</a> and how to help when your  <a href = '/courses/school-and-education/#out-of-school'>child is no longer at school</a>.",
+  ]}
+  whitePanelImgAlt="Purple flowers"
+/>

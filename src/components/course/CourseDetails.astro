@@ -1,6 +1,6 @@
 ---
 import Contributers from "../Contributers.astro";
-import CourseSummary from "./CourseSummary.astro";
+import CourseSummary from "./CourseSummaryV3.astro";
 import Tags from "../Tags.astro";
 import { getCourseFromTitle, parseDescriptions } from "../../scripts/courses";
 import CourseImage from "./CourseImage.astro";
@@ -100,11 +100,12 @@ const relatedCourses = (
     </h2>
   )
 }
-
-{
-  relatedCourses &&
-    relatedCourses.map((related) => <CourseSummary course={related!.data} />)
-}
+<div class="course-card-grid">
+  {
+    relatedCourses &&
+      relatedCourses.map((related) => <CourseSummary course={related!.data} />)
+  }
+</div>
 <style lang="scss">
   .card {
     z-index: -1;

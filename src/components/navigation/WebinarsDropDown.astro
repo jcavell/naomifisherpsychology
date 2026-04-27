@@ -1,0 +1,86 @@
+---
+import { getCachedWebinars } from "../../scripts/webinarsCache";
+const { active } = Astro.props;
+const webinars = await getCachedWebinars();
+import { getWebinarMeta } from "../../scripts/webinarMeta";
+import { Image } from "astro:assets";
+---
+
+<li class="has-dropdown">
+  <a
+    href="/webinars"
+    class={`desktop-item  ${active === "webinars" ? "active" : "inactive"}`}
+  >
+    Live Webinars
+  </a>
+  <input type="checkbox" id="showDrop-webinars" />
+  <label
+    for="showDrop-webinars"
+    class={`nav-dropdown mobile-item ${active === "webinars" ? "active" : "inactive"}`}
+  >
+    Live Webinars
+  </label>
+  <ul class="drop-menu webinar-dropdown">
+    <li class="desktop-item"><h5>Coming Up Soon</h5></li>
+    <li>
+      <ul class="webinars-list">
+        {
+          webinars?.map((webinar, index) => {
+            const webinarMeta = getWebinarMeta(webinar.id);
+            return (
+              <li>
+                <a href={`/webinars/${webinar.id}`}>
+                  <div class="webinar-card">
+                    <div class="webinar-img-wrapper">
+                      {webinarMeta ? (
+                        <Image
+                          src={webinarMeta.thumbnail}
+                          alt={`Webinar ${webinar.title}`}
+                          class="white-panel-image"
+                        />
+                      ) : (
+                        <Image
+                          src={webinar.logoUrl}
+                          alt={`Webinar ${webinar.title}`}
+                          class="white-panel-image"
+                          inferSize={true}
+                        />
+                      )}
+                    </div>
+                    <div class="webinar-content">
+                      <h5>{webinar.title}</h5>
+                      <p>
+                        {" "}
+                        {`${webinar.displayDate.weekday} ${webinar.displayDate.day} ${webinar.displayDate.month}`}
+                        {`${webinar.displayDate.startTime}`} -{" "}
+                        {`${webinar.displayDate.endTime}`}
+                      </p>
+                      <div class="webinar-chevron">
+                        <img
+                          src="/images/icons/icon-chev-right.svg"
+                          alt="Read more"
+                        />
+                      </div>
+                    </div>
+                    <div class="webinar-link mobile-item">
+                      <img
+                        src="/images/icons/icon-chev-right.svg"
+                        alt="Read more"
+                      />
+                    </div>
+                  </div>
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    <li>
+      <a
+        href="/webinars"
+        class={`category-home-link ${active === "webinars" ? "active" : "inactive"}`}
+      >
+        View all Webinars
+      </a>
+    </li>
+  </ul>

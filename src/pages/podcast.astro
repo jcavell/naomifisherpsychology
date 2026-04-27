@@ -1,0 +1,38 @@
+---
+import PodcastSummary from "../components/podcast/podcastSummary.astro";
+import { getOrderedPodcasts } from "../scripts/podcast";
+
+interface Props {
+  start?: number;
+  length?: number;
+}
+
+const episodes = await getOrderedPodcasts();
+const { start = 0, length = 4 } = Astro.props;
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const metaDescription = "Neurosense Podcast";
+---
+
+<BaseLayout
+  active="podcast"
+  pageTitle="Podcast"
+  metaDescription={metaDescription}
+>
+  <a id="blog" class="anchor">
+    <h1 class="section-title">
+      <span class="">Let's Talk Neurosense: the Psychology of Neurodiversity</span>
+    </h1>
+  </a>
+
+  <p>A podcast where clinical psychologists ask (and answer) questions. Naomi presents with Danielle (Dani) Drinkwater - a Clinical Psychologist, tutor, and author of the Mind the Couch blog.</p>
+
+  <div class="course-card-grid">
+    {
+      episodes.slice(start, length).map((episode) => (
+        <PodcastSummary episode={episode.data} />
+      ))
+    }
+  </div>
+</BaseLayout>

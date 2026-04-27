@@ -1,0 +1,10 @@
+---
+import GenerateQuote from "../../components/Quoter";
+import { getEntry } from "astro:content";
+
+const coursesQuotes = (await getEntry(
+  "course-quotes",
+  "general-course-quotes",
+))!.data;
+---
+<GenerateQuote client:load quotes={coursesQuotes} />

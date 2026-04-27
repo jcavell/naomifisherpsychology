@@ -11,7 +11,38 @@ const descriptions = splitContentByPTags(tagMeta!.description);
 // console.log("tag name", tagName);
 ---
 
+<h1 class="section-title">
+  <span class="courses-section-title">{tagName}</span>
+</h1>
+
 <div class="page-intro-wrapper">
+  <div class="page-intro-static-image">
+    <Picture
+      src={tagMeta?.image}
+      widths={[620, 1016, 2176]}
+      sizes={`(min-width: 1185px) 1088px, (min-width: 780px) 754px, 100vw`}
+      alt="Alt"
+      pictureAttributes={{}}
+    />
+  </div>
+
+  <div class="page-intro-text">
+    <p set:html={descriptions[0]} />
+
+    <div class="accordion-wrapper">
+      <button class="accordion no-title-accordion">Read More</button>
+      <div class="panel">
+        {
+          descriptions
+            .slice(1)
+            .map((description) => <p set:html={description} />)
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="page-intro-wrapper">
   <div class="page-intro-static-image">
     <Picture
       src={tagMeta?.image}
@@ -37,4 +68,4 @@ const descriptions = splitContentByPTags(tagMeta!.description);
       </div>
     </div>
   </div>
-</div>
+</div> -->

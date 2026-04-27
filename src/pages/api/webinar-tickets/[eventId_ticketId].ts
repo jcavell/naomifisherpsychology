@@ -1,6 +1,7 @@
 import type { BasketItem } from "../../../types/basket-item.ts";
 import logger from "../../../scripts/logger.ts";
-import getWebinars, { getWebinar } from "../../../scripts/webinars.ts";
+import { getCachedWebinars } from "../../../scripts/webinarsCache";
+import { getWebinar } from "../../../scripts/webinars.ts";
 
 // export const prerender = false;
 
@@ -12,7 +13,7 @@ const calculateExpiryIn30Days = (date: string) => {
 
 
 export async function getStaticPaths() {
-  const webinars = await getWebinars(); // Get all webinars
+  const webinars = await getCachedWebinars();
 
   return webinars.flatMap(webinar =>
     webinar.tickets.map(ticket => ({

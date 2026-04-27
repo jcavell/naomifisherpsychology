@@ -12,6 +12,8 @@ import type {
   WebinarTicket,
 } from "../types/webinar";
 
+import { cleanHtml } from "./clean-html.ts";
+
 import logger from "./logger.ts";
 
 const TEST_DATA_DIR = "src/test-data/eventbrite";
@@ -101,7 +103,7 @@ export default async function getWebinars(): Promise<Webinar[]> {
 
     if (webinars && details) {
       logger.INFO("GET WEBINARS: Found and will use cached webinars and details data");
-      const processedWebinars = webinars.map((webinar: EventbriteWebinar, index: number) =>
+      const processedWebinars = webinars?.map((webinar: EventbriteWebinar, index: number) =>
         transformEventbriteToWebinar(webinar, details[index])
       );
 
@@ -114,7 +116,7 @@ export default async function getWebinars(): Promise<Webinar[]> {
 
   logger.INFO("GET WEBINARS: Calling the Eventbrite API for basic data");
 
-// 1. Get the BASIC webinars info
+  // 1. Get the BASIC webinars info
   const eventsResponse = await fetch(
     "https://www.eventbriteapi.com/v3/organizations/495447088469/events/?expand=category,subcategory,ticket_availability,ticket_classes&status=live",
     {
@@ -128,7 +130,7 @@ export default async function getWebinars(): Promise<Webinar[]> {
     throw new Error(`Server error: ${eventsResponse.status}`);
   }
 
-  const eventsJson: { events: EventbriteWebinar[] }  = await eventsResponse.json();
+  const eventsJson: { events: EventbriteWebinar[] } = await eventsResponse.json();
   const eventbriteWebinars: EventbriteWebinar[] = eventsJson.events;
 
   // Store webinars json if debugging is needed
@@ -178,7 +180,7 @@ export default async function getWebinars(): Promise<Webinar[]> {
     return (
       w.tickets?.length &&
       w.tickets.some((t) => t.status === "AVAILABLE") &&
-      w.endDateTime > now
+      w.endDate > now
     );
   });
 
@@ -194,7 +196,7 @@ export default async function getWebinars(): Promise<Webinar[]> {
 const getAllWebinarsDetails = async (webinars: EventbriteWebinar[]): Promise<Response[]> => {
   logger.INFO("GET ALL WEBINARS DETAILS: Calling getWebinar details in for each webinar");
   const responses = await Promise.all(
-    webinars.map(async (webinar) => {
+    webinars?.map(async (webinar) => {
       const response = await getWebinarDetails(webinar.id);
       if (!response.ok) {
         throw new Error(`Failed to fetch webinar details: ${response.status}`);
@@ -221,7 +223,7 @@ function transformEventbriteToWebinar(
   eventbriteWebinar: EventbriteWebinar,
   detailsJson: any,
 ): Webinar {
-  const detailsText = detailsJson.modules[0]?.data?.body?.text ?? "";
+  const detailsText = cleanHtml(detailsJson.modules[0]?.data?.body?.text ?? "");
   const startDate = new Date(eventbriteWebinar.start.utc);
   const endDate = new Date(eventbriteWebinar.end.utc);
   const displayDate = formatDisplayDates(
@@ -251,15 +253,6 @@ function transformEventbriteToWebinar(
       eventbriteWebinar.description.text,
       detailsText,
     ),
-    // Legacy date fields - to be removed later
-    startDateTime: startDate,
-    endDateTime: endDate,
-    day: displayDate.day,
-    month: displayDate.month,
-    monthLong: displayDate.monthLong,
-    year: displayDate.year,
-    startTime: displayDate.startTime,
-    endTime: displayDate.endTime,
   };
 }
 
@@ -307,6 +300,7 @@ function formatDisplayDates(startUtc: string, endUtc: string) {
   const startDateTime = new Date(Date.parse(startUtc));
   const endDateTime = new Date(Date.parse(endUtc));
 
+  const displayWeekday: Intl.DateTimeFormatOptions = { weekday: "short" }
   const displayDay: Intl.DateTimeFormatOptions = { day: "numeric" };
   const displayMonth: Intl.DateTimeFormatOptions = { month: "short" };
   const displayMonthLong: Intl.DateTimeFormatOptions = { month: "long" };
@@ -318,6 +312,7 @@ function formatDisplayDates(startUtc: string, endUtc: string) {
   };
 
   return {
+    weekday: startDateTime.toLocaleString(undefined, displayWeekday),
     day: startDateTime.toLocaleString(undefined, displayDay),
     month: startDateTime.toLocaleString(undefined, displayMonth),
     monthLong: startDateTime.toLocaleString(undefined, displayMonthLong),

@@ -1,0 +1,55 @@
+---
+const { book } = Astro.props;
+
+import BookImage from "./BookImage.astro";
+import Contributers from "../Contributers.astro";
+import Tags from "../Tags.astro";
+import { getFormats, getPubDate, getPubDateString } from "../../scripts/book";
+import "../../styles/components/card.scss";
+---
+
+<article class="book-card">
+  <div class="book-card__wrapper">
+    <!-- Left Side: Portrait Image -->
+    <div class="book-card__image-container">
+      <a href={book.uri}> <BookImage book={book} /></a>
+      <span class="book-card__date">Published {getPubDateString(book)} </span>
+    </div>
+
+    <!-- Right Side: Content -->
+    <div class="book-card__content">
+      <h3 class="book-card__title">
+        <a href={book.uri}>{book.title}</a>
+        <span>{book.subtitle} </span>
+      </h3>
+
+      <p>
+        {book.summaryShort}
+      </p>
+      <!-- <p class="mobile-meta mobile-item">
+        <span class="book-card__date"
+          >Published {getPubDateString(book)}
+        </span>
+        <span class="book-card__format"> {getFormats(book).join(", ")} </span>
+      </p> -->
+    </div>
+  </div>
+  <div class="book-card__footerv2">
+    <div class="card-actions">
+      <a class="btn btn-learn" href={book.uri}> Read More</a>
+    </div>
+
+    <!--<div class="book-card__metadata">-->
+    <!--  <Tags tags={book.tags} />-->
+    <!--</div>-->
+  </div>
+</article>
+
+<style lang="scss">
+  $card-bg: #ffffff;
+  $text-main: #2d3436;
+  $text-muted: #636e72;
+  $accent-color: #0984e3;
+  $border-radius: 16px;
+  $shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
+</style>

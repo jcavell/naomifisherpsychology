@@ -5,11 +5,14 @@ import {
   getLatestCourses,
 } from "../scripts/courses";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import CoursesList from "../components/course/CoursesList.astro";
+import CoursesList from "../components/course/CoursesListV2.astro";
 
+import WhitePanel from "../components/WhitePanel.astro";
+import { getEntry } from "astro:content";
 import StaticImage from "../components/StaticImage.astro";
-import image from "../images/static/naomi-in-stables.jpg";
 
+import homeImage from "../images/static/courses-home.png";
+import CourseQuote from "../components/course/CourseQuote.astro";
 const featuredCourses1 = await getFeaturedCourses(0, 4);
 const featuredCourses2 = await getFeaturedCourses(2, 4);
 
@@ -22,60 +25,34 @@ const metaDescription =
   pageTitle="Courses"
   metaDescription={metaDescription}
 >
-  <div class="info-section-wrapper">
-    <div class="info-text">
-      <!--<h3>🔥 HALF PRICE SALE 🔥</h3>-->
-      <!--<p>Apply coupon <strong>WINTERANXIETY</strong></p>-->
-      <!--<p>Available to watch for 12 months after purchase</p>-->
-      <!--<h4>Sale ends midnight Sunday 🕛</h4>-->
-      <p>
-        We created our pre-recorded video courses when we discovered families
-        were finding it hard to access high quality, affordable psychological
-        information which addressed their children’s needs.
-      </p>
-      <p>They are divided into manageable modules.</p>
-      <p>
-        You or your child can watch them in your own time for 12 months after
-        purchase.
-      </p>
-    </div>
+  <a id="courses" class="anchor">
+    <h1 class="section-title">
+      <span class="courses-section-title">COURSES</span>
+    </h1>
+  </a>
 
-    <div class="info-links">
-      <h3>CATEGORIES</h3>
-      <a href="/courses/categories/anxiety" class="filter-courses"> Anxiety </a>
-      <a href="/courses/categories/autism" class="filter-courses"> Autism </a>
-      <a href="/courses/categories/burnout" class="filter-courses"> Burnout </a>
-      <a href="/courses/categories/demand-avoidance" class="filter-courses">
-        Demand Avoidance
-      </a>
+  <WhitePanel
+    title="Our pre-recorded courses provide high quality, affordable information and tips"
+    descriptions={[
+      " We created our course library when we discovered families were finding it hard to access high quality, affordable psychological information which addressed their children's needs.",
+      "They are divided into manageable modules.",
+      "You or your child can watch them in your own time for 12 months after purchase.",
+      'See our <a href="#faq">Courses FAQ</a> for more information.',
+    ]}
+    img={homeImage}
+    imgAlt="Dr. Naomi Fisher"
+  />
 
-      <a href="/courses/categories/ehcps" class="filter-courses"> EHCPs </a>
+  <CourseQuote/>
 
-      <a href="/courses/categories/low-demand-parenting" class="filter-courses">
-        Low Demand Parenting
-      </a>
-
-      <a href="/courses/categories/professionals" class="filter-courses">
-        for Professionals
-      </a>
-
-      <a href="/courses/categories/school" class="filter-courses"> School </a>
-      <a href="/courses/categories/sen" class="filter-courses"> SEN </a>
-
-      <a href="/courses/categories/teens" class="filter-courses">for Teens </a>
-    </div>
+  <div class="category-badges-wrapper">
+    <ul>
+      <li><a href="/courses/autism">Autism</a></li>
+      <li><a href="/courses/demand-avoidance">Demand Avoidance</a></li>
+      <li><a href="/courses/school-and-education">School and Education</a></li>
+      <li><a href="/courses/mental-health-and-behaviour">Mental Health and Behaviour</a></li>
+    </ul>
   </div>
-
-
-  <!--<div class="page-intro-wrapper">-->
-  <!--  <div class="page-intro-static-image">-->
-  <!--    <StaticImage image={image} alt="Collage of all courses" />-->
-  <!--  </div>-->
-  <!--  <h2 class="feature-headline">-->
-  <!--    FEATURE HEADLINE-->
-  <!--  </h2>-->
-  <!--  <div class="page-intro-text"></div>-->
-  <!--</div>-->
 
   <h2 class="section-title">
     <span class="courses-section-title">Featured Courses</span>
@@ -85,4 +62,44 @@ const metaDescription =
     categoryId="featured"
     categoryName="Featured Courses"
   />
+
+  <div class="faq-wrapper">
+    <a class="anchor" name="faq">
+      <h2 class="section-title">
+        <span class="courses-section-title">Courses FAQ</span>
+      </h2></a
+    >
+    <div class="accordion-wrapper">
+      <button class="accordion">What is a course?</button>
+      <div class="panel">
+        <p>
+          Our courses are a series of pre-recorded videos that you watch in your
+          own time. They are available to watch for 12 months after purchase.
+        </p>
+      </div>
+
+      <button class="accordion">How do I find a course?</button>
+      <div class="panel">
+        <p>
+          <a href="/courses">Browse our courses</a> to see which ones are of interest.
+        </p>
+      </div>
+
+      <button class="accordion">How do I watch courses I've purchased?</button>
+
+      <div class="panel">
+        <p>
+          <a href="https://courses.naomifisher.co.uk/login"
+            >Login to our courses website</a
+          > to watch your courses.
+        </p>
+      </div>
+      <button class="accordion"
+        >How long are courses available to watch for?</button
+      >
+      <div class="panel">
+        <p>They are now available to watch for 12 months after purchase.</p>
+      </div>
+    </div>
+  </div>
 </BaseLayout>

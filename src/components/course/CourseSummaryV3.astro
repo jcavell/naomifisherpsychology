@@ -1,0 +1,137 @@
+---
+import { makeUrl } from "../../scripts/url";
+import Contributers from "../Contributers.astro";
+import CourseImage from "./CourseImage.astro";
+import { DiscountedPrice } from "../basket/DiscountedPrice";
+import CourseSummaryAddToBasket from "../basket/CourseSummaryAddToBasket";
+import type { CourseCard } from "../../content/config";
+import "../../styles/components/card.scss";
+
+interface Props {
+  course: CourseCard;
+}
+
+const { course } = Astro.props;
+
+const title = course.title;
+const summary = course.description;
+const offerId = course.offerId!;
+const priceInPence = course.priceInPence!;
+---
+
+<div class="card card-courses">
+  <div class="card-image">
+    <CourseImage course={course} />
+  </div>
+  <h3>
+    <a href=`/courses/${makeUrl(title)}`>{title}</a>
+  </h3>
+  <div class="card-details">
+    <Contributers people={course.meta?.contributers} />
+    <!--<span class="duration"> {course.meta?.runningTime} </span>-->
+    <span class="cost">
+      <DiscountedPrice
+        offerId={offerId}
+        priceInPence={course.priceInPence!}
+        client:load
+      />
+    </span>
+  </div>
+
+  <p>
+    {summary}
+  </p>
+
+  <!--<div class="card-meta">-->
+  <!--  <Contributers people={course.meta?.contributers} />-->
+  <!--  <Tags tags={course.meta?.tags} />-->
+  <!--</div>-->
+
+  <div class="card-actions">
+    <a class="btn" href=`/courses/${makeUrl(title)}`> Learn More </a>
+    <CourseSummaryAddToBasket offerId={offerId} client:load />
+  </div>
+</div>
+<style lang="scss">
+  h2 {
+    border-color: var(--courses-color);
+    padding-right: 16px;
+  }
+  .card-buttons a:first-child {
+    border-radius: 0 0 0 16px;
+    border-right: 1px solid #fff;
+  }
+  :global(.card .card-buttons button.add-to-basket-from-summary:first-of-type) {
+    border-radius: 0 0 0 16px;
+  }
+  :global(.card .card-buttons button.add-to-basket-from-summary:last-of-type) {
+    border-radius: 0 0 16px 0;
+  }
+  .card-courses {
+    //overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    h2,
+    h3 {
+      border-top: none;
+      border-radius: 0;
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+      font-family: Oswald;
+      text-transform: none;
+      padding-right: 16px;
+      padding-bottom: 0;
+      min-height: unset;
+      margin-top: 0;
+      border-bottom-width: 0;
+      // Reserve space for two lines of title so contributors/price
+      // align consistently across cards in the same row on desktop.
+      // 1.5rem font × 1.25 line-height = ~1.875rem per line × 2 lines
+      @media (min-width: 768px) {
+        min-height: 3.75rem;
+      }
+      a {
+        color: var(--brand-primary);
+        text-decoration: none;
+        line-height: 1.25;
+      }
+    }
+  }
+  .card-image {
+    width: 100%;
+    margin: 0;
+  }
+  .card-actions {
+    padding: 16px;
+    a.btn {
+      text-align: center;
+      text-decoration: none;
+      font-size: 16px;
+      padding: 8px 12px;
+      color: white;
+      background-color: var(--function-dark-9);
+      &:hover {
+        background-color: var(--brand-primary);
+      }
+    }
+    button,
+    button._textButton_gso2l_355 {
+      background-color: var(--brand-light-bg);
+      color: var(--brand-primary);
+    }
+  }
+  :global(
+    .card-actions
+      button.add-to-basket-from-summary._textButton_1efyz_355.inBask,
+    .card-actions button.add-to-basket-from-summary.._textButton_gso2l_355
+  ) {
+    background-color: var(--brand-light-bg);
+    color: var(--brand-primary);
+  }
+  :global(
+    .card-actions button.add-to-basket-from-summary._textButton_1efyz_355:hover
+  ) {
+    background-color: var(--brand-light-bg);
+    color: var(--brand-primary);
+  }
+</style>

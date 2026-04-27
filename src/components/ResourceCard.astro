@@ -1,0 +1,196 @@
+---
+
+---
+
+<div class="card-grid">
+  <article class="card-item">
+    <div class="logo-container">
+      <div class="card-logo school-logo">
+        <img
+          src="/src/images/resources/autism-rainbow.png"
+          alt="School and Education Logo"
+          style="width: 100%; height: 100%; object-fit: contain;"
+        />
+      </div>
+    </div>
+    <div class="content-container">
+      <h2>AUTISM</h2>
+      <p>Here you will find free resources for Autism</p>
+      <a href="#" class="resource-link">View Autism Free Resources </a>
+    </div>
+  </article>
+
+  <article class="card-item">
+    <div class="logo-container">
+      <div class="card-logo school-logo">
+        <img
+          src="/src/images/resources/demand_avoidance_logo.png"
+          alt="School and Education Logo"
+          style="width: 100%; height: 100%; object-fit: contain;"
+        />
+      </div>
+    </div>
+    <div class="content-container">
+      <h2>DEMAND AVOIDANCE</h2>
+      <p>Here you will find free resources for Demand Avoidance</p>
+      <a href="#" class="resource-link"
+        >View Demand Avoidance Free Resources
+      </a>
+    </div>
+  </article>
+
+  <article class="card-item">
+    <div class="logo-container">
+      <div class="card-logo school-logo">
+        <img
+          src="/src/images/resources/school-icon.png"
+          alt="School and Education Logo"
+          style="width: 100%; height: 100%; object-fit: contain;"
+        />
+      </div>
+    </div>
+    <div class="content-container">
+      <h2>SCHOOL AND EDUCATION</h2>
+      <p>Here you will find free resources for School and Education</p>
+      <a href="#" class="resource-link"
+        >View School and Education Free Resources
+      </a>
+    </div>
+  </article>
+
+  <article class="card-item">
+    <div class="logo-container">
+      <div class="card-logo health-logo">
+        <img
+          src="/src/images/resources/mental-health-icon.png"
+          alt="School and Education Logo"
+          style="width: 100%; height: 100%; object-fit: contain;"
+        />
+      </div>
+    </div>
+    <div class="content-container">
+      <h2>MENTAL HEALTH AND BEHAVIOUR</h2>
+      <p>Here you will find free resources for Mental Health and Behaviour</p>
+      <a href="#" class="resource-link"
+        >View Mental Health and Behavior Free Resources
+      </a>
+    </div>
+  </article>
+</div>
+
+<style lang="scss">
+  $teal-bg: #e0f2f2;
+  $teal-border: #008080;
+  $teal-text: #006666;
+  $cream-bg: #f5f5dc;
+  $dark-text: #333;
+
+  .card-grid {
+    display: grid;
+    gap: 20px; // Space between the cards
+    padding: 0;
+    max-width: 1200px;
+    margin: 0 auto 16px 0; // Center the grid container
+
+    // Media query for screens 1200px wide or greater (desktop layout)
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr); // Two columns of equal width
+      margin: 0 auto; // Center the grid container
+    }
+  }
+
+  .card-item {
+    display: flex;
+    background-color: #d3e4e0;
+    border-radius: 64px 8px 8px 64px;
+    // box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 0 0;
+    align-items: center;
+    @media (max-width: 768px) {
+      border-radius: 8px;
+      padding: 0;
+    }
+    &:hover {
+      .card-logo img {
+        transform: scale(1.15);
+        // transform: scaleX(-1);
+      }
+    }
+  }
+
+  .logo-container {
+    flex-shrink: 0;
+    margin-right: 20px;
+    @media (max-width: 768px) {
+      margin-right: 12px;
+      height: 100%;
+      background-color: #53877c;
+      max-width: 48px;
+      border-radius: 6px 0 0 6px;
+    }
+  }
+
+  .card-logo {
+    // Placeholder styles for the logo container (circle shape and general colors)
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 8px solid #53877c;
+    background-color: #f5f5dc;
+    align-items: center;
+    display: flex;
+    // transition: transform 0.5s ease-in-out; // Controls animation speed and smoothness
+
+    img {
+      max-height: 80px;
+      transition: transform 0.2s ease-in-out; // Controls animation speed and smoothness
+    }
+
+    @media (max-width: 768px) {
+      width: 64px;
+      height: 64px;
+      border-width: 4px;
+      position: relative;
+      top: -11px;
+      left: -10px;
+    }
+  }
+
+  .content-container {
+    display: flex;
+    flex-direction: column;
+    @media (max-width: 768px) {
+      padding: 16px 16px 16px 8px;
+    }
+  }
+
+  h2 {
+    color: $teal-border;
+    margin: 0 0 5px 0;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+  }
+
+  p {
+    color: #333333;
+    margin: 0 0 15px 0;
+    font-size: 0.9rem;
+  }
+
+  .resource-link {
+    color: #000000;
+    text-decoration: underline;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+
+    &::after {
+      content: ">";
+      margin-left: 5px;
+      font-size: 1rem;
+      text-decoration: none;
+    }
+  }
+</style>

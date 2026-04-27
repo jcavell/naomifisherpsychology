@@ -65,4 +65,7 @@
     background-image: url(icon-external-link.svg);
     @include mix.special-text;
   }
+  &.book-details {
+    margin-bottom: 0;
+  }
 }

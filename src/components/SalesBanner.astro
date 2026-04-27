@@ -1,0 +1,32 @@
+---
+import BannerContent from "../content/top-banner/top-banner.json";
+const { useClass = "", bannerItems } = Astro.props;
+---
+
+<section
+  class={`sales-banner ${useClass}`}
+  role="region"
+  aria-label="Limited time offer"
+>
+  <div class="banner-content">
+    {
+      bannerItems.badge && (
+        <span class="sales-banner-badge">{bannerItems.badge}</span>
+      )
+    }
+    {
+      bannerItems.title && (
+        <p class="banner-text">
+          <Fragment set:html={bannerItems.title} />
+        </p>
+      )
+    }
+    {
+      bannerItems.cta && (
+        <a href={bannerItems.ctaTarget} class="banner-cta">
+          {bannerItems.cta}
+        </a>
+      )
+    }
+  </div>
+</section>

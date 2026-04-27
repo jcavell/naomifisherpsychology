@@ -5,7 +5,7 @@ header {
   margin-right: auto;
   position: relative;
   z-index: 1;
-  img {
+  > img {
     display: block;
     height: 25px;
     padding-top: 0;
@@ -22,8 +22,19 @@ header {
       height: 36px;
     }
   }
-  a {
+  a,
+  a:visited,
+  a:hover,
+  a:active {
     text-decoration: none;
+    color: var(--brand-primary);
+  }
+
+  > a {
+    @media (min-width: 1200px) {
+      min-height: 50px;
+      display: inline-block;
+    }
   }
 
   .promotion-badge {
@@ -150,11 +161,11 @@ header {
   .basket-button {
     display: inline-block;
     text-indent: -9999px;
-    width: 70px;
+    width: 50px;
     height: 40px;
     transition: transform ease-in 0.2s;
     text-align: left;
-    padding-right: 10px;
+    padding: 0 10px;
     margin-right: 6px;
     border: none;
     background: none;
@@ -167,6 +178,9 @@ header {
     letter-spacing: 0.03em;
     text-transform: uppercase;
     font-size: 1em;
+    @media (max-width: 1200px) {
+      border-left: 1px solid var(--function-dark-9);
+    }
   }
 
   .basket-button:hover {
@@ -178,6 +192,8 @@ header {
   display: none;
   @media (min-width: 1200px) {
     display: inline-block;
+    padding-right: 32px;
+    border-right: 1px solid #161616;
   }
 }
 
@@ -259,5 +275,34 @@ footer .filter-menu-button {
   }
   .filter-menu-open & {
     background-image: url(../icon-search-white-close.svg);
+  }
+}
+
+#menu ul li .drop-menu li a.category-home-link,
+a.category-home-link {
+  text-decoration: underline;
+  color: var(--function-dark-9);
+  font-weight: 400;
+  font-size: 16px;
+  text-transform: none;
+  font-family: "Oswald", sans-serif;
+  text-align: left;
+  &:hover,
+  &:visited,
+  &:active {
+    color: var(--function-dark-9);
+  }
+}
+.mega-box .content > .home-link-row {
+  flex-basis: 100%;
+  text-align: left;
+  margin: 0;
+  a.category-home-link {
+    margin-bottom: 20px;
+    display: inline-block;
+    margin-top: 20px;
+    @media (min-width: 1200px) {
+      margin: 0;
+    }
   }
 }

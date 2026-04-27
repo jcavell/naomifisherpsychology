@@ -16,32 +16,27 @@ const tickets = webinar.tickets;
 ---
 
 <div
-  class="card card-webinars"
-  data-webinar-end={webinar.endDateTime?.toISOString()}
+  class="card card-courses"
+  data-webinar-end={webinar.endDate?.toISOString()}
 >
   <div class="live-date">
-    <span class="live-day">{webinar.day}</span>
-    <span class="live-month">{webinar.month}</span>
+    <span class="live-day">{webinar.displayDate.day}</span>
+    <span class="live-month">{webinar.displayDate.month}</span>
   </div>
-
-  <h2>
-    <a href={`/webinars/${eventId}`}>{title}</a>
-  </h2>
-
   <div class="card-image">
     <WebinarImage webinar={webinar} />
   </div>
-
+  <h3>
+    <a href={`/webinars/${eventId}`}>{title}</a>
+  </h3>
   <div class="card-details">
     <span class="date">
-      {`${webinar.day} ${webinar.month}`} at
-      {`${webinar.startTime}`}
+      {`${webinar.displayDate.day} ${webinar.displayDate.month}`} at
+      {`${webinar.displayDate.startTime}`}
     </span>
     <Contributers people={meta?.contributers} />
 
-    <!--<span class="time">-->
-    <!--  {`${webinar.startTime} - ${webinar.endTime}`}-->
-    <!--</span>-->
+    <!--<span class="duration"> {course.meta?.runningTime} </span>-->
     <span class="cost">
       {
         tickets.length === 1
@@ -60,27 +55,12 @@ const tickets = webinar.tickets;
   {meta?.subsubtitle && <p>{meta.subsubtitle}</p>}
 
   <!--<div class="card-meta">-->
-  <!--  <Contributers people={meta?.contributers} />-->
-  <!--  <Tags tags={meta?.tags} />-->
+  <!--  <Contributers people={course.meta?.contributers} />-->
+  <!--  <Tags tags={course.meta?.tags} />-->
   <!--</div>-->
 
-  <div class="card-buttons">
-    <a href={`/webinars/${eventId}`}> Learn More </a>
-    <a href={`${webinar.url}?aff=web`}> Tickets </a>
+  <div class="card-actions">
+    <a class="btn" href={`/webinars/${eventId}`}> Learn More </a>
+    <a class="btn add-tickets" href={`${webinar.url}?aff=web`}> Tickets </a>
   </div>
 </div>
-<style lang="scss">
-  .card {
-    h2 {
-      border-color: var(--webinar-color);
-      padding-right: 45px;
-    }
-    .card-buttons a:first-child {
-      border-radius: 0 0 0 16px;
-      border-right: 1px solid #fff;
-    }
-    .card-buttons a:last-child {
-      border-radius: 0 0 16px 0;
-    }
-  }
-</style>

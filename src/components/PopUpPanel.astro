@@ -1,0 +1,161 @@
+---
+import NewsletterNew from "./NewsletterNew.astro";
+---
+
+<div id="newsletter-modal" class="modal-overlay">
+  <div class="modal-content">
+    <button class="close-btn" id="close-modal" aria-label="Close popup"
+      >&times;</button
+    >
+    <NewsletterNew formId="6662296" />
+  </div>
+</div>
+<script>
+  const setCookie = (name, value, days) => {
+    const expires = new Date(Date.now() + days * 864e5).toUTCString();
+    document.cookie =
+      name +
+      "=" +
+      encodeURIComponent(value) +
+      "; expires=" +
+      expires +
+      "; path=/";
+  };
+
+  const initModal = (): void => {
+    const modal = document.querySelector<HTMLElement>(".modal-overlay");
+    const closeBtn = document.getElementById("close-modal");
+    const form = document.getElementById("newsletter-form");
+    const formEl = modal ? modal.querySelector("form") : null;
+
+    if (!modal) {
+      console.warn("Modal overlay element not found.");
+      return;
+    }
+
+    if (
+      !document.cookie.includes("newsletter_shown") ||
+      document.cookie.includes("newsletter_shown!=true")
+    ) {
+      setTimeout(() => {
+        modal.style.display = "flex";
+      }, 1000);
+    }
+
+    if (closeBtn) {
+      closeBtn.addEventListener("click", () => {
+        modal.style.display = "none";
+        setCookie("newsletter_shown", "true", 30);
+      });
+    }
+
+    if (formEl) {
+      formEl.addEventListener("submit", (e) => {
+        e.preventDefault();
+        modal.style.display = "none";
+        setCookie("newsletter_shown", "true", 365);
+        formEl.submit();
+      });
+    }
+  };
+
+  // Run on initial load
+  initModal();
+
+  // If using Astro's View Transitions, re-run on page navigation dont think we want this
+  // document.addEventListener("astro:after-swap", initModal);
+</script>
+<style>
+  .modal-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Modal container */
+  .modal-content {
+    background-color: #d3e4e0;
+    padding: 40px;
+    border-radius: 12px;
+    position: relative;
+    width: 90%;
+    max-width: calc(100vw - 32px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    animation: fadeIn 0.3s ease-out;
+    margin: 20px;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .modal-body h2 {
+    margin-top: 0;
+    color: #333;
+    font-size: 24px;
+  }
+  .modal-body p {
+    color: #666;
+    margin-bottom: 25px;
+    line-height: 1.5;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    border: none;
+    background: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #999;
+  }
+
+  #newsletter-form input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .submit-btn:hover {
+    background-color: #0056b3;
+  }
+
+  .privacy-note {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 15px;
+  }
+</style>

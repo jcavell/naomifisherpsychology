@@ -1,0 +1,76 @@
+---
+import CourseCategory from "../../components/course/CourseCategory.astro";
+
+import {
+  helpingYourAutisticChildWithAnger,
+  helpingYourAutisticChildWithOCD,
+  helpingYourAutisticChildWithTransitions,
+  helpingYourAutisticChildMoveOnFromSchoolTrauma,
+  autisticChildWithAnxiety,
+  autisticTeenWithAnxiety,
+  autisticChildWithTrauma,
+  childWithAnxietyUnder8s,
+  childWithAnxiety6To13,
+  helpingYourTeenWithAnxiety,
+  helpingYourChildWithBurnout,
+  burntOutByParenting,
+  burnoutAGuideForTeenagers,
+  burntOutBySchool,
+  traumaAndLoss,
+  childWithSevereAnxiety,
+} from "../../scripts/courseMeta";
+
+const anxiety = {
+  navName: "Anxiety",
+  title: "Anxiety",
+  courses: [
+    childWithSevereAnxiety,
+    childWithAnxietyUnder8s,
+    childWithAnxiety6To13,
+    helpingYourTeenWithAnxiety,
+    helpingYourAutisticChildWithOCD,
+    autisticChildWithAnxiety,
+    autisticTeenWithAnxiety,
+  ],
+};
+const burnout = {
+  navName: "Burnout",
+  title: "Burnout",
+  courses: [
+    helpingYourChildWithBurnout,
+    burntOutByParenting,
+    burnoutAGuideForTeenagers,
+    burntOutBySchool,
+  ],
+};
+const behaviour = {
+  navName: "Behaviour",
+  title: "Behaviour",
+  courses: [
+    helpingYourAutisticChildWithAnger,
+    helpingYourAutisticChildWithTransitions,
+  ],
+};
+const trauma = {
+  navName: "Trauma",
+  title: "Trauma",
+  courses: [
+    traumaAndLoss,
+    autisticChildWithTrauma,
+    helpingYourAutisticChildMoveOnFromSchoolTrauma,
+  ],
+};
+const subcategories = [anxiety, burnout, behaviour, trauma];
+---
+
+<CourseCategory
+  subcategories={subcategories}
+  pageTitle="MENTAL HEALTH AND BEHAVIOUR COURSES"
+  metaDescription="Browse our mental health and behaviour courses"
+  whitePanelTitle=""
+  whitePanelDescriptions={[
+    "Sometimes it’s hard to understand what is going on for your child. They seem to be highly anxious, but you’re not sure what about. Or they may react as if the world is terrifying, and you can’t understand why. Sometimes they develop rituals and routines which just have to be followed, and the whole family is involved before you know it. Everyone starts to feel like they are walking on eggshells.",
+    "In my short courses on mental health and behaviour I cover the most common mental health problems I hear about in my clinical practice. There are a lot about anxiety, but also courses on PTSD, OCD and anger. There are courses on common behavioural flashpoints such as transitions and change. Some are specifically for autistic children but others are for everyone. ",
+  ]}
+  whitePanelImgAlt="Purple flowers"
+/>

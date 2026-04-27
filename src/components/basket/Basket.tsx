@@ -10,7 +10,7 @@ import {
 } from "../../scripts/basket/basket.ts";
 import styles from "../../styles/components/cart/cart.module.css";
 import type { BasketItem } from "../../types/basket-item.ts";
-import { removeCouponCodeFromStore } from "../../scripts/coupon/couponRetrieverAndStorer.ts";
+import {removeCouponCodeFromStore } from "../../scripts/coupon/couponRetrieverAndStorer.ts";
 import { persistentCoupon } from "../../scripts/coupon/couponStore.ts";
 import { isCouponCodeValid } from "../../scripts/coupon/coupons.ts";
 import { trackAddToBasketEvent } from "../../scripts/tracking/track-events.ts";
@@ -68,13 +68,14 @@ export const Basket: React.FC<BasketProps> = ({
     // Don't sync the coupon store value back to the input
     // The input should only be controlled by user typing
     const currentCoupon = persistentCoupon.get();
-    if (!currentCoupon) {
+    if (!currentCoupon?.code) {
       // Only clear if there's no applied coupon and input has content
       if (couponCode && !hasAppliedCoupon()) {
         setCouponCode('');
       }
     }
-  }, [persistentCoupon.get()]); // Listen to coupon store changes
+//  }, [persistentCoupon.get()]); // Listen to coupon store changes
+  }, [$couponCode]); // Listen to coupon store changes
 
   useEffect(() => {
     setIsClient(true); // Ensures this component renders only on the client
@@ -150,7 +151,11 @@ export const Basket: React.FC<BasketProps> = ({
 
     try {
       // Apply the coupon
-      persistentCoupon.set(trimmedCode);
+      persistentCoupon.set({
+        code: trimmedCode,
+        source: "user",
+        timestamp: Date.now(),
+      });
 
       // Clear the input immediately (don't wait for validation)
       setCouponCode('');

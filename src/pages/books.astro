@@ -1,9 +1,10 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import BookSummary from "../components/book/BookSummary.astro";
+import BookSummary from "../components/book/BookSummaryV2.astro";
 import StaticImage from "../components/StaticImage.astro";
 import homeImage from "../images/static/1080w/different-way-to learn-thorn.webp";
+import SalesBanner from "../components/SalesBanner.astro";
 const pageTitle = "Books";
 
 // Sort newest first
@@ -20,6 +21,11 @@ const metaDescription =
   pageTitle={pageTitle}
   metaDescription={metaDescription}
 >
+  <a id="books" class="anchor">
+    <h1 class="section-title">
+      <span class="">Books</span>
+    </h1>
+  </a>
   <div class="page-intro-wrapper">
     <div class="page-intro-static-image">
       <StaticImage
@@ -78,10 +84,10 @@ const metaDescription =
       </div>
     </div>
   </div>
-
-  <h2 class="section-title">
-    <span class="books-section-title">Books</span>
-  </h2>
-
+  <a id="browse-books" class="anchor">
+    <h2 class="section-title">
+      <span class="person-section-title">All Books</span>
+    </h2>
+  </a>
   {books.map((book) => <BookSummary book={book.data} />)}
 </BaseLayout>

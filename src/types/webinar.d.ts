@@ -70,6 +70,7 @@ export type Webinar = {
   url: string;
   logoUrl: string;
   displayDate: {
+    weekday: string;
     day: string;
     month: string;
     monthLong: string;
@@ -80,16 +81,6 @@ export type Webinar = {
   people: string[];
   tags: string[];
   videoData?: EventbriteVideoData;
-
-  // Keep for now - but replace with startDate and endDate at above
-  startDateTime: Date;
-  endDateTime: Date;
-  day: string;
-  month: string;
-  monthLong: string;
-  year: string;
-  startTime: string;
-  endTime: string;
 };
 
 // Transformed Webinar Ticket

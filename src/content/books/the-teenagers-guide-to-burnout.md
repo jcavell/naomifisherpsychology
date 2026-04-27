@@ -4,6 +4,7 @@ uri: "/books/the-teenagers-guide-to-burnout"
 title: "The Teenager's Guide to Burnout Finding the Road to Recovery"
 subtitle: "An essential guide for all teenagers experiencing stress and burnout"
 description: "These are signs that you are experiencing burnout - your battery has taken a battering and you are running on empty. Many people think burnout only happens to adults, but it's something lots of teenagers experience too. "
+summaryShort: "This book will help you to understand what burnout is, how you got there and what you can do to get back to a life you enjoy."
 summary: "This book will help you to understand what burnout is, how you got there and what you can do to get back to a life you enjoy."
 publisher: "Robinson    "
 pubDate: "2024-12-05"
@@ -58,7 +59,8 @@ vimeoEmbedUrl: ""
 excerptUrl: ""
 ---
 
-Does any of this sound like you?
+### Does any of this sound like you?
+
 - Lacking in energy and feeling that your life has lost its sparkle
 - Feeling like you can't ever quite relax
 - Unable to sleep despite being exhausted all the time
@@ -66,12 +68,12 @@ Does any of this sound like you?
 - Feeling that everyone is irritating and no one understands
 - Finding going to school really hard or not possible at all anymore
 
-Then this book might help.
+**Then this book might help.**
 
-These are signs that you are experiencing burnout - your battery has taken a battering and you are running on empty. Many people think burnout only happens to adults, but it's something lots of teenagers experience too.
+These are signs that you are experiencing burnout — your battery has taken a battering and you are running on empty. Many people think burnout only happens to adults, but it's something lots of teenagers experience too.
 
-This book will help you to understand what burnout is, how you got there and what you can do to get back to a life you enjoy.
+This book will help you to understand what burnout is, how you got there, and what you can do to get back to a life you enjoy.
 
 We've written it to help you work out if you might be burnt out, and if so, what you can do about it. It will help you identify some of the ways that you might be getting stuck when you're trying to get better. You'll get some ideas as to what is and isn't helping. And if you decide that you aren't really burnt out but you're heading that way, this book has some ideas to stop it from happening in the future.
 
-Co-written by expert clinical psychologist Dr Naomi Fisher, who has helped many teenagers deal with the stresses and pressures of school and life, and by bestselling author and illustrator Eliza Fricker.
+*Co-written by expert clinical psychologist **Dr Naomi Fisher**, who has helped many teenagers deal with the stresses and pressures of school and life, and by bestselling author and illustrator **Eliza Fricker**.*

@@ -4,45 +4,45 @@ const FilterMenuToggle = document.querySelector("#filter-menu-toggle");
 const FooterFilterMenuToggle = document.querySelector("#footer-filter-menu-toggle");
 const FilterMenu = document.querySelector("#filter-menu");
 const site = document.querySelector("body");
-	
-menuToggle.addEventListener("click", function(event) {
-    const menuOpen = menu.classList.contains("is-active");
+
+if (menuToggle) {
+  menuToggle.addEventListener("click", function(event) {
     menuToggle.classList.toggle("is-active");
     menu.classList.toggle("is-active");
     site.classList.toggle("menu-open");
-    FilterMenuToggle.classList.remove("filter-is-active");
-    FilterMenu.classList.remove("filter-is-active");
+    if (FilterMenuToggle) FilterMenuToggle.classList.remove("filter-is-active");
+    if (FilterMenu) FilterMenu.classList.remove("filter-is-active");
     site.classList.remove("filter-menu-open");
-});
+  });
+}
 
-FilterMenuToggle.addEventListener("click", function(event) {
-    const FilterMenuOpen = menu.classList.contains("filter-is-active");
+if (FilterMenuToggle) {
+  FilterMenuToggle.addEventListener("click", function(event) {
     FilterMenuToggle.classList.toggle("filter-is-active");
-    FilterMenu.classList.toggle("filter-is-active");
+    if (FilterMenu) FilterMenu.classList.toggle("filter-is-active");
     site.classList.toggle("filter-menu-open");
-    menuToggle.classList.remove("is-active");
-    menu.classList.remove("is-active");
+    if (menuToggle) menuToggle.classList.remove("is-active");
+    if (menu) menu.classList.remove("is-active");
     site.classList.remove("menu-open");
-});
+  });
+}
 
-FooterFilterMenuToggle.addEventListener("click", function(event) {
-    const FilterMenuOpen = menu.classList.contains("filter-is-active");
-    FilterMenuToggle.classList.toggle("filter-is-active");
-    FilterMenu.classList.toggle("filter-is-active");
+if (FooterFilterMenuToggle) {
+  FooterFilterMenuToggle.addEventListener("click", function(event) {
+    if (FilterMenuToggle) FilterMenuToggle.classList.toggle("filter-is-active");
+    if (FilterMenu) FilterMenu.classList.toggle("filter-is-active");
     site.classList.toggle("filter-menu-open");
-});
+  });
+}
 
 const topButton = document.querySelector('.top-trigger');
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      topButton.classList.remove('top-button-active');
-    }
-    else {
-        topButton.classList.add('top-button-active');
-    }
+if (topButton) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      topButton.classList.toggle('top-button-active', !entry.isIntersecting);
+    });
   });
-});
 
-observer.observe(topButton);
+  observer.observe(topButton);
+}

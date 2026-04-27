@@ -1,0 +1,28 @@
+---
+import CourseCategory from "../../components/course/CourseCategory.astro";
+
+import {
+  demandAvoidance101,
+  helpingYourDemandAvoidantChildWithChange,
+  demandAvoidantAdolescent,
+  demandAvoidanceGuideForTeenagers, ALDP1To10, ALDP1To5, ALDP6To10
+} from "../../scripts/courseMeta";
+
+const essentials = {navName: "Essentials", title: "Demand Avoidance Essentials", courses: [demandAvoidance101, helpingYourDemandAvoidantChildWithChange]}
+const teenagers = {navName: "Teenagers", title: "Demand Avoidance - Teenagers", courses: [demandAvoidantAdolescent, demandAvoidanceGuideForTeenagers]}
+const aldp = {navName: "Low Demand Parenting", title: "The Art of Low Demand Parenting", courses: [ALDP1To10, ALDP1To5, ALDP6To10]}
+const subcategories = [essentials, teenagers, aldp];
+---
+
+<CourseCategory
+  subcategories={subcategories}
+  pageTitle="DEMAND AVOIDANCE COURSES"
+  metaDescription="Browse our demand avoidance courses"
+  whitePanelTitle=""
+  whitePanelDescriptions={[
+    "Sometimes children’s behaviour just doesn’t seem to make sense. You know that they’d enjoy something; but they won’t give it a go. They seem bored and frustrated, but every suggestion you make is met with a resounding No. For some children this is a pattern from early childhood, for others it seems to arrive out of nowhere. ",
+    "One way to think about this is as demand avoidance. Some children find the demands of everyday life anxiety-provoking. They can feel like a threat – and so they avoid them. They do this by saying No, by withdrawing, by distracting you; sometimes they put so much energy into avoidance that it would have been far easier to just do it. When this goes to an extreme, it is sometimes called PDA or pathological demand avoidance. ",
+    "In my courses, I explain the psychology of demand avoidance. What is going on, and how can parents help? "
+      ]}
+  whitePanelImgAlt="Purple flowers"
+/>

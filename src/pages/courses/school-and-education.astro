@@ -1,0 +1,31 @@
+---
+import CourseCategory from "../../components/course/CourseCategory.astro";
+
+import {
+  helpingYourAutisticChildMoveOnFromSchoolTrauma,
+  myChildIsNotFineAtSchool,
+  autisticChildrenWithSchool,
+  burntOutBySchool,
+  helpingYourNDTeenRecoverFromSchool,
+  howCanYouLearnIfYouDontGoToSchool,
+  doWeNeedAnEhcp,
+  weDontHaveAnEhcpWhatToExpectFromSchool, takingControlOfYourEhcpAnnualReview, navigatingTheSenTribunalProcess
+} from "../../scripts/courseMeta";
+
+const inSchool = {navName: "At School", title: "At School", courses: [myChildIsNotFineAtSchool, autisticChildrenWithSchool]}
+const outOfSchool = {navName: "Out of school", title: "Out of School", courses: [burntOutBySchool, helpingYourAutisticChildMoveOnFromSchoolTrauma, helpingYourNDTeenRecoverFromSchool, howCanYouLearnIfYouDontGoToSchool]}
+const ehcp = {navName: "EHCPs", title: "EHCPs", courses: [doWeNeedAnEhcp, weDontHaveAnEhcpWhatToExpectFromSchool, takingControlOfYourEhcpAnnualReview, navigatingTheSenTribunalProcess]}
+const subcategories = [inSchool, outOfSchool, ehcp];
+---
+
+<CourseCategory
+  subcategories={subcategories}
+  pageTitle="SCHOOL AND EDUCATION COURSES"
+  metaDescription="Browse our school and education courses"
+  whitePanelTitle=""
+  whitePanelDescriptions={[
+    "It can feel very lonely when your child is struggling with school. Parents tell me that they feel blamed and shamed, and that they are sometimes given advice that feels very wrong – but they don’t know what else to do.",
+   "I had a particular interest in this topic because I was a ‘school refuser’ myself at ages 5 and 13. I remember well what it feels like from the inside.",
+    "In my short courses on school and education, I cover the reasons that some children are distressed by school, what adults do next – and how things can go wrong. There are courses on school burnout and school trauma as well as learning outside school and finding a way forward."]}
+  whitePanelImgAlt="Purple flowers"
+/>

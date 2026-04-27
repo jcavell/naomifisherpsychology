@@ -1,54 +1,42 @@
 .preview-quote-wrapper {
   width: 100%;
   box-sizing: border-box;
-  padding-left: 20px;
-  padding-right: 20px;
-  .details & {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
+  background-color: transparent;
+  border-left: 3px solid var(--brand-primary);
+  padding: 4px 20px;        // was: 12px 20px
+  margin: 8px 0 20px;       // was: 16px 0 — less gap above
+
+  // Remove any inherited rounded-box treatment
+  border-radius: 0;
+  box-shadow: none;
+
   .preview-quote {
-    max-width: 800px;
-    font-size: 28px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1;
-    text-align: center;
-    margin-top: 70px;
-    margin-bottom: 40px;
-    position: relative;
-    &::before {
-      content: "\201C";
-      display: block;
-      position: absolute;
-      width: 100%;
-      top: 0;
-      left: 0;
-      font-family: serif;
-      font-size: 2em;
-      margin-top: -0.5em;
-    }
-    span {
-      display: block;
-      font-size: 16px;
-      text-transform: capitalize;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-      margin-top: 20px;
-      position: relative;
-      &::before {
-        content: "";
-        display: block;
-        position: absolute;
-        width: 140px;
-        height: 1px;
-        background: #000;
-        top: 0;
-        left: 50%;
-        margin-left: -70px;
-        margin-top: -10px;
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: "Open Sans", sans-serif; // override Oswald
+
+    p {
+      text-transform: none !important;  // kills the uppercase
+      font-style: italic;
+      font-size: 15px;
+      line-height: 1.5;
+      color: #1b302b;                   // dark, not teal
+      letter-spacing: 0;                // Oswald adds tracking — reset it
+      margin-bottom: 4px;
+
+      &::before,
+      &::after {
+        content: none;                  // remove decorative curly quotes
       }
+    }
+
+    span {
+      text-transform: uppercase;        // keep uppercase on attribution only
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--brand-primary);
+      font-style: normal;
     }
   }
 }

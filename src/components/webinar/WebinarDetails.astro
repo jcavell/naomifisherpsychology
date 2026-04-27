@@ -23,22 +23,53 @@ const meta = getWebinarMeta(eventId);
 const tickets = webinar.tickets;
 const detailsText = webinar.detailsText;
 ---
+<h1 class="section-title">
+  <span class="courses-section-title">{webinar.title}</span>
+</h1>
+<article class="course-card-12 webinars">
+  <!-- Header Section -->
+  <header class="card-header">
+    <div class="top-meta">
+       <WebinarImage webinar={webinar} />
+      <div class="title-area">
+         <p class="subtitle">On {webinar.displayDate.day} {webinar.displayDate.month}, {`${webinar.displayDate.startTime} - ${webinar.displayDate.endTime}`}</p>
+        <p class="meta">
+          <Contributers people={meta?.contributers} />
+        </p>
+       
+        <div class="action-bar">
+           {
+          tickets.filter((t) => !t.hidden).map((ticket) => (
+            <a href={webinar.url} target="blank">
+              <div class="purchase">
+                <div class="price">
+                  £{((ticket.costValue + ticket.feeValue) / 100).toFixed(2)}
+                </div>
+                <div class="ticket-name">{ticket.name}</div>
+                <div class="buy-now">
+                  <span> Buy Now </span>
+                </div>
+              </div>
+            </a>
+          ))
+        }
+        </div>
+      </div>
+    </div>
 
-<div class="details details-webinars">
-  <div class="details-category">LIVE WEBINAR ON ZOOM</div>
+  </header>
 
-  <div class="live-date">
-    <span class="live-day">{webinar.day}</span>
-    <span class="live-month">{webinar.month}</span>
-  </div>
+  <!-- Main Content Body -->
+  <section class="content">
+    <div class="description-wrap">
+      {webinar.videoData?.embed_url && (
+        <figure class="inline-media">
+          <Vimeo embedUrl={webinar.videoData.embed_url} />
+          <div class="play-overlay">▶</div>
+        </figure>
+      )}
 
-  <h1>{webinar.title}</h1>
-  <div class="details-image">
-    <WebinarImage webinar={webinar} />
-  </div>
-
-  <div class="details-body">
-    <div class="details-body-A">
+      <div class="details-body-A" >
       <p set:html={detailsText} />
 
       {
@@ -52,9 +83,39 @@ const detailsText = webinar.detailsText;
         )
       }
 
-      <Vimeo embedUrl={webinar.videoData?.embed_url} />
+      <!--<Vimeo embedUrl={webinar.videoData?.embed_url} />-->
+      </div>
+    </div>
+  </section>
 
-      <h3>Frequently Asked Questions</h3>
+  <hr class="divider" />
+
+  <div class="footer-cta">
+      <!--<Tags tags={meta?.tags} />-->
+    <div class="action-bar">
+       {
+          tickets.filter((t) => !t.hidden).map((ticket) => (
+            <a href={webinar.url} target="blank">
+              <div class="purchase">
+                <div class="price">
+                  £{((ticket.costValue + ticket.feeValue) / 100).toFixed(2)}
+                </div>
+                <div class="">{ticket.name}</div>
+                <div class="buy-now">
+                  <span> Buy Now </span>
+                </div>
+              </div>
+            </a>
+          ))
+        }
+    </div>
+  </div>
+</article>
+
+    <a class="anchor" name="faq">
+      <h2 class="section-title">
+        <span class="courses-section-title">Webinar FAQs</span>
+      </h2></a>
       <div class="accordion-wrapper">
         <button class="accordion">How do I join the live webinar?</button>
         <div class="panel">
@@ -88,98 +149,347 @@ const detailsText = webinar.detailsText;
         <div class="panel">
           <p>You can watch the recording for 30 days after the webinar</p>
         </div>
-        <!--<button class="accordion"-->
-        <!--&gt;Why is Eventbrite is asking for further information?</button-->
-        <!--&gt;-->
-        <!--<div class="panel">-->
-        <!--  <p>-->
-        <!--    You do not need to add any further information to access the webinar-->
-        <!--  </p>-->
-        <!--</div>-->
-        <!--<button class="accordion"-->
-        <!--  >Questions about logging in, where are my tickets, refunds, or-->
-        <!--  duplicate card charges</button-->
-        <!--&gt;-->
-        <!--<div class="panel">-->
-        <!--  <p>-->
-        <!--    Please visit the general Eventbrite FAQ about this: <a-->
-        <!--      href="https://www.eventbrite.co.uk/help/en-gb/contact-us/"-->
-        <!--      target="_blank">www.eventbrite.co.uk/help/en-gb/contact-us/</a-->
-        <!--    >-->
-        <!--  </p>-->
-        <!--</div>-->
       </div>
 
-      <!-- <div class="preview-quote-wrapper">
-        <div class="preview-quote quote">
-          This was awesome. Like, life-changing and affirmative!
-          <span>Attendee of Low Demand Parenting Webinar</span>
-        </div>
-      </div>
-      <div class="preview-quote-wrapper">
-        <div class="preview-quote quote">
-          Such a relief to be at the excellent low demand parenting seminar by
-          Naomi Fisher and Eliza Fricker last night
-          <span>Attendee of Low Demand Parenting Webinar</span>
-        </div>
-      </div>
-      <div class="preview-quote-wrapper">
-        <div class="preview-quote quote">
-          Such a humble, insightful and highly informative webinar. Dr Naomi
-          Fisher and Eliza Fricker were the perfect duo of lived experience and
-          academic knowledge
-          <span>Attendee of Low Demand Parenting Webinar</span>
-        </div>
-      </div>
-      <p>
-        <em>
-          This webinar is not therapy and should not be used as a replacement
-          for therapy.
-        </em>
-      </p> -->
-    </div>
 
-    <div class="details-body-B">
 
-      <div class="purchase-wrapper">
-        <div class="purchase-title"></div>
+<style lang="scss">
+  $text-main: #333;
+  $accent-green: #d1e5e0;
+  $btn-black: #000;
+  $border-light: #eee;
 
-        {
-          tickets.filter((t) => !t.hidden).map((ticket) => (
-            <a href={webinar.url} target="blank">
-              <div class="purchase">
-                <div class="price">
-                  £{((ticket.costValue + ticket.feeValue) / 100).toFixed(2)}
-                </div>
-                <div class="company eventbrite">{ticket.name}</div>
-                <div class="buy-now">
-                  <span> Buy Now </span>
-                </div>
-              </div>
-            </a>
-          ))
+  .course-card-12.webinars {
+    margin: 0 auto 2rem auto;
+    padding: 1rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    color: $text-main;
+
+    .live-date {
+      top:66px;
+    }
+
+    .card-header {
+      .top-meta {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+        img,
+        picture {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: none;
+        }
+        .mini-thumb {
+          width: 80px;
+          height: 80px;
+          border-radius: 8px;
+          object-fit: cover;
         }
 
-      </div>
-      <div class="card-meta details-meta">
+        h1 {
+          font-family: "Yanone Kaffeesatz", sans-serif;
+          font-optical-sizing: auto;
+          font-weight: 400;
+          font-style: normal;
+          text-transform: uppercase;
+          color: #000;
+          line-height: 1.1;
+          font-size: 40px;
+          padding-bottom: 20px;
+          padding-top: 20px;
+          line-height: 0.9;
+        }
+        .subtitle {
+          display: block;
+          text-transform: uppercase;
+          font-size: 16px;
+          letter-spacing: 0;
+          line-height: 1.2;
+          margin-bottom: -6px;
+          font-weight: 500;
+          font-family: Oswald, sans-serif;
+          font-optical-sizing: auto;
+          font-weight: normal;
+          font-style: normal;
+          margin-top: 8px;
+          line-height: 1.5;
+        }
+        .title-area p.meta {
+          font-size: 14px;
+        }
 
-        <span class="date">{webinar.day} {webinar.month}, {`${webinar.startTime} - ${webinar.endTime}`}</span>
-        <Contributers people={meta?.contributers} />
-        <p></p>
+        .contributors {
+          background-image: none;
+        }
 
+        @media (max-width: 600px) {
+          gap: 0;
+        }
+      }
+      @media (max-width: 600px) {
+        margin-bottom: 16px;
+        gap: 0;
+      }
+    }
 
-        <Tags tags={meta?.tags} />
-      </div>
-      <!--<span class="time">-->
-      <!--  {`${webinar.startTime} - ${webinar.endTime}`}-->
-      <!--</span>-->
-      <!--<span class="globe"> Online via Zoom </span>-->
+    .divider {
+      border: 0;
+      border-top: 1px solid $border-light;
+      margin: 1.5rem 0;
+    }
 
+    .content {
+      .description-wrap {
+        line-height: 1.6;
 
-      <!--<div class="card-meta details-meta">-->
-      <!--  <Contributers people={meta?.contributers} />-->
-      <!--  <Tags tags={meta?.tags} />-->
-      <!--</div>-->
-    </div>
-  </div>
-</div>
+        @media (max-width: 600px) {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .inline-media {
+          float: right; // Makes text flow around it
+          width: 45%; // Smaller size
+          margin: 0 0 1.5rem 1.5rem;
+          position: relative;
+          border-radius: 8px;
+          overflow: hidden;
+          @media (max-width: 600px) {
+            margin: 0;
+            width: 100%;
+          }
+
+          img {
+            width: 100%;
+            display: block;
+          }
+
+          .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+
+    .btn-basket {
+      background: $btn-black;
+      color: #fff;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 4px;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+    }
+
+    .price {
+      display: block;
+
+    }
+    .label {
+      font-size: 0.7rem;
+      color: #777;
+      letter-spacing: 0.5px;
+    }
+
+    .agenda-list {
+      padding-left: 1.2rem;
+      li {
+        margin-bottom: 0.5rem;
+        color: #444;
+      }
+    }
+    .action-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f9f9f9;
+      padding: 0.5rem 1rem 0;
+      border-left: 2px solid var(--brand-primary);
+      // margin-top:auto forces the action bar to the bottom of the card, even if the content is short
+      // margin-top: auto;
+      align-items: center;
+      flex-direction: column;
+      @media (max-width: 600px) {
+        margin-top: 1rem;
+      }
+      > a {
+        color:var(--brand-primary);
+        text-decoration: none;
+        align-self: stretch;
+        &:last-child {
+          margin-top:4px;
+        }
+        .purchase {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          border-bottom: 1px solid var(--brand-primary);
+          padding: 4px 0 8px;
+
+          @media(max-width:600px){
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) max-content 120px;
+            grid-template-areas: "ticket price button";
+            gap: 12px;
+            padding-bottom: 12px;
+          }
+
+          .ticket-name {
+            @media(max-width:600px){
+              grid-area: ticket;
+              min-width: 0;
+            }
+          }
+
+          .price {
+            @media(max-width:600px){
+              grid-area: price;
+              white-space: nowrap;
+              justify-self: end;
+            }
+          }
+
+          .buy-now {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            width: 120px;
+            flex: 0 0 120px;
+
+            @media(max-width:600px){
+              margin-left: auto;
+            }
+    span {
+      display:inline-block;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all .3s ease;
+    margin: 0;
+    outline: none;
+    background: var(--success-green);
+    justify-self: start;
+      width: 100%;
+      text-align: center;
+      box-sizing: border-box;
+    font-size:14px;
+    }
+          }
+
+        }
+         &:last-child .purchase {
+            border-bottom-width: 0;
+          }
+      }
+       .action-bar {
+      .company {
+        display: flex;
+      }
+    }
+
+  .buy-now {
+    span {
+          color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0;
+    outline: none;
+    background: var(--success-green);
+    justify-self: start;
+    width: 120px;
+    }
+    
+     @media(max-width:600px){
+            order:3;
+            margin-left:0;
+          }
+  }
+    }
+
+    span.tags a,
+    span.ages a {
+      display: inline-block;
+      background-color: #d3e4e0;
+      padding: 8px;
+      border-radius: 8px;
+      width: auto;
+      font-size: 10px;
+      text-decoration: none;
+      color: var(--brand-primary);
+      margin: 4px 4px 0 0;
+    }
+  }
+  .title-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: stretch;
+    width: stretch;
+    align-self:stretch;
+  }
+    .footer-cta .action-bar {
+    margin-top: 1.5rem;
+  }
+
+  // Responsive: Stack image on very small screens
+  @media (max-width: 600px) {
+    .course-card-12 {
+      padding: 0 0 8px 0;
+      font-optical-sizing: auto;
+      font-weight: normal;
+      font-style: normal;
+      > *:not(.card-header) {
+        padding: 8px;
+      }
+      .card-header {
+        .title-area {
+          padding: 0 8px;
+          align-self:stretch;
+        }
+        .action-bar {
+          margin: 0;
+        }
+      }
+      .top-meta {
+        flex-direction: column;
+        img {
+          max-width: 100%;
+          border-radius: 16px 16px 0 0;
+        }
+      }
+      .content {
+        .inline-media {
+          float: none;
+          width: 100%;
+          margin: 0 0 1.5rem 0;
+
+          @media (max-width: 600px) {
+            margin: 0;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+</style>

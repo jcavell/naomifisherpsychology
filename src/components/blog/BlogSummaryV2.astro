@@ -1,0 +1,68 @@
+---
+import Tags from "../Tags.astro";
+import { makeUrl } from "../../scripts/url";
+import BlogImage from "./BlogImage.astro";
+import "../../styles/components/card.scss";
+import { Image } from "astro:assets";
+import defaultImage from "../../images/static/courses-home.png";
+
+const { post, hideDate = false } = Astro.props;
+
+const title = post.title;
+const subtitle = post.subtitle;
+const pubDate = post.pubDate;
+const paragraphs = post.paragraphs;
+const tags = post.tags;
+const introText =
+  paragraphs[0].length > 100
+    ? paragraphs[0]
+    : paragraphs[0] + paragraphs[1] > 100
+      ? paragraphs[0] + " " + paragraphs[1]
+      : paragraphs[0] + " " + paragraphs[1] + " " + paragraphs[2];
+---
+
+<div class="card card-blog">
+  {
+    !hideDate && (
+      <div class="live-date">
+        <span class="live-day">{pubDate.day}</span>
+        <span class="live-month">{pubDate.month}</span>
+      </div>
+    )
+  }
+  {
+    post.imagePrefix && (
+      <div class="card-image">
+        <BlogImage post={post} alt={`Image for ${title}`} />
+      </div>
+    )
+  }
+  {
+    !post.imagePrefix && (
+      <div class="card-image">
+        <Image
+          src={defaultImage}
+          alt={"Course"}
+          class="white-panel-image"
+          inferSize={true}
+        />
+      </div>
+    )
+  }
+  <h3>
+    <a href=`/blog/${makeUrl(title)}`>{title}</a>
+    {subtitle && <span>{subtitle}</span>}
+  </h3>
+
+  <p>
+    {introText}
+  </p>
+
+  <div class="card-meta">
+    <Tags tags={tags} />
+  </div>
+
+  <div class="card-actions">
+    <a class="btn btn-learn" href=`/blog/${makeUrl(title)}`> Read More</a>
+  </div>
+</div>

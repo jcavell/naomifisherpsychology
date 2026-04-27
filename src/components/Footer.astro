@@ -18,7 +18,7 @@ const { active, hideNav } = Astro.props;
 
     {!hideNav &&(
     <ul class="footer-menu footer-menu-A">
-      <li>
+       <li>
         <a href="/">Home</a>
       </li>
       <li>
@@ -30,26 +30,20 @@ const { active, hideNav } = Astro.props;
       <li>
         <a href="/books">Books</a>
       </li>
-
     </ul>
 
     <ul class="footer-menu footer-menu-B">
       <li>
-        <a href="https://www.emdrtraininguk.co.uk/" target="_blank"
-          >EMDR Training</a
-        >
+        <a href="/podcast/">Podcast</a>
       </li>
-
+      <li>
+        <a href="/blog/">Substack</a>
+      </li>
+      <li>
+        <a href="https://www.emdrtraininguk.co.uk/" target="_blank">EMDR Training</a>
+      </li>
       <li>
         <a href="/about">About Us</a>
-      </li>
-
-      <li>
-        <a href="/blog">Substack</a>
-      </li>
-
-      <li>
-        <a href="/contact">Contact</a>
       </li>
     </ul>
 
@@ -59,10 +53,6 @@ const { active, hideNav } = Astro.props;
       <p>
         &copy; {new Date().getFullYear()} Naomi Fisher Psychology Ltd, all rights
         reserved.
-      </p>
-      <p>
-        Web design by <a href="https://outofnowhere.co.uk">Out of Nowhere</a> | Illustrations
-        by <a href="https://missingthemark.co.uk">Eliza Fricker</a> & Kate Robson
       </p>
       <p>
         <a href="/privacy-policy">Privacy Policy</a> |

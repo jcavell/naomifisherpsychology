@@ -9,3 +9,18 @@ const { post, alt } = Astro.props;
   alt={alt}
   loading="lazy"
 />
+
+<style lang="scss">
+  .details-body-A {
+    img {
+      max-width: 250px;
+      float: left;
+      margin: 0 16px 16px 0;
+      @media (max-width: 768px) {
+        float: none;
+        width: stretch;
+        border-radius: 0;
+      }
+    }
+  }
+</style>
