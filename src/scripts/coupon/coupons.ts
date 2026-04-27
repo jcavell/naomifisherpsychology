@@ -11,11 +11,11 @@ export const coupons: Coupon[] = [
     },
     {
         name: "ABC",
-        discountPercent: 55,
+        discountPercent: 99,
         couponInfoText: "55% OFF",
         validFrom: new Date("2025-07-01T00:00:00Z").getTime(),
-        validUntil: new Date("2026-04-05T23:59:59Z").getTime(),
-        applicableOfferIDs: ["C746RNzF", "xvn8Y7TJ", "XgLDdAFa", "vV8BeUKS", "jLbWvRoa", "NzaULaoT", "mnoaNY87", "RyCi7fGT", "EzLuffn4", "CXNPs8L3", "qRTfapFL"], // School and Education
+        validUntil: new Date("2026-04-27T23:59:59Z").getTime(),
+        applicableOfferIDs: ["qRTfapFL"],
     }
 ];
 
