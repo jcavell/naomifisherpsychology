@@ -12,6 +12,8 @@ import type {
   WebinarTicket,
 } from "../types/webinar";
 
+import { cleanHtml } from "./clean-html.ts";
+
 import logger from "./logger.ts";
 
 const TEST_DATA_DIR = "src/test-data/eventbrite";
@@ -221,7 +223,7 @@ function transformEventbriteToWebinar(
   eventbriteWebinar: EventbriteWebinar,
   detailsJson: any,
 ): Webinar {
-  const detailsText = detailsJson.modules[0]?.data?.body?.text ?? "";
+  const detailsText = cleanHtml(detailsJson.modules[0]?.data?.body?.text ?? "");
   const startDate = new Date(eventbriteWebinar.start.utc);
   const endDate = new Date(eventbriteWebinar.end.utc);
   const displayDate = formatDisplayDates(
