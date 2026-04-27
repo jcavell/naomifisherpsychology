@@ -2,9 +2,12 @@
 
 .category-badges-wrapper {
   position: sticky;
-  top: 64px; // your mobile header height
-  z-index: 10; // reduced from 100
-  // isolation: isolate; -- removed entirely
+  top: 64px; // mobile header height
+  z-index: 10;
+
+  @media (min-width: 768px) {
+    top: 100px; // adjust to your desktop header height
+  }
 
   background-color: var(--page-background, #f7f6f5);
   box-shadow: none;
@@ -75,5 +78,13 @@
       border-color: var(--brand-primary);
       color: #ffffff !important;
     }
+  }
+}
+
+a.anchor {
+  scroll-margin-top: 15px; // mobile
+
+  @media (min-width: 768px) {
+    scroll-margin-top: 160px; // desktop — adjust until heading clears the pills
   }
 }
