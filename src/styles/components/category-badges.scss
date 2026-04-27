@@ -1,106 +1,79 @@
 @use "../mixins.scss" as mix;
-.category-badges-wrapperV2 {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  flex-grow: 1;
-  flex-basis: 100%;
-  // padding: 16px;
-  // background-color: var(--brand-light-bg);
-  ul {
-    list-style: none;
-    margin-left: 0;
-    @media (max-width: 768px) {
-      margin-left: 0;
-    }
-    > li {
-      @include mix.special-text;
-      margin: 0;
-      gap: 8px;
-      display: inline-flex;
-      a {
-        margin: 0;
-        padding: 4px 16px;
-        font-size: 16px;
-        line-height: 26px;
-        gap: 8px;
-        font-weight: 500;
-        color: #1b302b;
-        text-align: center;
-        padding: 4px 12px;
-        //background-color: #d3e4e0;
-        //border-radius: 6px;
-        border: 0 solid var(--brand-primary);
-        border-left-width: 1px;
-        display: inline-flex;
-        text-decoration: none;
-        transition: background-color 0.2s;
-        color: var(--badge-link-dark);
-        transition: background-color 0.2s;
-        &:hover {
-          color: var(--brand-primary);
-        }
-        @media (max-width: 768px) {
-          //margin-top: 12px;
-        }
-      }
-      &:first-of-type > a {
-        border-left-width: 0;
-      }
-    }
-  }
-}
 
 .category-badges-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: start;
-  flex-grow: 1;
-  margin-bottom: 0.5rem;
+  position: sticky;
+  top: 64px; // your mobile header height
+  z-index: 10; // reduced from 100
+  // isolation: isolate; -- removed entirely
+
+  background-color: var(--page-background, #f7f6f5);
+  box-shadow: none;
+  padding: 16px 60px 0 0;  // add right padding so fade is in empty space  margin-bottom: 0;
+  border-bottom: none;
+
+  -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+  mask-image: linear-gradient(to right, black 85%, transparent 100%);
+
+  &::after {
+    content: '';
+    display: block;
+    height: 28px;
+    pointer-events: none;
+    background: linear-gradient(
+                    to bottom,
+                    var(--page-background, #f7f6f5),
+                    rgba(247, 246, 245, 0)
+    );
+  }
+
   ul {
-    list-style: none;
-    margin-left: 0;
-    @media (max-width: 768px) {
-      margin-left: 0;
-    }
-    > li {
-      @include mix.special-text;
-      margin: 0;
-      gap: 8px;
-      display: inline-flex;
-      a {
-        margin: 5px 8px 0 0;
-        padding: 4px 16px;
-        font-size: 18px;
-        line-height: 26px;
-        gap: 8px;
-        font-weight: 400;
-        color: #1b302b;
-        text-align: center;
-        padding: 8px 16px;
-        background-color: #d3e4e0;
-        border-radius: 6px;
-        border: 1px solid #d3e4e0;
-        display: inline-flex;
-        text-decoration: none;
-        transition: background-color 0.2s;
-        color: var(--badge-link-dark);
-        transition: background-color 0.2s;
-        &:hover {
-          background-color: #9fbeb6;
-          color: #ffffff;
-        }
-        @media (max-width: 768px) {
-          margin-top: 12px;
-        }
-      }
+    list-style: none !important;
+    padding-left: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  li {
+    display: flex !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+
+    &::before,
+    &::marker {
+      display: none !important;
+      content: none !important;
     }
   }
-}
-// .wrapper:has(.category-badges-wrapper),
-.wrapper:has(.breadcrumb-container) {
-  margin-top: 0;
-  @media (max-width: 768px) {
-    margin-top: 8px;
+
+  li a {
+    display: inline-flex !important;
+    align-items: center;
+    padding: 8px 18px;
+    border-radius: 20px;
+    background-color: transparent;
+    border: 1.5px solid #9fbeb6;
+    color: var(--brand-primary) !important;
+    text-decoration: none !important;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.4;
+    transition: background-color 0.2s, color 0.2s;
+
+    &:hover {
+      background-color: #d3e4e0;
+      border-color: #d3e4e0;
+      color: #1b302b !important;
+    }
+
+    &.active {
+      background-color: var(--brand-primary);
+      border-color: var(--brand-primary);
+      color: #ffffff !important;
+    }
   }
 }

@@ -1,87 +1,42 @@
 .preview-quote-wrapper {
   width: 100%;
   box-sizing: border-box;
-  padding-left: 20px;
-  padding-right: 20px;
-  background-color: #f5f0eb;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  border-radius: 16px;
-  @media (max-width: 1200px) {
-    padding: 8px;
-  }
+  background-color: transparent;
+  border-left: 3px solid var(--brand-primary);
+  padding: 4px 20px;        // was: 12px 20px
+  margin: 8px 0 20px;       // was: 16px 0 — less gap above
 
-  .details & {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
+  // Remove any inherited rounded-box treatment
+  border-radius: 0;
+  box-shadow: none;
+
   .preview-quote {
-    //max-width: 800px;
-    font-size: 17px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1;
-    text-align: center;
-    margin-top: 6px;
-    margin-bottom: 8px;
-    position: relative;
-    font-family: Oswald;
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: "Open Sans", sans-serif; // override Oswald
 
     p {
-      // display: inline-block;
+      text-transform: none !important;  // kills the uppercase
       font-style: italic;
-      text-transform: none;
-      color: var(--brand-primary);
-      margin-bottom: 8px;
-      line-height: 1.4;
-      &::before {
-        content: "\201C";
-        display: inline-block;
-        position: relative;
-        // width: 100%;
-        top: 8px;
-        left: -4px;
-        font-family: serif;
-        font-size: 2em;
-        margin-top: -0.5em;
-        font-style: normal;
-        color: var(--brand-light-bg);
-        height: 0;
-      }
+      font-size: 15px;
+      line-height: 1.5;
+      color: #1b302b;                   // dark, not teal
+      letter-spacing: 0;                // Oswald adds tracking — reset it
+      margin-bottom: 4px;
+
+      &::before,
       &::after {
-        content: "\201D";
-        display: inline-block;
-        position: relative;
-        // width: 100%;
-        top: 12px;
-        left: 8px;
-        font-family: serif;
-        font-size: 2em;
-        margin-top: -0.5em;
-        font-style: normal;
-        color: var(--brand-light-bg);
-        height: 0;
+        content: none;                  // remove decorative curly quotes
       }
     }
+
     span {
-      font-size: 14px;
-      display: block;
-      margin-top: 8px;
-      font-weight: 400;
-      // color: var(--cta-highlight);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      // &::before {
-      //   content: "";
-      //   display: block;
-      //   position: absolute;
-      //   width: 140px;
-      //   height: 1px;
-      //   background: #000;
-      //   top: 0;
-      //   left: 50%;
-      //   margin-left: -70px;
-      //   margin-top: -10px;
-      // }
+      text-transform: uppercase;        // keep uppercase on attribution only
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--brand-primary);
+      font-style: normal;
     }
   }
 }
