@@ -39,7 +39,7 @@ const priceInPence = course.priceInPence!;
   </div>
 
   <p>
-    {summary}
+    {summary.match(/[^.!?]+[.!?]+/g)?.slice(0, 3).join(" ").trim() ?? summary}
   </p>
 
   <!--<div class="card-meta">-->

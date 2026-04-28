@@ -124,6 +124,7 @@ header {
   background: #f7f6f5;
   text-align: right;
   z-index: -1;
+  height: var(--header-height);
   @media (min-width: 1200px) {
     position: absolute;
     right: 0px;
@@ -192,8 +193,12 @@ header {
   display: none;
   @media (min-width: 1200px) {
     display: inline-block;
-    padding-right: 32px;
-    border-right: 1px solid #161616;
+    // Only show the divider when the basket icon is actually rendered
+    &:has(~ .basket-button),
+    &:has(+ .basket-button) {
+      padding-right: 32px;
+      border-right: 1px solid #161616;
+    }
   }
 }
 

@@ -773,10 +773,11 @@ export const allCourseMetas = [
 
 // For the featured list on the homepage
 export const featuredCourses = [
+  helpingYourAutisticChildWithAnger,
+  helpingYourDemandAvoidantChildWithChange,
   helpingYourNDTeenRecoverFromSchool,
   burntOutBySchool,
-  helpingYourChildWithBurnout,
-  helpingYourDemandAvoidantChildWithChange,
+  helpingYourChildWithBurnout
 ];
 
 // !! ADD RELATED COURSES HERE !!
