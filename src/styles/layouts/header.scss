@@ -3,8 +3,12 @@ header {
   max-width: 1140px;
   margin-left: auto;
   margin-right: auto;
-  position: relative;
-  z-index: 1;
+  /* position:relative is desktop-only — on mobile it creates a stacking
+     context that breaks position:fixed children on iOS Safari */
+  @media (min-width: 1200px) {
+    position: relative;
+    z-index: 1;
+  }
   > img {
     display: block;
     height: 25px;
@@ -13,6 +17,7 @@ header {
     padding-right: 0;
     position: fixed;
     top: 20px;
+    z-index: 11; /* above .icon-links (z-index:10) so logo isn't hidden behind its background */
     @media (min-width: 1200px) {
       padding-top: 24px;
       padding-bottom: 15px;
@@ -120,11 +125,13 @@ header {
   box-sizing: border-box;
   border-bottom: 3px solid black;
   width: 100%;
-  z-index: 10;
+  z-index: 10; /* was incorrectly overridden to -1 below */
   background: #f7f6f5;
   text-align: right;
-  z-index: -1;
-  height: var(--header-height);
+  height: var(--header-height, 64px); /* fallback in case var is not defined */
+  /* iOS Safari: ensure fixed positioning works by avoiding transform ancestors */
+  -webkit-transform: translateZ(0); /* force GPU compositing layer on iOS */
+  transform: translateZ(0);
   @media (min-width: 1200px) {
     position: absolute;
     right: 0px;
