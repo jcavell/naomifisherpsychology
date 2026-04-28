@@ -129,9 +129,6 @@ header {
   background: #f7f6f5;
   text-align: right;
   height: var(--header-height, 64px); /* fallback in case var is not defined */
-  /* iOS Safari: ensure fixed positioning works by avoiding transform ancestors */
-  -webkit-transform: translateZ(0); /* force GPU compositing layer on iOS */
-  transform: translateZ(0);
   @media (min-width: 1200px) {
     position: absolute;
     right: 0px;

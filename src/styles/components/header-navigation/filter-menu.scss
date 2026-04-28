@@ -15,11 +15,25 @@
     background: #f7f6f5;
   }
   @media (min-width: 768px) {
-    background-color: rgba(247, 246, 245, 0.8);
-    backdrop-filter: blur(8px);
+    /* backdrop-filter on the element itself would promote <header> to a GPU
+       compositing layer on iOS Safari, breaking all position:fixed children.
+       Instead apply the blur via a ::before pseudo-element — same visual
+       result, no compositing side-effect on the parent. */
     top: 0px;
     z-index: 150;
     height: 100vh;
+    position: relative; /* needed for ::before to be positioned inside it */
+    background-color: transparent;
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(247, 246, 245, 0.8);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: -1;
+      pointer-events: none;
+    }
   }
 }
 .filter-menu {
