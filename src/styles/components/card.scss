@@ -42,13 +42,10 @@
     border-radius: 10px 10px 0 0;
     padding: 20px 16px;
     letter-spacing: 0.04em;
-    font-size: 32px;
+    font-size: 26px;
     line-height: 1;
     min-height: 18px;
     padding-right: 60px;
-    @media (min-width: 800px) {
-      min-height: 65px;
-    }
 
     a {
       color: #000;
@@ -183,6 +180,14 @@
   &.card-books .card-buttons {
     @media (min-width: 800px) {
       margin-top: 0;
+    }
+  }
+
+  &.card-blog {
+    @media (min-width: 800px) {
+      > p {
+        flex: 1;
+      }
     }
   }
 }

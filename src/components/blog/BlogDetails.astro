@@ -34,7 +34,7 @@ const relatedCourses = getTaggedCourses(courses, [tags[0]]).filter(
     border-top: none !important;
   }
 </style> -->
-<a name="blogs" class="anchor">
+<a id="blogs" class="anchor">
   <h1 class="section-title">
     <span class=""> {title}</span>
   </h1>
@@ -45,11 +45,7 @@ const relatedCourses = getTaggedCourses(courses, [tags[0]]).filter(
   <!-- Main Content Body -->
   <section class="content">
     <div class="description-wrap">
-      <!-- The Inline Media: Scaled down and floated -->
-      <!-- <figure class="inline-media">
-        <Vimeo embedUrl={course.meta?.videoUrl} />
-        <div class="play-overlay">▶</div>
-      </figure> -->
+
 
       <div class="details-body-A">
         {
@@ -67,13 +63,12 @@ const relatedCourses = getTaggedCourses(courses, [tags[0]]).filter(
       <!--<Tags tags={tags} />-->
     </div>
 
-    <hr class="divider" />
     <div class="footer-cta">
       <!-- <Tags tags={course.meta?.tags} /> -->
       <div class="action-bar">
         <h3>Related Courses</h3>
         {
-          relatedCourses.slice(0, 1).map((course) => (
+          relatedCourses.slice(0, 2).map((course) => (
             <a href={`/courses/${makeUrl(course.data.title)}`}>
               <div class="purchase">
                 <div class="company">{course.data.title}</div>
@@ -89,7 +84,7 @@ const relatedCourses = getTaggedCourses(courses, [tags[0]]).filter(
           <button class="accordion no-title-accordion">See More</button>
           <div class="panel">
             {
-              relatedCourses.slice(1, 6).map((course) => (
+              relatedCourses.slice(2, 6).map((course) => (
                 <a href={`/courses/${makeUrl(course.data.title)}`}>
                   <div class="purchase">
                     <div class="company">{course.data.title}</div>
@@ -123,6 +118,7 @@ const relatedCourses = getTaggedCourses(courses, [tags[0]]).filter(
       border-radius: 12px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
       color: $text-main;
+      overflow: hidden;
 
       .footer-cta {
         margin-bottom: 0.5rem;
@@ -213,6 +209,17 @@ const relatedCourses = getTaggedCourses(courses, [tags[0]]).filter(
             max-width: 250px;
             float: left;
             margin: 0 16px 16px 0;
+          }
+
+          @media (max-width: 600px) {
+            :global(.details-body-A > img) {
+              display: block;
+              width: calc(100% + 2rem);
+              max-width: none;
+              float: none;
+              margin: -1rem -1rem 1rem -1rem;
+              border-radius: 12px 12px 0 0;
+            }
           }
 
           .inline-media {
@@ -413,6 +420,12 @@ const relatedCourses = getTaggedCourses(courses, [tags[0]]).filter(
             }
           }
         }
+      }
+      .details-body-A {
+        img, picture {
+          display: block;
+          width: 100%;
+          border-radius: 12px 12px 0 0;        }
       }
     }
   </style>

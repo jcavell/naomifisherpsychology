@@ -59,10 +59,34 @@ const introText =
   </p>
 
   <div class="card-meta">
-    <Tags tags={tags} />
+    <!--<Tags tags={tags} />-->
   </div>
 
   <div class="card-actions">
     <a class="btn btn-learn" href=`/blog/${makeUrl(title)}`> Read More</a>
   </div>
 </div>
+
+<style>
+    @media (min-width: 800px) {
+        h3 {
+            /* Fixed height accommodates one-line title + optional subtitle,
+               so the paragraph always starts at the same point across all cards */
+            min-height: 90px;
+        }
+
+        h3 a {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        h3 span {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    }
+</style>
